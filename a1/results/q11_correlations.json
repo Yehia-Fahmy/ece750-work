@@ -1,0 +1,106 @@
+{
+  "y": [
+    {
+      "feature": "marital-status_Married-civ-spouse",
+      "correlation": 0.44469615504631554,
+      "index": 33
+    },
+    {
+      "feature": "relationship_Husband",
+      "correlation": 0.4010352635774561,
+      "index": 57
+    },
+    {
+      "feature": "education_num",
+      "correlation": 0.33515395269094206,
+      "index": 32
+    },
+    {
+      "feature": "marital-status_Never-married",
+      "correlation": -0.31844032507377557,
+      "index": 35
+    },
+    {
+      "feature": "age_u30",
+      "correlation": -0.2381325319502024,
+      "index": 1
+    },
+    {
+      "feature": "hours-per-week",
+      "correlation": 0.22968906567080996,
+      "index": 68
+    },
+    {
+      "feature": "relationship_Own-child",
+      "correlation": -0.22853196347382265,
+      "index": 56
+    },
+    {
+      "feature": "capital-gain",
+      "correlation": 0.22332881819538272,
+      "index": 66
+    },
+    {
+      "feature": "occupation_Exec-managerial",
+      "correlation": 0.214861314646451,
+      "index": 44
+    },
+    {
+      "feature": "relationship_Not-in-family",
+      "correlation": -0.18849737130400454,
+      "index": 58
+    }
+  ],
+  "a": [
+    {
+      "feature": "relationship_Husband",
+      "correlation": 0.5801352648000685,
+      "index": 57
+    },
+    {
+      "feature": "marital-status_Married-civ-spouse",
+      "correlation": 0.43180545811313037,
+      "index": 33
+    },
+    {
+      "feature": "relationship_Unmarried",
+      "correlation": -0.3212732037336036,
+      "index": 60
+    },
+    {
+      "feature": "relationship_Wife",
+      "correlation": -0.3193105480034021,
+      "index": 55
+    },
+    {
+      "feature": "occupation_Adm-clerical",
+      "correlation": -0.2631477628435176,
+      "index": 48
+    },
+    {
+      "feature": "hours-per-week",
+      "correlation": 0.22930914902631083,
+      "index": 68
+    },
+    {
+      "feature": "marital-status_Divorced",
+      "correlation": -0.2286211253031227,
+      "index": 34
+    },
+    {
+      "feature": "occupation_Craft-repair",
+      "correlation": 0.22312817750275313,
+      "index": 41
+    },
+    {
+      "feature": "marital-status_Widowed",
+      "correlation": -0.18848665862323696,
+      "index": 37
+    },
+    {
+      "feature": "marital-status_Never-married",
+      "correlation": -0.17143394597881642,
+      "index": 35
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "all": [
+    {
+      "feature": "marital-status_Married-civ-spouse",
+      "correlation": 0.46862429656266724,
+      "index": 33
+    },
+    {
+      "feature": "education_num",
+      "correlation": 0.4335828749767671,
+      "index": 32
+    },
+    {
+      "feature": "relationship_Husband",
+      "correlation": 0.41767266675968723,
+      "index": 57
+    }
+  ],
+  "a0": [
+    {
+      "feature": "relationship_Wife",
+      "correlation": 0.5619621867709774,
+      "index": 55
+    },
+    {
+      "feature": "marital-status_Married-civ-spouse",
+      "correlation": 0.5273114698889324,
+      "index": 33
+    },
+    {
+      "feature": "capital-gain",
+      "correlation": 0.2987001050725974,
+      "index": 66
+    }
+  ],
+  "a1": [
+    {
+      "feature": "education_num",
+      "correlation": 0.4913339995787991,
+      "index": 32
+    },
+    {
+      "feature": "relationship_Husband",
+      "correlation": 0.4150902447273995,
+      "index": 57
+    },
+    {
+      "feature": "marital-status_Married-civ-spouse",
+      "correlation": 0.4105476253643149,
+      "index": 33
+    }
+  ]
+}
