@@ -1,0 +1,104 @@
+\documentclass[11pt, letterpaper]{article}
+
+\topmargin 0in \textheight 9in \textwidth 6.7in \evensidemargin -.21in \oddsidemargin -.21in \columnsep 0.3in
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{natbib}
+\usepackage[T1]{fontenc}
+\usepackage{titlesec}
+\titleformat{\section}{\normalfont\normalsize\bfseries}{}{0pt}{}
+\titlespacing*{\section}{0pt}{10pt}{4pt}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[L]{\footnotesize Proposal length: 2 pages max, not including references.}
+\fancyfoot[R]{\footnotesize\thepage}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue!70!black,
+    urlcolor=blue!70!black,
+    citecolor=blue!70!black
+}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+
+\begin{document}
+{\Large\textbf{ECE750T: Research Project Proposal}}\\[5pt]
+{\large\textbf{Your Project Title}}\\[4pt]
+Your Name \quad | \quad Your Student ID\\
+University of Waterloo \quad | \quad Fall 2026
+\vspace{0.5em}\hrule\vspace{0.5em}
+
+% Replace all bracketed text. Keep the eight headings.
+% At most 2 pages excluding references. This template is for the proposal only.
+% Released September 25, 2026. Consult the handout for the submission deadline.
+
+\section*{Q1: Research Question}
+[State your question in plain language and explain its relevance to Responsible AI (possibly including topics we haven't yet covered in class).]
+
+\section*{Q2: Prior Work and Limitations}
+[Describe 3--5 relevant works and their limitations. Cite the papers you discuss.
+Add your own entries to references.bib and cite them with
+\texttt{\textbackslash citep\{key\}} or \texttt{\textbackslash citet\{key\}}.
+Example citation (replace with your own sources): \citet{chouldechova2017fair}.]
+
+\section*{Q3: Novelty of Approach}
+[Explain what is new or different about your approach, application, or comparison.]
+
+\section*{Q4: Impact and Motivation}
+[Explain why the question matters and who would benefit from the results.]
+
+\section*{Q5: Risks and Assumptions}
+[Identify key assumptions and possible failure modes.]
+
+\section*{Q6: Resources}
+[Describe the data, compute, or other materials you need and how you will obtain
+them. Distinguish resources already available from access still to be arranged.]
+
+\newpage
+\section*{Q7: Weekly Plan}
+% The draft planning window is October 9--December 4, 2026.
+% Update these dates if the confirmed course deadlines change.
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{lp{4.3in}}
+\toprule
+\textbf{Week} & \textbf{Plan} \\
+\midrule
+Oct 12--18 (reading week) & [Milestone] \\
+Oct 19--25 & [Milestone] \\
+Oct 26--Nov 1 & [Milestone] \\
+Nov 2--8 & [Milestone] \\
+Nov 9--15 & [Milestone] \\
+Nov 16--22 & [Milestone] \\
+Nov 23--29 & [Milestone] \\
+Nov 30--Dec 4 & [Milestone] \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section*{Q8: Milestones and Success Criteria}
+[Define evaluation criteria, baselines or other comparisons, and what you expect
+to learn. Include quantitative and/or qualitative criteria as appropriate.]
+
+\section*{Tools and Assistance}
+[If you plan to use AI tools in your research, briefly describe how. As relevant, mention any other relevant resources (archives, software used within your lab) that will play a significant role in your project's success.]
+
+% References are excluded from the two-page limit. Replace the example citation
+% and bibliography entry with sources relevant to your proposal.
+% latexmk runs BibTeX automatically.
+\bibliographystyle{plainnat}
+\bibliography{references}
+\end{document}
