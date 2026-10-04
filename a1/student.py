@@ -12,17 +12,17 @@ def correlations(x: np.ndarray, target: np.ndarray) -> np.ndarray:
     """
     x = np.asarray(x, dtype=np.float64)
     target = np.asarray(target, dtype=np.float64).reshape(-1)
-    x_centered = x - x.mean(axis=0)
-    target_centered = target - target.mean()
-    x_norm = np.sqrt(np.sum(x_centered * x_centered, axis=0))
-    target_norm = np.sqrt(np.sum(target_centered * target_centered))
+    x_c = x - x.mean(axis=0)
+    t_c = target - target.mean()
+    x_norm = np.sqrt(np.sum(x_c * x_c, axis=0))
+    t_norm = np.sqrt(np.sum(t_c * t_c))
     with np.errstate(divide="ignore", invalid="ignore"):
-        corr = (x_centered.T @ target_centered) / (x_norm * target_norm)
+        corr = (x_c.T @ t_c) / (x_norm * t_norm)
     corr[~np.isfinite(corr)] = np.nan
     return corr
 
 
-def _group_rate(values):
+def _mean_or_none(values):
     if len(values) == 0:
         return None
     return float(np.mean(values))
@@ -42,39 +42,25 @@ def metrics(y: np.ndarray, score: np.ndarray, a: np.ndarray) -> dict:
     y = np.asarray(y).reshape(-1)
     score = np.asarray(score).reshape(-1)
     a = np.asarray(a).reshape(-1)
-    prediction = score >= 0.5
-    correct = prediction == y
-    accuracy = _group_rate(correct)
+    pred = score >= 0.5
+    correct = pred == y
 
-    group_stats = {}
-    accuracies = []
-    positive_rates = []
-    for group in (0, 1):
-        selected = a == group
-        n_group = int(np.sum(selected))
-        group_accuracy = _group_rate(correct[selected])
-        positive_rate = _group_rate(prediction[selected])
-        group_stats[str(group)] = {
-            "n": n_group,
-            "accuracy": group_accuracy,
-            "positive_rate": positive_rate,
-        }
-        accuracies.append(group_accuracy)
-        positive_rates.append(positive_rate)
+    groups = {}
+    accs, rates = [], []
+    for g in (0, 1):
+        mask = a == g
+        n = int(np.sum(mask))
+        acc = _mean_or_none(correct[mask])
+        rate = _mean_or_none(pred[mask])
+        groups[str(g)] = {"n": n, "accuracy": acc, "positive_rate": rate}
+        accs.append(acc)
+        rates.append(rate)
 
-    if None in accuracies:
-        rw_accuracy = None
-    else:
-        rw_accuracy = float(0.5 * (accuracies[0] + accuracies[1]))
-    if None in positive_rates:
-        dp_gap = None
-    else:
-        dp_gap = float(abs(positive_rates[0] - positive_rates[1]))
     return {
-        "accuracy": accuracy,
-        "rw_accuracy": rw_accuracy,
-        "dp_gap": dp_gap,
-        "groups": group_stats,
+        "accuracy": _mean_or_none(correct),
+        "rw_accuracy": None if None in accs else float(0.5 * (accs[0] + accs[1])),
+        "dp_gap": None if None in rates else float(abs(rates[0] - rates[1])),
+        "groups": groups,
     }
 
 
@@ -87,5 +73,4 @@ def dp_penalty(score: torch.Tensor, a: torch.Tensor) -> torch.Tensor:
     """
     score = score.reshape(-1)
     a = a.reshape(-1)
-    group_gap = score[a == 0].mean() - score[a == 1].mean()
-    return group_gap.square()
+    return (score[a == 0].mean() - score[a == 1].mean()).square()
