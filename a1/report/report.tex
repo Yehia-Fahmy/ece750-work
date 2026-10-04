@@ -1,6 +1,6 @@
 \documentclass[11pt]{article}
 \usepackage[margin=1in]{geometry}
-\usepackage{amsmath,amssymb,booktabs,graphicx}
+\usepackage{amsmath,amssymb,booktabs,graphicx,float}
 \graphicspath{{../results/}}
 \newcommand{\Yhat}{\widehat Y}
 \newcommand{\DP}{\Delta_{\mathrm{DP}}}
@@ -108,15 +108,16 @@ $\alpha$ & Accuracy & Reweighted accuracy & $\DP$ \\
 \end{tabular}
 \end{center}
 
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
-\includegraphics[width=0.55\textwidth]{q14_accuracy.png}\\[0.4em]
-\includegraphics[width=0.55\textwidth]{q14_rw_accuracy.png}\\[0.4em]
-\includegraphics[width=0.55\textwidth]{q14_dp_gap.png}
-\caption{Test accuracy, reweighted accuracy, and $\DP$ versus $\alpha$.}
+\includegraphics[width=0.33\textwidth]{q14_accuracy.png}\hfill
+\includegraphics[width=0.33\textwidth]{q14_rw_accuracy.png}\hfill
+\includegraphics[width=0.33\textwidth]{q14_dp_gap.png}
+\caption{Test accuracy, reweighted accuracy, and $\DP$ versus $\alpha$ for the reported sweep.}
+\label{fig:q14}
 \end{figure}
 
-From $\alpha=0$ to $30$, test $\DP$ falls from $0.1707$ to $0.0012$ while accuracy drops by about $0.023$ and reweighted accuracy by about $0.022$. At $\alpha=100$ the gap stays near zero, but accuracy falls to $0.8018$ as positives become rare in both groups. The DP curve is not monotone ($0.0012$ at $30$ vs.\ $0.0040$ at $100$).
+Figure~\ref{fig:q14} shows the same comparison. From $\alpha=0$ to $30$, test $\DP$ falls from $0.1707$ to $0.0012$ while accuracy drops by about $0.023$ and reweighted accuracy by about $0.022$. At $\alpha=100$ the gap stays near zero, but accuracy falls to $0.8018$ as positives become rare in both groups. The DP curve is not monotone ($0.0012$ at $30$ vs.\ $0.0040$ at $100$).
 
 \section*{Question 2}
 
