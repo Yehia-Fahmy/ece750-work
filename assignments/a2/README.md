@@ -1,7 +1,7 @@
 # ECE 750T Assignment 2
 
-Documentation audit. Handout: [A2.pdf](A2.pdf). Official materials and the
-released LaTeX zip are in [`course/assignments/a2/`](../course/assignments/a2/).
+Documentation audit. Handout: [A2.pdf](A2.pdf). Released LaTeX zip:
+[`a2-template.zip`](a2-template.zip).
 
 Working copy of the response template:
 

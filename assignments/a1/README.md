@@ -1,5 +1,7 @@
 # ECE 750T Assignment 1
 
+Handout: [A1.pdf](A1.pdf). Starter zip: [`A1-starter.zip`](A1-starter.zip).
+
 Python 3.13. From this directory:
 
 ```sh

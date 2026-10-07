@@ -5,25 +5,35 @@
 __pycache__/
 *.py[cod]
 
-a1/data/
-a1/runs/
+assignments/a1/data/
+assignments/a1/runs/
 
-a1/report/*.aux
-a1/report/*.log
-a1/report/*.out
-a1/report/*.toc
-a1/report/*.fls
-a1/report/*.fdb_latexmk
-a1/report/*.synctex.gz
+assignments/a1/report/*.aux
+assignments/a1/report/*.log
+assignments/a1/report/*.out
+assignments/a1/report/*.toc
+assignments/a1/report/*.fls
+assignments/a1/report/*.fdb_latexmk
+assignments/a1/report/*.synctex.gz
 
-a2/*.aux
-a2/*.log
-a2/*.out
-a2/*.toc
-a2/*.fls
-a2/*.fdb_latexmk
-a2/*.synctex.gz
-a2/*.bbl
-a2/*.blg
+assignments/a2/*.aux
+assignments/a2/*.log
+assignments/a2/*.out
+assignments/a2/*.toc
+assignments/a2/*.fls
+assignments/a2/*.fdb_latexmk
+assignments/a2/*.synctex.gz
+assignments/a2/*.bbl
+assignments/a2/*.blg
+
+project/proposal-template/*.aux
+project/proposal-template/*.log
+project/proposal-template/*.out
+project/proposal-template/*.toc
+project/proposal-template/*.fls
+project/proposal-template/*.fdb_latexmk
+project/proposal-template/*.synctex.gz
+project/proposal-template/*.bbl
+project/proposal-template/*.blg
 
 a1-code.zip
