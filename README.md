@@ -20,7 +20,7 @@ Dates and weights below come from the October 3 LEARN materials in this repo. Wh
 | Research project | 50% | Individual |
 | **Total** | **100%** | |
 
-The 15% presentation mark is 10% for the presentation and 5% for discussion facilitation. The [rubric](project/presentation-rubric.pdf) scores that same 15 as 10 marks for the talk (understanding 4, clarity 3, evidence and limitations 3) and 5 marks for facilitation (questions 2, class engagement 2, scribed notes 1).
+The 15% presentation mark is 10% for the presentation and 5% for discussion facilitation.
 
 The research project is split as follows:
 
@@ -89,6 +89,6 @@ Week numbers below follow the slides: Week 5 is the October 9 proposal, and Week
 | --- | --- |
 | [`assignments/`](assignments/) | Assignment handouts, starter zips, and write-ups (`a1/`, `a2/`) |
 | [`lectures/`](lectures/) | Slides L01–L04, plus the annotated copies |
-| [`project/`](project/) | Proposal handout, proposal template, and group presentation rubric |
+| [`project/`](project/) | Proposal handout and proposal template |
 
 Lecture topics: L01 course intro, L02 algorithmic fairness, L03 evaluation and auditing, L04 measurement and data curation.
