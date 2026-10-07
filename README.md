@@ -6,7 +6,7 @@ Instructor: Prof. Elliot Creager. TAs: Chenghao Tan and Ambreesh Parthasarathy.
 
 Class meets Fridays, 1:00–3:50pm, in PSE 4053. Office hours are by appointment in EIT 3116. Announcements and files are on LEARN. Lectures are not recorded. Written work goes to both Crowdmark and LEARN Dropbox unless a handout says otherwise, and is due at 11:59pm ET on the stated date. The Week 1 slides say late submissions are not accepted except where an accommodation applies. The project proposal is the one published exception: it has a no-penalty window through October 12.
 
-Dates and weights below come from the October 3 LEARN export in [`course/`](course/). Where a calendar date is inferred from the week numbering, the UW Fall 2026 calendar, and the dates the handouts do print, it is marked as expected.
+Dates and weights below come from the October 3 LEARN materials in this repo. Where a calendar date is inferred from the week numbering, the UW Fall 2026 calendar, and the dates the handouts do print, it is marked as expected.
 
 ## Mark breakdown
 
@@ -20,7 +20,7 @@ Dates and weights below come from the October 3 LEARN export in [`course/`](cour
 | Research project | 50% | Individual |
 | **Total** | **100%** | |
 
-The 15% presentation mark is 10% for the presentation and 5% for discussion facilitation. The [rubric](course/project/presentation-rubric.pdf) scores that same 15 as 10 marks for the talk (understanding 4, clarity 3, evidence and limitations 3) and 5 marks for facilitation (questions 2, class engagement 2, scribed notes 1).
+The 15% presentation mark is 10% for the presentation and 5% for discussion facilitation. The [rubric](project/presentation-rubric.pdf) scores that same 15 as 10 marks for the talk (understanding 4, clarity 3, evidence and limitations 3) and 5 marks for facilitation (questions 2, class engagement 2, scribed notes 1).
 
 The research project is split as follows:
 
@@ -36,9 +36,9 @@ Assignment handouts use their own point totals, then scale to the course weight:
 
 | Deliverable | Weight | Due | Notes |
 | --- | ---: | --- | --- |
-| Assignment 1 | 10% | Thu Oct 2, 11:59pm ET | Released Fri Sep 18. Coding plus written solutions. Submit the PDF to Crowdmark and LEARN, and `a1-code.zip` to LEARN. Solution is in [`a1/`](a1/). |
-| Project proposal | 5% | Fri Oct 9, 11:59pm ET | Confirmed. No-penalty extension through Mon Oct 12, 11:59pm ET; no request needed. At most 2 pages, excluding references. Same PDF to Crowdmark and LEARN. |
-| Assignment 2 | 10% | Mon Oct 19, 11:59pm ET | Confirmed. Released Fri Oct 3. Executive summary of at most 2 pages. Crowdmark gets screenshots of each section; LEARN gets the full PDF (zip supplements with it if you have any). |
+| Assignment 1 | 10% | Thu Oct 2, 11:59pm ET | Released Fri Sep 18. Coding plus written solutions. Submit the PDF to Crowdmark and LEARN, and `a1-code.zip` to LEARN. Work is in [`assignments/a1/`](assignments/a1/). |
+| Project proposal | 5% | Fri Oct 9, 11:59pm ET | Confirmed. No-penalty extension through Mon Oct 12, 11:59pm ET; no request needed. At most 2 pages, excluding references. Same PDF to Crowdmark and LEARN. Template is in [`project/proposal-template/`](project/proposal-template/). |
+| Assignment 2 | 10% | Mon Oct 19, 11:59pm ET | Confirmed. Released Fri Oct 3. Executive summary of at most 2 pages. Crowdmark gets screenshots of each section; LEARN gets the full PDF (zip supplements with it if you have any). Work is in [`assignments/a2/`](assignments/a2/). |
 | Midterm exam | 10% | Fri Oct 23, in class | Confirmed. Covers Weeks 1–5: conceptual questions and worked problems. The prof lecture is replaced by the exam. |
 | Group paper presentation | 15% | Your sign-up Friday | Sign-up sheet was still TBA in the Week 1 slides. Email slides as a PDF before class. Email Markdown discussion notes by the Monday after that class. 28–30 minutes, including discussion. |
 | Micro-survey | 5% | Fri Nov 27 | Confirmed due date. One submission per group. Compare your paper with two others from that week’s list, and include a contribution statement. |
@@ -87,5 +87,8 @@ Week numbers below follow the slides: Week 5 is the October 9 proposal, and Week
 
 | Directory | Contents |
 | --- | --- |
-| [`course/`](course/) | Official handouts, slides, templates, and the Week 1 reading notes |
-| [`a1/`](a1/) | Assignment 1 code, reproduction notes, result tables, and written solutions |
+| [`assignments/`](assignments/) | Assignment handouts, starter zips, and write-ups (`a1/`, `a2/`) |
+| [`lectures/`](lectures/) | Slides L01–L04, plus the annotated copies |
+| [`project/`](project/) | Proposal handout, proposal template, and group presentation rubric |
+
+Lecture topics: L01 course intro, L02 algorithmic fairness, L03 evaluation and auditing, L04 measurement and data curation.
