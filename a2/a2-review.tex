@@ -1,0 +1,72 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx,booktabs,amsmath}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{natbib}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\hypersetup{colorlinks=true,linkcolor=blue!70!black,urlcolor=blue!70!black,citecolor=blue!70!black}
+\titleformat{\section}{\normalfont\normalsize\bfseries}{}{0pt}{}
+\titlespacing*{\section}{0pt}{10pt}{4pt}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[R]{\footnotesize\thepage}
+\newcommand{\prompt}[1]{{\small\color{black!65}#1\par}}
+
+\begin{document}
+{\Large\textbf{ECE750T: Data Documentation Audit}}\\[5pt]
+{\large\textbf{Dataset or Model Name}}\\[4pt]
+Your Name \quad | \quad Your Student ID\\
+Fall 2026
+\vspace{0.5em}\hrule\vspace{0.5em}
+
+% Replace prompts with your own text. Retain the three section headings.
+% The executive summary must fit within two pages, including this header.
+% Do not reduce the font size or margins. No separate title page is needed.
+% There is no requirement to fill both pages or to include an appendix.
+
+\section*{1. Context [8 marks]}
+\prompt{Identify the dataset or model, its documentation, and the use case you will assess.
+}
+[Your response.]
+
+\section*{2. Critique [20 marks]}
+\prompt{Assess what the documentation communicates well and its notable weaknesses.
+}
+[Your response.]
+
+\section*{3. Proposed changes [12 marks]}
+\prompt{Explain your proposed changes. Identify additional necessary information and who could provide it.}
+[Your response.]
+
+% Cite sources with \citep{key} or \citet{key}; add entries to references.bib.
+% The dummy entry shows how the bibliography renders. Replace it with your
+% sources and remove the \nocite command below.
+% Do not move the page break: references belong after the executive summary.
+\clearpage
+\nocite{replaceMe}
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\appendix
+\section*{Appendix A}
+\prompt{As needed, include appendices here}
+[Your response.]
+
+% \section*{Appendix B}
+% \prompt{As needed, include extra appendices here}
+% [Your response.]
+
+% \section*{Appendix C}
+% \prompt{As needed, include extra appendices here}
+% [Your response.]
+
+\section*{AI-assistance disclosure (if applicable)}
+\prompt{If you used AI tools, describe how. Per course policy, clarity of writing matters and submitting ``sloppy'' work may result in poor marks.}
+[Your response.]
+\end{document}

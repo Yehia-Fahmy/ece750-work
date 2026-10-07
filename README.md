@@ -38,7 +38,7 @@ Assignment handouts use their own point totals, then scale to the course weight:
 | --- | ---: | --- | --- |
 | Assignment 1 | 10% | Thu Oct 2, 11:59pm ET | Released Fri Sep 18. Coding plus written solutions. Submit the PDF to Crowdmark and LEARN, and `a1-code.zip` to LEARN. Solution is in [`a1/`](a1/). |
 | Project proposal | 5% | Fri Oct 9, 11:59pm ET | Confirmed. No-penalty extension through Mon Oct 12, 11:59pm ET; no request needed. At most 2 pages, excluding references. Same PDF to Crowdmark and LEARN. |
-| Assignment 2 | 10% | Mon Oct 19, 11:59pm ET | Confirmed. Released Fri Oct 3. Executive summary of at most 2 pages. Crowdmark gets screenshots of each section; LEARN gets the full PDF (zip supplements with it if you have any). |
+| Assignment 2 | 10% | Mon Oct 19, 11:59pm ET | Confirmed. Released Fri Oct 3. Executive summary of at most 2 pages. Crowdmark gets screenshots of each section; LEARN gets the full PDF (zip supplements with it if you have any). Working copy is in [`a2/`](a2/). |
 | Midterm exam | 10% | Fri Oct 23, in class | Confirmed. Covers Weeks 1–5: conceptual questions and worked problems. The prof lecture is replaced by the exam. |
 | Group paper presentation | 15% | Your sign-up Friday | Sign-up sheet was still TBA in the Week 1 slides. Email slides as a PDF before class. Email Markdown discussion notes by the Monday after that class. 28–30 minutes, including discussion. |
 | Micro-survey | 5% | Fri Nov 27 | Confirmed due date. One submission per group. Compare your paper with two others from that week’s list, and include a contribution statement. |
@@ -89,3 +89,4 @@ Week numbers below follow the slides: Week 5 is the October 9 proposal, and Week
 | --- | --- |
 | [`course/`](course/) | Official handouts, slides, templates, and the Week 1 reading notes |
 | [`a1/`](a1/) | Assignment 1 code, reproduction notes, result tables, and written solutions |
+| [`a2/`](a2/) | Assignment 2 handout and LaTeX write-up (documentation audit) |

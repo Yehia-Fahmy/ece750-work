@@ -16,4 +16,14 @@ a1/report/*.fls
 a1/report/*.fdb_latexmk
 a1/report/*.synctex.gz
 
+a2/*.aux
+a2/*.log
+a2/*.out
+a2/*.toc
+a2/*.fls
+a2/*.fdb_latexmk
+a2/*.synctex.gz
+a2/*.bbl
+a2/*.blg
+
 a1-code.zip
