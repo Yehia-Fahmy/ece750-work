@@ -1,0 +1,139 @@
+\documentclass[11pt, letterpaper]{article}
+
+\topmargin 0in \textheight 9in \textwidth 6.7in \evensidemargin -.21in \oddsidemargin -.21in \columnsep 0.3in
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{natbib}
+\usepackage[T1]{fontenc}
+\usepackage{titlesec}
+\titleformat{\section}{\normalfont\normalsize\bfseries}{}{0pt}{}
+\titlespacing*{\section}{0pt}{5pt}{2pt}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[L]{\footnotesize Proposal length: 2 pages max, not including references.}
+\fancyfoot[R]{\footnotesize\thepage}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue!70!black,
+    urlcolor=blue!70!black,
+    citecolor=blue!70!black
+}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{2pt}
+
+\begin{document}
+{\Large\textbf{ECE750T: Research Project Proposal}}\\[5pt]
+{\large\textbf{Reasoning Under Observation: Observer Effects on LLM Rationales}}\\[4pt]
+Yehia Fahmy \quad | \quad 20786266\\
+University of Waterloo \quad | \quad Fall 2026
+\vspace{0.5em}\hrule\vspace{0.5em}
+
+\section*{Q1: Research Question}
+How do observer identity and the declared visibility of a language model's
+verbalized reasoning affect its accuracy, susceptibility to an anonymous
+suggested answer, and disclosure of that influence? I will compare a developer,
+a domain expert, and an automated AI monitor when each is said to see either the
+model's rationale and answer or only its answer. This connects evaluation,
+auditing, and foundation-model safety: if announced oversight changes behaviour,
+an audit may not predict deployment.
+
+\section*{Q2: Prior Work and Limitations}
+\citet{covas2026watched} report that human and AI monitoring prompts change
+style, but study one debate topic rather than correctness or disclosure.
+\citet{feng2026peoplepleasers} find that reasoning can reduce sycophancy while
+masking it through post-hoc rationalization, but do not vary who observes it.
+\citet{li2026decomposing} separate evaluation cues, recognition, and behavioural
+response; recognition often causes no response. \citet{chen2026control} find
+that models control outputs more readily than reasoning traces.
+\citet{turpin2023unfaithful} show that suggested answers can influence
+predictions without acknowledgment. I combine these concerns in one audit.
+
+\section*{Q3: Novelty of Approach}
+Prior work separately studies observer identity, evaluation awareness,
+sycophancy, and reasoning controllability. I will cross observer identity with
+declared rationale visibility while holding an anonymous suggestion fixed.
+Unlike style-based observer studies, I measure correctness and disclosure;
+unlike model-organism studies, I require no training or deceptive objective.
+
+\section*{Q4: Impact and Motivation}
+Chain-of-thought is proposed as audit evidence. If monitoring changes a
+rationale without comparably changing the answer---or encourages silent
+conformity---auditors may overestimate transparency. The results could guide
+benchmark designers deciding when verbalized reasoning is useful evidence.
+
+\section*{Q5: Risks and Assumptions}
+Generated rationales are not guaranteed to reveal internal computation, so I
+will not claim intentional concealment. ``Declared-private'' describes the
+prompt, not actual privacy or belief. Observer wording may confound identity
+with authority; matched templates and a second paraphrase will test this. A
+pilot will avoid floor/ceiling tasks; blinded human coding will check automated
+labels. Benchmark exposure and one-model generalization remain limitations.
+
+\section*{Q6: Resources}
+I will use 100--150 public BIG-Bench Hard multiple-choice items
+\citep{suzgun2023challenging} from three tasks selected by a pilot, plus a
+random anonymous answer suggestion per item. The
+primary model will be Qwen3-4B in Q4\_K\_M quantization, run through
+\texttt{llama.cpp} at 4K--8K context and batch size one. Its 2.5\,GB weights and
+approximately 4\,GB runtime footprint fit my 8\,GB RTX 3070 Ti. Python will
+generate prompts, parse answers, and score results; no training is required.
+
+\newpage
+\section*{Q7: Weekly Plan}
+\begin{center}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{lp{4.65in}}
+\toprule
+\textbf{Week} & \textbf{Plan} \\
+\midrule
+Oct 12--18 & Finalize literature, prompt templates, annotation rubric, and analysis protocol. \\
+Oct 19--25 & Implement inference and scoring pipeline; acquire BBH data and quantized model. \\
+Oct 26--Nov 1 & Pilot tasks and prompts; choose three tasks and freeze primary conditions. \\
+Nov 2--8 & Run the main eight-condition experiment and check output parsing/data quality. \\
+Nov 9--15 & Analyze accuracy, hint-following, answer flips, and paired uncertainty estimates. \\
+Nov 16--22 & Code rationales automatically; blind-label a stratified subset and validate labels. \\
+Nov 23--29 & Run paraphrase/seed robustness checks; draft report figures, results, and limitations. \\
+Nov 30--Dec 4 & Complete and revise the report; prepare the project presentation and artifacts. \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section*{Q8: Milestones and Success Criteria}
+The eight conditions are three observers $\times$ visible/declared-private
+rationale, a no observer/no suggestion baseline, and an anonymous hint-only
+control. Suggested labels are random; analyses of influence focus on items where
+the suggestion is wrong. Primary outcomes are accuracy, following the wrong
+suggestion, and ``silent conformity'' (following it without acknowledgment).
+Secondary outcomes include answer flips, uncertainty language, observer
+mentions, and rationale--answer consistency. Answers will be scored
+deterministically. Rationale categories will be assigned automatically or by an
+LLM judge, then checked against blinded human labels on a stratified subset.
+I will report paired bootstrap 95\% confidence intervals and McNemar tests for
+binary answer changes. Success means a reproducible pipeline, a documented
+manipulation check, validated rationale coding, and bounded effect estimates;
+a precise null result is informative because it limits observer effects in this
+setting.
+
+\section*{Tools and Assistance}
+I used Cursor-supported language models for literature discovery, research
+planning, and proposal drafting. I expect to use them for coding assistance and
+possibly preliminary rationale labeling. I will verify citations, code, labels,
+and experimental results myself, document final tool use, and retain
+human-checked labels for judge validation.
+
+\newpage
+\bibliographystyle{plainnat}
+\bibliography{references}
+\end{document}
