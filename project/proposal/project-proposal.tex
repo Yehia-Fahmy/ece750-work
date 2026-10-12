@@ -74,30 +74,32 @@ audit evidence in this limited setting.
 \section*{Q5: Risks and Assumptions}
 Hint alignment does not prove causal influence, and rationales do not establish
 internal computation or intentional concealment. Answer-only observer access
-is declared, not actual privacy or model belief. Matched templates limit wording
-differences but cannot remove role/authority confounding. Separate pilot items
-will check solvability, trace truncation, and labeling time; a separate
-comprehension probe checks the access instruction, not belief. Human validation
-will check automated labels; observer mentions may compromise blinding. Small
-samples, benchmark exposure, and one-model generalization limit conclusions.
+is declared, not actual privacy or model belief. Matched templates cannot remove
+role/authority confounding. Separate pilot items
+will check solvability, trace truncation, and labeling reliability/time. A
+comprehension probe checks the access instruction, not belief. My sample review
+will check automated labels; API confidence is not proof of correctness, and
+observer mentions may compromise blinding. Small samples, benchmark exposure,
+and one-model generalization limit conclusions.
 
 \section*{Q6: Resources}
 I will download public BIG-Bench Hard data \citep{suzgun2023challenging} and
 Qwen3-4B Q4\_K\_M from the official BBH and Qwen repositories. My available
-compute is an 8\,GB RTX 3070 Ti; the model file is about 2.5\,GB, but peak memory
-and throughput require a pilot measurement. The target is 120 main items total
-(40 per task), plus separate pilot items: 960 main generations. Python and
-\texttt{llama.cpp} will record native thinking traces and final labels with
-identical output fields, thinking mode, and decoding across arms. Context/output
-limits will be pilot-tested; no training or external compute is required.
+compute is an 8\,GB RTX 3070 Ti. The target is 120 main items (40 per task):
+960 generations, plus separate pilot items. Python and \texttt{llama.cpp} will
+record thinking traces and answers with the same format, thinking mode, and
+decoding throughout. Inference stays local, with no training. I will arrange
+an API key and billing for the
+\href{https://developers.openai.com/api/docs/guides/decisions}{OpenAI Decisions API}
+for acknowledgment labels; pilot-test memory, throughput, API access, and cost.
 
 \newpage
 \section*{Q7: Weekly Plan}
-At about five hours per week, I budget 34 scheduled hours plus roughly four
-hours of reserve through the provisional December 4 planning date. Within the
-first 8--10 project hours, I will check inference, scoring, trace access, and
-label reliability; if infeasible, I will reduce to one observer, two visibility
-states, and the two controls. Extra seeds and paraphrases are optional.
+At five hours per week, I budget 34 hours plus four in reserve through the
+provisional December 4 planning date. The first 8--10 hours check inference,
+scoring, trace access, API label reliability, and review time. If infeasible, reduce to one
+observer, two access levels, two controls, and fewer questions to fit the review
+budget. Extra seeds and paraphrases are optional.
 \begin{center}
 \renewcommand{\arraystretch}{1.15}
 \begin{tabular}{lp{4.25in}}
@@ -105,44 +107,45 @@ states, and the two controls. Extra seeds and paraphrases are optional.
 \textbf{Week} & \textbf{Plan} \\
 \midrule
 Oct 12--18 (4h) & Refine literature; acquire data/model; build an AI-assisted inference/scoring smoke test. \\
-Oct 19--25 (2h) & Check output formats and draft the acknowledgment rubric; keep midterm week light. \\
-Oct 26--Nov 1 (5h) & Pilot tasks and labels; apply the feasibility check and freeze the protocol. \\
-Nov 2--8 (4h) & Run the selected core design; check parsing, complete traces, and saved metadata. \\
-Nov 9--15 (5h) & Validate automated acknowledgment labels against human coding; start paired analysis. \\
-Nov 16--22 (5h) & Finish intervals and figures; complete a full report draft and freeze new experiments. \\
+Oct 19--25 (2h) & Check formats; draft labeling rules and arrange API access; keep midterm week light. \\
+Oct 26--Nov 1 (5h) & Pilot tasks and Decisions labels; check sample-review time and freeze the protocol. \\
+Nov 2--8 (4h) & Run the selected design and API labeling; check complete traces and saved metadata. \\
+Nov 9--15 (5h) & Check sample labels and uncertain cases; start paired analysis. \\
+Nov 16--22 (5h) & Finish figures and intervals; draft the report and stop new experiments. \\
 Nov 23--29 (4h) & Revise the report and prepare/rehearse slides around the micro-survey deadline. \\
-Nov 30--Dec 4 (5h) & Finalize report, presentation, and reproducibility artifacts under final instructions. \\
+Nov 30--Dec 4 (5h) & Finalize report, slides, and reproducibility files under final instructions. \\
 \bottomrule
 \end{tabular}
 \end{center}
 
 \section*{Q8: Milestones and Success Criteria}
-The eight arms are three observers $\times$ rationale-visible/answer-only
-access, plus no-observer/no-hint and no-observer/hint controls. All generate the
-same rationale and answer fields in fresh conversations. Each hint is sampled
-uniformly from incorrect labels and fixed across hinted arms. The primary
-contrast is visibility, averaged over the three fixed roles; identity
-comparisons are exploratory. The primary endpoint is \emph{unacknowledged
-wrong-hint alignment}: selecting the hinted label without explicitly mentioning
-the external suggestion, divided by all items in that arm. Alignment,
-acknowledgment, and accuracy will also be reported separately. No-hint answers
-will be scored against the same hidden target label to estimate excess
-alignment in the no-observer setting. Binary acknowledgment labels will be
-checked on 100--120 human-coded traces stratified across conditions and label
-predictions, using positive-class precision/recall; unreliable automation
-triggers the smaller, manually labeled design. Paired, task-stratified item
-bootstrap 95\% intervals will quantify uncertainty under one seed schedule.
-Success is a completed reproducible study with checked scoring, validated
-labels, and documented limitations; null results may remain inconclusive about
-small effects.
+\textbf{Pilot by November 1.} Test Decisions API labels for explicit acknowledgment of hints
+(currently \texttt{gpt-6-luna}, public beta). Fix rules and confidence thresholds
+on separate pilot examples; save model settings and outputs.
+
+\textbf{Main study by November 15.} Test three observers with two access levels,
+plus no-observer controls with/without hints. In fresh conversations, keep each
+random wrong hint fixed across hinted conditions. Score answers directly;
+use the API for acknowledgment. Independently sample and check 40--60 traces
+across conditions and both predicted labels, hiding API labels during review;
+also review uncertain cases. Report false positives and missed acknowledgments
+(precision/recall); expand checks if needed.
+
+\textbf{Analysis and report draft by November 22.} The main measure is the
+percentage of all questions per condition where the model chooses the wrong
+hint without acknowledging it. Compare access levels, averaging over roles; role
+comparisons are exploratory. Report accuracy, hint agreement, and acknowledgment.
+Compare no-observer controls using the same wrong label (hidden when no hint is
+given). Estimate uncertainty with 95\% bootstrap intervals by resampling matched
+questions within tasks (one seed schedule). Success means reproducible results,
+checked scoring, measured label reliability, and clear limitations; small
+effects may remain unresolved even if no difference is found.
 
 \section*{Tools and Assistance}
-I used Cursor-supported language models for literature discovery, research
-planning, and proposal drafting. I will use my Cursor subscription and
-ChatGPT/Claude for implementation, debugging, and analysis assistance; automated
-labeler access will be arranged separately if needed. I will verify citations,
-code, labels, and results myself, document tool use in the final report, and
-retain human labels for validation.
+I used Cursor-supported models for literature discovery, planning, and drafting.
+Cursor and ChatGPT/Claude will generate and debug scripts and assist analysis;
+the Decisions API will label acknowledgment. I will review and run scripts,
+verify citations and results, retain sample checks, and disclose tool use.
 
 \newpage
 \bibliographystyle{plainnat}
