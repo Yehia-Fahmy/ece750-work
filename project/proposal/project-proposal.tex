@@ -42,96 +42,107 @@ University of Waterloo \quad | \quad Fall 2026
 
 \section*{Q1: Research Question}
 How do observer identity and the declared visibility of a language model's
-verbalized reasoning affect its accuracy, susceptibility to an anonymous
-suggested answer, and disclosure of that influence? I will compare a developer,
-a domain expert, and an automated AI monitor when each is said to see either the
-model's rationale and answer or only its answer. This connects evaluation,
-auditing, and foundation-model safety: if announced oversight changes behaviour,
-an audit may not predict deployment.
+verbalized reasoning affect answer accuracy, alignment with a misleading
+anonymous suggestion, and acknowledgment of that suggestion? I will compare a
+developer, a domain expert, and an automated AI monitor, each declared to see
+either the rationale and answer or only the answer. Oversight framing may change
+the evidence an audit collects, connecting evaluation and foundation-model safety.
 
 \section*{Q2: Prior Work and Limitations}
-\citet{covas2026watched} report that human and AI monitoring prompts change
-style, but study one debate topic rather than correctness or disclosure.
-\citet{feng2026peoplepleasers} find that reasoning can reduce sycophancy while
-masking it through post-hoc rationalization, but do not vary who observes it.
-\citet{li2026decomposing} separate evaluation cues, recognition, and behavioural
-response; recognition often causes no response. \citet{chen2026control} find
-that models control outputs more readily than reasoning traces.
-\citet{turpin2023unfaithful} show that suggested answers can influence
-predictions without acknowledgment. I combine these concerns in one audit.
+\citet{turpin2023unfaithful} and \citet{chen2025reasoning} show that hints can
+influence answers without being acknowledged, but do not test this visibility
+comparison. \citet{chen2026control} study reasoning controllability, including
+explicit AI-monitoring awareness, rather than hint acknowledgment across
+observer roles. \citet{covas2026watched} study framing in one debate topic;
+their human--AI observer contrast is suggestive rather than statistically
+resolved. \citet{li2026decomposing} distinguish evaluation cues, recognition,
+and response; verbalized recognition is often not associated with behavioural
+change. These motivate a controlled extension, not a new claim of awareness.
 
 \section*{Q3: Novelty of Approach}
-Prior work separately studies observer identity, evaluation awareness,
-sycophancy, and reasoning controllability. I will cross observer identity with
-declared rationale visibility while holding an anonymous suggestion fixed.
-Unlike style-based observer studies, I measure correctness and disclosure;
-unlike model-organism studies, I require no training or deceptive objective.
+I extend hint-disclosure and monitoring-awareness studies by crossing observer
+identity with declared rationale visibility under a fixed misleading
+suggestion on a small local model. It tests framing effects when hints are
+present, not causal changes in hint susceptibility under every observer setting.
 
 \section*{Q4: Impact and Motivation}
-Chain-of-thought is proposed as audit evidence. If monitoring changes a
-rationale without comparably changing the answer---or encourages silent
-conformity---auditors may overestimate transparency. The results could guide
-benchmark designers deciding when verbalized reasoning is useful evidence.
+If monitoring changes a rationale's acknowledgment of external suggestions,
+auditors may misjudge its transparency. Benchmark designers and safety evaluators
+could use the results to assess how oversight framing affects chain-of-thought
+audit evidence in this limited setting.
 
 \section*{Q5: Risks and Assumptions}
-Generated rationales are not guaranteed to reveal internal computation, so I
-will not claim intentional concealment. ``Declared-private'' describes the
-prompt, not actual privacy or belief. Observer wording may confound identity
-with authority; matched templates and a second paraphrase will test this. A
-pilot will avoid floor/ceiling tasks; blinded human coding will check automated
-labels. Benchmark exposure and one-model generalization remain limitations.
+Hint alignment does not prove causal influence, and rationales do not establish
+internal computation or intentional concealment. Answer-only observer access
+is declared, not actual privacy or model belief. Matched templates limit wording
+differences but cannot remove role/authority confounding. Separate pilot items
+will check solvability, trace truncation, and labeling time; a separate
+comprehension probe checks the access instruction, not belief. Human validation
+will check automated labels; observer mentions may compromise blinding. Small
+samples, benchmark exposure, and one-model generalization limit conclusions.
 
 \section*{Q6: Resources}
-I will use 100--150 public BIG-Bench Hard multiple-choice items
-\citep{suzgun2023challenging} from three tasks selected by a pilot, plus a
-random anonymous answer suggestion per item. The
-primary model will be Qwen3-4B in Q4\_K\_M quantization, run through
-\texttt{llama.cpp} at 4K--8K context and batch size one. Its 2.5\,GB weights and
-approximately 4\,GB runtime footprint fit my 8\,GB RTX 3070 Ti. Python will
-generate prompts, parse answers, and score results; no training is required.
+I will download public BIG-Bench Hard data \citep{suzgun2023challenging} and
+Qwen3-4B Q4\_K\_M from the official BBH and Qwen repositories. My available
+compute is an 8\,GB RTX 3070 Ti; the model file is about 2.5\,GB, but peak memory
+and throughput require a pilot measurement. The target is 120 main items total
+(40 per task), plus separate pilot items: 960 main generations. Python and
+\texttt{llama.cpp} will record native thinking traces and final labels with
+identical output fields, thinking mode, and decoding across arms. Context/output
+limits will be pilot-tested; no training or external compute is required.
 
 \newpage
 \section*{Q7: Weekly Plan}
+At about five hours per week, I budget 34 scheduled hours plus roughly four
+hours of reserve through the provisional December 4 planning date. Within the
+first 8--10 project hours, I will check inference, scoring, trace access, and
+label reliability; if infeasible, I will reduce to one observer, two visibility
+states, and the two controls. Extra seeds and paraphrases are optional.
 \begin{center}
 \renewcommand{\arraystretch}{1.15}
-\begin{tabular}{lp{4.65in}}
+\begin{tabular}{lp{4.25in}}
 \toprule
 \textbf{Week} & \textbf{Plan} \\
 \midrule
-Oct 12--18 & Finalize literature, prompt templates, annotation rubric, and analysis protocol. \\
-Oct 19--25 & Implement inference and scoring pipeline; acquire BBH data and quantized model. \\
-Oct 26--Nov 1 & Pilot tasks and prompts; choose three tasks and freeze primary conditions. \\
-Nov 2--8 & Run the main eight-condition experiment and check output parsing/data quality. \\
-Nov 9--15 & Analyze accuracy, hint-following, answer flips, and paired uncertainty estimates. \\
-Nov 16--22 & Code rationales automatically; blind-label a stratified subset and validate labels. \\
-Nov 23--29 & Run paraphrase/seed robustness checks; draft report figures, results, and limitations. \\
-Nov 30--Dec 4 & Complete and revise the report; prepare the project presentation and artifacts. \\
+Oct 12--18 (4h) & Refine literature; acquire data/model; build an AI-assisted inference/scoring smoke test. \\
+Oct 19--25 (2h) & Check output formats and draft the acknowledgment rubric; keep midterm week light. \\
+Oct 26--Nov 1 (5h) & Pilot tasks and labels; apply the feasibility check and freeze the protocol. \\
+Nov 2--8 (4h) & Run the selected core design; check parsing, complete traces, and saved metadata. \\
+Nov 9--15 (5h) & Validate automated acknowledgment labels against human coding; start paired analysis. \\
+Nov 16--22 (5h) & Finish intervals and figures; complete a full report draft and freeze new experiments. \\
+Nov 23--29 (4h) & Revise the report and prepare/rehearse slides around the micro-survey deadline. \\
+Nov 30--Dec 4 (5h) & Finalize report, presentation, and reproducibility artifacts under final instructions. \\
 \bottomrule
 \end{tabular}
 \end{center}
 
 \section*{Q8: Milestones and Success Criteria}
-The eight conditions are three observers $\times$ visible/declared-private
-rationale, a no observer/no suggestion baseline, and an anonymous hint-only
-control. Suggested labels are random; analyses of influence focus on items where
-the suggestion is wrong. Primary outcomes are accuracy, following the wrong
-suggestion, and ``silent conformity'' (following it without acknowledgment).
-Secondary outcomes include answer flips, uncertainty language, observer
-mentions, and rationale--answer consistency. Answers will be scored
-deterministically. Rationale categories will be assigned automatically or by an
-LLM judge, then checked against blinded human labels on a stratified subset.
-I will report paired bootstrap 95\% confidence intervals and McNemar tests for
-binary answer changes. Success means a reproducible pipeline, a documented
-manipulation check, validated rationale coding, and bounded effect estimates;
-a precise null result is informative because it limits observer effects in this
-setting.
+The eight arms are three observers $\times$ rationale-visible/answer-only
+access, plus no-observer/no-hint and no-observer/hint controls. All generate the
+same rationale and answer fields in fresh conversations. Each hint is sampled
+uniformly from incorrect labels and fixed across hinted arms. The primary
+contrast is visibility, averaged over the three fixed roles; identity
+comparisons are exploratory. The primary endpoint is \emph{unacknowledged
+wrong-hint alignment}: selecting the hinted label without explicitly mentioning
+the external suggestion, divided by all items in that arm. Alignment,
+acknowledgment, and accuracy will also be reported separately. No-hint answers
+will be scored against the same hidden target label to estimate excess
+alignment in the no-observer setting. Binary acknowledgment labels will be
+checked on 100--120 human-coded traces stratified across conditions and label
+predictions, using positive-class precision/recall; unreliable automation
+triggers the smaller, manually labeled design. Paired, task-stratified item
+bootstrap 95\% intervals will quantify uncertainty under one seed schedule.
+Success is a completed reproducible study with checked scoring, validated
+labels, and documented limitations; null results may remain inconclusive about
+small effects.
 
 \section*{Tools and Assistance}
 I used Cursor-supported language models for literature discovery, research
-planning, and proposal drafting. I expect to use them for coding assistance and
-possibly preliminary rationale labeling. I will verify citations, code, labels,
-and experimental results myself, document final tool use, and retain
-human-checked labels for judge validation.
+planning, and proposal drafting. I will use my Cursor subscription and
+ChatGPT/Claude for implementation, debugging, and analysis assistance; automated
+labeler access will be arranged separately if needed. I will verify citations,
+code, labels, and results myself, document tool use in the final report, and
+retain human labels for validation.
 
 \newpage
 \bibliographystyle{plainnat}
