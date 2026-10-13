@@ -1,0 +1,79 @@
+{
+  "pdf_pages": 3,
+  "executive_summary_pages": 2,
+  "references_start_page": 3,
+  "disclosure_page": 3,
+  "paper": "US Letter",
+  "latex_font_option": "11pt",
+  "minimum_nonfooter_pdf_font_size_points": 10.909088134765625,
+  "margins_inches": 1,
+  "compiler_warnings": [],
+  "all_summary_section_words_covered_once_in_screenshots": true,
+  "screenshot_count": 4,
+  "screenshots": [
+    {
+      "file": "crowdmark/q1-context.png",
+      "pdf_page": 1,
+      "clip_points": [
+        66.0,
+        156.7792510986328,
+        546.0983276367188,
+        354.21893310546875
+      ],
+      "word_count": 165,
+      "dimensions_pixels": [
+        1441,
+        593
+      ]
+    },
+    {
+      "file": "crowdmark/q2-critique-01.png",
+      "pdf_page": 1,
+      "clip_points": [
+        66.0,
+        364.79925537109375,
+        546.1090698242188,
+        690.1593017578125
+      ],
+      "word_count": 269,
+      "dimensions_pixels": [
+        1441,
+        977
+      ]
+    },
+    {
+      "file": "crowdmark/q2-critique-02.png",
+      "pdf_page": 2,
+      "clip_points": [
+        66.0,
+        70.43310546875,
+        546.0870361328125,
+        211.2849884033203
+      ],
+      "word_count": 125,
+      "dimensions_pixels": [
+        1441,
+        423
+      ]
+    },
+    {
+      "file": "crowdmark/q3-proposed-changes.png",
+      "pdf_page": 2,
+      "clip_points": [
+        66.0,
+        221.86532592773438,
+        546.0980224609375,
+        574.32373046875
+      ],
+      "word_count": 285,
+      "dimensions_pixels": [
+        1441,
+        1058
+      ]
+    }
+  ],
+  "pdf_sha256": "9fd15d407bf1d17ebb09bddff0de7d4097d19c56c8e4278c86733565a596aa6a",
+  "learn_pdf_matches_report": true,
+  "archive_files": 6,
+  "visual_inspection": "All three PDF pages inspected; screenshots inspected separately."
+}
