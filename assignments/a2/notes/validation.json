@@ -73,7 +73,8 @@
     }
   ],
   "pdf_sha256": "9fd15d407bf1d17ebb09bddff0de7d4097d19c56c8e4278c86733565a596aa6a",
-  "learn_pdf_matches_report": true,
   "archive_files": 6,
-  "visual_inspection": "All three PDF pages inspected; screenshots inspected separately."
+  "visual_inspection": "All three PDF pages inspected; screenshots inspected separately.",
+  "submission_pdf_matches_verified_report": true,
+  "layout": "Completed PDF and sources directly in assignments/a2; screenshots in crowdmark; research notes in notes."
 }

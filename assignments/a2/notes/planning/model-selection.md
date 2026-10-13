@@ -1,13 +1,13 @@
 # Assignment 2: instructor example planning
 
 Research date: 13 October 2026 (America/Toronto).
-Status: complete. User selected Florence-2 and requested the student hand-in format. The final report, destination-specific screenshots/PDF, and distribution archive are in `../example-solution/`. The summary is two pages; references and provenance occupy page 3. WSL diagnostics confirmed the 8 GB RTX 3070 Ti. No model inference was needed or performed.
-Worktree: `/home/yehia/.codex/worktrees/assignment-2-example/ece750-work`.
-Branch: `codex/assignment-2-example`.
+Status: complete. User selected Florence-2 and requested the student hand-in format. The final report, destination-specific screenshots/PDF, and distribution archive are in `../../`. The summary is two pages; references and provenance occupy page 3. WSL diagnostics confirmed the 8 GB RTX 3070 Ti. No model inference was needed or performed.
+Worktree: `/home/yehia/ece750-work/.worktrees/assignment-2-submission`.
+Branch: `codex/assignment-2-submission`.
 
 ## Requirements established from the handout
 
-The authoritative source is [A2.pdf](../A2.pdf), both pages. The existing response template is [a2-review.tex](../a2-review.tex). Read the handout together with the template; use the handout if their prompts differ.
+The authoritative source is [A2.pdf](../../A2.pdf), both pages. The existing response template is [a2-review.tex](../../a2-review.tex). Read the handout together with the template; use the handout if their prompts differ.
 
 - Audit **one public documentation artifact** for a dataset, model, or other AI artifact. Instructor approval of a student's selection is unnecessary.
 - Assess it against a **specific use**, identifying the documentation's purpose, intended audience, and the authors' stated scope. Distinguish documented intentions from our proposed application.

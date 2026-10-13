@@ -1,23 +1,37 @@
-# ECE 750T Assignment 2
+# ECE 750T Assignment 2 — Documentation audit
 
-Documentation audit. Handout: [A2.pdf](A2.pdf). Released LaTeX zip:
-[`a2-template.zip`](a2-template.zip).
+Completed example submission: **Florence-2-base**, assessed for drafting descriptions of campus photographs for a university website.
 
-Working copy of the response template:
+The submission uses the supplied template's three sections, 11-point text and 1-inch margins. The executive summary occupies pages 1–2, including its identifying header. References and the instructor-example AI disclosure occupy page 3. The header identifies an example rather than a real student.
 
-- `a2-review.tex` — executive summary (context, critique, proposed changes)
-- `references.bib` — BibTeX sources; cite with `\citep{key}` or `\citet{key}`
-- `a2-review.pdf` — current build of the template / your write-up
+## Hand-in files
 
-Replace the grey prompts and bracketed text. Keep the three section headings.
-The executive summary, including its identifying header, is at most two pages.
-Do not reduce the 11-point font or 1-inch margins. References stay after the
-page break; appendices and the AI-assistance disclosure may follow.
+| Destination | Files to upload |
+| --- | --- |
+| **LEARN Dropbox** | [`a2-review.pdf`](a2-review.pdf), the complete three-page report |
+| **Crowdmark — Question 1: Context** | [`crowdmark/q1-context.png`](crowdmark/q1-context.png) |
+| **Crowdmark — Question 2: Critique** | [`crowdmark/q2-critique-01.png`](crowdmark/q2-critique-01.png), then [`crowdmark/q2-critique-02.png`](crowdmark/q2-critique-02.png) |
+| **Crowdmark — Question 3: Proposed changes** | [`crowdmark/q3-proposed-changes.png`](crowdmark/q3-proposed-changes.png) |
+
+The critique continues on page 2, so both Question 2 images are required. Screenshots were rendered from the final PDF; every section word is covered exactly once, in reading order.
+
+The handout requires both submission destinations, by **October 19 at 11:59pm ET**. No supplemental files are needed for this submission: upload the PDF directly to LEARN. LaTeX source is not required. No course-site uploads have been performed.
+
+[`a2-hand-in-package.zip`](a2-hand-in-package.zip) contains the PDF, four section images and these instructions for convenient distribution. Unzip it and upload the destination-specific files above; the archive itself is not the LEARN submission.
+
+## Editable source and assignment materials
+
+- [`a2-review.tex`](a2-review.tex): completed executive summary and disclosure.
+- [`references.bib`](references.bib): the six cited references.
+- [`A2.pdf`](A2.pdf): assignment handout.
+- [`a2-template.zip`](a2-template.zip): unchanged released template.
+
+Build from this directory:
 
 ```sh
 latexmk -pdf a2-review.tex
 ```
 
-Or upload this folder to Overleaf. Submit screenshots of each section to
-Crowdmark and the full PDF to LEARN Dropbox (zip supplements with it if needed).
-Latex source is not required.
+Alternatively, use `tectonic a2-review.tex`, or upload the source and bibliography to Overleaf. References remain after the page break; do not shrink the font or margins.
+
+[`notes/`](notes/) contains research provenance, validation and local-resource diagnostics. Those working notes are not part of the student hand-in. The example is intended for distribution after the assignment; its AI provenance does not change the student AI policy.
