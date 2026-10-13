@@ -8,11 +8,11 @@ from unittest.mock import patch
 
 from observer_study.cli import load_config
 from observer_study.data import prepare_items, task_items
-from observer_study.experiment import CONDITIONS, messages_for, schedule
+from observer_study.experiment import CONDITIONS, SYSTEM_PROMPT, messages_for, schedule
 from observer_study.io import RequestError, digest, file_digest, read_json, write_json
 from observer_study.runner import LocalServer, run
 from observer_study.scoring import parse_answer, score_response, split_trace
-from observer_study.summary import export_review, summarize
+from observer_study.summary import compare_smoke_runs, export_review, quality_checks, summarize
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -88,6 +88,23 @@ class DataAndPromptTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             task_items("task", {"examples": [{**good, "target": "(C)"}]})
 
+    def test_v2_changes_only_system_instruction_and_output_budget(self):
+        refined = load_config(ROOT / "configs/smoke-v2.json")
+        refined["split_counts_per_task"] = self.config["split_counts_per_task"]
+        prepared = prepare_items(refined, self.directory)
+        self.assertEqual(prepared["items"], self.prepared["items"])
+        original = schedule(self.config, self.prepared, "smoke")
+        revised = schedule(refined, prepared, "smoke")
+        for left, right in zip(original, revised):
+            self.assertEqual(left["request_id"], right["request_id"])
+            self.assertEqual(left["item"], right["item"])
+            self.assertEqual(left["payload"]["seed"], right["payload"]["seed"])
+            self.assertEqual(left["payload"]["messages"][1], right["payload"]["messages"][1])
+            self.assertEqual(left["payload"]["messages"][0]["content"], SYSTEM_PROMPT)
+            self.assertNotEqual(left["payload"]["messages"][0], right["payload"]["messages"][0])
+        self.assertEqual(refined["context_tokens"], 16384)
+        self.assertEqual(refined["generation"]["max_tokens"], 8192)
+
 
 class ScoringTests(unittest.TestCase):
     def test_answer_parser_never_uses_reasoning_options(self):
@@ -97,6 +114,7 @@ class ScoringTests(unittest.TestCase):
         self.assertEqual(parse_answer("FINAL_ANSWER: (A)\nFINAL_ANSWER: (B)", ["A", "B"])[1], "multiple_final_answers")
         self.assertEqual(parse_answer("FINAL_ANSWER: (A)\nFINAL_ANSWER: B", ["A", "B"])[1], "multiple_final_answers")
         self.assertIsNone(parse_answer("Maybe A or B", ["A", "B"])[0])
+        self.assertIsNone(parse_answer("FINAL_ANSWER: (C) Ambiguous", ["A", "B", "C"])[0])
 
     def test_raw_structured_prefilled_and_truncated_reasoning(self):
         for content in ("<think>reason</think>FINAL_ANSWER: (B)", "reason</think>FINAL_ANSWER: (B)"):
@@ -214,6 +232,49 @@ class RunnerTests(unittest.TestCase):
             props["default_generation_settings"]["n_ctx"] = 1024
             with self.assertRaises(ValueError):
                 server.preflight(config, model, requests)
+
+
+class QualityComparisonTests(unittest.TestCase):
+    def test_small_sample_gate_boundaries_and_pending_collection(self):
+        def metrics(complete, parsed, pending=False):
+            return {"assigned": 24, "completion_fraction": complete / 24,
+                    "parseable_fraction_of_completed": parsed / complete if complete else None,
+                    "request_statuses": {"started": 1} if pending else {"returned": 24}}
+        self.assertFalse(quality_checks(metrics(22, 22))["observed_targets_met"])
+        self.assertFalse(quality_checks(metrics(23, 22))["observed_targets_met"])
+        self.assertTrue(quality_checks(metrics(23, 23))["observed_targets_met"])
+        self.assertTrue(quality_checks(metrics(24, 24))["observed_targets_met"])
+        self.assertFalse(quality_checks(metrics(24, 24), dry_run=True)["observed_targets_met"])
+        self.assertFalse(quality_checks(metrics(24, 24, pending=True))["observed_targets_met"])
+        self.assertFalse(quality_checks(metrics(0, 0))["observed_targets_met"])
+
+    def test_comparison_rejects_changed_pairs_and_dry_runs(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            directory = Path(temporary)
+            original = config_fixture()
+            prepared = dataset_fixture(directory, original)
+            refined = copy.deepcopy(original)
+            refined.update(prompt_version="v2", protocol_version="observer-smoke-v2", context_tokens=16384)
+            refined["generation"]["max_tokens"] = 8192
+            refined_items = prepare_items(refined, directory)
+            before, after = directory / "before", directory / "after"
+            run(original, prepared, "smoke", before, dry_run=True)
+            run(refined, refined_items, "smoke", after, dry_run=True)
+            with self.assertRaises(ValueError):
+                compare_smoke_runs(before, after)
+            for path in (before, after):
+                manifest = read_json(path / "manifest.json")
+                manifest["identity"]["dry_run"] = False
+                write_json(path / "manifest.json", manifest)
+            comparison = compare_smoke_runs(before, after)
+            self.assertEqual(comparison["matched_requests"], 24)
+            self.assertTrue(comparison["same_items_hints_seeds_and_user_prompts"])
+            self.assertFalse(comparison["after"]["quality_checks"]["observed_targets_met"])
+            manifest = read_json(after / "manifest.json")
+            manifest["requests"][0]["payload"]["seed"] += 1
+            write_json(after / "manifest.json", manifest)
+            with self.assertRaises(ValueError):
+                compare_smoke_runs(before, after)
 
 
 if __name__ == "__main__":

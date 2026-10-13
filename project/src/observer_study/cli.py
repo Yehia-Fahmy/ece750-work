@@ -5,9 +5,10 @@ import json
 from pathlib import Path
 
 from .data import download_tasks, prepare_items
+from .experiment import SYSTEM_PROMPTS
 from .io import RequestError, read_json, write_json
 from .runner import run
-from .summary import export_review, summarize
+from .summary import compare_smoke_runs, export_review, summarize
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -16,6 +17,13 @@ ROOT = Path(__file__).resolve().parents[2]
 def load_config(path):
     """Check protocol settings before sampling or inference."""
     config = read_json(path)
+    if config.get("prompt_version", "v1") not in SYSTEM_PROMPTS:
+        raise ValueError("Unknown prompt version")
+    targets = config.get("quality_targets")
+    if targets is not None:
+        expected = {"minimum_completion_fraction", "minimum_parseable_fraction_of_completed"}
+        if set(targets) != expected or any(type(value) not in (int, float) or not 0 < value <= 1 for value in targets.values()):
+            raise ValueError("Quality targets must specify completion and parsing fractions in (0, 1]")
     generation = config["generation"]
     if generation.get("chat_template_kwargs", {}).get("enable_thinking") is not True:
         raise ValueError("The study requires native thinking")
@@ -57,6 +65,10 @@ def main():
     review = subparsers.add_parser("export-review", help="Create a blank human acknowledgment review sheet")
     review.add_argument("run", type=Path)
     review.add_argument("--out", type=Path, required=True)
+    compare = subparsers.add_parser("compare-smoke", help="Compare paired smoke runs and observed quality gates")
+    compare.add_argument("before", type=Path)
+    compare.add_argument("after", type=Path)
+    compare.add_argument("--out", type=Path, required=True)
     args = parser.parse_args()
     try:
         if args.command == "prepare":
@@ -79,9 +91,14 @@ def main():
                 args.out.parent.mkdir(parents=True, exist_ok=True)
                 write_json(args.out, result)
             print(json.dumps(result["overall"], indent=2))
-        else:
+        elif args.command == "export-review":
             count = export_review(args.run, args.out)
             print(f"Exported {count} traces: {args.out}")
+        else:
+            result = compare_smoke_runs(args.before, args.after)
+            args.out.parent.mkdir(parents=True, exist_ok=True)
+            write_json(args.out, result)
+            print(json.dumps(result, indent=2))
     except (ValueError, KeyError, OSError, RequestError) as exc:
         parser.exit(1, f"Error: {exc}\n")
 

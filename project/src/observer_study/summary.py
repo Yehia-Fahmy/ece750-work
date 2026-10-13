@@ -44,19 +44,76 @@ def diagnostics(records):
     return result
 
 
+def quality_checks(overall, dry_run=False, targets=None):
+    """Evaluate observed smoke gates without treating a small sample as certification."""
+    targets = targets or {"minimum_completion_fraction": 0.95,
+                          "minimum_parseable_fraction_of_completed": 0.99}
+    terminal = {"returned", "technical_error", "interrupted"}
+    finished = (overall["assigned"] > 0 and not dry_run
+                and set(overall["request_statuses"]).issubset(terminal))
+    completion = overall["completion_fraction"]
+    parsing = overall["parseable_fraction_of_completed"]
+    completion_met = completion is not None and completion >= targets["minimum_completion_fraction"]
+    parsing_met = parsing is not None and parsing >= targets["minimum_parseable_fraction_of_completed"]
+    return {"targets": targets, "collection_finished": finished,
+            "completion_target_met": completion_met, "parsing_target_met": parsing_met,
+            "observed_targets_met": finished and completion_met and parsing_met}
+
+
 def summarize(directory):
     """Summarize capture and scoring; acknowledgment analysis remains pending."""
     manifest, records = run_records(directory)
+    overall = diagnostics(records)
     return {"schema_version": 1, "split": manifest["identity"]["split"],
             "dry_run": manifest["identity"]["dry_run"], "config": manifest["identity"]["config"],
             "source_sha256": manifest["identity"]["source_sha256"],
-            "overall": diagnostics(records),
+            "overall": overall,
+            "quality_checks": quality_checks(overall, manifest["identity"]["dry_run"],
+                                              manifest["identity"]["config"].get("quality_targets")),
             "by_condition": {code: diagnostics([(request, record) for request, record in records if request["condition"] == code])
                              for code in sorted({request["condition"] for request, _ in records})},
             "by_task": {task: diagnostics([(request, record) for request, record in records if request["item"]["task"] == task])
                         for task in sorted({request["item"]["task"] for request, _ in records})},
             "acknowledgment_analysis": {"status": "pending_human_or_validated_automated_labels",
                                         "primary_contrast": None}}
+
+
+def compare_smoke_runs(before_directory, after_directory):
+    """Verify the same paired requests and compare capture quality across versions."""
+    before_manifest, _ = run_records(before_directory)
+    after_manifest, _ = run_records(after_directory)
+    for manifest in (before_manifest, after_manifest):
+        if manifest["identity"]["dry_run"] or manifest["identity"]["split"] != "smoke":
+            raise ValueError("Comparison requires two real smoke runs")
+    before_requests = {request["request_id"]: request for request in before_manifest["requests"]}
+    after_requests = {request["request_id"]: request for request in after_manifest["requests"]}
+    if not before_requests or before_requests.keys() != after_requests.keys():
+        raise ValueError("Smoke schedules differ")
+    for request_id, left in before_requests.items():
+        right = after_requests[request_id]
+        for field in ("item", "condition", "observer", "access", "hint_present"):
+            if left[field] != right[field]:
+                raise ValueError(f"Paired smoke {field} differs: {request_id}")
+        def normalized_payload(request):
+            payload = dict(request["payload"])
+            payload.pop("max_tokens")
+            messages = payload.pop("messages")
+            if len(messages) != 2 or messages[0]["role"] != "system" or messages[1]["role"] != "user":
+                raise ValueError("Expected a fresh system/user conversation")
+            return payload, messages[1]
+        if normalized_payload(left) != normalized_payload(right):
+            raise ValueError(f"Sampling, seed, or user prompt differs: {request_id}")
+    result = {"matched_requests": len(before_requests), "same_items_hints_seeds_and_user_prompts": True}
+    for name, directory, manifest in (("before", before_directory, before_manifest),
+                                      ("after", after_directory, after_manifest)):
+        summary = summarize(directory)
+        config = manifest["identity"]["config"]
+        result[name] = {"protocol_version": config["protocol_version"],
+                        "prompt_version": config.get("prompt_version", "v1"),
+                        "context_tokens": config["context_tokens"],
+                        "max_output_tokens": config["generation"]["max_tokens"],
+                        "overall": summary["overall"], "quality_checks": summary["quality_checks"]}
+    return result
 
 
 def export_review(directory, output):

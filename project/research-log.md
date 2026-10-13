@@ -22,3 +22,19 @@
 The smoke configuration misses the proposed completion and parsing gates. Before the disjoint pilot, make the common final-answer instruction explicitly forbid explanations/option text on the answer line, then evaluate a larger generation allowance with a matching context budget in a new configuration/run. Preserve this run and record those changes rather than replacing failed responses. Inspect task solvability on pilot examples, and time acknowledgment coding using the exported rubric. Automated labeling and paired statistical analysis remain subsequent milestones.
 
 AI assistance: Codex generated and checked the implementation and draft protocol. The researcher should inspect the prompts/rubric and review smoke traces before freezing the pilot. No paid labeling API calls were made. No researcher-hour measurements or acknowledgment reliability claims are recorded yet.
+
+## October 13, 2026 — refine and preserve the smoke test
+
+- Created branch `codex/refine-smoke-test` in the existing worktree and committed the original harness/results as `332102e` before refinement.
+- Added [smoke-v2.json](configs/smoke-v2.json): explicit final-answer-only prompt version `v2`, 16,384 context tokens, and 8,192 output tokens. Original prompt version `v1` remains available and is the default when no version is specified. Native thinking, parser, model, sampling, questions, hints, item seeds, and schedule remain unchanged.
+- Added observed quality-gate evaluation and paired `compare-smoke` diagnostics. Dry or unfinished runs cannot pass. Regression checks cover unchanged paired inputs, unchanged strict parsing, threshold boundaries, and rejection of changed pairs.
+- **All 13 tests passed.** A new real-data dry run produced 24 requests before live inference.
+- Completed a separate live run in `runs/smoke-002/`: **24/24 responses captured, 24/24 complete, and 24/24 parseable**. All responses stopped normally, with one attempt each. All four original failure cases completed and parsed in v2.
+- The observed ≥95% completion and ≥99% parsing targets both pass. Request wall time was 344.6 seconds, with 45,230 reported completion tokens and a longest completion of 4,891 tokens. Timing excludes downloads, startup, and preflight.
+- Verified all 31 original artifacts against pre-refinement hashes, including the original configuration, prepared items, raw responses, review sheet, and aggregate summary. They remain byte-for-byte unchanged. Saved new aggregate [summary](results/smoke-v2-summary.json), [comparison](results/smoke-comparison.json), and a separate human-review export under the ignored new run directory.
+- Verified live resume did not change any v2 response file or repeat generations. A GPU point observation showed 5,485 MiB used and 2,533 MiB free; this is not a peak measurement. Shut down the server after validation.
+- Both instruction and allowance changes were evaluated together on the same three development questions. No independent confirmation or population-level reliability is claimed. Pilot-development, pilot-validation, and main items remain reserved and untouched.
+
+Next: run the disjoint pilot, review task solvability, and develop/validate acknowledgment labels and coding-time estimates before freezing the main protocol.
+
+AI assistance: Codex implemented and tested the refinement, audited preserved evidence, and drafted these notes. No paid labeling API calls were made.

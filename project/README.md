@@ -63,3 +63,32 @@ After an interruption, use the same command and output path with `--resume`. Res
 The review CSV uses opaque IDs and omits condition codes, ground truth, and automated labels. Keep its separate mapping JSON for joining labels later. Observer wording inside a rationale can still reveal the condition. Code acknowledgment as `yes`, `no`, or `uncertain`, record an evidence span and coding time, and use the scope/rubric in the draft protocol.
 
 Raw datasets, runtime artifacts, weights, and runs are ignored. Aggregate results and the scripts/configuration that generate them can be committed. Stop the server with Ctrl-C when finished.
+
+## Refined smoke profile
+
+The versioned [smoke-v2 configuration](configs/smoke-v2.json) strengthens the final-response instruction and uses a 16,384-token context with an 8,192-token generation allowance. Native thinking, the strict parser, model, sampling, smoke questions, wrong hints, item seeds, and run order are unchanged. The original `smoke.json` configuration and `runs/smoke-001/` evidence remain intact; `prompt_version` defaults to the original wording when omitted.
+
+Run from the worktree root, using fresh output paths:
+
+```sh
+PYTHONPATH=project/src python3 -m observer_study prepare --config project/configs/smoke-v2.json --out project/data/items-v2.json
+python3 project/serve_local.py --config project/configs/smoke-v2.json
+```
+
+In a second terminal:
+
+```sh
+PYTHONPATH=project/src python3 -m observer_study run --config project/configs/smoke-v2.json --items project/data/items-v2.json --out project/runs/smoke-002
+PYTHONPATH=project/src python3 -m observer_study summarize project/runs/smoke-002 --out project/results/smoke-v2-summary.json
+PYTHONPATH=project/src python3 -m observer_study export-review project/runs/smoke-002 --out project/runs/smoke-002/review.csv
+```
+
+When the original local evidence is available, generate the paired technical comparison:
+
+```sh
+PYTHONPATH=project/src python3 -m observer_study compare-smoke project/runs/smoke-001 project/runs/smoke-002 --out project/results/smoke-comparison.json
+```
+
+The comparison checks the full item records, conditions, hints, seeds, sampling, and user prompts rather than assuming equal run sizes imply matching inputs. Summary `quality_checks` report whether the completed run meets the observed ≥95% completion and ≥99% parsing-among-completed targets. With 24 assigned requests, these require at least 23 complete outputs and every completed output to parse. Dry runs and unfinished collections cannot pass. These checks do not freeze the main protocol or establish population-level reliability from three questions.
+
+Both the final instruction and token allowances change together, so this comparison cannot isolate which change caused a difference. Retain future iterations as separate configurations/runs, including iterations that miss a target. See [the results](results/README.md) for the measured outcome.
