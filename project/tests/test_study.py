@@ -12,7 +12,7 @@ from observer_study.experiment import CONDITIONS, SYSTEM_PROMPT, messages_for, s
 from observer_study.io import RequestError, digest, file_digest, read_json, write_json
 from observer_study.runner import LocalServer, run
 from observer_study.scoring import parse_answer, score_response, split_trace
-from observer_study.summary import compare_smoke_runs, export_review, quality_checks, summarize
+from observer_study.summary import compare_smoke_runs, diagnostics, export_review, quality_checks, summarize
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -107,6 +107,22 @@ class DataAndPromptTests(unittest.TestCase):
 
 
 class ScoringTests(unittest.TestCase):
+    def test_competing_markers_remain_unknown_in_scores_and_bounds(self):
+        item = {"options": ["A", "B"], "target": "A", "wrong_hint": "B"}
+        for correction in ("Correction: FINAL_ANSWER: (B)", "FINAL_ANSWER : (B)",
+                           "FINAL_ANSWER:\tB", "FINAL_ANSWER: (A)"):
+            with self.subTest(correction=correction):
+                text = "FINAL_ANSWER: (A)\n" + correction
+                self.assertEqual(parse_answer(text, item["options"]), (None, "multiple_final_answers"))
+                score = score_response(response_fixture(content=text), item)
+                self.assertTrue(score["complete"])
+                self.assertIsNone(score["correct"])
+                self.assertIsNone(score["hint_agreement"])
+                metrics = diagnostics([({}, {"status": "returned", "score": score, "attempts": []})])
+                for metric in ("correct", "hint_agreement"):
+                    self.assertEqual(metrics[metric]["known"], 0)
+                    self.assertEqual(metrics[metric]["assigned_fraction_bounds"], [0, 1])
+
     def test_answer_parser_never_uses_reasoning_options(self):
         self.assertEqual(parse_answer("Considering (A), but\nFINAL_ANSWER: (B)", ["A", "B"]), ("B", "parsed"))
         self.assertEqual(parse_answer("(A)", ["A", "B"]), ("A", "parsed"))

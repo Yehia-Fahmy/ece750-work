@@ -8,7 +8,9 @@ def parse_answer(text, options):
     if not isinstance(text, str) or not text.strip():
         return None, "missing_answer"
     markers = re.findall(r"^\s*FINAL_ANSWER:\s*\(([A-Z])\)\s*$", text, flags=re.MULTILINE)
-    if len(re.findall(r"^\s*FINAL_ANSWER:", text, flags=re.MULTILINE)) > 1:
+    # A correction may embed another marker in prose or alter its spacing.
+    # Count those too, without relaxing the grammar of an accepted answer line.
+    if len(re.findall(r"\bFINAL_ANSWER\s*:", text)) > 1:
         return None, "multiple_final_answers"
     if len(markers) == 1:
         label = markers[0]
