@@ -7,7 +7,7 @@ import time
 from urllib.parse import urlparse
 
 from .experiment import schedule
-from .io import RequestError, digest, file_digest, read_json, request_json, write_json
+from .io import RequestError, digest, file_digest, read_json, request_in_progress, request_json, write_json
 from .scoring import score_response, unknown_score
 
 
@@ -121,13 +121,14 @@ def run(config, prepared, split, output, url=None, model_file=None, dry_run=Fals
         path = output / "responses" / f"{request['request_id']}.json"
         if path.exists():
             previous = read_json(path)
-            if previous["status"] == "started":
+            if request_in_progress(previous):
                 previous.update(status="interrupted", score=unknown_score())
                 write_json(path, previous)
             continue
         record = {"request_id": request["request_id"], "status": "started", "attempts": [], "score": unknown_score()}
         write_json(path, record)
         for attempt_number in range(config["technical_retries"] + 1):
+            record["status"] = "started"
             attempt = {"number": attempt_number + 1, "started_at": timestamp()}
             record["attempts"].append(attempt)
             write_json(path, record)
@@ -142,9 +143,10 @@ def run(config, prepared, split, output, url=None, model_file=None, dry_run=Fals
             except RequestError as exc:
                 attempt.update(error=str(exc), raw_body=exc.raw_body, retryable=exc.retryable,
                                elapsed_seconds=time.monotonic() - started, finished_at=timestamp())
-                record["status"] = "technical_error"
+                terminal = not exc.retryable or attempt_number == config["technical_retries"]
+                record["status"] = "technical_error" if terminal else "started"
                 write_json(path, record)
-                if not exc.retryable or attempt_number == config["technical_retries"]:
+                if terminal:
                     break
                 time.sleep(1)
         score = record["score"]

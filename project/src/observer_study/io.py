@@ -31,6 +31,15 @@ def write_json(path, value):
     temporary.replace(path)
 
 
+def request_in_progress(record):
+    """Recognize active requests, including legacy errors with an unfinished retry."""
+    if record["status"] == "started":
+        return True
+    attempts = record.get("attempts", [])
+    return bool(record["status"] == "technical_error" and attempts
+                and attempts[-1].get("started_at") and not attempts[-1].get("finished_at"))
+
+
 class RequestError(Exception):
     """HTTP/transport failures, retaining error body and retry eligibility."""
 

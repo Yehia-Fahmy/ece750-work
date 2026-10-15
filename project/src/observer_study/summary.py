@@ -4,7 +4,7 @@ from collections import Counter
 import csv
 from pathlib import Path
 
-from .io import digest, read_json, write_json
+from .io import digest, read_json, request_in_progress, write_json
 from .scoring import unknown_score
 
 
@@ -29,7 +29,8 @@ def diagnostics(records):
               "complete": complete, "parseable_complete": parseable_complete,
               "completion_fraction": complete / assigned if assigned else None,
               "parseable_fraction_of_completed": parseable_complete / complete if complete else None,
-              "request_statuses": dict(Counter(record["status"] for _, record in records)),
+              "request_statuses": dict(Counter("started" if request_in_progress(record) else record["status"]
+                                               for _, record in records)),
               "trace_statuses": dict(Counter(record["score"]["trace_status"] for _, record in records)),
               "finish_reasons": dict(Counter(str(record["score"]["finish_reason"]) for _, record in records))}
     for metric in ("correct", "hint_agreement"):
