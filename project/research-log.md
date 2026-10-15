@@ -38,3 +38,17 @@ AI assistance: Codex generated and checked the implementation and draft protocol
 Next: run the disjoint pilot, review task solvability, and develop/validate acknowledgment labels and coding-time estimates before freezing the main protocol.
 
 AI assistance: Codex implemented and tested the refinement, audited preserved evidence, and drafted these notes. No paid labeling API calls were made.
+
+## October 14, 2026 — address PR #5 review findings
+
+- Implemented the [remediation plan](pr-5-remediation-plan.md) in the isolated `pr-5-review` worktree on `codex/pr-5-review-fixes`.
+- Corrected competing-marker detection across final text while preserving accepted historical formats and unknown-outcome bounds.
+- Kept requests nonterminal during retry delays/execution; tested success, exhaustion, interruption in both phases, and resume without replacement. Summaries and resume also recognize legacy errors with an unfinished latest attempt.
+- Captured incomplete HTTP bodies as bounded technical failures, retaining readable partial text, lossless bytes, byte counts, and status. Known HTTP statuses keep their retry eligibility; complete non-JSON responses and model failures retain the existing policy.
+- Required matching verified weights, runtime, template, and server generation defaults in smoke comparisons. Added independent negative tests for each invariant and compatibility checks for different local paths and the original/v2 profiles.
+- All 24 standard-library tests pass. Added a read-only scoring-audit script and a test that it reports score changes and body mismatches without rewriting evidence.
+- Rechecked all 48 retained responses: original raw bodies match saved responses, request fingerprints match, and no score field or aggregate changed. Saved the [audit](results/pr-5-scoring-audit.json) and [strengthened comparison](results/smoke-comparison-reviewed.json) as new artifacts. The original comparison's before/after metrics and quality checks are identical.
+- Verified all 31 pre-refinement hashes and all 68 files in the pre-fix historical snapshot. Original configurations, prepared data, raw runs, review files, and aggregate results remain unchanged.
+- Preserved the implementation-fingerprint guard: historical runs must be resumed with their original implementation; corrected-code collections use fresh directories. No new GPU inference or labeling API calls were performed. The protocol remains draft and pilot/main samples remain reserved.
+
+AI assistance: Codex implemented the fixes, wrote regression tests, audited retained evidence, and updated the documentation. Researcher review and the disjoint pilot remain the next study milestones.

@@ -51,3 +51,15 @@ For [smoke-v2.json](configs/smoke-v2.json), use prompt version `v2`, which requi
 Save a new item manifest and run directory. Preserve the original configuration, manifest, responses, review sheet, and aggregate summary. The paired comparison verifies item/hint/seed/user-prompt equality. The thresholds are observed completion ≥0.95 over all assigned requests and parsing ≥0.99 among complete outputs; neither missing nor pending outcomes are dropped. With this 24-request smoke test, at most one output may be incomplete and all completed answers must parse.
 
 This is a development iteration using previously observed smoke questions, not an independent confirmation. Changes to prompt and limits are tested together; no attribution to either alone is justified. The pilot-development, pilot-validation, and main sets remain reserved and untouched.
+
+## October 14 implementation corrections
+
+The [PR remediation plan](pr-5-remediation-plan.md) is implemented. Competing final-answer markers are detected throughout final text, including embedded corrections and spacing variants; unresolved parsing retains unknown accuracy/hint outcomes. The accepted single-marker and standalone-option formats remain supported.
+
+Requests stay active during technical-retry delays and execution. Only exhausted or nonretryable failures are terminal errors. Interrupted active attempts, including legacy error records with an unfinished latest attempt, remain unknown and are not regenerated on resume. Historical runs still require their original implementation fingerprint for resumption.
+
+Incomplete HTTP bodies retain readable text, lossless partial bytes, truncation metadata, and the technical retry history. Known HTTP error statuses retain their existing retry eligibility. This correction does not permit retries for model token-cap truncation or malformed model answers.
+
+Smoke comparison now requires verified model checksum, runtime build, chat template, and server generation-default agreement, and records those checks in version 2 output. The documented prompt/context/output changes and different local paths to identical weights remain permitted.
+
+The [scoring audit](results/pr-5-scoring-audit.json) rechecked all 48 retained responses with no changed scores or aggregates. The [strengthened comparison](results/smoke-comparison-reviewed.json) retains the original metrics. Existing collected evidence remains intact; these are implementation corrections validated with recorded responses and injected failures, with no new inference.

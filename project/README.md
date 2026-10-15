@@ -54,11 +54,15 @@ The [Qwen model card](https://huggingface.co/Qwen/Qwen3-4B) supplies the thinkin
 
 Each run's `manifest.json` contains the full configuration, source fingerprint, randomized schedule, prompt messages, model identity, server properties/build/template, formatted prompts, and input-token counts. Each `responses/*.json` contains all request attempts, original HTTP response body, response fields, elapsed time, reasoning, final-answer text, parsing status, finish reason, and token usage when supplied by the server.
 
-Completed answer scoring accepts one `FINAL_ANSWER: (X)` line, or a final response consisting solely of `(X)`. Multiple markers, invalid options, and ambiguous prose are unresolved. Reasoning is never searched for the final answer. Native reasoning fields and raw `<think>…</think>` output are supported; unfinished traces remain explicit failures.
+Completed answer scoring accepts one `FINAL_ANSWER: (X)` line, or a final response consisting solely of `(X)`. Competing markers anywhere in the final text, including embedded corrections and spacing variants, are unresolved. Invalid options and unrecognized formats are also unresolved. A single valid marker with explanatory text remains supported for the original profile. Reasoning is never searched for the final answer. Native reasoning fields and raw `<think>…</think>` output are supported; unfinished traces remain explicit failures.
 
 Only transient transport errors and HTTP 408/429/500/502/503/504 receive one technical retry. Truncated, malformed, incorrect, or missing-reasoning outputs are retained without regeneration. Summary bounds count unresolved outcomes over all assigned requests rather than silently discarding them. No heuristic acknowledgment labels are generated.
 
+An incomplete HTTP body is a transport failure, distinct from a model output that reaches its token cap. Its attempt retains readable partial text plus `error_details` with lossless base64 bytes, received/missing byte counts, and HTTP status when available. Known HTTP error statuses keep the same retry eligibility. Requests remain `started` through retry backoff and execution; `technical_error` means the failure is terminal.
+
 After an interruption, use the same command and output path with `--resume`. Resume checks configuration, inputs, implementation, endpoint, server build/template/model, and formatted prompts. Saved attempts are never overwritten. A request left marked `started` becomes an unresolved interruption; only previously unattempted requests run. This avoids silently replacing an attempted outcome.
+
+Legacy records marked `technical_error` with an unfinished latest attempt also remain pending in summaries and become interrupted on resume. The implementation fingerprint guard still applies: resume historical runs using their original code revision. After updating the harness, use a fresh run directory. Reading, auditing, and comparing historical runs does not require bypassing that guard.
 
 The review CSV uses opaque IDs and omits condition codes, ground truth, and automated labels. Keep its separate mapping JSON for joining labels later. Observer wording inside a rationale can still reveal the condition. Code acknowledgment as `yes`, `no`, or `uncertain`, record an evidence span and coding time, and use the scope/rubric in the draft protocol.
 
@@ -86,9 +90,19 @@ PYTHONPATH=project/src python3 -m observer_study export-review project/runs/smok
 When the original local evidence is available, generate the paired technical comparison:
 
 ```sh
-PYTHONPATH=project/src python3 -m observer_study compare-smoke project/runs/smoke-001 project/runs/smoke-002 --out project/results/smoke-comparison.json
+PYTHONPATH=project/src python3 -m observer_study compare-smoke project/runs/smoke-001 project/runs/smoke-002 --out project/results/smoke-comparison-reviewed.json
 ```
 
-The comparison checks the full item records, conditions, hints, seeds, sampling, and user prompts rather than assuming equal run sizes imply matching inputs. Summary `quality_checks` report whether the completed run meets the observed ≥95% completion and ≥99% parsing-among-completed targets. With 24 assigned requests, these require at least 23 complete outputs and every completed output to parse. Dry runs and unfinished collections cannot pass. These checks do not freeze the main protocol or establish population-level reliability from three questions.
+The comparison checks the full item records, conditions, hints, seeds, request sampling, user prompts, verified weight checksum, runtime build, chat template, and server generation defaults. Missing provenance fails comparison. Different local model paths are allowed when checksums match. Version 2 comparison output records the verified model/backend identity and permitted prompt/context/output profile differences; the archived `smoke-comparison.json` remains unchanged.
+
+Summary `quality_checks` report whether the completed run meets the observed ≥95% completion and ≥99% parsing-among-completed targets. With 24 assigned requests, these require at least 23 complete outputs and every completed output to parse. Dry runs and unfinished collections cannot pass. These checks do not freeze the main protocol or establish population-level reliability from three questions.
 
 Both the final instruction and token allowances change together, so this comparison cannot isolate which change caused a difference. Retain future iterations as separate configurations/runs, including iterations that miss a target. See [the results](results/README.md) for the measured outcome.
+
+To check historical scoring with the current parser without rewriting cached scores or responses:
+
+```sh
+python3 project/audit_smoke.py project/runs/smoke-001 project/runs/smoke-002 --out project/results/pr-5-scoring-audit.json
+```
+
+The audit verifies the saved request fingerprint, compares raw bodies with saved responses, and reports every changed score field and rescored aggregate. It requires a fresh output filename. The retained 48 responses have no changed scores under the PR fixes; see the [audit](results/pr-5-scoring-audit.json). Choose new output filenames when repeating the audit or comparison.

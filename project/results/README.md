@@ -1,5 +1,18 @@
 # Smoke-test evidence
 
+## PR #5 corrections — October 14, 2026
+
+The [scoring audit](pr-5-scoring-audit.json) checks all 48 retained raw responses with the corrected parser. Every cached score and aggregate remains unchanged. The [reviewed comparison](smoke-comparison-reviewed.json) adds verified model checksum, runtime build, chat-template fingerprint, server generation defaults, and permitted profile differences; its original before/after metrics are unchanged. The archived summaries and `smoke-comparison.json` remain intact.
+
+The fixes pass 24 standard-library tests covering competing answer markers, active retry gates, interruptions/resume, incomplete HTTP bodies and retry limits, independently changed model/backend fields, and the read-only scoring audit. Validation used retained outputs and injected failures without new GPU inference. All 31 originally preserved artifact hashes and all 68 files in the pre-fix historical snapshot still match.
+
+With the ignored raw evidence available, regenerate to fresh output paths:
+
+```sh
+python3 project/audit_smoke.py project/runs/smoke-001 project/runs/smoke-002 --out project/results/scoring-audit-recheck.json
+PYTHONPATH=project/src python3 -m observer_study compare-smoke project/runs/smoke-001 project/runs/smoke-002 --out project/results/smoke-comparison-recheck.json
+```
+
 ## Refined run — October 13, 2026
 
 The [v2 summary](smoke-v2-summary.json) and [generated paired comparison](smoke-comparison.json) show that the refined profile meets both requested observed quality targets:
@@ -27,7 +40,7 @@ Both observed thresholds (≥95% completion and ≥99% parsing among completed o
 Regenerate the comparison from retained local evidence with:
 
 ```sh
-PYTHONPATH=project/src python3 -m observer_study compare-smoke project/runs/smoke-001 project/runs/smoke-002 --out project/results/smoke-comparison.json
+PYTHONPATH=project/src python3 -m observer_study compare-smoke project/runs/smoke-001 project/runs/smoke-002 --out project/results/smoke-comparison-recheck.json
 ```
 
 ## Original run — October 12, 2026
