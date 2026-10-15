@@ -66,22 +66,32 @@
       "clip_points": [
         66.0,
         208.31613159179688,
-        546.119873046875,
-        574.32373046875
+        546.0982055664062,
+        465.93017578125
       ],
-      "word_count": 291,
+      "word_count": 204,
       "dimensions_pixels": [
         1441,
-        1099
+        774
       ]
     }
   ],
-  "pdf_sha256": "f9202e055d2b38886814aa8b954458ffe1b97f5118b145d30dcae1ad1800e923",
+  "pdf_sha256": "6ae1ec7642aea6ee336fd5ef594211f1209fe02d1e77424cb77911bf651d84b7",
   "archive_files": 6,
   "visual_inspection": "All three PDF pages inspected; final screenshots inspected separately.",
   "submission_pdf_matches_verified_report": true,
   "layout": "Completed PDF and sources directly in assignments/a2; screenshots in crowdmark; research notes in notes.",
   "pdf_file": "a2-yfahmy.pdf",
   "archive_file": "a2-yfahmy.zip",
-  "reference_count": 5
+  "reference_count": 5,
+  "section_3_recommendations": [
+    "Transcription accuracy and recall benchmarks",
+    "Language and script coverage",
+    "Uncertainty, omissions and use limits"
+  ],
+  "section_3_sentences_per_recommendation": [
+    3,
+    3,
+    3
+  ]
 }
