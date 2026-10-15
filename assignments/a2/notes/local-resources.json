@@ -1,0 +1,14 @@
+{
+  "checked_date": "2026-10-13",
+  "platform": "WSL2",
+  "cpu": "AMD Ryzen 5 5600X 6-Core Processor",
+  "logical_processors": 12,
+  "wsl_memory_total_kib": 20441896,
+  "wsl_memory_available_kib": 18677456,
+  "gpu": "NVIDIA GeForce RTX 3070 Ti",
+  "gpu_memory_total_mib": 8192,
+  "gpu_memory_used_mib_at_check": 520,
+  "nvidia_driver_version": "591.86",
+  "gpu_access": "Confirmed outside the filesystem sandbox using /usr/lib/wsl/lib/nvidia-smi",
+  "model_inference_performed": false
+}

@@ -1,0 +1,32 @@
+[
+  {
+    "model_id": "microsoft/Florence-2-base",
+    "revision": "5ca5edf5bd017b9919c05d08aebef5e4c7ac3bac",
+    "url": "https://huggingface.co/microsoft/Florence-2-base",
+    "access_date": "2026-10-13"
+  },
+  {
+    "model_id": "openai/whisper-small",
+    "revision": "973afd24965f72e36ca33b3055d56a652f456b4d",
+    "url": "https://huggingface.co/openai/whisper-small",
+    "access_date": "2026-10-13"
+  },
+  {
+    "model_id": "facebook/sam2.1-hiera-small",
+    "revision": "ee5bba1d82bb8749febdf90f45e84b687142ba03",
+    "url": "https://huggingface.co/facebook/sam2.1-hiera-small",
+    "access_date": "2026-10-13"
+  },
+  {
+    "model_id": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "url": "https://huggingface.co/Qwen/Qwen3-4B-Instruct-2507",
+    "access_date": "2026-10-13"
+  },
+  {
+    "model_id": "google/gemma-3-4b-it",
+    "revision": "093f9f388b31de276ce2de164bdc2081324b9767",
+    "url": "https://huggingface.co/google/gemma-3-4b-it",
+    "access_date": "2026-10-13"
+  }
+]
