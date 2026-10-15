@@ -76,7 +76,7 @@
       ]
     }
   ],
-  "pdf_sha256": "e3a2a5840661d9ca66fcb312987b3d5dd7f4ce94070b9fbe7ef6ecbdbc24c02c",
+  "pdf_sha256": "5b1908e65fd567e15500dacef74223443f8415c84d1b21b4a7268b93983f7646",
   "archive_files": 6,
   "visual_inspection": "All three PDF pages inspected; final screenshots inspected separately.",
   "submission_pdf_matches_verified_report": true,
@@ -94,6 +94,5 @@
     3,
     3
   ],
-  "documentation_check": "notes/documentation-check.md",
   "model_card_current_revision_matches_pinned_revision": true
 }
