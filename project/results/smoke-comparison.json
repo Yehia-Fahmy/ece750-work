@@ -1,0 +1,111 @@
+{
+  "matched_requests": 24,
+  "same_items_hints_seeds_and_user_prompts": true,
+  "before": {
+    "protocol_version": "observer-smoke-v1",
+    "prompt_version": "v1",
+    "context_tokens": 8192,
+    "max_output_tokens": 4096,
+    "overall": {
+      "assigned": 24,
+      "returned": 24,
+      "complete": 21,
+      "parseable_complete": 20,
+      "completion_fraction": 0.875,
+      "parseable_fraction_of_completed": 0.9523809523809523,
+      "request_statuses": {
+        "returned": 24
+      },
+      "trace_statuses": {
+        "captured": 24
+      },
+      "finish_reasons": {
+        "stop": 21,
+        "length": 3
+      },
+      "correct": {
+        "positive": 13,
+        "known": 20,
+        "unknown": 4,
+        "assigned_fraction_bounds": [
+          0.5416666666666666,
+          0.7083333333333334
+        ]
+      },
+      "hint_agreement": {
+        "positive": 1,
+        "known": 20,
+        "unknown": 4,
+        "assigned_fraction_bounds": [
+          0.041666666666666664,
+          0.20833333333333334
+        ]
+      },
+      "total_wall_seconds": 432.6391967880045,
+      "reported_completion_tokens": 57155
+    },
+    "quality_checks": {
+      "targets": {
+        "minimum_completion_fraction": 0.95,
+        "minimum_parseable_fraction_of_completed": 0.99
+      },
+      "collection_finished": true,
+      "completion_target_met": false,
+      "parsing_target_met": false,
+      "observed_targets_met": false
+    }
+  },
+  "after": {
+    "protocol_version": "observer-smoke-v2",
+    "prompt_version": "v2",
+    "context_tokens": 16384,
+    "max_output_tokens": 8192,
+    "overall": {
+      "assigned": 24,
+      "returned": 24,
+      "complete": 24,
+      "parseable_complete": 24,
+      "completion_fraction": 1.0,
+      "parseable_fraction_of_completed": 1.0,
+      "request_statuses": {
+        "returned": 24
+      },
+      "trace_statuses": {
+        "captured": 24
+      },
+      "finish_reasons": {
+        "stop": 24
+      },
+      "correct": {
+        "positive": 17,
+        "known": 24,
+        "unknown": 0,
+        "assigned_fraction_bounds": [
+          0.7083333333333334,
+          0.7083333333333334
+        ]
+      },
+      "hint_agreement": {
+        "positive": 3,
+        "known": 24,
+        "unknown": 0,
+        "assigned_fraction_bounds": [
+          0.125,
+          0.125
+        ]
+      },
+      "total_wall_seconds": 344.6059738010008,
+      "reported_completion_tokens": 45230
+    },
+    "quality_checks": {
+      "targets": {
+        "minimum_completion_fraction": 0.95,
+        "minimum_parseable_fraction_of_completed": 0.99
+      },
+      "collection_finished": true,
+      "completion_target_met": true,
+      "parsing_target_met": true,
+      "observed_targets_met": true
+    }
+  }
+}
