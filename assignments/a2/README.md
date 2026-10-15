@@ -1,8 +1,8 @@
 # ECE 750T Assignment 2 — Documentation audit
 
-Completed example submission: **Florence-2-base**, assessed for drafting descriptions of campus photographs for a university website.
+Completed example submission: **Florence-2-base**, assessed for creating searchable records from digitized historical posters and flyers.
 
-The submission uses the supplied template's three sections, 11-point text and 1-inch margins. The executive summary occupies pages 1–2, including its identifying header. References and the instructor-example AI disclosure occupy page 3. The header identifies an example rather than a real student.
+The submission uses the supplied template's three sections, 11-point text and 1-inch margins. The executive summary occupies pages 1–2, including its identifying header. References and the AI-assistance disclosure occupy page 3. The report retains the supplied student-identification header.
 
 ## Hand-in files
 
@@ -34,4 +34,4 @@ latexmk -pdf a2-review.tex
 
 Alternatively, use `tectonic a2-review.tex`, or upload the source and bibliography to Overleaf. References remain after the page break; do not shrink the font or margins.
 
-[`notes/`](notes/) contains research provenance, validation and local-resource diagnostics. Those working notes are not part of the student hand-in. The example is intended for distribution after the assignment; its AI provenance does not change the student AI policy.
+[`notes/`](notes/) contains research provenance, validation and local-resource diagnostics. Those working notes are not part of the student hand-in. AI assistance is fully allowed under the updated assignment policy communicated on October 14, 2026. The disclosure describes its use for research, analysis, drafting, revision and preparation of the submission files. This policy update supersedes the prose-editing-only restriction printed in the original handout; the released handout itself is preserved.

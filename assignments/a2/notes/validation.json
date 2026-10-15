@@ -1,8 +1,12 @@
 {
+  "validated_date": "2026-10-14",
+  "use_case": "Searchable records from historical posters and flyers",
   "pdf_pages": 3,
   "executive_summary_pages": 2,
   "references_start_page": 3,
   "disclosure_page": 3,
+  "ai_policy": "AI assistance fully permitted under the updated assignment policy communicated by the user on October 14, 2026",
+  "student_header_preserved": true,
   "paper": "US Letter",
   "latex_font_option": "11pt",
   "minimum_nonfooter_pdf_font_size_points": 10.909088134765625,
@@ -17,10 +21,10 @@
       "clip_points": [
         66.0,
         156.7792510986328,
-        546.0983276367188,
+        546.0872192382812,
         354.21893310546875
       ],
-      "word_count": 165,
+      "word_count": 160,
       "dimensions_pixels": [
         1441,
         593
@@ -32,13 +36,13 @@
       "clip_points": [
         66.0,
         364.79925537109375,
-        546.1090698242188,
-        690.1593017578125
+        546.0870971679688,
+        703.70849609375
       ],
-      "word_count": 269,
+      "word_count": 296,
       "dimensions_pixels": [
         1441,
-        977
+        1018
       ]
     },
     {
@@ -47,13 +51,13 @@
       "clip_points": [
         66.0,
         70.43310546875,
-        546.0870361328125,
-        211.2849884033203
+        546.0653686523438,
+        197.7357940673828
       ],
-      "word_count": 125,
+      "word_count": 106,
       "dimensions_pixels": [
         1441,
-        423
+        383
       ]
     },
     {
@@ -61,20 +65,20 @@
       "pdf_page": 2,
       "clip_points": [
         66.0,
-        221.86532592773438,
-        546.0980224609375,
+        208.31613159179688,
+        546.119873046875,
         574.32373046875
       ],
-      "word_count": 285,
+      "word_count": 291,
       "dimensions_pixels": [
         1441,
-        1058
+        1099
       ]
     }
   ],
-  "pdf_sha256": "9fd15d407bf1d17ebb09bddff0de7d4097d19c56c8e4278c86733565a596aa6a",
+  "pdf_sha256": "c38ffd67c554254290e3be2f20a3d30ba96129f647d7c47b5fb972b5e6897244",
   "archive_files": 6,
-  "visual_inspection": "All three PDF pages inspected; screenshots inspected separately.",
+  "visual_inspection": "All three PDF pages inspected; final screenshots inspected separately.",
   "submission_pdf_matches_verified_report": true,
   "layout": "Completed PDF and sources directly in assignments/a2; screenshots in crowdmark; research notes in notes."
 }

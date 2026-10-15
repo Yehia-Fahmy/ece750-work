@@ -1,5 +1,7 @@
 # Assignment 2: instructor example planning
 
+Historical planning record from October 13. The use case and AI policy were updated on October 14; see [revision-notes.md](../revision-notes.md) for the current scope and fully permitted AI use.
+
 Research date: 13 October 2026 (America/Toronto).
 Status: complete. User selected Florence-2 and requested the student hand-in format. The final report, destination-specific screenshots/PDF, and distribution archive are in `../../`. The summary is two pages; references and provenance occupy page 3. WSL diagnostics confirmed the 8 GB RTX 3070 Ti. No model inference was needed or performed.
 Worktree: `/home/yehia/ece750-work/.worktrees/assignment-2-submission`.
