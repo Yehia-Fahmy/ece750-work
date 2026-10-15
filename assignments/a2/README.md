@@ -22,7 +22,7 @@ The handout requires both submission destinations, by **October 19 at 11:59pm ET
 ## Editable source and assignment materials
 
 - [`a2-yfahmy.tex`](a2-yfahmy.tex): completed executive summary and disclosure.
-- [`references.bib`](references.bib): the six cited references.
+- [`references.bib`](references.bib): the five cited references.
 - [`A2.pdf`](A2.pdf): assignment handout.
 - [`a2-template.zip`](a2-template.zip): unchanged released template.
 

@@ -21,10 +21,10 @@
       "clip_points": [
         66.0,
         156.7792510986328,
-        546.0872192382812,
+        546.0873413085938,
         354.21893310546875
       ],
-      "word_count": 160,
+      "word_count": 152,
       "dimensions_pixels": [
         1441,
         593
@@ -37,12 +37,12 @@
         66.0,
         364.79925537109375,
         546.0870971679688,
-        703.70849609375
+        676.610107421875
       ],
-      "word_count": 296,
+      "word_count": 260,
       "dimensions_pixels": [
         1441,
-        1018
+        936
       ]
     },
     {
@@ -76,11 +76,12 @@
       ]
     }
   ],
-  "pdf_sha256": "c38ffd67c554254290e3be2f20a3d30ba96129f647d7c47b5fb972b5e6897244",
+  "pdf_sha256": "f9202e055d2b38886814aa8b954458ffe1b97f5118b145d30dcae1ad1800e923",
   "archive_files": 6,
   "visual_inspection": "All three PDF pages inspected; final screenshots inspected separately.",
   "submission_pdf_matches_verified_report": true,
   "layout": "Completed PDF and sources directly in assignments/a2; screenshots in crowdmark; research notes in notes.",
   "pdf_file": "a2-yfahmy.pdf",
-  "archive_file": "a2-yfahmy.zip"
+  "archive_file": "a2-yfahmy.zip",
+  "reference_count": 5
 }
