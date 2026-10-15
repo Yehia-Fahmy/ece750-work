@@ -1,17 +1,102 @@
 """Regression checks for request lifecycle and transport evidence."""
 
+import base64
 import contextlib
+import http.client
 import io
+import json
 from pathlib import Path
 import tempfile
 import unittest
-from unittest.mock import patch
+from unittest.mock import MagicMock, patch
+import urllib.error
 
 from test_study import config_fixture, dataset_fixture, response_fixture
-from observer_study.io import RequestError, read_json, write_json
+from observer_study.io import RequestError, read_json, request_json, write_json
 from observer_study.runner import LocalServer, run
 from observer_study.scoring import unknown_score
 from observer_study.summary import summarize
+
+
+def http_response(body=b"{}", truncated=False):
+    response = MagicMock()
+    response.closed = False
+    response.__enter__.return_value = response
+    if truncated:
+        response.read.side_effect = http.client.IncompleteRead(body, 10)
+    else:
+        response.read.return_value = body
+    return response
+
+
+class TransportTests(unittest.TestCase):
+    def test_incomplete_success_and_error_bodies_retain_bytes_and_retry_policy(self):
+        partial = b'{"message":"\xe2\x82'
+        for status, retryable in ((None, True), (500, True), (400, False)):
+            with self.subTest(status=status):
+                opener = MagicMock()
+                response = http_response(partial, truncated=True)
+                if status is None:
+                    opener.open.return_value = response
+                else:
+                    opener.open.side_effect = urllib.error.HTTPError("http://localhost", status, "error", {}, response)
+                with patch("urllib.request.build_opener", return_value=opener):
+                    with self.assertRaises(RequestError) as caught:
+                        request_json("http://127.0.0.1:8080", {}, local=True)
+                error = caught.exception
+                self.assertEqual(error.retryable, retryable)
+                self.assertEqual(error.raw_body, partial.decode("utf-8", errors="replace"))
+                self.assertEqual(base64.b64decode(error.details["partial_body_base64"]), partial)
+                self.assertEqual(error.details["received_bytes"], len(partial))
+                self.assertEqual(error.details["missing_bytes"], 10)
+                self.assertEqual(error.details["http_status"], status)
+
+    def test_complete_non_json_and_http_errors_keep_existing_retry_policy(self):
+        for status in (None, 400, 408, 429, 500, 502, 503, 504):
+            with self.subTest(status=status):
+                opener = MagicMock()
+                response = http_response(b"not JSON")
+                if status is None:
+                    opener.open.return_value = response
+                else:
+                    opener.open.side_effect = urllib.error.HTTPError("http://localhost", status, "error", {}, response)
+                with patch("urllib.request.build_opener", return_value=opener):
+                    with self.assertRaises(RequestError) as caught:
+                        request_json("http://127.0.0.1:8080", {}, local=True)
+                self.assertEqual(caught.exception.retryable, status is not None and status != 400)
+                self.assertEqual(caught.exception.raw_body, "not JSON")
+
+    def test_truncation_retries_are_saved_and_collection_continues(self):
+        for exhausted in (False, True):
+            with self.subTest(exhausted=exhausted), tempfile.TemporaryDirectory() as temporary:
+                directory = Path(temporary)
+                config = config_fixture()
+                prepared = dataset_fixture(directory, config)
+                output = directory / "run"
+                body = json.dumps(response_fixture()).encode()
+                partial = b'{"choices": [\xe2\x82'
+                opener = MagicMock()
+                replies = [http_response(partial, truncated=True),
+                           http_response(partial if exhausted else body, truncated=exhausted)]
+                replies.extend(http_response(body) for _ in range(23))
+                opener.open.side_effect = replies
+                with patch.object(LocalServer, "preflight", return_value={"properties": {}, "formatted_prompts": {}}), \
+                     patch("urllib.request.build_opener", return_value=opener), \
+                     patch("observer_study.runner.time.sleep"), \
+                     contextlib.redirect_stdout(io.StringIO()):
+                    run(config, prepared, "smoke", output, "http://127.0.0.1:8080", "unused")
+                self.assertEqual(opener.open.call_count, 25)
+                manifest = read_json(output / "manifest.json")
+                first = read_json(output / "responses" / (manifest["requests"][0]["request_id"] + ".json"))
+                self.assertEqual(len(first["attempts"]), 2)
+                failed = first["attempts"][0]
+                self.assertEqual(base64.b64decode(failed["error_details"]["partial_body_base64"]), partial)
+                self.assertTrue(failed["finished_at"])
+                self.assertEqual(first["status"], "technical_error" if exhausted else "returned")
+                summary = summarize(output)
+                self.assertEqual(summary["overall"]["assigned"], 24)
+                self.assertEqual(summary["overall"]["returned"], 23 if exhausted else 24)
+                self.assertEqual(summary["overall"]["correct"]["unknown"], 1 if exhausted else 0)
 
 
 class RetryLifecycleTests(unittest.TestCase):

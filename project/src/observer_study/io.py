@@ -1,6 +1,8 @@
 """Small standard-library helpers for durable research artifacts."""
 
+import base64
 import hashlib
+import http.client
 import json
 from pathlib import Path
 import urllib.error
@@ -43,10 +45,23 @@ def request_in_progress(record):
 class RequestError(Exception):
     """HTTP/transport failures, retaining error body and retry eligibility."""
 
-    def __init__(self, message, raw_body=None, retryable=False):
+    def __init__(self, message, raw_body=None, retryable=False, details=None):
         super().__init__(message)
         self.raw_body = raw_body
         self.retryable = retryable
+        self.details = details
+
+
+def _read_response_body(response, *, retryable=True, http_status=None):
+    """Retain truncated bytes even when the connection splits a UTF-8 character."""
+    try:
+        return response.read()
+    except http.client.IncompleteRead as exc:
+        details = {"kind": "incomplete_http_body", "http_status": http_status,
+                   "received_bytes": len(exc.partial), "missing_bytes": exc.expected,
+                   "partial_body_base64": base64.b64encode(exc.partial).decode("ascii")}
+        raise RequestError("Incomplete HTTP response body", exc.partial.decode("utf-8", errors="replace"),
+                           retryable=retryable, details=details) from exc
 
 
 def request_json(url, payload=None, timeout=30, local=False):
@@ -60,9 +75,12 @@ def request_json(url, payload=None, timeout=30, local=False):
     opener = urllib.request.build_opener(urllib.request.ProxyHandler({})) if local else urllib.request.build_opener()
     try:
         with opener.open(request, timeout=timeout) as response:
-            raw = response.read().decode("utf-8")
+            raw = _read_response_body(response).decode("utf-8")
     except urllib.error.HTTPError as exc:
-        raise RequestError(f"HTTP {exc.code}", exc.read().decode("utf-8", errors="replace"), exc.code in (408, 429, 500, 502, 503, 504)) from exc
+        retryable = exc.code in (408, 429, 500, 502, 503, 504)
+        with exc:
+            raw = _read_response_body(exc, retryable=retryable, http_status=exc.code)
+        raise RequestError(f"HTTP {exc.code}", raw.decode("utf-8", errors="replace"), retryable) from exc
     except (urllib.error.URLError, TimeoutError, ConnectionError) as exc:
         raise RequestError(str(exc), retryable=True) from exc
     try:

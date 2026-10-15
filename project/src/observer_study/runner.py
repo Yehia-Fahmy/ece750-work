@@ -143,6 +143,8 @@ def run(config, prepared, split, output, url=None, model_file=None, dry_run=Fals
             except RequestError as exc:
                 attempt.update(error=str(exc), raw_body=exc.raw_body, retryable=exc.retryable,
                                elapsed_seconds=time.monotonic() - started, finished_at=timestamp())
+                if exc.details is not None:
+                    attempt["error_details"] = exc.details
                 terminal = not exc.retryable or attempt_number == config["technical_retries"]
                 record["status"] = "technical_error" if terminal else "started"
                 write_json(path, record)
