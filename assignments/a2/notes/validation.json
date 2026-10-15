@@ -80,5 +80,7 @@
   "archive_files": 6,
   "visual_inspection": "All three PDF pages inspected; final screenshots inspected separately.",
   "submission_pdf_matches_verified_report": true,
-  "layout": "Completed PDF and sources directly in assignments/a2; screenshots in crowdmark; research notes in notes."
+  "layout": "Completed PDF and sources directly in assignments/a2; screenshots in crowdmark; research notes in notes.",
+  "pdf_file": "a2-yfahmy.pdf",
+  "archive_file": "a2-yfahmy.zip"
 }

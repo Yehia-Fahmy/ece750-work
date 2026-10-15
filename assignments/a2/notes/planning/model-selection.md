@@ -9,7 +9,7 @@ Branch: `codex/assignment-2-submission`.
 
 ## Requirements established from the handout
 
-The authoritative source is [A2.pdf](../../A2.pdf), both pages. The existing response template is [a2-review.tex](../../a2-review.tex). Read the handout together with the template; use the handout if their prompts differ.
+The authoritative source is [A2.pdf](../../A2.pdf), both pages. The existing response template is [a2-yfahmy.tex](../../a2-yfahmy.tex). Read the handout together with the template; use the handout if their prompts differ.
 
 - Audit **one public documentation artifact** for a dataset, model, or other AI artifact. Instructor approval of a student's selection is unnecessary.
 - Assess it against a **specific use**, identifying the documentation's purpose, intended audience, and the authors' stated scope. Distinguish documented intentions from our proposed application.
