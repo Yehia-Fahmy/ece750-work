@@ -79,6 +79,32 @@ def summarize(directory):
                                         "primary_contrast": None}}
 
 
+def comparison_identity(manifest):
+    """Require recorded weight/backend evidence without depending on local paths."""
+    paths = {
+        "model_sha256": ("preflight", "model_sha256"),
+        "runtime_build": ("preflight", "properties", "build_info"),
+        "chat_template": ("preflight", "properties", "chat_template"),
+        "generation_defaults": ("preflight", "properties", "default_generation_settings", "params"),
+    }
+    identity = {}
+    for field, path in paths.items():
+        value = manifest
+        try:
+            for key in path:
+                value = value[key]
+        except (KeyError, TypeError):
+            raise ValueError(f"Missing smoke provenance: {field}") from None
+        if (field == "generation_defaults" and not isinstance(value, dict)) or (
+                field != "generation_defaults" and (not isinstance(value, str) or not value.strip())):
+            raise ValueError(f"Missing smoke provenance: {field}")
+        identity[field] = value
+    if identity["model_sha256"] != manifest["identity"]["config"]["model"]["sha256"]:
+        raise ValueError("Verified model_sha256 differs from configured model")
+    identity["chat_template_sha256"] = digest(identity.pop("chat_template"))
+    return identity
+
+
 def compare_smoke_runs(before_directory, after_directory):
     """Verify the same paired requests and compare capture quality across versions."""
     before_manifest, _ = run_records(before_directory)
@@ -86,6 +112,10 @@ def compare_smoke_runs(before_directory, after_directory):
     for manifest in (before_manifest, after_manifest):
         if manifest["identity"]["dry_run"] or manifest["identity"]["split"] != "smoke":
             raise ValueError("Comparison requires two real smoke runs")
+    before_identity, after_identity = map(comparison_identity, (before_manifest, after_manifest))
+    for field in before_identity:
+        if before_identity[field] != after_identity[field]:
+            raise ValueError(f"Smoke model/backend {field} differs")
     before_requests = {request["request_id"]: request for request in before_manifest["requests"]}
     after_requests = {request["request_id"]: request for request in after_manifest["requests"]}
     if not before_requests or before_requests.keys() != after_requests.keys():
@@ -104,7 +134,9 @@ def compare_smoke_runs(before_directory, after_directory):
             return payload, messages[1]
         if normalized_payload(left) != normalized_payload(right):
             raise ValueError(f"Sampling, seed, or user prompt differs: {request_id}")
-    result = {"matched_requests": len(before_requests), "same_items_hints_seeds_and_user_prompts": True}
+    result = {"schema_version": 2, "matched_requests": len(before_requests),
+              "same_items_hints_seeds_and_user_prompts": True,
+              "verified_model_and_backend": before_identity}
     for name, directory, manifest in (("before", before_directory, before_manifest),
                                       ("after", after_directory, after_manifest)):
         summary = summarize(directory)
@@ -114,6 +146,10 @@ def compare_smoke_runs(before_directory, after_directory):
                         "context_tokens": config["context_tokens"],
                         "max_output_tokens": config["generation"]["max_tokens"],
                         "overall": summary["overall"], "quality_checks": summary["quality_checks"]}
+    result["permitted_differences"] = {
+        field: {"before": result["before"][field], "after": result["after"][field]}
+        for field in ("protocol_version", "prompt_version", "context_tokens", "max_output_tokens")
+        if result["before"][field] != result["after"][field]}
     return result
 
 

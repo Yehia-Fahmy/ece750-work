@@ -281,6 +281,9 @@ class QualityComparisonTests(unittest.TestCase):
             for path in (before, after):
                 manifest = read_json(path / "manifest.json")
                 manifest["identity"]["dry_run"] = False
+                manifest["preflight"] = {"model_sha256": original["model"]["sha256"],
+                                         "properties": {"build_info": "test", "chat_template": "template",
+                                                        "default_generation_settings": {"params": {}}}}
                 write_json(path / "manifest.json", manifest)
             comparison = compare_smoke_runs(before, after)
             self.assertEqual(comparison["matched_requests"], 24)
