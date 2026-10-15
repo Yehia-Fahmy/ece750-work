@@ -39,7 +39,7 @@
         546.0870971679688,
         676.610107421875
       ],
-      "word_count": 260,
+      "word_count": 261,
       "dimensions_pixels": [
         1441,
         936
@@ -51,13 +51,13 @@
       "clip_points": [
         66.0,
         70.43310546875,
-        546.0653686523438,
-        197.7357940673828
+        546.0980834960938,
+        224.8341827392578
       ],
-      "word_count": 106,
+      "word_count": 129,
       "dimensions_pixels": [
         1441,
-        383
+        464
       ]
     },
     {
@@ -65,18 +65,18 @@
       "pdf_page": 2,
       "clip_points": [
         66.0,
-        208.31613159179688,
-        546.0982055664062,
-        465.93017578125
+        235.41452026367188,
+        546.0982666015625,
+        506.5777587890625
       ],
-      "word_count": 204,
+      "word_count": 213,
       "dimensions_pixels": [
         1441,
-        774
+        814
       ]
     }
   ],
-  "pdf_sha256": "6ae1ec7642aea6ee336fd5ef594211f1209fe02d1e77424cb77911bf651d84b7",
+  "pdf_sha256": "e3a2a5840661d9ca66fcb312987b3d5dd7f4ce94070b9fbe7ef6ecbdbc24c02c",
   "archive_files": 6,
   "visual_inspection": "All three PDF pages inspected; final screenshots inspected separately.",
   "submission_pdf_matches_verified_report": true,
@@ -93,5 +93,7 @@
     3,
     3,
     3
-  ]
+  ],
+  "documentation_check": "notes/documentation-check.md",
+  "model_card_current_revision_matches_pinned_revision": true
 }
