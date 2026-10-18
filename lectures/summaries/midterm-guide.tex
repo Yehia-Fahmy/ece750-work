@@ -1,0 +1,128 @@
+\documentclass[11pt,letterpaper]{article}
+\input{summary-style.tex}
+\begin{document}
+\lesson{Midterm study guide}{Confirmed scope, reasoned priorities, and worked checks}
+
+\section*{What the supplied documents actually confirm}
+L01 p.~17 specifies Weeks 1--5, conceptual questions and worked problems, with
+the exam on October 23. The midterm is worth \textbf{10\% of the course grade}.
+The cover specifies closed book with a provided reference sheet and 28 marks:
+Problem 1 has eight parts worth eight marks; Problem 2 has four parts worth four
+marks; Problem 3 requires \emph{two of three} short answers worth 16 marks total.
+There are no part marks for Problems 1--2 and no penalty for incorrect guesses.
+Problem 3 permits part marks and explicitly rewards clarity and concision.
+If all three choices are answered, only 3(a) and 3(b) are marked.
+
+The cover does not identify topics or the response format for Problems 1--2.
+No question paper was supplied. These are study priorities, not predictions of questions.
+
+\section*{Where to spend the most effort}
+\begin{enumerate}
+\item \textbf{Fairness calculations and interpretation (L02).} The reference sheet
+explicitly supplies confusion-matrix rates, group criteria, calibration, and the
+prevalence identity. Practise denominators, conditioning directions, incompatible
+criteria, and the assumptions and exceptions. Also review individual fairness,
+earthmover distance, and A1's smooth-versus-hard parity distinction.
+\item \textbf{Privacy guarantees and counterexamples (L05).} The sheet explicitly
+supplies $k$-anonymity, add/remove adjacency, pure/approximate DP, composition,
+and post-processing. Practise applying them. Review sensitivity, Laplace noise,
+privacy units, trust boundaries, and why anonymization or federated learning
+alone does not establish privacy.
+\item \textbf{Concise scenario analysis (L01, L03, L04, and L02's readings).}
+Short answers are $16/28\approx57\%$ of the marks. Prepare to diagnose a target
+or proxy, evaluation flaw, abstraction trap, disclosure risk, or missing audit
+evidence, and propose a response whose effectiveness could be checked.
+\end{enumerate}
+
+\textbf{The sheet's omissions do not exclude other Weeks 1--5 material.}
+Review agency, power, intersectional evaluation, benchmark exposure, validity,
+documentation, reward hacking, estimation SE, and the finite-class bound.
+News dates, biographies, software defaults, exact rankings, and advanced methods
+absent from the decks are lower priorities. Topics only announced as future
+material have weaker support than concepts developed in L01--L05.
+
+\section*{Worked fairness check: equal errors, different access and PPV}
+\begin{center}
+\small
+\begin{tabular}{@{}lrrrrrrrr@{}}
+\toprule
+Group & TP & FN & FP & TN & Prevalence & TPR & FPR & PPV \\
+\midrule
+$a$ & 40 & 10 & 10 & 40 & .50 & .80 & .20 & .80 \\
+$b$ & 16 & 4 & 16 & 64 & .20 & .80 & .20 & .50 \\
+\bottomrule
+\end{tabular}
+\end{center}
+Both groups have 100 people. Award rates are $.50$ and $.32$, so the DP gap is
+$.18$. Equalized odds and equal opportunity hold; demographic parity and predictive
+parity fail. The difference follows from $(.8-.2)(.5-.2)=.18$.
+This establishes statistical comparisons relative to the recorded $Y$, not that
+the labels are valid or that the award policy is justified.
+
+\newpage
+\section*{Worked privacy checks: apply the quantifiers}
+\textbf{Anonymity.} Suppose the quasi-identifier class sizes are $3,2,4$.
+The largest $k$ satisfied is two, the minimum class size. Adding a new
+quasi-identifier can split classes and reduce $k$. If all diagnoses within a
+matching class are identical, knowing membership reveals the diagnosis despite
+row ambiguity.
+
+\textbf{An event can refute a DP claim.} For neighboring $D,D'$ and an event
+$S$, suppose probabilities are $.30$ and $.10$. Pure DP requires
+$.30\le e^\epsilon(.10)$, hence $\epsilon\ge\log 3$ for this ordered pair
+and event. At $\epsilon=\log2$, approximate DP requires $\delta\ge.10$.
+Satisfying this one constraint does not certify the mechanism: all neighboring
+pairs, both orders, and all events must work. A positive-probability event
+opposed to a zero-probability event rules out any finite pure-DP parameter.
+
+\textbf{Noise and repeated releases.} A sensitivity-one count with
+$\epsilon=.5$ uses Laplace scale $b=2$, has mean absolute error two, and
+a 95\% absolute-error bound $2\log20\approx5.99$.
+Three fresh releases each $(.5,10^{-6})$-DP give a basic transcript bound
+$(1.5,3\!\times\!10^{-6})$-DP. Publishing a rounded version of those same
+outputs adds no private-data access; recomputing fresh noisy counts does.
+
+\section*{A1-style reasoning: do not overgeneralize a slogan}
+Independence can disappear after conditioning. For independent fair bits $X,R$
+and $Y=X\mathbin{\mathrm{xor}}R$, conditioning on $Y=0$ forces $X=R$:
+$\Prob(X=0,R=0\mid Y=0)=1/2$, whereas the product of conditional marginals
+is $1/4$. Thus $X\indep R$ but $X\not\indep R\mid Y$.
+
+The binary-outcome conflict is also assumption-dependent. A1 explicitly asks
+about a three-valued target. For $Y\in\{0,1,2\}$, let group-conditional
+probabilities be $(.4,.1,.5)$ and $(.1,.4,.5)$, and let
+$R=\mathbf1\{Y=2\}$. Then $A$ and $Y$ are dependent, but $R$ has rate .5
+in both groups and $R\indep A\mid Y$. Separation and independence can coexist.
+Likewise, a constant predictor can satisfy both without being useful.
+For A1's group-prediction result, set $q_a=\Prob(g(X)=1\mid A=a)$.
+Choose $h=g$ if $q_1\ge q_0$ and $h=1-g$ otherwise; then
+$\mathrm{RWAcc}_A(h)=\tfrac12+\tfrac12|q_1-q_0|$.
+
+\section*{A concise answer pattern for the conceptual questions}
+State a claim, give the mechanism and relevant assumption, connect it to a
+consequence, and specify evidence or a justified response. For example:
+
+\emph{``Using spending as health need is a validity concern because access to
+care affects spending independently of need. A model can predict costs accurately
+while missing unmet need in a poorly served group. Evaluate clinical-need measures
+and subgroup allocation consequences before treating this score as a need measure.''}
+
+Practise applying that pattern to these slide-based prompts:
+\begin{itemize}
+\item \textbf{A new-hospital claim from a random image split:} use a held-out site;
+patient overlap is a separate leakage concern. Explain which population the score estimates.
+\item \textbf{A developer-funded embedded audit:} access may improve, while
+publication rights, independence, and authority to require action still need evidence.
+\item \textbf{A model card proposed for a new population:} identify the relevant
+evaluation gap and evidence needed; do not invent subgroup failures.
+\item \textbf{An autonomous scholarship agent:} examine its authority, objective,
+feedback, affected people, appeals, and who can change the policy or stop it.
+\end{itemize}
+
+\sources{Confirmed facts: \href{../../midterm/midterm-cover.pdf}{midterm-cover.pdf}, p.~1;
+\href{../../midterm/reference-sheet.pdf}{reference-sheet.pdf}, p.~1;
+\href{../L01.pdf}{L01.pdf}, pp.~13, 17. Topic priorities draw on all five decks
+and A1/A2 handouts. Worked numerical examples here are study constructions,
+not released exam questions. For compilation, run \texttt{sh build.sh} in this directory
+with Tectonic installed; each PDF has a matching \texttt{.tex} source.}
+\end{document}

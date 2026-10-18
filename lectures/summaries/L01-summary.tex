@@ -1,0 +1,112 @@
+\documentclass[11pt,letterpaper]{article}
+\input{summary-style.tex}
+\begin{document}
+\lesson{Lecture 1}{AI risks, harms, and the system around the model}
+
+\textbf{The lesson.} Responsible AI requires reasoning about the entire decision
+system: what is measured, whose goals determine the target, how predictions become
+actions, and how those actions change opportunities. The scholarship example makes
+these choices visible.
+
+\section*{Start with the decision, then examine the prediction}
+A university with limited scholarship funds could predict future grades, financial
+need, or previous award decisions. Predicting past awards can reproduce historical
+decisions; predicting grades can miss unequal access to resources. Ask what the
+scholarship should achieve and what the target leaves out.
+
+The healthcare example gives this concern a concrete mechanism: a system used
+predicted healthcare spending to select patients for extra care. Spending also
+reflects access to care. At the same score, Black patients had more chronic
+illnesses. Accurate cost prediction did not establish comparable measurement of need.
+
+Even an appropriate prediction leaves the action open. The same grade estimate
+could rank applicants, be combined with financial need, or trigger academic support.
+Assess what happens after the score and who bears each kind of error. Removing a
+demographic input or applying one cutoff cannot settle fairness: proxies can encode
+group membership, and labels or opportunities may already be unequal.
+
+\section*{Follow the loop, rather than stopping at the test set}
+The slides' ML loop runs from the state of the world through measurement, data,
+learning, action on individuals, and feedback. Awards change students' resources;
+those resources affect later
+grades; the grades can become the next training labels. Outcomes among funded
+students do not reveal how unfunded students would have performed with support.
+The predictor helps create the distribution it later learns from.
+
+Foundation models add a shared dependency: many institutions adapt the same model.
+Improvements and inherited blind spots can both spread widely. This
+\emph{homogenization} connects local failures to systemic concerns about
+discrimination, information quality, privacy, and concentrated decision-making power.
+Responsibilities span data providers, developers, deployers, reviewers, and affected people.
+
+\section*{Turn a risk category into a causal account}
+For an essay summarizer, a useful harm analysis is:
+\emph{reviewers rely on the summary $\to$ relevant context is omitted $\to$ an
+applicant loses funding}. Identify the affected person, deployment conditions,
+evidence for the failure pathway, and the alternative policy used for comparison.
+Listing ``bias'' or ``misinformation'' supplies none of those details.
+
+Risk-based thinking asks what could go wrong and how likely and severe it is.
+Harms-based thinking centres who bears costs, accountability, and repair.
+Taxonomies help find omissions and connect concerns; a category does not establish
+likelihood, severity, or whether a safeguard works.
+
+\newpage
+\section*{Agency changes what must be checked}
+The scholarship system can \emph{rank} candidates for a committee,
+\emph{recommend} awards requiring approval, or \emph{allocate} and release funds
+without prior approval. These designs can use the same prediction model while
+granting it different authority. The agentic-harms discussion organizes agency
+along four dimensions:
+
+\begin{itemize}
+\item \textbf{Underspecification:} freedom to choose how to achieve a goal.
+\item \textbf{Directness of impact:} ability to affect the world without human intervention.
+\item \textbf{Goal-directedness:} strength of pursuit of a quantifiable objective.
+\item \textbf{Long-term planning:} linked actions over time toward that objective.
+\end{itemize}
+
+These are lenses for inspecting a deployment, rather than a theorem that more
+agency always produces more harm. A system's permissions, goal, oversight, and
+time horizon determine which failure pathways deserve investigation. An agent
+that can act outside its intended environment creates an oversight problem even
+when its stated task is benign.
+
+\section*{How to reconstruct the scholarship discussion}
+The slides ask whether autonomous allocation should be allowed. A defensible
+answer must connect a position to a condition that can actually be assessed.
+For example, before allowing allocation, require evidence about errors for relevant
+groups, an appropriate target, a way to correct records, and authority to suspend
+the system. Each proposed condition should specify whose harm it addresses, what
+would demonstrate effectiveness, and who enforces it. These are possible lines
+of reasoning, not recorded conclusions from classmates.
+
+``There is a human in the loop'' leaves important questions unanswered: can that
+person inspect evidence, overturn an award, detect systematic failures, and act
+before funds are released? Likewise, documenting the system or conducting an audit
+is a proposed safeguard whose usefulness needs evidence and institutional support.
+
+Individual and collective control are distinct. An appeal challenges one award;
+it may offer no route to challenge the objective, budget policy, or provider's
+influence. Ask who can change criteria, stop the system, and secure remedy.
+
+\section*{What this establishes for the rest of the course}
+Fairness formalizes selected comparisons; evaluation tests behaviour under
+specified conditions; measurement asks whether the target represents the intended
+construct; privacy constrains information released about contributions to data.
+Each supplies evidence for a different part of the deployment decision.
+
+\textbf{Midterm emphasis (inference).} Be ready to analyze a fresh scenario using
+\emph{goal $\to$ measurement $\to$ decision $\to$ feedback $\to$ harm}, explain
+why prediction does not determine policy, and distinguish a taxonomy from evidence.
+The four agency dimensions and the difference between appeal and collective control
+are plausible conceptual material. Memorizing course administration, biographies,
+or the dates of news examples is a lower priority. The slides explicitly put
+Weeks 1--5 in scope; they do not identify which of these concepts will be tested.
+
+\sources{\href{../L01.pdf}{L01.pdf}, pp.~24--32 (targets and the ML loop),
+33--39 (foundation models and risk lenses), 40--50 (agency and discussion),
+52 (synthesis); annotated copy consulted. Course scope: p.~17.
+Main readings presented: Barocas, Hardt, and Narayanan; Bommasani et al.;
+Chan et al., \emph{Harms from Increasingly Agentic Algorithmic Systems}.}
+\end{document}

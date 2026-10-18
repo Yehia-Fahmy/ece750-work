@@ -1,0 +1,34 @@
+% Shared layout. Compile each document from this directory.
+\usepackage[margin=0.8in,headheight=14pt,headsep=16pt,footskip=22pt]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,booktabs,enumitem,titlesec,fancyhdr,microtype,xcolor,hyperref}
+\definecolor{inkblue}{RGB}{25,65,100}
+\hypersetup{colorlinks=true,linkcolor=inkblue,urlcolor=inkblue,filecolor=inkblue,pdfauthor={AI-assisted course study notes}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\setlength{\emergencystretch}{1.5em}
+\setlength{\abovedisplayskip}{7pt}
+\setlength{\belowdisplayskip}{7pt}
+\titleformat{\section}{\normalsize\bfseries\color{inkblue}}{}{0pt}{}
+\titlespacing*{\section}{0pt}{9pt}{3pt}
+\setlist[itemize]{leftmargin=15pt,itemsep=2pt,topsep=3pt,parsep=0pt}
+\setlist[enumerate]{leftmargin=17pt,itemsep=3pt,topsep=3pt,parsep=0pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small ECE 750T\enspace /\enspace Responsible AI}
+\fancyhead[R]{\small Fall 2026\enspace /\enspace Study notes}
+\fancyfoot[R]{\small\thepage}
+\renewcommand{\headrulewidth}{0.3pt}
+\newcommand{\lesson}[2]{%
+  \hypersetup{pdftitle={ECE 750T: #1 -- #2}}%
+  {\LARGE\bfseries #1}\par\vspace{3pt}
+  {\large #2}\par\vspace{3pt}
+  {\footnotesize AI-assisted reconstruction from course slides, not a lecture transcript.
+  Discussion reasoning is inferred; classroom responses were not supplied.}\par
+  \vspace{3pt}\hrule\vspace{5pt}}
+\newcommand{\sources}[1]{\par\vspace{3pt}{\footnotesize\textbf{Slide trail.} #1
+  Page numbers refer to PDF pages, not the slides' continuous printed numbering.}\par}
+\newcommand{\Prob}{\mathbb{P}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Yhat}{\widehat{Y}}
+\newcommand{\indep}{\mathrel{\perp\!\!\!\perp}}
