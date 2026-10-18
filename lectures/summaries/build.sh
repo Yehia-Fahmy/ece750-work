@@ -4,6 +4,8 @@ set -eu
 cd "$(dirname "$0")"
 TECTONIC=${TECTONIC:-tectonic}
 
-for source in L??-summary.tex midterm-guide.tex; do
-    "$TECTONIC" --untrusted "$source"
+for source in L??-summary.tex; do
+    "$TECTONIC" --untrusted --outdir .. "$source"
 done
+
+"$TECTONIC" --untrusted --outdir ../../midterm midterm-guide.tex

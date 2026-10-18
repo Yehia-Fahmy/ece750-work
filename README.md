@@ -88,8 +88,8 @@ Week numbers below follow the slides: Week 5 is the October 9 proposal, and Week
 | Directory | Contents |
 | --- | --- |
 | [`assignments/`](assignments/) | Assignment handouts, starter zips, and write-ups (`a1/`, `a2/`) |
-| [`lectures/`](lectures/) | Slides L01–L05, annotated copies of L01–L04, and [lecture summaries](lectures/summaries/) |
-| [`midterm/`](midterm/) | [Exam cover](midterm/midterm-cover.pdf) and [reference sheet](midterm/reference-sheet.pdf) |
+| [`lectures/`](lectures/) | Slides L01–L05, annotated copies of L01–L04, and summary PDFs; [LaTeX sources and build script](lectures/summaries/) |
+| [`midterm/`](midterm/) | [Exam cover](midterm/midterm-cover.pdf), [reference sheet](midterm/reference-sheet.pdf), and [study guide](midterm/midterm-guide.pdf) |
 | [`project/`](project/) | Proposal handout and proposal template |
 
 Lecture topics: L01 AI risks and taxonomies, L02 algorithmic fairness, L03 evaluation and auditing, L04 measurement and data curation, L05 data memorization and private learning.
@@ -100,11 +100,11 @@ Each lecture summary is two pages, aimed at readers with a machine-learning back
 
 | Notes | PDF | LaTeX source |
 | --- | --- | --- |
-| L01: AI risks, harms, and the system around the model | [Read](lectures/summaries/L01-summary.pdf) | [Source](lectures/summaries/L01-summary.tex) |
-| L02: Algorithmic fairness | [Read](lectures/summaries/L02-summary.pdf) | [Source](lectures/summaries/L02-summary.tex) |
-| L03: Evaluation and auditing | [Read](lectures/summaries/L03-summary.pdf) | [Source](lectures/summaries/L03-summary.tex) |
-| L04: Measurement and data curation | [Read](lectures/summaries/L04-summary.pdf) | [Source](lectures/summaries/L04-summary.tex) |
-| L05: Memorization and private learning | [Read](lectures/summaries/L05-summary.pdf) | [Source](lectures/summaries/L05-summary.tex) |
-| Midterm study guide | [Read](lectures/summaries/midterm-guide.pdf) | [Source](lectures/summaries/midterm-guide.tex) |
+| L01: AI risks, harms, and the system around the model | [Read](lectures/L01-summary.pdf) | [Source](lectures/summaries/L01-summary.tex) |
+| L02: Algorithmic fairness | [Read](lectures/L02-summary.pdf) | [Source](lectures/summaries/L02-summary.tex) |
+| L03: Evaluation and auditing | [Read](lectures/L03-summary.pdf) | [Source](lectures/summaries/L03-summary.tex) |
+| L04: Measurement and data curation | [Read](lectures/L04-summary.pdf) | [Source](lectures/summaries/L04-summary.tex) |
+| L05: Memorization and private learning | [Read](lectures/L05-summary.pdf) | [Source](lectures/summaries/L05-summary.tex) |
+| Midterm study guide | [Read](midterm/midterm-guide.pdf) | [Source](lectures/summaries/midterm-guide.tex) |
 
-To rebuild with Tectonic installed, run `sh lectures/summaries/build.sh`. The shared layout is in `summary-style.tex`; each note's slide trail uses PDF page numbers rather than the decks' continuous printed numbering.
+The PDFs live alongside the lecture slides or midterm documents. LaTeX sources and supporting files are in `lectures/summaries/`. To rebuild with Tectonic installed, run `sh lectures/summaries/build.sh`; it writes the PDFs to those locations. Each note's slide trail uses PDF page numbers rather than the decks' continuous printed numbering.
