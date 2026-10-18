@@ -88,7 +88,8 @@ Week numbers below follow the slides: Week 5 is the October 9 proposal, and Week
 | Directory | Contents |
 | --- | --- |
 | [`assignments/`](assignments/) | Assignment handouts, starter zips, and write-ups (`a1/`, `a2/`) |
-| [`lectures/`](lectures/) | Slides L01–L04, plus the annotated copies |
+| [`lectures/`](lectures/) | Slides L01–L05, plus annotated copies of L01–L04 |
+| [`midterm/`](midterm/) | [Exam cover](midterm/midterm-cover.pdf) and [reference sheet](midterm/reference-sheet.pdf) |
 | [`project/`](project/) | Proposal handout and proposal template |
 
 Lecture topics: L01 course intro, L02 algorithmic fairness, L03 evaluation and auditing, L04 measurement and data curation.
