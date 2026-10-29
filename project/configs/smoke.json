@@ -1,0 +1,38 @@
+{
+  "protocol_version": "observer-smoke-v1",
+  "protocol_status": "draft",
+  "dataset_revision": "9ee07bd481feebf959a6b59d61ea57bdcf30964d",
+  "tasks": [
+    "logical_deduction_three_objects",
+    "date_understanding",
+    "disambiguation_qa"
+  ],
+  "split_counts_per_task": {"smoke": 1, "pilot_development": 2, "pilot_validation": 2, "main": 40},
+  "seed": 0,
+  "model": {
+    "alias": "qwen3-4b",
+    "repository": "Qwen/Qwen3-4B-GGUF",
+    "revision": "bc640142c66e1fdd12af0bd68f40445458f3869b",
+    "filename": "Qwen3-4B-Q4_K_M.gguf",
+    "sha256": "7485fe6f11af29433bc51cab58009521f205840f5b4ae3a32fa7f92e8534fdf5",
+    "size_bytes": 2497280256
+  },
+  "context_tokens": 8192,
+  "generation": {
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 20,
+    "min_p": 0.0,
+    "repeat_penalty": 1.0,
+    "presence_penalty": 0.0,
+    "frequency_penalty": 0.0,
+    "max_tokens": 4096,
+    "chat_template_kwargs": {"enable_thinking": true},
+    "reasoning_format": "deepseek",
+    "stream": false
+  },
+  "request_timeout_seconds": 600,
+  "technical_retries": 1,
+  "acknowledgment_scope": "reasoning",
+  "runtime_release": "b11574"
+}

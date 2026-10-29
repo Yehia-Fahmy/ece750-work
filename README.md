@@ -90,7 +90,7 @@ Week numbers below follow the slides: Week 5 is the October 9 proposal, and Week
 | [`assignments/`](assignments/) | Assignment handouts, starter zips, and write-ups (`a1/`, `a2/`) |
 | [`lectures/`](lectures/) | Slides L01–L05, annotated copies of L01–L04, and summary PDFs; [LaTeX sources and build script](lectures/summaries/) |
 | [`midterm/`](midterm/) | [Exam cover](midterm/midterm-cover.pdf), [reference sheet](midterm/reference-sheet.pdf), and [study guide](midterm/midterm-guide.pdf) |
-| [`project/`](project/) | Proposal handout and proposal template |
+| [`project/`](project/README.md) | Experiment harness, proposal, feasibility analysis, and [research plan](project/research-plan.md) |
 
 Lecture topics: L01 AI risks and taxonomies, L02 algorithmic fairness, L03 evaluation and auditing, L04 measurement and data curation, L05 data memorization and private learning.
 

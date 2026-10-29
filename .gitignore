@@ -37,3 +37,9 @@ project/proposal-template/*.bbl
 project/proposal-template/*.blg
 
 a1-code.zip
+
+# Local research data, weights, runtime, and raw generations.
+project/data/
+project/models/
+project/runs/
+project/tools/

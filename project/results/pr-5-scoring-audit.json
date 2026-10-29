@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "scoring_source_sha256": "ac05fa3ef77bc1c5d403822eb7c8d50d3f88714f2cb48cf2d60cc348204afc1a",
+  "audit_script_sha256": "9a2b948fbf5e3ae0e61039b8696d2e9baf45b492a5c9c872c451943049cdc57e",
+  "runs": [
+    {
+      "run": "smoke-001",
+      "collection_source_sha256": "fdba3f8cf10bcf69c5a5a7a43a0568fb1849afe05f23e51b3d99b12a015a5435",
+      "assigned": 24,
+      "audited_responses": 24,
+      "changed_scores": [],
+      "cached_overall_matches_rescored": true,
+      "rescored_overall": {
+        "assigned": 24,
+        "returned": 24,
+        "complete": 21,
+        "parseable_complete": 20,
+        "completion_fraction": 0.875,
+        "parseable_fraction_of_completed": 0.9523809523809523,
+        "request_statuses": {
+          "returned": 24
+        },
+        "trace_statuses": {
+          "captured": 24
+        },
+        "finish_reasons": {
+          "stop": 21,
+          "length": 3
+        },
+        "correct": {
+          "positive": 13,
+          "known": 20,
+          "unknown": 4,
+          "assigned_fraction_bounds": [
+            0.5416666666666666,
+            0.7083333333333334
+          ]
+        },
+        "hint_agreement": {
+          "positive": 1,
+          "known": 20,
+          "unknown": 4,
+          "assigned_fraction_bounds": [
+            0.041666666666666664,
+            0.20833333333333334
+          ]
+        },
+        "total_wall_seconds": 432.6391967880045,
+        "reported_completion_tokens": 57155
+      }
+    },
+    {
+      "run": "smoke-002",
+      "collection_source_sha256": "d9a1c564a65f64cb7c0c390d126cddd5721662f11e7b83ffbc1d116d0f7860fd",
+      "assigned": 24,
+      "audited_responses": 24,
+      "changed_scores": [],
+      "cached_overall_matches_rescored": true,
+      "rescored_overall": {
+        "assigned": 24,
+        "returned": 24,
+        "complete": 24,
+        "parseable_complete": 24,
+        "completion_fraction": 1.0,
+        "parseable_fraction_of_completed": 1.0,
+        "request_statuses": {
+          "returned": 24
+        },
+        "trace_statuses": {
+          "captured": 24
+        },
+        "finish_reasons": {
+          "stop": 24
+        },
+        "correct": {
+          "positive": 17,
+          "known": 24,
+          "unknown": 0,
+          "assigned_fraction_bounds": [
+            0.7083333333333334,
+            0.7083333333333334
+          ]
+        },
+        "hint_agreement": {
+          "positive": 3,
+          "known": 24,
+          "unknown": 0,
+          "assigned_fraction_bounds": [
+            0.125,
+            0.125
+          ]
+        },
+        "total_wall_seconds": 344.6059738010008,
+        "reported_completion_tokens": 45230
+      }
+    }
+  ]
+}
