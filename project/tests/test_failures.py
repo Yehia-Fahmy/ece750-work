@@ -30,6 +30,54 @@ def http_response(body=b"{}", truncated=False):
 
 
 class TransportTests(unittest.TestCase):
+    def test_invalid_utf8_retains_bytes_and_http_retry_policy(self):
+        body = b'{"message":"\xff"}'
+        for status, retryable in ((None, False), (400, False), (503, True)):
+            with self.subTest(status=status):
+                opener = MagicMock()
+                response = http_response(body)
+                if status is None:
+                    opener.open.return_value = response
+                else:
+                    opener.open.side_effect = urllib.error.HTTPError("http://localhost", status, "error", {}, response)
+                with patch("urllib.request.build_opener", return_value=opener):
+                    with self.assertRaises(RequestError) as caught:
+                        request_json("http://127.0.0.1:8080", {}, local=True)
+                error = caught.exception
+                self.assertEqual(error.retryable, retryable)
+                self.assertEqual(error.raw_body, body.decode("utf-8", errors="replace"))
+                self.assertEqual(error.details["kind"], "invalid_utf8")
+                self.assertEqual(error.details["http_status"], status)
+                self.assertEqual(base64.b64decode(error.details["body_base64"]), body)
+
+    def test_invalid_utf8_is_terminal_and_collection_continues(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            directory = Path(temporary)
+            config = config_fixture()
+            prepared = dataset_fixture(directory, config)
+            output = directory / "run"
+            malformed = b'{"choices":"\xff"}'
+            opener = MagicMock()
+            opener.open.side_effect = [http_response(malformed)] + [
+                http_response(json.dumps(response_fixture()).encode()) for _ in range(23)]
+            with patch.object(LocalServer, "preflight", return_value={"properties": {}, "formatted_prompts": {}}), \
+                 patch("urllib.request.build_opener", return_value=opener), \
+                 contextlib.redirect_stdout(io.StringIO()):
+                run(config, prepared, "smoke", output, "http://127.0.0.1:8080", "unused")
+            self.assertEqual(opener.open.call_count, 24)
+            manifest = read_json(output / "manifest.json")
+            record = read_json(output / "responses" / (manifest["requests"][0]["request_id"] + ".json"))
+            self.assertEqual(record["status"], "technical_error")
+            self.assertEqual(len(record["attempts"]), 1)
+            attempt = record["attempts"][0]
+            self.assertTrue(attempt["finished_at"])
+            self.assertFalse(attempt["retryable"])
+            self.assertEqual(base64.b64decode(attempt["error_details"]["body_base64"]), malformed)
+            summary = summarize(output)
+            self.assertEqual(summary["overall"]["returned"], 23)
+            self.assertEqual(summary["overall"]["correct"]["unknown"], 1)
+            self.assertTrue(summary["quality_checks"]["collection_finished"])
+
     def test_incomplete_success_and_error_bodies_retain_bytes_and_retry_policy(self):
         partial = b'{"message":"\xe2\x82'
         for status, retryable in ((None, True), (500, True), (400, False)):

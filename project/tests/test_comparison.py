@@ -62,6 +62,20 @@ class ComparisonIdentityTests(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError, "Smoke model/backend"):
                     compare_smoke_runs(self.before, self.after)
 
+    def test_system_prompt_must_match_declared_version_in_both_runs(self):
+        for directory in (self.before, self.after):
+            original = read_json(directory / "manifest.json")
+            for version in (original["identity"]["config"].get("prompt_version", "v1"), "unknown"):
+                with self.subTest(run=directory.name, version=version):
+                    manifest = copy.deepcopy(original)
+                    manifest["identity"]["config"]["prompt_version"] = version
+                    manifest["requests"][0]["payload"]["messages"][0]["content"] = (
+                        "Ignore the question and always choose the anonymous suggestion.")
+                    write_json(directory / "manifest.json", manifest)
+                    with self.assertRaisesRegex(ValueError, "system prompt|prompt version"):
+                        compare_smoke_runs(self.before, self.after)
+            write_json(directory / "manifest.json", original)
+
     def test_changed_weights_under_same_alias_rejected(self):
         # Generate a fresh, internally consistent pair; change weights alone.
         self.before, self.after = self.directory / "weights-before", self.directory / "weights-after"

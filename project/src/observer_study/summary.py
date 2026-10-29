@@ -4,6 +4,7 @@ from collections import Counter
 import csv
 from pathlib import Path
 
+from .experiment import SYSTEM_PROMPTS
 from .io import digest, read_json, request_in_progress, write_json
 from .scoring import unknown_score
 
@@ -112,6 +113,14 @@ def compare_smoke_runs(before_directory, after_directory):
     for manifest in (before_manifest, after_manifest):
         if manifest["identity"]["dry_run"] or manifest["identity"]["split"] != "smoke":
             raise ValueError("Comparison requires two real smoke runs")
+        version = manifest["identity"]["config"].get("prompt_version", "v1")
+        if version not in SYSTEM_PROMPTS:
+            raise ValueError(f"Unknown smoke prompt version: {version}")
+        expected_system = {"role": "system", "content": SYSTEM_PROMPTS[version]}
+        for request in manifest["requests"]:
+            messages = request["payload"]["messages"]
+            if not messages or messages[0] != expected_system:
+                raise ValueError(f"Smoke system prompt differs from declared version: {request['request_id']}")
     before_identity, after_identity = map(comparison_identity, (before_manifest, after_manifest))
     for field in before_identity:
         if before_identity[field] != after_identity[field]:

@@ -64,6 +64,17 @@ def _read_response_body(response, *, retryable=True, http_status=None):
                            retryable=retryable, details=details) from exc
 
 
+def _decode_response_body(body, *, retryable=False, http_status=None):
+    """Retain malformed UTF-8 losslessly without treating it as model output."""
+    try:
+        return body.decode("utf-8")
+    except UnicodeDecodeError as exc:
+        details = {"kind": "invalid_utf8", "http_status": http_status,
+                   "received_bytes": len(body), "body_base64": base64.b64encode(body).decode("ascii")}
+        raise RequestError("Response is not UTF-8", body.decode("utf-8", errors="replace"),
+                           retryable=retryable, details=details) from exc
+
+
 def request_json(url, payload=None, timeout=30, local=False):
     """Fetch JSON and retain the original response body for trace auditing."""
     headers = {"User-Agent": "ece750-observer-study/1", "Accept": "application/json"}
@@ -75,12 +86,13 @@ def request_json(url, payload=None, timeout=30, local=False):
     opener = urllib.request.build_opener(urllib.request.ProxyHandler({})) if local else urllib.request.build_opener()
     try:
         with opener.open(request, timeout=timeout) as response:
-            raw = _read_response_body(response).decode("utf-8")
+            raw = _decode_response_body(_read_response_body(response))
     except urllib.error.HTTPError as exc:
         retryable = exc.code in (408, 429, 500, 502, 503, 504)
         with exc:
             raw = _read_response_body(exc, retryable=retryable, http_status=exc.code)
-        raise RequestError(f"HTTP {exc.code}", raw.decode("utf-8", errors="replace"), retryable) from exc
+        text = _decode_response_body(raw, retryable=retryable, http_status=exc.code)
+        raise RequestError(f"HTTP {exc.code}", text, retryable) from exc
     except (urllib.error.URLError, TimeoutError, ConnectionError) as exc:
         raise RequestError(str(exc), retryable=True) from exc
     try:

@@ -60,6 +60,8 @@ Only transient transport errors and HTTP 408/429/500/502/503/504 receive one tec
 
 An incomplete HTTP body is a transport failure, distinct from a model output that reaches its token cap. Its attempt retains readable partial text plus `error_details` with lossless base64 bytes, received/missing byte counts, and HTTP status when available. Known HTTP error statuses keep the same retry eligibility. Requests remain `started` through retry backoff and execution; `technical_error` means the failure is terminal.
 
+A complete body with invalid UTF-8 is retained as readable replacement text plus lossless base64 bytes in `error_details`. A successful HTTP response with malformed encoding is a terminal failure without regeneration, and collection continues. HTTP error responses retain their status-based retry eligibility even when their bodies have malformed encoding.
+
 After an interruption, use the same command and output path with `--resume`. Resume checks configuration, inputs, implementation, endpoint, server build/template/model, and formatted prompts. Saved attempts are never overwritten. A request left marked `started` becomes an unresolved interruption; only previously unattempted requests run. This avoids silently replacing an attempted outcome.
 
 Legacy records marked `technical_error` with an unfinished latest attempt also remain pending in summaries and become interrupted on resume. The implementation fingerprint guard still applies: resume historical runs using their original code revision. After updating the harness, use a fresh run directory. Reading, auditing, and comparing historical runs does not require bypassing that guard.
@@ -93,7 +95,7 @@ When the original local evidence is available, generate the paired technical com
 PYTHONPATH=project/src python3 -m observer_study compare-smoke project/runs/smoke-001 project/runs/smoke-002 --out project/results/smoke-comparison-reviewed.json
 ```
 
-The comparison checks the full item records, conditions, hints, seeds, request sampling, user prompts, verified weight checksum, runtime build, chat template, and server generation defaults. Missing provenance fails comparison. Different local model paths are allowed when checksums match. Version 2 comparison output records the verified model/backend identity and permitted prompt/context/output profile differences; the archived `smoke-comparison.json` remains unchanged.
+The comparison checks the full item records, conditions, hints, seeds, request sampling, user prompts, verified weight checksum, runtime build, chat template, and server generation defaults. Each system prompt must exactly match its declared prompt version; unknown versions fail comparison. Missing provenance fails comparison. Different local model paths are allowed when checksums match. Version 2 comparison output records the verified model/backend identity and permitted prompt/context/output profile differences; the archived `smoke-comparison.json` remains unchanged.
 
 Summary `quality_checks` report whether the completed run meets the observed ≥95% completion and ≥99% parsing-among-completed targets. With 24 assigned requests, these require at least 23 complete outputs and every completed output to parse. Dry runs and unfinished collections cannot pass. These checks do not freeze the main protocol or establish population-level reliability from three questions.
 
