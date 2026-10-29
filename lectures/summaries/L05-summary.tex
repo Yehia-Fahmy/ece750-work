@@ -1,0 +1,121 @@
+\documentclass[11pt,letterpaper]{article}
+\input{summary-style.tex}
+\begin{document}
+\lesson{Lecture 5}{Memorization, disclosure, and private learning}
+
+\textbf{The lesson.} Removing names, fitting a model, or keeping data on devices
+does not establish privacy. A meaningful guarantee specifies the protected
+contribution, observer, randomized mechanism, parameters, and all releases.
+Differential privacy (DP) controls how much one contribution can change output
+distributions; it does not promise that nobody can learn facts about a person.
+
+\section*{From anonymized tables to memorizing models}
+Quasi-identifiers can link a nameless release to outside information. With the
+specified quasi-identifier columns, $k$-anonymity requires every observed pattern
+to occur at least $k$ times. Generalizing ages can create matching groups of size
+two. But if both rows have asthma, a known member's diagnosis is disclosed even
+though their exact row is ambiguous. Sparse movie ratings likewise support linkage
+to an otherwise unnamed profile, as the Netflix example illustrates.
+
+A trained model is another possible release channel: exact reproduction of private
+training text can expose an example. Capacity also affects generalization. For
+$X\in\mathbb R^{n\times d}$ with $d>n$ and rank $n$,
+\[
+w_0=X^\top(XX^\top)^{-1}y,\qquad w=w_0+v,\quad Xv=0.
+\]
+There are $d-n$ unconstrained directions, so interpolation does not determine
+behaviour away from training inputs. The spurious-feature example shows how a
+model can use a majority shortcut while memorizing minority training exceptions.
+Zero training error establishes neither good worst-group generalization nor
+privacy; this illustration does not claim that every overparameterized model leaks.
+
+\section*{Define the unit before interpreting the guarantee}
+The lecture uses add/remove adjacency: $D\sim D'$ differ in one person's
+contribution, with one row per person in the count example. The exam reference
+sheet specifies one added/removed row. Row-level protection equals person-level
+protection only when the contribution unit actually aligns with the person.
+A message, a conversation, and a person's entire history are different units.
+Replace-one adjacency is another definition and can change sensitivity.
+
+A mechanism is $(\epsilon,\delta)$-DP if for \emph{every ordered} neighboring pair
+and \emph{every} output event $S$,
+\[
+\Prob[M(D)\in S]\le e^\epsilon\Prob[M(D')\in S]+\delta.
+\]
+Probabilities are over the mechanism's randomness with the datasets fixed.
+Pure DP has $\delta=0$; swapping neighbors supplies the reverse inequality.
+Smaller $\epsilon$ forces closer distributions; $\delta$ is additive slack in
+the event inequality, not a general probability that a person's data will leak.
+
+\section*{Sensitivity determines how much noise is needed}
+For a scalar query, $\Delta f=\sup_{D\sim D'}|f(D)-f(D')|$. A count with at
+most one contribution per protected person has sensitivity one. A person's total
+messages can be unbounded unless contributions are bounded.
+The Laplace mechanism releases $f(D)+Z$ with
+$Z\sim\operatorname{Lap}(0,b)$ and $b=\Delta f/\epsilon$.
+
+\newpage
+\section*{Why the Laplace mechanism works, and what it costs}
+At a released value $z$, the ratio of output densities is bounded using the
+triangle inequality:
+\[
+\frac{p_D(z)}{p_{D'}(z)}
+=\exp\!\left(\frac{|z-f(D')|-|z-f(D)|}{b}\right)
+\le\exp(\Delta f/b)=e^\epsilon.
+\]
+Integrating over any event yields pure DP. Checking one plotted event gives a
+necessary constraint, not a proof for all events. With continuous outputs, reason
+with densities or events; the probability of one exact real number is zero.
+
+For the sensitivity-one count, $\E|Z|=1/\epsilon$ and
+$\Prob(|Z|\le\log(20)/\epsilon)=.95$. Stronger privacy therefore increases
+error for this fixed query. For general sensitivity, replace $1/\epsilon$ by $b$.
+Noise needs calibration to the stated contribution unit; adding arbitrary noise
+does not by itself establish DP.
+
+\section*{Account for the whole transcript}
+\textbf{Post-processing:} rounding a private count, drawing a chart, or querying
+an already released DP model preserves its guarantee if no additional private data
+are accessed. A fresh private-data lookup is a new access to account for.
+
+\textbf{Composition:} if each conditional release is
+$(\epsilon_t,\delta_t)$-DP, the full transcript is
+$(\sum_t\epsilon_t,\sum_t\delta_t)$-DP by basic composition. These are valid
+bounds, not claims of optimal tightness. Releasing a count $T$ times with fresh
+independent $\operatorname{Lap}(0,1)$ noise gives average-noise SD $\sqrt{2/T}$,
+but the basic privacy bound grows to $\epsilon=T$. Reusing one released noisy
+count is post-processing; repeatedly generating fresh counts exposes more evidence.
+
+For private training, bound contributions (the slide shows gradient clipping),
+add calibrated noise, and account across training steps and all disclosed outputs.
+Clipping alone is insufficient. Model selection, diagnostics, or repeated training
+that use private data also need appropriate accounting; more advanced accountants
+can improve on a naive sum without removing the need to track releases.
+
+\section*{Interpret the promise against the right observer}
+Under pure DP, the release multiplies odds between fixed neighboring hypotheses
+by at most $e^\epsilon$ (and at least $e^{-\epsilon}$), holding other records and
+auxiliary information fixed. Thus $\epsilon=1$ permits a factor 2.72, and
+$\epsilon=2$ a factor 7.39. This is incremental evidence, not an absolute posterior
+probability or a promise against facts already inferable from other information.
+
+In central DP, a trusted curator sees raw data and protects the release. Local DP
+randomizes before the collector receives a message, changing the trust boundary.
+Federated learning keeps training data on devices but communicates updates; it
+supplies no DP guarantee alone. User-level DP needs bounded user influence,
+noise, and accounting across rounds.
+
+The homework-chatbot proposal asks whether $(2,10^{-6})$-DP is acceptable. Ask
+what unit it protects, who sees raw conversations, whether the budget includes
+retraining, and what utility and alternatives justify the release. A bare claim
+that a product ``uses DP'' leaves those decisions unresolved.
+
+\textbf{Midterm emphasis (inference).} The reference sheet makes $k$-anonymity,
+adjacency, ordered-event DP checks, composition, and post-processing especially
+strong priorities. Also prepare sensitivity/Laplace reasoning, central versus local
+trust, memorization, and the limits of federated learning; these were taught even
+where their formulas are not supplied.
+
+\sources{\href{L05.pdf}{L05.pdf}, pp.~2--11 (disclosure/memorization),
+12--22 (DP and Laplace), 23--28 (accounting/training), 29--32 (deployment and trust).}
+\end{document}

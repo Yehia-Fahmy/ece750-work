@@ -1,0 +1,126 @@
+\documentclass[11pt,letterpaper]{article}
+\input{summary-style.tex}
+\begin{document}
+\lesson{Lecture 2}{Algorithmic fairness: guarantees, conflicts, and context}
+
+\textbf{The lesson.} Fairness criteria compare different populations and protect
+different interests. Choose the comparison explicitly, check its assumptions,
+and connect it to the decision's consequences. Equal rates do not establish
+individual fairness, appropriate labels, or a fair institutional process.
+
+\section*{Which comparison is being made?}
+Let $A$ denote group, $Y$ the recorded binary outcome, $R$ a score, and $\Yhat$
+the binary decision. Discrimination can affect allocation, quality of service,
+or representation. Excluding $A$ from inputs leaves proxies and biased labels:
+the slides' school-based rule awards 80\% of one group and 20\% of another
+despite never reading the group label.
+
+\begin{center}
+\small
+\begin{tabular}{@{}p{0.25\linewidth}p{0.70\linewidth}@{}}
+\toprule
+Criterion & What is equal across groups? \\
+\midrule
+Demographic parity & $\Prob(\Yhat=1\mid A)$; independence: $\Yhat\indep A$. \\
+Equal opportunity & TPR: $\Prob(\Yhat=1\mid Y=1,A)$. \\
+Equalized odds & TPR and FPR; separation: $\Yhat\indep A\mid Y$. \\
+Predictive parity & PPV: $\Prob(Y=1\mid\Yhat=1,A)$. \\
+Sufficiency & $Y\indep A\mid R$; binary decisions require equal PPV \emph{and} NPV. \\
+Group calibration & $\Prob(Y=1\mid R=r,A=a)=r$ for every supported score and group. \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Calibration overall can conceal group miscalibration: the slides' score 0.7 has
+outcome rates 0.8 and 0.6 in two groups, averaging to 0.7. Group calibration
+implies score sufficiency where groups share support. Thresholding a calibrated
+score need not preserve predictive parity: groups can have different mixtures
+of scores above the cutoff. Condition only on events with positive probability.
+
+\section*{Two conflicts worth being able to derive}
+Write $\pi_a=\Prob(Y=1\mid A=a)$ and $q_a=\Prob(\Yhat=1\mid A=a)$. Then
+\[
+q_a=\mathrm{TPR}_a\pi_a+\mathrm{FPR}_a(1-\pi_a).
+\]
+Under equalized odds, with common TPR $u$ and FPR $v$,
+$q_a-q_b=(u-v)(\pi_a-\pi_b)$. Unequal base rates and $u\ne v$ prevent
+demographic parity. The assumptions matter: $u=v$ is an exception, and the
+binary-outcome argument should not be extended blindly to multiclass targets.
+
+Bayes' rule gives the second conflict:
+\[
+\mathrm{PPV}_a=
+\frac{\mathrm{TPR}_a\pi_a}
+{\mathrm{TPR}_a\pi_a+\mathrm{FPR}_a(1-\pi_a)}.
+\]
+With $0<\pi_a,\pi_b<1$, unequal base rates and common \emph{positive} TPR and
+FPR imply unequal PPV. Perfect prediction is an important exception. The COMPAS
+discussion uses this tension to explain why predictive parity and equal error
+rates can disagree, without deciding which criterion a court should prioritize.
+
+Errors acquire consequences through policy. If a high-risk label changes a penalty
+from $t_{\min}$ to $t_{\max}$, the expected penalty for recorded $Y=0$ in group
+$a$ is $t_{\min}+(t_{\max}-t_{\min})\mathrm{FPR}_a$. Using the same score
+to offer support changes the meaning of that false positive.
+
+\newpage
+\section*{Individual fairness moves the hard choice into a metric}
+Dwork et al. model a randomized decision as $M(x)\in\Delta(O)$ and require
+\[
+D_{\mathrm{TV}}(M(x),M(x'))\le d(x,x'),\qquad
+D_{\mathrm{TV}}(P,Q)=\tfrac12\sum_o|P(o)-Q(o)|.
+\]
+For binary decisions with award probabilities $p_x,p_{x'}$, total variation is
+$|p_x-p_{x'}|$. With $d(x,x')=0.1$, probabilities $0.8,0.3$ violate the
+constraint; $0.55,0.45$ satisfy it. The guarantee concerns distributions over
+treatment, not equality of every realized draw.
+
+Equal group award rates can still treat similar cross-group pairs differently.
+Conversely, individual fairness permits a group gap if groups differ under the
+chosen task metric. If $S,T$ are distributions over individuals and $\mu_S,\mu_T$
+their induced outcome distributions, then
+\[
+D_{\mathrm{TV}}(\mu_S,\mu_T)\le d_{\mathrm{EM}}(S,T),\qquad
+d_{\mathrm{EM}}(S,T)=\min_{\gamma\in\Pi(S,T)}\E_\gamma[d(x,x')].
+\]
+Earthmover distance is the cheapest average task distance for transporting one
+group distribution to the other. Close groups force close outcome distributions.
+For the slides' groups at $\{.1,.3\}$ and $\{.6,.8\}$ with equal masses,
+$d_{\mathrm{EM}}=.5$: the fair rule $p_x=x$ attains gap .5, whereas $p_x=.5$
+has gap zero. A bound permits a disparity; it does not require it.
+The metric's relevance, scale, and cross-group comparisons need justification.
+
+\section*{Where interventions act, and what A1 adds}
+\textbf{Preprocessing} changes data, weights, labels, samples, or representations.
+Adversarial representation learning trades task information against the ability
+to infer group membership; synthetic-data methods also impose assumptions.
+\textbf{In-processing} adds constraints or penalties to training.
+\textbf{Post-processing} changes decisions, for example via thresholds or rejection
+options. Feasibility, access to group information, utility, and transfer to new
+settings depend on the method; the slides' comparison is illustrative.
+
+A1's smooth penalty can use
+$(\overline{R}_{A=0}-\overline{R}_{A=1})^2$ alongside prediction loss.
+It supplies gradients, unlike hard thresholded decisions, but score-mean parity
+does not guarantee binary-decision parity. Evaluate the hard DP gap separately.
+Reweighted accuracy averages the two group accuracies equally; ordinary accuracy
+weights by group frequency. Compute evaluation rates on the full evaluation set.
+
+\section*{The five abstraction traps explain what a metric omits}
+\textbf{Framing:} a narrow model boundary omits how outputs become decisions.
+\textbf{Portability:} social context changes what a method means, beyond a change
+in data distribution. \textbf{Formalism:} a mathematical condition captures only
+part of fairness. \textbf{Ripple effect:} deployment changes behaviour and
+institutions. \textbf{Solutionism:} beginning with a model excludes policy changes
+or not deploying. A criterion alone cannot establish legal compliance.
+
+\textbf{Midterm emphasis (inference).} Highest priority: compute and interpret
+group rates, distinguish conditioning directions, and derive conflicts with their
+exceptions. Also practise the individual-fairness bound, intervention choices, and
+applying an abstraction trap to a concrete case. The reference sheet supplies the
+main group criteria, but not the individual-fairness or earthmover formulas.
+
+\sources{\href{L02.pdf}{L02.pdf}, pp.~6--18 (group criteria), 19--30
+(interventions/A1), 31--45 (Dwork et al.), 46--55 (Chouldechova),
+56--65 (Selbst et al.); annotated diagrams consulted. A1: pp.~1--3.}
+\end{document}

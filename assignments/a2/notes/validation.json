@@ -1,0 +1,98 @@
+{
+  "validated_date": "2026-10-14",
+  "use_case": "Searchable records from historical posters and flyers",
+  "pdf_pages": 3,
+  "executive_summary_pages": 2,
+  "references_start_page": 3,
+  "disclosure_page": 3,
+  "ai_policy": "AI assistance fully permitted under the updated assignment policy communicated by the user on October 14, 2026",
+  "student_header_preserved": true,
+  "paper": "US Letter",
+  "latex_font_option": "11pt",
+  "minimum_nonfooter_pdf_font_size_points": 10.909088134765625,
+  "margins_inches": 1,
+  "compiler_warnings": [],
+  "all_summary_section_words_covered_once_in_screenshots": true,
+  "screenshot_count": 4,
+  "screenshots": [
+    {
+      "file": "crowdmark/q1-context.png",
+      "pdf_page": 1,
+      "clip_points": [
+        66.0,
+        156.7792510986328,
+        546.0873413085938,
+        354.21893310546875
+      ],
+      "word_count": 152,
+      "dimensions_pixels": [
+        1441,
+        593
+      ]
+    },
+    {
+      "file": "crowdmark/q2-critique-01.png",
+      "pdf_page": 1,
+      "clip_points": [
+        66.0,
+        364.79925537109375,
+        546.0870971679688,
+        676.610107421875
+      ],
+      "word_count": 261,
+      "dimensions_pixels": [
+        1441,
+        936
+      ]
+    },
+    {
+      "file": "crowdmark/q2-critique-02.png",
+      "pdf_page": 2,
+      "clip_points": [
+        66.0,
+        70.43310546875,
+        546.0980834960938,
+        224.8341827392578
+      ],
+      "word_count": 129,
+      "dimensions_pixels": [
+        1441,
+        464
+      ]
+    },
+    {
+      "file": "crowdmark/q3-proposed-changes.png",
+      "pdf_page": 2,
+      "clip_points": [
+        66.0,
+        235.41452026367188,
+        546.0982666015625,
+        506.5777587890625
+      ],
+      "word_count": 213,
+      "dimensions_pixels": [
+        1441,
+        814
+      ]
+    }
+  ],
+  "pdf_sha256": "5b1908e65fd567e15500dacef74223443f8415c84d1b21b4a7268b93983f7646",
+  "archive_files": 6,
+  "visual_inspection": "All three PDF pages inspected; final screenshots inspected separately.",
+  "submission_pdf_matches_verified_report": true,
+  "layout": "Completed PDF and sources directly in assignments/a2; screenshots in crowdmark; research notes in notes.",
+  "pdf_file": "a2-yfahmy.pdf",
+  "archive_file": "a2-yfahmy.zip",
+  "reference_count": 5,
+  "section_3_recommendations": [
+    "Transcription accuracy and recall benchmarks",
+    "Language and script coverage",
+    "Uncertainty, omissions and use limits"
+  ],
+  "section_3_sentences_per_recommendation": [
+    3,
+    3,
+    3
+  ],
+  "model_card_current_revision_matches_pinned_revision": true
+}

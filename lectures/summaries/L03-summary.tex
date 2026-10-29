@@ -1,0 +1,112 @@
+\documentclass[11pt,letterpaper]{article}
+\input{summary-style.tex}
+\begin{document}
+\lesson{Lecture 3}{Evaluation and auditing: what does a score establish?}
+
+\textbf{The lesson.} An evaluation supports a claim only for its population,
+conditions, access rules, and measurement procedure. Auditing adds an assessment
+against expectations and a route to accountability. The lecture moves from
+generalization to subgroup errors, distribution shift, contaminated benchmarks,
+LLM judges, and the institutions that can act on findings.
+
+\section*{Match the evaluation design to the deployment claim}
+The No Free Lunch statement assumes all binary labelings
+of a finite input space are equally likely; expected error on unseen inputs is
+then 50\%. This does not imply that structured real tasks are unlearnable.
+
+An i.i.d. test estimates performance when train and test draws share a distribution.
+Deployment may violate that premise. The diagrams distinguish changes in input
+distribution (\emph{covariate shift}, with $P(Y\mid X)$ unchanged), corrupted
+labels, changes in the feature--outcome relationship (\emph{concept shift}), and
+changes in subgroup proportions. Different shifts call for different evidence.
+
+The WILDS examples make the unit of generalization concrete: new camera locations,
+hospitals, times, or regions. Training at hospitals A--C, validating at D, and
+testing at E tests transfer to a held-out site. Randomly distributing images from
+all hospitals across splits mainly tests new images from already represented sites.
+Neither split answers every deployment question; choose according to the claim.
+
+Reweighting changes the influence of observed cases and can target a different
+mixture when suitable support and assumptions hold. It cannot supply missing kinds
+of examples. The deep-learning illustration also cautions that changing weights
+need not change the final decision boundary as expected throughout training.
+
+\section*{Gender Shades: average performance can hide the central failure}
+The external study built the Pilot Parliaments Benchmark: 1,270 public images from
+six countries, evaluated by skin-type and perceived-gender groups. In the original
+results, darker-female subgroup errors were about 21--35\%, while lighter-male
+errors were at most 0.8\%. The intersection reveals a disparity that an overall
+average, or a single coarse breakdown, can obscure.
+
+The follow-up reported substantial improvements, with some disparities remaining.
+This shows why external evaluation and public reporting can matter; it does not
+establish that every audit causes improvement or that better classification
+settles whether classifying gender from faces is an appropriate task. Keep the
+study's labels, population, and normative question separate.
+
+\section*{Prevent information leakage at the relevant boundary}
+Fit preprocessing on training data; use validation for development decisions;
+use the test set after those decisions are fixed. Separate related records by
+person, site, or time when needed for the claim. Patient overlap, post-outcome
+features, and test-informed preprocessing admit information unavailable in the
+intended prediction setting. A nominally separate test file is insufficient.
+
+\newpage
+\section*{A benchmark can be compromised through several routes}
+\textbf{Training exposure:} benchmark examples enter pretraining, undermining
+held-out measurement. \textbf{Selection exposure:} repeated model or prompt
+selection exploits benchmark feedback. \textbf{Evaluation-time access:} a tool-using
+agent retrieves answers or reference solutions. These are different mechanisms;
+an evaluation must specify the information and actions allowed at each stage.
+Web-scale training and empirical scaling curves do not resolve provenance.
+
+The slides' answer-seeking incident illustrates the last route: a task score
+can reflect information access as well as the intended capability. Agent evaluation
+must therefore examine behaviour and access boundaries alongside answer correctness.
+
+\section*{Open-ended outputs require an explicit judgement procedure}
+For summaries or dialogue there may be many acceptable outputs. Specify factual
+accuracy, coverage, relevance, clarity, or harms; identify whose judgement is being
+represented and for which use. A domain expert, user, annotator, and LLM judge
+need not measure the same thing.
+
+LLM judging provides scale, but needs validation. In the position-bias example,
+swapping two fixed answers changes which wins. Order balancing or repeated
+comparisons can reveal this sensitivity; agreement alone does not validate criteria.
+
+Chatbot Arena measures preferences under its prompts, users, and comparison
+process. The ``Leaderboard Illusion'' discussion raises selection and opportunity
+concerns: more submitted variants and comparisons can increase the best observed
+score. The slides also give Arena's response disputing preferential access.
+This methodological dispute does not establish that the association is causal.
+
+\section*{When does evaluation become an audit?}
+Evaluation measures behaviour under specified conditions. An audit systematically
+assesses a specified system or process against stated expectations, with sufficient
+independence to support accountability. Subgroup error measurement can form part
+of an audit; it needs scope, criteria, evidence, reporting, and responsible actors
+to support a broader conclusion and corrective action.
+
+Internal auditors can access development records and intervene early, but need
+freedom to challenge developers. External auditors can question the organization's
+framing, but may lack access. \textbf{Access, independence, and authority are
+separate properties.} Funding, publication rights, conflicts of interest,
+technical competence, affected-community participation, and powers to require
+change determine whether findings can matter. Embedded evaluators gain access;
+that alone does not establish independence or enforcement power.
+
+A response to ``who should audit?'' should allocate roles: affected people identify
+problems; evaluators design tests; auditors assess evidence; decision makers require
+changes; oversight bodies review compliance. Specify who chooses the standard and
+can publish an unwelcome finding.
+
+\textbf{Midterm emphasis (inference).} Practise diagnosing leakage and shift,
+designing the right split, explaining an intersectional audit result, and identifying
+what evidence and authority an audit lacks. Judge bias and benchmark exposure are
+strong conceptual candidates. Recalling leaderboard ranks or news dates has less
+support as a study priority than explaining the failure mechanism.
+
+\sources{\href{L03.pdf}{L03.pdf}, pp.~3--8 (generalization/Gender Shades),
+9--17 (shift and hygiene), 18--25 (benchmark exposure and judges),
+26--32 (auditing); annotated copy consulted.}
+\end{document}

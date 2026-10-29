@@ -1,0 +1,58 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx,booktabs,amsmath}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{natbib}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\hypersetup{colorlinks=true,linkcolor=blue!70!black,urlcolor=blue!70!black,citecolor=blue!70!black,pdftitle={ECE750T Assignment 2: Florence-2 Documentation Audit},pdfauthor={Yehia Fahmy}}
+\titleformat{\section}{\normalfont\normalsize\bfseries}{}{0pt}{}
+\titlespacing*{\section}{0pt}{10pt}{4pt}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[R]{\footnotesize\thepage}
+
+\begin{document}
+{\Large\textbf{ECE750T: Data Documentation Audit}}\\[5pt]
+{\large\textbf{Florence-2-base}}\\[4pt]
+Yehia Fahmy \quad | \quad Student ID: 20786266\\
+Fall 2026
+\vspace{0.5em}\hrule\vspace{0.5em}
+
+\section*{1. Context [8 marks]}
+I audit Microsoft's Hugging Face model card for \texttt{microsoft/Florence-2-base}, a 230-million-parameter vision model. The artifact is the repository README at \url{https://huggingface.co/microsoft/Florence-2-base}, accessed October 14, 2026, revision \texttt{5ca5edf5} (full revision in the references). Its linked technical report supplies supporting evidence; I distinguish information in that report from information in the card \citep{microsoftCard,xiao2023}.
+
+The proposed use is helping a university library create searchable records for digitized historical posters and flyers. Staff would review literal transcriptions and draft descriptions of illustrations before indexing them, retaining the scans as the sources. This is my assessment scenario. The card describes general visual tasks, including captioning, detection and optical character recognition (OCR). Its examples and benchmarks suggest an audience of developers and researchers. It explains capabilities and how to use them. I apply the Model Cards framework for guiding my audit of the documentation \citep{mitchell2019}.
+
+\section*{2. Critique [20 marks]}
+\textbf{Strengths.} The card's ``Model Summary'' distinguishes base and fine-tuned checkpoints. Under ``Tasks,'' OCR returns text, while OCR with region returns text and coordinates; captioning is a separate task. These distinctions help a developer select outputs and potentially link recognized text to an image region. Named benchmarks include grounding recall and accuracy, but no OCR-specific scores.
+
+\textbf{Archival use boundaries are missing.} The card does not explicitly define primary users, out-of-scope uses or deployment caveats, as recommended by \citet[\S\S4.2, 4.8--4.9]{mitchell2019}. For this use, a transcription should preserve visible wording, while a description interprets visual content. The documentation gives no archival guidance on illegible text, historical spelling or separating those fields. A plausible completion of a damaged name could become a false catalogue fact; an incorrect transcription could hide an item from a name search. These are possible failure pathways, not observed Florence-2 errors in this audit.
+
+\textbf{The metrics do not establish reliable discovery.} The card reports 70.1 CIDEr for base-model captioning on TextCaps. CIDEr measures agreement with reference descriptions \citep{vedantam2015}; it is not a character-transcription accuracy measure. The card does not report retrieval results for their names and dates. The intended construct is faithful, useful access to archival material. Even low average transcription error could conceal a wrong name that determines whether a record is found. The Library of Congress describes how OCR supports searching while unusual text styles and small fonts can produce errors \citep{locOCR}; this motivates testing such conditions, without establishing Florence-2's performance on them.
+
+\newpage
+\textbf{Coverage and uncertainty are unresolved.} The Model Cards framework calls for relevant factors and disaggregated evaluation \citep[\S\S4.3, 4.7]{mitchell2019}. The paper identifies source datasets and automated annotation, including an OCR service (\S\S4.1--4.3), and shows qualitative OCR outputs (Appendix E.5). However, neither the card nor the report quantifies OCR coverage or transcription performance by historical period, language, script, typeface, damage or layout. If errors concentrate in particular languages, those communities' records could become less discoverable. Missing evidence establishes uncertainty, not demonstrated discrimination. The paper's confidence thresholds filter training annotations; they do not establish confidence in individual OCR outputs. The card gives generation settings, but lacks OCR failure analysis, uncertainty estimates and an OCR benchmark reproduction recipe; examples do not establish that staff review will reliably correct errors.
+
+\section*{3. Proposed changes [12 marks]}
+\textbf{First, add transcription accuracy and recall benchmarks.} Microsoft should publish character and word error rates alongside text-region recall (the fraction of annotated text regions recovered) for Florence-2-base, addressing the missing transcription evidence identified in Section 2. Its evaluators would need checked transcriptions and region annotations, and should document test data, scoring rules and uncertainty intervals. These results would help readers distinguish transcription errors from omitted text.
+
+\textbf{Second, document language and script coverage.} Microsoft should identify evaluated languages and scripts and report transcription accuracy and recall separately for each, addressing the unresolved language coverage. Its evaluators, supported by language specialists, would need checked multilingual samples spanning mixed-language text, fonts and image quality. The card should flag untested languages and limited sample sizes so readers can judge the limits of the evidence.
+
+\textbf{Third, explain uncertainty, omissions and use limits.} Building on its generation examples, Microsoft should explain how to recognize missing, misread or truncated OCR text and when outputs need verification, addressing the uncertainty and use-boundary gaps. Its evaluators would need OCR failure analyses and calibration evidence for any output confidence scores they choose to document. The card should distinguish uncertainty in benchmark estimates from confidence in individual outputs, and explain that fluent text can still be incomplete.
+
+\clearpage
+\begingroup
+\raggedright
+\bibliographystyle{plainnat}
+\bibliography{references}
+\endgroup
+
+\section*{AI-assistance disclosure}
+I used Codex (OpenAI) for source research, analysis and LaTeX preparation. The final interpretation and submission remain my responsibility.
+\end{document}

@@ -1,0 +1,122 @@
+\documentclass[11pt,letterpaper]{article}
+\input{summary-style.tex}
+\begin{document}
+\lesson{Lecture 4}{Measurement and data curation: precision is not validity}
+
+\textbf{The lesson.} More precise estimates of a recorded quantity do not establish
+that the quantity represents the thing we care about. The lecture connects
+sampling error and model complexity to construct validity, biased observation,
+feedback under optimization, and documentation that supports actual use decisions.
+
+\section*{What more data improves, and under which assumptions}
+For a fixed classifier evaluated on $n$ independent draws from the target
+population, correctness is Bernoulli with parameter $p$:
+\[
+\E[\widehat p]=p,\qquad
+\mathrm{SE}(\widehat p)=\sqrt{p(1-p)/n}.
+\]
+Halving the standard error requires four times as many examples. At $p=.8$,
+$n=25,100,400$ give SEs $.08,.04,.02$. This is an average precision statement:
+an individual added sample can move the estimate farther from the true value.
+
+For a fixed, finite hypothesis class $H$, i.i.d. examples, and 0--1 loss, with
+probability at least $1-\delta$,
+\[
+\sup_{h\in H}|R(h)-\widehat R(h)|
+\le\sqrt{\frac{\log(2|H|/\delta)}{2n}}.
+\]
+More candidate models enlarge the bound; more data shrink it. The simultaneous
+guarantee differs from estimating one model fixed in advance. Regularization
+controls complexity, but this particular finite-class bound cannot be applied
+literally to an unrestricted neural-network parameter space. Optimizing a smooth
+surrogate such as cross-entropy is another distinction: the training objective
+and the reported accuracy are different quantities.
+
+\section*{Observation and experimental design change the inference}
+The historical examples show data collection as purposeful work for understanding
+populations and acting on social conditions.
+
+The returning-aircraft illustration is \textbf{selection/survivorship bias}:
+damage is observed conditional on returning. It misses aircraft that did not
+survive. In the fertilizer example, soil quality causes both fertilizer use and
+yield, so the observed association mixes the treatment effect with a
+\textbf{confounder}. Increasing the same biased observational sample does not
+by itself resolve either problem.
+
+Blocking agricultural plots by soil conditions puts every treatment within
+comparable conditions; randomizing treatment positions within blocks reduces
+systematic assignment differences. This explains why design matters before
+estimation and why a correlation does not identify the desired causal effect.
+
+\section*{Separate construct, measurement, and objective}
+In the health example, \emph{need} is the construct, recorded spending is the
+measurement used as a target, and prediction loss is the optimized objective.
+Spending also reflects prices, access, and service use. Better cost prediction
+can therefore sharpen a poor proxy for unmet need.
+
+Construct validity concerns whether evidence and theory support interpreting a
+measurement as the intended construct for a particular use. Reliability concerns
+consistency. A timed coding test may consistently rank speed while omitting
+debugging and collaboration; accurate spending records can omit unmet care.
+More data or repeated measurements cannot alone establish validity.
+
+\newpage
+\section*{Biased labels can change the fairness conclusion}
+The COMPAS discussion separates recorded rearrest $Y$ from reoffending $Y^*$.
+Detection and enforcement sit between them. If that observation process differs
+across groups, fairness measured against $Y$ need not match fairness against
+$Y^*$. Varying assumptions about unrecorded offenses in a sensitivity analysis
+tests whether the conclusion changes; it does not reveal the unobserved truth.
+
+Predictive policing makes a feedback mechanism visible: recorded arrests reflect
+police activity as well as underlying drug use. Sending officers where arrests
+were recorded can produce further records there. The target can partly measure
+the institution's past actions. The healthcare case similarly shows why equal
+treatment conditional on a recorded score can coexist with unequal unmet need.
+
+\section*{Optimization can break a proxy's usefulness}
+Goodhart's law warns that a statistical relationship can change when a measure
+becomes a policy target. People or agents adapt to the incentive. In the boat-race
+example, points are awarded for hitting targets; the agent repeatedly circles
+through respawning targets instead of finishing the race. Reward rises while the
+intended outcome fails: \emph{reward hacking}.
+
+Identify the exploitable gap between measure and goal, then test a redesign under
+optimization. More examples of high reward do not establish success. The same
+reasoning applies to benchmarks repeatedly used for model selection.
+
+\section*{Documentation is evidence for a use decision}
+Data pass through collection, annotation, training, and deployment. Assumptions
+about population, label meaning, missing values, and collection conditions can
+be lost at these handoffs, producing downstream data cascades. The component
+datasheet analogy asks engineers to specify operating conditions and limitations,
+as they would for a sensor.
+
+\textbf{Datasheets} describe dataset purpose, composition, collection, uses, and
+maintenance. \textbf{Model cards} describe model uses, evaluation, and limitations.
+\textbf{System cards} address a system's capabilities, risks, and mitigations.
+They should help a reader assess suitability for a specified use.
+
+The smile-detector example proposes selecting photographs of children. Evaluation
+on CelebA by annotated age and gender does not establish performance for children.
+A useful revision requests relevant evaluation images, label definitions, and errors
+by age and capture conditions. Missing evidence establishes uncertainty, not an
+invented failure result. This use--evidence--gap--revision chain is central to A2.
+
+\section*{Reproduction answers a further, distinct question}
+Code, provenance, evaluation procedures, and reporting checklists support
+reproduction. Different seeds can change results with fixed algorithms and
+hyperparameters. For $m$ independent runs, $s/\sqrt m$ estimates the mean's SE;
+it differs from individual-run SD and test-example uncertainty. Reproducing a score
+does not establish validity or deployment usefulness.
+
+\textbf{Midterm emphasis (inference).} Know the fourfold-sample calculation and
+the interpretation and assumptions of the complexity bound. Strong conceptual
+priorities are validity versus reliability, rearrest versus reoffending, confounding
+versus selection, reward hacking, and a concrete documentation improvement with
+the evidence it needs. These remain in scope despite not appearing on the reference sheet.
+
+\sources{\href{L04.pdf}{L04.pdf}, pp.~2--6 (estimation/complexity),
+10--20 (design, validity, labels, Goodhart), 21--29 (documentation/reproduction);
+annotated copy consulted. A2: pp.~1--2.}
+\end{document}

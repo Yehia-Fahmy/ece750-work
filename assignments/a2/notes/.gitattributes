@@ -1,0 +1,2 @@
+# Preserve the upstream model-card snapshot byte for byte.
+sources/florence-2-base-model-card.md -whitespace
