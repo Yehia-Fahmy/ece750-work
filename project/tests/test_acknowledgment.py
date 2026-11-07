@@ -150,6 +150,23 @@ class AcknowledgmentTests(unittest.TestCase):
             self.assertEqual(saved["results"][0]["status"], "started")
             self.assertEqual(evaluate_bundle(bundle, saved)["overall"]["unresolved"], 4)
 
+    def test_validation_requires_matching_frozen_decision(self):
+        from observer_study.acknowledgment import RUBRIC, VERSION
+        from observer_study.io import digest
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            fixture(root)
+            manifest = read_json(root / "manifest.json")
+            manifest["identity"].update(split="pilot_validation", config={"version": "test"})
+            write_json(root / "manifest.json", manifest)
+            with self.assertRaises(ValueError): prepare_bundle(root)
+            gate = {"status": "frozen_for_pilot_validation", "version": VERSION,
+                    "scope": "reasoning", "rubric_sha256": digest(RUBRIC),
+                    "study_config_sha256": digest(manifest["identity"]["config"])}
+            self.assertEqual(prepare_bundle(root, gate)["validation_gate_sha256"], digest(gate))
+            gate["rubric_sha256"] = "changed"
+            with self.assertRaises(ValueError): prepare_bundle(root, gate)
+
     def test_endpoint_rejects_credential_leaks(self):
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)

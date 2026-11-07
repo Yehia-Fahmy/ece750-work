@@ -1,5 +1,11 @@
 # Observer-framing experiment
 
+**Completed:** [final report (PDF)](report/final-report.pdf), [readable Markdown](report/final-report.md), and [reproduction instructions](report/README.md). The report has four main pages plus references. All 240 responses were audited, all 179 eligible automated judgments revalidated, both original analyses reproduced, and 58 tests passed. The [final evaluation](results/final-automated-evaluation.json) includes derived rows and automated grading robustness checks.
+
+The [completion plan](completion-plan.md) records the user's automated-only grading decision. Human adjudication is no longer a completion requirement; semantic acknowledgment findings remain exploratory and are not claimed to be accuracy-validated. The [frozen protocol](main-protocol-v1.md) and historical milestones below retain their original context. No new main responses or replacement judgments were collected during completion.
+
+## Historical implementation and run instructions
+
 The smoke-test harness is merged. For the prepared, disjoint 96-request pilot and separate development/validation commands, see the [pilot v1 runbook](pilot.md). Main collection remains disabled until the protocol is frozen.
 
 The first implementation milestone is a **24-generation smoke test**: one reserved question from each of three BIG-Bench Hard tasks in all eight conditions. See the [research plan](research-plan.md), [draft protocol](protocol.md), and [research log](research-log.md).
@@ -134,3 +140,8 @@ For future user-supplied judging agents, start with the
 [coordinator guide](judge-agents/coordinator.md); each low-reasoning worker receives
 the [worker guide](judge-agents/worker.md) and one of the seven prepared, disjoint
 six-trace packets. The packet exporter/merger preserves uncertainty and provenance.
+
+The next testing round is complete: see the [November 6 validation review](results/pilot-v1-validation-001-review.md).
+All 48 new pilot responses completed and parsed. Automated labeling exposed a semantic
+false negative and seven quotation failures; uncertain outcomes are preserved and
+main collection remains disabled pending labeling/analysis decisions.

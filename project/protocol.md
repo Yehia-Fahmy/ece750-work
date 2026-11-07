@@ -1,3 +1,5 @@
+> Main-study update: the reduced main protocol is frozen in [main-protocol-v1.md](main-protocol-v1.md). The text below is retained as the historical draft.
+
 # Draft protocol: observer-framing smoke test
 
 Status: **draft**, October 12, 2026. This is a technical smoke test, not the main study or a frozen preregistration. Configuration: [configs/smoke.json](configs/smoke.json). Exact prompts: [src/observer_study/experiment.py](src/observer_study/experiment.py).

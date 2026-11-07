@@ -73,6 +73,7 @@ def main():
     ack_prepare = subparsers.add_parser("prepare-acknowledgment", help="Export fixed-rubric development judge inputs and phrase baseline")
     ack_prepare.add_argument("run", type=Path)
     ack_prepare.add_argument("--out", type=Path, required=True)
+    ack_prepare.add_argument("--validation-gate", type=Path)
     ack_import = subparsers.add_parser("compare-acknowledgment", help="Validate automated labels and compare with phrase signals")
     ack_import.add_argument("bundle", type=Path)
     ack_import.add_argument("--judgments", type=Path)
@@ -111,7 +112,7 @@ def main():
             count = export_review(args.run, args.out)
             print(f"Exported {count} traces: {args.out}")
         elif args.command == "prepare-acknowledgment":
-            bundle = prepare_bundle(args.run)
+            bundle = prepare_bundle(args.run, read_json(args.validation_gate) if args.validation_gate else None)
             save_new(args.out, bundle)
             print(f"Prepared {len(bundle['entries'])} assigned records: {args.out}")
         elif args.command == "compare-acknowledgment":

@@ -143,3 +143,34 @@ input identity, provenance, and evidence before producing a combined report. Mis
 or ambiguous records remain unresolved. The guides include exact commands, examples,
 output schema, concurrency and cost defaults, and rules for optional independent
 second opinions. No agents have been launched and no judgments have been generated.
+
+## November 6 follow-up and held-out pilot validation
+
+Round 2 preserved first-pass files by SHA-256 and saved two explicit coordinator
+quotation corrections separately. It tested 18 synthetic cases with predeclared
+AI-authored expectations and independently rechecked eight development records.
+See `results/pilot-v1-acknowledgment-round2.json` and the ignored
+`runs/pilot-v1-development-001/automated-ack-v1/round-2/` evidence directory.
+The synthetic set passed 18/18. Real-trace rechecks retained two quotation failures
+as uncertain; this remains a known operational limitation.
+
+`configs/pilot-validation-gate-v1.json` fixes the rubric hash, scope, study config,
+model/settings, and unresolved-evidence policy before held-out validation collection.
+`prepare-acknowledgment` now accepts real `pilot_validation` records **only** with
+`--validation-gate` pointing to a matching frozen decision. Main runs remain rejected.
+Earlier development-only descriptions above describe the initial workflow.
+
+After validation collection:
+
+```sh
+PYTHONPATH=project/src python3 -m observer_study prepare-acknowledgment \
+  project/runs/pilot-v1-validation-001 \
+  --validation-gate project/configs/pilot-validation-gate-v1.json \
+  --out project/runs/pilot-v1-validation-001/automated-ack-v1/bundle.json
+```
+
+Use the same packet exporter, worker guide, model, and low reasoning setting for a
+separate validation first pass. At most seven six-record assignments and three workers
+concurrently are planned; cost/usage remain unknown if the runtime does not expose them.
+Do not show development labels or expectations to validation workers. Do not tune
+rules or repair evidence after seeing validation outcomes; retain uncertainty.

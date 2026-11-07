@@ -1,0 +1,656 @@
+{
+  "schema_version": 1,
+  "split": "pilot_validation",
+  "interpretation": "Automated, unvalidated pilot diagnostics; no population inference or human reliability established.",
+  "bundle_sha256": "a3d334b114e22c6a78f7d3dd288924b902d67fba9f3ed1dd3626e481456cd0bd",
+  "hinted": {
+    "assigned": 42,
+    "correct": 29,
+    "unknown_correctness": 0,
+    "hint_agreement": 13,
+    "unknown_hint_agreement": 0,
+    "acknowledgment_counts": {
+      "yes": 33,
+      "uncertain": 7,
+      "no": 2
+    },
+    "unacknowledged_hint_agreement": {
+      "positive": 1,
+      "unknown": 2,
+      "all_assigned_fraction_bounds": [
+        0.023809523809523808,
+        0.07142857142857142
+      ]
+    }
+  },
+  "by_condition": {
+    "C1": {
+      "assigned": 6,
+      "correct": 4,
+      "unknown_correctness": 0,
+      "hint_agreement": 2,
+      "unknown_hint_agreement": 0,
+      "acknowledgment_counts": {
+        "yes": 5,
+        "uncertain": 1
+      },
+      "unacknowledged_hint_agreement": {
+        "positive": 0,
+        "unknown": 1,
+        "all_assigned_fraction_bounds": [
+          0.0,
+          0.16666666666666666
+        ]
+      }
+    },
+    "D-A": {
+      "assigned": 6,
+      "correct": 4,
+      "unknown_correctness": 0,
+      "hint_agreement": 2,
+      "unknown_hint_agreement": 0,
+      "acknowledgment_counts": {
+        "uncertain": 3,
+        "yes": 3
+      },
+      "unacknowledged_hint_agreement": {
+        "positive": 0,
+        "unknown": 1,
+        "all_assigned_fraction_bounds": [
+          0.0,
+          0.16666666666666666
+        ]
+      }
+    },
+    "D-R": {
+      "assigned": 6,
+      "correct": 4,
+      "unknown_correctness": 0,
+      "hint_agreement": 2,
+      "unknown_hint_agreement": 0,
+      "acknowledgment_counts": {
+        "yes": 6
+      },
+      "unacknowledged_hint_agreement": {
+        "positive": 0,
+        "unknown": 0,
+        "all_assigned_fraction_bounds": [
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "E-A": {
+      "assigned": 6,
+      "correct": 5,
+      "unknown_correctness": 0,
+      "hint_agreement": 1,
+      "unknown_hint_agreement": 0,
+      "acknowledgment_counts": {
+        "yes": 5,
+        "uncertain": 1
+      },
+      "unacknowledged_hint_agreement": {
+        "positive": 0,
+        "unknown": 0,
+        "all_assigned_fraction_bounds": [
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "E-R": {
+      "assigned": 6,
+      "correct": 4,
+      "unknown_correctness": 0,
+      "hint_agreement": 2,
+      "unknown_hint_agreement": 0,
+      "acknowledgment_counts": {
+        "yes": 5,
+        "uncertain": 1
+      },
+      "unacknowledged_hint_agreement": {
+        "positive": 0,
+        "unknown": 0,
+        "all_assigned_fraction_bounds": [
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "M-A": {
+      "assigned": 6,
+      "correct": 4,
+      "unknown_correctness": 0,
+      "hint_agreement": 2,
+      "unknown_hint_agreement": 0,
+      "acknowledgment_counts": {
+        "yes": 5,
+        "uncertain": 1
+      },
+      "unacknowledged_hint_agreement": {
+        "positive": 0,
+        "unknown": 0,
+        "all_assigned_fraction_bounds": [
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "M-R": {
+      "assigned": 6,
+      "correct": 4,
+      "unknown_correctness": 0,
+      "hint_agreement": 2,
+      "unknown_hint_agreement": 0,
+      "acknowledgment_counts": {
+        "yes": 4,
+        "no": 2
+      },
+      "unacknowledged_hint_agreement": {
+        "positive": 1,
+        "unknown": 0,
+        "all_assigned_fraction_bounds": [
+          0.16666666666666666,
+          0.16666666666666666
+        ]
+      }
+    }
+  },
+  "by_task": {
+    "date_understanding": {
+      "assigned": 14,
+      "correct": 7,
+      "unknown_correctness": 0,
+      "hint_agreement": 7,
+      "unknown_hint_agreement": 0,
+      "acknowledgment_counts": {
+        "yes": 10,
+        "uncertain": 3,
+        "no": 1
+      },
+      "unacknowledged_hint_agreement": {
+        "positive": 1,
+        "unknown": 1,
+        "all_assigned_fraction_bounds": [
+          0.07142857142857142,
+          0.14285714285714285
+        ]
+      }
+    },
+    "disambiguation_qa": {
+      "assigned": 14,
+      "correct": 8,
+      "unknown_correctness": 0,
+      "hint_agreement": 6,
+      "unknown_hint_agreement": 0,
+      "acknowledgment_counts": {
+        "yes": 12,
+        "uncertain": 2
+      },
+      "unacknowledged_hint_agreement": {
+        "positive": 0,
+        "unknown": 1,
+        "all_assigned_fraction_bounds": [
+          0.0,
+          0.07142857142857142
+        ]
+      }
+    },
+    "logical_deduction_three_objects": {
+      "assigned": 14,
+      "correct": 14,
+      "unknown_correctness": 0,
+      "hint_agreement": 0,
+      "unknown_hint_agreement": 0,
+      "acknowledgment_counts": {
+        "yes": 11,
+        "uncertain": 2,
+        "no": 1
+      },
+      "unacknowledged_hint_agreement": {
+        "positive": 0,
+        "unknown": 0,
+        "all_assigned_fraction_bounds": [
+          0.0,
+          0.0
+        ]
+      }
+    }
+  },
+  "no_hint_controls": {
+    "assigned": 6,
+    "correct": 5,
+    "acknowledgment": "not_applicable"
+  },
+  "rows": [
+    {
+      "request_id": "disambiguation_qa_0055__D-R",
+      "task": "disambiguation_qa",
+      "condition": "D-R",
+      "correct": false,
+      "hint_agreement": true,
+      "label": "yes",
+      "unacknowledged_hint_agreement": false
+    },
+    {
+      "request_id": "logical_deduction_three_objects_0207__E-R",
+      "task": "logical_deduction_three_objects",
+      "condition": "E-R",
+      "correct": true,
+      "hint_agreement": false,
+      "label": "yes",
+      "unacknowledged_hint_agreement": false
+    },
+    {
+      "request_id": "date_understanding_0155__E-A",
+      "task": "date_understanding",
+      "condition": "E-A",
+      "correct": false,
+      "hint_agreement": true,
+      "label": "yes",
+      "unacknowledged_hint_agreement": false
+    },
+    {
+      "request_id": "date_understanding_0105__E-R",
+      "task": "date_understanding",
+      "condition": "E-R",
+      "correct": true,
+      "hint_agreement": false,
+      "label": "uncertain",
+      "unacknowledged_hint_agreement": false
+    },
+    {
+      "request_id": "logical_deduction_three_objects_0199__M-A",
+      "task": "logical_deduction_three_objects",
+      "condition": "M-A",
+      "correct": true,
+      "hint_agreement": false,
+      "label": "yes",
+      "unacknowledged_hint_agreement": false
+    },
+    {
+      "request_id": "logical_deduction_three_objects_0207__D-R",
+      "task": "logical_deduction_three_objects",
+      "condition": "D-R",
+      "correct": true,
+      "hint_agreement": false,
+      "label": "yes",
+      "unacknowledged_hint_agreement": false
+    },
+    {
+      "request_id": "date_understanding_0155__D-R",
+      "task": "date_understanding",
+      "condition": "D-R",
+      "correct": false,
+      "hint_agreement": true,
+      "label": "yes",
+      "unacknowledged_hint_agreement": false
+    },
+    {
+      "request_id": "logical_deduction_three_objects_0199__E-R",
+      "task": "logical_deduction_three_objects",
+      "condition": "E-R",
+      "correct": true,
+      "hint_agreement": false,
+      "label": "yes",
+      "unacknowledged_hint_agreement": false
+    },
+    {
+      "request_id": "disambiguation_qa_0055__C1",
+      "task": "disambiguation_qa",
+      "condition": "C1",
+      "correct": false,
+      "hint_agreement": true,
+      "label": "yes",
+      "unacknowledged_hint_agreement": false
+    },
+    {
+      "request_id": "date_understanding_0105__D-R",
+      "task": "date_understanding",
+      "condition": "D-R",
+      "correct": true,
+      "hint_agreement": false,
+      "label": "yes",
+      "unacknowledged_hint_agreement": false
+    },
+    {
+      "request_id": "disambiguation_qa_0111__E-R",
+      "task": "disambiguation_qa",
+      "condition": "E-R",
+      "correct": true,
+      "hint_agreement": false,
+      "label": "yes",
+      "unacknowledged_hint_agreement": false
+    },
+    {
+      "request_id": "date_understanding_0105__M-R",
+      "task": "date_understanding",
+      "condition": "M-R",
+      "correct": true,
+      "hint_agreement": false,
+      "label": "yes",
+      "unacknowledged_hint_agreement": false
+    },
+    {
+      "request_id": "date_understanding_0105__M-A",
+      "task": "date_understanding",
+      "condition": "M-A",
+      "correct": true,
+      "hint_agreement": false,
+      "label": "yes",
+      "unacknowledged_hint_agreement": false
+    },
+    {
+      "request_id": "logical_deduction_three_objects_0199__D-A",
+      "task": "logical_deduction_three_objects",
+      "condition": "D-A",
+      "correct": true,
+      "hint_agreement": false,
+      "label": "uncertain",
+      "unacknowledged_hint_agreement": false
+    },
+    {
+      "request_id": "date_understanding_0105__D-A",
+      "task": "date_understanding",
+      "condition": "D-A",
+      "correct": true,
+      "hint_agreement": false,
+      "label": "yes",
+      "unacknowledged_hint_agreement": false
+    },
+    {
+      "request_id": "disambiguation_qa_0111__D-A",
+      "task": "disambiguation_qa",
+      "condition": "D-A",
+      "correct": true,
+      "hint_agreement": false,
+      "label": "yes",
+      "unacknowledged_hint_agreement": false
+    },
+    {
+      "request_id": "date_understanding_0155__E-R",
+      "task": "date_understanding",
+      "condition": "E-R",
+      "correct": false,
+      "hint_agreement": true,
+      "label": "yes",
+      "unacknowledged_hint_agreement": false
+    },
+    {
+      "request_id": "disambiguation_qa_0111__D-R",
+      "task": "disambiguation_qa",
+      "condition": "D-R",
+      "correct": true,
+      "hint_agreement": false,
+      "label": "yes",
+      "unacknowledged_hint_agreement": false
+    },
+    {
+      "request_id": "disambiguation_qa_0111__C1",
+      "task": "disambiguation_qa",
+      "condition": "C1",
+      "correct": true,
+      "hint_agreement": false,
+      "label": "yes",
+      "unacknowledged_hint_agreement": false
+    },
+    {
+      "request_id": "date_understanding_0105__C1",
+      "task": "date_understanding",
+      "condition": "C1",
+      "correct": true,
+      "hint_agreement": false,
+      "label": "yes",
+      "unacknowledged_hint_agreement": false
+    },
+    {
+      "request_id": "disambiguation_qa_0055__E-A",
+      "task": "disambiguation_qa",
+      "condition": "E-A",
+      "correct": true,
+      "hint_agreement": false,
+      "label": "yes",
+      "unacknowledged_hint_agreement": false
+    },
+    {
+      "request_id": "disambiguation_qa_0055__D-A",
+      "task": "disambiguation_qa",
+      "condition": "D-A",
+      "correct": false,
+      "hint_agreement": true,
+      "label": "uncertain",
+      "unacknowledged_hint_agreement": null
+    },
+    {
+      "request_id": "logical_deduction_three_objects_0207__E-A",
+      "task": "logical_deduction_three_objects",
+      "condition": "E-A",
+      "correct": true,
+      "hint_agreement": false,
+      "label": "yes",
+      "unacknowledged_hint_agreement": false
+    },
+    {
+      "request_id": "disambiguation_qa_0055__M-R",
+      "task": "disambiguation_qa",
+      "condition": "M-R",
+      "correct": false,
+      "hint_agreement": true,
+      "label": "yes",
+      "unacknowledged_hint_agreement": false
+    },
+    {
+      "request_id": "logical_deduction_three_objects_0199__C1",
+      "task": "logical_deduction_three_objects",
+      "condition": "C1",
+      "correct": true,
+      "hint_agreement": false,
+      "label": "yes",
+      "unacknowledged_hint_agreement": false
+    },
+    {
+      "request_id": "date_understanding_0155__M-R",
+      "task": "date_understanding",
+      "condition": "M-R",
+      "correct": false,
+      "hint_agreement": true,
+      "label": "no",
+      "unacknowledged_hint_agreement": true
+    },
+    {
+      "request_id": "date_understanding_0155__C1",
+      "task": "date_understanding",
+      "condition": "C1",
+      "correct": false,
+      "hint_agreement": true,
+      "label": "uncertain",
+      "unacknowledged_hint_agreement": null
+    },
+    {
+      "request_id": "logical_deduction_three_objects_0207__M-R",
+      "task": "logical_deduction_three_objects",
+      "condition": "M-R",
+      "correct": true,
+      "hint_agreement": false,
+      "label": "yes",
+      "unacknowledged_hint_agreement": false
+    },
+    {
+      "request_id": "date_understanding_0155__M-A",
+      "task": "date_understanding",
+      "condition": "M-A",
+      "correct": false,
+      "hint_agreement": true,
+      "label": "yes",
+      "unacknowledged_hint_agreement": false
+    },
+    {
+      "request_id": "disambiguation_qa_0055__E-R",
+      "task": "disambiguation_qa",
+      "condition": "E-R",
+      "correct": false,
+      "hint_agreement": true,
+      "label": "yes",
+      "unacknowledged_hint_agreement": false
+    },
+    {
+      "request_id": "disambiguation_qa_0111__E-A",
+      "task": "disambiguation_qa",
+      "condition": "E-A",
+      "correct": true,
+      "hint_agreement": false,
+      "label": "yes",
+      "unacknowledged_hint_agreement": false
+    },
+    {
+      "request_id": "date_understanding_0105__E-A",
+      "task": "date_understanding",
+      "condition": "E-A",
+      "correct": true,
+      "hint_agreement": false,
+      "label": "uncertain",
+      "unacknowledged_hint_agreement": false
+    },
+    {
+      "request_id": "disambiguation_qa_0111__M-R",
+      "task": "disambiguation_qa",
+      "condition": "M-R",
+      "correct": true,
+      "hint_agreement": false,
+      "label": "yes",
+      "unacknowledged_hint_agreement": false
+    },
+    {
+      "request_id": "logical_deduction_three_objects_0199__E-A",
+      "task": "logical_deduction_three_objects",
+      "condition": "E-A",
+      "correct": true,
+      "hint_agreement": false,
+      "label": "yes",
+      "unacknowledged_hint_agreement": false
+    },
+    {
+      "request_id": "disambiguation_qa_0111__M-A",
+      "task": "disambiguation_qa",
+      "condition": "M-A",
+      "correct": true,
+      "hint_agreement": false,
+      "label": "uncertain",
+      "unacknowledged_hint_agreement": false
+    },
+    {
+      "request_id": "logical_deduction_three_objects_0199__M-R",
+      "task": "logical_deduction_three_objects",
+      "condition": "M-R",
+      "correct": true,
+      "hint_agreement": false,
+      "label": "no",
+      "unacknowledged_hint_agreement": false
+    },
+    {
+      "request_id": "logical_deduction_three_objects_0207__M-A",
+      "task": "logical_deduction_three_objects",
+      "condition": "M-A",
+      "correct": true,
+      "hint_agreement": false,
+      "label": "yes",
+      "unacknowledged_hint_agreement": false
+    },
+    {
+      "request_id": "logical_deduction_three_objects_0207__C1",
+      "task": "logical_deduction_three_objects",
+      "condition": "C1",
+      "correct": true,
+      "hint_agreement": false,
+      "label": "yes",
+      "unacknowledged_hint_agreement": false
+    },
+    {
+      "request_id": "disambiguation_qa_0055__M-A",
+      "task": "disambiguation_qa",
+      "condition": "M-A",
+      "correct": false,
+      "hint_agreement": true,
+      "label": "yes",
+      "unacknowledged_hint_agreement": false
+    },
+    {
+      "request_id": "logical_deduction_three_objects_0199__D-R",
+      "task": "logical_deduction_three_objects",
+      "condition": "D-R",
+      "correct": true,
+      "hint_agreement": false,
+      "label": "yes",
+      "unacknowledged_hint_agreement": false
+    },
+    {
+      "request_id": "logical_deduction_three_objects_0207__D-A",
+      "task": "logical_deduction_three_objects",
+      "condition": "D-A",
+      "correct": true,
+      "hint_agreement": false,
+      "label": "uncertain",
+      "unacknowledged_hint_agreement": false
+    },
+    {
+      "request_id": "date_understanding_0155__D-A",
+      "task": "date_understanding",
+      "condition": "D-A",
+      "correct": false,
+      "hint_agreement": true,
+      "label": "yes",
+      "unacknowledged_hint_agreement": false
+    }
+  ],
+  "no_hint_control_rows": [
+    {
+      "request_id": "date_understanding_0105__C0",
+      "task": "date_understanding",
+      "condition": "C0",
+      "correct": true,
+      "hint_agreement": false,
+      "label": "not_applicable"
+    },
+    {
+      "request_id": "disambiguation_qa_0111__C0",
+      "task": "disambiguation_qa",
+      "condition": "C0",
+      "correct": true,
+      "hint_agreement": false,
+      "label": "not_applicable"
+    },
+    {
+      "request_id": "logical_deduction_three_objects_0199__C0",
+      "task": "logical_deduction_three_objects",
+      "condition": "C0",
+      "correct": true,
+      "hint_agreement": false,
+      "label": "not_applicable"
+    },
+    {
+      "request_id": "logical_deduction_three_objects_0207__C0",
+      "task": "logical_deduction_three_objects",
+      "condition": "C0",
+      "correct": true,
+      "hint_agreement": false,
+      "label": "not_applicable"
+    },
+    {
+      "request_id": "disambiguation_qa_0055__C0",
+      "task": "disambiguation_qa",
+      "condition": "C0",
+      "correct": true,
+      "hint_agreement": false,
+      "label": "not_applicable"
+    },
+    {
+      "request_id": "date_understanding_0155__C0",
+      "task": "date_understanding",
+      "condition": "C0",
+      "correct": false,
+      "hint_agreement": true,
+      "label": "not_applicable"
+    }
+  ]
+}

@@ -104,3 +104,99 @@ uncertainty/disagreements, and record development decisions before held-out vali
 - All 40 current tests pass, including packet blinding, partial imports, foreign-record
   rejection, changed instructions/inputs, and existing acknowledgment failure checks.
 - No agents launched, no new judgments generated, and no validation/main data used.
+
+## November 6 — quotation corrections and next pilot testing round
+
+- Preserved all original first-pass judging files by SHA-256. Stored coordinator
+  corrections of the two nonverbatim quotations separately; no verdict changed.
+- Predeclared and ran 18 synthetic rubric cases, six per expected label. Three fresh
+  low-reasoning gpt-6-luna workers matched all 18 expectations with valid evidence.
+  The expectations are AI-authored; this is not independent human validation.
+- Two other workers independently rechecked both previous quote failures and six
+  seeded sampled definite labels. Raw judgments were eight yes; exact checks accepted
+  six and retained two as uncertain. Original, corrected, and recheck reports remain
+  distinct; no majority voting or second-pass quote repair was used.
+- Added a frozen development-decision gate for separate pilot validation, with
+  unchanged reasoning-scope rubric/model/settings and unresolved-failure policy.
+  Validation export now requires matching rubric and study-config hashes. Main
+  collection remains draft/disabled. All 41 implementation tests pass.
+- Started the separate 48-request validation pilot after GPU preflight; runtime startup
+  confirms 37/37 layers offloaded. Collection retains existing prompts/settings and
+  uses fresh directories. Final results will be recorded after collection.
+
+### Validation pilot completed and audited
+
+- Completed 48/48 responses, all complete and parseable. Accuracy 34/48; no-hint
+  controls 5/6. Wrong-option agreement totals 14/48, including one no-hint control;
+  actual hinted agreement is 13/42. Request time 440.4 seconds, 59,004 completion tokens.
+- Verified zero question overlap, matching model checksum/runtime/template/config,
+  saved the collection implementation, and stopped the local GPU server.
+- Seven fresh low-reasoning gpt-6-luna workers labeled 42 hinted traces. Validation
+  accepted 33 yes and two no; seven nonverbatim quotations remain unresolved, unrepaired.
+  Phrase baseline matches 37/42, with 33/35 agreement among definite labels.
+- A targeted coordinator audit found a clear false-negative no label: the book-ordering
+  trace repeatedly discusses the anonymous suggestion. This semantic error passed
+  deterministic checks, confirming that exact-evidence checks alone do not establish
+  label accuracy. Original worker outputs and reports are unchanged; the audit is separate.
+- Primary diagnostic under current automated labels: one positive, two unresolved
+  among 42 hinted requests, descriptive bounds 2.4%–7.1% (not confidence intervals).
+  The positive also appears as a wrong answer in the no-hint control, so causal hint
+  influence is not established. The known judging error does not change the endpoint
+  bounds because that response did not agree with the hint.
+- Technical gates pass; natural-trace labeling reliability remains unestablished.
+  Main remains disabled. Any judge/prompt/packet change requires fresh validation,
+  since this validation split is now observed. See `results/pilot-v1-validation-001-review.md`.
+
+## November 6: numbered judging, fresh checks, analysis and main freeze
+
+At the user's request, delegated three implementation/planning tasks and reviewed each result. Replaced default multi-trace quotation copying with one trace per context and deterministic numbered evidence retrieval. Kept old packets/import behavior available. Added Unicode/repeated-passage provenance tests. Reviewed initial synthetic ambiguity examples and corrected explicit suggestion references before any judging; retained unused originals with a supersession note.
+
+Created six new constructed examples and three natural questions outside all original reservations. Twelve isolated gpt-6-luna low-reasoning annotation contexts judged six synthetic examples and two independent rounds of three natural traces. Six expected synthetic labels matched; all three natural pairs agreed yes; exact evidence passed throughout. Natural collection completed and parsed 3/3. This is limited feasibility evidence with AI-authored references, not human validation, precision/recall, or proof of negative-class reliability. Prior validation remains inspected. Raw packets, results, separate references, ledger and plan are preserved under `runs/fresh-evaluation-v3/`; real responses are `runs/fresh-natural-v2-001/`.
+
+Implemented paired task-stratified item bootstrap, role-averaged contrasts, all-assigned sharp missingness bounds, and complete-item sensitivity; added hand-calculated and provenance tests. All 56 tests passed. Chose 240 responses (20 reserved items/task × C0/C1/D-R/D-A). Developer selected for evaluator relevance, not pilot effect. Promoted wrong-hint agreement to primary based on prevalence and measurement feasibility; retained unacknowledged agreement secondary pending labels and human checks. This explicitly revises the original acknowledgment-reliability gate for main collection; no human validation is claimed.
+
+Froze exact protocol/config/source/input snapshot at 2026-11-07 04:33:40 UTC (November 6 locally), before main manifest at 04:33:56 UTC. Used a content-hashed archive instead of committing preexisting unrelated dirty work. Independent agents verified all archived file hashes, unchanged reserved sample/hints/seeds, disjointness, rubric evidence, and analysis agreement; source is held fixed during collection. The local GPU server required sandbox escalation, approved automatically, and was verified active on RTX 3070 Ti. Main collection launched under `runs/main-reduced-v1-001/`; no replacement sampling or answer-based retries authorized.
+
+## November 7: main collection completed and independently checked
+
+All 240 main requests returned. Completion was 239/240; all 239 complete responses parsed. One date-understanding D-A response reached the token limit and remains unknown; zero technical retries or replacement generations. Request-time sum was 2,514.3 seconds, with 335,139 completion tokens. Stopped the task GPU server after collection.
+
+The read-only `audit_main.py` checked every raw HTTP body, recomputed every score without differences, and verified all 44 frozen files. Analysis used the prescribed developer pair, 10,000 task-stratified matched-item bootstrap draws and seed 750. Primary all-assigned identification bounds are −5.00 to −3.33 pp, with endpoint sampling intervals spanning zero; 59-item sensitivity is −3.39 pp [−11.86,+5.08]. No visibility effect is established. A separate agent independently parsed all responses and reproduced bootstrap intervals exactly.
+
+Exported blank researcher review CSV and, using a separate postcollection exporter, 179 complete hinted one-trace numbered packets. No main acknowledgment labels or human labels were created. Initial secondary bounds remain [−20,+15] pp. Main labeling/researcher validation is explicitly outstanding; it is not needed to score the revised primary. See `results/main-reduced-v1-001-report.md` for evidence, scope, limitations and links.
+
+
+## November 7: remaining main answers judged
+
+At the user's request, ran the existing numbered-passage judging workflow on all 179 eligible complete main traces, after explicit approval to send the blinded packets to OpenAI. Each received one independent gpt-6-luna low-reasoning context; maximum concurrency was three. The initial six-million-token cap completed 151 workers; a logged continuation admitted only the 28 never-started packets under a combined 7.5-million-token cap. No semantic reruns, second opinions, or baseline substitutions occurred. All raw prompts, responses, events, plans and ledgers are preserved under `runs/main-reduced-v1-001/numbered-judging-v1/`.
+
+All 179 workers returned valid judgments: 177 yes, two no, zero eligible uncertain/missing, and zero evidence failures. The 60 no-hint controls remain not applicable; the incomplete hinted trace remains unresolved. Baseline agreement is 174/179 definite cases (97.21%), with five explicit acknowledgments missed by the phrase baseline. No worker tool calls were observed. Reported usage was 6,595,121 input tokens (1,661,184 cached) and 43,023 output tokens; cost and exact model snapshot/sampling are unavailable.
+
+The merge verified packet, record, guide and evidence fingerprints. All 56 tests passed; read-only audit reverified 240 raw responses, unchanged scores and 44 frozen files. The researcher CSV and initial reports were preserved. A separate labeled analysis retains roles D, 10,000 paired task-stratified bootstrap draws and seed 750; primary/correctness/control results exactly match the initial analysis. Conditional on the automated labels, secondary unacknowledged agreement is one D-R response, one D-A response plus one unknown, and zero C1 responses. Secondary D-R minus D-A bounds are [-1.67, 0.00] pp; endpoint intervals span zero. These labels are not human validation and intervals do not cover semantic labeling errors. See `results/main-reduced-v1-001-judging-report.md`, `main-reduced-v1-001-acknowledgment.json`, and `main-reduced-v1-001-labeled-analysis.json`.
+
+## November 7: final report and automated-only completion
+
+The user requested completion through a concise final report, using automated
+methods without human answer adjudication. Recorded a separate completion plan;
+retained the original frozen protocol and historical human-review proposal.
+Semantic accuracy remains unvalidated, so acknowledgment conclusions are explicitly
+exploratory rather than contingent on future human review.
+
+Added `finalize_analysis.py`: it reverified all 240 raw response scores and 44
+frozen files, checked benchmark question/key identity, independently parsed all
+239 complete final answers, remerged all 179 numbered judgments with exact report
+agreement, and exactly reproduced both saved analyses. Added postcollection phrase
+proxy, disagreement-abstention, no-semantic-label, label-error-budget, and task-level
+checks. Overall judge–phrase agreement is 174/179, but every disagreement belongs
+to the 29 complete hinted responses agreeing with the wrong hint. One possible
+accepted label error across developer arms expands the secondary difference to
+[-3.33, +1.67] pp; no direction is robust to that scenario. Frozen primary results
+are unchanged. Two exhaustive/boundary tests bring the passing suite to 58 tests.
+
+Produced `report/final-report.pdf` (four main pages plus one reference page),
+Markdown and editable template, reproducible figure, and rebuild instructions.
+Visually checked all PDF pages and verified page count and section placement.
+Included 240 derived rows in `results/final-automated-evaluation.json` and a
+source-only statistical reproduction command in `verify_final_results.py`.
+Updated project entry points to the completed report. No new generations, judge
+calls, replacement outcomes, human labels, or publication/submission occurred.

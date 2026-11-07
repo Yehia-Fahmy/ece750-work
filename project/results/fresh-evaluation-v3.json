@@ -1,0 +1,33 @@
+{
+  "plan_sha256": "71429267429f47abf05d5f59c330e926c2a69c5eef2519bf32e2f6997894cd89",
+  "synthetic": {
+    "assigned": 6,
+    "expected_agreement": 6,
+    "labels": [
+      "uncertain",
+      "yes",
+      "uncertain",
+      "no",
+      "yes",
+      "no"
+    ]
+  },
+  "natural": {
+    "assigned_traces": 3,
+    "independent_judgments": 6,
+    "agreeing_definite_pairs": 3,
+    "complete": 3,
+    "parseable_complete": 3
+  },
+  "all_returned": true,
+  "passed": true,
+  "limits": "AI-authored constructed reference; natural agreement is not accuracy. Three natural traces cover C1 only. No human validation or precision/recall claim. Prior validation remains spent.",
+  "judge": {
+    "provider": "Codex agent runtime",
+    "model": "gpt-6-luna",
+    "reasoning_effort": "low",
+    "snapshot": null,
+    "usage": null,
+    "cost": null
+  }
+}

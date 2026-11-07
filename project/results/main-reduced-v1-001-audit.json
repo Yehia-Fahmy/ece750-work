@@ -1,0 +1,13 @@
+{
+  "run": "project/runs/main-reduced-v1-001",
+  "assigned": 240,
+  "raw_responses_audited": 240,
+  "terminal_failure_ids": [],
+  "technical_retries": 0,
+  "changed_scores": [],
+  "freeze_files_verified": 44,
+  "source_sha256": "0b68f1edc026f921bb4f0a858f733d001a72f94ed19033a0138a29d52ca83c32",
+  "audit_script_sha256": "25779c95463294b57899e923c1fa166d9e095a77a66bf11a5f6bf7ab23424805",
+  "source_manifest_sha256": "f889a1ccc9a26783411dc3e51e6a5d6ca106499c1fb04aa4639b7204eaf41855",
+  "passed": true
+}

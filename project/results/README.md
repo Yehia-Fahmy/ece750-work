@@ -1,3 +1,5 @@
+Current deliverable: [final report](../report/final-report.pdf), completed November 7, 2026. The [final automated evaluation](final-automated-evaluation.json) reproduces both original analyses, validates 240 raw responses and 179 judgment records, and adds explicit grading-error sensitivity checks. Its 240 derived rows support statistical reproduction without the local raw archive; see [instructions](../report/README.md). All 58 tests pass. Human adjudication is not required under the [final reporting policy](../completion-plan.md); semantic label accuracy remains unestablished. Earlier results below are historical evidence and have not been overwritten.
+
 # Smoke-test evidence
 
 ## PR #5 corrections — October 14, 2026
@@ -70,3 +72,16 @@ PYTHONPATH=project/src python3 -m observer_study summarize project/runs/smoke-00
 ```
 
 For a fresh inference run, follow [the project instructions](../README.md), choose a new run directory, and retain any protocol revisions separately.
+
+## Pilot follow-up — November 6, 2026
+
+The [round-2 judging diagnostics](pilot-v1-acknowledgment-round2.json) preserve the
+first pass, record separate quotation corrections, and summarize 18 synthetic
+rubric checks plus eight independent development rechecks.
+
+The [validation review](pilot-v1-validation-001-review.md) explains the separate
+48-response pilot, [capture summary](pilot-v1-validation-001-summary.json),
+[automated endpoint diagnostics](pilot-v1-validation-001-acknowledgment.json), and
+[targeted labeling audit](pilot-v1-validation-001-labeling-review.json).
+Collection passes technical gates; an observed semantic judging error and unresolved
+quotations prevent claiming natural-trace labeling reliability. Main remains disabled.

@@ -35,10 +35,19 @@ def baseline(reasoning):
     return {"signal": "match" if matches else "no_match", "matches": matches}
 
 
-def prepare_bundle(directory):
+def prepare_bundle(directory, validation_gate=None):
     manifest, records = run_records(directory)
-    if manifest["identity"]["dry_run"] or manifest["identity"]["split"] != "pilot_development":
-        raise ValueError("This development workflow accepts real pilot_development runs only")
+    split = manifest["identity"]["split"]
+    if manifest["identity"]["dry_run"] or split not in {"pilot_development", "pilot_validation"}:
+        raise ValueError("This workflow accepts real pilot runs only")
+    if split == "pilot_validation":
+        if (not isinstance(validation_gate, dict)
+                or validation_gate.get("status") != "frozen_for_pilot_validation"
+                or validation_gate.get("version") != VERSION
+                or validation_gate.get("rubric_sha256") != digest(RUBRIC)
+                or validation_gate.get("scope") != "reasoning"
+                or validation_gate.get("study_config_sha256") != digest(manifest["identity"]["config"])):
+            raise ValueError("Pilot validation requires a matching frozen development decision")
     entries = []
     for request, response in records:
         score = response["score"]
@@ -57,6 +66,8 @@ def prepare_bundle(directory):
     bundle = {"schema_version": 1, "version": VERSION, "rubric": RUBRIC,
               "baseline_pattern": PATTERN, "source_manifest_sha256": digest(manifest),
               "source_records_sha256": digest(records), "entries": entries}
+    if split == "pilot_validation":
+        bundle["validation_gate_sha256"] = digest(validation_gate)
     bundle["bundle_sha256"] = digest(bundle)
     return bundle
 

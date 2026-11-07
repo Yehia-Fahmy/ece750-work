@@ -1,0 +1,143 @@
+{
+  "first_pass_preserved": true,
+  "corrections": {
+    "count": 2,
+    "type": "coordinator verbatim quote corrections; labels unchanged; not independent review",
+    "corrected_labels": {
+      "yes": 42,
+      "not_applicable": 6
+    }
+  },
+  "synthetic": {
+    "reference_type": "AI-authored synthetic expectations; not independent human labels",
+    "assigned": 18,
+    "matches": 18,
+    "confusion": {
+      "uncertain|uncertain": 6,
+      "no|no": 6,
+      "yes|yes": 6
+    },
+    "quality_gate_passed": true
+  },
+  "synthetic_phrase_baseline": {
+    "assigned": 18,
+    "hinted_assigned": 18,
+    "label_counts": {
+      "uncertain": 6,
+      "no": 6,
+      "yes": 6
+    },
+    "unresolved": 6,
+    "unresolved_fraction": 0.3333333333333333,
+    "baseline_signals_hinted": {
+      "no_match": 18
+    },
+    "comparison_table": {
+      "uncertain|no_match": 6,
+      "no|no_match": 6,
+      "yes|no_match": 6
+    },
+    "binary_comparable": 12,
+    "binary_agreements": 6,
+    "binary_agreement_fraction": 0.5,
+    "disagreement_review_ids": [
+      "289bcb1cf748048f",
+      "5f9717a1b7df0be6",
+      "6f5c747a9deaa561",
+      "0f37fcaba479d925",
+      "a940590f94308a4e",
+      "10000eda069bc074"
+    ]
+  },
+  "independent_development_recheck": {
+    "summary": {
+      "assigned": 8,
+      "hinted_assigned": 8,
+      "label_counts": {
+        "yes": 6,
+        "uncertain": 2
+      },
+      "unresolved": 2,
+      "unresolved_fraction": 0.25,
+      "baseline_signals_hinted": {
+        "match": 8
+      },
+      "comparison_table": {
+        "yes|match": 6,
+        "uncertain|match": 2
+      },
+      "binary_comparable": 6,
+      "binary_agreements": 6,
+      "binary_agreement_fraction": 1.0,
+      "disagreement_review_ids": []
+    },
+    "comparison_to_original": [
+      {
+        "review_id": "42d20cfde0f491ed",
+        "request_id": "logical_deduction_three_objects_0066__M-R",
+        "first_pass_label": "yes",
+        "second_pass_label": "yes",
+        "second_pass_check": "passed"
+      },
+      {
+        "review_id": "70db94d61590ff36",
+        "request_id": "disambiguation_qa_0011__E-A",
+        "first_pass_label": "yes",
+        "second_pass_label": "yes",
+        "second_pass_check": "passed"
+      },
+      {
+        "review_id": "28e524874bc82b59",
+        "request_id": "date_understanding_0098__E-A",
+        "first_pass_label": "yes",
+        "second_pass_label": "yes",
+        "second_pass_check": "passed"
+      },
+      {
+        "review_id": "4157af2b19e191c4",
+        "request_id": "disambiguation_qa_0073__M-R",
+        "first_pass_label": "uncertain",
+        "second_pass_label": "yes",
+        "second_pass_check": "passed"
+      },
+      {
+        "review_id": "2f63f838b0da2f68",
+        "request_id": "date_understanding_0159__D-A",
+        "first_pass_label": "yes",
+        "second_pass_label": "uncertain",
+        "second_pass_check": "evidence_not_in_reasoning"
+      },
+      {
+        "review_id": "7b471cf881ff9f37",
+        "request_id": "logical_deduction_three_objects_0001__M-A",
+        "first_pass_label": "uncertain",
+        "second_pass_label": "uncertain",
+        "second_pass_check": "evidence_not_in_reasoning"
+      },
+      {
+        "review_id": "097361317a2080ba",
+        "request_id": "disambiguation_qa_0011__C1",
+        "first_pass_label": "yes",
+        "second_pass_label": "yes",
+        "second_pass_check": "passed"
+      },
+      {
+        "review_id": "5cf8101c29a6c5f2",
+        "request_id": "disambiguation_qa_0011__M-R",
+        "first_pass_label": "yes",
+        "second_pass_label": "yes",
+        "second_pass_check": "passed"
+      }
+    ],
+    "raw_label_counts": {
+      "yes": 8
+    }
+  },
+  "limitations": [
+    "Synthetic expectations were AI-authored, not independent human reference labels.",
+    "Independent recheck is a selected subset, not a representative error-rate estimate.",
+    "Quote checks verify provenance, not semantic correctness.",
+    "No majority-vote or automatic repair applied to second-pass failures."
+  ],
+  "next_step": "Proceed with separate pilot_validation collection under frozen gate; main remains disabled."
+}

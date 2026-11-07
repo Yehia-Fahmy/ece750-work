@@ -57,9 +57,16 @@ def schedule(config, prepared, split):
                 (split == "pilot" and item["split"].startswith("pilot_"))]
     if not selected:
         raise ValueError(f"No items in split {split}")
+    codes = config.get("conditions", [condition[0] for condition in CONDITIONS])
+    if (not isinstance(codes, list) or not codes or
+            any(not isinstance(code, str) for code in codes) or
+            len(set(codes)) != len(codes) or
+            not set(codes) <= {condition[0] for condition in CONDITIONS}):
+        raise ValueError("Conditions must be a nonempty unique list of known codes")
+    conditions = [condition for condition in CONDITIONS if condition[0] in codes]
     requests = []
     for item in selected:
-        for condition in CONDITIONS:
+        for condition in conditions:
             code, observer, access, hinted = condition
             seed = seeded_rng(config["seed"], f"generation:{item['item_id']}").randrange(2**31)
             payload = {**config["generation"], "model": config["model"]["alias"],

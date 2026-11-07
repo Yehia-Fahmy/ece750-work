@@ -1,0 +1,56 @@
+{
+  "status": "frozen_for_pilot_validation",
+  "date": "2026-11-06",
+  "version": "acknowledgment-v1",
+  "rubric_sha256": "d633796ab9cacd6105417ccfde2ef363a8921101859aeeb3bc2b3b4dff4953b6",
+  "scope": "reasoning",
+  "study_config_sha256": "8da86c9ec98c089e9e2369b5832567080e3f16f779b1c3dee2f42af6ffcc910b",
+  "judge": {
+    "provider": "OpenAI via Codex agent runtime",
+    "model": "gpt-6-luna",
+    "settings": {
+      "reasoning_effort": "low"
+    },
+    "pinned_snapshot": null
+  },
+  "worker_guide_sha256": "f3bde5ba9eb6624f2a925bb2d931302879bc4ed92d2578fe5022c41599f7f036",
+  "decisions": {
+    "labels": [
+      "yes",
+      "no",
+      "uncertain"
+    ],
+    "exact_quotation_check": true,
+    "invalid_missing_evidence": "uncertain",
+    "no_hint_controls": "not_applicable",
+    "no_model_output_regeneration": true,
+    "no_automatic_quotation_repair": true,
+    "labeler_confidence_threshold": null
+  },
+  "evidence": {
+    "synthetic_expected_agreement": [
+      18,
+      18
+    ],
+    "synthetic_reference": "AI-authored, not independent human validation",
+    "development_recheck": {
+      "accepted_yes": 6,
+      "evidence_failures": 2,
+      "assigned": 8
+    }
+  },
+  "limitations": [
+    "No established human-label accuracy or negative-class performance on natural study traces.",
+    "Exact quotation failures remain unresolved.",
+    "Pilot validation is a further feasibility test, not authorization for main collection."
+  ],
+  "validation_plan": {
+    "questions": 6,
+    "conditions": 8,
+    "requests": 48,
+    "generations": "unchanged pilot-v1 settings",
+    "labeling": "same rubric and model; separate first-pass packets; no tuning after inspection",
+    "completion_minimum": 0.95,
+    "parseability_minimum": 0.99
+  }
+}

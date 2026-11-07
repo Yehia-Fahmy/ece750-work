@@ -1,9 +1,10 @@
 # Coordinator instructions: inexpensive independent annotation
 
-Goal: label the existing development-pilot reasoning with the fixed acknowledgment
+Goal: label authorized study reasoning with the fixed acknowledgment
 rubric, retaining uncertainty and comparing with a phrase baseline after judging.
 Outputs are **automated acknowledgment labels, not human-validated labels**.
-Do not collect new study responses or open held-out validation/main examples.
+Collect or open fresh validation/main examples only under the authorized, frozen study plan.
+The previously inspected validation split is development evidence, not untouched validation.
 
 ## Setup and cost controls
 
@@ -12,10 +13,10 @@ Do not collect new study responses or open held-out validation/main examples.
 2. Choose an inexpensive text-capable model with low reasoning effort. Pin the
    model version if available. Record the actual provider, model, reasoning setting,
    and any exposed sampling parameters. Do not invent temperature or version data.
-3. Start with six records per packet and at most three workers concurrently.
-   These are operational defaults, not a claim about the best model or accuracy.
-   Check that each full packet fits the model's input context, with room for outputs.
-   If it does not, export smaller packets, down to one trace. Never truncate traces.
+3. Use one trace per packet and a fresh independent worker context for each trace,
+   with at most three workers concurrently. This is the numbered-passage default.
+   Check that the full trace fits the input context with room for output. Never
+   truncate traces; if a trace cannot be read fully, preserve it as unresolved.
 4. Set a spending/token cap in your agent platform before launching. Each worker
    needs only its packet plus `worker.md`; avoid repository history, project results,
    tools, web access, extra models, and long explanations. Do not run this project's
@@ -27,9 +28,10 @@ Do not collect new study responses or open held-out validation/main examples.
 
 ## Assignment and isolation
 
-The exporter creates seven disjoint packets for the current 42 eligible records.
-Six no-hint controls remain not applicable in the original bundle and are not sent
-for judging. Incomplete records, if present, remain unresolved without annotation.
+The exporter creates one packet per eligible trace. No-hint controls remain not
+applicable; incomplete records remain unresolved without annotation. The worker
+selects numbered passages, and the script retrieves text and offsets exactly.
+Selection verifies provenance only; it does not prove the interpretation is right.
 
 Maintain a ledger with packet ID, assigned worker ID, provider/model/settings,
 input path, output path, start/end times, status, and usage/cost if available.
@@ -53,12 +55,11 @@ Run from the repository root:
 ```sh
 PYTHONPATH=project/src python3 project/prepare_judge_agents.py prepare \
   project/runs/pilot-v1-development-001/automated-ack-v1/bundle.json \
-  --out project/runs/pilot-v1-development-001/automated-ack-v1/agents-v1 \
-  --batch-size 6
+  --out project/runs/pilot-v1-development-001/automated-ack-v1/agents-numbered-v2 \
+  --batch-size 1
 ```
 
-This packet directory has already been prepared for the current pilot. Preserve it;
-choose a fresh directory for a different batch size. Send each worker only its
+Always choose a fresh directory and preserve earlier rounds. Send each worker only its
 `packets/packet-NNN.json` and the worker guide, not `index.json` or other outputs.
 Responses should be saved under that directory's `outputs/packet-NNN.json`.
 After workers return:
@@ -66,15 +67,16 @@ After workers return:
 ```sh
 PYTHONPATH=project/src python3 project/prepare_judge_agents.py merge \
   project/runs/pilot-v1-development-001/automated-ack-v1/bundle.json \
-  --packets project/runs/pilot-v1-development-001/automated-ack-v1/agents-v1 \
-  --out project/runs/pilot-v1-development-001/automated-ack-v1/agents-merged-v1
+  --packets project/runs/pilot-v1-development-001/automated-ack-v1/agents-numbered-v2 \
+  --out project/runs/pilot-v1-development-001/automated-ack-v1/agents-merged-numbered-v2
 ```
 
 The merger checks bundle/packet/input fingerprints, ownership, duplicates, and
 provenance. It preserves each worker's metadata and raw output files. Missing
 packets/records remain unresolved in the full report, not silently dropped.
 An invalid JSON envelope or identity mismatch fails import; inspect the offending
-file before retrying. Semantic/quotation failures become uncertain in the report.
+file before retrying. Invalid or duplicate passage IDs fail import; preserve the raw output before any
+format-only repair. Unsupported verdicts become uncertain in the report.
 Never fill missing labels with baseline predictions.
 
 ## Ambiguity, failures, and optional second opinions

@@ -1,0 +1,536 @@
+{
+  "schema_version": 1,
+  "roles": [
+    "D"
+  ],
+  "assigned_items": 60,
+  "assigned_responses": 240,
+  "bootstrap": {
+    "replicates": 10000,
+    "seed": 750,
+    "unit": "matched item, resampled with replacement independently within each task",
+    "weighting": "equal items; equal roles within item; fixed observed task sample sizes",
+    "interval": "linear-interpolated percentile 95%; conditional on accepted labels",
+    "missingness": "Sharp all-assigned bounds; bound-endpoint intervals are not a joint confidence region. Complete-item sensitivity reweights to retained task sizes.",
+    "limitations": "Does not cover semantic labeling errors. Degenerate rare-outcome intervals do not establish absence of an effect."
+  },
+  "by_condition": {
+    "C0": {
+      "hint_agreement": {
+        "assigned": 60,
+        "positive": 2,
+        "unknown": 0,
+        "fraction_bounds": [
+          0.03333333333333333,
+          0.03333333333333333
+        ]
+      },
+      "correct": {
+        "assigned": 60,
+        "positive": 51,
+        "unknown": 0,
+        "fraction_bounds": [
+          0.85,
+          0.85
+        ]
+      }
+    },
+    "C1": {
+      "hint_agreement": {
+        "assigned": 60,
+        "positive": 9,
+        "unknown": 0,
+        "fraction_bounds": [
+          0.15,
+          0.15
+        ]
+      },
+      "correct": {
+        "assigned": 60,
+        "positive": 45,
+        "unknown": 0,
+        "fraction_bounds": [
+          0.75,
+          0.75
+        ]
+      },
+      "acknowledgment": {
+        "assigned": 60,
+        "positive": 0,
+        "unknown": 60,
+        "fraction_bounds": [
+          0.0,
+          1.0
+        ]
+      },
+      "unacknowledged_hint_agreement": {
+        "assigned": 60,
+        "positive": 0,
+        "unknown": 9,
+        "fraction_bounds": [
+          0.0,
+          0.15
+        ]
+      }
+    },
+    "D-A": {
+      "hint_agreement": {
+        "assigned": 60,
+        "positive": 11,
+        "unknown": 1,
+        "fraction_bounds": [
+          0.18333333333333332,
+          0.2
+        ]
+      },
+      "correct": {
+        "assigned": 60,
+        "positive": 41,
+        "unknown": 1,
+        "fraction_bounds": [
+          0.6833333333333333,
+          0.7
+        ]
+      },
+      "acknowledgment": {
+        "assigned": 60,
+        "positive": 0,
+        "unknown": 60,
+        "fraction_bounds": [
+          0.0,
+          1.0
+        ]
+      },
+      "unacknowledged_hint_agreement": {
+        "assigned": 60,
+        "positive": 0,
+        "unknown": 12,
+        "fraction_bounds": [
+          0.0,
+          0.2
+        ]
+      }
+    },
+    "D-R": {
+      "hint_agreement": {
+        "assigned": 60,
+        "positive": 9,
+        "unknown": 0,
+        "fraction_bounds": [
+          0.15,
+          0.15
+        ]
+      },
+      "correct": {
+        "assigned": 60,
+        "positive": 46,
+        "unknown": 0,
+        "fraction_bounds": [
+          0.7666666666666667,
+          0.7666666666666667
+        ]
+      },
+      "acknowledgment": {
+        "assigned": 60,
+        "positive": 0,
+        "unknown": 60,
+        "fraction_bounds": [
+          0.0,
+          1.0
+        ]
+      },
+      "unacknowledged_hint_agreement": {
+        "assigned": 60,
+        "positive": 0,
+        "unknown": 9,
+        "fraction_bounds": [
+          0.0,
+          0.15
+        ]
+      }
+    }
+  },
+  "visibility_R_minus_A": {
+    "hint_agreement": {
+      "assigned_items": 60,
+      "assigned_items_by_task": {
+        "date_understanding": 20,
+        "disambiguation_qa": 20,
+        "logical_deduction_three_objects": 20
+      },
+      "all_assigned_bounds_pp": [
+        -5.0,
+        -3.3333333333333335
+      ],
+      "estimate_pp": null,
+      "percentile_95_interval_pp": null,
+      "bound_endpoint_percentile_95_intervals_pp": {
+        "lower": [
+          -15.0,
+          5.0
+        ],
+        "upper": [
+          -13.333333333333334,
+          5.0
+        ]
+      },
+      "complete_item_sensitivity": {
+        "retained_items": 59,
+        "retained_by_task": {
+          "date_understanding": 19,
+          "disambiguation_qa": 20,
+          "logical_deduction_three_objects": 20
+        },
+        "estimate_pp": -3.389830508474576,
+        "percentile_95_interval_pp": [
+          -11.864406779661017,
+          5.084745762711864
+        ]
+      }
+    },
+    "correct": {
+      "assigned_items": 60,
+      "assigned_items_by_task": {
+        "date_understanding": 20,
+        "disambiguation_qa": 20,
+        "logical_deduction_three_objects": 20
+      },
+      "all_assigned_bounds_pp": [
+        6.666666666666667,
+        8.333333333333334
+      ],
+      "estimate_pp": null,
+      "percentile_95_interval_pp": null,
+      "bound_endpoint_percentile_95_intervals_pp": {
+        "lower": [
+          -3.3333333333333335,
+          16.666666666666668
+        ],
+        "upper": [
+          0.0,
+          18.333333333333332
+        ]
+      },
+      "complete_item_sensitivity": {
+        "retained_items": 59,
+        "retained_by_task": {
+          "date_understanding": 19,
+          "disambiguation_qa": 20,
+          "logical_deduction_three_objects": 20
+        },
+        "estimate_pp": 8.474576271186441,
+        "percentile_95_interval_pp": [
+          0.0,
+          18.64406779661017
+        ]
+      }
+    },
+    "acknowledgment": {
+      "assigned_items": 60,
+      "assigned_items_by_task": {
+        "date_understanding": 20,
+        "disambiguation_qa": 20,
+        "logical_deduction_three_objects": 20
+      },
+      "all_assigned_bounds_pp": [
+        -100.0,
+        100.0
+      ],
+      "estimate_pp": null,
+      "percentile_95_interval_pp": null,
+      "bound_endpoint_percentile_95_intervals_pp": {
+        "lower": [
+          -100.0,
+          -100.0
+        ],
+        "upper": [
+          100.0,
+          100.0
+        ]
+      },
+      "complete_item_sensitivity": {
+        "retained_items": 0,
+        "retained_by_task": {
+          "date_understanding": 0,
+          "disambiguation_qa": 0,
+          "logical_deduction_three_objects": 0
+        },
+        "estimate_pp": null,
+        "percentile_95_interval_pp": null
+      }
+    },
+    "unacknowledged_hint_agreement": {
+      "assigned_items": 60,
+      "assigned_items_by_task": {
+        "date_understanding": 20,
+        "disambiguation_qa": 20,
+        "logical_deduction_three_objects": 20
+      },
+      "all_assigned_bounds_pp": [
+        -20.0,
+        15.0
+      ],
+      "estimate_pp": null,
+      "percentile_95_interval_pp": null,
+      "bound_endpoint_percentile_95_intervals_pp": {
+        "lower": [
+          -30.0,
+          -10.0
+        ],
+        "upper": [
+          6.666666666666667,
+          23.333333333333332
+        ]
+      },
+      "complete_item_sensitivity": {
+        "retained_items": 45,
+        "retained_by_task": {
+          "date_understanding": 16,
+          "disambiguation_qa": 11,
+          "logical_deduction_three_objects": 18
+        },
+        "estimate_pp": 0.0,
+        "percentile_95_interval_pp": [
+          0.0,
+          0.0
+        ]
+      }
+    }
+  },
+  "role_specific_exploratory": {
+    "D": {
+      "hint_agreement": {
+        "assigned_items": 60,
+        "assigned_items_by_task": {
+          "date_understanding": 20,
+          "disambiguation_qa": 20,
+          "logical_deduction_three_objects": 20
+        },
+        "all_assigned_bounds_pp": [
+          -5.0,
+          -3.3333333333333335
+        ],
+        "estimate_pp": null,
+        "percentile_95_interval_pp": null,
+        "bound_endpoint_percentile_95_intervals_pp": {
+          "lower": [
+            -15.0,
+            5.0
+          ],
+          "upper": [
+            -13.333333333333334,
+            5.0
+          ]
+        },
+        "complete_item_sensitivity": {
+          "retained_items": 59,
+          "retained_by_task": {
+            "date_understanding": 19,
+            "disambiguation_qa": 20,
+            "logical_deduction_three_objects": 20
+          },
+          "estimate_pp": -3.389830508474576,
+          "percentile_95_interval_pp": [
+            -11.864406779661017,
+            5.084745762711864
+          ]
+        }
+      },
+      "correct": {
+        "assigned_items": 60,
+        "assigned_items_by_task": {
+          "date_understanding": 20,
+          "disambiguation_qa": 20,
+          "logical_deduction_three_objects": 20
+        },
+        "all_assigned_bounds_pp": [
+          6.666666666666667,
+          8.333333333333334
+        ],
+        "estimate_pp": null,
+        "percentile_95_interval_pp": null,
+        "bound_endpoint_percentile_95_intervals_pp": {
+          "lower": [
+            -3.3333333333333335,
+            16.666666666666668
+          ],
+          "upper": [
+            0.0,
+            18.333333333333332
+          ]
+        },
+        "complete_item_sensitivity": {
+          "retained_items": 59,
+          "retained_by_task": {
+            "date_understanding": 19,
+            "disambiguation_qa": 20,
+            "logical_deduction_three_objects": 20
+          },
+          "estimate_pp": 8.474576271186441,
+          "percentile_95_interval_pp": [
+            0.0,
+            18.64406779661017
+          ]
+        }
+      },
+      "acknowledgment": {
+        "assigned_items": 60,
+        "assigned_items_by_task": {
+          "date_understanding": 20,
+          "disambiguation_qa": 20,
+          "logical_deduction_three_objects": 20
+        },
+        "all_assigned_bounds_pp": [
+          -100.0,
+          100.0
+        ],
+        "estimate_pp": null,
+        "percentile_95_interval_pp": null,
+        "bound_endpoint_percentile_95_intervals_pp": {
+          "lower": [
+            -100.0,
+            -100.0
+          ],
+          "upper": [
+            100.0,
+            100.0
+          ]
+        },
+        "complete_item_sensitivity": {
+          "retained_items": 0,
+          "retained_by_task": {
+            "date_understanding": 0,
+            "disambiguation_qa": 0,
+            "logical_deduction_three_objects": 0
+          },
+          "estimate_pp": null,
+          "percentile_95_interval_pp": null
+        }
+      },
+      "unacknowledged_hint_agreement": {
+        "assigned_items": 60,
+        "assigned_items_by_task": {
+          "date_understanding": 20,
+          "disambiguation_qa": 20,
+          "logical_deduction_three_objects": 20
+        },
+        "all_assigned_bounds_pp": [
+          -20.0,
+          15.0
+        ],
+        "estimate_pp": null,
+        "percentile_95_interval_pp": null,
+        "bound_endpoint_percentile_95_intervals_pp": {
+          "lower": [
+            -30.0,
+            -10.0
+          ],
+          "upper": [
+            6.666666666666667,
+            23.333333333333332
+          ]
+        },
+        "complete_item_sensitivity": {
+          "retained_items": 45,
+          "retained_by_task": {
+            "date_understanding": 16,
+            "disambiguation_qa": 11,
+            "logical_deduction_three_objects": 18
+          },
+          "estimate_pp": 0.0,
+          "percentile_95_interval_pp": [
+            0.0,
+            0.0
+          ]
+        }
+      }
+    }
+  },
+  "control_C1_minus_C0": {
+    "correct": {
+      "assigned_items": 60,
+      "assigned_items_by_task": {
+        "date_understanding": 20,
+        "disambiguation_qa": 20,
+        "logical_deduction_three_objects": 20
+      },
+      "all_assigned_bounds_pp": [
+        -10.0,
+        -10.0
+      ],
+      "estimate_pp": -10.0,
+      "percentile_95_interval_pp": [
+        -18.333333333333332,
+        -1.6666666666666667
+      ],
+      "bound_endpoint_percentile_95_intervals_pp": {
+        "lower": [
+          -18.333333333333332,
+          -1.6666666666666667
+        ],
+        "upper": [
+          -18.333333333333332,
+          -1.6666666666666667
+        ]
+      },
+      "complete_item_sensitivity": {
+        "retained_items": 60,
+        "retained_by_task": {
+          "date_understanding": 20,
+          "disambiguation_qa": 20,
+          "logical_deduction_three_objects": 20
+        },
+        "estimate_pp": -10.0,
+        "percentile_95_interval_pp": [
+          -18.333333333333332,
+          -1.6666666666666667
+        ]
+      }
+    },
+    "hint_agreement": {
+      "assigned_items": 60,
+      "assigned_items_by_task": {
+        "date_understanding": 20,
+        "disambiguation_qa": 20,
+        "logical_deduction_three_objects": 20
+      },
+      "all_assigned_bounds_pp": [
+        11.666666666666666,
+        11.666666666666666
+      ],
+      "estimate_pp": 11.666666666666666,
+      "percentile_95_interval_pp": [
+        5.0,
+        20.0
+      ],
+      "bound_endpoint_percentile_95_intervals_pp": {
+        "lower": [
+          5.0,
+          20.0
+        ],
+        "upper": [
+          5.0,
+          20.0
+        ]
+      },
+      "complete_item_sensitivity": {
+        "retained_items": 60,
+        "retained_by_task": {
+          "date_understanding": 20,
+          "disambiguation_qa": 20,
+          "logical_deduction_three_objects": 20
+        },
+        "estimate_pp": 11.666666666666666,
+        "percentile_95_interval_pp": [
+          5.0,
+          20.0
+        ]
+      }
+    }
+  },
+  "source_manifest_sha256": "f889a1ccc9a26783411dc3e51e6a5d6ca106499c1fb04aa4639b7204eaf41855",
+  "source_analysis_rows_sha256": "8ac4e95ec4a187dfcb3be4d9c72a8922b6fa399f1565dca10c012d1b4d16bfed",
+  "labels_sha256": null,
+  "split": "main",
+  "interpretation": "Study estimates conditional on accepted labels; consult frozen protocol for primary outcome"
+}

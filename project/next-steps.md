@@ -1,3 +1,5 @@
+> November 7 completion: the [final report](report/final-report.pdf) and [reproduction package](report/README.md) are complete. See the [executed completion plan](completion-plan.md). Automated grading, raw audits, statistical reproduction, and grading-error sensitivity checks are complete. Human adjudication is not required under the user's final reporting decision; acknowledgment accuracy remains unvalidated and its conclusions exploratory. The dated plan below is historical.
+
 # Next steps after PR #5
 
 Reviewed October 29, 2026, against merged commit `cc1bc79`.

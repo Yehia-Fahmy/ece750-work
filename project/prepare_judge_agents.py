@@ -5,11 +5,12 @@ from pathlib import Path
 
 from observer_study.acknowledgment import evaluate_bundle, save_new, validate_bundle
 from observer_study.io import digest, file_digest, read_json
+from observer_study.numbered_evidence import FORMAT, numbered_record, materialize
 
 GUIDES = Path(__file__).resolve().parent / 'judge-agents'
 
 
-def prepare(bundle, output, batch_size=6):
+def prepare(bundle, output, batch_size=1):
     validate_bundle(bundle)
     if type(batch_size) is not int or batch_size < 1:
         raise ValueError('Batch size must be a positive integer')
@@ -18,7 +19,7 @@ def prepare(bundle, output, batch_size=6):
     (output / 'packets').mkdir()
     (output / 'outputs').mkdir()
     entries = sorted((e for e in bundle['entries'] if not e['excluded_reason']), key=lambda e: e['review_id'])
-    index = {'bundle_sha256': bundle['bundle_sha256'], 'worker_guide_sha256': file_digest(GUIDES / 'worker.md'),
+    index = {'evidence_format': FORMAT if batch_size == 1 else 'legacy-quotations', 'bundle_sha256': bundle['bundle_sha256'], 'worker_guide_sha256': file_digest(GUIDES / 'worker.md'),
              'eligible': len(entries), 'batch_size': batch_size, 'packets': []}
     (output / 'worker.md').write_bytes((GUIDES / 'worker.md').read_bytes())
     (output / 'coordinator.md').write_bytes((GUIDES / 'coordinator.md').read_bytes())
@@ -26,7 +27,9 @@ def prepare(bundle, output, batch_size=6):
         packet_id = f'packet-{offset // batch_size + 1:03d}'
         packet = {'packet_id': packet_id, 'bundle_sha256': bundle['bundle_sha256'],
                   'worker_guide_sha256': index['worker_guide_sha256'],
-                  'records': [{k: e[k] for k in ('review_id', 'input_sha256', 'messages')}
+                  'evidence_format': index['evidence_format'],
+                  'records': [numbered_record(e) if batch_size == 1 else
+                              {k: e[k] for k in ('review_id', 'input_sha256', 'messages')}
                               for e in entries[offset:offset + batch_size]]}
         packet['packet_sha256'] = digest(packet)
         save_new(output / 'packets' / (packet_id + '.json'), packet)
@@ -43,7 +46,9 @@ def merge(bundle, directory, output):
         raise ValueError('Index belongs to a different bundle')
     if file_digest(directory / 'worker.md') != index['worker_guide_sha256']:
         raise ValueError('Worker instructions changed after export')
-    expected = {e['review_id']: {k: e[k] for k in ('review_id', 'input_sha256', 'messages')}
+    numbered = index.get('evidence_format') == FORMAT
+    expected = {e['review_id']: numbered_record(e) if numbered else
+                {k: e[k] for k in ('review_id', 'input_sha256', 'messages')}
                 for e in bundle['entries'] if not e['excluded_reason']}
     assigned, returned, workers, results, missing = set(), set(), [], [], []
     packet_ids = [p['packet_id'] for p in index['packets']]
@@ -63,6 +68,8 @@ def merge(bundle, directory, output):
                 or packet['packet_id'] != pid or packet['bundle_sha256'] != bundle['bundle_sha256']
                 or packet['worker_guide_sha256'] != index['worker_guide_sha256']):
             raise ValueError('Packet fingerprint mismatch')
+        if numbered and (packet.get('evidence_format') != FORMAT or len(packet['records']) != 1):
+            raise ValueError('Numbered workflow requires exactly one trace per packet')
         owned = set()
         for record in packet['records']:
             rid = record['review_id']
@@ -77,6 +84,13 @@ def merge(bundle, directory, output):
         response = read_json(path)
         if any(response.get(k) != packet[k] for k in ('packet_id', 'packet_sha256', 'bundle_sha256')):
             raise ValueError('Worker output identity mismatch')
+        # Check ownership before looking up evidence from another assignment.
+        for result in response.get('results', []):
+            if result.get('review_id') not in owned:
+                raise ValueError('Worker returned an unassigned record')
+        if numbered:
+            response = {**response, 'results': [materialize(r, expected[r['review_id']])
+                                               for r in response['results']]}
         # Existing importer validates schema, provenance, and input IDs before pooling.
         evaluate_bundle(bundle, response)
         for result in response['results']:
@@ -93,6 +107,14 @@ def merge(bundle, directory, output):
                            'settings': {'worker_guide_sha256': index['worker_guide_sha256'], 'workers': workers}},
                  'results': results}
     report = evaluate_bundle(bundle, judgments)
+    input_hashes = {e['review_id']: e['input_sha256'] for e in bundle['entries']}
+    for row in report['rows']:
+        row['input_sha256'] = input_hashes[row['review_id']]
+    if numbered:
+        selected = {r['review_id']: r['selected_evidence'] for r in results}
+        for row in report['rows']:
+            if row['check'] == 'passed' and row['review_id'] in selected:
+                row['evidence_spans'] = selected[row['review_id']]
     report['coordination'] = {'missing_packets': missing, 'eligible': len(expected),
                               'returned_records': len(returned), 'missing_records': len(expected) - len(returned)}
     output = Path(output)
@@ -108,7 +130,7 @@ def main():
     parser.add_argument('bundle', type=Path)
     parser.add_argument('--out', type=Path, required=True)
     parser.add_argument('--packets', type=Path)
-    parser.add_argument('--batch-size', type=int, default=6)
+    parser.add_argument('--batch-size', type=int, default=1)
     args = parser.parse_args()
     try:
         bundle = read_json(args.bundle)
