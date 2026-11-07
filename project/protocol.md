@@ -63,3 +63,9 @@ Incomplete HTTP bodies retain readable text, lossless partial bytes, truncation 
 Smoke comparison now requires verified model checksum, runtime build, chat template, and server generation-default agreement, and records those checks in version 2 output. The documented prompt/context/output changes and different local paths to identical weights remain permitted.
 
 The [scoring audit](results/pr-5-scoring-audit.json) rechecked all 48 retained responses with no changed scores or aggregates. The [strengthened comparison](results/smoke-comparison-reviewed.json) retains the original metrics. Existing collected evidence remains intact; these are implementation corrections validated with recorded responses and injected failures, with no new inference.
+
+## October 29 pilot preparation
+
+[Pilot v1](configs/pilot-v1.json) changes only the protocol version from smoke v2; all prompts, sampling, token allowances, task reservations, hints, seeds, and pilot schedules remain the same. Its new manifest preserves all 135 reserved items. Development and held-out validation each contain six questions and 48 requests, with fresh separate dry-run and collection paths. See the [pilot runbook](pilot.md) and [preparation evidence](results/pilot-v1-preparation.json).
+
+The draft status remains in force. Preparation checks local artifacts and formats both schedules without generating answers. Develop the acknowledgment rubric on development traces before collecting/reviewing validation; no pilot/main results or acknowledgment labels exist from this preparation.

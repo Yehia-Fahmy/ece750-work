@@ -1,5 +1,7 @@
 # Observer-framing experiment
 
+The smoke-test harness is merged. For the prepared, disjoint 96-request pilot and separate development/validation commands, see the [pilot v1 runbook](pilot.md). Main collection remains disabled until the protocol is frozen.
+
 The first implementation milestone is a **24-generation smoke test**: one reserved question from each of three BIG-Bench Hard tasks in all eight conditions. See the [research plan](research-plan.md), [draft protocol](protocol.md), and [research log](research-log.md).
 
 The Python harness uses only the standard library (Python 3.11 or newer). It prepares disjoint seeded samples, constructs matched prompts, saves complete raw server responses, extracts native thinking and final answers, checks scoring, and reports failures with assigned-item denominators. Human acknowledgment review can be exported; automated labeling and the paired-bootstrap analysis are subsequent milestones.
@@ -108,3 +110,27 @@ python3 project/audit_smoke.py project/runs/smoke-001 project/runs/smoke-002 --o
 ```
 
 The audit verifies the saved request fingerprint, compares raw bodies with saved responses, and reports every changed score field and rescored aggregate. It requires a fresh output filename. The retained 48 responses have no changed scores under the PR fixes; see the [audit](results/pr-5-scoring-audit.json). Choose new output filenames when repeating the audit or comparison.
+
+## Timed human trace review
+
+Start the local labeling app with `python3 project/review_traces.py`, then open
+http://127.0.0.1:8765. It loads the 48 saved development traces, puts the five
+incorrect responses first, and records independent acknowledgment labels,
+exact evidence passages, and active review seconds. Saved labels remain separate
+from the original evidence; CSV export uses the existing review schema.
+See [Trace desk instructions](trace_review/README.md) for timing, recovery,
+output paths, and limitations.
+
+## Automated development-pilot acknowledgment labels
+
+The [automated-labeling runbook](automated-acknowledgment.md) documents fixed-rubric
+judge requests, exact-quotation validation, uncertain outcomes, and comparison with
+a phrase baseline. These are automated, unvalidated labels, stored separately from
+human review and original response scores. The prepared development bundle has 42
+hinted traces and six no-hint controls. All 42 hinted traces match the phrase baseline;
+judge labels remain pending selection of a model/endpoint. Validation remains held out.
+
+For future user-supplied judging agents, start with the
+[coordinator guide](judge-agents/coordinator.md); each low-reasoning worker receives
+the [worker guide](judge-agents/worker.md) and one of the seven prepared, disjoint
+six-trace packets. The packet exporter/merger preserves uncertainty and provenance.

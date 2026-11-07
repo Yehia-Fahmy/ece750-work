@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "checked_at": "2026-10-29T23:32:42.326254+00:00",
+  "status": "prepared_without_inference",
+  "base_commit": "cc1bc796ea7a09cbbd77316cfd48610c972ce255",
+  "config": "project/configs/pilot-v1.json",
+  "config_sha256": "8da86c9ec98c089e9e2369b5832567080e3f16f779b1c3dee2f42af6ffcc910b",
+  "changed_fields_from_smoke_v2": [
+    "protocol_version"
+  ],
+  "protocol_status": "draft",
+  "implementation_sha256": "b2959c64d9f13c09fff163d131a2775101dceaa94eae33495587be6d5581a5c6",
+  "prepared_manifest": "project/data/items-pilot-v1.json",
+  "prepared_sha256": "7bf2903f1b52e42e7d2f5c3743f15d4475e86529fd3091765456ae1e96e95532",
+  "reserved_questions_by_split": {
+    "smoke": 3,
+    "pilot_development": 6,
+    "pilot_validation": 6,
+    "main": 120
+  },
+  "all_reserved_items_and_sources_match_smoke_v2": true,
+  "all_item_ids_unique_across_splits": true,
+  "pilot_schedules_match_reserved_v2_schedules": true,
+  "draft_main_collection_guard_verified": true,
+  "model": {
+    "sha256": "7485fe6f11af29433bc51cab58009521f205840f5b4ae3a32fa7f92e8534fdf5",
+    "size_bytes": 2497280256,
+    "verified": true
+  },
+  "runtime_archives": [
+    {
+      "name": "llama-b11574-bin-ubuntu-cuda-12.8-x64.tar.gz",
+      "sha256": "b6fc2d5da76c8382b072cf00e2a9d0d81d9760dabe8ddc168e8d34985f7781ae",
+      "verified": true
+    },
+    {
+      "name": "cudart-llama-b11574-bin-ubuntu-cuda-12.8-x64.tar.gz",
+      "sha256": "6ff88f6e9e03295172eab780268f63aa0f098762e0c925a5c9bc86a32b9ff698",
+      "verified": true
+    }
+  ],
+  "live_preflight": {
+    "requests_checked": 96,
+    "runtime_build": "b11574-8bb3cf0d2",
+    "runtime_and_template_match_smoke_v2": true,
+    "chat_template_sha256": "ec8f439daaf5791f1da8686759109efa3f5ff5698cd407018a9f96a739c28fae",
+    "context_tokens": 16384,
+    "output_allowance_tokens": 8192,
+    "total_slots": 1,
+    "gpu_layers_offloaded": 37,
+    "gpu_layers_total": 37,
+    "gpu_memory_used_mib_point_observation": 5378,
+    "gpu_memory_total_mib": 8192,
+    "memory_observation_is_peak": false,
+    "generation_requests": 0,
+    "server_stopped": true,
+    "local_evidence": "project/runs/pilot-v1-preflight.json",
+    "gpu_startup_log": "project/runs/pilot-v1-gpu-startup.log"
+  },
+  "splits": {
+    "pilot_development": {
+      "questions": 6,
+      "requests": 48,
+      "requests_per_condition": {
+        "C0": 6,
+        "C1": 6,
+        "D-A": 6,
+        "D-R": 6,
+        "E-A": 6,
+        "E-R": 6,
+        "M-A": 6,
+        "M-R": 6
+      },
+      "requests_sha256": "05559bd76de99d5e95859183c1ce478960bf52eb610f4f382d22934ac1518690",
+      "dry_run_manifest": "project/runs/pilot-v1-development-dry-run/manifest.json",
+      "responses_generated": 0,
+      "input_tokens_min": 159,
+      "input_tokens_max": 256
+    },
+    "pilot_validation": {
+      "questions": 6,
+      "requests": 48,
+      "requests_per_condition": {
+        "C0": 6,
+        "C1": 6,
+        "D-A": 6,
+        "D-R": 6,
+        "E-A": 6,
+        "E-R": 6,
+        "M-A": 6,
+        "M-R": 6
+      },
+      "requests_sha256": "5466db36ec5908c126ebaefc6a731035099ff008f21ab84a4129a547f98f9a2e",
+      "dry_run_manifest": "project/runs/pilot-v1-validation-dry-run/manifest.json",
+      "responses_generated": 0,
+      "input_tokens_min": 153,
+      "input_tokens_max": 259
+    }
+  },
+  "verification": {
+    "unittest_tests_passed": 27,
+    "inference_performed": false,
+    "labels_created": false
+  }
+}

@@ -4,6 +4,7 @@ import argparse
 import json
 from pathlib import Path
 
+from .acknowledgment import prepare_bundle, evaluate_bundle, run_judge, save_new
 from .data import download_tasks, prepare_items
 from .experiment import SYSTEM_PROMPTS
 from .io import RequestError, read_json, write_json
@@ -69,6 +70,21 @@ def main():
     compare.add_argument("before", type=Path)
     compare.add_argument("after", type=Path)
     compare.add_argument("--out", type=Path, required=True)
+    ack_prepare = subparsers.add_parser("prepare-acknowledgment", help="Export fixed-rubric development judge inputs and phrase baseline")
+    ack_prepare.add_argument("run", type=Path)
+    ack_prepare.add_argument("--out", type=Path, required=True)
+    ack_import = subparsers.add_parser("compare-acknowledgment", help="Validate automated labels and compare with phrase signals")
+    ack_import.add_argument("bundle", type=Path)
+    ack_import.add_argument("--judgments", type=Path)
+    ack_import.add_argument("--out", type=Path, required=True)
+    ack_run = subparsers.add_parser("judge-acknowledgment", help="Call a selected chat-completions judge; preserves failures as unknown")
+    ack_run.add_argument("bundle", type=Path)
+    ack_run.add_argument("--endpoint", required=True)
+    ack_run.add_argument("--model", required=True)
+    ack_run.add_argument("--api-key-env")
+    ack_run.add_argument("--max-tokens", type=int, default=1024)
+    ack_run.add_argument("--timeout", type=int, default=120)
+    ack_run.add_argument("--out", type=Path, required=True)
     args = parser.parse_args()
     try:
         if args.command == "prepare":
@@ -94,6 +110,18 @@ def main():
         elif args.command == "export-review":
             count = export_review(args.run, args.out)
             print(f"Exported {count} traces: {args.out}")
+        elif args.command == "prepare-acknowledgment":
+            bundle = prepare_bundle(args.run)
+            save_new(args.out, bundle)
+            print(f"Prepared {len(bundle['entries'])} assigned records: {args.out}")
+        elif args.command == "compare-acknowledgment":
+            result = evaluate_bundle(read_json(args.bundle), read_json(args.judgments) if args.judgments else None)
+            save_new(args.out, result)
+            print(json.dumps(result["overall"], indent=2))
+        elif args.command == "judge-acknowledgment":
+            result = run_judge(read_json(args.bundle), args.out, args.endpoint, args.model,
+                               args.api_key_env, args.max_tokens, args.timeout)
+            print(json.dumps(result["overall"], indent=2))
         else:
             result = compare_smoke_runs(args.before, args.after)
             args.out.parent.mkdir(parents=True, exist_ok=True)

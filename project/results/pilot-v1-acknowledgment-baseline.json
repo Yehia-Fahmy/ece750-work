@@ -1,0 +1,179 @@
+{
+  "schema_version": 1,
+  "version": "acknowledgment-v1",
+  "bundle_sha256": "e69160e83edd660de0435fb0c06eddd602b504a43b5bd1fed7bacaa27f87b3cc",
+  "judge": null,
+  "interpretation": "automated acknowledgment labels; not human validated",
+  "evidence_check_limit": "Exact quotation checks establish provenance, not semantic correctness; no cannot be verified by absence checks.",
+  "overall": {
+    "assigned": 48,
+    "hinted_assigned": 42,
+    "label_counts": {
+      "uncertain": 42,
+      "not_applicable": 6
+    },
+    "unresolved": 42,
+    "unresolved_fraction": 1.0,
+    "baseline_signals_hinted": {
+      "match": 42
+    },
+    "comparison_table": {
+      "uncertain|match": 42
+    },
+    "binary_comparable": 0,
+    "binary_agreements": 0,
+    "binary_agreement_fraction": null,
+    "disagreement_review_ids": []
+  },
+  "by_condition": {
+    "C0": {
+      "assigned": 6,
+      "hinted_assigned": 0,
+      "label_counts": {
+        "not_applicable": 6
+      },
+      "unresolved": 0,
+      "unresolved_fraction": null,
+      "baseline_signals_hinted": {},
+      "comparison_table": {},
+      "binary_comparable": 0,
+      "binary_agreements": 0,
+      "binary_agreement_fraction": null,
+      "disagreement_review_ids": []
+    },
+    "C1": {
+      "assigned": 6,
+      "hinted_assigned": 6,
+      "label_counts": {
+        "uncertain": 6
+      },
+      "unresolved": 6,
+      "unresolved_fraction": 1.0,
+      "baseline_signals_hinted": {
+        "match": 6
+      },
+      "comparison_table": {
+        "uncertain|match": 6
+      },
+      "binary_comparable": 0,
+      "binary_agreements": 0,
+      "binary_agreement_fraction": null,
+      "disagreement_review_ids": []
+    },
+    "D-A": {
+      "assigned": 6,
+      "hinted_assigned": 6,
+      "label_counts": {
+        "uncertain": 6
+      },
+      "unresolved": 6,
+      "unresolved_fraction": 1.0,
+      "baseline_signals_hinted": {
+        "match": 6
+      },
+      "comparison_table": {
+        "uncertain|match": 6
+      },
+      "binary_comparable": 0,
+      "binary_agreements": 0,
+      "binary_agreement_fraction": null,
+      "disagreement_review_ids": []
+    },
+    "D-R": {
+      "assigned": 6,
+      "hinted_assigned": 6,
+      "label_counts": {
+        "uncertain": 6
+      },
+      "unresolved": 6,
+      "unresolved_fraction": 1.0,
+      "baseline_signals_hinted": {
+        "match": 6
+      },
+      "comparison_table": {
+        "uncertain|match": 6
+      },
+      "binary_comparable": 0,
+      "binary_agreements": 0,
+      "binary_agreement_fraction": null,
+      "disagreement_review_ids": []
+    },
+    "E-A": {
+      "assigned": 6,
+      "hinted_assigned": 6,
+      "label_counts": {
+        "uncertain": 6
+      },
+      "unresolved": 6,
+      "unresolved_fraction": 1.0,
+      "baseline_signals_hinted": {
+        "match": 6
+      },
+      "comparison_table": {
+        "uncertain|match": 6
+      },
+      "binary_comparable": 0,
+      "binary_agreements": 0,
+      "binary_agreement_fraction": null,
+      "disagreement_review_ids": []
+    },
+    "E-R": {
+      "assigned": 6,
+      "hinted_assigned": 6,
+      "label_counts": {
+        "uncertain": 6
+      },
+      "unresolved": 6,
+      "unresolved_fraction": 1.0,
+      "baseline_signals_hinted": {
+        "match": 6
+      },
+      "comparison_table": {
+        "uncertain|match": 6
+      },
+      "binary_comparable": 0,
+      "binary_agreements": 0,
+      "binary_agreement_fraction": null,
+      "disagreement_review_ids": []
+    },
+    "M-A": {
+      "assigned": 6,
+      "hinted_assigned": 6,
+      "label_counts": {
+        "uncertain": 6
+      },
+      "unresolved": 6,
+      "unresolved_fraction": 1.0,
+      "baseline_signals_hinted": {
+        "match": 6
+      },
+      "comparison_table": {
+        "uncertain|match": 6
+      },
+      "binary_comparable": 0,
+      "binary_agreements": 0,
+      "binary_agreement_fraction": null,
+      "disagreement_review_ids": []
+    },
+    "M-R": {
+      "assigned": 6,
+      "hinted_assigned": 6,
+      "label_counts": {
+        "uncertain": 6
+      },
+      "unresolved": 6,
+      "unresolved_fraction": 1.0,
+      "baseline_signals_hinted": {
+        "match": 6
+      },
+      "comparison_table": {
+        "uncertain|match": 6
+      },
+      "binary_comparable": 0,
+      "binary_agreements": 0,
+      "binary_agreement_fraction": null,
+      "disagreement_review_ids": []
+    }
+  },
+  "status": "baseline_only_judge_not_selected"
+}

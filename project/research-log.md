@@ -52,3 +52,55 @@ AI assistance: Codex implemented and tested the refinement, audited preserved ev
 - Preserved the implementation-fingerprint guard: historical runs must be resumed with their original implementation; corrected-code collections use fresh directories. No new GPU inference or labeling API calls were performed. The protocol remains draft and pilot/main samples remain reserved.
 
 AI assistance: Codex implemented the fixes, wrote regression tests, audited retained evidence, and updated the documentation. Researcher review and the disjoint pilot remain the next study milestones.
+
+## October 29, 2026 — prepare the disjoint pilot after merge
+
+- Created `codex/prepare-pilot` from merged `main` (`cc1bc79`). Added `configs/pilot-v1.json`, changing only the protocol version from smoke v2; native thinking, prompt wording, generation settings, seed, and failure policy are unchanged. Protocol status remains draft.
+- Copied the checksum-verified pinned BBH cache into this checkout and linked its ignored model/runtime paths to the existing research worktree. Verified model size/SHA-256 and both cached runtime archive checksums. Original raw smoke evidence remains in its original worktree.
+- Prepared `data/items-pilot-v1.json`; all 135 reserved items, splits, hints, and source records match smoke v2. Development and held-out validation each dry-run as six questions × eight conditions = 48 requests, preserving the original split schedules and prompts. Verified that the draft configuration still blocks main collection.
+- Loaded the local model for preflight without calling the generation endpoint. All 96 pilot prompts pass native-thinking, model, context, and token-budget checks; input lengths are 153–259 tokens with an 8,192-token output allowance inside a 16,384-token context. Runtime build `b11574-8bb3cf0d2` and chat template match retained smoke evidence. Verbose startup confirms **37/37 layers offloaded to GPU**.
+- A loaded-model GPU point observation showed 5,378 MiB used out of 8,192 MiB; this is not a peak or inference-memory measurement. Stopped both temporary preflight server processes after verification.
+- All **27 standard-library tests pass**. Added the [preparation summary](results/pilot-v1-preparation.json), [pilot runbook](pilot.md), and updated protocol/next-step notes. No pilot/main answers or acknowledgment labels were generated; no paid API calls were made.
+
+Next: collect the 48-request development pilot, export researcher review, and establish the acknowledgment rubric and label-import workflow before using held-out validation.
+
+AI assistance: Codex prepared the configuration and local paths, verified schedules/artifacts, performed non-generating GPU preflight, and drafted the runbook/evidence record. Human coding and scientific decisions remain pending.
+
+## November 6, 2026 — automated acknowledgment workflow
+
+- Reconciled saved development evidence: the October 29 run contains 48 complete,
+  parseable responses, 43 correct answers, and five wrong-hint agreements. Earlier
+  preparation/next-step notes predate collection. The researcher review CSV is blank.
+- Implemented a fixed reasoning-scope rubric with `yes`, `no`, and `uncertain`,
+  versioned prompt/input fingerprints, a phrase baseline, and deterministic quotation
+  checks. Invalid/missing evidence and failed/incomplete judgments remain unresolved.
+- Added provider-neutral export/import and an explicit chat-completions endpoint runner.
+  Judge requests exclude condition metadata, answer correctness, final answers, and
+  baseline predictions. Trace content can still reveal the condition. No-hint controls
+  are not applicable, rather than negative acknowledgment examples.
+- Prepared the 48-record development bundle and ran the phrase baseline: all 42 hinted
+  traces match. No judge model/endpoint is selected or called; all 42 automated labels
+  remain unresolved. Agreement is undefined until judge outputs exist. No paid API
+  calls, additional study inference, or validation/main inspection were performed.
+- Added regression coverage for quotation failures, ambiguous/missing judgments,
+  identity guards, hand-calculated agreement/uncertainty denominators, no-hint controls,
+  raw malformed/truncated outputs, interruption, and preservation of original evidence.
+- See `automated-acknowledgment.md` and `results/pilot-v1-acknowledgment-baseline.json`.
+  These labels are explicitly automated and unvalidated: neither quotation provenance
+  nor agreement between methods establishes semantic accuracy or human reliability.
+
+Next: choose a judge model and endpoint, run the prepared development bundle, inspect
+uncertainty/disagreements, and record development decisions before held-out validation.
+
+### November 6 — handoff to future user-supplied judging agents
+
+- User selected future external agents instead of choosing a hosted judge endpoint.
+- Added concise worker instructions and a coordinator runbook for inexpensive agents
+  with low reasoning effort, independent packets, exact quotations, and uncertainty.
+- Prepared seven packets of six eligible development traces. Worker inputs exclude
+  baseline results and condition/answer metadata; full reasoning is preserved.
+- Added packet export/merge tooling with ownership/fingerprint checks, instruction
+  hashes, per-worker provenance, and all-assigned missing/uncertain outcomes.
+- All 40 current tests pass, including packet blinding, partial imports, foreign-record
+  rejection, changed instructions/inputs, and existing acknowledgment failure checks.
+- No agents launched, no new judgments generated, and no validation/main data used.
