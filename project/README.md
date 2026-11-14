@@ -1,5 +1,7 @@
 # Observer-framing experiment
 
+**Course deadlines:** Final project report due **December 4, 2026** (11:59pm ET under the general written-work policy). Project presentation date **TBD**. See the [course deadline table](../README.md#deliverables-and-due-dates) for the instructor’s clarification.
+
 **Completed:** [final report (PDF)](report/final-report.pdf), [readable Markdown](report/final-report.md), and [reproduction instructions](report/README.md). The report has four main pages plus references. All 240 responses were audited, all 179 eligible automated judgments revalidated, both original analyses reproduced, and 58 tests passed. The [final evaluation](results/final-automated-evaluation.json) includes derived rows and automated grading robustness checks.
 
 The [completion plan](completion-plan.md) records the user's automated-only grading decision. Human adjudication is no longer a completion requirement; semantic acknowledgment findings remain exploratory and are not claimed to be accuracy-validated. The [frozen protocol](main-protocol-v1.md) and historical milestones below retain their original context. No new main responses or replacement judgments were collected during completion.

@@ -88,7 +88,7 @@ For one extension, reuse the same 120 main items with one predetermined observer
 
 ## Timeline and researcher workload
 
-The proposal budgets 34 scheduled hours plus four reserve through the **provisional December 4 planning date**. Assignment 2 on October 19, the October 23 midterm, and the November 27 micro-survey make expansion costly. Preserve the November 22 draft/experiment freeze.
+The proposal budgets 34 scheduled hours plus four reserve through December 4, originally a provisional planning date and now the **confirmed report deadline (December 4, 2026)**. The presentation date remains **TBD**. Assignment 2 on October 19, the October 23 midterm, and the November 27 micro-survey make expansion costly. Preserve the November 22 draft/experiment freeze.
 
 A workable allocation is 10 hours for literature, setup, and pilot; four for main-run operation and checks; five for human validation; three for analysis; eight for the report; four for slides and artifacts. This totals 34, leaving the four-hour reserve. It is a planning allocation, not measured effort.
 

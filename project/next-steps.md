@@ -66,7 +66,7 @@ Completed October 29 on `codex/prepare-pilot`; see the [pilot runbook](pilot.md)
 | November 16–22 | Complete report draft with methods, results, limitations, reproducibility instructions, citations, and AI-assistance disclosure. Freeze experiments by November 22. |
 | November 23 onward | Revise report, prepare/rehearse slides, and submit under confirmed course instructions. Keep the November 27 micro-survey in the schedule. |
 
-Check LEARN now for proposal feedback and authoritative final-report/presentation requirements. The repository still treats December 4 as provisional and contains conflicting report page limits. Maintain a four-page core as a working layout until the final instructions are confirmed.
+Check LEARN now for proposal feedback and authoritative final-report/presentation requirements. The instructor has confirmed the report deadline as December 4, 2026; the presentation date remains TBD. Report page limits still conflict in the available materials. Maintain a four-page core as a working layout until the final instructions are confirmed.
 
 Keep additional models, extra seeds, and paraphrase studies optional until the core study is validated and the report draft exists. Clean up old branches/worktrees only after ignored evidence and runtime assets are preserved; squash merging means commit ancestry alone does not establish that a branch's contents are unmerged.
 

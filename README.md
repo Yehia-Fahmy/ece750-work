@@ -6,7 +6,7 @@ Instructor: Prof. Elliot Creager. TAs: Chenghao Tan and Ambreesh Parthasarathy.
 
 Class meets Fridays, 1:00–3:50pm, in PSE 4053. Office hours are by appointment in EIT 3116. Announcements and files are on LEARN. Lectures are not recorded. Written work goes to both Crowdmark and LEARN Dropbox unless a handout says otherwise, and is due at 11:59pm ET on the stated date. The Week 1 slides say late submissions are not accepted except where an accommodation applies. The project proposal is the one published exception: it has a no-penalty window through October 12.
 
-Dates and weights below come from the October 3 LEARN materials in this repo. Where a calendar date is inferred from the week numbering, the UW Fall 2026 calendar, and the dates the handouts do print, it is marked as expected.
+Dates and weights below come from the October 3 LEARN materials in this repo, updated with the instructor’s clarification in course discussion question #16 ("Clarification on Project Presentation and Report Deadlines"), supplied November 14, 2026. Where a calendar date is inferred from the week numbering, the UW Fall 2026 calendar, and the dates the handouts do print, it is marked as expected.
 
 ## Mark breakdown
 
@@ -42,8 +42,8 @@ Assignment handouts use their own point totals, then scale to the course weight:
 | Midterm exam | 10% | Fri Oct 23, in class | Confirmed. Covers Weeks 1–5: conceptual questions and worked problems. The prof lecture is replaced by the exam. |
 | Group paper presentation | 15% | Your sign-up Friday | Sign-up sheet was still TBA in the Week 1 slides. Email slides as a PDF before class. Email Markdown discussion notes by the Monday after that class. 28–30 minutes, including discussion. |
 | Micro-survey | 5% | Fri Nov 27 | Confirmed due date. One submission per group. Compare your paper with two others from that week’s list, and include a contribution statement. |
-| Project presentation | 10% | Week 12, expected Fri Dec 4 | Individual. Explain the research and findings. The slides name Week 12 and do not print a calendar date; Dec 4 is the last Friday of the term. |
-| Project report | 35% | Planning date Fri Dec 4 (provisional) | Individual. The proposal handout calls Dec 4 a planning date, not a confirmed submission deadline. Final-report instructions are not in this export. |
+| Project presentation | 10% | TBD | Individual. Explain the research and findings. The instructor is still determining the presentation arrangements; the date will be announced. |
+| Project report | 35% | Fri Dec 4, 2026, 11:59pm ET | Individual. December 4 is confirmed by the instructor in course discussion question #16; the time follows the course’s general written-work deadline. Final-report instructions are not in this export. |
 
 Assignment 2 points: context 8, critique 20, proposed changes 12.
 
@@ -61,7 +61,7 @@ These are the dates a graded component requires you to be there:
 | --- | --- |
 | Your presentation Friday | Group paper presentation. Show up on time, ready to present. The day comes from the sign-up sheet, which was not in this export. Student-led sessions run in Weeks 3–10, and each student presents once. |
 | Fri Oct 23 | Midterm exam, in class. |
-| Week 12, expected Fri Dec 4 | Individual research-project presentations. |
+| TBD | Individual research-project presentations. Date and arrangements are still to be determined. |
 
 Every other Friday in the table below is a regular class meeting. The materials do not describe a separate attendance grade for those days. Guest lectures were still listed as “Week ??”.
 
@@ -81,7 +81,7 @@ Week numbers below follow the slides: Week 5 is the October 9 proposal, and Week
 | 9 | Fri Nov 13 | Expected: prof lecture and student paper sessions |
 | 10 | Fri Nov 20 | Expected: last week of student paper sessions |
 | 11 | Fri Nov 27 | Expected class. Micro-survey is due this date. |
-| 12 | Fri Dec 4 | Expected: individual project presentations. Provisional final-report planning date. |
+| 12 | Fri Dec 4 | Project report due. Project presentation date remains TBD. |
 
 ## Repository
 

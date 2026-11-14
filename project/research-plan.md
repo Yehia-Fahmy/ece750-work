@@ -2,7 +2,7 @@
 
 Prepared October 12, 2026 for **Reasoning Under Observation: Observer Effects on LLM Rationales**.
 
-Start with a reproducible single-model study. Keep the proposed 120 questions and eight conditions as the target, and use a separate pilot to decide whether inference and acknowledgment labeling fit the available time. Finish a report draft by November 22. December 4 is a provisional planning date, pending final course instructions.
+Start with a reproducible single-model study. Keep the proposed 120 questions and eight conditions as the target, and use a separate pilot to decide whether inference and acknowledgment labeling fit the available time. Finish a report draft by November 22. The final report is due December 4, 2026, as confirmed by the instructor in course discussion question #16; the presentation date remains TBD.
 
 This document distinguishes course requirements from the existing proposal and suggested implementation decisions. Initial implementation is underway; see the [run instructions](README.md), [draft protocol](protocol.md), and [research log](research-log.md) for current evidence. The main protocol is not frozen.
 
@@ -20,8 +20,8 @@ Primary sources: [proposal handout](project-proposal.pdf), pp. 1–3; [Week 1 sl
 | Proposal rubric | Q1 question 3; Q2 prior work 3; Q3 novelty 3; Q4 impact 2; Q5 risks 2; Q6 resources 2; Q7 weekly plan 2; Q8 milestones 2; writing/citations/format 1. Total 20 marks. |
 | Research schedule | Approximately eight weeks including reading week, with explicit time for checking results and writing. |
 | Final report length | September 25 handout says **four pages excluding references and appendices**. Week 1 slides say 6–8 pages excluding references. Plan a four-page core now; confirm the final instructions before formatting the submission. |
-| Final report deadline | December 4 is explicitly provisional in the handout. The confirmed deadline and final rubric are absent from the repository. |
-| Project presentation | Individual, in Week 12. December 4 is inferred from the course calendar, not printed as a confirmed date. Duration, slide requirements, and submission instructions are absent. |
+| Final report deadline | December 4, 2026, confirmed by the instructor in course discussion question #16 (clarification supplied November 14). The general written-work policy sets 11:59pm ET. The final rubric is still absent from the repository. |
+| Project presentation | Individual; date TBD. The instructor is still determining the presentation arrangements. Duration, slide requirements, and submission instructions are absent. |
 | AI assistance | Permitted as a research/coding aid, with disclosure in the proposal and final report. You must check generated material and be able to explain and reproduce the work. |
 
 ### Existing proposal review

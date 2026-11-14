@@ -1,5 +1,7 @@
 # Final report
 
+**Submission deadline: December 4, 2026** (11:59pm ET under the general written-work policy), confirmed by the instructor in course discussion question #16. The project presentation date remains **TBD**. See the [course deadline table](../../README.md#deliverables-and-due-dates).
+
 [Read the final report (PDF)](final-report.pdf) · [Readable Markdown](final-report.md)
 
 Completed November 7, 2026. Four pages of main text plus one page of references
