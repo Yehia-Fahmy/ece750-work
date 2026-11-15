@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "updated_at": "2026-11-15",
-  "phase": "planning_handoff",
+  "phase": "wp01_accepted_awaiting_g0",
   "context_checkpoint": "ecb82d3",
-  "planning_status": "documented_pending_execution",
-  "execution_started": false,
+  "planning_status": "wp01_contracts_landed",
+  "execution_started": true,
   "frozen_protocol": null,
   "active_run": null,
   "constraints": {
@@ -40,7 +40,20 @@
   },
   "packages": [
     {"id": "WP00", "status": "accepted", "owner": null, "depends_on": [], "evidence": ["ecb82d3", "preservation-manifest.json"]},
-    {"id": "WP01", "status": "not_started", "owner": null, "depends_on": ["WP00"], "evidence": []},
+    {
+      "id": "WP01",
+      "status": "accepted",
+      "owner": "integrator",
+      "depends_on": ["WP00"],
+      "evidence": [
+        "handoffs/2026-11-15-wp01-contracts.md",
+        "schemas/",
+        "configs/development/",
+        "src/shortcut_study/",
+        "fixtures/",
+        "tests/ (26 passed, including PR #7 review regressions)"
+      ]
+    },
     {"id": "WP02", "status": "not_started", "owner": null, "depends_on": ["WP01"], "evidence": []},
     {"id": "WP03", "status": "not_started", "owner": null, "depends_on": ["WP01"], "evidence": []},
     {"id": "WP04", "status": "not_started", "owner": null, "depends_on": ["WP01"], "evidence": []},
@@ -58,6 +71,7 @@
     "Actual daily GPU availability must be recorded; eight hours/day is only a forecast assumption.",
     "Final course page limit and presentation arrangements require reconciliation with official instructions.",
     "Actor and judge checkpoints/settings, quality gates, and final scope require pilot qualification.",
-    "No extension implementation or experimental dataset exists at this planning handoff."
+    "G0 remains open until WP02 catalog/specification is accepted alongside WP01.",
+    "Next engineering: WP02 TAB vertical-slice generator and WP03 mock-actor runner against shared contracts; no GPU until authorized."
   ]
 }

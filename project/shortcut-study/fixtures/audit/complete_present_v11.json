@@ -1,0 +1,41 @@
+{
+  "coverage_hash": "b61a95a50b2d5e747fb16b6464b81b3a4b74db3809317856ed881501611c22a9",
+  "episode_id": "vs-tab01-reconciliation-001__info-complete__sc-present__vis-V11__seed-0",
+  "evidence_valid": true,
+  "findings": [
+    {
+      "event_ids": [],
+      "field": "justification_disclosure",
+      "full_ledger_scope": false,
+      "label": "absent",
+      "passage_ids": [
+        "J-0001"
+      ],
+      "rationale": "Fixture finding with cited passage ids only.",
+      "uncertainty": null
+    }
+  ],
+  "input_hash": "321b98c8dcc305ee4cc8ad70bff85d565c4c81eb09c3fe228bcb8817d628a7ff",
+  "judge": {
+    "alias": "mock-judge-dev",
+    "checkpoint_revision": "fixture-not-a-model",
+    "role": "primary",
+    "rubric_version": "dev-rubric-v0",
+    "settings_hash": "15358f1ace5c96083a20df14a1cd0d837f82b3996ac05579f9177f202ae5a1ed"
+  },
+  "labels_preserved": true,
+  "output_valid": true,
+  "raw_response_ref": null,
+  "reconciliation_rule": "agree_keep_or_uncertain",
+  "review": {
+    "independent_label_refs": [],
+    "primary_label_refs": [],
+    "reconciliation_version": null,
+    "selection_probability": null,
+    "selection_stratum": null
+  },
+  "schema_version": "shortcut-semantic-audit-v1",
+  "timing": {
+    "elapsed_seconds": 0.0
+  }
+}

@@ -1,0 +1,288 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ece750.local/shortcut-study/schemas/episode_record.schema.json",
+  "title": "Shortcut study episode record",
+  "type": "object",
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {"properties": {"terminal_status": {"const": "completed"}}},
+      "then": {
+        "properties": {
+          "channels": {"properties": {"A": {"type": "object"}}}
+        }
+      }
+    }
+  ],
+  "required": [
+    "schema_version",
+    "protocol_version",
+    "run_id",
+    "episode_id",
+    "base_id",
+    "template_id",
+    "family",
+    "split",
+    "generator_version",
+    "generation_seed",
+    "semantic_fingerprint",
+    "intended_difficulty",
+    "mechanism",
+    "information_state",
+    "shortcut_available",
+    "policy_id",
+    "visibility",
+    "replicate_seed",
+    "actor_id",
+    "references",
+    "channels",
+    "terminal_status",
+    "terminal_reason",
+    "outcome_mutable_after_termination",
+    "created_at"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "shortcut-episode-v1"
+    },
+    "protocol_version": {
+      "type": ["string", "null"]
+    },
+    "run_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "episode_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "base_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "template_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "family": {
+      "type": "string",
+      "enum": ["tables", "documents", "planning", "debugging", "verification"]
+    },
+    "split": {
+      "type": "string",
+      "enum": ["smoke", "development", "qualification", "main"]
+    },
+    "generator_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "generation_seed": {
+      "type": "integer"
+    },
+    "semantic_fingerprint": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "hidden_world_hash": {
+      "type": ["string", "null"],
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "intended_difficulty": {
+      "type": "string",
+      "enum": ["trivial", "moderate", "hard", "extreme"]
+    },
+    "mechanism": {
+      "type": "string",
+      "enum": [
+        "direct_result",
+        "restricted_reference",
+        "cached_verdict",
+        "prior_agent_notes"
+      ]
+    },
+    "information_state": {
+      "type": "string",
+      "enum": ["complete", "incomplete"]
+    },
+    "shortcut_available": {
+      "type": "boolean"
+    },
+    "policy_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "visibility": {
+      "type": "string",
+      "enum": ["V00", "V01", "V10", "V11"]
+    },
+    "replicate_seed": {
+      "type": "integer"
+    },
+    "actor_id": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "alias",
+        "checkpoint_revision",
+        "quantization",
+        "runtime",
+        "template_hash",
+        "settings_hash"
+      ],
+      "properties": {
+        "alias": {"type": "string", "minLength": 1},
+        "checkpoint_revision": {"type": "string", "minLength": 1},
+        "quantization": {"type": "string", "minLength": 1},
+        "runtime": {"type": "string", "minLength": 1},
+        "template_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "settings_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "references": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "public_task_hash",
+        "allowed_resources_hash",
+        "hidden_truth_hash",
+        "environment_manifest_hash",
+        "prompts_hash",
+        "tool_schema_hash",
+        "limits_hash"
+      ],
+      "properties": {
+        "public_task_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "allowed_resources_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "hidden_truth_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "environment_manifest_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "prompts_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "tool_schema_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "limits_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "channels": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["T", "A", "J"],
+      "properties": {
+        "T": {
+          "description": "Native intermediate reasoning segments. null means missing channel, not empty reasoning.",
+          "oneOf": [
+            {"type": "null"},
+            {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["passage_id", "turn_id", "text", "text_sha256"],
+                "properties": {
+                  "passage_id": {
+                    "type": "string",
+                    "pattern": "^T-\\d{4}$"
+                  },
+                  "turn_id": {"type": "integer", "minimum": 1},
+                  "text": {"type": "string"},
+                  "text_sha256": {
+                    "type": "string",
+                    "pattern": "^[a-f0-9]{64}$"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "A": {
+          "description": "Parsed final submission, or null when the episode ended without one.",
+          "type": ["object", "null"],
+          "additionalProperties": false,
+          "required": ["status", "result", "missing_prerequisite"],
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": ["answer", "insufficient_information", "clarification"]
+            },
+            "result": {},
+            "missing_prerequisite": {
+              "type": ["string", "null"]
+            }
+          }
+        },
+        "J": {
+          "description": "Final justification. null means missing channel.",
+          "oneOf": [
+            {"type": "null"},
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["text", "text_sha256"],
+              "properties": {
+                "text": {"type": "string"},
+                "text_sha256": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{64}$"
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "terminal_status": {
+      "type": "string",
+      "enum": [
+        "completed",
+        "model_format_failure",
+        "tool_failure",
+        "context_limit",
+        "budget_limit",
+        "interrupted",
+        "not_attempted"
+      ]
+    },
+    "terminal_reason": {
+      "type": "string"
+    },
+    "outcome_mutable_after_termination": {
+      "type": "boolean"
+    },
+    "timing": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "amendments": {
+      "type": "array",
+      "items": {"type": "object"}
+    },
+    "created_at": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

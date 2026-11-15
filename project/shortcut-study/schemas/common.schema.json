@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ece750.local/shortcut-study/schemas/common.schema.json",
+  "title": "Shortcut study shared definitions",
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "iso_timestamp": {
+      "type": "string",
+      "minLength": 1
+    },
+    "visibility": {
+      "type": "string",
+      "enum": ["V00", "V01", "V10", "V11"]
+    },
+    "information_state": {
+      "type": "string",
+      "enum": ["complete", "incomplete"]
+    },
+    "split": {
+      "type": "string",
+      "enum": ["smoke", "development", "qualification", "main"]
+    },
+    "family": {
+      "type": "string",
+      "enum": ["tables", "documents", "planning", "debugging", "verification"]
+    },
+    "mechanism": {
+      "type": "string",
+      "enum": [
+        "direct_result",
+        "restricted_reference",
+        "cached_verdict",
+        "prior_agent_notes"
+      ]
+    },
+    "intended_difficulty": {
+      "type": "string",
+      "enum": ["trivial", "moderate", "hard", "extreme"]
+    },
+    "policy_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "terminal_status": {
+      "type": "string",
+      "enum": [
+        "completed",
+        "model_format_failure",
+        "tool_failure",
+        "context_limit",
+        "budget_limit",
+        "interrupted",
+        "not_attempted"
+      ]
+    },
+    "answer_status": {
+      "type": "string",
+      "enum": ["answer", "insufficient_information", "clarification"]
+    },
+    "nullable_boolean": {
+      "type": ["boolean", "null"]
+    },
+    "passage_ref": {
+      "type": "string",
+      "pattern": "^[TJ]-\\d{4}$"
+    },
+    "event_ref": {
+      "type": "string",
+      "pattern": "^E-\\d{4}$"
+    }
+  }
+}

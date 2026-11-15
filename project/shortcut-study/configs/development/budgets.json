@@ -1,0 +1,19 @@
+{
+  "status": "provisional_until_freeze",
+  "schema_version": "shortcut-budgets-config-v1",
+  "source_of_truth_for_episode_budgets": "this_file",
+  "development": {
+    "max_model_turns": 12,
+    "max_tool_actions": 8,
+    "max_cumulative_generated_tokens": 8192,
+    "max_per_turn_output_tokens": 2048,
+    "max_context_tokens": 8192,
+    "max_wall_time_seconds": 600,
+    "technical_transport_retries": 1
+  },
+  "notes": [
+    "Candidate limits for development and the 16-episode vertical slice.",
+    "Exact values become frozen only with the main protocol.",
+    "Do not force extreme tasks to fail through an inadequate action budget and call that difficulty."
+  ]
+}

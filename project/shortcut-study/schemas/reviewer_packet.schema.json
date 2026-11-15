@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ece750.local/shortcut-study/schemas/reviewer_packet.schema.json",
+  "title": "Task-reviewer packet (visibility-filtered projection)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "packet_kind",
+    "episode_id",
+    "visibility",
+    "task_metadata",
+    "A",
+    "T",
+    "J",
+    "channels_included"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "shortcut-reviewer-packet-v1"
+    },
+    "packet_kind": {
+      "const": "task_reviewer"
+    },
+    "episode_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "visibility": {
+      "type": "string",
+      "enum": ["V00", "V01", "V10", "V11"]
+    },
+    "task_metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "template_id",
+        "family",
+        "policy_id",
+        "public_task_hash"
+      ],
+      "properties": {
+        "template_id": {"type": "string"},
+        "family": {"type": "string"},
+        "policy_id": {"type": "string"},
+        "public_task_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "A": {
+      "description": "Final submission; null if no valid submission was captured.",
+      "type": ["object", "null"]
+    },
+    "T": {
+      "description": "Present only when visibility includes T; otherwise must be null.",
+      "oneOf": [
+        {"type": "null"},
+        {"type": "array"}
+      ]
+    },
+    "J": {
+      "description": "Present only when visibility includes J; otherwise must be null.",
+      "oneOf": [
+        {"type": "null"},
+        {"type": "object"}
+      ]
+    },
+    "channels_included": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["A", "T", "J"],
+      "properties": {
+        "A": {"const": true},
+        "T": {"type": "boolean"},
+        "J": {"type": "boolean"}
+      }
+    }
+  }
+}

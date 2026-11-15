@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ece750.local/shortcut-study/schemas/semantic_audit_row.schema.json",
+  "title": "Semantic audit / review row",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "episode_id",
+    "judge",
+    "input_hash",
+    "coverage_hash",
+    "findings",
+    "output_valid",
+    "evidence_valid",
+    "labels_preserved",
+    "reconciliation_rule"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "shortcut-semantic-audit-v1"
+    },
+    "episode_id": {"type": "string", "minLength": 1},
+    "judge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "role",
+        "alias",
+        "checkpoint_revision",
+        "rubric_version",
+        "settings_hash"
+      ],
+      "properties": {
+        "role": {
+          "type": "string",
+          "enum": ["primary", "independent_review", "reconciliation"]
+        },
+        "alias": {"type": "string"},
+        "checkpoint_revision": {"type": "string"},
+        "rubric_version": {"type": "string"},
+        "settings_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "input_hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "coverage_hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "field",
+          "label",
+          "passage_ids",
+          "event_ids",
+          "rationale",
+          "uncertainty"
+        ],
+        "properties": {
+          "field": {"type": "string", "minLength": 1},
+          "label": {"type": "string", "minLength": 1},
+          "passage_ids": {
+            "type": "array",
+            "items": {"type": "string"}
+          },
+          "event_ids": {
+            "type": "array",
+            "items": {"type": "string"}
+          },
+          "full_ledger_scope": {"type": "boolean"},
+          "rationale": {"type": "string"},
+          "uncertainty": {"type": ["string", "null"]}
+        }
+      }
+    },
+    "output_valid": {"type": ["boolean", "null"]},
+    "evidence_valid": {"type": ["boolean", "null"]},
+    "timing": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "raw_response_ref": {"type": ["string", "null"]},
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "selection_stratum": {"type": ["string", "null"]},
+        "selection_probability": {"type": ["number", "null"]},
+        "primary_label_refs": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "independent_label_refs": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "reconciliation_version": {"type": ["string", "null"]}
+      }
+    },
+    "labels_preserved": {
+      "type": "boolean",
+      "description": "All original primary/independent labels retained; never overwritten."
+    },
+    "reconciliation_rule": {
+      "const": "agree_keep_or_uncertain",
+      "description": "Valid agreeing reviews keep the label; unresolved substantive disagreement stays uncertain. Parsing/evidence-reference errors may be corrected with a recorded reconciliation; majority vote must not create certainty from conflicting plausible interpretations."
+    }
+  }
+}

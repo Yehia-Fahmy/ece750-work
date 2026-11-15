@@ -1,0 +1,2 @@
+# Development/test dependency for schema round-trips (stdlib runtime otherwise).
+jsonschema>=4.20,<5
