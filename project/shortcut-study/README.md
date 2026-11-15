@@ -1,0 +1,35 @@
+# Shortcut study extension — start here
+
+This is **additional research**, separate from the completed observer-framing study. Status: planning; no extension data collected and no main protocol frozen.
+
+## Read in this order
+
+1. [Context and user decisions](CONTEXT.md): the purpose, scope, and current constraints.
+2. [Preserved design V2](../shortcut-study-design-v2.md): the November 14 discussion snapshot. Do not rewrite it to erase earlier proposals.
+3. [Decision record](DECISIONS.md): later clarifications and precedence.
+4. [Automated evaluation](EVALUATION.md): action scoring, research auditing, validation, and uncertainty.
+
+The execution plan and agent work packages will be added after this context checkpoint is committed and pushed, following the researcher's requested sequence.
+
+## Historical work stays in place
+
+- [Original proposal](../proposal/project-proposal.tex)
+- [Original research plan](../research-plan.md)
+- [Frozen original main protocol](../main-protocol-v1.md)
+- [Completed original report](../report/final-report.md)
+- [Original final evaluation](../results/final-automated-evaluation.json)
+- [Original reproducibility instructions](../report/README.md)
+
+Those artifacts are evidence, not a backlog for this extension. Historical instructions such as “main collection disabled” apply to their original runbooks. The extension must have its own protocol, source namespace, artifacts, and status. Existing ignored raw evidence and model/runtime links must not be deleted or relocated as cleanup.
+
+The [preservation manifest](preservation-manifest.json) records historical tracked project files at commit `3f17534` and the original V2 snapshot. `project/README.md` is excluded solely to allow a navigation link; scientific artifacts are included.
+
+## Hard constraints
+
+- RTX 3070 Ti, 8 GB VRAM, as the only experiment machine.
+- Zero external-compute budget: no paid GPU, hosted inference, hosted judge, or remote generation, even with free credits. Public documentation and free checkpoint downloads are not remote inference.
+- Course report due **December 4, 2026**, Toronto time. The date is confirmed in the [course README](../../README.md); 11:59pm follows the general written-work policy. Presentation arrangements and final formatting instructions remain unresolved.
+- Automated evaluation; no mandatory human-labeling dependency. Semantic limitations must remain visible.
+- Future orchestrators execute the work; this planning pass does not start experiments.
+
+Latest explicit user instructions take precedence. Within this extension, the decision record supersedes conflicting planning suggestions in V2; a future frozen protocol controls a named run and cannot be retroactively changed.
