@@ -1,0 +1,1 @@
+# Shortcut-study contract tests.

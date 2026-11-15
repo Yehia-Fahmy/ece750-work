@@ -1,0 +1,165 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ece750.local/shortcut-study/schemas/scored_row.schema.json",
+  "title": "Deterministic scored episode row",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "episode_id",
+    "base_id",
+    "split",
+    "visibility",
+    "information_state",
+    "shortcut_available",
+    "policy_id",
+    "integrity",
+    "acquisition",
+    "compliance",
+    "task_result",
+    "eligibility",
+    "scorer_version",
+    "source_of_truth"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "shortcut-scored-row-v1"
+    },
+    "episode_id": {"type": "string", "minLength": 1},
+    "base_id": {"type": "string", "minLength": 1},
+    "split": {
+      "type": "string",
+      "enum": ["smoke", "development", "qualification", "main"]
+    },
+    "visibility": {
+      "type": "string",
+      "enum": ["V00", "V01", "V10", "V11"]
+    },
+    "information_state": {
+      "type": "string",
+      "enum": ["complete", "incomplete"]
+    },
+    "shortcut_available": {"type": "boolean"},
+    "policy_id": {"type": "string", "minLength": 1},
+    "integrity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "record_complete",
+        "truncated",
+        "tool_failure",
+        "extraction_failure",
+        "missing_channel_T",
+        "missing_channel_J",
+        "terminal_status"
+      ],
+      "properties": {
+        "record_complete": {"type": ["boolean", "null"]},
+        "truncated": {"type": ["boolean", "null"]},
+        "tool_failure": {"type": ["boolean", "null"]},
+        "extraction_failure": {"type": ["boolean", "null"]},
+        "missing_channel_T": {"type": ["boolean", "null"]},
+        "missing_channel_J": {"type": ["boolean", "null"]},
+        "terminal_status": {"type": "string"}
+      }
+    },
+    "acquisition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "attempted",
+        "successful",
+        "discovered",
+        "resource_id",
+        "method",
+        "first_event_id"
+      ],
+      "properties": {
+        "attempted": {
+          "type": ["boolean", "null"],
+          "description": "null when event coverage is incomplete through termination."
+        },
+        "successful": {"type": ["boolean", "null"]},
+        "discovered": {
+          "type": ["boolean", "null"],
+          "description": "Exposure/discovery separate from acquisition."
+        },
+        "resource_id": {"type": ["string", "null"]},
+        "method": {"type": ["string", "null"]},
+        "first_event_id": {"type": ["string", "null"]}
+      }
+    },
+    "compliance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "authorized_under_policy",
+        "restricted_access",
+        "mandatory_checks_completed"
+      ],
+      "properties": {
+        "authorized_under_policy": {"type": ["boolean", "null"]},
+        "restricted_access": {"type": ["boolean", "null"]},
+        "mandatory_checks_completed": {"type": ["boolean", "null"]}
+      }
+    },
+    "task_result": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "answer_valid",
+        "factual_correct",
+        "authorized_success",
+        "announced_task_score",
+        "insufficiency_correct",
+        "unknown_reasons"
+      ],
+      "properties": {
+        "answer_valid": {"type": ["boolean", "null"]},
+        "factual_correct": {"type": ["boolean", "null"]},
+        "authorized_success": {"type": ["boolean", "null"]},
+        "announced_task_score": {"type": ["boolean", "null", "number"]},
+        "insufficiency_correct": {"type": ["boolean", "null"]},
+        "unknown_reasons": {
+          "type": "array",
+          "items": {"type": "string"}
+        }
+      }
+    },
+    "eligibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "primary_behavioral",
+        "acquisition_endpoint",
+        "semantic_audit"
+      ],
+      "properties": {
+        "primary_behavioral": {"type": "boolean"},
+        "acquisition_endpoint": {"type": "boolean"},
+        "semantic_audit": {"type": "boolean"}
+      }
+    },
+    "scorer_version": {"type": "string", "minLength": 1},
+    "source_of_truth": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "scoring_fields",
+        "semantic_labels",
+        "episode_budgets"
+      ],
+      "properties": {
+        "scoring_fields": {
+          "const": "deterministic_scorer"
+        },
+        "semantic_labels": {
+          "const": "semantic_audit_rows"
+        },
+        "episode_budgets": {
+          "const": "configs/development/budgets.json"
+        }
+      }
+    }
+  }
+}

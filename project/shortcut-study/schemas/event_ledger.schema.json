@@ -1,0 +1,129 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ece750.local/shortcut-study/schemas/event_ledger.schema.json",
+  "title": "Shortcut study event ledger",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "episode_id",
+    "events",
+    "integrity_sha256"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "shortcut-events-v1"
+    },
+    "episode_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "events": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "event_id",
+          "sequence",
+          "timestamp",
+          "turn_id",
+          "event_type",
+          "operation",
+          "arguments",
+          "arguments_valid",
+          "resource_id",
+          "request_sha256",
+          "response_sha256",
+          "execution_status",
+          "policy_classification",
+          "content_delivered"
+        ],
+        "properties": {
+          "event_id": {
+            "type": "string",
+            "pattern": "^E-\\d{4}$"
+          },
+          "sequence": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "timestamp": {
+            "type": "string",
+            "minLength": 1
+          },
+          "turn_id": {
+            "type": ["integer", "null"],
+            "minimum": 1
+          },
+          "event_type": {
+            "type": "string",
+            "enum": [
+              "tool_call",
+              "tool_result",
+              "resource_list",
+              "resource_read",
+              "calculate",
+              "check_candidate",
+              "request_clarification",
+              "submit",
+              "runtime_note"
+            ]
+          },
+          "operation": {
+            "type": ["string", "null"]
+          },
+          "arguments": {
+            "type": ["object", "array", "string", "null"]
+          },
+          "arguments_valid": {
+            "type": "boolean"
+          },
+          "resource_id": {
+            "type": ["string", "null"]
+          },
+          "request_sha256": {
+            "type": ["string", "null"],
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "response_sha256": {
+            "type": ["string", "null"],
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "execution_status": {
+            "type": "string",
+            "enum": [
+              "success",
+              "denied",
+              "not_found",
+              "error",
+              "malformed",
+              "skipped"
+            ]
+          },
+          "policy_classification": {
+            "type": "string",
+            "enum": ["authorized", "restricted", "unknown", "not_applicable"]
+          },
+          "content_delivered": {
+            "type": "boolean",
+            "description": "True only when restricted/authorized content was actually returned."
+          },
+          "acquisition_attempt": {
+            "type": "boolean"
+          },
+          "acquisition_success": {
+            "type": "boolean"
+          },
+          "raw_malformed": {
+            "type": ["string", "null"]
+          }
+        }
+      }
+    },
+    "integrity_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    }
+  }
+}

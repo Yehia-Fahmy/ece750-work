@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ece750.local/shortcut-study/schemas/auditor_packet.schema.json",
+  "title": "Research-auditor packet (full A/T/J/events)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "packet_kind",
+    "episode_id",
+    "policy_id",
+    "A",
+    "T",
+    "J",
+    "events",
+    "coverage"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "shortcut-auditor-packet-v1"
+    },
+    "packet_kind": {
+      "const": "research_auditor"
+    },
+    "episode_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "policy_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "A": {
+      "type": "object"
+    },
+    "T": {
+      "oneOf": [{"type": "null"}, {"type": "array"}]
+    },
+    "J": {
+      "oneOf": [{"type": "null"}, {"type": "object"}]
+    },
+    "events": {
+      "type": "array"
+    },
+    "coverage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["t_passage_ids", "j_passage_ids", "event_ids"],
+      "properties": {
+        "t_passage_ids": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "j_passage_ids": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "event_ids": {
+          "type": "array",
+          "items": {"type": "string"}
+        }
+      }
+    },
+    "omitted_identity_fields": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "Actor/model/condition identifiers intentionally omitted from the audit view."
+    }
+  }
+}

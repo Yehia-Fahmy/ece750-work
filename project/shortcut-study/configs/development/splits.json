@@ -1,0 +1,21 @@
+{
+  "status": "provisional_until_freeze",
+  "schema_version": "shortcut-splits-config-v1",
+  "splits": ["smoke", "development", "qualification", "main"],
+  "rules": {
+    "disjoint_by": ["semantic_fingerprint", "episode_id"],
+    "shared_base_across_conditions": true,
+    "notes": [
+      "A base_id may appear in multiple visibility/information/availability/seed variants within one split.",
+      "The same semantic_fingerprint must not appear in two different splits.",
+      "episode_id is globally unique across splits.",
+      "Instance generation randomness and actor sampling randomness are separate fields."
+    ]
+  },
+  "intended_uses": {
+    "smoke": "Tiny contract and runner checks; fixtures only until authentic smoke exists.",
+    "development": "Vertical slice and generator debugging; never primary scientific claims.",
+    "qualification": "Held-out capability/judge gates before freeze.",
+    "main": "Frozen assigned schedule only."
+  }
+}

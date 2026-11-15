@@ -1,0 +1,40 @@
+# Package handoff — WP01 Shared contracts — 2026-11-15
+
+- Owner and role: integrator (contracts)
+- Status: accepted
+- Input commit and dependencies: WP00 accepted (`ecb82d3`); planning baseline on `main` at handoff start; Yehia authorized WP01 implementation
+- Output commit (or explicitly uncommitted paths): see Git commit on branch `cursor/shortcut-wp01-1ebb`
+- Paths changed; shared-contract version:
+  - `schemas/` — episode, events, reviewer/auditor packets, scored row, semantic audit (`*-v1`)
+  - `configs/development/` — visibility, policy matrix, budgets, A/T/J boundaries, splits, scoring SoT, vertical_slice
+  - `src/shortcut_study/` — validation, packet filters, IDs/splits, fixtures, vertical-slice enumeration
+  - `fixtures/` — contract fixtures + 16-episode assignment list
+  - `tests/` — 21 contract tests
+  - `requirements.txt` — `jsonschema` for schema validation
+  - `state.json` — WP01 claimed/completed evidence
+- Concrete behavior implemented:
+  - Versioned JSON Schema contracts with round-trip fixtures
+  - Pure task-reviewer projections for V00/V01/V10/V11 with leakage guards
+  - Full research-auditor packet projection (A/T/J/events)
+  - Policy × information-state × availability matrix config
+  - Stable `episode_id` / `base_id` / semantic fingerprint helpers and split disjointness rules
+  - Source-of-truth mapping for deterministic scoring vs semantic labels vs budgets
+  - Enumerated 16-episode vertical-slice path (TAB01 × complete/incomplete × present/absent × four visibility × seed 0); mock-first; no GPU
+- Commands run and actual outcomes:
+  - `PYTHONPATH=project/shortcut-study/src python3 -m unittest discover -s project/shortcut-study/tests -q` → 21 tests OK
+  - `PYTHONPATH=project/src:. python3 -m unittest discover -s project/tests -q` → 58 tests OK (historical suite)
+  - Preservation manifest historical hashes checked → 0 mismatches
+- Evidence/manifest paths and hashes:
+  - Fixture materialization under `fixtures/` (see Git)
+  - Vertical-slice assignments: `fixtures/vertical_slice/assignments.json` (16 episodes)
+- Failures, uncertain findings, and scope limitations:
+  - Configs and notices remain **provisional until freeze**
+  - No authentic actor/judge inference; fixtures are mock/contract only
+  - WP02 generators and WP03 environment not started; vertical slice is path/contracts only
+  - G0 still requires WP02 catalog/specification acceptance
+- GPU lease owner/process/job, or no GPU work: **no GPU work**
+- Terminal/incomplete/unattempted job IDs if applicable: none
+- Next safe action and required dependency:
+  - Integrator acceptance of WP01 on evidence above
+  - Start WP02 (TAB vertical-slice generator) and WP03 (mock-actor runner) against these contracts; WP12 background may proceed in parallel
+- Acceptance reviewer, decision, and date (filled on review): integrator; accepted 2026-11-15 on passing contract tests and preservation check; G0 still needs WP02 catalog/specification
