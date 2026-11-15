@@ -1,0 +1,89 @@
+{
+  "checks": {
+    "all_run_source_and_artifact_hashes_verified": true,
+    "design_snapshot_matching": true,
+    "extension_tests_passed": 39,
+    "historical_files_matching": 111,
+    "historical_tests_passed": 58
+  },
+  "date": "2026-11-15",
+  "evidence_kind": "scripted_mock_not_model_observation",
+  "input_commit": "813cf1f",
+  "limitations": [
+    "Partial WP02/WP03/WP04 only; no package or qualification gate accepted.",
+    "No native model or judge inference.",
+    "Single development TAB01 template, intended moderate difficulty, prior-agent notes.",
+    "Token/context budgets and preemptive wall-time interruption not implemented by mock runner.",
+    "Recovery seals episode records without replay; run aggregates/manifests need a separate recovery release.",
+    "GPU availability unverified: nvidia-smi unavailable."
+  ],
+  "output_commit": null,
+  "runs": [
+    {
+      "manifest_sha256": "b4be44f910cc82e7ceb8fd8c006fdf19002e42d90c19dd4c092ff71cbc4ad140",
+      "path": "project/runs/shortcut-study/cpu-slice-20261115-legitimate-v1",
+      "summary": {
+        "acquired": 0,
+        "announced_success": 16,
+        "assigned": 16,
+        "completed": 16,
+        "evidence_kind": "scripted_mock_not_model_observation",
+        "strategy": "legitimate",
+        "terminal": 16
+      },
+      "summary_sha256": "b855793a833551652d3193f3729ce30c6a3b4b9c109909871fa9d562dae0debc",
+      "verified_artifact_count": 434
+    },
+    {
+      "manifest_sha256": "9697dde5209eaf75e208b1d2729c5529b27fd1abac8b724b8ca3e60934b91f37",
+      "path": "project/runs/shortcut-study/cpu-slice-20261115-shortcut-v1",
+      "summary": {
+        "acquired": 8,
+        "announced_success": 12,
+        "assigned": 16,
+        "completed": 16,
+        "evidence_kind": "scripted_mock_not_model_observation",
+        "strategy": "shortcut",
+        "terminal": 16
+      },
+      "summary_sha256": "d2c148c29f367083b032ba8e09cab638b42bb8262dd9d95a5e2bb1909425829b",
+      "verified_artifact_count": 402
+    }
+  ],
+  "schema_version": "shortcut-cpu-verification-v1",
+  "source_sha256": {
+    "configs/development/a_t_j_boundaries.json": "3bc06a64688d6bb6c2472c66a88f51018c8eb5290be40b42d3466c821c6d616d",
+    "configs/development/budgets.json": "f3af8b2d547cf110a2cae427fe9cad35921c704ac3c6100c9b957a1327bb78b2",
+    "configs/development/policy.json": "3584f8ab19fd47a5e681c09b0ae4615cfbfb0f85225277ee1c85e2c55cf05035",
+    "configs/development/scoring_source_of_truth.json": "0207393306224041b7448e09e408bee06f58e7ff5ce15923d62d4bf8bbbb6a49",
+    "configs/development/splits.json": "123facd0d30458829ff88909ff410c5544453eb912292729dc0e7530ca93fb8d",
+    "configs/development/vertical_slice.json": "bf232147c6be8461a1f387b4e07cc50a843dc8700d6bfc84c09268d62384dd80",
+    "configs/development/visibility.json": "0fbc631174cf6dd7b5975d20b828891d2bb0f3999a46d68bb6744e9a7682c741",
+    "schemas/auditor_packet.schema.json": "168b71fd4827c3bb41d5eff88e68eaa890a37bcc44b60db32f27278e761d7ece",
+    "schemas/common.schema.json": "4027068a392fb2aefc99e50a10e569bc4f43be258457cea49d9f0545c89cc1f3",
+    "schemas/episode_record.schema.json": "a4260f0fb0e2ec7cfad448473e4b5da04fe81ef12c8b754398dba3dcadf219fe",
+    "schemas/event_ledger.schema.json": "c380f46b689d764b32ab8da6ac3fa3316589fe646726b297937b160d3fecd827",
+    "schemas/reviewer_packet.schema.json": "d183f3c189f606af39d6376f0ba8c3ab09533a26eab4d759b091be5589fb1228",
+    "schemas/scored_row.schema.json": "e52946ca5543944756cda16c24dd7beaf80eacd60d66f5f79fb974b008bb4c9d",
+    "schemas/semantic_audit_row.schema.json": "c9e337a94b0e2d6b468591d32e5af0cabce621e183037088a32d313c21e06824",
+    "src/shortcut_study/__init__.py": "ec23638cbc6983100cf51b6132807cfaa0351e4ef59726f97a1140c53af37e1a",
+    "src/shortcut_study/__main__.py": "4e72a594e072d853b67d7ec798e14e44a5bf0c6b4f932959f647b117b42e0e9c",
+    "src/shortcut_study/adapters/__init__.py": "c8a61d79ea41df066bb3d6e00407e10d1d167d89f7d68cb83685f527a5ecba0f",
+    "src/shortcut_study/adapters/mock.py": "f1454d06b37a64aef5787594d377c7c03ca7549dfb98fcc8f931c31985de2621",
+    "src/shortcut_study/config.py": "8e1de297f0edce661123ba747d6e007a948ee2737344035413c97b32c70d6f71",
+    "src/shortcut_study/environment/__init__.py": "47f8f27e45e5433e9d053de27e3e1d913baa926ee032885002d64e4bbc206c7a",
+    "src/shortcut_study/fixtures.py": "789ca8be2753e440b6b7c1f119e7b164d49c87689079558a80998cdb6a4cc9e5",
+    "src/shortcut_study/hashing.py": "1a3253c013a029c4715585b7061a66860e20130397baa47cb2ee8835ea7a76a4",
+    "src/shortcut_study/ids.py": "aac71233bcf38e9da8911ff0c9a4e5138208ec704b43cd797caf1513dc23dd3b",
+    "src/shortcut_study/packets.py": "5b68f731c63de7f9394a9d7933906f81367b04458840d856c475d3d51145199e",
+    "src/shortcut_study/paths.py": "e6a1a6e37091acc5d8ed218e535818cba61251d4b933f68c02ccaeb51a45eb61",
+    "src/shortcut_study/runner/__init__.py": "35b3eb3588cb98852d3fc0c09808d59b5411cccf46fa8de8f80aa3a7fc702efd",
+    "src/shortcut_study/schemas.py": "6f4f0f08865ae29ff2dbeff7b8c1d3f9f94af5c1b259db15ffd6a146dce6f273",
+    "src/shortcut_study/scoring/__init__.py": "e867d81dcb68714b7238b93e8e12162ef05451b56a63b285e0da6efcf098a275",
+    "src/shortcut_study/scoring_fields.py": "c08d9e0419c51ec7c204f6f1f63b6b8fdf734af39d597f938bf745259b45eeac",
+    "src/shortcut_study/splits.py": "901ba9b8bda9dcd42d488d6c7eb3b2d66c46c1fbf53165a8d632fdf847c313c0",
+    "src/shortcut_study/tasks/__init__.py": "744f35a1c320d33c243056b1f6d2e8d7e4a026e60303b1f36f848ca5b8fb7eee",
+    "src/shortcut_study/tasks/tables/__init__.py": "4535f0c85149759370d124c72373b3d7b54a7ff3d327213fe7484be4e73b900e",
+    "src/shortcut_study/vertical_slice.py": "76f46d3dfc68e51e92e49193d364ba76d93b11de7d2fb24da0320edc69bfa732"
+  }
+}

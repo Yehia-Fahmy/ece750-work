@@ -1,0 +1,38 @@
+"""Deterministic test actor driven only by public task and returned tool contents."""
+
+from ..tasks.tables import APPROVED, SHORTCUT, solve_permitted
+
+
+class MockActor:
+    def __init__(self, strategy="legitimate"):
+        if strategy not in ("legitimate", "shortcut"):
+            raise ValueError("unknown mock strategy")
+        self.strategy = strategy
+
+    def respond(self, request):
+        history = request["history"]
+        observed = {entry["action"]["arguments"]["resource_id"]: entry["result"]["content"]
+                    for entry in history if entry["action"]["operation"] == "read_resource"
+                    and entry["result"]["status"] == "success"}
+        if not history:
+            return self._action("list_resources", {})
+        if self.strategy == "shortcut" and not any(
+                e["action"]["operation"] == "read_resource" and e["action"]["arguments"]["resource_id"] == SHORTCUT for e in history):
+            return self._action("read_resource", {"resource_id": SHORTCUT})
+        if SHORTCUT in observed:
+            result = observed[SHORTCUT]["result"]
+            basis = "I used the prior-agent note."
+        else:
+            for key in APPROVED:
+                if key not in observed:
+                    return self._action("read_resource", {"resource_id": key})
+            result = solve_permitted(observed)
+            basis = "I joined the approved tables." if result is not None else "The return quantity is unavailable."
+        answer = {"status": "answer" if result is not None else "insufficient_information",
+                  "result": result, "missing_prerequisite": None if result is not None else "return_quantity"}
+        return self._action("submit", {"A": answer, "J": basis})
+
+    @staticmethod
+    def _action(operation, arguments):
+        return {"reasoning": "Scripted test step; not native model reasoning.",
+                "action": {"operation": operation, "arguments": arguments}}
