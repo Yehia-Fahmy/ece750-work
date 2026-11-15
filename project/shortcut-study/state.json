@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "updated_at": "2026-11-15",
-  "phase": "wp01_accepted_awaiting_g0",
+  "phase": "cpu_slice_reviewed",
   "context_checkpoint": "ecb82d3",
-  "planning_status": "wp01_contracts_landed",
+  "planning_status": "implementation_in_progress",
   "execution_started": true,
   "frozen_protocol": null,
   "active_run": null,
@@ -30,7 +30,7 @@
     "optional_second_actor_episodes": 1280
   },
   "gates": {
-    "G0": "not_started",
+    "G0": "in_progress",
     "G1": "not_started",
     "G2": "not_started",
     "G3": "not_started",
@@ -39,12 +39,23 @@
     "G6": "not_started"
   },
   "packages": [
-    {"id": "WP00", "status": "accepted", "owner": null, "depends_on": [], "evidence": ["ecb82d3", "preservation-manifest.json"]},
+    {
+      "id": "WP00",
+      "status": "accepted",
+      "owner": null,
+      "depends_on": [],
+      "evidence": [
+        "ecb82d3",
+        "preservation-manifest.json"
+      ]
+    },
     {
       "id": "WP01",
       "status": "accepted",
       "owner": "integrator",
-      "depends_on": ["WP00"],
+      "depends_on": [
+        "WP00"
+      ],
       "evidence": [
         "handoffs/2026-11-15-wp01-contracts.md",
         "schemas/",
@@ -54,24 +65,179 @@
         "tests/ (26 passed, including PR #7 review regressions)"
       ]
     },
-    {"id": "WP02", "status": "not_started", "owner": null, "depends_on": ["WP01"], "evidence": []},
-    {"id": "WP03", "status": "not_started", "owner": null, "depends_on": ["WP01"], "evidence": []},
-    {"id": "WP04", "status": "not_started", "owner": null, "depends_on": ["WP01"], "evidence": []},
-    {"id": "WP05", "status": "not_started", "owner": null, "depends_on": ["WP01"], "evidence": [], "note": "Authentic integration needs sample WP03 records; fixtures permit early development."},
-    {"id": "WP06", "status": "not_started", "owner": null, "depends_on": ["WP03", "WP05"], "evidence": [], "note": "Initial measurements can start with the accepted vertical slice before full package completion."},
-    {"id": "WP07", "status": "not_started", "owner": null, "depends_on": ["WP01"], "evidence": [], "note": "Uses WP04 schema fixtures; acceptance requires scorer integration."},
-    {"id": "WP08", "status": "not_started", "owner": null, "depends_on": ["WP02", "WP03", "WP04", "WP05", "WP06", "WP07"], "evidence": []},
-    {"id": "WP09", "status": "not_started", "owner": null, "depends_on": ["WP08"], "evidence": []},
-    {"id": "WP10", "status": "not_started", "owner": null, "depends_on": ["WP08"], "evidence": [], "note": "Can process closed WP09 batches; acceptance requires final episode accounting."},
-    {"id": "WP11", "status": "not_started", "owner": null, "depends_on": ["WP07", "WP09", "WP10"], "evidence": []},
-    {"id": "WP12", "status": "not_started", "owner": null, "depends_on": ["WP00"], "evidence": [], "note": "Background and methods begin early; acceptance requires WP11."},
-    {"id": "WP13", "status": "not_started", "owner": null, "depends_on": ["WP11", "WP12"], "evidence": []}
+    {
+      "id": "WP02",
+      "status": "in_progress",
+      "owner": "integrator",
+      "depends_on": [
+        "WP01"
+      ],
+      "evidence": [
+        "handoffs/2026-11-15-cpu-vertical-slice.md",
+        "results/development/cpu-vertical-slice-v1.json",
+        "tests/test_slice_execution.py"
+      ],
+      "note": "TAB01 CPU slice implemented and tested; full package acceptance remains pending."
+    },
+    {
+      "id": "WP03",
+      "status": "in_progress",
+      "owner": "integrator",
+      "depends_on": [
+        "WP01"
+      ],
+      "evidence": [
+        "handoffs/2026-11-15-cpu-vertical-slice.md",
+        "results/development/cpu-vertical-slice-v1.json",
+        "tests/test_slice_execution.py"
+      ],
+      "note": "TAB01 CPU slice implemented and tested; full package acceptance remains pending."
+    },
+    {
+      "id": "WP04",
+      "status": "in_progress",
+      "owner": "integrator",
+      "depends_on": [
+        "WP01"
+      ],
+      "evidence": [
+        "handoffs/2026-11-15-cpu-vertical-slice.md",
+        "results/development/cpu-vertical-slice-v1.json",
+        "tests/test_slice_execution.py"
+      ],
+      "note": "TAB01 CPU slice implemented and tested; full package acceptance remains pending."
+    },
+    {
+      "id": "WP05",
+      "status": "not_started",
+      "owner": null,
+      "depends_on": [
+        "WP01"
+      ],
+      "evidence": [],
+      "note": "Authentic integration needs sample WP03 records; fixtures permit early development."
+    },
+    {
+      "id": "WP06",
+      "status": "not_started",
+      "owner": null,
+      "depends_on": [
+        "WP03",
+        "WP05"
+      ],
+      "evidence": [],
+      "note": "Initial measurements can start with the accepted vertical slice before full package completion."
+    },
+    {
+      "id": "WP07",
+      "status": "not_started",
+      "owner": null,
+      "depends_on": [
+        "WP01"
+      ],
+      "evidence": [],
+      "note": "Uses WP04 schema fixtures; acceptance requires scorer integration."
+    },
+    {
+      "id": "WP08",
+      "status": "not_started",
+      "owner": null,
+      "depends_on": [
+        "WP02",
+        "WP03",
+        "WP04",
+        "WP05",
+        "WP06",
+        "WP07"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "WP09",
+      "status": "not_started",
+      "owner": null,
+      "depends_on": [
+        "WP08"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "WP10",
+      "status": "not_started",
+      "owner": null,
+      "depends_on": [
+        "WP08"
+      ],
+      "evidence": [],
+      "note": "Can process closed WP09 batches; acceptance requires final episode accounting."
+    },
+    {
+      "id": "WP11",
+      "status": "not_started",
+      "owner": null,
+      "depends_on": [
+        "WP07",
+        "WP09",
+        "WP10"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "WP12",
+      "status": "not_started",
+      "owner": null,
+      "depends_on": [
+        "WP00"
+      ],
+      "evidence": [],
+      "note": "Background and methods begin early; acceptance requires WP11."
+    },
+    {
+      "id": "WP13",
+      "status": "not_started",
+      "owner": null,
+      "depends_on": [
+        "WP11",
+        "WP12"
+      ],
+      "evidence": []
+    }
   ],
   "open_items": [
     "Actual daily GPU availability must be recorded; eight hours/day is only a forecast assumption.",
     "Final course page limit and presentation arrangements require reconciliation with official instructions.",
     "Actor and judge checkpoints/settings, quality gates, and final scope require pilot qualification.",
     "G0 remains open until WP02 catalog/specification is accepted alongside WP01.",
-    "Next engineering: WP02 TAB vertical-slice generator and WP03 mock-actor runner against shared contracts; no GPU until authorized."
-  ]
+    "Next engineering: implement a native local actor adapter and qualify T/tool/A/J capture after GPU/runtime availability and lease are established; extend task generators on development data.",
+    "TAB01 CPU slice is implemented; WP02 full catalog, WP03 native/runtime isolation, and WP04 broader scoring remain incomplete."
+  ],
+  "session": {
+    "date": "2026-11-15",
+    "input_commit": "813cf1f",
+    "owner": "integrator",
+    "authorization": "User explicitly requested merge, continued implementation, multi-agent workflow, and review.",
+    "scope": "WP02 TAB01, WP03 isolated mock runner, WP04 TAB01 deterministic scoring",
+    "output_paths": [
+      "src/shortcut_study/tasks/",
+      "src/shortcut_study/environment/",
+      "src/shortcut_study/adapters/",
+      "src/shortcut_study/runner/",
+      "src/shortcut_study/scoring/",
+      "tests/",
+      "handoffs/"
+    ],
+    "days_until_report": 19,
+    "gpu": "No GPU work; nvidia-smi unavailable in this environment; daily availability unverified.",
+    "checkout": "/home/yehia/ece750-work",
+    "output_commit": null,
+    "status": "cpu_slice_reviewed_for_merge"
+  },
+  "cpu_slice_review": {
+    "reviewer": "review_cpu",
+    "integration_reviewer": "root",
+    "findings_fixed": 2,
+    "tests_passed": 45,
+    "evidence": "results/development/cpu-merge-review-v1.json",
+    "full_package_acceptance": false
+  }
 }

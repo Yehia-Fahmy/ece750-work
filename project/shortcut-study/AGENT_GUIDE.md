@@ -10,7 +10,7 @@ Status: handoff plan, not an active swarm. The researcher will configure agents 
 4. Assign one owner per package and one integration owner. Agree on the shared contracts before parallel implementation. Record assignment, input commit, and output paths in state; use a short commit boundary for each accepted package.
 5. Treat all future CLI names in planning documents as deliverable requirements, not currently installed commands. Inspect implementation before invoking anything.
 
-The state at this handoff contains planning documents only. No extension implementation, qualified model, frozen main protocol, or collected extension dataset exists.
+The original planning handoff contained documentation only. As of November 15, WP01 contracts are accepted and a CPU TAB01 vertical slice is implemented; consult `state.json` and the latest handoff for its limited scope. No extension model is qualified, no main protocol is frozen, and scripted mock records are not a collected model dataset.
 
 ## Roles and boundaries
 
