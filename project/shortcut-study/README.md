@@ -9,7 +9,19 @@ This is **additional research**, separate from the completed observer-framing st
 3. [Decision record](DECISIONS.md): later clarifications and precedence.
 4. [Automated evaluation](EVALUATION.md): action scoring, research auditing, validation, and uncertainty.
 
-The execution plan and agent work packages will be added after this context checkpoint is committed and pushed, following the researcher's requested sequence.
+The context checkpoint was committed and pushed to `main` as `ecb82d3` before the execution plan was developed, following the researcher's requested sequence.
+
+## Execute the next stage
+
+5. [Execution plan](EXECUTION_PLAN.md): December milestones, scope ladder, qualification gates, statistical contrasts, and completion requirements.
+6. [Compute plan](COMPUTE.md): measured machine inventory, local model candidates, GPU lease, judge qualification, and full-pipeline forecasting.
+7. [Protocol draft](PROTOCOL_DRAFT.md) and [task catalog](TASK_CATALOG.md): intervention, permitted workflow, realistic shortcuts, difficulty, and genuine missing-information cases.
+8. [Artifact contracts](ARTIFACT_CONTRACTS.md): new source/data locations, trace/event schemas, scoring provenance, and immutable releases.
+9. [Agent guide](AGENT_GUIDE.md), [work packages](WORK_PACKAGES.md), and [state](state.json): ownership, dependencies, handoffs, and the next unstarted work.
+
+The [planning handoff](handoffs/2026-11-15-planning.md) records completed verification and the next safe action.
+
+Recommended target before pilot measurements: 100 base scenarios, 16 matched conditions per seed, two seeds = **3,200 primary-actor episodes**. Judge calls are additional. A smaller 1,600-episode version preserves the controls if local capacity is limited. An optional second actor is conditional on measured capability, audit quality, and remaining compute. No main protocol or model lineup is frozen yet.
 
 ## Historical work stays in place
 

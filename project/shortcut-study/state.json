@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-11-15",
+  "phase": "planning_handoff",
+  "context_checkpoint": "ecb82d3",
+  "planning_status": "documented_pending_execution",
+  "execution_started": false,
+  "frozen_protocol": null,
+  "active_run": null,
+  "constraints": {
+    "gpu": "NVIDIA GeForce RTX 3070 Ti",
+    "vram_mib": 8192,
+    "external_inference_allowed": false,
+    "external_compute_budget": 0,
+    "report_due": "2026-12-04",
+    "timezone": "America/Toronto",
+    "submission_authorized": false
+  },
+  "recommended_scope_not_frozen": {
+    "families": 5,
+    "templates_per_family": 5,
+    "difficulty_levels": 4,
+    "instances_per_template_difficulty": 1,
+    "information_states": 2,
+    "availability_states": 2,
+    "visibility_cells": 4,
+    "replicate_seeds": 2,
+    "base_scenarios": 100,
+    "primary_actor_episodes": 3200,
+    "optional_second_actor_episodes": 1280
+  },
+  "gates": {
+    "G0": "not_started",
+    "G1": "not_started",
+    "G2": "not_started",
+    "G3": "not_started",
+    "G4": "not_started",
+    "G5": "not_started",
+    "G6": "not_started"
+  },
+  "packages": [
+    {"id": "WP00", "status": "accepted", "owner": null, "depends_on": [], "evidence": ["ecb82d3", "preservation-manifest.json"]},
+    {"id": "WP01", "status": "not_started", "owner": null, "depends_on": ["WP00"], "evidence": []},
+    {"id": "WP02", "status": "not_started", "owner": null, "depends_on": ["WP01"], "evidence": []},
+    {"id": "WP03", "status": "not_started", "owner": null, "depends_on": ["WP01"], "evidence": []},
+    {"id": "WP04", "status": "not_started", "owner": null, "depends_on": ["WP01"], "evidence": []},
+    {"id": "WP05", "status": "not_started", "owner": null, "depends_on": ["WP01"], "evidence": [], "note": "Authentic integration needs sample WP03 records; fixtures permit early development."},
+    {"id": "WP06", "status": "not_started", "owner": null, "depends_on": ["WP03", "WP05"], "evidence": [], "note": "Initial measurements can start with the accepted vertical slice before full package completion."},
+    {"id": "WP07", "status": "not_started", "owner": null, "depends_on": ["WP01"], "evidence": [], "note": "Uses WP04 schema fixtures; acceptance requires scorer integration."},
+    {"id": "WP08", "status": "not_started", "owner": null, "depends_on": ["WP02", "WP03", "WP04", "WP05", "WP06", "WP07"], "evidence": []},
+    {"id": "WP09", "status": "not_started", "owner": null, "depends_on": ["WP08"], "evidence": []},
+    {"id": "WP10", "status": "not_started", "owner": null, "depends_on": ["WP08"], "evidence": [], "note": "Can process closed WP09 batches; acceptance requires final episode accounting."},
+    {"id": "WP11", "status": "not_started", "owner": null, "depends_on": ["WP07", "WP09", "WP10"], "evidence": []},
+    {"id": "WP12", "status": "not_started", "owner": null, "depends_on": ["WP00"], "evidence": [], "note": "Background and methods begin early; acceptance requires WP11."},
+    {"id": "WP13", "status": "not_started", "owner": null, "depends_on": ["WP11", "WP12"], "evidence": []}
+  ],
+  "open_items": [
+    "Actual daily GPU availability must be recorded; eight hours/day is only a forecast assumption.",
+    "Final course page limit and presentation arrangements require reconciliation with official instructions.",
+    "Actor and judge checkpoints/settings, quality gates, and final scope require pilot qualification.",
+    "No extension implementation or experimental dataset exists at this planning handoff."
+  ]
+}

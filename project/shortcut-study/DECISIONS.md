@@ -30,3 +30,9 @@ Recorded November 15, 2026. IDs are stable for work-package references.
 Core visibility uses V00/V01/V10/V11 with fixed answer/status scoring. Broad-permission, note-quality, grading-pressure, and visibility-timing studies are separate follow-ups. The core note condition uses access restriction; reuse-with-verification is a separately labeled extension. Correct complete notes are the core reference variant, with wrong/partial notes in an explicit robustness panel.
 
 Record future decisions as dated entries with evidence, affected artifact/version, and whether they occurred before or after main data collection. Never silently rewrite a frozen decision or rename a failed main run as a pilot.
+
+### November 15 — execution-planning defaults
+
+The context checkpoint `ecb82d3` was committed and pushed before the execution plan. The proposed course core is 100 base scenarios × 16 matched conditions × two seeds = 3,200 episodes on one primary actor. Scope may decrease before main collection using the documented budget/capability gates. These counts are a planning recommendation, not a powered-study guarantee or a frozen protocol.
+
+Proposed candidates are the existing Qwen3-4B actor, Qwen3-8B local primary judge, and a qualified small different-family alternative for independent review/optional replication. None is newly qualified by this documentation. A failed independent judge is a disclosed limitation; it does not permit external compute. Main actor collection targets November 27, audits November 29, full report November 30, and final packaging December 1–3.
