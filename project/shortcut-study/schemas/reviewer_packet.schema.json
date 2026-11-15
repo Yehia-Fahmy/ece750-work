@@ -50,7 +50,8 @@
       }
     },
     "A": {
-      "type": "object"
+      "description": "Final submission; null if no valid submission was captured.",
+      "type": ["object", "null"]
     },
     "T": {
       "description": "Present only when visibility includes T; otherwise must be null.",

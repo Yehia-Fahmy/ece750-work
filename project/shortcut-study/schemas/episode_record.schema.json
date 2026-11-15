@@ -4,6 +4,16 @@
   "title": "Shortcut study episode record",
   "type": "object",
   "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {"properties": {"terminal_status": {"const": "completed"}}},
+      "then": {
+        "properties": {
+          "channels": {"properties": {"A": {"type": "object"}}}
+        }
+      }
+    }
+  ],
   "required": [
     "schema_version",
     "protocol_version",
@@ -209,7 +219,8 @@
           ]
         },
         "A": {
-          "type": "object",
+          "description": "Parsed final submission, or null when the episode ended without one.",
+          "type": ["object", "null"],
           "additionalProperties": false,
           "required": ["status", "result", "missing_prerequisite"],
           "properties": {

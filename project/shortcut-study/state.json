@@ -51,7 +51,7 @@
         "configs/development/",
         "src/shortcut_study/",
         "fixtures/",
-        "tests/ (21 passed)"
+        "tests/ (26 passed, including PR #7 review regressions)"
       ]
     },
     {"id": "WP02", "status": "not_started", "owner": null, "depends_on": ["WP01"], "evidence": []},

@@ -31,7 +31,8 @@
       "minLength": 1
     },
     "A": {
-      "type": "object"
+      "description": "Final submission; null if no valid submission was captured.",
+      "type": ["object", "null"]
     },
     "T": {
       "oneOf": [{"type": "null"}, {"type": "array"}]

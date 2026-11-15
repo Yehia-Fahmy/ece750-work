@@ -38,3 +38,39 @@
   - Integrator acceptance of WP01 on evidence above
   - Start WP02 (TAB vertical-slice generator) and WP03 (mock-actor runner) against these contracts; WP12 background may proceed in parallel
 - Acceptance reviewer, decision, and date (filled on review): integrator; accepted 2026-11-15 on passing contract tests and preservation check; G0 still needs WP02 catalog/specification
+
+## PR #7 review remediation — November 15, 2026
+
+Yehia authorized fixing the review findings and merging the PR. Input revision:
+`c9af4241f89ebda3ff3286cbe5765b475b3c9a65`. Output: the commit containing this
+handoff update on `cursor/shortcut-wp01-1ebb`.
+
+- Episode and both packet schemas now allow missing A as null. Completed episodes
+  still require a valid submission. The interrupted fixture now has no A or J.
+- Reviewer leakage checks compare routed channels and metadata to their sources.
+  Repeated text across independently captured channels is allowed; injected or
+  altered content, forbidden fields, and incorrect channel flags are rejected.
+- The scored fixture now records the restricted acquisition in its event ledger,
+  including resource/event references and unsuccessful authorized completion,
+  while preserving factual correctness. This remains mock data, not a WP04 scorer.
+- Added five regression tests, including all six non-completed statuses across
+  all four visibility cells, completed-answer validation, overlapping text,
+  injected content, and committed/generated fixture consistency. Before the fix,
+  the regression suite reproduced failures; afterward all tests passed.
+
+Validation on the corrected implementation:
+
+- `PYTHONPATH=project/shortcut-study/src python3 -m unittest discover -s project/shortcut-study/tests -q` — 26 passed.
+- `PYTHONPATH=project/src:. python3 -m unittest discover -s project/tests -q` — 58 passed.
+- `Draft202012Validator.check_schema` on all seven schema files — passed.
+- SHA-256 verification against `preservation-manifest.json` — all 111 historical
+  files and the design snapshot match.
+- `git diff --check` — passed.
+
+Changed fixture SHA-256 hashes:
+
+- `fixtures/episodes/interrupted_v00.json`: `d66717f5137f7e932456daafa47adfa052936f2ef71588fd7eacabfd9b00b194`
+- `fixtures/scored/complete_present_v11.json`: `905cb925c4c280fd339b152208f0248924fd7d1cd6f88038f688e7a1d468b8a7`
+
+No GPU work or experimental inference. No remaining issue from this review;
+the provisional-contract and unimplemented-consumer limitations above still apply.

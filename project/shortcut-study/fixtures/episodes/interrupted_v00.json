@@ -10,11 +10,7 @@
   "amendments": [],
   "base_id": "vs-tab01-reconciliation-001",
   "channels": {
-    "A": {
-      "missing_prerequisite": null,
-      "result": 42,
-      "status": "answer"
-    },
+    "A": null,
     "J": null,
     "T": [
       {

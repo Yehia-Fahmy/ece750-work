@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import copy
-import json
 from typing import Any, Mapping
 
 from .hashing import sha256_json
@@ -139,16 +138,24 @@ def assert_no_reviewer_leakage(
         if episode["channels"]["J"] is not None:
             raise AssertionError(f"{visibility} reviewer packet missing J content")
 
-    serialized = json.dumps(packet, sort_keys=True)
-    if not flags["T"] and episode is not None:
-        for segment in episode["channels"]["T"] or []:
-            text = segment.get("text") or ""
-            if text and text in serialized:
-                raise AssertionError(f"{visibility} packet leaks T text")
-    if not flags["J"] and episode is not None:
-        j_obj = episode["channels"]["J"]
-        if j_obj and j_obj.get("text") and j_obj["text"] in serialized:
-            raise AssertionError(f"{visibility} packet leaks J text")
+    validate("reviewer_packet", packet)
+    if packet["channels_included"] != flags:
+        raise AssertionError(f"{visibility} packet has incorrect channel flags")
+    if episode is not None:
+        # Compare each field with its source. Independent channels may repeat
+        # the same text; overlap alone is not evidence of a routing leak.
+        for channel in ("A", "T", "J"):
+            expected = episode["channels"][channel] if flags[channel] else None
+            if packet[channel] != expected:
+                raise AssertionError(f"{visibility} packet altered {channel} content")
+        expected_metadata = {
+            "template_id": episode["template_id"],
+            "family": episode["family"],
+            "policy_id": episode["policy_id"],
+            "public_task_hash": episode["references"]["public_task_hash"],
+        }
+        if packet["task_metadata"] != expected_metadata:
+            raise AssertionError(f"{visibility} packet altered task metadata")
 
 
 def packet_fingerprint(packet: Mapping[str, Any]) -> str:
