@@ -8,7 +8,8 @@ from pathlib import Path
 from .adapters.mock import MockActor
 from .runner import recover_mock_episode, run_mock_episode, write_new
 from .scoring import score_episode
-from .tasks.tables import GENERATOR_VERSION, generate_task
+from .tasks.tables import (CATALOG_VERSION, GENERATOR_VERSION, enumerate_tab_catalog_assignments,
+                           generate_task)
 from .vertical_slice import enumerate_vertical_slice_assignments
 
 
@@ -56,6 +57,15 @@ def main():
     mock = commands.add_parser("mock-slice", help="Run 16 scripted CPU episodes, never model inference")
     mock.add_argument("--out", type=Path, required=True)
     mock.add_argument("--strategy", choices=("legitimate", "shortcut"), default="legitimate")
+    catalog = commands.add_parser(
+        "mock-tab-catalog",
+        help="Run scripted CPU episodes for TAB01–05 catalog cells; never model inference")
+    catalog.add_argument("--out", type=Path, required=True)
+    catalog.add_argument("--strategy", choices=("legitimate", "shortcut"), default="legitimate")
+    catalog.add_argument("--difficulties", nargs="+",
+                         default=["trivial", "moderate", "hard", "extreme"],
+                         choices=["trivial", "moderate", "hard", "extreme"])
+    catalog.add_argument("--seed", type=int, default=0)
     recover = commands.add_parser("recover-mock-episode", help="Seal an interrupted mock episode without replay")
     recover.add_argument("directory", type=Path)
     audit = commands.add_parser("prepare-audit", help="Prepare verified local judge input without inference")
@@ -81,12 +91,23 @@ def main():
         print(f"Prepared audit for {prepared['episode_id']}; no judge inference; output: {args.out}")
         return
     args.out.mkdir(parents=True, exist_ok=False)
-    assignments = [{**row, "generator_version": GENERATOR_VERSION}
-                   for row in enumerate_vertical_slice_assignments()]
-    write_new(args.out / "schedule.json", {"evidence_kind": "scripted_mock_not_model_observation", "assignments": assignments})
+    if args.command == "mock-tab-catalog":
+        assignments = enumerate_tab_catalog_assignments(
+            replicate_seed=args.seed, difficulties=tuple(args.difficulties))
+        schedule_meta = {"catalog_version": CATALOG_VERSION, "difficulties": list(args.difficulties),
+                         "replicate_seed": args.seed}
+    else:
+        assignments = [{**row, "generator_version": GENERATOR_VERSION}
+                       for row in enumerate_vertical_slice_assignments()]
+        schedule_meta = {"catalog_version": GENERATOR_VERSION, "path": "vertical_slice"}
+    write_new(args.out / "schedule.json", {
+        "evidence_kind": "scripted_mock_not_model_observation",
+        **schedule_meta,
+        "assignments": assignments})
     rows = []
+    generation_seed = args.seed if args.command == "mock-tab-catalog" else 0
     for assignment in assignments:
-        task = generate_task(assignment)
+        task = generate_task(assignment, generation_seed=generation_seed)
         episode, ledger = run_mock_episode(task, MockActor(args.strategy), args.out / assignment["episode_id"], run_id=args.out.name)
         row = score_episode(task, episode, ledger)
         write_new(args.out / assignment["episode_id"] / "scored.json", row)
@@ -95,7 +116,8 @@ def main():
                "assigned": len(assignments), "terminal": len(rows),
                "completed": sum(r["integrity"]["record_complete"] for r in rows),
                "acquired": sum(r["acquisition"]["successful"] is True for r in rows),
-               "announced_success": sum(r["task_result"]["announced_task_score"] is True for r in rows)}
+               "announced_success": sum(r["task_result"]["announced_task_score"] is True for r in rows),
+               **schedule_meta}
     write_new(args.out / "summary.json", summary)
     source_root = Path(__file__).resolve().parents[2]
     source_files = sorted(path for area in ("src", "schemas", "configs/development")

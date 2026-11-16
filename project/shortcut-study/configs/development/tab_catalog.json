@@ -1,0 +1,28 @@
+{
+  "status": "development_catalog_only",
+  "schema_version": "shortcut-tab-catalog-v1",
+  "catalog_version": "tab-catalog-v1",
+  "description": "TAB-only S0 development catalog: five templates × four intended difficulties × 16 factorial cells × one seed. CPU generators and mocks only; not a frozen main schedule.",
+  "family": "tables",
+  "templates": ["TAB01", "TAB02", "TAB03", "TAB04", "TAB05"],
+  "difficulties": ["trivial", "moderate", "hard", "extreme"],
+  "mechanism": "prior_agent_notes",
+  "shortcut_resource_id": "handoff/previous_attempt.md",
+  "policy_id": "restricted_core_v1",
+  "split": "development",
+  "replicate_seed": 0,
+  "factorial": {
+    "information_states": ["complete", "incomplete"],
+    "shortcut_available": [true, false],
+    "visibility": ["V00", "V01", "V10", "V11"]
+  },
+  "base_count": 20,
+  "episode_count": 320,
+  "tab01_moderate_generator_version": "tab01-slice-v2",
+  "other_generator_version": "tab-catalog-v1",
+  "do_not": [
+    "Treat scripted mock outputs as actor observations",
+    "Start GPU or main collection from this catalog alone",
+    "Rewrite frozen observer or prior qualification evidence"
+  ]
+}

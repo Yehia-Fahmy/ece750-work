@@ -1,0 +1,146 @@
+{
+  "catalog_version": "tab-catalog-v1",
+  "checks": {
+    "all_run_source_and_artifact_hashes_verified": true,
+    "extension_tests_passed": 176,
+    "gpu_used": false,
+    "historical_tests_passed": 58,
+    "main_collection_started": false
+  },
+  "date": "2026-11-16",
+  "evidence_kind": "scripted_mock_not_model_observation",
+  "input_commit": "76d6db3",
+  "limitations": [
+    "CPU mock catalog only; no native/GPU inference and no main generation.",
+    "Intended difficulties are structural targets, not empirically calibrated.",
+    "Only prior_agent_notes mechanism; other shortcut mechanisms still pending.",
+    "TAB-family G0 catalog/spec can close for S0; DOC/PLAN/CODE/VERIFY remain out of S0.",
+    "Actor capability and scientific G1/G2 remain open.",
+    "Earlier frozen observer and qualification evidence files were not rewritten."
+  ],
+  "output_commit": null,
+  "package": "WP02-TAB",
+  "runs": [
+    {
+      "manifest_sha256": "4b6b6f0dfc5a6a3c62c0bf03f1cf932add93e53ff6d7f7a4a03600fceaddc953",
+      "path": "project/runs/shortcut-study/tab-catalog-20261116-legitimate-v1",
+      "strategy": "legitimate",
+      "summary": {
+        "acquired": 0,
+        "announced_success": 320,
+        "assigned": 320,
+        "catalog_version": "tab-catalog-v1",
+        "completed": 320,
+        "difficulties": [
+          "trivial",
+          "moderate",
+          "hard",
+          "extreme"
+        ],
+        "evidence_kind": "scripted_mock_not_model_observation",
+        "replicate_seed": 0,
+        "strategy": "legitimate",
+        "terminal": 320
+      },
+      "summary_sha256": "bd32bce1db014402739642159e2e0796a4e8385bb614667ddd3a8b5d665b3a3b",
+      "verified_artifact_count": 8642
+    },
+    {
+      "manifest_sha256": "8a59caab57cb8ed96469e37e906edd0639ad2e9817888c4998ebcd4c1bc651ba",
+      "path": "project/runs/shortcut-study/tab-catalog-20261116-shortcut-v1",
+      "strategy": "shortcut",
+      "summary": {
+        "acquired": 160,
+        "announced_success": 240,
+        "assigned": 320,
+        "catalog_version": "tab-catalog-v1",
+        "completed": 320,
+        "difficulties": [
+          "trivial",
+          "moderate",
+          "hard",
+          "extreme"
+        ],
+        "evidence_kind": "scripted_mock_not_model_observation",
+        "replicate_seed": 0,
+        "strategy": "shortcut",
+        "terminal": 320
+      },
+      "summary_sha256": "44296a9c1de7eb474656a43f29cc72bd66a78a97078afeb4c566e0cf76af437d",
+      "verified_artifact_count": 8002
+    }
+  ],
+  "scope": {
+    "bases": 20,
+    "difficulties": [
+      "trivial",
+      "moderate",
+      "hard",
+      "extreme"
+    ],
+    "episodes_per_strategy": 320,
+    "mechanism": "prior_agent_notes",
+    "split": "development",
+    "templates": [
+      "TAB01",
+      "TAB02",
+      "TAB03",
+      "TAB04",
+      "TAB05"
+    ]
+  },
+  "source_sha256": {
+    "configs/development/a_t_j_boundaries.json": "3bc06a64688d6bb6c2472c66a88f51018c8eb5290be40b42d3466c821c6d616d",
+    "configs/development/budgets.json": "f3af8b2d547cf110a2cae427fe9cad35921c704ac3c6100c9b957a1327bb78b2",
+    "configs/development/local-qualification.json": "ad1a449c8b7f0a75ba4883c856d13254e26b5493efd3cb0c188c396b1f85e289",
+    "configs/development/policy.json": "3584f8ab19fd47a5e681c09b0ae4615cfbfb0f85225277ee1c85e2c55cf05035",
+    "configs/development/scoring_source_of_truth.json": "0207393306224041b7448e09e408bee06f58e7ff5ce15923d62d4bf8bbbb6a49",
+    "configs/development/splits.json": "123facd0d30458829ff88909ff410c5544453eb912292729dc0e7530ca93fb8d",
+    "configs/development/tab_catalog.json": "0fd5b1d5b6d985586e1599fa3193ab99b8993e93b4b96a6834f9d26e7a2de39c",
+    "configs/development/vertical_slice.json": "bf232147c6be8461a1f387b4e07cc50a843dc8700d6bfc84c09268d62384dd80",
+    "configs/development/visibility.json": "0fbc631174cf6dd7b5975d20b828891d2bb0f3999a46d68bb6744e9a7682c741",
+    "schemas/auditor_packet.schema.json": "168b71fd4827c3bb41d5eff88e68eaa890a37bcc44b60db32f27278e761d7ece",
+    "schemas/common.schema.json": "4027068a392fb2aefc99e50a10e569bc4f43be258457cea49d9f0545c89cc1f3",
+    "schemas/episode_record.schema.json": "a4260f0fb0e2ec7cfad448473e4b5da04fe81ef12c8b754398dba3dcadf219fe",
+    "schemas/event_ledger.schema.json": "c380f46b689d764b32ab8da6ac3fa3316589fe646726b297937b160d3fecd827",
+    "schemas/reviewer_packet.schema.json": "d183f3c189f606af39d6376f0ba8c3ab09533a26eab4d759b091be5589fb1228",
+    "schemas/scored_row.schema.json": "e52946ca5543944756cda16c24dd7beaf80eacd60d66f5f79fb974b008bb4c9d",
+    "schemas/semantic_audit_row.schema.json": "c9e337a94b0e2d6b468591d32e5af0cabce621e183037088a32d313c21e06824",
+    "src/shortcut_study/__init__.py": "ec23638cbc6983100cf51b6132807cfaa0351e4ef59726f97a1140c53af37e1a",
+    "src/shortcut_study/__main__.py": "115e8b428d4012ef50af66476573b5ec99fba541d56bea68fdb5fa28d160dae8",
+    "src/shortcut_study/adapters/__init__.py": "c8a61d79ea41df066bb3d6e00407e10d1d167d89f7d68cb83685f527a5ecba0f",
+    "src/shortcut_study/adapters/local.py": "f2e808263c34f9df9fbffd86f7e3a278c313bafca506eb8217eb97bd273021c2",
+    "src/shortcut_study/adapters/mock.py": "4585f01ae201e0b89175c8e143d134b3ae2b87db68f0994a4582add62e4da177",
+    "src/shortcut_study/adapters/token_counter.py": "e55fa315d4b408dfe391dc4c17ea5f3f8c2e72eb437b39c4772994f8e02f5b82",
+    "src/shortcut_study/audit/__init__.py": "f1f9dd3d3912d93357760b795562958eba4f30b88535e05dbaa677f03c8d28e5",
+    "src/shortcut_study/audit/pipeline.py": "2bc156d7c274b9229c83ad0187ab67c28241259bc2d1c82ea220ffe270eee5cd",
+    "src/shortcut_study/config.py": "05963f89f3991dddbff2b2ffea3216e641acbf857cf30473ee987b359daa3700",
+    "src/shortcut_study/environment/__init__.py": "676fea7309937b2f8ead8229642125d1d9ba5b986153982d8ca710826cb92c6f",
+    "src/shortcut_study/fixtures.py": "789ca8be2753e440b6b7c1f119e7b164d49c87689079558a80998cdb6a4cc9e5",
+    "src/shortcut_study/hashing.py": "1a3253c013a029c4715585b7061a66860e20130397baa47cb2ee8835ea7a76a4",
+    "src/shortcut_study/ids.py": "aac71233bcf38e9da8911ff0c9a4e5138208ec704b43cd797caf1513dc23dd3b",
+    "src/shortcut_study/packets.py": "5b68f731c63de7f9394a9d7933906f81367b04458840d856c475d3d51145199e",
+    "src/shortcut_study/paths.py": "e6a1a6e37091acc5d8ed218e535818cba61251d4b933f68c02ccaeb51a45eb61",
+    "src/shortcut_study/qualification.py": "d0f2f2249d516533253fa6e825fcaa39dfe322e922399730b5dd63bade422b66",
+    "src/shortcut_study/runner/__init__.py": "41d9a8e5f286da3a638b190b404094185bf1f2f7e4c27d22556825214de12f06",
+    "src/shortcut_study/runner/native.py": "464373803131ce66f9819ca2b26c12829ed7ab1d063d5bd33a42604fdd60da81",
+    "src/shortcut_study/runtime/__init__.py": "5510973b1673718a15a030cf6d967cf19ec7f9117cd40fed844940f69c362f1b",
+    "src/shortcut_study/runtime/lease.py": "5bfde65d616e70e0dc8ddf27ba14596ae0b10f0e92aaaad68acccf01fcfcb24c",
+    "src/shortcut_study/runtime/server.py": "d46860c8edac96c7df1a7142f99c5425750836df7679c2235fc66cb516a55c66",
+    "src/shortcut_study/runtime/telemetry.py": "5c4efc286a4fd6a6d49826ab1a11f4da82f6c151b9da03f966f9e9aa5888f5b4",
+    "src/shortcut_study/schemas.py": "6f4f0f08865ae29ff2dbeff7b8c1d3f9f94af5c1b259db15ffd6a146dce6f273",
+    "src/shortcut_study/scoring/__init__.py": "3dcbd0d7de4adbeb28444689017e0cf94489f7dd172d30f123cce51caea8a561",
+    "src/shortcut_study/scoring_fields.py": "c08d9e0419c51ec7c204f6f1f63b6b8fdf734af39d597f938bf745259b45eeac",
+    "src/shortcut_study/splits.py": "901ba9b8bda9dcd42d488d6c7eb3b2d66c46c1fbf53165a8d632fdf847c313c0",
+    "src/shortcut_study/tasks/__init__.py": "744f35a1c320d33c243056b1f6d2e8d7e4a026e60303b1f36f848ca5b8fb7eee",
+    "src/shortcut_study/tasks/tables/__init__.py": "531864f9dcfe20c363c3a0bbcbb02bcc0b07ac91d7cbe268ae7b6d86c35f9a79",
+    "src/shortcut_study/tasks/tables/catalog.py": "21ab6382cd06723716a5ee5609387df70e3405acd7cf6ec16ac53bc5a80f6cf0",
+    "src/shortcut_study/tasks/tables/common.py": "c536a9f38093f0de3ede72c7dd25a229db2ad14d92c98bc6285e940a813fc5d2",
+    "src/shortcut_study/tasks/tables/tab01.py": "c784eacea58c4dc5c53c03c576d71932cae735b28b73a31c899bfee7c9f09fdb",
+    "src/shortcut_study/tasks/tables/tab02.py": "b6d8cad18b2edafc1fd88cc5ca57bfb8fddd47cc27edfbed09d5a45c7de2fdd1",
+    "src/shortcut_study/tasks/tables/tab03.py": "b37065c3f8ed1d1798d604cce05295b260b0a47e8d36e80e3a28eabff7ce6ce0",
+    "src/shortcut_study/tasks/tables/tab04.py": "d4af4e89130d3649373b90be7ff422222943ebd7f4fd2f7e125910307a7708e8",
+    "src/shortcut_study/tasks/tables/tab05.py": "c8eb39cb1d8c51c585833e200edb6a413b358bc36d7c62b871ff4224b061a568",
+    "src/shortcut_study/vertical_slice.py": "76f46d3dfc68e51e92e49193d364ba76d93b11de7d2fb24da0320edc69bfa732"
+  }
+}
