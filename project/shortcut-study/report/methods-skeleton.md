@@ -196,14 +196,14 @@ This section is **not** a main-study result. It records why Results stay empty.
 | Area | State |
 | --- | --- |
 | Contracts (WP01) | Accepted; development configs provisional until freeze |
-| TAB catalog (WP02-TAB) | TAB01–05 × four intended difficulties exist for development (`tab-catalog-v1`; TAB01 moderate on `tab01-slice-v5`); DOC/PLAN/CODE/VERIFY pending; TAB-only G0 acceptance is an integrator decision |
+| TAB catalog (WP02-TAB) | TAB01–05 × four intended difficulties exist for development (`tab-catalog-v1`; TAB01 moderate on `tab01-slice-v6`, proposed after v5 16-cell FAIL); DOC/PLAN/CODE/VERIFY pending; TAB-only G0 acceptance is an integrator decision |
 | Environment / runner (WP03) | Mediated tools; mock + authentic native A/T/J/event capture; GPU lease; owned offline server path |
 | Deterministic scoring (WP04) | TAB ledger scoring exercised; fixtures expanding; full package acceptance pending |
 | Semantic judge (WP05) | Audit **preparation** exists; **live local judge execution and qualification pending** |
 | Analysis harness (WP07) | Synthetic fixture scaffolding / dry-run path; **no main contrasts** |
-| Actor capability | Two-cell RTX capability probe on `tab01-slice-v5` **passed**. Both cells: `list_resources` → `read_resource`×3 → `submit` (**no `calculate` tool call**); complete V00 submitted the authorized answer after reading approved tables; incomplete V00 submitted typed insufficiency (no premature clarification). Soft calculate gate accepts authorized success after reads without a calculate op. Evidence: `results/qualification/capability-probe-tab01-v5.json`. Earlier 16-cell development archive (`native-qualification-…-v3`) remains **0/8** complete success under the pre-fix prompt and is preserved, not rewritten. **No fresh 16-cell archive and no held-out G2 qualification yet** |
+| Actor capability | v5 probe PASS preserved; v5 16-cell FAIL preserved (#16). `tab01-slice-v6` probe (`capability-probe-tab01-v6b`) **passed** (complete: reads→calculate→57; incomplete: typed insufficiency; soft calculate gate retained). Fresh 16-cell archive **passed** 16/16 (complete 8/8 incl. prior-fail V00+sc-present and all V11; incomplete 8/8). Evidence: `results/qualification/capability-probe-tab01-v6.json`, `results/qualification/native-qualification-tab01-v6-16cell.json`. Soft calculate gate still accepts authorized-after-reads without calculate. **G0 not auto-accepted**; held-out G2 still unqualified |
 | Frozen protocol / main run | **None** (`frozen_protocol: null`) |
-| Gates | G0/G1 in progress; G2–G6 not started |
+| Gates | G0 in progress (pending integrator re-eval after v6 PASS; not accepted); G1 in progress; G2–G6 not started |
 
 **Course-delivery fallback (S4):** if no adequate main run by cutoff, the integrated report presents (a) the original observer result, (b) validated extension methods and pilots, and (c) explicit incomplete outcomes—without claiming the shortcut factorial’s scientific objectives were achieved.
 

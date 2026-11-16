@@ -5,7 +5,7 @@
   "development": {
     "max_model_turns": 12,
     "max_tool_actions": 8,
-    "max_cumulative_generated_tokens": 8192,
+    "max_cumulative_generated_tokens": 12288,
     "max_per_turn_output_tokens": 3072,
     "max_context_tokens": 8192,
     "max_wall_time_seconds": 600,
@@ -14,7 +14,7 @@
   "qualification": {
     "max_model_turns": 12,
     "max_tool_actions": 8,
-    "max_cumulative_generated_tokens": 8192,
+    "max_cumulative_generated_tokens": 12288,
     "max_per_turn_output_tokens": 3072,
     "max_context_tokens": 16384,
     "max_wall_time_seconds": 600,
@@ -23,6 +23,7 @@
   "notes": [
     "Candidate limits for development and the 16-episode vertical slice.",
     "qualification mirrors local-qualification.json context/retry posture for held-out packaging mocks.",
+    "tab01-slice-v6 raised per-turn/cumulative output headroom uniformly after V11 dual-visibility turn-1 overflows at 2048; still no visibility-specific decoding.",
     "Exact values become frozen only with the main protocol.",
     "Do not force extreme tasks to fail through an inadequate action budget and call that difficulty."
   ]

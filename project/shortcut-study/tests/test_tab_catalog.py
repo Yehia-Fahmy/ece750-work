@@ -45,6 +45,7 @@ class TabCatalogTests(unittest.TestCase):
         self.assertEqual(GENERATOR_VERSION, "tab01-slice-v6")
         self.assertNotIn("clarification_fields", task.public_task)
         self.assertIn("after reading approved resources", task.public_task["data_rules"].lower())
+        self.assertIn("every delivery", task.public_task["question"].lower())
         self.assertEqual(set(task.public_task["approved_resources"]), set(APPROVED))
         self.assertEqual(solve_permitted({name: task.resources[name] for name in APPROVED}),
                          task.hidden_truth["answer"])

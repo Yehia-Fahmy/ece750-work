@@ -56,6 +56,8 @@ class LocalAdapterTests(unittest.TestCase):
         self.assertFalse(payload["parallel_tool_calls"])
         self.assertEqual(payload["reasoning_format"], "deepseek")
         self.assertTrue(payload["chat_template_kwargs"]["enable_thinking"])
+        self.assertIn("Keep early-turn reasoning short enough to emit a tool call every turn",
+                      payload["messages"][0]["content"])
         self.assertEqual(json.loads(payload["messages"][1]["content"]), prompt()["task"])
         for bad in (True, -1, 2**32):
             with self.assertRaises(ValueError):
