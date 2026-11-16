@@ -1,11 +1,12 @@
 """TAB family generators: TAB01–05 development catalog with prior-note shortcuts."""
 
 from . import tab01, tab02, tab03, tab04, tab05
-from .catalog import (BASE_SCENARIOS, TEMPLATES, enumerate_tab_catalog_assignments,
-                      enumerate_tab_catalog_bases)
+from .catalog import (BASE_SCENARIOS, SCENARIO_STEMS, TEMPLATES, enumerate_tab_catalog_assignments,
+                      enumerate_tab_catalog_bases, generation_seed_for, smoke_assignments)
 from .common import (ALLOWED_MECHANISM, ALLOWED_POLICY, ALLOWED_SPLIT, CATALOG_VERSION,
-                     CLARIFICATION_FIELDS, DIFFICULTIES, SHORTCUT, TAB01_SLICE_VERSION, TableTask,
-                     generator_version_for, resolve_clarification_fields, valid_answer)
+                     CLARIFICATION_FIELDS, DIFFICULTIES, GENERATOR_SPLITS, MOCK_RUNNER_SPLITS,
+                     SHORTCUT, TAB01_SLICE_VERSION, TableTask, generator_version_for,
+                     resolve_clarification_fields, valid_answer)
 
 # Backward-compatible TAB01 slice exports used by the vertical-slice path.
 APPROVED = tab01.APPROVED
@@ -59,7 +60,10 @@ __all__ = [
     "CATALOG_VERSION",
     "CLARIFICATION_FIELDS",
     "DIFFICULTIES",
+    "GENERATOR_SPLITS",
     "GENERATOR_VERSION",
+    "MOCK_RUNNER_SPLITS",
+    "SCENARIO_STEMS",
     "SHORTCUT",
     "TAB01_SLICE_VERSION",
     "TEMPLATES",
@@ -68,11 +72,13 @@ __all__ = [
     "enumerate_tab_catalog_assignments",
     "enumerate_tab_catalog_bases",
     "generate_task",
+    "generation_seed_for",
     "generator_version_for",
     "missing_prerequisite_for",
     "public_resources",
     "reference_total",
     "resolve_clarification_fields",
+    "smoke_assignments",
     "solve_permitted",
     "valid_answer",
 ]

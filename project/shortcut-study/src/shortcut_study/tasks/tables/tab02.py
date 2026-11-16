@@ -1,10 +1,9 @@
 """TAB02: invoice reconciliation — unpaid balance after payments and credits."""
 
 from copy import deepcopy
-import random
 
-from .common import (SHORTCUT, difficulty_profile, finish_task, make_certificate, prior_note,
-                     public_shell, require_development_assignment)
+from .common import (SHORTCUT, assignment_rng, difficulty_profile, finish_task, make_certificate,
+                     prior_note, public_shell, require_development_assignment)
 
 APPROVED = ("source/invoices.json", "source/payments.json", "source/credit_memos.json")
 MISSING = "payment_amount"
@@ -73,7 +72,7 @@ def _world(rng, difficulty):
 
 def generate(assignment, generation_seed=0):
     require_development_assignment(assignment, template_id="TAB02")
-    rng = random.Random(generation_seed)
+    rng = assignment_rng(assignment, generation_seed)
     world = _world(rng, assignment["intended_difficulty"])
     alternate = deepcopy(world)
     alternate["payments"][0]["amount"] += 1

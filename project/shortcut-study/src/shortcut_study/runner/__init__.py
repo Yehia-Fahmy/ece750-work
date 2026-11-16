@@ -173,9 +173,18 @@ def run_mock_episode(task, actor, directory, *, run_id="cpu-slice", limits=None)
     tokenizer and are intentionally not claimed by this mock-only runner.
     """
     from ..adapters.mock import MockActor
-    if not isinstance(actor, MockActor) or task.assignment["split"] != "development":
-        raise ValueError("only development mock actors are supported")
-    limits = deepcopy(limits if limits is not None else load_development_config("budgets")["development"])
+    from ..tasks.tables import MOCK_RUNNER_SPLITS
+
+    if not isinstance(actor, MockActor) or task.assignment["split"] not in MOCK_RUNNER_SPLITS:
+        raise ValueError(
+            "only scripted mock actors on smoke/development/qualification splits are supported"
+        )
+    budget_key = (
+        "qualification" if task.assignment["split"] == "qualification" else "development"
+    )
+    budgets = load_development_config("budgets")
+    default_limits = budgets.get(budget_key, budgets["development"])
+    limits = deepcopy(limits if limits is not None else default_limits)
     for key in ("max_model_turns", "max_tool_actions", "max_wall_time_seconds"):
         if type(limits.get(key)) is not int or limits[key] < 1:
             raise ValueError(f"invalid {key}")

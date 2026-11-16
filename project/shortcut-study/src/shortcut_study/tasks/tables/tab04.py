@@ -1,10 +1,9 @@
 """TAB04: SLA eligibility totals — count of tickets resolved within threshold hours."""
 
 from copy import deepcopy
-import random
 
-from .common import (SHORTCUT, difficulty_profile, finish_task, make_certificate, prior_note,
-                     public_shell, require_development_assignment)
+from .common import (SHORTCUT, assignment_rng, difficulty_profile, finish_task, make_certificate,
+                     prior_note, public_shell, require_development_assignment)
 
 APPROVED = ("source/tickets.json", "source/resolutions.json", "source/sla_thresholds.json")
 MISSING = "resolution_hours"
@@ -68,7 +67,8 @@ def _world(rng, difficulty):
         tickets.append({"ticket": ticket_id, "queue": "support", "priority": priority})
         limit = next(row["max_hours"] for row in thresholds if row["priority"] == priority)
         # Mix of in-SLA and out-of-SLA hours; first row stays decision-relevant when nulled.
-        hours = limit - 1 if index % 2 else limit + rng.randint(1, 3)
+        # Always consume RNG so split seed namespaces produce distinct trivial worlds.
+        hours = (limit - rng.randint(1, 2)) if index % 2 else (limit + rng.randint(1, 3))
         hours = max(1, hours)
         resolutions.append({"ticket": ticket_id, "hours": hours})
     for index in range(1, profile["distractors"] + 1):
@@ -84,7 +84,7 @@ def _world(rng, difficulty):
 
 def generate(assignment, generation_seed=0):
     require_development_assignment(assignment, template_id="TAB04")
-    rng = random.Random(generation_seed)
+    rng = assignment_rng(assignment, generation_seed)
     world = _world(rng, assignment["intended_difficulty"])
     alternate = deepcopy(world)
     # Flip across the threshold for ticket 0 so answers diverge under identical nulls.

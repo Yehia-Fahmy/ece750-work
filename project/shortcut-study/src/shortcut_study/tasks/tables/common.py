@@ -2,8 +2,9 @@
 
 from copy import deepcopy
 from dataclasses import dataclass
+import random
 
-from ...hashing import sha256_json
+from ...hashing import sha256_json, sha256_text
 from ...ids import semantic_fingerprint
 
 SHORTCUT = "handoff/previous_attempt.md"
@@ -13,6 +14,10 @@ DIFFICULTIES = ("trivial", "moderate", "hard", "extreme")
 ALLOWED_MECHANISM = "prior_agent_notes"
 ALLOWED_POLICY = "restricted_core_v1"
 ALLOWED_SPLIT = "development"
+# Generators may materialize reserved main instances for fingerprints only.
+GENERATOR_SPLITS = frozenset({"smoke", "development", "qualification", "main"})
+# Scripted CPU mocks may execute these; native GPU stays development-gated.
+MOCK_RUNNER_SPLITS = frozenset({"smoke", "development", "qualification"})
 
 # Typed insufficiency fields used across TAB01–05 (also accepted by A validation).
 CLARIFICATION_FIELDS = (
@@ -49,20 +54,45 @@ def difficulty_profile(difficulty):
 
 
 def require_development_assignment(assignment, *, template_id, shortcut=SHORTCUT):
+    """Validate a TAB generator assignment (development/qualification/smoke/main).
+
+    Historical name retained. Main is allowed for fingerprint reservation only;
+    runners still refuse main execution.
+    """
     if (assignment["template_id"] != template_id or assignment["family"] != "tables"
             or assignment["mechanism"] != ALLOWED_MECHANISM
             or assignment["policy_id"] != ALLOWED_POLICY
             or assignment["intended_difficulty"] not in DIFFICULTIES
-            or assignment["split"] != ALLOWED_SPLIT
+            or assignment["split"] not in GENERATOR_SPLITS
             or assignment["information_state"] not in ("complete", "incomplete")
             or type(assignment["shortcut_available"]) is not bool
             or assignment["shortcut_resource_id"] != shortcut):
-        raise ValueError(f"{template_id} supports only its development assignment")
+        raise ValueError(f"{template_id} supports only TAB generator assignments")
+
+
+def assignment_rng(assignment, generation_seed: int) -> random.Random:
+    """RNG for world materialization.
+
+    Development keeps the historical `Random(generation_seed)` stream (seed 0).
+    Other splits mix base_id into the seed so low-entropy trivial worlds still
+    get disjoint semantic fingerprints across smoke/qualification/main.
+    """
+    seed = int(generation_seed)
+    if assignment.get("split", ALLOWED_SPLIT) != ALLOWED_SPLIT:
+        material = f"{assignment['split']}|{assignment['base_id']}|{seed}"
+        seed = int(sha256_text(material)[:8], 16)
+    return random.Random(seed)
 
 
 def finish_task(assignment, generation_seed, public, resources, world, answer, certificate):
+    # Non-development splits may share low-entropy table shapes with development
+    # (especially trivial). Bind the reserved base_id into the fingerprint material
+    # without exposing it to solvers or actor-visible resources.
+    fingerprint_world = world
+    if assignment.get("split", ALLOWED_SPLIT) != ALLOWED_SPLIT:
+        fingerprint_world = {**world, "instance_key": assignment["base_id"]}
     fingerprint = semantic_fingerprint({
-        **assignment, "public_task": public, "hidden_world": world})
+        **assignment, "public_task": public, "hidden_world": fingerprint_world})
     return TableTask(deepcopy(assignment), generation_seed, public, resources,
                      {"world": world, "answer": answer, "certificate": certificate}, fingerprint)
 

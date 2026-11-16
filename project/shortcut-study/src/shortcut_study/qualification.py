@@ -18,7 +18,8 @@ from .runner import write_new
 from .runner.native import canonical_experiment_checkout, native_limits, recover_local_episode, run_local_episode
 from .runtime import GpuLease
 from .scoring import score_episode
-from .tasks.tables import APPROVED, GENERATOR_VERSION, generate_task
+from .tasks.tables import (APPROVED, DIFFICULTIES, GENERATOR_VERSION,
+                           enumerate_tab_catalog_assignments, generate_task)
 from .vertical_slice import capability_probe_assignments, enumerate_vertical_slice_assignments
 
 
@@ -201,31 +202,56 @@ def summarize(assignments, rows, telemetry, *, failure=None, evidence_kind="loca
             and all(r.get("recovery_verified") and r.get("audit_status") == "prepared_no_judge" for r in outcomes),
         "main_qualified": False, "judge_qualified": False, "G1_accepted": False,
         "capability_probe": capability,
-        "limitations": ["One TAB01 development scenario; no held-out capability evidence.",
-                        "No semantic judge inference or complete pipeline capacity forecast.",
-                        "GPU memory is sampled; unsampled peaks may be higher.",
-                        "Task correctness and policy compliance are separate from native capture compatibility."]}
+        "limitations": (
+            ["Held-out S0 TAB qualification; not a frozen main protocol.",
+             "No semantic judge inference unless separately recorded.",
+             "GPU memory is sampled; unsampled peaks may be higher."]
+            if evidence_kind == "local_model_held_out_qualification_not_main"
+            else ["One TAB01 development scenario; no held-out capability evidence.",
+                  "No semantic judge inference or complete pipeline capacity forecast.",
+                  "GPU memory is sampled; unsampled peaks may be higher.",
+                  "Task correctness and policy compliance are separate from native capture compatibility."]
+        )}
     return result
 
 
-def run_qualification(directory, *, port=18080, capability_probe=False):
+def run_qualification(directory, *, port=18080, capability_probe=False, held_out=False,
+                      difficulties=None):
     from .adapters.token_counter import LlamaCppTokenCounter
     from .runtime.server import LocalLlamaServer, inspect_local_assets
     from .runtime.telemetry import GpuTelemetry
     from .__main__ import prepare_archive
 
+    if capability_probe and held_out:
+        raise ValueError("capability probe and held-out qualification are mutually exclusive")
+
     directory = Path(directory).resolve()
     directory.mkdir(parents=True, exist_ok=False)
     config = load_development_config("local-qualification")
     limits = native_limits(config["limits"])
-    selected = capability_probe_assignments() if capability_probe else enumerate_vertical_slice_assignments()
-    evidence_kind = ("local_model_capability_probe_not_main" if capability_probe
-                     else "local_model_development_not_main")
-    assignments = [{**row, "generator_version": GENERATOR_VERSION} for row in selected]
+    if held_out:
+        selected_difficulties = tuple(difficulties) if difficulties else DIFFICULTIES
+        selected = enumerate_tab_catalog_assignments(
+            difficulties=selected_difficulties, split="qualification")
+        evidence_kind = "local_model_held_out_qualification_not_main"
+        job = "native-held-out-qualification"
+        assignments = list(selected)
+    elif capability_probe:
+        selected = capability_probe_assignments()
+        evidence_kind = "local_model_capability_probe_not_main"
+        job = "native-capability-probe"
+        assignments = [{**row, "generator_version": GENERATOR_VERSION} for row in selected]
+    else:
+        selected = enumerate_vertical_slice_assignments()
+        evidence_kind = "local_model_development_not_main"
+        job = "native-development-slice"
+        assignments = [{**row, "generator_version": GENERATOR_VERSION} for row in selected]
     started = time.monotonic()
     sources = source_manifest()
     write_new(directory / "schedule.json", {"evidence_kind": evidence_kind,
                                            "capability_probe": capability_probe,
+                                           "held_out": held_out,
+                                           "scope_tier": "S0" if held_out else None,
                                            "assignments": assignments, "config": config,
                                            "created_at": datetime.now(timezone.utc).isoformat()})
     write_new(directory / "source-manifest.json", sources)
@@ -236,7 +262,6 @@ def run_qualification(directory, *, port=18080, capability_probe=False):
     try:
         assets = inspect_local_assets(checkout)
         write_new(directory / "assets.json", assets)
-        job = "native-capability-probe" if capability_probe else "native-development-slice"
         with GpuLease(checkout, owner="qualification-operator", job=job,
                       run_id=directory.name) as lease:
             with GpuTelemetry(directory / "telemetry", interval_seconds=config["telemetry_interval_seconds"]) as telemetry:
@@ -252,7 +277,8 @@ def run_qualification(directory, *, port=18080, capability_probe=False):
                                                       evidence_sink=archive)
                         actor = LocalChatActor(server.base_url, config["model_alias"], token_counter=counter,
                                                **config["sampling"])
-                        task = generate_task(assignment)
+                        generation_seed = int(assignment.get("generation_seed", 0))
+                        task = generate_task(assignment, generation_seed=generation_seed)
                         episode_dir = directory / episode_id
                         active_id, active_directory = episode_id, episode_dir
                         episode, ledger = run_local_episode(task, actor, episode_dir, lease=lease,
@@ -319,6 +345,11 @@ def run_qualification(directory, *, port=18080, capability_probe=False):
     capability = evaluate_capability_probe(assignments, rows) if capability_probe else None
     summary = summarize(assignments, rows, telemetry_summary, failure=failure,
                         evidence_kind=evidence_kind, capability=capability)
+    if held_out:
+        summary["held_out"] = True
+        summary["scope_tier"] = "S0"
+        summary["g2_accepted"] = False
+        summary["main_qualified"] = False
     if failure:
         summary["native_slice_capture_passed"] = False
     telemetry_summary = telemetry_summary or {}

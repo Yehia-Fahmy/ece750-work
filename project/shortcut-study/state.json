@@ -206,9 +206,16 @@
         "configs/provisional/s0-tab-only/",
         "results/qualification/freeze-checklist-s0-tab-draft.md",
         "results/qualification/wp08-freeze-draft-v1.json",
-        "tests/test_provisional_s0_configs.py"
+        "tests/test_provisional_s0_configs.py",
+        "handoffs/2026-11-16-g2-held-out-packaging.md",
+        "configs/development/g2-held-out.json",
+        "templates/G2_HELD_OUT_CHECKLIST.md",
+        "GPU_RUNBOOK_G2.md",
+        "src/shortcut_study/held_out.py",
+        "tests/test_held_out.py",
+        "results/qualification/g2-held-out-packaging-v1.json"
       ],
-      "note": "WP08/G3 draft only: unsigned S0 TAB-only checklist + provisional configs. Not a freeze. G3 remains not_started; configs/frozen/ must not exist until gates pass."
+      "note": "WP08 prep: (1) unsigned S0 provisional freeze checklist under configs/provisional/s0-tab-only/ (G3 not_started). (2) CPU S0 G2 held-out packaging (schedules/reservations/mocks; g2_accepted=false). gates.G2 remains not_started until GPU held-out evidence."
     },
     {
       "id": "WP09",
@@ -264,6 +271,7 @@
   "open_items": [
     "G0 TAB-only is blocked (not accepted): 16-cell archive native-qualification-tab01-v5-16cell FAIL on PR #16 (12 completed / 4 V11 budget_limit; complete strict 5/8; incomplete strict 6/8). Re-evaluate only after a fresh PASS archive.",
     "G1 not unlocked by FAIL archive; diagnose V11 reasoning-token overflow and complete+sc-present+V00 wrong answer (36 vs 57), then re-run on a new out path.",
+    "G2 CPU packaging ready (S0 schedules/reservations/mocks); gates.G2 still requires GPU held-out actor/judge/forecast evidence per GPU_RUNBOOK_G2.md.",
     "Actual daily GPU availability must be recorded; eight hours/day is only a forecast assumption.",
     "Final course page limit and presentation arrangements require reconciliation with official instructions.",
     "Actor and judge checkpoints/settings, quality gates, and final scope require pilot qualification.",

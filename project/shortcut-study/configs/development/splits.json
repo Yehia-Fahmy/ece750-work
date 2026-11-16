@@ -17,5 +17,19 @@
     "development": "Vertical slice and generator debugging; never primary scientific claims.",
     "qualification": "Held-out capability/judge gates before freeze.",
     "main": "Frozen assigned schedule only."
+  },
+  "s0_reservations": {
+    "status": "provisional_until_freeze",
+    "packaging": "g2-held-out-packaging-v1",
+    "seed_namespaces": {
+      "smoke": 1000,
+      "development": 0,
+      "qualification": 10000,
+      "main": 20000
+    },
+    "notes": [
+      "Use package-g2-held-out / reserve-splits to materialize disjoint fingerprints.",
+      "Main is reserved for freeze; runners must refuse main execution before G3."
+    ]
   }
 }
