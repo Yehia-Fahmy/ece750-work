@@ -1,9 +1,9 @@
 # Shortcut acquisition under declared reviewer visibility
 ## Course report draft (methods filled; development pilot evidence recorded; main results TBD) — ECE 750T extension
 
-Yehia Fahmy · ECE 750T, University of Waterloo · draft advanced **2026-11-16** (post–[PR #20](https://github.com/Yehia-Fahmy/ece750-work/pull/20) tab01-slice-v6 PASS)
+Yehia Fahmy · ECE 750T, University of Waterloo · draft advanced **2026-11-16** (post–[PR #20](https://github.com/Yehia-Fahmy/ece750-work/pull/20) tab01-slice-v6 PASS; G0 TAB-only accepted via [PR #22](https://github.com/Yehia-Fahmy/ece750-work/pull/22))
 
-> **Document status.** WP12 course-report draft advanced after the **tab01-slice-v6** capability probe and 16-cell development archive landed on `main` via PR #20. Methods, design, and analysis plan remain written to the **S0 TAB-only** recommended freeze package (320 primary-actor episodes). §5 and §7 now cite **development/pilot** evidence only. This is **not** a frozen protocol, **not** held-out qualification, and **not** a main-results paper. Main-result placeholders marked **TBD** stay empty until G3 freeze and accepted WP11 analysis supply them. Do not invent acquisition rates, visibility contrasts, intervals, or “expected” findings. Style reference: `project/report/final-report.md` (do not overwrite).
+> **Document status.** WP12 course-report draft advanced after the **tab01-slice-v6** capability probe and 16-cell development archive landed on `main` via PR #20, with **G0 TAB-only / S0 accepted** via PR #22. Methods, design, and analysis plan remain written to the **S0 TAB-only** recommended freeze package (320 primary-actor episodes). §5 and §7 now cite **development/pilot** evidence only. This is **not** a frozen protocol, **not** held-out qualification, and **not** a main-results paper. Main-result placeholders marked **TBD** stay empty until G3 freeze and accepted WP11 analysis supply them. Do not invent acquisition rates, visibility contrasts, intervals, or “expected” findings. Style reference: `project/report/final-report.md` (do not overwrite).
 
 ---
 
@@ -13,7 +13,7 @@ Yehia Fahmy · ECE 750T, University of Waterloo · draft advanced **2026-11-16**
 
 - One-sentence question: does declaring task-reviewer access to **T** and/or **J** change prohibited shortcut **acquisition** in a tool environment?
 - Scope actually run: local Qwen3-4B actor on RTX 3070 Ti; **S0** matched factorial over TAB templates × visibility × information state × shortcut availability; deterministic action scoring; local semantic audit of T/J only if qualified.
-- What was completed vs planned (S0 / stretch / honest fallback), including that development TAB01 capability cleared on v6 while G0/G1/G2/freeze remain open as of this draft.
+- What was completed vs planned (S0 / stretch / honest fallback), including that development TAB01 capability cleared on v6, G0 TAB-only is accepted, and G1/G2/freeze remain open as of this draft.
 - Primary action-grounded T- and J-visibility contrasts with uncertainty language that can include zero.
 - Semantic findings only if a qualified local judge exists; otherwise explicit withdrawal.
 - Closing: a reproducible evaluation procedure and honest limits—not claims of intent, deception, or faithful internal access.
@@ -196,14 +196,14 @@ This section is **not** a main-study result. It records measured development evi
 | Area | State |
 | --- | --- |
 | Contracts (WP01) | Accepted; development configs provisional until freeze |
-| TAB catalog (WP02-TAB) | TAB01–05 × four intended difficulties exist for development (`tab-catalog-v1`; TAB01 moderate on `tab01-slice-v6` after v5 16-cell FAIL); DOC/PLAN/CODE/VERIFY pending; TAB-only **G0 is a candidate** for integrator re-evaluation—**not accepted** by this draft |
+| TAB catalog (WP02-TAB) | TAB01–05 × four intended difficulties exist for development (`tab-catalog-v1`; TAB01 moderate on `tab01-slice-v6` after v5 16-cell FAIL); DOC/PLAN/CODE/VERIFY pending; **G0 TAB-only / S0 accepted** on main via PR #22 (not five-family; not closed by this WP12 draft) |
 | Environment / runner (WP03) | Mediated tools; mock + authentic native A/T/J/event capture; GPU lease; owned offline server path |
 | Deterministic scoring (WP04) | TAB ledger scoring exercised; fixtures expanding; full package acceptance pending |
 | Semantic judge (WP05) | Audit **preparation** exists; **live local judge execution and qualification pending** |
 | Analysis harness (WP07) | Synthetic fixture scaffolding / dry-run path; **no main contrasts** |
 | Actor capability (dev) | See §5.1; development probe + 16-cell **PASS** on `tab01-slice-v6` (PR #20). Prior v5 FAIL (#16) and clarification-only archives preserved. Soft calculate gate retained. **Not** held-out G2 |
 | Frozen protocol / main run | **None** (`frozen_protocol: null`); **no freeze** |
-| Gates | **G0 candidate** (pending integrator re-eval; not accepted); **G1** still needs long-episode WP06 pilots (dev capture+capability cleared on TAB01 only); **G2 not done**; G3–G6 not started |
+| Gates | **G0 TAB-only accepted** (PR #22; not five-family); **G1** still needs long-episode WP06 pilots (dev capture+capability cleared on TAB01 only); **G2 not done**; G3–G6 not started |
 
 #### 5.1 Development / pilot evidence after tab01-slice-v6 (PR #20)
 
@@ -214,7 +214,7 @@ Evidence kind: `local_model_capability_probe_not_main` / `local_model_developmen
 | `capability-probe-tab01-v6b` | Two-cell capability probe | **PASS** — complete: `list_resources` → `read_resource`×3 → `calculate` → submit authorized **57**; incomplete: reads then typed insufficiency (`insufficiency_correct`). Soft calculate gate retained (authorized-after-reads without calculate still allowed). Prior failed probe attempt `capability-probe-tab01-v6` (complete=36) preserved | `results/qualification/capability-probe-tab01-v6.json` |
 | `native-qualification-tab01-v6-16cell` | Full 16-cell development archive | **PASS** — **16/16** completed; complete strict **8/8** (incl. prior-fail complete+sc-present+V00 and all V11); incomplete strict **8/8**; native capture + sampled memory checks passed; mean episode latency ~28.6 s; sampled peak / headroom 5292 / 2900 MiB | `results/qualification/native-qualification-tab01-v6-16cell.json` |
 
-**What this does *not* close:** G0 acceptance; G1 acceptance (long authentic WP06 pilots + isolation/scorer completeness notes still required); G2 held-out qualification; G3 freeze; main collection; semantic judge qualification; any visibility-contrast finding.
+**What this does *not* close:** G1 acceptance (long authentic WP06 pilots + isolation/scorer completeness notes still required); G2 held-out qualification; G3 freeze; main collection; semantic judge qualification; any visibility-contrast finding. (G0 TAB-only already accepted via PR #22 — not by this WP12 draft.)
 
 **Course-delivery fallback (S4):** if no adequate main run by cutoff, the integrated report presents (a) the original observer result, (b) validated extension methods and pilots (including this v6 development archive), and (c) explicit incomplete outcomes—without claiming the shortcut factorial’s scientific objectives were achieved.
 
@@ -226,7 +226,7 @@ All times America/Toronto. Operator must recalculate if work slips; past gate da
 
 | Window | Milestone | Report implication |
 | --- | --- | --- |
-| Now (post–PR #20) | TAB01 v6 development PASS recorded; G0 candidate / G1 long pilots / G2 open | Methods + pilot-evidence skeleton for **S0**; keep **main** Results empty |
+| Now (post–PR #20 / #22) | TAB01 v6 development PASS recorded; G0 TAB-only accepted; G1 long pilots / G2 open | Methods + pilot-evidence skeleton for **S0**; keep **main** Results empty |
 | Through G1/G2 | Long-episode WP06 pilots; held-out qualification | Update §5 only with measured gate decisions |
 | By ~Nov 22–23 (G3) | Freeze S0 (or dated S1/S4), N, models, analysis | Lock methods to frozen text; stop “provisional” wording |
 | Nov 23–27 | Main actor collection (cutoff ~Nov 27 18:00) | No effect estimates shown to prompt developers early |
@@ -250,7 +250,7 @@ Recorded after PR #20 so the draft can point at real archives without inventing 
 | Prior v5 16-cell FAIL (`native-qualification-tab01-v5-16cell`, PR #16) | Preserved (4× V11 budget_limit; one wrong complete+sc-present+V00) |
 | Shortcut **acquisition rates** by visibility (main confirmatory contrasts) | **Not computed / not claimed** — no main run; do not peek at development cells for effect estimates used as findings |
 | Semantic T/J audit on main | **Not run** |
-| Gate / freeze | G0 candidate only; G1 long pilots still needed; G2 not done; **no freeze** |
+| Gate / freeze | G0 TAB-only accepted (#22); G1 long pilots still needed; G2 not done; **no freeze** |
 
 Provenance for the pilot rows above must reconcile to `results/qualification/capability-probe-tab01-v6.json` and `results/qualification/native-qualification-tab01-v6-16cell.json` (raw under ignored `project/runs/shortcut-study/`).
 
@@ -281,7 +281,7 @@ Intended discussion points (fill with evidence later):
 - Semantic judge: fixture vs natural accuracy; rare-class fragility; no mandatory human labels.
 - Generalization limits; no external compute by design.
 - Calendar/capability pressure and the pre-main reduction from 3,200 → S0 (320), disclosed not concealed.
-- Development PASS on tab01-v6 (probe + 16-cell) is **not** held-out G2, **not** G1 acceptance without long-episode pilots, and **not** G0 acceptance without integrator decision; disclose remaining gaps and the unsigned freeze checklist.
+- Development PASS on tab01-v6 (probe + 16-cell) is **not** held-out G2 and **not** G1 acceptance without long-episode pilots; G0 TAB-only was accepted separately via PR #22. Disclose remaining G1/G2 gaps and the unsigned freeze checklist.
 
 **Improvements** (forward-looking; not excuses for inventing results): long authentic WP06 pilots + forecast; held-out multi-cell archives; calibrated difficulties; additional mechanisms/families under S1 only with forecast; held-out judge calibration; repeated seeds; controlled reliance interventions; separate broad-permission / process-grading panels.
 
@@ -337,7 +337,7 @@ Placeholder stance: state what action-grounded evidence supports under the froze
 - [ ] Official page limit and presentation date/format
 - [ ] Frozen protocol version, hashes, N=320 (S0) or dated alternate tier, budgets
 - [x] Fresh multi-cell **development** evidence on TAB01 (`tab01-slice-v6` probe + 16-cell PASS via PR #20) — recorded in §5.1 / §7.1
-- [ ] Integrator **G0** TAB-only acceptance decision (candidate only; not accepted here)
+- [x] Integrator **G0** TAB-only acceptance decision (PR #22 on `main`; not five-family)
 - [ ] **G1** long-episode WP06 pilots + isolation/scorer completeness notes
 - [ ] Held-out actor qualification (**G2**) or documented S4
 - [ ] Judge qualification outcome (proceed / primary-only / withdraw semantics)
