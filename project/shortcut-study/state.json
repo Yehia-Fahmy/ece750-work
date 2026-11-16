@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "updated_at": "2026-11-16",
-  "phase": "actor_16cell_tab01_v5_archive_failed_capture",
+  "phase": "g0_tab_blocked_pending_pass_16cell",
   "context_checkpoint": "ecb82d3",
   "planning_status": "implementation_in_progress",
   "execution_started": true,
@@ -20,7 +20,9 @@
     "tier": "S0",
     "label": "TAB-only one-seed MVP (provisional; not G3)",
     "families": 1,
-    "family_ids": ["tables"],
+    "family_ids": [
+      "tables"
+    ],
     "templates_per_family": 5,
     "difficulty_levels": 4,
     "instances_per_template_difficulty": 1,
@@ -36,7 +38,7 @@
     "original_course_core_episodes_withdrawn_for_dec4": 3200
   },
   "gates": {
-    "G0": "in_progress",
+    "G0": "blocked",
     "G1": "in_progress",
     "G2": "not_started",
     "G3": "not_started",
@@ -93,9 +95,11 @@
         "handoffs/2026-11-15-capability-probe-tab01-v5.md",
         "results/qualification/capability-probe-tab01-v5.json",
         "handoffs/2026-11-15-native-qualification-tab01-v5-16cell.md",
-        "results/qualification/native-qualification-tab01-v5-16cell.json"
+        "results/qualification/native-qualification-tab01-v5-16cell.json",
+        "handoffs/2026-11-16-g0-tab-blocked.md",
+        "https://github.com/Yehia-Fahmy/ece750-work/pull/16"
       ],
-      "note": "TAB01\u201305 catalog retained; TAB01 moderate on tab01-slice-v5. Probe PASS; fresh 16-cell archive ran and failed native capture (4 V11 budget_limit)."
+      "note": "TAB01\u201305 catalog retained; TAB01 moderate on tab01-slice-v5. Probe PASS. Fresh 16-cell archive FAIL on PR #16 \u2014 integrator records G0 blocked (not accepted). Five-family G0 out of S0."
     },
     {
       "id": "WP03",
@@ -258,12 +262,11 @@
     }
   ],
   "open_items": [
-    "Fresh 16-cell archive native-qualification-tab01-v5-16cell FAIL: 4/16 V11 budget_limit (reasoning token overflow) plus complete+sc-present+V00 wrong answer 36 vs 57; diagnose before re-run.",
-    "G0/G1 not unlocked by this archive; G0 still needs integrator TAB-only catalog acceptance; G1 needs passing capture + credible complete/incomplete gates then long-episode pilots.",
+    "G0 TAB-only is blocked (not accepted): 16-cell archive native-qualification-tab01-v5-16cell FAIL on PR #16 (12 completed / 4 V11 budget_limit; complete strict 5/8; incomplete strict 6/8). Re-evaluate only after a fresh PASS archive.",
+    "G1 not unlocked by FAIL archive; diagnose V11 reasoning-token overflow and complete+sc-present+V00 wrong answer (36 vs 57), then re-run on a new out path.",
     "Actual daily GPU availability must be recorded; eight hours/day is only a forecast assumption.",
     "Final course page limit and presentation arrangements require reconciliation with official instructions.",
     "Actor and judge checkpoints/settings, quality gates, and final scope require pilot qualification.",
-    "G0 remains open until integrator accepts WP01 + TAB-only catalog/spec (TAB01\u201305 evidence now ready for review; five-family G0 not required for S0).",
     "WP04 scoring fixtures beyond TAB paths, local semantic judge execution/qualification, WP07 analysis acceptance, and real freeze/collection remain pending.",
     "DOC/PLAN/CODE/VERIFY generators and non-prior-note shortcut mechanisms remain out of S0 unless stretch S1 is chosen later.",
     "WP08 S0 freeze checklist + provisional configs drafted under configs/provisional/s0-tab-only/; unsigned; awaiting gate evidence before any configs/frozen/ commit."
@@ -427,6 +430,21 @@
     "sixteen_cell_evidence": "results/qualification/native-qualification-tab01-v5-16cell.json",
     "base_tip": "cb8f5cd",
     "prior_failed_run": "capability-probe-tab01-v3",
-    "note": "Probe PASS on #13; follow-up 16-cell archive collected and failed native capture (4 V11 output-token budget). Field previously incorrectly said not_run_probe_failed."
+    "note": "Probe PASS on #13; follow-up 16-cell FAIL archived on #16. Integrator records G0 blocked_not_accepted pending fresh PASS archive."
+  },
+  "g0_gate_review": {
+    "decision": "blocked_not_accepted",
+    "scope": "TAB-only (not five-family)",
+    "date": "2026-11-16",
+    "owner": "integrator",
+    "reason": "Standing G0 close required usable 16-cell development-archive evidence after v5 probe; archive FAIL on PR #16. Catalog mocks alone are insufficient for this acceptance bar.",
+    "fail_pr": "https://github.com/Yehia-Fahmy/ece750-work/pull/16",
+    "fail_run": "native-qualification-tab01-v5-16cell",
+    "fail_evidence_on_pr": "results/qualification/native-qualification-tab01-v5-16cell.json",
+    "fail_handoff_on_pr": "handoffs/2026-11-15-native-qualification-tab01-v5-16cell.md",
+    "summary_sha256": "9a6755a4c138b758d1dee7aeb645caea99700ac499d0486a488f9d27600e0568",
+    "handoff": "handoffs/2026-11-16-g0-tab-blocked.md",
+    "reviewer": "bc-201985da-2443-5421-85c2-2061b5218c10",
+    "self_merge": false
   }
 }
