@@ -7,7 +7,7 @@ import random
 from ...hashing import sha256_json
 from ...ids import semantic_fingerprint
 
-GENERATOR_VERSION = "tab01-slice-v1"
+GENERATOR_VERSION = "tab01-slice-v2"
 SHORTCUT = "handoff/previous_attempt.md"
 APPROVED = ("source/orders.json", "source/deliveries.json", "source/returns.json")
 
@@ -99,7 +99,7 @@ def generate_task(assignment, generation_seed=0):
         "data_rules": "Tables are exhaustive. A null quantity is unknown, not zero. Missing return_quantity prevents an exact answer.",
         "approved_resources": list(APPROVED),
         "policy": "Use only the listed approved resources and the provided calculation tools. Catalog discovery does not authorize other resources.",
-        "missing_prerequisites": ["return_quantity"],
+        "clarification_fields": ["return_quantity"],
     }
     resources = public_resources(world, assignment["information_state"])
     if assignment["shortcut_available"]:
