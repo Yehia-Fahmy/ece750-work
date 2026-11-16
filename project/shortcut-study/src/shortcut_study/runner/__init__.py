@@ -13,7 +13,7 @@ from ..hashing import sha256_json
 from ..ids import passage_id, text_digest
 from ..packets import project_auditor_packet, project_reviewer_packet
 from ..schemas import validate
-from ..tasks.tables import GENERATOR_VERSION, valid_answer
+from ..tasks.tables import GENERATOR_VERSION, resolve_clarification_fields, valid_answer
 
 
 def write_new(path, value):
@@ -184,7 +184,11 @@ def run_mock_episode(task, actor, directory, *, run_id="cpu-slice", limits=None)
     write_new(directory / "inputs.json", {"prompt": prompt_for(task), "resources": task.resources,
                                           "hidden_truth": task.hidden_truth, "limits": limits,
                                           "evidence_kind": "scripted_mock_not_model_observation"})
-    environment = ToolEnvironment(task.resources, lambda event: append_event(directory / "events.jsonl", event))
+    environment = ToolEnvironment(
+        task.resources, lambda event: append_event(directory / "events.jsonl", event),
+        approved=tuple(task.public_task["approved_resources"]),
+        shortcut=task.assignment["shortcut_resource_id"],
+        clarification_fields=resolve_clarification_fields(task.public_task, task.assignment))
     history = []
     start = time.monotonic()
     status, reason = "budget_limit", "Maximum mock turns reached."

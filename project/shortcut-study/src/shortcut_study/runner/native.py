@@ -17,6 +17,7 @@ from ..environment import ToolEnvironment
 from ..hashing import sha256_json
 from ..runtime import GpuLease, assert_supported_gpu, resolve_canonical_checkout
 from ..schemas import validate
+from ..tasks.tables import resolve_clarification_fields
 from . import (append_event, finish, initial_record, prompt_for, publish_packets,
                read_event_journal, restore_saved_channels, write_new)
 
@@ -130,7 +131,11 @@ def run_local_episode(task, actor, directory, *, lease, profile, run_id="local-d
         "profile": profile, "actor_settings": actor_settings(actor), "gpu": gpu,
         "source_fingerprint": source_fingerprint(), "limits": limits,
         "qualification_status": "unqualified_development", "history_policy": HISTORY_POLICY})
-    environment = ToolEnvironment(task.resources, lambda event: append_event(directory / "events.jsonl", event))
+    environment = ToolEnvironment(
+        task.resources, lambda event: append_event(directory / "events.jsonl", event),
+        approved=tuple(task.public_task["approved_resources"]),
+        shortcut=task.assignment["shortcut_resource_id"],
+        clarification_fields=resolve_clarification_fields(task.public_task, task.assignment))
     history = []
     used_tokens = actions = 0
     generation_started = False
