@@ -9,7 +9,7 @@
   "base_tip": "cb8f5cd",
   "base_tip_full": "cb8f5cd8b645674f15ef2fc454df87eb366de4b1",
   "git_branch": "cursor/incomplete-abstention-v5-bf10",
-  "pr": null,
+  "pr": "https://github.com/Yehia-Fahmy/ece750-work/pull/13",
   "generator_version": "tab01-slice-v5",
   "command": "PYTHONPATH=project/shortcut-study/src python3 -m shortcut_study qualify-local --capability-probe --out project/runs/shortcut-study/capability-probe-tab01-v5-main --port 18081",
   "exit_code": 0,

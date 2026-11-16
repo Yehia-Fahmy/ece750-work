@@ -45,3 +45,5 @@ PR #10 merged/closed with v3 FAIL evidence on main (`cb8f5cd` from `dd7a5ee`). P
 - Unit tests: `PYTHONPATH=src python3 -m unittest discover -s tests -q` → 193 OK.
 - Soft complete gate + no-partial-answer cues + clarification_fields omitted from TAB01 actor view.
 - Incomplete path uses submit of typed insufficiency (not premature `request_clarification`).
+
+New PR: https://github.com/Yehia-Fahmy/ece750-work/pull/13
