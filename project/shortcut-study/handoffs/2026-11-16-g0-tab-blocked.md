@@ -2,7 +2,7 @@
 
 - Owner and role: integrator (G0 gate record); CPU only; no GPU ownership this turn.
 - Status: **blocked** (explicit non-acceptance)
-- Input commit and dependencies: `main` @ `cee644c` (post-#14); FAIL 16-cell evidence in open [PR #16](https://github.com/Yehia-Fahmy/ece750-work/pull/16) on `cursor/tab01-16cell-archive-7581` @ `ae9d739` (WSL operator `bc-d21717f5…`); prior catalog evidence on main via #11; WP01 accepted.
+- Input commit and dependencies: `main` @ `1c55166` (post-#14/#15/#16); FAIL 16-cell evidence merged via [PR #16](https://github.com/Yehia-Fahmy/ece750-work/pull/16) (`7c2b88d`; WSL operator `bc-d21717f5…`); prior catalog evidence on main via #11; WP01 accepted.
 - Output commit: this handoff + `state.json` gate record on `cursor/g0-tab-acceptance-8c10` (no self-merge; lagging reviewer `bc-201985da…`).
 - Paths changed; shared-contract version: gate/docs only — no schemas, generators, or frozen evidence rewritten.
 - Concrete behavior implemented: none (gate decision record only).
@@ -20,8 +20,8 @@ Five-family G0 remains out of scope for S0 regardless.
 | PR | https://github.com/Yehia-Fahmy/ece750-work/pull/16 |
 | Branch | `cursor/tab01-16cell-archive-7581` |
 | Run | `native-qualification-tab01-v5-16cell` |
-| Tracked evidence (on #16) | `results/qualification/native-qualification-tab01-v5-16cell.json` |
-| Operator handoff (on #16) | `handoffs/2026-11-15-native-qualification-tab01-v5-16cell.md` |
+| Tracked evidence (on main via #16) | `results/qualification/native-qualification-tab01-v5-16cell.json` |
+| Operator handoff (on main via #16) | `handoffs/2026-11-15-native-qualification-tab01-v5-16cell.md` |
 | Status | `development_check_failed` / CLI exit 1 / `native_slice_capture_passed=false` |
 | Terminal | 12 completed / 4 `budget_limit` (all V11) |
 | Complete strict | 5/8 |
@@ -57,7 +57,7 @@ No GPU work this turn.
 
 ## Next safe action and required dependency
 
-1. Lagging reviewer merges #16 (preserve FAIL archive) then this blocker record (rebase if needed).
+1. #16 FAIL archive is already on `main`; lagging reviewer rebases/merges this blocker record next.
 2. GPU operator diagnoses V11 reasoning overflow + complete+sc-present+V00 wrong answer; version fix; **new** out-path archive.
 3. Only after a PASS archive: reconsider TAB-only G0 acceptance in a new handoff — never by rewriting this FAIL evidence.
 
