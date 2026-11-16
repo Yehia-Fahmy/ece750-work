@@ -149,7 +149,11 @@ def run_local_episode(task, actor, directory, *, lease, profile, run_id="local-d
             cap = min(limits["max_per_turn_output_tokens"], remaining_tokens)
             payload = actor.build_request(prompt_for(task), history, max_output_tokens=cap,
                                           seed=task.assignment["replicate_seed"])
-            count = actor.count_prompt_tokens(payload)
+            remaining_seconds = limits["max_wall_time_seconds"] - (time.monotonic() - start)
+            if remaining_seconds <= 0:
+                status, reason = "budget_limit", "Wall-time budget reached before prompt counting."
+                break
+            count = actor.count_prompt_tokens(payload, timeout_seconds=remaining_seconds)
             if type(count) is not int or count < 0:
                 raise NativeAdapterError("context_limit", "Invalid exact prompt-token count.")
             if count + cap > limits["max_context_tokens"]:
@@ -169,14 +173,18 @@ def run_local_episode(task, actor, directory, *, lease, profile, run_id="local-d
                 break
             try:
                 generation_started = True
+                transport_started = time.monotonic()
                 response = actor.send(payload, timeout_seconds=remaining_seconds)
+                save_http(directory, turn, response)
             except NativeAdapterError as exc:
                 if exc.response is not None:
                     save_http(directory, turn, exc.response)
                 write_new(directory / f"turn-{turn:04d}-transport-error.json", {
                     "terminal_status": exc.terminal_status, "reason": exc.reason})
                 raise
-            save_http(directory, turn, response)
+            finally:
+                write_new(directory / f"turn-{turn:04d}-timing.json", {
+                    "transport_wall_seconds": time.monotonic() - transport_started})
             parsed, error = normalize_response(actor, response, cap)
             write_new(directory / f"turn-{turn:04d}-response.json", parsed)
             restore_saved_channels(directory, episode, read_event_journal(directory))

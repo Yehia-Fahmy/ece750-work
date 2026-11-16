@@ -1,4 +1,4 @@
-"""Entry points intentionally limited to CPU development fixtures."""
+"""Development tools, including an owned local GPU qualification run."""
 
 import argparse
 import hashlib
@@ -61,7 +61,17 @@ def main():
     audit = commands.add_parser("prepare-audit", help="Prepare verified local judge input without inference")
     audit.add_argument("--episode", type=Path, required=True)
     audit.add_argument("--out", type=Path, required=True)
+    qualify = commands.add_parser("qualify-local", help="Qualify the retained local runtime on 16 development assignments")
+    qualify.add_argument("--out", type=Path, required=True)
+    qualify.add_argument("--port", type=int, default=18080)
     args = parser.parse_args()
+    if args.command == "qualify-local":
+        from .qualification import run_qualification
+        summary = run_qualification(args.out, port=args.port)
+        print(f"Local development: {summary['terminal_counts']}; native capture passed: {summary['native_slice_capture_passed']}; output: {args.out}")
+        if not summary["local_development_check_passed"]:
+            raise SystemExit(1)
+        return
     if args.command == "recover-mock-episode":
         episode, _ = recover_mock_episode(args.directory)
         print(f"{episode['episode_id']}: {episode['terminal_status']}; no operations replayed")
