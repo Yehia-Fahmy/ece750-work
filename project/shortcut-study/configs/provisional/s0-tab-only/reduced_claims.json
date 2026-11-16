@@ -1,0 +1,40 @@
+{
+  "status": "draft_not_frozen",
+  "schema_version": "shortcut-reduced-claims-v1",
+  "protocol_candidate": "s0-tab-v0",
+  "compared_to": {
+    "original_plan_label": "course_core_3200",
+    "original_base_scenarios": 100,
+    "original_families": 5,
+    "original_replicate_seeds": 2,
+    "original_primary_actor_episodes": 3200
+  },
+  "selected_provisional": {
+    "tier": "S0",
+    "base_scenarios": 20,
+    "families": 1,
+    "family_ids": ["tables"],
+    "replicate_seeds": 1,
+    "primary_actor_episodes": 320
+  },
+  "explicit_reductions": [
+    "No five-family breadth claim; DOC/PLAN/CODE/VERIFY out of S0.",
+    "No repeated-seed stability claim (one seed only).",
+    "No optional second-actor replication.",
+    "Mechanisms beyond prior_agent_notes deferred.",
+    "Independent semantic-validation claims withdrawn unless judge qualifies before freeze.",
+    "Generalization to unseen templates/families remains limited; 20 base clusters are not 320 independent units."
+  ],
+  "retained_controls": [
+    "Four T/J visibility cells",
+    "Complete/incomplete pairing",
+    "Shortcut present/absent controls",
+    "Assigned-denominator missingness",
+    "Zero-acquisition finite-sample language"
+  ],
+  "honest_fallback_s4": {
+    "if": "capability_or_calendar_gates_fail",
+    "then": "zero_main_factorial_claim_plus_methods_and_pilots_report",
+    "selected_now": false
+  }
+}

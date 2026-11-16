@@ -1,0 +1,42 @@
+{
+  "status": "draft_not_frozen",
+  "schema_version": "shortcut-freeze-manifest-draft-v1",
+  "protocol_candidate": "s0-tab-v0",
+  "tier": "S0",
+  "created_at": "2026-11-16",
+  "timezone": "America/Toronto",
+  "freeze": {
+    "signed": false,
+    "g3_status": "not_started",
+    "frozen_directory": null,
+    "accepting_owner": null,
+    "freeze_commit": null,
+    "note": "Template only. Do not treat as G3. Real freeze writes configs/frozen/<version>/ after gates pass."
+  },
+  "scope_ref": "scope.json",
+  "splits_reservation_ref": "splits_reservation.json",
+  "schedule_plan_ref": "schedule_plan.json",
+  "checklist_ref": "results/qualification/freeze-checklist-s0-tab-draft.md",
+  "components": {
+    "budgets": "budgets.json",
+    "visibility": "visibility.json",
+    "policy": "policy.json",
+    "a_t_j_boundaries": "a_t_j_boundaries.json",
+    "analysis_protocol": "analysis_protocol.json",
+    "actor_profile": "actor_profile.json",
+    "scoring_source_of_truth": "scoring_source_of_truth.json",
+    "retry_recovery": "retry_recovery.json",
+    "reduced_claims": "reduced_claims.json"
+  },
+  "gate_prerequisites": {
+    "G0": "TAB-only catalog/spec acceptance (not five-family)",
+    "G1": "vertical slice + isolation/scorer + long-episode WP06 notes",
+    "G2": "held-out actor (and judge if in scope) qualification + measured forecast",
+    "G3": "signed checklist + configs/frozen/<version>/ commit"
+  },
+  "blocked_actions_until_real_freeze": [
+    "WP09 main actor collection",
+    "Treat these hashes/paths as immutable protocol pins",
+    "Rewrite prior qualification or observer evidence"
+  ]
+}

@@ -1,0 +1,37 @@
+# Package handoff — WP08 Qualify and freeze (draft only) — 2026-11-16
+
+- Owner and role: integrator (CPU documentation / G3 template prep)
+- Status: ready_for_review (draft artifacts only; **not** a freeze acceptance)
+- Input commit and dependencies: current `main` after TAB catalog + capability-probe work; scope ladder `/cursor/stores/self/docs/shortcut-study-scope-path.md`; template `templates/FREEZE_CHECKLIST.md`; development configs under `configs/development/`
+- Output commit (or explicitly uncommitted paths): branch `cursor/wp08-s0-freeze-draft-347e`
+- Paths changed; shared-contract version:
+  - `configs/provisional/` — new tree; explicitly **not** `configs/frozen/`
+  - `configs/provisional/s0-tab-only/` — S0 TAB-only provisional package (`s0-tab-v0`)
+  - `results/qualification/freeze-checklist-s0-tab-draft.md` — unsigned checklist (0/17 checked)
+  - `results/qualification/wp08-freeze-draft-v1.json` — evidence marker
+  - `tests/test_provisional_s0_configs.py` — status/disjointness guards
+  - `state.json` — WP08 → `in_progress` with draft evidence; **G3 remains `not_started`**; `frozen_protocol` remains null
+- Concrete behavior implemented:
+  - Draft freeze checklist for S0 (TAB-only, 320 episodes) with every gate unchecked
+  - Provisional non-frozen configs: scope, split seed/prefix reservations, schedule plan (IDs not materialized), budgets, visibility, policy, A/T/J, analysis, actor profile, scoring SoT, retry/recovery, reduced claims, draft manifest
+  - Explicit reduced-claims text vs original 3,200 course-core plan
+- Commands run and actual outcomes:
+  - `PYTHONPATH=project/shortcut-study/src python3 -m unittest discover -s project/shortcut-study/tests -p test_provisional_s0_configs.py -q` → 8 tests OK
+  - `PYTHONPATH=project/shortcut-study/src python3 -m unittest discover -s project/shortcut-study/tests -q` → 201 tests OK
+  - Preservation historical hashes (`historical_files_sha256` + design snapshot) → 112 checked, 0 mismatches
+- Evidence/manifest paths and hashes:
+  - `results/qualification/wp08-freeze-draft-v1.json`
+  - `configs/provisional/s0-tab-only/manifest.json` (`signed: false`)
+- Failures, uncertain findings, and scope limitations:
+  - **Not a real freeze.** No G2 held-out qualification; forecast placeholders; schedule IDs not materialized
+  - Actor capability probe (TAB01 v5) is not held-out family qualification
+  - Judge still unqualified; semantic claims default-withdrawn for S0
+  - G0 TAB-only acceptance and G1 scientific closure still open
+- GPU lease owner/process/job, or no GPU work: **no GPU work**
+- Terminal/incomplete/unattempted job IDs if applicable: none
+- Next safe action and required dependency:
+  - Integrator/researcher reviews draft; keep G3 unsigned until gates pass
+  - Continue CPU G0/WP04/WP07 and Yehia GPU path (fresh 16-cell archive + long pilots + forecast)
+  - On gate pass: copy/promote into `configs/frozen/<version>/`, materialize schedule, sign checklist, set `frozen_protocol`
+  - Do **not** start WP09 from this draft; do **not** self-merge as scientific freeze
+- Acceptance reviewer, decision, and date (filled on review):

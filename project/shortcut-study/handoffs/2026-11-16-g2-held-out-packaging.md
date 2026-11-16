@@ -2,7 +2,7 @@
 
 - Owner and role: integrator / CPU packaging worker; no GPU ownership.
 - Status: ready_for_review
-- Input commit and dependencies: `main` @ `838be79` (post tab01-v5 capability probe); TAB catalog + WP01 contracts; scope path S0.
+- Input commit and dependencies: `main` post-#17 (`0400696`; G0 blocked after #16 FAIL; WP08 provisional draft on main); TAB catalog + WP01 contracts; scope path S0.
 - Output commit: branch `cursor/g2-held-out-packaging-a32b` (this handoff's commit).
 - Paths changed; shared-contract version: `src/shortcut_study/held_out.py`, catalog split namespaces, mock/native qualification split support, `configs/development/g2-held-out.json`, budgets/splits notes, `templates/G2_HELD_OUT_CHECKLIST.md`, `GPU_RUNBOOK_G2.md`, CLI `package-g2-held-out` / `mock-held-out` / `qualify-local --held-out`. No episode/event schema version bump. Fresh evidence only under `results/qualification/g2-held-out-packaging-v1.json` and ignored raw `project/runs/shortcut-study/g2-held-out-packaging-v1/`.
 - Concrete behavior implemented:

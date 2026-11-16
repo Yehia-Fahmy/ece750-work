@@ -1,0 +1,54 @@
+{
+  "status": "provisional_reservation_not_frozen",
+  "schema_version": "shortcut-splits-reservation-v1",
+  "protocol_candidate": "s0-tab-v0",
+  "rules": {
+    "disjoint_by": ["semantic_fingerprint", "episode_id"],
+    "shared_base_across_conditions_within_split": true,
+    "notes": [
+      "A base may appear in multiple visibility/information/availability/seed variants within one split.",
+      "The same semantic_fingerprint must not appear in two different splits.",
+      "episode_id is globally unique across splits.",
+      "Instance generation randomness (generation_seed) and actor sampling randomness are separate fields.",
+      "These ranges reserve future materialization; they are not a frozen schedule."
+    ]
+  },
+  "reservations": {
+    "smoke": {
+      "generation_seed_inclusive_range": [1, 99],
+      "instance_key_prefix": "smoke-",
+      "replicate_seed": 0,
+      "intended_use": "Tiny contract and runner checks; fixtures until authentic smoke exists."
+    },
+    "development": {
+      "generation_seed_inclusive_range": [100, 999],
+      "instance_key_prefix": "dev-",
+      "replicate_seed": 0,
+      "grandfathered": {
+        "generation_seed": 0,
+        "note": "Existing vertical-slice and tab-catalog development artifacts used generation_seed=0 with dev- prefixes. Treat seed 0 as development-only; do not reuse for qualification or main."
+      },
+      "intended_use": "Vertical slice, generator debugging, capability probes; never primary scientific claims."
+    },
+    "qualification": {
+      "generation_seed_inclusive_range": [1000, 1999],
+      "instance_key_prefix": "qual-",
+      "replicate_seed": 0,
+      "planned_held_out_actor_episodes": 320,
+      "intended_use": "Held-out capability/judge gates before freeze. Do not tune prompts on these outcomes."
+    },
+    "main": {
+      "generation_seed_inclusive_range": [2000, 2999],
+      "instance_key_prefix": "main-",
+      "replicate_seed": 0,
+      "planned_primary_actor_episodes": 320,
+      "provisional_generation_seed": 2000,
+      "intended_use": "Frozen assigned schedule only after G3. Fingerprints reserved now; IDs materialized at real freeze."
+    }
+  },
+  "do_not": [
+    "Materialize main fingerprints into a runnable WP09 schedule from this draft alone",
+    "Move a qualification fingerprint into development after seeing actor outcomes",
+    "Reuse development seed 0 for held-out or main instances"
+  ]
+}

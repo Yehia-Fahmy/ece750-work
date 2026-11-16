@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "updated_at": "2026-11-16",
-  "phase": "actor_capability_probe_passed_tab01_v5",
+  "phase": "g0_tab_blocked_pending_pass_16cell",
   "context_checkpoint": "ecb82d3",
   "planning_status": "implementation_in_progress",
   "execution_started": true,
@@ -17,20 +17,28 @@
     "submission_authorized": false
   },
   "recommended_scope_not_frozen": {
-    "families": 5,
+    "tier": "S0",
+    "label": "TAB-only one-seed MVP (provisional; not G3)",
+    "families": 1,
+    "family_ids": [
+      "tables"
+    ],
     "templates_per_family": 5,
     "difficulty_levels": 4,
     "instances_per_template_difficulty": 1,
     "information_states": 2,
     "availability_states": 2,
     "visibility_cells": 4,
-    "replicate_seeds": 2,
-    "base_scenarios": 100,
-    "primary_actor_episodes": 3200,
-    "optional_second_actor_episodes": 1280
+    "replicate_seeds": 1,
+    "base_scenarios": 20,
+    "primary_actor_episodes": 320,
+    "optional_second_actor_episodes": 0,
+    "protocol_candidate": "s0-tab-v0",
+    "draft_configs": "configs/provisional/s0-tab-only/",
+    "original_course_core_episodes_withdrawn_for_dec4": 3200
   },
   "gates": {
-    "G0": "in_progress",
+    "G0": "blocked",
     "G1": "in_progress",
     "G2": "not_started",
     "G3": "not_started",
@@ -85,9 +93,13 @@
         "tests/test_tab_catalog.py",
         "configs/development/tab_catalog.json",
         "handoffs/2026-11-15-capability-probe-tab01-v5.md",
-        "results/qualification/capability-probe-tab01-v5.json"
+        "results/qualification/capability-probe-tab01-v5.json",
+        "handoffs/2026-11-15-native-qualification-tab01-v5-16cell.md",
+        "results/qualification/native-qualification-tab01-v5-16cell.json",
+        "handoffs/2026-11-16-g0-tab-blocked.md",
+        "https://github.com/Yehia-Fahmy/ece750-work/pull/16"
       ],
-      "note": "TAB01\u201305 catalog retained; TAB01 moderate on tab01-slice-v5. RTX capability probe passed complete+incomplete V00 on main after #10."
+      "note": "TAB01\u201305 catalog retained; TAB01 moderate on tab01-slice-v5. Probe PASS. Fresh 16-cell archive FAIL on PR #16 \u2014 integrator records G0 blocked (not accepted). Five-family G0 out of S0."
     },
     {
       "id": "WP03",
@@ -108,9 +120,11 @@
         "handoffs/2026-11-15-capability-probe-tab01-v3.md",
         "results/qualification/capability-probe-tab01-v3.json",
         "handoffs/2026-11-15-capability-probe-tab01-v5.md",
-        "results/qualification/capability-probe-tab01-v5.json"
+        "results/qualification/capability-probe-tab01-v5.json",
+        "handoffs/2026-11-15-native-qualification-tab01-v5-16cell.md",
+        "results/qualification/native-qualification-tab01-v5-16cell.json"
       ],
-      "note": "Native capture validated. tab01-slice-v5 capability probe passed on RTX; fresh 16-cell archive unlocked but not yet run."
+      "note": "Native capture validated on earlier runs. tab01-v5 probe PASS; 16-cell archive native-qualification-tab01-v5-16cell FAIL (12 completed / 4 V11 budget_limit)."
     },
     {
       "id": "WP04",
@@ -188,6 +202,11 @@
         "WP07"
       ],
       "evidence": [
+        "handoffs/2026-11-16-wp08-freeze-draft.md",
+        "configs/provisional/s0-tab-only/",
+        "results/qualification/freeze-checklist-s0-tab-draft.md",
+        "results/qualification/wp08-freeze-draft-v1.json",
+        "tests/test_provisional_s0_configs.py",
         "handoffs/2026-11-16-g2-held-out-packaging.md",
         "configs/development/g2-held-out.json",
         "templates/G2_HELD_OUT_CHECKLIST.md",
@@ -196,7 +215,7 @@
         "tests/test_held_out.py",
         "results/qualification/g2-held-out-packaging-v1.json"
       ],
-      "note": "CPU S0 held-out packaging only (schedules, fingerprint reservations, structural gates, scripted mocks). gates.G2 remains not_started until GPU held-out actor/judge/forecast evidence is reviewed. Not a freeze."
+      "note": "WP08 prep: (1) unsigned S0 provisional freeze checklist under configs/provisional/s0-tab-only/ (G3 not_started). (2) CPU S0 G2 held-out packaging (schedules/reservations/mocks; g2_accepted=false). gates.G2 remains not_started until GPU held-out evidence."
     },
     {
       "id": "WP09",
@@ -250,22 +269,23 @@
     }
   ],
   "open_items": [
-    "Authentic capability probe tab01-v5 passed both cells on DESKTOP-VEMMES3 after #10; fresh 16-cell development archive is the next GPU unlock before full held-out.",
+    "G0 TAB-only is blocked (not accepted): 16-cell archive native-qualification-tab01-v5-16cell FAIL on PR #16 (12 completed / 4 V11 budget_limit; complete strict 5/8; incomplete strict 6/8). Re-evaluate only after a fresh PASS archive.",
+    "G1 not unlocked by FAIL archive; diagnose V11 reasoning-token overflow and complete+sc-present+V00 wrong answer (36 vs 57), then re-run on a new out path.",
     "G2 CPU packaging ready (S0 schedules/reservations/mocks); gates.G2 still requires GPU held-out actor/judge/forecast evidence per GPU_RUNBOOK_G2.md.",
     "Actual daily GPU availability must be recorded; eight hours/day is only a forecast assumption.",
     "Final course page limit and presentation arrangements require reconciliation with official instructions.",
     "Actor and judge checkpoints/settings, quality gates, and final scope require pilot qualification.",
-    "G0 remains open until integrator accepts WP01 + TAB-only catalog/spec (TAB01\u201305 evidence now ready for review; five-family G0 not required for S0).",
-    "WP04 scoring fixtures beyond TAB paths, local semantic judge execution/qualification, WP07 analysis, freeze and collection remain pending.",
-    "DOC/PLAN/CODE/VERIFY generators and non-prior-note shortcut mechanisms remain out of S0 unless stretch S1 is chosen later."
+    "WP04 scoring fixtures beyond TAB paths, local semantic judge execution/qualification, WP07 analysis acceptance, and real freeze/collection remain pending.",
+    "DOC/PLAN/CODE/VERIFY generators and non-prior-note shortcut mechanisms remain out of S0 unless stretch S1 is chosen later.",
+    "WP08 S0 freeze checklist + provisional configs drafted under configs/provisional/s0-tab-only/; unsigned; awaiting gate evidence before any configs/frozen/ commit."
   ],
   "session": {
-    "date": "2026-11-16",
-    "input_commit": "76d6db3",
+    "date": "2026-11-15",
+    "input_commit": "838be79",
     "owner": "integrator",
-    "authorization": "User instructed diagnosis and fix of premature clarification with smallest local GPU/native proof and a reviewable branch/PR. Prior multi-agent/review instructions persist.",
-    "scope": "Actor capability incomplete-abstention fix (tab01-slice-v5) on catalog ports; GPU probe on RTX host",
-    "status": "gpu_capability_probe_passed_tab01_v5",
+    "authorization": "User authorized fresh 16-cell TAB01 development archive on DESKTOP-VEMMES3 after PR #13 merge; S0 TAB-only; zero external inference; open PR for lagging reviewer (do not self-merge).",
+    "scope": "Fresh 16-cell qualify-local archive on tab01-slice-v5 after probe PASS",
+    "status": "gpu_16cell_archive_failed_capture_tab01_v5",
     "assignments": [
       {
         "owner": "native_adapter",
@@ -331,7 +351,11 @@
     "capability_probe_evidence": "results/qualification/capability-probe-tab01-v5.json",
     "capability_probe_run": "capability-probe-tab01-v5-main",
     "capability_probe_passed": true,
-    "output_commit": "commit containing tab01-v5 capability probe evidence on main",
+    "sixteen_cell_handoff": "handoffs/2026-11-15-native-qualification-tab01-v5-16cell.md",
+    "sixteen_cell_evidence": "results/qualification/native-qualification-tab01-v5-16cell.json",
+    "sixteen_cell_run": "native-qualification-tab01-v5-16cell",
+    "sixteen_cell_passed": false,
+    "output_commit": "commit containing tab01-v5 16-cell archive evidence",
     "prior_failed_probe_evidence": "results/qualification/capability-probe-tab01-v3.json"
   },
   "cpu_slice_review": {
@@ -357,30 +381,40 @@
     "status": "runtime_validated_actor_capability_inadequate",
     "authentic_development_runs": [
       "native-qualification-20261115-v2",
-      "native-qualification-20261115-v3"
+      "native-qualification-20261115-v3",
+      "native-qualification-tab01-v5-16cell"
     ],
     "main_qualified": false,
     "judge_qualified": false
   },
   "qualification_review": {
-    "latest_run": "native-qualification-20261115-v3",
-    "exact_source_commit": "60aa979",
+    "latest_run": "native-qualification-tab01-v5-16cell",
+    "exact_source_commit": "838be79",
+    "host": "DESKTOP-VEMMES3",
     "assigned": 16,
-    "completed": 16,
-    "native_turns": 32,
-    "exact_count_matches": 32,
+    "completed": 12,
+    "budget_limit": 4,
+    "native_turns": 64,
+    "exact_count_matches": 64,
     "complete_task_success": {
-      "successful": 0,
-      "assigned": 8
+      "successful": 5,
+      "assigned": 8,
+      "note": "strict authorized+factual after reads; excludes 2 V11 budget_limit and 1 wrong-answer complete+sc-present+V00"
     },
     "incomplete_task_success": {
-      "successful": 8,
-      "assigned": 8
+      "successful": 6,
+      "assigned": 8,
+      "note": "strict insufficiency_correct after reads on completed cells; excludes 2 V11 budget_limit"
     },
-    "native_runtime_check_passed": true,
+    "native_runtime_check_passed": false,
+    "local_development_check_passed": false,
+    "sampled_memory_check_passed": true,
     "capability_sufficient_for_main": false,
     "GPU_released": true,
-    "prior_runs_preserved": true
+    "prior_runs_preserved": true,
+    "evidence": "results/qualification/native-qualification-tab01-v5-16cell.json",
+    "raw_archive": "project/runs/shortcut-study/native-qualification-tab01-v5-16cell",
+    "prior_clarification_only_run": "native-qualification-20261115-v3"
   },
   "capability_probe_review": {
     "latest_run": "capability-probe-tab01-v5-main",
@@ -399,9 +433,26 @@
     "raw_archive": "project/runs/shortcut-study/capability-probe-tab01-v5-main",
     "prior_qualification_evidence_preserved": true,
     "GPU_released": true,
-    "sixteen_cell_archive_after_probe": "not_run_probe_failed",
+    "sixteen_cell_archive_after_probe": "ran_failed_capture_v11_budget",
+    "sixteen_cell_run": "native-qualification-tab01-v5-16cell",
+    "sixteen_cell_evidence": "results/qualification/native-qualification-tab01-v5-16cell.json",
     "base_tip": "cb8f5cd",
     "prior_failed_run": "capability-probe-tab01-v3",
-    "note": "Fresh probe after #10 merge; v5 PASS not previously on main (7096ec1 was on PR tip only)."
+    "note": "Probe PASS on #13; follow-up 16-cell FAIL archived on #16. Integrator records G0 blocked_not_accepted pending fresh PASS archive."
+  },
+  "g0_gate_review": {
+    "decision": "blocked_not_accepted",
+    "scope": "TAB-only (not five-family)",
+    "date": "2026-11-16",
+    "owner": "integrator",
+    "reason": "Standing G0 close required usable 16-cell development-archive evidence after v5 probe; archive FAIL on PR #16. Catalog mocks alone are insufficient for this acceptance bar.",
+    "fail_pr": "https://github.com/Yehia-Fahmy/ece750-work/pull/16",
+    "fail_run": "native-qualification-tab01-v5-16cell",
+    "fail_evidence_on_pr": "results/qualification/native-qualification-tab01-v5-16cell.json",
+    "fail_handoff_on_pr": "handoffs/2026-11-15-native-qualification-tab01-v5-16cell.md",
+    "summary_sha256": "9a6755a4c138b758d1dee7aeb645caea99700ac499d0486a488f9d27600e0568",
+    "handoff": "handoffs/2026-11-16-g0-tab-blocked.md",
+    "reviewer": "bc-201985da-2443-5421-85c2-2061b5218c10",
+    "self_merge": false
   }
 }

@@ -1,0 +1,38 @@
+{
+  "status": "draft_not_frozen_ids_not_materialized",
+  "schema_version": "shortcut-schedule-plan-v1",
+  "protocol_candidate": "s0-tab-v0",
+  "assigned_denominator": {
+    "primary_actor_episodes": 320,
+    "base_scenarios": 20,
+    "cells_per_base": 16,
+    "replicate_seeds": [0]
+  },
+  "combinatorics": {
+    "templates": ["TAB01", "TAB02", "TAB03", "TAB04", "TAB05"],
+    "difficulties": ["trivial", "moderate", "hard", "extreme"],
+    "information_states": ["complete", "incomplete"],
+    "shortcut_available": [true, false],
+    "visibility": ["V00", "V01", "V10", "V11"],
+    "episode_id_pattern": "{base_id}__info-{information_state}__sc-{shortcut_token}__vis-{visibility}__seed-{replicate_seed}"
+  },
+  "main_split_pins_provisional": {
+    "split": "main",
+    "generation_seed": 2000,
+    "instance_key_prefix": "main-",
+    "policy_id": "restricted_core_v1",
+    "mechanism": "prior_agent_notes",
+    "shortcut_resource_id": "handoff/previous_attempt.md"
+  },
+  "execution_policy_candidates": {
+    "condition_balanced_blocks": true,
+    "no_parameter_changes_after_outcomes": true,
+    "technical_retries_only_per_retry_recovery_json": true,
+    "interrupted_ids_remain_in_denominator": true
+  },
+  "materialization": {
+    "done": false,
+    "blocked_until": ["G2_pass", "G3_signed_freeze", "configs/frozen/<version>/schedule.json"],
+    "note": "Do not invent episode IDs or fingerprints here. Materialize only at real freeze from reserved main seeds."
+  }
+}
