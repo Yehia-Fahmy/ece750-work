@@ -5,7 +5,7 @@ from .catalog import (BASE_SCENARIOS, TEMPLATES, enumerate_tab_catalog_assignmen
                       enumerate_tab_catalog_bases)
 from .common import (ALLOWED_MECHANISM, ALLOWED_POLICY, ALLOWED_SPLIT, CATALOG_VERSION,
                      CLARIFICATION_FIELDS, DIFFICULTIES, SHORTCUT, TAB01_SLICE_VERSION, TableTask,
-                     generator_version_for, valid_answer)
+                     generator_version_for, resolve_clarification_fields, valid_answer)
 
 # Backward-compatible TAB01 slice exports used by the vertical-slice path.
 APPROVED = tab01.APPROVED
@@ -72,6 +72,7 @@ __all__ = [
     "missing_prerequisite_for",
     "public_resources",
     "reference_total",
+    "resolve_clarification_fields",
     "solve_permitted",
     "valid_answer",
 ]

@@ -76,6 +76,8 @@ def main():
     qualify = commands.add_parser("qualify-local", help="Qualify the retained local runtime on 16 development assignments")
     qualify.add_argument("--out", type=Path, required=True)
     qualify.add_argument("--port", type=int, default=18080)
+    qualify.add_argument("--capability-probe", action="store_true",
+                         help="Run the smallest existing-slice GPU probe (complete+incomplete V00, shortcut absent)")
     score_fixtures = commands.add_parser(
         "score-fixtures",
         help="Run WP04 CPU scoring fixtures; never model inference or main collection",
@@ -123,8 +125,13 @@ def main():
         return
     if args.command == "qualify-local":
         from .qualification import run_qualification
-        summary = run_qualification(args.out, port=args.port)
-        print(f"Local development: {summary['terminal_counts']}; native capture passed: {summary['native_slice_capture_passed']}; output: {args.out}")
+        summary = run_qualification(args.out, port=args.port, capability_probe=args.capability_probe)
+        capability = summary.get("capability_probe")
+        capability_note = ""
+        if capability is not None:
+            capability_note = f"; capability probe passed: {capability['passed']}"
+        print(f"Local development: {summary['terminal_counts']}; native capture passed: "
+              f"{summary['native_slice_capture_passed']}{capability_note}; output: {args.out}")
         if not summary["local_development_check_passed"]:
             raise SystemExit(1)
         return

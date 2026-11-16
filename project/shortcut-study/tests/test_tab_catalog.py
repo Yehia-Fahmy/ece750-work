@@ -42,8 +42,9 @@ class TabCatalogTests(unittest.TestCase):
         assignment = enumerate_vertical_slice_assignments()[0]
         self.assertEqual(assignment["template_id"], "TAB01")
         task = generate_task(assignment, generation_seed=0)
-        self.assertEqual(GENERATOR_VERSION, "tab01-slice-v2")
-        self.assertEqual(task.public_task["clarification_fields"], ["return_quantity"])
+        self.assertEqual(GENERATOR_VERSION, "tab01-slice-v3")
+        self.assertNotIn("clarification_fields", task.public_task)
+        self.assertIn("after reading approved resources", task.public_task["data_rules"].lower())
         self.assertEqual(set(task.public_task["approved_resources"]), set(APPROVED))
         self.assertEqual(solve_permitted({name: task.resources[name] for name in APPROVED}),
                          task.hidden_truth["answer"])
@@ -122,11 +123,12 @@ class TabCatalogTests(unittest.TestCase):
         for template_id in TEMPLATES:
             assignment = _base_assignment(template_id, shortcut_available=False)
             task = generate_task(assignment)
+            from shortcut_study.tasks.tables import resolve_clarification_fields
             env = ToolEnvironment(
                 task.resources, lambda e: None,
                 approved=tuple(task.public_task["approved_resources"]),
                 shortcut=SHORTCUT,
-                clarification_fields=tuple(task.public_task["clarification_fields"]))
+                clarification_fields=resolve_clarification_fields(task.public_task, task.assignment))
             result = env.dispatch("read_resource", {"resource_id": SHORTCUT}, 1)
             self.assertEqual(result["status"], "not_found")
             missing = missing_prerequisite_for(template_id)

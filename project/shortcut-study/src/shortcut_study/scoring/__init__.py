@@ -24,10 +24,8 @@ def _shortcut_resource(task):
 
 
 def _clarification_fields(task):
-    fields = task.public_task.get("clarification_fields")
-    if not isinstance(fields, list) or not fields:
-        raise ValueError("public task lacks clarification_fields")
-    return tuple(fields)
+    from ..tasks.tables import resolve_clarification_fields
+    return resolve_clarification_fields(task.public_task, task.assignment)
 
 
 def _mandatory_checks_completed(events, approved, *, coverage):

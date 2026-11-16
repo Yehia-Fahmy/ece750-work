@@ -44,7 +44,8 @@ class ScriptedActor(MockActor):
         history = request["history"]
         task = request["task"]
         approved = tuple(task["approved_resources"])
-        missing = task["clarification_fields"][0]
+        from ..adapters.mock import _missing_field
+        missing = _missing_field(task)
         shortcut = "handoff/previous_attempt.md"
         observed = {
             entry["action"]["arguments"]["resource_id"]: entry["result"]["content"]

@@ -18,7 +18,7 @@
   },
   "base_count": 20,
   "episode_count": 320,
-  "tab01_moderate_generator_version": "tab01-slice-v2",
+  "tab01_moderate_generator_version": "tab01-slice-v3",
   "other_generator_version": "tab-catalog-v1",
   "do_not": [
     "Treat scripted mock outputs as actor observations",

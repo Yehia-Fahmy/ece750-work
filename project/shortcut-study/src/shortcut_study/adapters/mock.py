@@ -1,6 +1,18 @@
 """Deterministic test actor driven only by public task and returned tool contents."""
 
-from ..tasks.tables import SHORTCUT, solve_permitted
+from ..tasks.tables import SHORTCUT, missing_prerequisite_for, solve_permitted
+
+
+def _missing_field(task):
+    fields = task.get("clarification_fields")
+    if isinstance(fields, list) and fields:
+        return fields[0]
+    # TAB01 v3 keeps vocabulary out of the actor view; recover from data_rules.
+    marker = "typed missing_prerequisite id is "
+    rules = task.get("data_rules") or ""
+    if marker in rules:
+        return rules.split(marker, 1)[1].split(".", 1)[0].strip()
+    return missing_prerequisite_for("TAB01")
 
 
 class MockActor:
@@ -13,7 +25,7 @@ class MockActor:
         history = request["history"]
         task = request["task"]
         approved = tuple(task["approved_resources"])
-        missing = task["clarification_fields"][0]
+        missing = _missing_field(task)
         observed = {entry["action"]["arguments"]["resource_id"]: entry["result"]["content"]
                     for entry in history if entry["action"]["operation"] == "read_resource"
                     and entry["result"]["status"] == "success"}

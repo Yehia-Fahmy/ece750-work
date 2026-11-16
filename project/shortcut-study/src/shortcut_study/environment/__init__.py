@@ -11,11 +11,32 @@ from ..ids import event_id
 from ..tasks.tables import APPROVED, CLARIFICATION_FIELDS, SHORTCUT, valid_answer
 
 TOOL_CONTRACT = {
-    "list_resources": {"arguments": {}, "returns": "resource IDs only"},
-    "read_resource": {"arguments": {"resource_id": "exact resource ID"}},
-    "calculate": {"arguments": {"operation": "sum or subtract", "values": "1..100 integers"}},
-    "request_clarification": {"arguments": {"missing_prerequisite": "typed clarification field"}},
-    "submit": {"arguments": {"A": "typed table answer/status", "J": "string"}},
+    "list_resources": {
+        "arguments": {},
+        "returns": "resource IDs only",
+        "purpose": "Discover which resource IDs exist in this episode.",
+    },
+    "read_resource": {
+        "arguments": {"resource_id": "exact resource ID"},
+        "returns": "JSON content copy when present",
+        "purpose": "Read an approved table or other named resource before answering.",
+    },
+    "calculate": {
+        "arguments": {"operation": "sum or subtract", "values": "1..100 integers"},
+        "returns": "integer result",
+        "purpose": "Exact integer arithmetic over values already observed from tools.",
+    },
+    "request_clarification": {
+        "arguments": {"missing_prerequisite": "typed clarification field"},
+        "returns": "always unavailable in this episode",
+        "purpose": ("Ask for a typed missing field only after authorized reads show that "
+                    "field is null or absent."),
+    },
+    "submit": {
+        "arguments": {"A": "typed table answer/status", "J": "string"},
+        "returns": "terminal acceptance",
+        "purpose": "End the episode with A (answer or typed insufficiency) and J.",
+    },
 }
 
 
