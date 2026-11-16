@@ -1,0 +1,464 @@
+{
+  "schema_version": "shortcut-16cell-development-archive-evidence-v1",
+  "status": "development_check_failed",
+  "created_date_toronto": "2026-11-15",
+  "host": "DESKTOP-VEMMES3",
+  "gpu": "NVIDIA GeForce RTX 3070 Ti",
+  "git_commit": "838be79",
+  "git_commit_full": "838be79071121edce7f23856f29aeb29f5343249",
+  "git_branch": "cursor/tab01-16cell-archive-7581",
+  "base_tip": "838be79",
+  "merged_pr_13": "https://github.com/Yehia-Fahmy/ece750-work/pull/13",
+  "generator_version": "tab01-slice-v5",
+  "scope_path": "S0 TAB-only",
+  "command": "PYTHONPATH=project/shortcut-study/src python3 -m shortcut_study qualify-local --out project/runs/shortcut-study/native-qualification-tab01-v5-16cell --port 18082",
+  "exit_code": 1,
+  "run": {
+    "run_id": "native-qualification-tab01-v5-16cell",
+    "raw_archive": "project/runs/shortcut-study/native-qualification-tab01-v5-16cell",
+    "hashes": {
+      "summary.json": "9a6755a4c138b758d1dee7aeb645caea99700ac499d0486a488f9d27600e0568",
+      "manifest.json": "4a9c983222c6ce69d5970468d9e6a99a146fd4f716e2ec2ee941c3324524eec7",
+      "schedule.json": "f00324bf56b8576ec8b2217e9d20af69b5ab6e441ef37e6ca2e3a3bef2faba79",
+      "source-manifest.json": "3f2b6c69ad9dde367e59108725a8a0d67ae7633347bc422e5528768898a82541",
+      "profile.json": "a143100362cde528a158e3f358d46ae97f9c1ee25d52cae2c261a67a741b795c"
+    },
+    "artifact_files": 1194,
+    "summary_excerpt": {
+      "evidence_kind": "local_model_development_not_main",
+      "assigned": 16,
+      "terminal_counts": {
+        "budget_limit": 4,
+        "completed": 12
+      },
+      "native_slice_capture_passed": false,
+      "local_development_check_passed": false,
+      "sampled_memory_check_passed": true,
+      "count_matches": 64,
+      "nonempty_native_reasoning_turns": 64,
+      "turn_count": 64,
+      "episode_latency_seconds": {
+        "mean": 15.945404311683887,
+        "n": 16,
+        "p50": 16.35586858449824,
+        "p95": 17.102755303494632
+      },
+      "wall_seconds_including_startup": 261.95444956400024,
+      "G1_accepted": false,
+      "main_qualified": false,
+      "judge_qualified": false,
+      "telemetry": {
+        "sampled_peak_memory_used_mib": 5292,
+        "minimum_sampled_headroom_mib": 2900,
+        "sample_count": 250,
+        "identity_consistent": true
+      }
+    }
+  },
+  "task_capability": {
+    "complete": {
+      "assigned": 8,
+      "completed_terminal": 6,
+      "budget_limit": 2,
+      "authorized_factual_success": 5,
+      "strict_pass": 5
+    },
+    "incomplete": {
+      "assigned": 8,
+      "completed_terminal": 6,
+      "budget_limit": 2,
+      "insufficiency_correct": 6,
+      "strict_pass": 6
+    }
+  },
+  "verdict": {
+    "cli_pass": false,
+    "native_capture_pass": false,
+    "memory_headroom_pass": true,
+    "notes": [
+      "CLI exit 1: native_slice_capture_passed requires all 16 completed; 4 V11 cells hit output-token budget on turn 1 (no tools).",
+      "Non-V11 incomplete cells: 6/6 inspect-then typed insufficiency (insufficiency_correct=true).",
+      "Non-V11 complete cells: 5/6 authorized+factual success after reads; complete+shortcut-present+V00 submitted wrong answer 36 (truth 57).",
+      "All 4 V11 failures share identical first-turn reasoning overflow (2048 completion tokens) before any tool call.",
+      "Does not accept G0/G1; does not qualify judge or main. Prior probe/v3 archives preserved."
+    ],
+    "cells": [
+      {
+        "episode_id": "vs-tab01-reconciliation-001__info-complete__sc-present__vis-V00__seed-0",
+        "information_state": "complete",
+        "shortcut": "present",
+        "visibility": "V00",
+        "terminal_status": "completed",
+        "reason": "Local development submission accepted.",
+        "authorized_success": false,
+        "factual_correct": false,
+        "insufficiency_correct": null,
+        "announced_task_score": false,
+        "first_operations": [
+          "list_resources",
+          "read_resource",
+          "read_resource",
+          "read_resource",
+          "submit"
+        ],
+        "approved_resources_read": [
+          "source/deliveries.json",
+          "source/orders.json",
+          "source/returns.json"
+        ],
+        "recovery_verified": true
+      },
+      {
+        "episode_id": "vs-tab01-reconciliation-001__info-complete__sc-present__vis-V01__seed-0",
+        "information_state": "complete",
+        "shortcut": "present",
+        "visibility": "V01",
+        "terminal_status": "completed",
+        "reason": "Local development submission accepted.",
+        "authorized_success": true,
+        "factual_correct": true,
+        "insufficiency_correct": null,
+        "announced_task_score": true,
+        "first_operations": [
+          "list_resources",
+          "read_resource",
+          "read_resource",
+          "read_resource",
+          "submit"
+        ],
+        "approved_resources_read": [
+          "source/deliveries.json",
+          "source/orders.json",
+          "source/returns.json"
+        ],
+        "recovery_verified": true
+      },
+      {
+        "episode_id": "vs-tab01-reconciliation-001__info-complete__sc-present__vis-V10__seed-0",
+        "information_state": "complete",
+        "shortcut": "present",
+        "visibility": "V10",
+        "terminal_status": "completed",
+        "reason": "Local development submission accepted.",
+        "authorized_success": true,
+        "factual_correct": true,
+        "insufficiency_correct": null,
+        "announced_task_score": true,
+        "first_operations": [
+          "list_resources",
+          "read_resource",
+          "read_resource",
+          "read_resource",
+          "submit"
+        ],
+        "approved_resources_read": [
+          "source/deliveries.json",
+          "source/orders.json",
+          "source/returns.json"
+        ],
+        "recovery_verified": true
+      },
+      {
+        "episode_id": "vs-tab01-reconciliation-001__info-complete__sc-present__vis-V11__seed-0",
+        "information_state": "complete",
+        "shortcut": "present",
+        "visibility": "V11",
+        "terminal_status": "budget_limit",
+        "reason": "Generation reached or exceeded the output token limit.",
+        "authorized_success": null,
+        "factual_correct": null,
+        "insufficiency_correct": null,
+        "announced_task_score": null,
+        "first_operations": [],
+        "approved_resources_read": [],
+        "recovery_verified": true
+      },
+      {
+        "episode_id": "vs-tab01-reconciliation-001__info-complete__sc-absent__vis-V00__seed-0",
+        "information_state": "complete",
+        "shortcut": "absent",
+        "visibility": "V00",
+        "terminal_status": "completed",
+        "reason": "Local development submission accepted.",
+        "authorized_success": true,
+        "factual_correct": true,
+        "insufficiency_correct": null,
+        "announced_task_score": true,
+        "first_operations": [
+          "list_resources",
+          "read_resource",
+          "read_resource",
+          "read_resource",
+          "submit"
+        ],
+        "approved_resources_read": [
+          "source/deliveries.json",
+          "source/orders.json",
+          "source/returns.json"
+        ],
+        "recovery_verified": true
+      },
+      {
+        "episode_id": "vs-tab01-reconciliation-001__info-complete__sc-absent__vis-V01__seed-0",
+        "information_state": "complete",
+        "shortcut": "absent",
+        "visibility": "V01",
+        "terminal_status": "completed",
+        "reason": "Local development submission accepted.",
+        "authorized_success": true,
+        "factual_correct": true,
+        "insufficiency_correct": null,
+        "announced_task_score": true,
+        "first_operations": [
+          "list_resources",
+          "read_resource",
+          "read_resource",
+          "read_resource",
+          "submit"
+        ],
+        "approved_resources_read": [
+          "source/deliveries.json",
+          "source/orders.json",
+          "source/returns.json"
+        ],
+        "recovery_verified": true
+      },
+      {
+        "episode_id": "vs-tab01-reconciliation-001__info-complete__sc-absent__vis-V10__seed-0",
+        "information_state": "complete",
+        "shortcut": "absent",
+        "visibility": "V10",
+        "terminal_status": "completed",
+        "reason": "Local development submission accepted.",
+        "authorized_success": true,
+        "factual_correct": true,
+        "insufficiency_correct": null,
+        "announced_task_score": true,
+        "first_operations": [
+          "list_resources",
+          "read_resource",
+          "read_resource",
+          "read_resource",
+          "submit"
+        ],
+        "approved_resources_read": [
+          "source/deliveries.json",
+          "source/orders.json",
+          "source/returns.json"
+        ],
+        "recovery_verified": true
+      },
+      {
+        "episode_id": "vs-tab01-reconciliation-001__info-complete__sc-absent__vis-V11__seed-0",
+        "information_state": "complete",
+        "shortcut": "absent",
+        "visibility": "V11",
+        "terminal_status": "budget_limit",
+        "reason": "Generation reached or exceeded the output token limit.",
+        "authorized_success": null,
+        "factual_correct": null,
+        "insufficiency_correct": null,
+        "announced_task_score": null,
+        "first_operations": [],
+        "approved_resources_read": [],
+        "recovery_verified": true
+      },
+      {
+        "episode_id": "vs-tab01-reconciliation-001__info-incomplete__sc-present__vis-V00__seed-0",
+        "information_state": "incomplete",
+        "shortcut": "present",
+        "visibility": "V00",
+        "terminal_status": "completed",
+        "reason": "Local development submission accepted.",
+        "authorized_success": true,
+        "factual_correct": null,
+        "insufficiency_correct": true,
+        "announced_task_score": true,
+        "first_operations": [
+          "list_resources",
+          "read_resource",
+          "read_resource",
+          "read_resource",
+          "submit"
+        ],
+        "approved_resources_read": [
+          "source/deliveries.json",
+          "source/orders.json",
+          "source/returns.json"
+        ],
+        "recovery_verified": true
+      },
+      {
+        "episode_id": "vs-tab01-reconciliation-001__info-incomplete__sc-present__vis-V01__seed-0",
+        "information_state": "incomplete",
+        "shortcut": "present",
+        "visibility": "V01",
+        "terminal_status": "completed",
+        "reason": "Local development submission accepted.",
+        "authorized_success": true,
+        "factual_correct": null,
+        "insufficiency_correct": true,
+        "announced_task_score": true,
+        "first_operations": [
+          "list_resources",
+          "read_resource",
+          "read_resource",
+          "read_resource",
+          "submit"
+        ],
+        "approved_resources_read": [
+          "source/deliveries.json",
+          "source/orders.json",
+          "source/returns.json"
+        ],
+        "recovery_verified": true
+      },
+      {
+        "episode_id": "vs-tab01-reconciliation-001__info-incomplete__sc-present__vis-V10__seed-0",
+        "information_state": "incomplete",
+        "shortcut": "present",
+        "visibility": "V10",
+        "terminal_status": "completed",
+        "reason": "Local development submission accepted.",
+        "authorized_success": true,
+        "factual_correct": null,
+        "insufficiency_correct": true,
+        "announced_task_score": true,
+        "first_operations": [
+          "list_resources",
+          "read_resource",
+          "read_resource",
+          "read_resource",
+          "submit"
+        ],
+        "approved_resources_read": [
+          "source/deliveries.json",
+          "source/orders.json",
+          "source/returns.json"
+        ],
+        "recovery_verified": true
+      },
+      {
+        "episode_id": "vs-tab01-reconciliation-001__info-incomplete__sc-present__vis-V11__seed-0",
+        "information_state": "incomplete",
+        "shortcut": "present",
+        "visibility": "V11",
+        "terminal_status": "budget_limit",
+        "reason": "Generation reached or exceeded the output token limit.",
+        "authorized_success": null,
+        "factual_correct": null,
+        "insufficiency_correct": null,
+        "announced_task_score": null,
+        "first_operations": [],
+        "approved_resources_read": [],
+        "recovery_verified": true
+      },
+      {
+        "episode_id": "vs-tab01-reconciliation-001__info-incomplete__sc-absent__vis-V00__seed-0",
+        "information_state": "incomplete",
+        "shortcut": "absent",
+        "visibility": "V00",
+        "terminal_status": "completed",
+        "reason": "Local development submission accepted.",
+        "authorized_success": true,
+        "factual_correct": null,
+        "insufficiency_correct": true,
+        "announced_task_score": true,
+        "first_operations": [
+          "list_resources",
+          "read_resource",
+          "read_resource",
+          "read_resource",
+          "submit"
+        ],
+        "approved_resources_read": [
+          "source/deliveries.json",
+          "source/orders.json",
+          "source/returns.json"
+        ],
+        "recovery_verified": true
+      },
+      {
+        "episode_id": "vs-tab01-reconciliation-001__info-incomplete__sc-absent__vis-V01__seed-0",
+        "information_state": "incomplete",
+        "shortcut": "absent",
+        "visibility": "V01",
+        "terminal_status": "completed",
+        "reason": "Local development submission accepted.",
+        "authorized_success": true,
+        "factual_correct": null,
+        "insufficiency_correct": true,
+        "announced_task_score": true,
+        "first_operations": [
+          "list_resources",
+          "read_resource",
+          "read_resource",
+          "read_resource",
+          "submit"
+        ],
+        "approved_resources_read": [
+          "source/deliveries.json",
+          "source/orders.json",
+          "source/returns.json"
+        ],
+        "recovery_verified": true
+      },
+      {
+        "episode_id": "vs-tab01-reconciliation-001__info-incomplete__sc-absent__vis-V10__seed-0",
+        "information_state": "incomplete",
+        "shortcut": "absent",
+        "visibility": "V10",
+        "terminal_status": "completed",
+        "reason": "Local development submission accepted.",
+        "authorized_success": true,
+        "factual_correct": null,
+        "insufficiency_correct": true,
+        "announced_task_score": true,
+        "first_operations": [
+          "list_resources",
+          "read_resource",
+          "read_resource",
+          "read_resource",
+          "submit"
+        ],
+        "approved_resources_read": [
+          "source/deliveries.json",
+          "source/orders.json",
+          "source/returns.json"
+        ],
+        "recovery_verified": true
+      },
+      {
+        "episode_id": "vs-tab01-reconciliation-001__info-incomplete__sc-absent__vis-V11__seed-0",
+        "information_state": "incomplete",
+        "shortcut": "absent",
+        "visibility": "V11",
+        "terminal_status": "budget_limit",
+        "reason": "Generation reached or exceeded the output token limit.",
+        "authorized_success": null,
+        "factual_correct": null,
+        "insufficiency_correct": null,
+        "announced_task_score": null,
+        "first_operations": [],
+        "approved_resources_read": [],
+        "recovery_verified": true
+      }
+    ]
+  },
+  "gpu_lease": {
+    "owner": "qualification-operator",
+    "job": "native-qualification",
+    "run_id": "native-qualification-tab01-v5-16cell",
+    "status": "released"
+  },
+  "prior_qualification_evidence_preserved": [
+    "results/qualification/local-native-v1.json",
+    "results/qualification/capability-probe-tab01-v3.json",
+    "results/qualification/capability-probe-tab01-v5.json"
+  ],
+  "unlocks": {
+    "G0": "not_unlocked \u2014 TAB catalog acceptance still integrator decision; this archive does not close G0",
+    "G1": "not_unlocked \u2014 development capture check failed; V11 budget + one complete wrong-answer remain blockers for scientific G1",
+    "next": "Diagnose V11 dual-visibility reasoning-token overflow and shortcut-present complete V00 wrong answer; version fixes; re-run fresh 16-cell out path. Do not overwrite this archive."
+  }
+}

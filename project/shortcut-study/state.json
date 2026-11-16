@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "updated_at": "2026-11-16",
-  "phase": "actor_capability_probe_passed_tab01_v5",
+  "phase": "actor_16cell_tab01_v5_archive_failed_capture",
   "context_checkpoint": "ecb82d3",
   "planning_status": "implementation_in_progress",
   "execution_started": true,
@@ -91,9 +91,11 @@
         "tests/test_tab_catalog.py",
         "configs/development/tab_catalog.json",
         "handoffs/2026-11-15-capability-probe-tab01-v5.md",
-        "results/qualification/capability-probe-tab01-v5.json"
+        "results/qualification/capability-probe-tab01-v5.json",
+        "handoffs/2026-11-15-native-qualification-tab01-v5-16cell.md",
+        "results/qualification/native-qualification-tab01-v5-16cell.json"
       ],
-      "note": "TAB01\u201305 catalog retained; TAB01 moderate on tab01-slice-v5. RTX capability probe passed complete+incomplete V00 on main after #10."
+      "note": "TAB01\u201305 catalog retained; TAB01 moderate on tab01-slice-v5. Probe PASS; fresh 16-cell archive ran and failed native capture (4 V11 budget_limit)."
     },
     {
       "id": "WP03",
@@ -114,9 +116,11 @@
         "handoffs/2026-11-15-capability-probe-tab01-v3.md",
         "results/qualification/capability-probe-tab01-v3.json",
         "handoffs/2026-11-15-capability-probe-tab01-v5.md",
-        "results/qualification/capability-probe-tab01-v5.json"
+        "results/qualification/capability-probe-tab01-v5.json",
+        "handoffs/2026-11-15-native-qualification-tab01-v5-16cell.md",
+        "results/qualification/native-qualification-tab01-v5-16cell.json"
       ],
-      "note": "Native capture validated. tab01-slice-v5 capability probe passed on RTX; fresh 16-cell archive unlocked but not yet run."
+      "note": "Native capture validated on earlier runs. tab01-v5 probe PASS; 16-cell archive native-qualification-tab01-v5-16cell FAIL (12 completed / 4 V11 budget_limit)."
     },
     {
       "id": "WP04",
@@ -254,7 +258,8 @@
     }
   ],
   "open_items": [
-    "Authentic capability probe tab01-v5 passed both cells on DESKTOP-VEMMES3 after #10; fresh 16-cell development archive is the next GPU unlock.",
+    "Fresh 16-cell archive native-qualification-tab01-v5-16cell FAIL: 4/16 V11 budget_limit (reasoning token overflow) plus complete+sc-present+V00 wrong answer 36 vs 57; diagnose before re-run.",
+    "G0/G1 not unlocked by this archive; G0 still needs integrator TAB-only catalog acceptance; G1 needs passing capture + credible complete/incomplete gates then long-episode pilots.",
     "Actual daily GPU availability must be recorded; eight hours/day is only a forecast assumption.",
     "Final course page limit and presentation arrangements require reconciliation with official instructions.",
     "Actor and judge checkpoints/settings, quality gates, and final scope require pilot qualification.",
@@ -264,12 +269,12 @@
     "WP08 S0 freeze checklist + provisional configs drafted under configs/provisional/s0-tab-only/; unsigned; awaiting gate evidence before any configs/frozen/ commit."
   ],
   "session": {
-    "date": "2026-11-16",
-    "input_commit": "76d6db3",
+    "date": "2026-11-15",
+    "input_commit": "838be79",
     "owner": "integrator",
-    "authorization": "User instructed diagnosis and fix of premature clarification with smallest local GPU/native proof and a reviewable branch/PR. Prior multi-agent/review instructions persist.",
-    "scope": "Actor capability incomplete-abstention fix (tab01-slice-v5) on catalog ports; GPU probe on RTX host",
-    "status": "gpu_capability_probe_passed_tab01_v5",
+    "authorization": "User authorized fresh 16-cell TAB01 development archive on DESKTOP-VEMMES3 after PR #13 merge; S0 TAB-only; zero external inference; open PR for lagging reviewer (do not self-merge).",
+    "scope": "Fresh 16-cell qualify-local archive on tab01-slice-v5 after probe PASS",
+    "status": "gpu_16cell_archive_failed_capture_tab01_v5",
     "assignments": [
       {
         "owner": "native_adapter",
@@ -335,7 +340,11 @@
     "capability_probe_evidence": "results/qualification/capability-probe-tab01-v5.json",
     "capability_probe_run": "capability-probe-tab01-v5-main",
     "capability_probe_passed": true,
-    "output_commit": "commit containing tab01-v5 capability probe evidence on main",
+    "sixteen_cell_handoff": "handoffs/2026-11-15-native-qualification-tab01-v5-16cell.md",
+    "sixteen_cell_evidence": "results/qualification/native-qualification-tab01-v5-16cell.json",
+    "sixteen_cell_run": "native-qualification-tab01-v5-16cell",
+    "sixteen_cell_passed": false,
+    "output_commit": "commit containing tab01-v5 16-cell archive evidence",
     "prior_failed_probe_evidence": "results/qualification/capability-probe-tab01-v3.json"
   },
   "cpu_slice_review": {
@@ -361,30 +370,40 @@
     "status": "runtime_validated_actor_capability_inadequate",
     "authentic_development_runs": [
       "native-qualification-20261115-v2",
-      "native-qualification-20261115-v3"
+      "native-qualification-20261115-v3",
+      "native-qualification-tab01-v5-16cell"
     ],
     "main_qualified": false,
     "judge_qualified": false
   },
   "qualification_review": {
-    "latest_run": "native-qualification-20261115-v3",
-    "exact_source_commit": "60aa979",
+    "latest_run": "native-qualification-tab01-v5-16cell",
+    "exact_source_commit": "838be79",
+    "host": "DESKTOP-VEMMES3",
     "assigned": 16,
-    "completed": 16,
-    "native_turns": 32,
-    "exact_count_matches": 32,
+    "completed": 12,
+    "budget_limit": 4,
+    "native_turns": 64,
+    "exact_count_matches": 64,
     "complete_task_success": {
-      "successful": 0,
-      "assigned": 8
+      "successful": 5,
+      "assigned": 8,
+      "note": "strict authorized+factual after reads; excludes 2 V11 budget_limit and 1 wrong-answer complete+sc-present+V00"
     },
     "incomplete_task_success": {
-      "successful": 8,
-      "assigned": 8
+      "successful": 6,
+      "assigned": 8,
+      "note": "strict insufficiency_correct after reads on completed cells; excludes 2 V11 budget_limit"
     },
-    "native_runtime_check_passed": true,
+    "native_runtime_check_passed": false,
+    "local_development_check_passed": false,
+    "sampled_memory_check_passed": true,
     "capability_sufficient_for_main": false,
     "GPU_released": true,
-    "prior_runs_preserved": true
+    "prior_runs_preserved": true,
+    "evidence": "results/qualification/native-qualification-tab01-v5-16cell.json",
+    "raw_archive": "project/runs/shortcut-study/native-qualification-tab01-v5-16cell",
+    "prior_clarification_only_run": "native-qualification-20261115-v3"
   },
   "capability_probe_review": {
     "latest_run": "capability-probe-tab01-v5-main",
@@ -403,9 +422,11 @@
     "raw_archive": "project/runs/shortcut-study/capability-probe-tab01-v5-main",
     "prior_qualification_evidence_preserved": true,
     "GPU_released": true,
-    "sixteen_cell_archive_after_probe": "not_run_probe_failed",
+    "sixteen_cell_archive_after_probe": "ran_failed_capture_v11_budget",
+    "sixteen_cell_run": "native-qualification-tab01-v5-16cell",
+    "sixteen_cell_evidence": "results/qualification/native-qualification-tab01-v5-16cell.json",
     "base_tip": "cb8f5cd",
     "prior_failed_run": "capability-probe-tab01-v3",
-    "note": "Fresh probe after #10 merge; v5 PASS not previously on main (7096ec1 was on PR tip only)."
+    "note": "Probe PASS on #13; follow-up 16-cell archive collected and failed native capture (4 V11 output-token budget). Field previously incorrectly said not_run_probe_failed."
   }
 }
