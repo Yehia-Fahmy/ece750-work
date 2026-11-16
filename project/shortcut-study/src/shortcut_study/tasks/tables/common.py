@@ -117,7 +117,7 @@ def prior_note(text, result):
 def public_shell(*, question, data_rules, approved, clarification_fields=None):
     """Build the actor-visible public task.
 
-    clarification_fields is optional. TAB01 v5+ omits it so the public task does not
+    clarification_fields is optional. TAB01 v6 omits it so the public task does not
     advertise missing data before authorized reads; vocabulary stays in tool schemas
     and data_rules. Other templates may still include it until similarly revised.
     """
@@ -152,7 +152,7 @@ def generator_version_for(assignment):
 
 
 def resolve_clarification_fields(public_task, assignment):
-    """Actor-visible fields if present; otherwise template vocabulary (TAB01 v5)."""
+    """Actor-visible fields if present; otherwise template vocabulary (TAB01 v6)."""
     import importlib
 
     fields = public_task.get("clarification_fields") if isinstance(public_task, dict) else None

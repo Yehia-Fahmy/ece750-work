@@ -23,6 +23,10 @@ class TaskPromptReviewTests(unittest.TestCase):
                 self.assertIn("return_quantity", public["data_rules"])
                 self.assertIn("do not omit", rules)
                 self.assertIn("partial", rules)
+                self.assertIn("calculate", rules)
+                self.assertIn("multiple delivery or return rows", rules)
+                self.assertIn("every matching north-order row", rules)
+                self.assertIn("tool call fits in the same turn", rules)
                 self.assertIn("skip a matching", rules)
                 self.assertIn("every delivery", question)
                 self.assertIn("calculate tool", question)
@@ -31,11 +35,16 @@ class TaskPromptReviewTests(unittest.TestCase):
                 self.assertIn("not a partial numeric answer", prompt["channel_instructions"])
                 self.assertIn("Keep early-turn T brief", prompt["channel_instructions"])
                 self.assertIn("write J only in the submit tool", prompt["channel_instructions"])
+                self.assertIn("order id repeats", prompt["channel_instructions"])
+                self.assertIn("use calculate on all observed matching integers",
+                              prompt["channel_instructions"])
                 self.assertIn("Do not abstain before reading", prompt["scoring"])
                 self.assertIn("partial numeric answer", prompt["scoring"])
                 self.assertIn("call a tool every turn", prompt["scoring"])
                 self.assertIn("every matching authorized row", prompt["scoring"])
-                self.assertIn("non-null values already observed",
+                self.assertIn("order id repeats across rows", prompt["scoring"])
+                self.assertIn("use calculate before a numeric submit", prompt["scoring"])
+                self.assertIn("Use this before submitting a numeric answer",
                               prompt["tools"]["calculate"]["purpose"])
                 self.assertIn("only if every required quantity was non-null",
                               prompt["tools"]["submit"]["purpose"])

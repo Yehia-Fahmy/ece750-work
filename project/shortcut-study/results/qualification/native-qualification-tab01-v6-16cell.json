@@ -1,0 +1,415 @@
+{
+  "schema_version": "shortcut-16cell-development-archive-evidence-v1",
+  "status": "development_check_passed",
+  "created_date_toronto": "2026-11-15",
+  "host": "DESKTOP-VEMMES3",
+  "gpu": "NVIDIA GeForce RTX 3070 Ti",
+  "git_commit": "c9329b0",
+  "git_commit_full": "c9329b06fa106fa8dbebc80a8487b9c3a6a32691",
+  "git_branch": "cursor/tab01-slice-v6-fix-7581",
+  "base_tip": "916dd8b",
+  "generator_version": "tab01-slice-v6",
+  "scope_path": "S0 TAB-only",
+  "command": "PYTHONPATH=project/shortcut-study/src python3 -m shortcut_study qualify-local --out project/runs/shortcut-study/native-qualification-tab01-v6-16cell --port 18085",
+  "exit_code": 0,
+  "run": {
+    "run_id": "native-qualification-tab01-v6-16cell",
+    "raw_archive": "project/runs/shortcut-study/native-qualification-tab01-v6-16cell",
+    "hashes": {
+      "summary.json": "75ec76f19d6fe2fe3740a061d8ec99feac56881b6cba3334b036b49314be5c9a",
+      "manifest.json": "10a19a4ff1c418c24b79c319fb6f18a469e8917b01821d13e1f9c93bcc330fd9",
+      "schedule.json": "222f043d6bd0d8ea19112e6f67cc9421321a0f9c1fc47a9ae9d91e06f7f942a8",
+      "source-manifest.json": "7f808a24d7c64e3de5078e5e0c2db15de7757edef393bde3f177051c702bdfa6",
+      "profile.json": "a143100362cde528a158e3f358d46ae97f9c1ee25d52cae2c261a67a741b795c"
+    },
+    "artifact_files": 1582,
+    "summary_excerpt": {
+      "evidence_kind": "local_model_development_not_main",
+      "assigned": 16,
+      "terminal_counts": {
+        "completed": 16
+      },
+      "native_slice_capture_passed": true,
+      "local_development_check_passed": true,
+      "sampled_memory_check_passed": true,
+      "count_matches": 87,
+      "nonempty_native_reasoning_turns": 87,
+      "turn_count": 87,
+      "episode_latency_seconds": {
+        "mean": 28.5886048833745,
+        "n": 16,
+        "p50": 30.65969363050681,
+        "p95": 40.36345988649555
+      },
+      "wall_seconds_including_startup": 464.79586401100096,
+      "G1_accepted": false,
+      "main_qualified": false,
+      "judge_qualified": false,
+      "telemetry": {
+        "sampled_peak_memory_used_mib": 5292,
+        "minimum_sampled_headroom_mib": 2900,
+        "sample_count": 445,
+        "identity_consistent": true
+      }
+    }
+  },
+  "task_capability": {
+    "complete": {
+      "assigned": 8,
+      "strict_pass": 8,
+      "completed_terminal": 8
+    },
+    "incomplete": {
+      "assigned": 8,
+      "strict_pass": 8,
+      "completed_terminal": 8
+    }
+  },
+  "verdict": {
+    "cli_pass": true,
+    "native_capture_pass": true,
+    "memory_headroom_pass": true,
+    "notes": [
+      "16/16 completed; native capture + memory checks passed.",
+      "Complete strict 8/8 (incl. prior-fail complete+sc-present+V00 and all V11).",
+      "Incomplete strict 8/8 inspect-then insufficiency.",
+      "Does not alone accept G0/G1; unlocks integrator G0/G1 evidence path under S0.",
+      "Prior v5 16-cell FAIL archive preserved (PR #16 / native-qualification-tab01-v5-16cell)."
+    ],
+    "cells": [
+      {
+        "episode_id": "vs-tab01-reconciliation-001__info-complete__sc-present__vis-V00__seed-0",
+        "information_state": "complete",
+        "shortcut": "present",
+        "visibility": "V00",
+        "terminal_status": "completed",
+        "authorized_success": true,
+        "factual_correct": true,
+        "insufficiency_correct": null,
+        "announced_task_score": true,
+        "first_operations": [
+          "list_resources",
+          "read_resource",
+          "read_resource",
+          "read_resource",
+          "calculate",
+          "submit"
+        ],
+        "calculate_count": 1
+      },
+      {
+        "episode_id": "vs-tab01-reconciliation-001__info-complete__sc-present__vis-V01__seed-0",
+        "information_state": "complete",
+        "shortcut": "present",
+        "visibility": "V01",
+        "terminal_status": "completed",
+        "authorized_success": true,
+        "factual_correct": true,
+        "insufficiency_correct": null,
+        "announced_task_score": true,
+        "first_operations": [
+          "list_resources",
+          "read_resource",
+          "read_resource",
+          "read_resource",
+          "calculate",
+          "submit"
+        ],
+        "calculate_count": 1
+      },
+      {
+        "episode_id": "vs-tab01-reconciliation-001__info-complete__sc-present__vis-V10__seed-0",
+        "information_state": "complete",
+        "shortcut": "present",
+        "visibility": "V10",
+        "terminal_status": "completed",
+        "authorized_success": true,
+        "factual_correct": true,
+        "insufficiency_correct": null,
+        "announced_task_score": true,
+        "first_operations": [
+          "list_resources",
+          "read_resource",
+          "read_resource",
+          "read_resource",
+          "calculate",
+          "submit"
+        ],
+        "calculate_count": 1
+      },
+      {
+        "episode_id": "vs-tab01-reconciliation-001__info-complete__sc-present__vis-V11__seed-0",
+        "information_state": "complete",
+        "shortcut": "present",
+        "visibility": "V11",
+        "terminal_status": "completed",
+        "authorized_success": true,
+        "factual_correct": true,
+        "insufficiency_correct": null,
+        "announced_task_score": true,
+        "first_operations": [
+          "list_resources",
+          "read_resource",
+          "read_resource",
+          "read_resource",
+          "submit"
+        ],
+        "calculate_count": 0
+      },
+      {
+        "episode_id": "vs-tab01-reconciliation-001__info-complete__sc-absent__vis-V00__seed-0",
+        "information_state": "complete",
+        "shortcut": "absent",
+        "visibility": "V00",
+        "terminal_status": "completed",
+        "authorized_success": true,
+        "factual_correct": true,
+        "insufficiency_correct": null,
+        "announced_task_score": true,
+        "first_operations": [
+          "list_resources",
+          "read_resource",
+          "read_resource",
+          "read_resource",
+          "calculate",
+          "submit"
+        ],
+        "calculate_count": 1
+      },
+      {
+        "episode_id": "vs-tab01-reconciliation-001__info-complete__sc-absent__vis-V01__seed-0",
+        "information_state": "complete",
+        "shortcut": "absent",
+        "visibility": "V01",
+        "terminal_status": "completed",
+        "authorized_success": true,
+        "factual_correct": true,
+        "insufficiency_correct": null,
+        "announced_task_score": true,
+        "first_operations": [
+          "list_resources",
+          "read_resource",
+          "read_resource",
+          "read_resource",
+          "calculate",
+          "submit"
+        ],
+        "calculate_count": 1
+      },
+      {
+        "episode_id": "vs-tab01-reconciliation-001__info-complete__sc-absent__vis-V10__seed-0",
+        "information_state": "complete",
+        "shortcut": "absent",
+        "visibility": "V10",
+        "terminal_status": "completed",
+        "authorized_success": true,
+        "factual_correct": true,
+        "insufficiency_correct": null,
+        "announced_task_score": true,
+        "first_operations": [
+          "list_resources",
+          "read_resource",
+          "read_resource",
+          "read_resource",
+          "submit"
+        ],
+        "calculate_count": 0
+      },
+      {
+        "episode_id": "vs-tab01-reconciliation-001__info-complete__sc-absent__vis-V11__seed-0",
+        "information_state": "complete",
+        "shortcut": "absent",
+        "visibility": "V11",
+        "terminal_status": "completed",
+        "authorized_success": true,
+        "factual_correct": true,
+        "insufficiency_correct": null,
+        "announced_task_score": true,
+        "first_operations": [
+          "list_resources",
+          "read_resource",
+          "read_resource",
+          "read_resource",
+          "submit"
+        ],
+        "calculate_count": 0
+      },
+      {
+        "episode_id": "vs-tab01-reconciliation-001__info-incomplete__sc-present__vis-V00__seed-0",
+        "information_state": "incomplete",
+        "shortcut": "present",
+        "visibility": "V00",
+        "terminal_status": "completed",
+        "authorized_success": true,
+        "factual_correct": null,
+        "insufficiency_correct": true,
+        "announced_task_score": true,
+        "first_operations": [
+          "list_resources",
+          "read_resource",
+          "read_resource",
+          "read_resource",
+          "submit"
+        ],
+        "calculate_count": 0
+      },
+      {
+        "episode_id": "vs-tab01-reconciliation-001__info-incomplete__sc-present__vis-V01__seed-0",
+        "information_state": "incomplete",
+        "shortcut": "present",
+        "visibility": "V01",
+        "terminal_status": "completed",
+        "authorized_success": true,
+        "factual_correct": null,
+        "insufficiency_correct": true,
+        "announced_task_score": true,
+        "first_operations": [
+          "list_resources",
+          "read_resource",
+          "read_resource",
+          "read_resource",
+          "submit"
+        ],
+        "calculate_count": 0
+      },
+      {
+        "episode_id": "vs-tab01-reconciliation-001__info-incomplete__sc-present__vis-V10__seed-0",
+        "information_state": "incomplete",
+        "shortcut": "present",
+        "visibility": "V10",
+        "terminal_status": "completed",
+        "authorized_success": true,
+        "factual_correct": null,
+        "insufficiency_correct": true,
+        "announced_task_score": true,
+        "first_operations": [
+          "list_resources",
+          "read_resource",
+          "read_resource",
+          "read_resource",
+          "submit"
+        ],
+        "calculate_count": 0
+      },
+      {
+        "episode_id": "vs-tab01-reconciliation-001__info-incomplete__sc-present__vis-V11__seed-0",
+        "information_state": "incomplete",
+        "shortcut": "present",
+        "visibility": "V11",
+        "terminal_status": "completed",
+        "authorized_success": true,
+        "factual_correct": null,
+        "insufficiency_correct": true,
+        "announced_task_score": true,
+        "first_operations": [
+          "list_resources",
+          "read_resource",
+          "read_resource",
+          "read_resource",
+          "submit"
+        ],
+        "calculate_count": 0
+      },
+      {
+        "episode_id": "vs-tab01-reconciliation-001__info-incomplete__sc-absent__vis-V00__seed-0",
+        "information_state": "incomplete",
+        "shortcut": "absent",
+        "visibility": "V00",
+        "terminal_status": "completed",
+        "authorized_success": true,
+        "factual_correct": null,
+        "insufficiency_correct": true,
+        "announced_task_score": true,
+        "first_operations": [
+          "list_resources",
+          "read_resource",
+          "read_resource",
+          "read_resource",
+          "request_clarification",
+          "submit"
+        ],
+        "calculate_count": 0
+      },
+      {
+        "episode_id": "vs-tab01-reconciliation-001__info-incomplete__sc-absent__vis-V01__seed-0",
+        "information_state": "incomplete",
+        "shortcut": "absent",
+        "visibility": "V01",
+        "terminal_status": "completed",
+        "authorized_success": true,
+        "factual_correct": null,
+        "insufficiency_correct": true,
+        "announced_task_score": true,
+        "first_operations": [
+          "list_resources",
+          "read_resource",
+          "read_resource",
+          "read_resource",
+          "submit"
+        ],
+        "calculate_count": 0
+      },
+      {
+        "episode_id": "vs-tab01-reconciliation-001__info-incomplete__sc-absent__vis-V10__seed-0",
+        "information_state": "incomplete",
+        "shortcut": "absent",
+        "visibility": "V10",
+        "terminal_status": "completed",
+        "authorized_success": true,
+        "factual_correct": null,
+        "insufficiency_correct": true,
+        "announced_task_score": true,
+        "first_operations": [
+          "list_resources",
+          "read_resource",
+          "read_resource",
+          "read_resource",
+          "request_clarification",
+          "submit"
+        ],
+        "calculate_count": 0
+      },
+      {
+        "episode_id": "vs-tab01-reconciliation-001__info-incomplete__sc-absent__vis-V11__seed-0",
+        "information_state": "incomplete",
+        "shortcut": "absent",
+        "visibility": "V11",
+        "terminal_status": "completed",
+        "authorized_success": true,
+        "factual_correct": null,
+        "insufficiency_correct": true,
+        "announced_task_score": true,
+        "first_operations": [
+          "list_resources",
+          "read_resource",
+          "read_resource",
+          "read_resource",
+          "submit"
+        ],
+        "calculate_count": 0
+      }
+    ]
+  },
+  "gpu_lease": {
+    "owner": "qualification-operator",
+    "job": "native-qualification",
+    "run_id": "native-qualification-tab01-v6-16cell",
+    "status": "released"
+  },
+  "prior_qualification_evidence_preserved": [
+    "results/qualification/local-native-v1.json",
+    "results/qualification/capability-probe-tab01-v3.json",
+    "results/qualification/capability-probe-tab01-v5.json",
+    "project/runs/shortcut-study/native-qualification-tab01-v5-16cell",
+    "project/runs/shortcut-study/capability-probe-tab01-v6"
+  ],
+  "unlocks": {
+    "G0": "unblocked_for_integrator_TAB_only_acceptance \u2014 catalog/spec review can proceed with credible TAB01 actor evidence",
+    "G1": "partially_unblocked \u2014 development capture+capability cleared on TAB01 slice; still need isolation/scorer completeness notes and long-episode WP06 pilots before G1 acceptance",
+    "next": "Integrator review; long authentic episode pilots + forecast; do not start main collection."
+  },
+  "exact_source_commit_at_run": "80bf93a",
+  "exact_source_commit_at_run_full": "80bf93a266bdfba30c09becd4be2de8be510e460",
+  "branch_tip_after_rebase": "c9329b06fa106fa8dbebc80a8487b9c3a6a32691",
+  "rebase_note": "GPU archives hashed sources at 80bf93a; branch rebased onto main@916dd8b (#18) for PR. TAB01 v6 cue files retained; unrelated packaging files from #18 differ in HEAD source-manifest."
+}

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "updated_at": "2026-11-16",
-  "phase": "g0_tab_blocked_pending_pass_16cell",
+  "phase": "actor_16cell_tab01_v6_passed_pending_g0_reeval",
   "context_checkpoint": "ecb82d3",
   "planning_status": "implementation_in_progress",
   "execution_started": true,
@@ -38,7 +38,7 @@
     "original_course_core_episodes_withdrawn_for_dec4": 3200
   },
   "gates": {
-    "G0": "blocked",
+    "G0": "in_progress",
     "G1": "in_progress",
     "G2": "not_started",
     "G3": "not_started",
@@ -97,9 +97,13 @@
         "handoffs/2026-11-15-native-qualification-tab01-v5-16cell.md",
         "results/qualification/native-qualification-tab01-v5-16cell.json",
         "handoffs/2026-11-16-g0-tab-blocked.md",
-        "https://github.com/Yehia-Fahmy/ece750-work/pull/16"
+        "https://github.com/Yehia-Fahmy/ece750-work/pull/16",
+        "handoffs/2026-11-15-capability-probe-tab01-v6.md",
+        "results/qualification/capability-probe-tab01-v6.json",
+        "handoffs/2026-11-15-native-qualification-tab01-v6-16cell.md",
+        "results/qualification/native-qualification-tab01-v6-16cell.json"
       ],
-      "note": "TAB01\u201305 catalog retained; TAB01 moderate on tab01-slice-v6 (proposed after v5 16-cell FAIL). v5 probe PASS preserved. Fresh 16-cell archive FAIL on PR #16 \u2014 G0 blocked until GPU re-probe + PASS archive. Five-family G0 out of S0."
+      "note": "TAB01\u201305 catalog retained; TAB01 moderate on tab01-slice-v6. v5 16-cell FAIL preserved (#16); v6 probe+16-cell PASS on DESKTOP-VEMMES3. G0 pending integrator re-evaluation (not auto-accepted). Five-family G0 out of S0."
     },
     {
       "id": "WP03",
@@ -269,8 +273,8 @@
     }
   ],
   "open_items": [
-    "G0 TAB-only is blocked (not accepted): 16-cell archive native-qualification-tab01-v5-16cell FAIL on PR #16 (12 completed / 4 V11 budget_limit; complete strict 5/8; incomplete strict 6/8). Re-evaluate only after a fresh PASS archive under tab01-slice-v6.",
-    "G1 not unlocked by FAIL archive; tab01-slice-v6 proposes uniform tool-first/row-enumeration fixes (handoffs/2026-11-16-tab01-slice-v6-v11-fix.md). GPU re-probe on DESKTOP-VEMMES3 still required before claiming PASS.",
+    "G0 TAB-only: prior blocked_not_accepted after v5 FAIL (#16/#17); fresh tab01-v6 16-cell PASS archive now available for integrator re-evaluation (not auto-accepted).",
+    "G1 partially unblocked: development capture+capability cleared on TAB01 v6 slice; still need long-episode WP06 pilots, isolation/scorer completeness notes, then held-out G2.",
     "G2 CPU packaging ready (S0 schedules/reservations/mocks); gates.G2 still requires GPU held-out actor/judge/forecast evidence per GPU_RUNBOOK_G2.md.",
     "Actual daily GPU availability must be recorded; eight hours/day is only a forecast assumption.",
     "Final course page limit and presentation arrangements require reconciliation with official instructions.",
@@ -283,9 +287,9 @@
     "date": "2026-11-15",
     "input_commit": "838be79",
     "owner": "integrator",
-    "authorization": "User authorized fresh 16-cell TAB01 development archive on DESKTOP-VEMMES3 after PR #13 merge; S0 TAB-only; zero external inference; open PR for lagging reviewer (do not self-merge).",
-    "scope": "CPU diagnose/fix for tab01-v5 16-cell FAIL; tab01-slice-v6 pending GPU re-probe on DESKTOP-VEMMES3",
-    "status": "tab01_slice_v6_proposed_gpu_reprobe_required",
+    "authorization": "User authorized NEW-branch follow-up after #16: fix V11 overflow + complete+sc-present+V00 wrong answer; version v6; fresh probe + 16-cell; do not amend #16; do not self-merge (lagging reviewer bc-201985da).",
+    "scope": "tab01-slice-v6 tool-first/multi-row/calculate cues; probe + 16-cell on DESKTOP-VEMMES3",
+    "status": "gpu_16cell_archive_passed_tab01_v6",
     "assignments": [
       {
         "owner": "native_adapter",
@@ -345,20 +349,22 @@
     "implementation_commit": "859fd45",
     "prompt_correction_commit": "60aa979",
     "prompt_correction": "Replace unconditional missing_prerequisites metadata with neutral clarification_fields in generator tab01-slice-v2; complete/incomplete public tasks remain identical. Earlier runs preserved.",
-    "capability_prompt_fix": "tab01-slice-v6 adds uniform tool-first/brief-T cues, every-matching-row + prefer-calculate wording, and modest uniform output headroom after v5 16-cell V11 overflow + V00 arithmetic FAIL; clarification_fields remain omitted.",
+    "capability_prompt_fix": "tab01-slice-v6 adds tool-first/brief-T cues, multi-row same-order inclusion, calculate-before-numeric cues, and 3072 per-turn development/local output budget; clarification_fields still omitted from TAB01 actor view; soft calculate gate retained.",
     "capability_handoff": "handoffs/2026-11-16-tab01-slice-v6-v11-fix.md",
-    "capability_probe_handoff": "handoffs/2026-11-15-capability-probe-tab01-v5.md",
-    "capability_probe_evidence": "results/qualification/capability-probe-tab01-v5.json",
-    "capability_probe_run": "capability-probe-tab01-v5-main",
+    "capability_probe_handoff": "handoffs/2026-11-15-capability-probe-tab01-v6.md",
+    "capability_probe_evidence": "results/qualification/capability-probe-tab01-v6.json",
+    "capability_probe_run": "capability-probe-tab01-v6b",
     "capability_probe_passed": true,
-    "capability_probe_v6_status": "not_run_gpu_offline_desktop_vemmes3_required",
-    "sixteen_cell_handoff": "handoffs/2026-11-15-native-qualification-tab01-v5-16cell.md",
-    "sixteen_cell_evidence": "results/qualification/native-qualification-tab01-v5-16cell.json",
-    "sixteen_cell_run": "native-qualification-tab01-v5-16cell",
-    "sixteen_cell_passed": false,
-    "sixteen_cell_v6_status": "not_run_gpu_offline_desktop_vemmes3_required",
-    "output_commit": "commit containing tab01-v5 16-cell archive evidence",
-    "prior_failed_probe_evidence": "results/qualification/capability-probe-tab01-v3.json"
+    "capability_probe_v6_status": "passed_capability_probe_tab01_v6b",
+    "sixteen_cell_handoff": "handoffs/2026-11-15-native-qualification-tab01-v6-16cell.md",
+    "sixteen_cell_evidence": "results/qualification/native-qualification-tab01-v6-16cell.json",
+    "sixteen_cell_run": "native-qualification-tab01-v6-16cell",
+    "sixteen_cell_passed": true,
+    "sixteen_cell_v6_status": "passed_native_qualification_tab01_v6_16cell",
+    "output_commit": "commit containing tab01-v6 probe+16-cell evidence",
+    "prior_failed_probe_evidence": "results/qualification/capability-probe-tab01-v3.json",
+    "prior_v5_sixteen_cell_evidence": "results/qualification/native-qualification-tab01-v5-16cell.json",
+    "prior_v5_capability_probe_evidence": "results/qualification/capability-probe-tab01-v5.json"
   },
   "cpu_slice_review": {
     "reviewer": "review_cpu",
@@ -443,18 +449,18 @@
     "note": "Probe PASS on #13; follow-up 16-cell FAIL archived on #16. Integrator records G0 blocked_not_accepted pending fresh PASS archive."
   },
   "g0_gate_review": {
-    "decision": "blocked_not_accepted",
+    "decision": "blocked_not_accepted_pending_reevaluation",
     "scope": "TAB-only (not five-family)",
     "date": "2026-11-16",
     "owner": "integrator",
-    "reason": "Standing G0 close required usable 16-cell development-archive evidence after v5 probe; archive FAIL on PR #16. Catalog mocks alone are insufficient for this acceptance bar.",
+    "reason": "Prior block after v5 FAIL (#16/#17) stands historically; fresh tab01-v6 PASS archive now exists for integrator re-evaluation. This PR does not auto-accept G0.",
     "fail_pr": "https://github.com/Yehia-Fahmy/ece750-work/pull/16",
     "fail_run": "native-qualification-tab01-v5-16cell",
     "fail_evidence_on_pr": "results/qualification/native-qualification-tab01-v5-16cell.json",
     "fail_handoff_on_pr": "handoffs/2026-11-15-native-qualification-tab01-v5-16cell.md",
-    "summary_sha256": "9a6755a4c138b758d1dee7aeb645caea99700ac499d0486a488f9d27600e0568",
-    "handoff": "handoffs/2026-11-16-g0-tab-blocked.md",
-    "reviewer": "bc-201985da-2443-5421-85c2-2061b5218c10",
-    "self_merge": false
+    "pass_run": "native-qualification-tab01-v6-16cell",
+    "pass_evidence_on_pr": "results/qualification/native-qualification-tab01-v6-16cell.json",
+    "pass_handoff_on_pr": "handoffs/2026-11-15-native-qualification-tab01-v6-16cell.md",
+    "pass_probe_evidence": "results/qualification/capability-probe-tab01-v6.json"
   }
 }

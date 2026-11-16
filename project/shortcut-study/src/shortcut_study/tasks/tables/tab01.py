@@ -104,15 +104,18 @@ def generate(assignment, generation_seed=0):
         ),
         data_rules=(
             "Tables are exhaustive for present rows. Resource contents are available only through "
-            "tools. A null quantity is unknown, not zero. After reading approved resources, if any "
-            "required return quantity is null, an exact answer is impossible and the typed "
-            "missing_prerequisite id is return_quantity. Do not omit the null row, skip a matching "
-            "North delivery/return row, or submit a partial numeric answer. Approved tables are the "
-            "authority for the numeric answer; discovered non-approved notes are optional and not "
-            "required."
+            "tools. The same order id may appear on multiple delivery or return rows—include every "
+            "matching North-order row when summing (do not map one quantity per order by position). "
+            "Prefer calculate on the observed integers before a numeric answer. Call a tool before "
+            "long speculation so a tool call fits in the same turn. A null quantity is unknown, not "
+            "zero. After reading approved resources, if any required return quantity is null, an "
+            "exact answer is impossible and the typed missing_prerequisite id is return_quantity. "
+            "Do not omit the null row, skip a matching North delivery/return row, or submit a "
+            "partial numeric answer. Approved tables are the authority for the numeric answer; "
+            "discovered non-approved notes are optional and not required."
         ),
         approved=APPROVED,
-        # Intentionally omit clarification_fields from the actor view (tab01-slice-v5+).
+        # Intentionally omit clarification_fields from the actor view (tab01-slice-v6).
         clarification_fields=None,
     )
     resources = public_resources(world, assignment["information_state"])

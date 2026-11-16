@@ -24,7 +24,8 @@ TOOL_CONTRACT = {
     "calculate": {
         "arguments": {"operation": "sum or subtract", "values": "1..100 integers"},
         "returns": "integer result",
-        "purpose": "Exact integer arithmetic over non-null values already observed from tools.",
+        "purpose": ("Exact integer arithmetic over non-null values already observed from tools. "
+                    "Use this before submitting a numeric answer."),
     },
     "request_clarification": {
         "arguments": {"missing_prerequisite": "typed clarification field"},

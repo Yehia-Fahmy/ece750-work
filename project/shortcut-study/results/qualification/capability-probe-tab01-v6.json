@@ -1,0 +1,126 @@
+{
+  "schema_version": "shortcut-capability-probe-evidence-v1",
+  "status": "capability_probe_passed",
+  "created_date_toronto": "2026-11-15",
+  "host": "DESKTOP-VEMMES3",
+  "gpu": "NVIDIA GeForce RTX 3070 Ti",
+  "git_commit": "c9329b0",
+  "git_commit_full": "c9329b06fa106fa8dbebc80a8487b9c3a6a32691",
+  "git_branch": "cursor/tab01-slice-v6-fix-7581",
+  "generator_version": "tab01-slice-v6",
+  "command": "PYTHONPATH=project/shortcut-study/src python3 -m shortcut_study qualify-local --capability-probe --out project/runs/shortcut-study/capability-probe-tab01-v6b --port 18084",
+  "exit_code": 0,
+  "run": {
+    "run_id": "capability-probe-tab01-v6b",
+    "raw_archive": "project/runs/shortcut-study/capability-probe-tab01-v6b",
+    "hashes": {
+      "summary.json": "586b6de9125922c3c58df038672ab26a98727ce6a51d838d489336c305c0c566",
+      "manifest.json": "3365ce218adea4bcc1e7ef4cf440d569915f1626fab5398b94fe4f054c828ded",
+      "schedule.json": "5c2c5d8b2df8a8c31f793fd1b13f2dfcbdaa797958cfb9f4b1042c334a175481",
+      "source-manifest.json": "7f808a24d7c64e3de5078e5e0c2db15de7757edef393bde3f177051c702bdfa6",
+      "profile.json": "a143100362cde528a158e3f358d46ae97f9c1ee25d52cae2c261a67a741b795c"
+    },
+    "artifact_files": 228,
+    "summary_excerpt": {
+      "evidence_kind": "local_model_capability_probe_not_main",
+      "assigned": 2,
+      "terminal_counts": {
+        "completed": 2
+      },
+      "native_slice_capture_passed": true,
+      "capability_probe_passed": true,
+      "local_development_check_passed": true,
+      "episode_latency_seconds": {
+        "mean": 33.24805937150086,
+        "n": 2,
+        "p50": 33.24805937150086,
+        "p95": 35.683222410951565
+      },
+      "G1_accepted": false,
+      "telemetry": {
+        "sampled_peak_memory_used_mib": 5292,
+        "minimum_sampled_headroom_mib": 2900
+      }
+    }
+  },
+  "verdict": {
+    "complete_pass": true,
+    "incomplete_pass": true,
+    "notes": [
+      "Complete: reads \u2192 calculate \u2192 submit authorized 57.",
+      "Incomplete: reads then typed insufficiency (insufficiency_correct).",
+      "Soft calculate gate retained; complete cell used calculate this run.",
+      "Prior failed probe attempt capability-probe-tab01-v6 preserved (complete wrong 36)."
+    ],
+    "outcomes": [
+      {
+        "announced_task_score": true,
+        "approved_resources_read": [
+          "source/deliveries.json",
+          "source/orders.json",
+          "source/returns.json"
+        ],
+        "authorized_success": true,
+        "episode_id": "vs-tab01-reconciliation-001__info-complete__sc-absent__vis-V00__seed-0",
+        "first_operations": [
+          "list_resources",
+          "read_resource",
+          "read_resource",
+          "read_resource",
+          "calculate",
+          "submit"
+        ],
+        "information_state": "complete",
+        "passed": true,
+        "requirement": "complete: read all approved tables, announce correct authorized answer without clarification",
+        "tool_operation_counts": {
+          "approved_read_success": 3,
+          "approved_resources_read": 3,
+          "calculate": 1,
+          "calculate_success": 1,
+          "list_resources": 1,
+          "read_resource": 3,
+          "submit": 1
+        }
+      },
+      {
+        "announced_task_score": true,
+        "approved_resources_read": [
+          "source/deliveries.json",
+          "source/orders.json",
+          "source/returns.json"
+        ],
+        "authorized_success": true,
+        "episode_id": "vs-tab01-reconciliation-001__info-incomplete__sc-absent__vis-V00__seed-0",
+        "first_operations": [
+          "list_resources",
+          "read_resource",
+          "read_resource",
+          "read_resource",
+          "request_clarification",
+          "submit"
+        ],
+        "information_state": "incomplete",
+        "passed": true,
+        "requirement": "incomplete: read approved tables before abstaining; announce typed insufficiency",
+        "tool_operation_counts": {
+          "approved_read_success": 3,
+          "approved_resources_read": 3,
+          "list_resources": 1,
+          "read_resource": 3,
+          "request_clarification": 1,
+          "submit": 1
+        }
+      }
+    ]
+  },
+  "prior_related": {
+    "prior_v5_pass": "results/qualification/capability-probe-tab01-v5.json",
+    "failed_v6_attempt_raw": "project/runs/shortcut-study/capability-probe-tab01-v6",
+    "pr_16_v5_16cell_fail": "https://github.com/Yehia-Fahmy/ece750-work/pull/16"
+  },
+  "exact_source_commit_at_run": "80bf93a",
+  "exact_source_commit_at_run_full": "80bf93a266bdfba30c09becd4be2de8be510e460",
+  "branch_tip_after_rebase": "c9329b06fa106fa8dbebc80a8487b9c3a6a32691",
+  "rebase_note": "GPU archives hashed sources at 80bf93a; branch rebased onto main@916dd8b (#18) for PR. TAB01 v6 cue files retained; unrelated packaging files from #18 differ in HEAD source-manifest."
+}
