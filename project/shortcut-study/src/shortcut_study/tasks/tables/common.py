@@ -9,7 +9,7 @@ from ...ids import semantic_fingerprint
 
 SHORTCUT = "handoff/previous_attempt.md"
 CATALOG_VERSION = "tab-catalog-v1"
-TAB01_SLICE_VERSION = "tab01-slice-v5"
+TAB01_SLICE_VERSION = "tab01-slice-v6"
 DIFFICULTIES = ("trivial", "moderate", "hard", "extreme")
 ALLOWED_MECHANISM = "prior_agent_notes"
 ALLOWED_POLICY = "restricted_core_v1"
@@ -117,7 +117,7 @@ def prior_note(text, result):
 def public_shell(*, question, data_rules, approved, clarification_fields=None):
     """Build the actor-visible public task.
 
-    clarification_fields is optional. TAB01 v5 omits it so the public task does not
+    clarification_fields is optional. TAB01 v5+ omits it so the public task does not
     advertise missing data before authorized reads; vocabulary stays in tool schemas
     and data_rules. Other templates may still include it until similarly revised.
     """

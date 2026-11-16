@@ -99,7 +99,7 @@
         "handoffs/2026-11-16-g0-tab-blocked.md",
         "https://github.com/Yehia-Fahmy/ece750-work/pull/16"
       ],
-      "note": "TAB01\u201305 catalog retained; TAB01 moderate on tab01-slice-v5. Probe PASS. Fresh 16-cell archive FAIL on PR #16 \u2014 integrator records G0 blocked (not accepted). Five-family G0 out of S0."
+      "note": "TAB01\u201305 catalog retained; TAB01 moderate on tab01-slice-v6 (proposed after v5 16-cell FAIL). v5 probe PASS preserved. Fresh 16-cell archive FAIL on PR #16 \u2014 G0 blocked until GPU re-probe + PASS archive. Five-family G0 out of S0."
     },
     {
       "id": "WP03",
@@ -269,8 +269,8 @@
     }
   ],
   "open_items": [
-    "G0 TAB-only is blocked (not accepted): 16-cell archive native-qualification-tab01-v5-16cell FAIL on PR #16 (12 completed / 4 V11 budget_limit; complete strict 5/8; incomplete strict 6/8). Re-evaluate only after a fresh PASS archive.",
-    "G1 not unlocked by FAIL archive; diagnose V11 reasoning-token overflow and complete+sc-present+V00 wrong answer (36 vs 57), then re-run on a new out path.",
+    "G0 TAB-only is blocked (not accepted): 16-cell archive native-qualification-tab01-v5-16cell FAIL on PR #16 (12 completed / 4 V11 budget_limit; complete strict 5/8; incomplete strict 6/8). Re-evaluate only after a fresh PASS archive under tab01-slice-v6.",
+    "G1 not unlocked by FAIL archive; tab01-slice-v6 proposes uniform tool-first/row-enumeration fixes (handoffs/2026-11-16-tab01-slice-v6-v11-fix.md). GPU re-probe on DESKTOP-VEMMES3 still required before claiming PASS.",
     "G2 CPU packaging ready (S0 schedules/reservations/mocks); gates.G2 still requires GPU held-out actor/judge/forecast evidence per GPU_RUNBOOK_G2.md.",
     "Actual daily GPU availability must be recorded; eight hours/day is only a forecast assumption.",
     "Final course page limit and presentation arrangements require reconciliation with official instructions.",
@@ -284,8 +284,8 @@
     "input_commit": "838be79",
     "owner": "integrator",
     "authorization": "User authorized fresh 16-cell TAB01 development archive on DESKTOP-VEMMES3 after PR #13 merge; S0 TAB-only; zero external inference; open PR for lagging reviewer (do not self-merge).",
-    "scope": "Fresh 16-cell qualify-local archive on tab01-slice-v5 after probe PASS",
-    "status": "gpu_16cell_archive_failed_capture_tab01_v5",
+    "scope": "CPU diagnose/fix for tab01-v5 16-cell FAIL; tab01-slice-v6 pending GPU re-probe on DESKTOP-VEMMES3",
+    "status": "tab01_slice_v6_proposed_gpu_reprobe_required",
     "assignments": [
       {
         "owner": "native_adapter",
@@ -345,16 +345,18 @@
     "implementation_commit": "859fd45",
     "prompt_correction_commit": "60aa979",
     "prompt_correction": "Replace unconditional missing_prerequisites metadata with neutral clarification_fields in generator tab01-slice-v2; complete/incomplete public tasks remain identical. Earlier runs preserved.",
-    "capability_prompt_fix": "tab01-slice-v5 adds no-partial-answer abstention cues on catalog ports while keeping clarification_fields omitted from the TAB01 actor view.",
-    "capability_handoff": "handoffs/2026-11-15-actor-capability-prompt.md",
+    "capability_prompt_fix": "tab01-slice-v6 adds uniform tool-first/brief-T cues, every-matching-row + prefer-calculate wording, and modest uniform output headroom after v5 16-cell V11 overflow + V00 arithmetic FAIL; clarification_fields remain omitted.",
+    "capability_handoff": "handoffs/2026-11-16-tab01-slice-v6-v11-fix.md",
     "capability_probe_handoff": "handoffs/2026-11-15-capability-probe-tab01-v5.md",
     "capability_probe_evidence": "results/qualification/capability-probe-tab01-v5.json",
     "capability_probe_run": "capability-probe-tab01-v5-main",
     "capability_probe_passed": true,
+    "capability_probe_v6_status": "not_run_gpu_offline_desktop_vemmes3_required",
     "sixteen_cell_handoff": "handoffs/2026-11-15-native-qualification-tab01-v5-16cell.md",
     "sixteen_cell_evidence": "results/qualification/native-qualification-tab01-v5-16cell.json",
     "sixteen_cell_run": "native-qualification-tab01-v5-16cell",
     "sixteen_cell_passed": false,
+    "sixteen_cell_v6_status": "not_run_gpu_offline_desktop_vemmes3_required",
     "output_commit": "commit containing tab01-v5 16-cell archive evidence",
     "prior_failed_probe_evidence": "results/qualification/capability-probe-tab01-v3.json"
   },

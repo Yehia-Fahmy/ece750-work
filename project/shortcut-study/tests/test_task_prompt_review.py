@@ -2,6 +2,7 @@
 
 import unittest
 
+from shortcut_study.config import load_development_config
 from shortcut_study.runner import prompt_for
 from shortcut_study.tasks.tables import APPROVED, GENERATOR_VERSION, generate_task, solve_permitted
 from shortcut_study.vertical_slice import capability_probe_assignments, enumerate_vertical_slice_assignments
@@ -9,7 +10,7 @@ from shortcut_study.vertical_slice import capability_probe_assignments, enumerat
 
 class TaskPromptReviewTests(unittest.TestCase):
     def test_neutral_inspection_first_metadata_is_versioned(self):
-        self.assertEqual(GENERATOR_VERSION, "tab01-slice-v5")
+        self.assertEqual(GENERATOR_VERSION, "tab01-slice-v6")
         for assignment in enumerate_vertical_slice_assignments():
             with self.subTest(episode=assignment["episode_id"]):
                 public = generate_task(assignment).actor_view()
@@ -17,15 +18,23 @@ class TaskPromptReviewTests(unittest.TestCase):
                 self.assertNotIn("clarification_fields", public)
                 self.assertEqual(set(public), {"question", "data_rules", "approved_resources", "policy"})
                 rules = public["data_rules"].lower()
+                question = public["question"].lower()
                 self.assertIn("after reading approved resources", rules)
                 self.assertIn("return_quantity", public["data_rules"])
                 self.assertIn("do not omit", rules)
                 self.assertIn("partial", rules)
+                self.assertIn("skip a matching", rules)
+                self.assertIn("every delivery", question)
+                self.assertIn("calculate tool", question)
                 prompt = prompt_for(generate_task(assignment))
                 self.assertIn("Before request_clarification", prompt["channel_instructions"])
                 self.assertIn("not a partial numeric answer", prompt["channel_instructions"])
+                self.assertIn("Keep early-turn T brief", prompt["channel_instructions"])
+                self.assertIn("write J only in the submit tool", prompt["channel_instructions"])
                 self.assertIn("Do not abstain before reading", prompt["scoring"])
                 self.assertIn("partial numeric answer", prompt["scoring"])
+                self.assertIn("call a tool every turn", prompt["scoring"])
+                self.assertIn("every matching authorized row", prompt["scoring"])
                 self.assertIn("non-null values already observed",
                               prompt["tools"]["calculate"]["purpose"])
                 self.assertIn("only if every required quantity was non-null",
@@ -64,6 +73,22 @@ class TaskPromptReviewTests(unittest.TestCase):
             self.assertEqual(row["visibility"], "V00")
             self.assertFalse(row["shortcut_available"])
             self.assertIn(row, enumerate_vertical_slice_assignments())
+
+    def test_uniform_output_budget_headroom_and_visibility_scoring(self):
+        budgets = load_development_config("budgets")
+        for tier in ("development", "qualification"):
+            self.assertEqual(budgets[tier]["max_per_turn_output_tokens"], 3072)
+            self.assertEqual(budgets[tier]["max_cumulative_generated_tokens"], 12288)
+        local = load_development_config("local-qualification")
+        self.assertEqual(local["limits"]["max_per_turn_output_tokens"], 3072)
+        scoring = load_development_config("visibility")["common_scoring_statement"]
+        self.assertIn("call a tool every turn", scoring)
+        self.assertIn("every matching authorized row", scoring)
+        # Notices remain the scientific factor; decoding stays uniform across cells.
+        cells = load_development_config("visibility")["cells"]
+        self.assertEqual(set(cells), {"V00", "V01", "V10", "V11"})
+        for notice in (cells[name]["notice"] for name in cells):
+            self.assertIn("task reviewer", notice)
 
 
 if __name__ == "__main__":

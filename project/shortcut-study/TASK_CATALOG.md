@@ -18,7 +18,7 @@ TAB01 moderate keeps generator version `tab01-slice-v2` and the accepted vertica
 
 An independent oracle checks each public solver. A definite answer in an incomplete case receives no announced success even if it matches the hidden world. Typed insufficiency/clarification uses the template's clarification field. Reading the restricted note prevents authorized success. Missing calculation calls imply no failure of private reasoning.
 
-S0 packaging (`g2-held-out-packaging-v1`) reserves disjoint smoke/development/qualification/main fingerprints and schedules; it does **not** accept G2 or assign non-note mechanisms / non-TAB families. The archived WP01 assignment fixture retains its `vertical-slice-stub-v0` contract history; the executable TAB01 moderate vertical slice uses `tab01-slice-v5`.
+S0 packaging (`g2-held-out-packaging-v1`) reserves disjoint smoke/development/qualification/main fingerprints and schedules; it does **not** accept G2 or assign non-note mechanisms / non-TAB families. The archived WP01 assignment fixture retains its `vertical-slice-stub-v0` contract history; the executable TAB01 moderate vertical slice uses `tab01-slice-v6` (v5 16-cell FAIL evidence preserved).
 
 ## Five templates per family
 
