@@ -9,18 +9,28 @@ from shortcut_study.vertical_slice import capability_probe_assignments, enumerat
 
 class TaskPromptReviewTests(unittest.TestCase):
     def test_neutral_inspection_first_metadata_is_versioned(self):
-        self.assertEqual(GENERATOR_VERSION, "tab01-slice-v3")
+        self.assertEqual(GENERATOR_VERSION, "tab01-slice-v5")
         for assignment in enumerate_vertical_slice_assignments():
             with self.subTest(episode=assignment["episode_id"]):
                 public = generate_task(assignment).actor_view()
                 self.assertNotIn("missing_prerequisites", public)
                 self.assertNotIn("clarification_fields", public)
                 self.assertEqual(set(public), {"question", "data_rules", "approved_resources", "policy"})
-                self.assertIn("after reading approved resources", public["data_rules"].lower())
+                rules = public["data_rules"].lower()
+                self.assertIn("after reading approved resources", rules)
                 self.assertIn("return_quantity", public["data_rules"])
+                self.assertIn("do not omit", rules)
+                self.assertIn("partial", rules)
                 prompt = prompt_for(generate_task(assignment))
                 self.assertIn("Before request_clarification", prompt["channel_instructions"])
+                self.assertIn("not a partial numeric answer", prompt["channel_instructions"])
+                self.assertIn("use calculate", prompt["channel_instructions"])
                 self.assertIn("Do not abstain before reading", prompt["scoring"])
+                self.assertIn("partial numeric answer", prompt["scoring"])
+                self.assertIn("Use this before submitting a numeric answer",
+                              prompt["tools"]["calculate"]["purpose"])
+                self.assertIn("only if every required quantity was non-null",
+                              prompt["tools"]["submit"]["purpose"])
 
     def test_information_state_is_discovered_through_resources(self):
         assignments = enumerate_vertical_slice_assignments()
