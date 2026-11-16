@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-11-15",
-  "phase": "local_native_runtime_validated_actor_capability_pending",
+  "updated_at": "2026-11-16",
+  "phase": "actor_capability_prompt_fix_pending_gpu_probe",
   "context_checkpoint": "ecb82d3",
   "planning_status": "implementation_in_progress",
   "execution_started": true,
@@ -79,7 +79,7 @@
         "handoffs/2026-11-15-local-qualification.md",
         "results/qualification/local-native-v1.json"
       ],
-      "note": "TAB01 generator v2 fixes misleading missing-prerequisites metadata without leaking information state; one scenario only, broad catalog pending."
+      "note": "TAB01 generator v3 removes public clarification_fields cue and requires inspect-before-abstain wording; one scenario only, broad catalog pending. Authentic GPU capability probe still required."
     },
     {
       "id": "WP03",
@@ -95,9 +95,10 @@
         "handoffs/2026-11-15-native-audit-integration.md",
         "results/development/native-audit-integration-v1.json",
         "handoffs/2026-11-15-local-qualification.md",
-        "results/qualification/local-native-v1.json"
+        "results/qualification/local-native-v1.json",
+        "handoffs/2026-11-15-actor-capability-prompt.md"
       ],
-      "note": "Authentic local native capture validated on two separately versioned 16-episode development runs, 32 turns each; exact counts/history/recovery/audit inputs verified. Real actor exercised clarification/submit only; reading/calculation/acquisition capability pending."
+      "note": "Authentic local native capture validated on two separately versioned 16-episode development runs. Prompt/tool fix for premature clarification landed as tab01-slice-v3 with --capability-probe; authentic read/calculate proof pending RTX host."
     },
     {
       "id": "WP04",
@@ -220,7 +221,7 @@
     }
   ],
   "open_items": [
-    "Next engineering: diagnose premature clarification on complete tasks (0/8 development task success after metadata correction), validate authentic reading/calculation and representative long episodes, and qualify actor capability before scaling or main collection.",
+    "Next engineering: on the RTX experiment host, run qualify-local --capability-probe for tab01-slice-v3; if it passes, collect a fresh 16-cell development archive, then resume G0/WP02 catalog and G1 judge/long-episode work.",
     "Actual daily GPU availability must be recorded; eight hours/day is only a forecast assumption.",
     "Final course page limit and presentation arrangements require reconciliation with official instructions.",
     "Actor and judge checkpoints/settings, quality gates, and final scope require pilot qualification.",
@@ -228,12 +229,12 @@
     "Broader WP02 generators, WP04 scoring, local semantic judge execution/qualification, statistical analysis, freeze and collection remain pending."
   ],
   "session": {
-    "date": "2026-11-15",
-    "input_commit": "cf742c0",
+    "date": "2026-11-16",
+    "input_commit": "76d6db3",
     "owner": "integrator",
-    "authorization": "User instructed implementation of the next stage after local runtime qualification and an authentic 16-condition development slice were described. Prior multi-agent/review instructions persist.",
-    "scope": "WP03 exact prompt counter and authentic development slice; WP06 pinned owned runtime and measured feasibility",
-    "status": "reviewed_runtime_stage_actor_capability_inadequate",
+    "authorization": "User instructed diagnosis and fix of premature clarification with smallest local GPU/native proof and a reviewable branch/PR. Prior multi-agent/review instructions persist.",
+    "scope": "Actor capability prompt fix (tab01-slice-v3) and capability-probe CLI; GPU probe on RTX host",
+    "status": "prompt_fix_landed_gpu_probe_pending",
     "assignments": [
       {
         "owner": "native_adapter",
@@ -293,7 +294,9 @@
     "implementation_commit": "859fd45",
     "prompt_correction_commit": "60aa979",
     "prompt_correction": "Replace unconditional missing_prerequisites metadata with neutral clarification_fields in generator tab01-slice-v2; complete/incomplete public tasks remain identical. Earlier runs preserved.",
-    "output_commit": "commit containing final qualification handoff"
+    "capability_prompt_fix": "tab01-slice-v3 removes clarification_fields, strengthens inspect-before-abstain channel/scoring/tool text, adds --capability-probe over two existing vertical-slice cells.",
+    "capability_handoff": "handoffs/2026-11-15-actor-capability-prompt.md",
+    "output_commit": "commit containing actor capability prompt handoff"
   },
   "cpu_slice_review": {
     "reviewer": "review_cpu",

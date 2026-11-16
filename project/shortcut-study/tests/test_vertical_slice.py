@@ -37,6 +37,7 @@ class VerticalSlicePathTests(unittest.TestCase):
         self.assertEqual(summary["episode_count"], 16)
         self.assertFalse(summary["gpu_run_authorized"])
         self.assertTrue(summary["mock_actor_first"])
+        self.assertEqual(len(summary["capability_probe_episode_ids"]), 2)
 
     def test_fixture_covers_slice_mechanics(self):
         """Contract-level stubs for demonstrations WP02/WP03 must implement."""

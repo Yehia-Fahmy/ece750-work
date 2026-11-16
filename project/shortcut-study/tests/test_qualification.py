@@ -10,12 +10,14 @@ import unittest
 from unittest.mock import MagicMock, patch
 
 from shortcut_study.adapters.local import LocalChatActor
-from shortcut_study.qualification import CounterArchive, episode_metrics, quantile, run_qualification, summarize
+from shortcut_study.qualification import (
+    CounterArchive, episode_metrics, evaluate_capability_probe, quantile, run_qualification, summarize,
+)
 from shortcut_study.runner import write_new
 import shortcut_study.runner.native as native
 from shortcut_study.runtime import GpuLease
-from shortcut_study.tasks.tables import generate_task
-from shortcut_study.vertical_slice import enumerate_vertical_slice_assignments
+from shortcut_study.tasks.tables import APPROVED, generate_task
+from shortcut_study.vertical_slice import capability_probe_assignments, enumerate_vertical_slice_assignments
 
 
 class QualificationTests(unittest.TestCase):
@@ -24,7 +26,8 @@ class QualificationTests(unittest.TestCase):
         self.addCleanup(temp.cleanup)
         self.root = Path(temp.name)
 
-    def run_with_fakes(self, name, *, telemetry=None, episode_hook=None, metrics_error=None):
+    def run_with_fakes(self, name, *, telemetry=None, episode_hook=None, metrics_error=None,
+                       capability_probe=False, score=None):
         """Exercise orchestration/accounting with every GPU/inference edge mocked."""
         gpu = {"name": "NVIDIA GeForce RTX 3070 Ti", "uuid": "GPU-fixture", "memory_total_mib": 8192}
         monitor = MagicMock()
@@ -35,13 +38,33 @@ class QualificationTests(unittest.TestCase):
         server.assert_ready = MagicMock()
         server.manifest = {"gpu": gpu}
         results = {}
+        default_score = score or {
+            "task_result": {"announced_task_score": True, "authorized_success": True,
+                            "insufficiency_correct": True},
+            "acquisition": {"attempted": False, "successful": False},
+        }
 
         def episode(task, actor, directory, **kwargs):
             directory.mkdir()
             if episode_hook is not None:
                 episode_hook(directory)
+            events = []
+            for index, resource in enumerate(APPROVED, 1):
+                events.append({"event_type": "tool_call", "operation": "read_resource",
+                               "resource_id": resource, "sequence": len(events) + 1})
+                events.append({"event_type": "tool_result", "operation": "read_resource",
+                               "resource_id": resource, "execution_status": "success",
+                               "sequence": len(events) + 1})
+            events.append({"event_type": "tool_call", "operation": "calculate", "sequence": len(events) + 1})
+            events.append({"event_type": "tool_result", "operation": "calculate",
+                           "execution_status": "success", "sequence": len(events) + 1})
+            if task.assignment["information_state"] == "incomplete":
+                events.append({"event_type": "tool_call", "operation": "request_clarification",
+                               "sequence": len(events) + 1})
+                events.append({"event_type": "tool_result", "operation": "request_clarification",
+                               "execution_status": "success", "sequence": len(events) + 1})
             result = ({"terminal_status": "completed", "terminal_reason": "fixture",
-                       "timing": {"elapsed_seconds": 1}}, {})
+                       "timing": {"elapsed_seconds": 1}}, {"events": events})
             results[str(directory)] = result
             return result
 
@@ -57,14 +80,14 @@ class QualificationTests(unittest.TestCase):
             monitor_class.return_value.__enter__.return_value = monitor
             stack.enter_context(patch("shortcut_study.adapters.token_counter.LlamaCppTokenCounter"))
             stack.enter_context(patch("shortcut_study.qualification.run_local_episode", side_effect=episode))
-            stack.enter_context(patch("shortcut_study.qualification.score_episode", return_value={}))
+            stack.enter_context(patch("shortcut_study.qualification.score_episode", return_value=default_score))
             stack.enter_context(patch("shortcut_study.qualification.recover_local_episode",
                                       side_effect=lambda directory, actor: results[str(directory)]))
             stack.enter_context(patch("shortcut_study.__main__.prepare_archive"))
             stack.enter_context(patch("shortcut_study.qualification.episode_metrics", return_value=turns,
                                       side_effect=metrics_error))
             stack.enter_context(patch("builtins.print"))
-            return run_qualification(self.root / name)
+            return run_qualification(self.root / name, capability_probe=capability_probe)
 
     def test_failed_start_preserves_all_sixteen_assignments_without_inference(self):
         with patch("shortcut_study.runtime.server.inspect_local_assets", side_effect=RuntimeError("fixture unavailable")), \
@@ -77,6 +100,32 @@ class QualificationTests(unittest.TestCase):
         self.assertTrue((self.root / "run/manifest.json").exists())
         with self.assertRaises(FileExistsError):
             run_qualification(self.root / "run")
+
+    def test_capability_probe_uses_two_existing_cells_and_gates_on_reads(self):
+        summary = self.run_with_fakes("capability", capability_probe=True)
+        self.assertEqual(summary["assigned"], 2)
+        self.assertEqual(summary["evidence_kind"], "local_model_capability_probe_not_main")
+        self.assertTrue(summary["capability_probe"]["passed"])
+        self.assertTrue(summary["capability_check_passed"])
+        self.assertTrue(summary["local_development_check_passed"])
+        premature = {
+            "episode_id": "complete",
+            "terminal_status": "completed",
+            "score": {"task_result": {"announced_task_score": False, "authorized_success": False,
+                                      "insufficiency_correct": False}},
+            "tool_operation_counts": {"request_clarification": 1, "submit": 1},
+            "approved_resources_read": [],
+            "first_operations": ["request_clarification", "submit"],
+        }
+        probe = evaluate_capability_probe(
+            [{"episode_id": "complete", "information_state": "complete"},
+             {"episode_id": "incomplete", "information_state": "incomplete"}],
+            [premature, {**premature, "episode_id": "incomplete",
+                         "score": {"task_result": {"announced_task_score": True, "authorized_success": True,
+                                                   "insufficiency_correct": True}}}],
+        )
+        self.assertFalse(probe["passed"])
+        self.assertEqual(len(capability_probe_assignments()), 2)
 
     def test_result_denominator_keeps_completed_failed_and_unattempted(self):
         assignments = [{"episode_id": name} for name in ("a", "b", "c")]

@@ -59,6 +59,27 @@ def enumerate_vertical_slice_assignments(
     return rows
 
 
+def capability_probe_assignments(
+    config: dict[str, Any] | None = None,
+) -> list[dict[str, Any]]:
+    """Smallest existing-slice GPU probe: complete + incomplete, V00, shortcut absent.
+
+    Uses the mandatory vertical-slice factorial; does not invent new templates.
+    """
+    selected = [
+        row for row in enumerate_vertical_slice_assignments(config)
+        if row["visibility"] == "V00"
+        and row["shortcut_available"] is False
+        and row["information_state"] in ("complete", "incomplete")
+    ]
+    if len(selected) != 2:
+        raise AssertionError(
+            f"capability probe expected 2 vertical-slice cells, got {len(selected)}"
+        )
+    order = {"complete": 0, "incomplete": 1}
+    return sorted(selected, key=lambda row: order[row["information_state"]])
+
+
 def vertical_slice_path_summary() -> dict[str, Any]:
     config = load_vertical_slice_config()
     assignments = enumerate_vertical_slice_assignments(config)
@@ -70,4 +91,7 @@ def vertical_slice_path_summary() -> dict[str, Any]:
         "consumer_packages": config["consumer_packages"],
         "mock_actor_first": True,
         "gpu_run_authorized": False,
+        "capability_probe_episode_ids": [
+            row["episode_id"] for row in capability_probe_assignments(config)
+        ],
     }
