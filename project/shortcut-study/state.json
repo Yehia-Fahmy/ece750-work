@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "updated_at": "2026-11-16",
-  "phase": "actor_capability_probe_failed_incomplete_abstention",
+  "phase": "actor_capability_probe_passed_tab01_v5",
   "context_checkpoint": "ecb82d3",
   "planning_status": "implementation_in_progress",
   "execution_started": true,
@@ -83,9 +83,11 @@
         "handoffs/2026-11-16-tab-catalog-expansion.md",
         "results/development/tab-catalog-expansion-v1.json",
         "tests/test_tab_catalog.py",
-        "configs/development/tab_catalog.json"
+        "configs/development/tab_catalog.json",
+        "handoffs/2026-11-15-capability-probe-tab01-v5.md",
+        "results/qualification/capability-probe-tab01-v5.json"
       ],
-      "note": "TAB01–05 development catalog (tab-catalog-v1) with four intended difficulties, complete/incomplete certificates, prior-note present/absent controls, and scripted mocks. TAB01 moderate is tab01-slice-v3 (inspect-before-abstain; clarification_fields omitted from public task). Capability probe: complete V00 passed, incomplete abstention failed. DOC/PLAN/CODE/VERIFY and non-note mechanisms still pending. G0 TAB-only catalog/spec ready for integrator review; not yet accepted."
+      "note": "TAB01\u201305 catalog retained; TAB01 moderate on tab01-slice-v5. RTX capability probe passed complete+incomplete V00 after dd7a5ee rebase."
     },
     {
       "id": "WP03",
@@ -104,9 +106,11 @@
         "results/qualification/local-native-v1.json",
         "handoffs/2026-11-15-actor-capability-prompt.md",
         "handoffs/2026-11-15-capability-probe-tab01-v3.md",
-        "results/qualification/capability-probe-tab01-v3.json"
+        "results/qualification/capability-probe-tab01-v3.json",
+        "handoffs/2026-11-15-capability-probe-tab01-v5.md",
+        "results/qualification/capability-probe-tab01-v5.json"
       ],
-      "note": "Authentic local native capture validated on two separately versioned 16-episode development runs. tab01-slice-v3 capability probe on RTX: complete V00 read/calculate/submit succeeded; incomplete cell submitted a wrong numeric answer instead of insufficiency. Fresh 16-cell archive deferred."
+      "note": "Native capture validated. tab01-slice-v5 capability probe passed on RTX; fresh 16-cell archive unlocked but not yet run."
     },
     {
       "id": "WP04",
@@ -237,11 +241,11 @@
     }
   ],
   "open_items": [
-    "Authentic capability probe on DESKTOP-VEMMES3 failed overall: complete V00 cell passed (read/calculate/submit); incomplete cell answered instead of typed insufficiency. Do not run 16-cell until a follow-up fix re-passes --capability-probe on a fresh out path.",
+    "Authentic capability probe tab01-v5 passed both cells on DESKTOP-VEMMES3 after catalog rebase; fresh 16-cell development archive is the next GPU unlock.",
     "Actual daily GPU availability must be recorded; eight hours/day is only a forecast assumption.",
     "Final course page limit and presentation arrangements require reconciliation with official instructions.",
     "Actor and judge checkpoints/settings, quality gates, and final scope require pilot qualification.",
-    "G0 remains open until integrator accepts WP01 + TAB-only catalog/spec (TAB01–05 evidence now ready for review; five-family G0 not required for S0).",
+    "G0 remains open until integrator accepts WP01 + TAB-only catalog/spec (TAB01\u201305 evidence now ready for review; five-family G0 not required for S0).",
     "WP04 scoring fixtures beyond TAB paths, local semantic judge execution/qualification, WP07 analysis, freeze and collection remain pending.",
     "DOC/PLAN/CODE/VERIFY generators and non-prior-note shortcut mechanisms remain out of S0 unless stretch S1 is chosen later."
   ],
@@ -250,8 +254,8 @@
     "input_commit": "76d6db3",
     "owner": "integrator",
     "authorization": "User instructed diagnosis and fix of premature clarification with smallest local GPU/native proof and a reviewable branch/PR. Prior multi-agent/review instructions persist.",
-    "scope": "Actor capability prompt fix (tab01-slice-v3) and capability-probe CLI; GPU probe on RTX host",
-    "status": "gpu_capability_probe_completed_failed_incomplete",
+    "scope": "Actor capability incomplete-abstention fix (tab01-slice-v5) on catalog ports; GPU probe on RTX host",
+    "status": "gpu_capability_probe_passed_tab01_v5",
     "assignments": [
       {
         "owner": "native_adapter",
@@ -311,13 +315,14 @@
     "implementation_commit": "859fd45",
     "prompt_correction_commit": "60aa979",
     "prompt_correction": "Replace unconditional missing_prerequisites metadata with neutral clarification_fields in generator tab01-slice-v2; complete/incomplete public tasks remain identical. Earlier runs preserved.",
-    "capability_prompt_fix": "tab01-slice-v3 removes clarification_fields, strengthens inspect-before-abstain channel/scoring/tool text, adds --capability-probe over two existing vertical-slice cells.",
+    "capability_prompt_fix": "tab01-slice-v5 adds no-partial-answer abstention cues on catalog ports while keeping clarification_fields omitted from the TAB01 actor view.",
     "capability_handoff": "handoffs/2026-11-15-actor-capability-prompt.md",
-    "capability_probe_handoff": "handoffs/2026-11-15-capability-probe-tab01-v3.md",
-    "capability_probe_evidence": "results/qualification/capability-probe-tab01-v3.json",
-    "capability_probe_run": "capability-probe-tab01-v3",
-    "capability_probe_passed": false,
-    "output_commit": "commit containing actor capability prompt handoff"
+    "capability_probe_handoff": "handoffs/2026-11-15-capability-probe-tab01-v5.md",
+    "capability_probe_evidence": "results/qualification/capability-probe-tab01-v5.json",
+    "capability_probe_run": "capability-probe-tab01-v5-on-dd7a5ee-c",
+    "capability_probe_passed": true,
+    "prior_failed_probe_evidence": "results/qualification/capability-probe-tab01-v3.json",
+    "output_commit": "commit containing tab01-v5 capability probe evidence"
   },
   "cpu_slice_review": {
     "reviewer": "review_cpu",
@@ -368,22 +373,23 @@
     "prior_runs_preserved": true
   },
   "capability_probe_review": {
-    "latest_run": "capability-probe-tab01-v3",
-    "exact_source_commit": "ea7df53",
+    "latest_run": "capability-probe-tab01-v5-on-dd7a5ee-c",
+    "exact_source_commit": "fa8e148",
+    "base_tip": "dd7a5ee",
     "host": "DESKTOP-VEMMES3",
     "assigned": 2,
     "completed": 2,
     "native_slice_capture_passed": true,
-    "capability_probe_passed": false,
+    "capability_probe_passed": true,
     "complete_cell_passed": true,
-    "incomplete_cell_passed": false,
-    "episode_latency_mean_seconds": 33.1,
-    "sampled_peak_memory_used_mib": 5292,
-    "minimum_sampled_headroom_mib": 2900,
-    "evidence": "results/qualification/capability-probe-tab01-v3.json",
-    "raw_archive": "project/runs/shortcut-study/capability-probe-tab01-v3",
+    "incomplete_cell_passed": true,
+    "episode_latency_mean_seconds": 16.9,
+    "sampled_peak_memory_used_mib": 5290,
+    "minimum_sampled_headroom_mib": 2902,
+    "evidence": "results/qualification/capability-probe-tab01-v5.json",
+    "raw_archive": "project/runs/shortcut-study/capability-probe-tab01-v5-on-dd7a5ee-c",
     "prior_qualification_evidence_preserved": true,
     "GPU_released": true,
-    "sixteen_cell_archive_after_probe": "not_run_probe_failed"
+    "sixteen_cell_archive_after_probe": "unlocked_not_yet_run"
   }
 }
