@@ -1,6 +1,6 @@
 # Shortcut study extension — start here
 
-This is **additional research**, separate from the completed observer-framing study. Status: `tab01-slice-v6` capability probe and fresh 16-cell development archive on the RTX host **passed** (16/16 completed; complete 8/8; incomplete 8/8). Prior `tab01-slice-v5` 16-cell FAIL (#16) is preserved. **G0 TAB-only / S0 is accepted** ([acceptance handoff](handoffs/2026-11-16-g0-tab-accepted.md)); G1/G2/G3 are not. No main protocol is frozen. See the [v6 16-cell handoff](handoffs/2026-11-15-native-qualification-tab01-v6-16cell.md), [v6 16-cell evidence](results/qualification/native-qualification-tab01-v6-16cell.json), [v6 probe](results/qualification/capability-probe-tab01-v6.json), [v5 FAIL archive](results/qualification/native-qualification-tab01-v5-16cell.json), and [CPU v6 fix handoff](handoffs/2026-11-16-tab01-slice-v6-v11-fix.md).
+This is **additional research**, separate from the completed observer-framing study. Status: `tab01-slice-v6` development 16-cell **passed**; authentic S0 held-out GPU qualification **FAIL** (238/320 completed; easy success 55%); development-split long pilots recorded (9/10). Prior `tab01-slice-v5` 16-cell FAIL (#16) is preserved. **G0 TAB-only / S0 is accepted** ([acceptance handoff](handoffs/2026-11-16-g0-tab-accepted.md)); `gates.G2` is **not** accepted; G1/G3 remain open. No main protocol is frozen. See [held-out GPU FAIL](results/qualification/g2-held-out-20261116.json), [long pilots](results/qualification/g1-long-pilots-20261116.json), [v6 16-cell](results/qualification/native-qualification-tab01-v6-16cell.json), [v5 FAIL archive](results/qualification/native-qualification-tab01-v5-16cell.json), and [G0 acceptance](handoffs/2026-11-16-g0-tab-accepted.md).
 
 ## Native adapter and audit development
 
@@ -27,6 +27,7 @@ Run the fixed 16-condition **local model development slice** from the repository
 PYTHONPATH=project/shortcut-study/src python3 -m shortcut_study qualify-local --out project/runs/shortcut-study/NEW_RUN --port 18080
 PYTHONPATH=project/shortcut-study/src python3 -m shortcut_study qualify-local --capability-probe --out project/runs/shortcut-study/NEW_CAPABILITY_PROBE --port 18080
 PYTHONPATH=project/shortcut-study/src python3 -m shortcut_study qualify-local --held-out --out project/runs/shortcut-study/NEW_HELD_OUT --port 18080
+PYTHONPATH=project/shortcut-study/src python3 -m shortcut_study qualify-local --long-pilot --out project/runs/shortcut-study/NEW_LONG_PILOT --port 18080
 ```
 
 CPU-only S0 G2 packaging (schedules, fingerprint reservations, structural gates, scripted mocks; does **not** accept G2):
@@ -35,7 +36,7 @@ CPU-only S0 G2 packaging (schedules, fingerprint reservations, structural gates,
 PYTHONPATH=project/shortcut-study/src python3 -m shortcut_study package-g2-held-out --out project/runs/shortcut-study/g2-packaging --mock-difficulties trivial
 ```
 
-See [G2 packaging evidence](results/qualification/g2-held-out-packaging-v1.json), [G2 checklist](templates/G2_HELD_OUT_CHECKLIST.md), and [GPU runbook](GPU_RUNBOOK_G2.md).
+See [G2 packaging evidence](results/qualification/g2-held-out-packaging-v1.json), [G2 held-out GPU FAIL](results/qualification/g2-held-out-20261116.json), [G1 long pilots](results/qualification/g1-long-pilots-20261116.json), [G2 checklist](templates/G2_HELD_OUT_CHECKLIST.md), and [GPU runbook](GPU_RUNBOOK_G2.md).
 
 The `qualify-local` commands perform real local GPU inference. They require a fresh output directory, acquire the canonical GPU lease, use only the preserved local checkpoint/runtime, and stop their own server before releasing the lease. The server is offline, bound to loopback, fully offloaded, and configured for one 16k context slot with no history clipping. They preserve the assigned schedule, requests, responses, exact count evidence, native T/tool/A/J, scoring, recovery checks, audit inputs, and sampled GPU memory. They create no semantic judgments and do not collect main-study data. Incomplete records remain in the assigned denominator. Read `summary.json` and `manifest.json`; a successful development check does not qualify the judge, broad task capability, or full study budget. The CLI returns failure when capture checks or the sampled 512 MiB memory-headroom check fail. `--capability-probe` runs only the two existing vertical-slice cells (complete + incomplete, V00, shortcut absent) and requires authorized reads then correct answer on the complete cell plus inspect-then-abstain on the incomplete cell.
 
@@ -43,7 +44,7 @@ The `qualify-local` commands perform real local GPU inference. They require a fr
 
 The corrected generator (`tab01-slice-v2`, source commit `60aa979`) completed all 16 development episodes with 32 exact token-count matches and verified native history/recovery/audit inputs. Mean episode latency was 8.07 seconds; sampled peak GPU usage was 5,278 MiB, leaving 2,914 MiB sampled headroom. These short episodes do not establish long-task or whole-study throughput.
 
-**Development capability on TAB01:** early v2/v3 16-cell runs clarified without reading (0/8 complete). `tab01-slice-v5` 16-cell FAIL is preserved (#16: V11 turn-1 overflow + complete+sc-present+V00 36 vs 57). `tab01-slice-v6` tool-first/multi-row/calculate cues + 3072 per-turn budget; fresh probe + 16-cell archive **passed** (16/16; complete 8/8; incomplete 8/8). Semantic judging and held-out G2 remain unqualified. See [v6 16-cell evidence](results/qualification/native-qualification-tab01-v6-16cell.json), [v6 probe](results/qualification/capability-probe-tab01-v6.json), [v5 FAIL](results/qualification/native-qualification-tab01-v5-16cell.json), and [local-native-v1](results/qualification/local-native-v1.json).
+**Development capability on TAB01:** early v2/v3 16-cell runs clarified without reading (0/8 complete). `tab01-slice-v5` 16-cell FAIL is preserved (#16: V11 turn-1 overflow + complete+sc-present+V00 36 vs 57). `tab01-slice-v6` tool-first/multi-row/calculate cues + 3072 per-turn budget; fresh probe + 16-cell archive **passed** (16/16; complete 8/8; incomplete 8/8). **Held-out G2 GPU FAIL** recorded (`g2-held-out-20261116`); long pilots recorded on development (`g1-long-pilots-20261116`). Semantic judging remains unqualified; `gates.G2` not accepted. See [held-out FAIL](results/qualification/g2-held-out-20261116.json), [long pilots](results/qualification/g1-long-pilots-20261116.json), [v6 16-cell](results/qualification/native-qualification-tab01-v6-16cell.json), [v5 FAIL](results/qualification/native-qualification-tab01-v5-16cell.json), and [local-native-v1](results/qualification/local-native-v1.json).
 
 ## Implemented CPU vertical slice
 

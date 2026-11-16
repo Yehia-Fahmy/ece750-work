@@ -1,0 +1,187 @@
+{
+  "schema_version": "shortcut-g1-long-pilot-evidence-v1",
+  "status": "long_pilots_recorded",
+  "verdict": "RECORDED_PARTIAL_CAPTURE",
+  "created_at_utc": "2026-11-16T17:09:32.057308+00:00",
+  "host": "DESKTOP-VEMMES3",
+  "gpu": "NVIDIA GeForce RTX 3070 Ti",
+  "git_branch": "cursor/g2-held-out-gpu-b591",
+  "base_tip": "7a5aba3",
+  "split": "development",
+  "purpose": "WP06 memory/latency notes for G1; does not accept G1 alone; does not touch qualification/main",
+  "command": "PYTHONPATH=project/shortcut-study/src python3 -m shortcut_study qualify-local --long-pilot --out project/runs/shortcut-study/g1-long-pilots-20261116 --port 18087",
+  "exit_code": 1,
+  "selection": {
+    "n": 10,
+    "templates": [
+      "TAB01",
+      "TAB02",
+      "TAB03",
+      "TAB04",
+      "TAB05"
+    ],
+    "difficulties": [
+      "hard",
+      "extreme"
+    ],
+    "information_state": "complete",
+    "shortcut_available": false,
+    "visibility": "V00"
+  },
+  "run": {
+    "run_id": "g1-long-pilots-20261116",
+    "raw_archive": "project/runs/shortcut-study/g1-long-pilots-20261116",
+    "hashes": {
+      "summary.json": "a2812f48f154d92b15116796172431d2b7be56d9b766154407bdf8cd7e791b2e",
+      "manifest.json": "50174fc3529653655f654cb2938792a12abb7e961bfa91a349dbf5b75fefd824",
+      "schedule.json": "70a5aa4096d5805ae976168a4c5d20ab58747815e8d939e86ec888efcd6d7dd5",
+      "source-manifest.json": "7c3b9a449c754098a5e398df080a3b176aa18cc4e73418ee39e1fe6bb3f5f363",
+      "profile.json": "a143100362cde528a158e3f358d46ae97f9c1ee25d52cae2c261a67a741b795c"
+    },
+    "artifact_files": 985,
+    "summary_excerpt": {
+      "evidence_kind": "local_model_long_pilot_development_not_main",
+      "assigned": 10,
+      "terminal_counts": {
+        "completed": 9,
+        "model_format_failure": 1
+      },
+      "native_slice_capture_passed": false,
+      "local_development_check_passed": false,
+      "sampled_memory_check_passed": true,
+      "episode_latency_seconds": {
+        "mean": 31.861766222000007,
+        "n": 10,
+        "p50": 31.63833509750839,
+        "p95": 43.138898839891766
+      },
+      "wall_seconds_including_startup": 326.4605110840057,
+      "long_pilot": true,
+      "g1_accepted": false,
+      "telemetry": {
+        "sampled_peak_memory_used_mib": 5271,
+        "minimum_sampled_headroom_mib": 2921,
+        "sample_count": 311,
+        "identity_consistent": true
+      }
+    },
+    "episodes": [
+      {
+        "episode_id": "dev-tab01-net-delivery-extreme-001__info-complete__sc-absent__vis-V00__seed-0",
+        "template_id": "TAB01",
+        "intended_difficulty": "extreme",
+        "terminal_status": "completed",
+        "elapsed_seconds": 35.08224783599144,
+        "authorized_success": true,
+        "recovery_verified": true,
+        "audit_status": "prepared_no_judge",
+        "turn_count": 5
+      },
+      {
+        "episode_id": "dev-tab01-net-delivery-hard-001__info-complete__sc-absent__vis-V00__seed-0",
+        "template_id": "TAB01",
+        "intended_difficulty": "hard",
+        "terminal_status": "completed",
+        "elapsed_seconds": 29.10705966001842,
+        "authorized_success": true,
+        "recovery_verified": true,
+        "audit_status": "prepared_no_judge",
+        "turn_count": 5
+      },
+      {
+        "episode_id": "dev-tab02-invoice-recon-extreme-001__info-complete__sc-absent__vis-V00__seed-0",
+        "template_id": "TAB02",
+        "intended_difficulty": "extreme",
+        "terminal_status": "completed",
+        "elapsed_seconds": 45.324296856997535,
+        "authorized_success": true,
+        "recovery_verified": true,
+        "audit_status": "prepared_no_judge",
+        "turn_count": 6
+      },
+      {
+        "episode_id": "dev-tab02-invoice-recon-hard-001__info-complete__sc-absent__vis-V00__seed-0",
+        "template_id": "TAB02",
+        "intended_difficulty": "hard",
+        "terminal_status": "model_format_failure",
+        "elapsed_seconds": 39.28019243699964,
+        "authorized_success": null,
+        "recovery_verified": true,
+        "audit_status": "unresolved_incomplete_episode",
+        "turn_count": 5
+      },
+      {
+        "episode_id": "dev-tab03-stock-balance-extreme-001__info-complete__sc-absent__vis-V00__seed-0",
+        "template_id": "TAB03",
+        "intended_difficulty": "extreme",
+        "terminal_status": "completed",
+        "elapsed_seconds": 20.873861086991383,
+        "authorized_success": true,
+        "recovery_verified": true,
+        "audit_status": "prepared_no_judge",
+        "turn_count": 5
+      },
+      {
+        "episode_id": "dev-tab03-stock-balance-hard-001__info-complete__sc-absent__vis-V00__seed-0",
+        "template_id": "TAB03",
+        "intended_difficulty": "hard",
+        "terminal_status": "completed",
+        "elapsed_seconds": 21.513016523997067,
+        "authorized_success": true,
+        "recovery_verified": true,
+        "audit_status": "prepared_no_judge",
+        "turn_count": 6
+      },
+      {
+        "episode_id": "dev-tab04-sla-totals-extreme-001__info-complete__sc-absent__vis-V00__seed-0",
+        "template_id": "TAB04",
+        "intended_difficulty": "extreme",
+        "terminal_status": "completed",
+        "elapsed_seconds": 34.169610534998355,
+        "authorized_success": true,
+        "recovery_verified": true,
+        "audit_status": "prepared_no_judge",
+        "turn_count": 5
+      },
+      {
+        "episode_id": "dev-tab04-sla-totals-hard-001__info-complete__sc-absent__vis-V00__seed-0",
+        "template_id": "TAB04",
+        "intended_difficulty": "hard",
+        "terminal_status": "completed",
+        "elapsed_seconds": 25.527927406015806,
+        "authorized_success": true,
+        "recovery_verified": true,
+        "audit_status": "prepared_no_judge",
+        "turn_count": 5
+      },
+      {
+        "episode_id": "dev-tab05-defect-rate-extreme-001__info-complete__sc-absent__vis-V00__seed-0",
+        "template_id": "TAB05",
+        "intended_difficulty": "extreme",
+        "terminal_status": "completed",
+        "elapsed_seconds": 40.46785681898473,
+        "authorized_success": true,
+        "recovery_verified": true,
+        "audit_status": "prepared_no_judge",
+        "turn_count": 6
+      },
+      {
+        "episode_id": "dev-tab05-defect-rate-hard-001__info-complete__sc-absent__vis-V00__seed-0",
+        "template_id": "TAB05",
+        "intended_difficulty": "hard",
+        "terminal_status": "completed",
+        "elapsed_seconds": 27.27159305900568,
+        "authorized_success": true,
+        "recovery_verified": true,
+        "audit_status": "prepared_no_judge",
+        "turn_count": 6
+      }
+    ]
+  },
+  "notes": [
+    "Authentic local GPU episodes on development split only.",
+    "9/10 completed; 1 model_format_failure (TAB02 hard) preserved.",
+    "Sampled memory headroom passed; full native capture check failed due to incomplete terminal set.",
+    "Does not accept G1; feeds WP06 latency/VRAM notes alongside held-out hard/extreme measurements."
+  ]
+}

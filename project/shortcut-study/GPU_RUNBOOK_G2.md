@@ -22,7 +22,7 @@ CPU agents stop here: packaging is already on disk; this document is the handoff
 | --- | --- | --- |
 | A. Fresh 16-cell development archive | `qualify-local --out …` (full slice, not `--capability-probe`) | Confirms tab01-v5 path on all visibility cells before held-out spend |
 | B. Held-out actor qualification (320) | Native runner on `schedule-qualification.json` under lease | G2-GPU-2 / G2-GPU-3 gates |
-| C. Long-episode pilots | Representative hard/extreme complete TAB episodes | Latency / VRAM for forecast (G2-GPU-6) |
+| C. Long-episode pilots | `qualify-local --long-pilot` (10 development hard/extreme complete V00 sc-absent; never qualification/main) | Latency / VRAM for forecast (G2-GPU-6 / WP06) |
 | D. Judge held-out fixtures **or** withdraw semantics | Local judge executor on constructed fixtures | G2-GPU-5 |
 | E. Fill forecast + choose S0/S1/S4 | Spreadsheet / notes from measured times | Freeze input |
 | F. G3 freeze | Commit `configs/frozen/<version>/` after checklist sign-off | Not part of G2 packaging |

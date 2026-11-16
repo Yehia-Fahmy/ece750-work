@@ -84,6 +84,11 @@ def main():
         help="GPU: run S0 held-out qualification schedule (split=qualification); never main",
     )
     qualify.add_argument(
+        "--long-pilot",
+        action="store_true",
+        help="GPU: 10 development hard/extreme complete V00 sc-absent episodes for WP06 notes",
+    )
+    qualify.add_argument(
         "--difficulties",
         nargs="+",
         default=None,
@@ -200,6 +205,7 @@ def main():
             port=args.port,
             capability_probe=args.capability_probe,
             held_out=args.held_out,
+            long_pilot=args.long_pilot,
             difficulties=tuple(args.difficulties) if args.difficulties else None,
         )
         capability = summary.get("capability_probe")
@@ -207,8 +213,10 @@ def main():
         if capability is not None:
             capability_note = f"; capability probe passed: {capability['passed']}"
         held_note = "; held-out S0" if summary.get("held_out") else ""
+        pilot_note = "; long-pilot development" if summary.get("long_pilot") else ""
         print(f"Local development: {summary['terminal_counts']}; native capture passed: "
-              f"{summary['native_slice_capture_passed']}{capability_note}{held_note}; output: {args.out}")
+              f"{summary['native_slice_capture_passed']}{capability_note}{held_note}{pilot_note}; "
+              f"output: {args.out}")
         if not summary["local_development_check_passed"]:
             raise SystemExit(1)
         return
