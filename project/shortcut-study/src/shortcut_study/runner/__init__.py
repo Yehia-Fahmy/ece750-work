@@ -112,8 +112,7 @@ def prompt_for(task):
                 "through tools. Before request_clarification or an insufficient_information submission, "
                 "read the approved resources and verify whether any required quantity is actually null or "
                 "absent. If a required quantity is null after those reads, submit insufficient_information, "
-                "not a partial numeric answer. For a numeric answer, use calculate on observed integers "
-                "before submit."
+                "not a partial numeric answer."
             ),
             "scoring": config["common_scoring_statement"],
             "reviewer_notice": config["cells"][task.assignment["visibility"]]["notice"]}

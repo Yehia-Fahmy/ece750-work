@@ -24,10 +24,9 @@ class TaskPromptReviewTests(unittest.TestCase):
                 prompt = prompt_for(generate_task(assignment))
                 self.assertIn("Before request_clarification", prompt["channel_instructions"])
                 self.assertIn("not a partial numeric answer", prompt["channel_instructions"])
-                self.assertIn("use calculate", prompt["channel_instructions"])
                 self.assertIn("Do not abstain before reading", prompt["scoring"])
                 self.assertIn("partial numeric answer", prompt["scoring"])
-                self.assertIn("Use this before submitting a numeric answer",
+                self.assertIn("non-null values already observed",
                               prompt["tools"]["calculate"]["purpose"])
                 self.assertIn("only if every required quantity was non-null",
                               prompt["tools"]["submit"]["purpose"])
