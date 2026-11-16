@@ -42,7 +42,7 @@ class TabCatalogTests(unittest.TestCase):
         assignment = enumerate_vertical_slice_assignments()[0]
         self.assertEqual(assignment["template_id"], "TAB01")
         task = generate_task(assignment, generation_seed=0)
-        self.assertEqual(GENERATOR_VERSION, "tab01-slice-v5")
+        self.assertEqual(GENERATOR_VERSION, "tab01-slice-v6")
         self.assertNotIn("clarification_fields", task.public_task)
         self.assertIn("after reading approved resources", task.public_task["data_rules"].lower())
         self.assertEqual(set(task.public_task["approved_resources"]), set(APPROVED))
