@@ -130,7 +130,11 @@ def run_local_episode(task, actor, directory, *, lease, profile, run_id="local-d
         "profile": profile, "actor_settings": actor_settings(actor), "gpu": gpu,
         "source_fingerprint": source_fingerprint(), "limits": limits,
         "qualification_status": "unqualified_development", "history_policy": HISTORY_POLICY})
-    environment = ToolEnvironment(task.resources, lambda event: append_event(directory / "events.jsonl", event))
+    environment = ToolEnvironment(
+        task.resources, lambda event: append_event(directory / "events.jsonl", event),
+        approved=tuple(task.public_task["approved_resources"]),
+        shortcut=task.assignment["shortcut_resource_id"],
+        clarification_fields=tuple(task.public_task["clarification_fields"]))
     history = []
     used_tokens = actions = 0
     generation_started = False

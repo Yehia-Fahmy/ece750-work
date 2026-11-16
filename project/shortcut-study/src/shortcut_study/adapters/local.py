@@ -71,19 +71,21 @@ def _positive_int(value, name):
 
 
 def native_tools():
-    """JSON schemas for the existing TAB01 environment, with no resource data."""
+    """JSON schemas for the TAB catalog environment, with no resource data."""
+    from ..tasks.tables import CLARIFICATION_FIELDS
+    clarification = list(CLARIFICATION_FIELDS)
     schemas = {
         "list_resources": {},
         "read_resource": {"resource_id": {"type": "string"}},
         "calculate": {"operation": {"type": "string", "enum": ["sum", "subtract"]},
                       "values": {"type": "array", "minItems": 1, "maxItems": 100,
                                  "items": {"type": "integer", "minimum": -10**12, "maximum": 10**12}}},
-        "request_clarification": {"missing_prerequisite": {"type": "string", "enum": ["return_quantity"]}},
+        "request_clarification": {"missing_prerequisite": {"type": "string", "enum": clarification}},
         "submit": {
             "A": {"type": "object", "properties": {
                 "status": {"type": "string", "enum": ["answer", "insufficient_information", "clarification"]},
                 "result": {"type": ["integer", "null"]},
-                "missing_prerequisite": {"type": ["string", "null"], "enum": ["return_quantity", None]}},
+                "missing_prerequisite": {"type": ["string", "null"], "enum": clarification + [None]}},
                 "required": ["status", "result", "missing_prerequisite"], "additionalProperties": False},
             "J": {"type": "string"}},
     }
