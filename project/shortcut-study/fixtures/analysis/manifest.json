@@ -1,0 +1,70 @@
+{
+  "effects": {
+    "J_only": {
+      "expected_contrasts": {
+        "J_visibility": 1.0,
+        "T_visibility": 0.0,
+        "TxJ_interaction": 0.0
+      },
+      "primary_arm_assigned": 64,
+      "row_count": 128,
+      "sha256": {
+        "analysis_rows.json": "a631ecaf462015369a4f39329c8fc8ae624321238941ab69c4becc4b084ffbdc",
+        "expected.json": "aee4ae11db055a902fc8b39ec257d8841caf523f31ee0a9d4d09572073a76ff9",
+        "schedule.json": "f7567e4121115cdd202de1839f7747b473075e0bba3d88bb0c824d0699396d7b"
+      }
+    },
+    "T_only": {
+      "expected_contrasts": {
+        "J_visibility": 0.0,
+        "T_visibility": 1.0,
+        "TxJ_interaction": 0.0
+      },
+      "primary_arm_assigned": 64,
+      "row_count": 128,
+      "sha256": {
+        "analysis_rows.json": "14d5f587c4013bb88e0fe7c3d8873161f42e31136cb40e16e9a3bae29386a2c1",
+        "expected.json": "72c21fa0dcdc0e06f1117d8d1dceaad998682fdd6922e5c4f8e7f9096eef6d36",
+        "schedule.json": "e98d63b44a8be446f4e97ad36f4af263300cab168f66c4f9da953a7a6c165500"
+      }
+    },
+    "T_only_missing": {
+      "note": "One primary-arm outcome forced unknown for missingness bounds",
+      "row_count": 128,
+      "sha256": {
+        "analysis_rows.json": "37a98ff9e9b7cb61ca808c637ab4ebfc11855dfc89fa1b04c506fee5fde637e7",
+        "schedule.json": "9c78dbc0d4a03d92c84613a22ede7397211d12cfc60b307bd846d1836422cb60"
+      }
+    },
+    "both": {
+      "expected_contrasts": {
+        "J_visibility": 0.5,
+        "T_visibility": 0.5,
+        "TxJ_interaction": 0.0
+      },
+      "primary_arm_assigned": 64,
+      "row_count": 128,
+      "sha256": {
+        "analysis_rows.json": "b57b5bff7230af1e893ecaafa51f19bd9b74f5978a6052ab3775a10ead0164a6",
+        "expected.json": "73eed478fa7bb85475f2704e7280ffc89e609a91f50f270829aa292e17954682",
+        "schedule.json": "9feb2771f2270ad1531a863fafe0d1fd91125f32b65d07f35590acfe8c5f0609"
+      }
+    },
+    "null": {
+      "expected_contrasts": {
+        "J_visibility": 0.0,
+        "T_visibility": 0.0,
+        "TxJ_interaction": 0.0
+      },
+      "primary_arm_assigned": 64,
+      "row_count": 128,
+      "sha256": {
+        "analysis_rows.json": "66ac8a388da61c42eb9d2161903a53d49f32e44fe2148bf2866b1cb8aa83bd10",
+        "expected.json": "0720c95d90f2d1e8b18b1e631abd63e8a45a938d019c62a9cece083ea77746f2",
+        "schedule.json": "54f28a4f8f30afe8ea9f76cb5607b59f5f8e3c4f84c3a1a756bba32365f6c1fa"
+      }
+    }
+  },
+  "evidence_kind": "synthetic_injected_effect_not_actor_observation",
+  "note": "Not actor data; not frozen main results; TBD until real archives exist."
+}

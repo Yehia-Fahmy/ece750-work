@@ -49,6 +49,13 @@ PYTHONPATH=project/shortcut-study/src python3 -m shortcut_study mock-slice --str
 
 Each command assigns all 16 conditions. The shortcut strategy deliberately attempts the prior-agent note, then falls back to approved tables when it is absent. The generated T/J are explicitly scripted test text; none of these records measure model behavior or validate a language judge. `summary.json` identifies this evidence type. `manifest.json` hashes the actual source/config/schema files and saved artifacts. Raw records remain under the ignored run directory; the small [verification record](results/development/cpu-vertical-slice-v1.json) is tracked.
 
+WP07 analysis scaffolding (CPU, synthetic only) recovers known injected visibility effects and refuses missing archives. It does not invent frozen main results; scientific contrasts remain TBD until closed scored archives exist. See [ANALYSIS_PROTOCOL.md](ANALYSIS_PROTOCOL.md).
+
+```sh
+PYTHONPATH=project/shortcut-study/src python3 -m shortcut_study analyze-dry --effect T_only --replicates 200 --out /tmp/shortcut-wp07-dry
+PYTHONPATH=project/shortcut-study/src python3 -m shortcut_study analyze --scored PATH --schedule PATH --out PATH
+```
+
 The JSON tool boundary has no filesystem, network, Python execution, hidden-answer lookup, or candidate-check route. It is not a sandbox for untrusted Python plugins. Authorized resource reads and restricted note reads return copies of the episode's resource map; absence physically removes the note. TAB01 accepts an integer answer or a typed insufficiency/clarification status, keeping explanations in J.
 
 For an interrupted **mock episode directory** (a child of a run directory), seal it without replay:

@@ -1,0 +1,10 @@
+{
+  "description": "Acquire only when T is visible \u2192 T=1, J=0",
+  "effect": "T_only",
+  "evidence_kind": "synthetic_injected_effect_not_actor_observation",
+  "expected_contrasts": {
+    "J_visibility": 0.0,
+    "T_visibility": 1.0,
+    "TxJ_interaction": 0.0
+  }
+}
