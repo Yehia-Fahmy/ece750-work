@@ -22,6 +22,37 @@ from .tasks.tables import (APPROVED, DIFFICULTIES, GENERATOR_VERSION,
                            enumerate_tab_catalog_assignments, generate_task)
 from .vertical_slice import capability_probe_assignments, enumerate_vertical_slice_assignments
 
+LONG_PILOT_TEMPLATES = ("TAB01", "TAB02", "TAB03", "TAB04", "TAB05")
+LONG_PILOT_DIFFICULTIES = ("hard", "extreme")
+
+
+def long_pilot_assignments():
+    """Representative development hard/extreme complete episodes for WP06 notes.
+
+    Uses split=development only (never qualification/main) so pilots cannot
+    contaminate held-out fingerprints. Fixed: V00, shortcut absent, complete.
+    """
+    selected = []
+    catalog = list(enumerate_tab_catalog_assignments(
+        difficulties=LONG_PILOT_DIFFICULTIES, split="development"))
+    for template_id in LONG_PILOT_TEMPLATES:
+        for difficulty in LONG_PILOT_DIFFICULTIES:
+            matches = [
+                row for row in catalog
+                if row["template_id"] == template_id
+                and row["intended_difficulty"] == difficulty
+                and row["information_state"] == "complete"
+                and row["shortcut_available"] is False
+                and row["visibility"] == "V00"
+            ]
+            if len(matches) != 1:
+                raise ValueError(
+                    f"expected one long-pilot cell for {template_id}/{difficulty}, got {len(matches)}")
+            selected.append(matches[0])
+    if len(selected) != 10:
+        raise ValueError("long pilot schedule must be exactly 10 development episodes")
+    return selected
+
 
 def file_hash(path):
     digest = hashlib.sha256()
@@ -207,6 +238,10 @@ def summarize(assignments, rows, telemetry, *, failure=None, evidence_kind="loca
              "No semantic judge inference unless separately recorded.",
              "GPU memory is sampled; unsampled peaks may be higher."]
             if evidence_kind == "local_model_held_out_qualification_not_main"
+            else ["Development-split hard/extreme long pilots for WP06 memory/latency notes.",
+                  "Does not accept G1 alone; not held-out qualification or main collection.",
+                  "GPU memory is sampled; unsampled peaks may be higher."]
+            if evidence_kind == "local_model_long_pilot_development_not_main"
             else ["One TAB01 development scenario; no held-out capability evidence.",
                   "No semantic judge inference or complete pipeline capacity forecast.",
                   "GPU memory is sampled; unsampled peaks may be higher.",
@@ -216,14 +251,17 @@ def summarize(assignments, rows, telemetry, *, failure=None, evidence_kind="loca
 
 
 def run_qualification(directory, *, port=18080, capability_probe=False, held_out=False,
-                      difficulties=None):
+                      long_pilot=False, difficulties=None):
     from .adapters.token_counter import LlamaCppTokenCounter
     from .runtime.server import LocalLlamaServer, inspect_local_assets
     from .runtime.telemetry import GpuTelemetry
     from .__main__ import prepare_archive
 
-    if capability_probe and held_out:
-        raise ValueError("capability probe and held-out qualification are mutually exclusive")
+    modes = sum(bool(flag) for flag in (capability_probe, held_out, long_pilot))
+    if modes > 1:
+        raise ValueError("capability probe, held-out qualification, and long-pilot are mutually exclusive")
+    if difficulties is not None and not held_out:
+        raise ValueError("--difficulties is only valid with --held-out")
 
     directory = Path(directory).resolve()
     directory.mkdir(parents=True, exist_ok=False)
@@ -241,6 +279,11 @@ def run_qualification(directory, *, port=18080, capability_probe=False, held_out
         evidence_kind = "local_model_capability_probe_not_main"
         job = "native-capability-probe"
         assignments = [{**row, "generator_version": GENERATOR_VERSION} for row in selected]
+    elif long_pilot:
+        selected = long_pilot_assignments()
+        evidence_kind = "local_model_long_pilot_development_not_main"
+        job = "native-long-pilot-development"
+        assignments = list(selected)
     else:
         selected = enumerate_vertical_slice_assignments()
         evidence_kind = "local_model_development_not_main"
@@ -251,6 +294,7 @@ def run_qualification(directory, *, port=18080, capability_probe=False, held_out
     write_new(directory / "schedule.json", {"evidence_kind": evidence_kind,
                                            "capability_probe": capability_probe,
                                            "held_out": held_out,
+                                           "long_pilot": long_pilot,
                                            "scope_tier": "S0" if held_out else None,
                                            "assignments": assignments, "config": config,
                                            "created_at": datetime.now(timezone.utc).isoformat()})
@@ -349,6 +393,11 @@ def run_qualification(directory, *, port=18080, capability_probe=False, held_out
         summary["held_out"] = True
         summary["scope_tier"] = "S0"
         summary["g2_accepted"] = False
+        summary["main_qualified"] = False
+    if long_pilot:
+        summary["long_pilot"] = True
+        summary["split"] = "development"
+        summary["g1_accepted"] = False
         summary["main_qualified"] = False
     if failure:
         summary["native_slice_capture_passed"] = False

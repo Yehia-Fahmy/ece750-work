@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "updated_at": "2026-11-16",
-  "phase": "g0_tab_accepted_s0",
+  "phase": "g2_held_out_gpu_fail_long_pilots_recorded",
   "context_checkpoint": "ecb82d3",
   "planning_status": "implementation_in_progress",
   "execution_started": true,
@@ -40,7 +40,7 @@
   "gates": {
     "G0": "accepted",
     "G1": "in_progress",
-    "G2": "not_started",
+    "G2": "in_progress",
     "G3": "not_started",
     "G4": "not_started",
     "G5": "not_started",
@@ -172,9 +172,13 @@
         "handoffs/2026-11-15-native-audit-integration.md",
         "results/development/native-audit-integration-v1.json",
         "handoffs/2026-11-15-local-qualification.md",
-        "results/qualification/local-native-v1.json"
+        "results/qualification/local-native-v1.json",
+        "handoffs/2026-11-16-g1-long-pilots.md",
+        "results/qualification/g1-long-pilots-20261116.json",
+        "handoffs/2026-11-16-g2-held-out-gpu.md",
+        "results/qualification/g2-held-out-20261116.json"
       ],
-      "note": "Owned pinned local runtime, canonical GPU lease, exact template count and full 37/37 offload verified. Latest run sampled 5278 MiB peak / 2914 MiB headroom; mean 8.07s on short clarification-only episodes. Representative long tasks, actor/judge quality and complete pipeline forecast pending."
+      "note": "Owned pinned local runtime, canonical GPU lease, exact template count and full 37/37 offload verified. Latest run sampled 5278 MiB peak / 2914 MiB headroom; mean 8.07s on short clarification-only episodes. Representative long tasks, actor/judge quality and complete pipeline forecast pending. Long-pilot telemetry recorded 2026-11-16 (development hard/extreme); held-out GPU FAIL preserved."
     },
     {
       "id": "WP07",
@@ -218,9 +222,11 @@
         "GPU_RUNBOOK_G2.md",
         "src/shortcut_study/held_out.py",
         "tests/test_held_out.py",
-        "results/qualification/g2-held-out-packaging-v1.json"
+        "results/qualification/g2-held-out-packaging-v1.json",
+        "handoffs/2026-11-16-g2-held-out-gpu.md",
+        "results/qualification/g2-held-out-20261116.json"
       ],
-      "note": "WP08 prep: (1) unsigned S0 provisional freeze checklist under configs/provisional/s0-tab-only/ (G3 not_started). (2) CPU S0 G2 held-out packaging (schedules/reservations/mocks; g2_accepted=false). gates.G2 remains not_started until GPU held-out evidence."
+      "note": "WP08 prep: (1) unsigned S0 provisional freeze checklist under configs/provisional/s0-tab-only/ (G3 not_started). (2) CPU S0 G2 held-out packaging (schedules/reservations/mocks; g2_accepted=false). (3) Authentic GPU held-out actor run FAIL recorded (g2-held-out-20261116); gates.G2 in_progress but not accepted."
     },
     {
       "id": "WP09",
@@ -275,8 +281,8 @@
   ],
   "open_items": [
     "G0 TAB-only / S0 accepted (WP01 + TAB catalog/spec + v6 PASS archive #20); five-family G0 remains out of S0. See handoffs/2026-11-16-g0-tab-accepted.md.",
-    "G1 partially unblocked: development capture+capability cleared on TAB01 v6 slice; still need long-episode WP06 pilots, isolation/scorer completeness notes, then held-out G2.",
-    "G2 CPU packaging ready (S0 schedules/reservations/mocks); gates.G2 still requires GPU held-out actor/judge/forecast evidence per GPU_RUNBOOK_G2.md.",
+    "G1: TAB01 v6 development capture+capability cleared; long-episode WP06 pilots recorded (g1-long-pilots-20261116, 9/10 completed); still need isolation/scorer completeness notes + integrator acceptance.",
+    "G2: authentic held-out GPU run recorded FAIL (g2-held-out-20261116: completion 74.38%, easy success 55%); gates.G2 not accepted; fix on development then fresh qualification; judge/forecast still open.",
     "Actual daily GPU availability must be recorded; eight hours/day is only a forecast assumption.",
     "Final course page limit and presentation arrangements require reconciliation with official instructions.",
     "Actor and judge checkpoints/settings, quality gates, and final scope require pilot qualification.",
@@ -285,87 +291,39 @@
     "WP08 S0 freeze checklist + provisional configs drafted under configs/provisional/s0-tab-only/; unsigned; awaiting gate evidence before any configs/frozen/ commit."
   ],
   "session": {
-    "date": "2026-11-15",
-    "input_commit": "838be79",
-    "owner": "integrator",
-    "authorization": "Integrator G0 re-evaluation after #20 merge: accept TAB-only G0 if evidence warrants; do not claim G1/G2/G3; do not self-merge (lagging reviewer).",
-    "scope": "G0 TAB-only acceptance record from v6 PASS evidence",
-    "status": "g0_tab_accepted_after_tab01_v6_pass",
-    "assignments": [
-      {
-        "owner": "native_adapter",
-        "paths": [
-          "src/shortcut_study/adapters/token_counter.py",
-          "tests/test_token_counter.py"
-        ],
-        "package": "WP03"
-      },
-      {
-        "owner": "review_cpu",
-        "paths": [
-          "src/shortcut_study/runtime/server.py",
-          "tests/test_local_server.py"
-        ],
-        "package": "WP06"
-      },
-      {
-        "owner": "audit_pipeline",
-        "paths": [
-          "src/shortcut_study/runtime/telemetry.py",
-          "tests/test_gpu_telemetry.py"
-        ],
-        "package": "WP06 telemetry and independent qualification review"
-      },
-      {
-        "owner": "root",
-        "paths": [
-          "src/shortcut_study/qualification.py",
-          "src/shortcut_study/__main__.py",
-          "tests/test_qualification.py",
-          "configs/development/local-qualification.json",
-          "state.json",
-          "README.md",
-          "results/qualification/"
-        ],
-        "package": "integration_GPU_operator"
-      },
-      {
-        "owner": "native_adapter",
-        "reviewer": "review_cpu",
-        "package": "WP02 prompt metadata correction",
-        "paths": [
-          "src/shortcut_study/tasks/tables/__init__.py",
-          "tests/test_task_prompt_review.py"
-        ]
-      }
-    ],
-    "startup_attempts": [
-      {
-        "run": "native-qualification-20261115-v1",
-        "status": "readiness_rejected_missing_offload_diagnostics",
-        "generated_episodes": 0,
-        "preserved": true
-      }
-    ],
-    "implementation_commit": "859fd45",
-    "prompt_correction_commit": "60aa979",
-    "prompt_correction": "Replace unconditional missing_prerequisites metadata with neutral clarification_fields in generator tab01-slice-v2; complete/incomplete public tasks remain identical. Earlier runs preserved.",
-    "capability_prompt_fix": "tab01-slice-v6 adds tool-first/brief-T cues, multi-row same-order inclusion, calculate-before-numeric cues, and 3072 per-turn development/local output budget; clarification_fields still omitted from TAB01 actor view; soft calculate gate retained.",
-    "capability_handoff": "handoffs/2026-11-16-tab01-slice-v6-v11-fix.md",
-    "capability_probe_handoff": "handoffs/2026-11-15-capability-probe-tab01-v6.md",
-    "capability_probe_evidence": "results/qualification/capability-probe-tab01-v6.json",
-    "capability_probe_run": "capability-probe-tab01-v6b",
-    "capability_probe_passed": true,
-    "capability_probe_v6_status": "passed_capability_probe_tab01_v6b",
-    "sixteen_cell_handoff": "handoffs/2026-11-15-native-qualification-tab01-v6-16cell.md",
-    "sixteen_cell_evidence": "results/qualification/native-qualification-tab01-v6-16cell.json",
-    "sixteen_cell_run": "native-qualification-tab01-v6-16cell",
-    "sixteen_cell_passed": true,
-    "sixteen_cell_v6_status": "passed_native_qualification_tab01_v6_16cell",
-    "output_commit": "commit containing tab01-v6 probe+16-cell evidence",
-    "prior_failed_probe_evidence": "results/qualification/capability-probe-tab01-v3.json",
-    "prior_v5_sixteen_cell_evidence": "results/qualification/native-qualification-tab01-v5-16cell.json",
-    "prior_v5_capability_probe_evidence": "results/qualification/capability-probe-tab01-v5.json"
+    "date": "2026-11-16",
+    "input_commit": "7a5aba3",
+    "owner": "gpu_operator",
+    "authorization": "Coordinator assigned ECE-24 G2 held-out GPU + ECE-25 G1 long pilots; do not self-merge.",
+    "scope": "S0 held-out qualify-local --held-out; development --long-pilot; zero external inference",
+    "status": "g2_held_out_fail_g1_pilots_recorded",
+    "held_out_run": "g2-held-out-20261116",
+    "held_out_evidence": "results/qualification/g2-held-out-20261116.json",
+    "held_out_handoff": "handoffs/2026-11-16-g2-held-out-gpu.md",
+    "held_out_verdict": "FAIL",
+    "long_pilot_run": "g1-long-pilots-20261116",
+    "long_pilot_evidence": "results/qualification/g1-long-pilots-20261116.json",
+    "long_pilot_handoff": "handoffs/2026-11-16-g1-long-pilots.md",
+    "prior_session_tab01_v6": {
+      "date": "2026-11-15",
+      "input_commit": "838be79",
+      "status": "gpu_16cell_archive_passed_tab01_v6",
+      "capability_probe_evidence": "results/qualification/capability-probe-tab01-v6.json",
+      "sixteen_cell_handoff": "handoffs/2026-11-15-native-qualification-tab01-v6-16cell.md",
+      "sixteen_cell_evidence": "results/qualification/native-qualification-tab01-v6-16cell.json",
+      "sixteen_cell_run": "native-qualification-tab01-v6-16cell",
+      "sixteen_cell_passed": true,
+      "prior_failed_probe_evidence": "results/qualification/capability-probe-tab01-v3.json",
+      "prior_v5_sixteen_cell_evidence": "results/qualification/native-qualification-tab01-v5-16cell.json",
+      "prior_v5_capability_probe_evidence": "results/qualification/capability-probe-tab01-v5.json"
+    },
+    "prior_session_g0_accept": {
+      "date": "2026-11-16",
+      "status": "g0_tab_accepted_after_tab01_v6_pass",
+      "acceptance_handoff": "handoffs/2026-11-16-g0-tab-accepted.md",
+      "g0_decision": "accepted",
+      "scope": "TAB-only (not five-family)"
+    }
   },
   "cpu_slice_review": {
     "reviewer": "review_cpu",
