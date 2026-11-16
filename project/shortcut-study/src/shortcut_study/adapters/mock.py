@@ -7,7 +7,7 @@ def _missing_field(task):
     fields = task.get("clarification_fields")
     if isinstance(fields, list) and fields:
         return fields[0]
-    # TAB01 v5 keeps vocabulary out of the actor view; recover from data_rules.
+    # TAB01–05 omit clarification_fields from the actor view; recover from data_rules.
     marker = "typed missing_prerequisite id is "
     rules = task.get("data_rules") or ""
     if marker in rules:

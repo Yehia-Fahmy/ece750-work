@@ -102,9 +102,11 @@
         "results/qualification/capability-probe-tab01-v6.json",
         "handoffs/2026-11-15-native-qualification-tab01-v6-16cell.md",
         "results/qualification/native-qualification-tab01-v6-16cell.json",
-        "handoffs/2026-11-16-g0-tab-accepted.md"
+        "handoffs/2026-11-16-g0-tab-accepted.md",
+        "handoffs/2026-11-16-tab-catalog-v2-public-task-port.md",
+        "results/development/tab-catalog-v2-public-task-port.json"
       ],
-      "note": "TAB01\u201305 catalog retained; TAB01 moderate on tab01-slice-v6. v5 16-cell FAIL preserved (#16); v6 probe+16-cell PASS on DESKTOP-VEMMES3 (#20). Integrator accepted G0 TAB-only / S0 (catalog/spec + WP01 + PASS archive); WP02 package remains in_progress (not five-family; not full WP02 closure). G1/G2/G3 not accepted."
+      "note": "TAB01\u201305 catalog on tab-catalog-v2 (TAB02\u201305 public-task port of tab01-slice-v6); TAB01 moderate still tab01-slice-v6. v5 16-cell FAIL preserved (#16); v6 probe+16-cell PASS (#20); G2 held-out FAIL preserved (#23). Integrator accepted G0 TAB-only / S0 earlier; WP02 remains in_progress (not five-family). G1/G2/G3 not accepted; catalog-v2 awaits lagging review + GPU re-qual."
     },
     {
       "id": "WP03",
@@ -282,7 +284,7 @@
   "open_items": [
     "G0 TAB-only / S0 accepted (WP01 + TAB catalog/spec + v6 PASS archive #20); five-family G0 remains out of S0. See handoffs/2026-11-16-g0-tab-accepted.md.",
     "G1: TAB01 v6 development capture+capability cleared; long-episode WP06 pilots recorded (g1-long-pilots-20261116, 9/10 completed); still need isolation/scorer completeness notes + integrator acceptance.",
-    "G2: authentic held-out GPU run recorded FAIL (g2-held-out-20261116: completion 74.38%, easy success 55%); gates.G2 not accepted; fix on development then fresh qualification; judge/forecast still open.",
+    "G2: authentic held-out GPU run recorded FAIL (g2-held-out-20261116: completion 74.38%, easy success 55%); gates.G2 not accepted. CPU tab-catalog-v2 ports TAB02–05 to tab01-slice-v6 public-task pattern (mocks only); WSL GPU re-qual after merge; judge/forecast still open.",
     "Actual daily GPU availability must be recorded; eight hours/day is only a forecast assumption.",
     "Final course page limit and presentation arrangements require reconciliation with official instructions.",
     "Actor and judge checkpoints/settings, quality gates, and final scope require pilot qualification.",

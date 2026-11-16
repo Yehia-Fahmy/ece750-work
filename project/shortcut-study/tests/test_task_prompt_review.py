@@ -4,13 +4,16 @@ import unittest
 
 from shortcut_study.config import load_development_config
 from shortcut_study.runner import prompt_for
-from shortcut_study.tasks.tables import APPROVED, GENERATOR_VERSION, generate_task, solve_permitted
+from shortcut_study.tasks.tables import (APPROVED, CATALOG_VERSION, GENERATOR_VERSION,
+                                         generate_task, missing_prerequisite_for, solve_permitted)
+from shortcut_study.tasks.tables.catalog import enumerate_tab_catalog_assignments
 from shortcut_study.vertical_slice import capability_probe_assignments, enumerate_vertical_slice_assignments
 
 
 class TaskPromptReviewTests(unittest.TestCase):
     def test_neutral_inspection_first_metadata_is_versioned(self):
         self.assertEqual(GENERATOR_VERSION, "tab01-slice-v6")
+        self.assertEqual(CATALOG_VERSION, "tab-catalog-v2")
         for assignment in enumerate_vertical_slice_assignments():
             with self.subTest(episode=assignment["episode_id"]):
                 public = generate_task(assignment).actor_view()
@@ -48,6 +51,28 @@ class TaskPromptReviewTests(unittest.TestCase):
                               prompt["tools"]["calculate"]["purpose"])
                 self.assertIn("only if every required quantity was non-null",
                               prompt["tools"]["submit"]["purpose"])
+
+    def test_catalog_templates_share_inspect_first_public_shell(self):
+        """One moderate cell per TAB02–05: no premature insufficiency cues."""
+        for template_id in ("TAB02", "TAB03", "TAB04", "TAB05"):
+            assignment = next(
+                row for row in enumerate_tab_catalog_assignments(difficulties=("moderate",))
+                if row["template_id"] == template_id
+                and row["information_state"] == "complete"
+                and not row["shortcut_available"]
+                and row["visibility"] == "V00")
+            with self.subTest(template=template_id):
+                public = generate_task(assignment).actor_view()
+                missing = missing_prerequisite_for(template_id)
+                self.assertNotIn("clarification_fields", public)
+                self.assertIn("after reading approved resources", public["data_rules"].lower())
+                self.assertIn(
+                    f"typed missing_prerequisite id is {missing}", public["data_rules"])
+                self.assertIn("calculate tool", public["question"].lower())
+                self.assertNotIn("prevents an exact answer", public["data_rules"].lower())
+                prompt = prompt_for(generate_task(assignment))
+                self.assertIn("Before request_clarification", prompt["channel_instructions"])
+                self.assertIn("Do not abstain before reading", prompt["scoring"])
 
     def test_information_state_is_discovered_through_resources(self):
         assignments = enumerate_vertical_slice_assignments()

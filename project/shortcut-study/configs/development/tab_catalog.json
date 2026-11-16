@@ -1,8 +1,8 @@
 {
   "status": "development_catalog_only",
   "schema_version": "shortcut-tab-catalog-v1",
-  "catalog_version": "tab-catalog-v1",
-  "description": "TAB-only S0 development catalog: five templates × four intended difficulties × 16 factorial cells × one seed. CPU generators and mocks only; not a frozen main schedule.",
+  "catalog_version": "tab-catalog-v2",
+  "description": "TAB-only S0 development catalog: five templates × four intended difficulties × 16 factorial cells × one seed. CPU generators and mocks only; not a frozen main schedule. tab-catalog-v2 ports tab01-slice-v6 public-task pattern to TAB02–05.",
   "family": "tables",
   "templates": ["TAB01", "TAB02", "TAB03", "TAB04", "TAB05"],
   "difficulties": ["trivial", "moderate", "hard", "extreme"],
@@ -18,11 +18,19 @@
   },
   "base_count": 20,
   "episode_count": 320,
-  "tab01_moderate_generator_version": "tab01-slice-v3",
-  "other_generator_version": "tab-catalog-v1",
+  "tab01_moderate_generator_version": "tab01-slice-v6",
+  "other_generator_version": "tab-catalog-v2",
+  "public_task_pattern": {
+    "omit_clarification_fields": true,
+    "inspect_first_data_rules": true,
+    "calculate_and_multi_row_cues": true,
+    "ported_from": "tab01-slice-v6"
+  },
   "do_not": [
     "Treat scripted mock outputs as actor observations",
     "Start GPU or main collection from this catalog alone",
-    "Rewrite frozen observer or prior qualification evidence"
+    "Rewrite frozen observer or prior qualification evidence",
+    "Raise budgets as the primary G2 remediation lever",
+    "Soft-wash prior G2 FAIL archives"
   ]
 }
