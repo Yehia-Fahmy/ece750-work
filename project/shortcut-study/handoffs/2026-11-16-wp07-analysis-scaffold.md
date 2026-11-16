@@ -1,0 +1,43 @@
+# Package handoff — WP07 Analysis implementation (scaffold) — 2026-11-16
+
+- Owner and role: analyst (CPU scaffolding)
+- Status: ready_for_review
+- Input commit and dependencies: WP01 accepted; scored-row schema in place; scope ladder `/cursor/stores/self/docs/shortcut-study-scope-path.md` (WP07 on synthetics, blind to main)
+- Output commit (or explicitly uncommitted paths): branch `cursor/wp07-analysis-scaffold-c721`
+- Paths changed; shared-contract version:
+  - `src/shortcut_study/analysis/` — metrics, aggregate, compare, simulate, semantic diagnostics, harness/io
+  - `src/shortcut_study/__main__.py` — `analyze-dry` / `analyze` commands
+  - `configs/development/analysis_protocol.json` — draft, **not frozen**
+  - `ANALYSIS_PROTOCOL.md` — human draft twin
+  - `fixtures/analysis/` — synthetic injected-effect bundles
+  - `tests/test_analysis.py` — recovery / missingness / null / refusal tests
+  - `results/development/wp07-analysis-scaffold-v1.json` — scaffold evidence marker (not main results)
+  - `state.json` — WP07 claimed ready_for_review
+- Concrete behavior implemented:
+  - Primary-arm cell rates with assigned-denominator unknown handling
+  - Paired T/J confirmatory contrasts + secondary interaction
+  - Family×difficulty clustered bootstrap with 95% and Bonferroni 97.5% scaffolding
+  - Zero-event / degenerate-bootstrap warnings
+  - Synthetic fixtures with known injected effects; dry harness recovers them
+  - `analyze` path joins scored rows + schedule; refuses missing archives (TBD)
+  - Weighted review diagnostics + bounded label-error sensitivity helpers (no invented audits)
+- Commands run and actual outcomes:
+  - `PYTHONPATH=project/shortcut-study/src python3 -m unittest discover -s project/shortcut-study/tests -p test_analysis.py -q` → 10 tests OK
+  - `PYTHONPATH=project/shortcut-study/src python3 -m unittest discover -s project/shortcut-study/tests -q` → 178 tests OK
+  - `PYTHONPATH=project/shortcut-study/src python3 -m shortcut_study analyze-dry --effect T_only --replicates 50 --out /tmp/shortcut-wp07-dry-…` → `recovery_ok=True`; synthetic only
+  - Preservation historical hashes checked → 0 mismatches
+- Evidence/manifest paths and hashes:
+  - `results/development/wp07-analysis-scaffold-v1.json`
+  - `fixtures/analysis/manifest.json` (synthetic fixture inventory)
+- Failures, uncertain findings, and scope limitations:
+  - **No frozen main results**; no actor archive analyzed
+  - Draft protocol only; freeze remains WP08/G3
+  - Semantic helpers are diagnostic scaffolding until real audit rows exist
+  - Full 10,000-replicate default is for real `analyze`; dry default uses fewer for smoke
+- GPU lease owner/process/job, or no GPU work: **no GPU work**
+- Terminal/incomplete/unattempted job IDs if applicable: none
+- Next safe action and required dependency:
+  - Integrator review/acceptance of WP07 scaffold
+  - Keep blind to any future main contrasts until G5
+  - When closed scored archives + schedule exist, run `analyze` (still not a WP11 freeze release)
+- Acceptance reviewer, decision, and date (filled on review):

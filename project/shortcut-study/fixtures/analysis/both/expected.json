@@ -1,0 +1,10 @@
+{
+  "description": "Alternate T-only and J-only bases \u2192 mean T=0.5, J=0.5, interaction=0 (binary single-base patterns cannot realize T=J=0.5 with zero interaction)",
+  "effect": "both",
+  "evidence_kind": "synthetic_injected_effect_not_actor_observation",
+  "expected_contrasts": {
+    "J_visibility": 0.5,
+    "T_visibility": 0.5,
+    "TxJ_interaction": 0.0
+  }
+}
