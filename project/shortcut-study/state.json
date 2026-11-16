@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "updated_at": "2026-11-16",
-  "phase": "actor_16cell_tab01_v6_passed_pending_g0_reeval",
+  "phase": "g0_tab_accepted_s0",
   "context_checkpoint": "ecb82d3",
   "planning_status": "implementation_in_progress",
   "execution_started": true,
@@ -38,7 +38,7 @@
     "original_course_core_episodes_withdrawn_for_dec4": 3200
   },
   "gates": {
-    "G0": "in_progress",
+    "G0": "accepted",
     "G1": "in_progress",
     "G2": "not_started",
     "G3": "not_started",
@@ -101,9 +101,10 @@
         "handoffs/2026-11-15-capability-probe-tab01-v6.md",
         "results/qualification/capability-probe-tab01-v6.json",
         "handoffs/2026-11-15-native-qualification-tab01-v6-16cell.md",
-        "results/qualification/native-qualification-tab01-v6-16cell.json"
+        "results/qualification/native-qualification-tab01-v6-16cell.json",
+        "handoffs/2026-11-16-g0-tab-accepted.md"
       ],
-      "note": "TAB01\u201305 catalog retained; TAB01 moderate on tab01-slice-v6. v5 16-cell FAIL preserved (#16); v6 probe+16-cell PASS on DESKTOP-VEMMES3. G0 pending integrator re-evaluation (not auto-accepted). Five-family G0 out of S0."
+      "note": "TAB01\u201305 catalog retained; TAB01 moderate on tab01-slice-v6. v5 16-cell FAIL preserved (#16); v6 probe+16-cell PASS on DESKTOP-VEMMES3 (#20). Integrator accepted G0 TAB-only / S0 (catalog/spec + WP01 + PASS archive); WP02 package remains in_progress (not five-family; not full WP02 closure). G1/G2/G3 not accepted."
     },
     {
       "id": "WP03",
@@ -273,7 +274,7 @@
     }
   ],
   "open_items": [
-    "G0 TAB-only: prior blocked_not_accepted after v5 FAIL (#16/#17); fresh tab01-v6 16-cell PASS archive now available for integrator re-evaluation (not auto-accepted).",
+    "G0 TAB-only / S0 accepted (WP01 + TAB catalog/spec + v6 PASS archive #20); five-family G0 remains out of S0. See handoffs/2026-11-16-g0-tab-accepted.md.",
     "G1 partially unblocked: development capture+capability cleared on TAB01 v6 slice; still need long-episode WP06 pilots, isolation/scorer completeness notes, then held-out G2.",
     "G2 CPU packaging ready (S0 schedules/reservations/mocks); gates.G2 still requires GPU held-out actor/judge/forecast evidence per GPU_RUNBOOK_G2.md.",
     "Actual daily GPU availability must be recorded; eight hours/day is only a forecast assumption.",
@@ -287,9 +288,9 @@
     "date": "2026-11-15",
     "input_commit": "838be79",
     "owner": "integrator",
-    "authorization": "User authorized NEW-branch follow-up after #16: fix V11 overflow + complete+sc-present+V00 wrong answer; version v6; fresh probe + 16-cell; do not amend #16; do not self-merge (lagging reviewer bc-201985da).",
-    "scope": "tab01-slice-v6 tool-first/multi-row/calculate cues; probe + 16-cell on DESKTOP-VEMMES3",
-    "status": "gpu_16cell_archive_passed_tab01_v6",
+    "authorization": "Integrator G0 re-evaluation after #20 merge: accept TAB-only G0 if evidence warrants; do not claim G1/G2/G3; do not self-merge (lagging reviewer).",
+    "scope": "G0 TAB-only acceptance record from v6 PASS evidence",
+    "status": "g0_tab_accepted_after_tab01_v6_pass",
     "assignments": [
       {
         "owner": "native_adapter",
@@ -441,26 +442,36 @@
     "raw_archive": "project/runs/shortcut-study/capability-probe-tab01-v5-main",
     "prior_qualification_evidence_preserved": true,
     "GPU_released": true,
-    "sixteen_cell_archive_after_probe": "ran_failed_capture_v11_budget",
+    "sixteen_cell_archive_after_probe": "ran_failed_capture_v11_budget_then_v6_pass_on_pr20",
     "sixteen_cell_run": "native-qualification-tab01-v5-16cell",
     "sixteen_cell_evidence": "results/qualification/native-qualification-tab01-v5-16cell.json",
     "base_tip": "cb8f5cd",
     "prior_failed_run": "capability-probe-tab01-v3",
-    "note": "Probe PASS on #13; follow-up 16-cell FAIL archived on #16. Integrator records G0 blocked_not_accepted pending fresh PASS archive."
+    "note": "Historical block path: probe PASS on #13 then 16-cell FAIL on #16. Superseded for G0 by tab01-v6 probe+16-cell PASS on #20; see session.* v6 fields and g0_gate_review. This block still summarizes the v5 probe for lineage."
   },
   "g0_gate_review": {
-    "decision": "blocked_not_accepted_pending_reevaluation",
+    "decision": "accepted",
     "scope": "TAB-only (not five-family)",
     "date": "2026-11-16",
     "owner": "integrator",
-    "reason": "Prior block after v5 FAIL (#16/#17) stands historically; fresh tab01-v6 PASS archive now exists for integrator re-evaluation. This PR does not auto-accept G0.",
+    "reason": "WP01 accepted; TAB01\u201305 catalog/spec on main (#11); fresh tab01-v6 capability probe + 16-cell development archive PASS on main via #20. Supersedes prior blocked_not_accepted after v5 FAIL (#16/#17). Does not accept G1/G2/G3.",
+    "acceptance_handoff": "handoffs/2026-11-16-g0-tab-accepted.md",
+    "prior_block_handoff": "handoffs/2026-11-16-g0-tab-blocked.md",
+    "prior_block_pr": "https://github.com/Yehia-Fahmy/ece750-work/pull/17",
     "fail_pr": "https://github.com/Yehia-Fahmy/ece750-work/pull/16",
     "fail_run": "native-qualification-tab01-v5-16cell",
     "fail_evidence_on_pr": "results/qualification/native-qualification-tab01-v5-16cell.json",
     "fail_handoff_on_pr": "handoffs/2026-11-15-native-qualification-tab01-v5-16cell.md",
+    "pass_pr": "https://github.com/Yehia-Fahmy/ece750-work/pull/20",
     "pass_run": "native-qualification-tab01-v6-16cell",
     "pass_evidence_on_pr": "results/qualification/native-qualification-tab01-v6-16cell.json",
     "pass_handoff_on_pr": "handoffs/2026-11-15-native-qualification-tab01-v6-16cell.md",
-    "pass_probe_evidence": "results/qualification/capability-probe-tab01-v6.json"
+    "pass_probe_run": "capability-probe-tab01-v6b",
+    "pass_probe_evidence": "results/qualification/capability-probe-tab01-v6.json",
+    "pass_probe_handoff": "handoffs/2026-11-15-capability-probe-tab01-v6.md",
+    "catalog_evidence": "results/development/tab-catalog-expansion-v1.json",
+    "catalog_handoff": "handoffs/2026-11-16-tab-catalog-expansion.md",
+    "wp01_evidence": "handoffs/2026-11-15-wp01-contracts.md",
+    "raw_archives_note": "Raw WSL trees under gitignored project/runs/ are not in git; tracked qualification JSON embeds archive sha256 hashes."
   }
 }
