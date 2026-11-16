@@ -1,0 +1,23 @@
+# Package handoff — WP04 scoring fixtures / harness — 2026-11-16
+
+- Owner and role: scoring engineer (cloud worker)
+- Status: ready_for_review
+- Input commit and dependencies: `76d6db3` (main); WP01 contracts; TAB01 vertical slice
+- Output commit: this branch `cursor/wp04-scoring-fixtures-693a`
+- Paths changed; shared-contract version: additive WP04 fixtures/harness; scorer still emits `shortcut-scored-row-v1`
+- Concrete behavior implemented:
+  - Deterministic scorer uses per-task `shortcut_resource_id` and `approved_resources` (TAB01–05 ready)
+  - `mandatory_checks_completed` from authorized resource reads only; never from missing `calculate` calls
+  - CPU fixture catalog covering WP04 acceptance separations
+  - Harness + `score-fixtures` CLI; optional multi-template run once catalog generators exist
+- Commands run and actual outcomes: recorded in PR / development evidence JSON
+- Evidence/manifest paths and hashes: `fixtures/scoring/cases.json`, `results/development/wp04-scoring-fixtures-v1.json`
+- Failures, uncertain findings, and scope limitations:
+  - Full WP04 package acceptance still pending integrator review
+  - TAB02–05 fixture expansion waits on PR #11 catalog landing
+  - Did not edit `state.json` (integrator-owned); recommend WP04 evidence append on merge
+  - Avoided overlapping open PR surfaces (`report/`, `analysis/`, actor-capability prompt edits, TAB generator modules)
+- GPU lease owner/process/job, or no GPU work: no GPU work
+- Terminal/incomplete/unattempted job IDs if applicable: none
+- Next safe action and required dependency: merge after tests; rebase/adapt expectations when PR #11 lands; integrator updates `state.json`
+- Acceptance reviewer, decision, and date (filled on review):
