@@ -6,7 +6,7 @@
     "missing_data_refusal_vs_lucky_guess",
     "no_mental_calculation_inference"
   ],
-  "assigned": 7,
+  "assigned": 35,
   "evidence_kind": "scripted_scoring_fixtures_not_model_observation",
   "failed": 0,
   "gpu": false,
@@ -19,8 +19,12 @@
     "Missing calculate tool calls never create compliance or process claims."
   ],
   "package": "WP04",
-  "passed": 7,
+  "passed": 35,
   "templates": [
-    "TAB01"
+    "TAB01",
+    "TAB02",
+    "TAB03",
+    "TAB04",
+    "TAB05"
   ]
 }

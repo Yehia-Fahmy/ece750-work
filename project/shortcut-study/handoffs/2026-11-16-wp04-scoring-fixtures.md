@@ -14,10 +14,10 @@
 - Evidence/manifest paths and hashes: `fixtures/scoring/cases.json`, `results/development/wp04-scoring-fixtures-v1.json`
 - Failures, uncertain findings, and scope limitations:
   - Full WP04 package acceptance still pending integrator review
-  - TAB02–05 fixture expansion waits on PR #11 catalog landing
+  - After merge of PR #11, conflict resolution keeps catalog `clarification_fields` + WP04 mandatory-check scoring (`tab-catalog-deterministic-v2`)
   - Did not edit `state.json` (integrator-owned); recommend WP04 evidence append on merge
-  - Avoided overlapping open PR surfaces (`report/`, `analysis/`, actor-capability prompt edits, TAB generator modules)
+  - Avoided overlapping actor-capability (#10) prompt/generator edits
 - GPU lease owner/process/job, or no GPU work: no GPU work
 - Terminal/incomplete/unattempted job IDs if applicable: none
-- Next safe action and required dependency: merge after tests; rebase/adapt expectations when PR #11 lands; integrator updates `state.json`
+- Next safe action and required dependency: independent reviewer conflict-resolved onto main after #8/#11; integrator updates `state.json`
 - Acceptance reviewer, decision, and date (filled on review):

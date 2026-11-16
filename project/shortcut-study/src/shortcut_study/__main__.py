@@ -6,9 +6,12 @@ import json
 from pathlib import Path
 
 from .adapters.mock import MockActor
+from .analysis.harness import recovery_ok, run_analyze, run_dry
+from .analysis.protocol import DEFAULT_BOOTSTRAP_REPLICATES, DEFAULT_BOOTSTRAP_SEED
 from .runner import recover_mock_episode, run_mock_episode, write_new
 from .scoring import score_episode
-from .tasks.tables import GENERATOR_VERSION, generate_task
+from .tasks.tables import (CATALOG_VERSION, GENERATOR_VERSION, enumerate_tab_catalog_assignments,
+                           generate_task)
 from .vertical_slice import enumerate_vertical_slice_assignments
 
 
@@ -56,6 +59,15 @@ def main():
     mock = commands.add_parser("mock-slice", help="Run 16 scripted CPU episodes, never model inference")
     mock.add_argument("--out", type=Path, required=True)
     mock.add_argument("--strategy", choices=("legitimate", "shortcut"), default="legitimate")
+    catalog = commands.add_parser(
+        "mock-tab-catalog",
+        help="Run scripted CPU episodes for TAB01–05 catalog cells; never model inference")
+    catalog.add_argument("--out", type=Path, required=True)
+    catalog.add_argument("--strategy", choices=("legitimate", "shortcut"), default="legitimate")
+    catalog.add_argument("--difficulties", nargs="+",
+                         default=["trivial", "moderate", "hard", "extreme"],
+                         choices=["trivial", "moderate", "hard", "extreme"])
+    catalog.add_argument("--seed", type=int, default=0)
     recover = commands.add_parser("recover-mock-episode", help="Seal an interrupted mock episode without replay")
     recover.add_argument("directory", type=Path)
     audit = commands.add_parser("prepare-audit", help="Prepare verified local judge input without inference")
@@ -72,8 +84,29 @@ def main():
     score_fixtures.add_argument(
         "--templates",
         default="TAB01",
-        help="Comma-separated template IDs (TAB01 on main; TAB02–05 once catalog lands)",
+        help="Comma-separated template IDs (TAB01–05 after catalog merge)",
     )
+    dry = commands.add_parser(
+        "analyze-dry",
+        help="CPU-only WP07 dry run on synthetic injected-effect fixtures (not actor data)",
+    )
+    dry.add_argument("--out", type=Path, required=True)
+    dry.add_argument(
+        "--effect",
+        choices=("T_only", "J_only", "both", "null"),
+        default="T_only",
+    )
+    dry.add_argument("--replicates", type=int, default=200)
+    dry.add_argument("--seed", type=int, default=DEFAULT_BOOTSTRAP_SEED)
+    analyze = commands.add_parser(
+        "analyze",
+        help="Run WP07 acquisition analysis on scored rows + schedule (TBD until archives exist)",
+    )
+    analyze.add_argument("--scored", type=Path, required=True, help="scored.json tree or analysis_rows.json")
+    analyze.add_argument("--schedule", type=Path, required=True)
+    analyze.add_argument("--out", type=Path, required=True)
+    analyze.add_argument("--replicates", type=int, default=DEFAULT_BOOTSTRAP_REPLICATES)
+    analyze.add_argument("--seed", type=int, default=DEFAULT_BOOTSTRAP_SEED)
     args = parser.parse_args()
     if args.command == "score-fixtures":
         from .scoring.harness import run_fixture_suite, write_development_evidence
@@ -103,13 +136,53 @@ def main():
         prepared = prepare_archive(args.episode, args.out)
         print(f"Prepared audit for {prepared['episode_id']}; no judge inference; output: {args.out}")
         return
+    if args.command == "analyze-dry":
+        report = run_dry(
+            args.out,
+            effect=args.effect,
+            replicates=args.replicates,
+            seed=args.seed,
+        )
+        ok = recovery_ok(report)
+        print(
+            f"Synthetic dry-run only ({args.effect}): recovery_ok={ok}; "
+            f"warnings={report['warnings']}; output={args.out}; "
+            "not actor data; main results TBD"
+        )
+        if not ok and args.effect != "null":
+            raise SystemExit(1)
+        return
+    if args.command == "analyze":
+        report = run_analyze(
+            args.scored,
+            args.schedule,
+            args.out,
+            replicates=args.replicates,
+            seed=args.seed,
+        )
+        print(
+            f"Analysis wrote {args.out}; evidence_kind={report['evidence_kind']}; "
+            f"warnings={len(report['warnings'])}; frozen_main_results=false"
+        )
+        return
     args.out.mkdir(parents=True, exist_ok=False)
-    assignments = [{**row, "generator_version": GENERATOR_VERSION}
-                   for row in enumerate_vertical_slice_assignments()]
-    write_new(args.out / "schedule.json", {"evidence_kind": "scripted_mock_not_model_observation", "assignments": assignments})
+    if args.command == "mock-tab-catalog":
+        assignments = enumerate_tab_catalog_assignments(
+            replicate_seed=args.seed, difficulties=tuple(args.difficulties))
+        schedule_meta = {"catalog_version": CATALOG_VERSION, "difficulties": list(args.difficulties),
+                         "replicate_seed": args.seed}
+    else:
+        assignments = [{**row, "generator_version": GENERATOR_VERSION}
+                       for row in enumerate_vertical_slice_assignments()]
+        schedule_meta = {"catalog_version": GENERATOR_VERSION, "path": "vertical_slice"}
+    write_new(args.out / "schedule.json", {
+        "evidence_kind": "scripted_mock_not_model_observation",
+        **schedule_meta,
+        "assignments": assignments})
     rows = []
+    generation_seed = args.seed if args.command == "mock-tab-catalog" else 0
     for assignment in assignments:
-        task = generate_task(assignment)
+        task = generate_task(assignment, generation_seed=generation_seed)
         episode, ledger = run_mock_episode(task, MockActor(args.strategy), args.out / assignment["episode_id"], run_id=args.out.name)
         row = score_episode(task, episode, ledger)
         write_new(args.out / assignment["episode_id"] / "scored.json", row)
@@ -118,7 +191,8 @@ def main():
                "assigned": len(assignments), "terminal": len(rows),
                "completed": sum(r["integrity"]["record_complete"] for r in rows),
                "acquired": sum(r["acquisition"]["successful"] is True for r in rows),
-               "announced_success": sum(r["task_result"]["announced_task_score"] is True for r in rows)}
+               "announced_success": sum(r["task_result"]["announced_task_score"] is True for r in rows),
+               **schedule_meta}
     write_new(args.out / "summary.json", summary)
     source_root = Path(__file__).resolve().parents[2]
     source_files = sorted(path for area in ("src", "schemas", "configs/development")

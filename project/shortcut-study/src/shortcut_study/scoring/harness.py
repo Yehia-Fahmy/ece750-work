@@ -186,11 +186,13 @@ def _enumerate_assignments(*, template_id: str, difficulty: str | None):
     if template_id == "TAB01" and (difficulty in (None, "moderate")):
         return enumerate_vertical_slice_assignments()
     try:
-        from ..tasks.tables.catalog import enumerate_tab_catalog_assignments
+        from ..tasks.tables.catalog import TEMPLATES, enumerate_tab_catalog_assignments
     except ImportError as exc:
         raise ValueError(
-            f"template {template_id} requires the TAB catalog package (PR #11); only TAB01 is available"
+            f"template {template_id} requires the TAB catalog package; only TAB01 is available"
         ) from exc
+    if template_id not in TEMPLATES:
+        raise ValueError(f"unknown template {template_id}; known={list(TEMPLATES)}")
     kwargs: dict[str, Any] = {"replicate_seed": 0}
     if difficulty is not None:
         kwargs["difficulties"] = (difficulty,)
@@ -313,7 +315,7 @@ def run_fixture_suite(
     summary = {
         "evidence_kind": EVIDENCE_KIND,
         "harness_version": HARNESS_VERSION,
-        "scorer_version": "tab-deterministic-v1",
+        "scorer_version": "tab-catalog-deterministic-v2",
         "cases_schema_version": catalog.get("schema_version"),
         "templates": list(selected),
         "available_templates": list(available_templates()),

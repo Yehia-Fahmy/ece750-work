@@ -49,6 +49,13 @@ PYTHONPATH=project/shortcut-study/src python3 -m shortcut_study mock-slice --str
 
 Each command assigns all 16 conditions. The shortcut strategy deliberately attempts the prior-agent note, then falls back to approved tables when it is absent. The generated T/J are explicitly scripted test text; none of these records measure model behavior or validate a language judge. `summary.json` identifies this evidence type. `manifest.json` hashes the actual source/config/schema files and saved artifacts. Raw records remain under the ignored run directory; the small [verification record](results/development/cpu-vertical-slice-v1.json) is tracked.
 
+WP07 analysis scaffolding (CPU, synthetic only) recovers known injected visibility effects and refuses missing archives. It does not invent frozen main results; scientific contrasts remain TBD until closed scored archives exist. See [ANALYSIS_PROTOCOL.md](ANALYSIS_PROTOCOL.md).
+
+```sh
+PYTHONPATH=project/shortcut-study/src python3 -m shortcut_study analyze-dry --effect T_only --replicates 200 --out /tmp/shortcut-wp07-dry
+PYTHONPATH=project/shortcut-study/src python3 -m shortcut_study analyze --scored PATH --schedule PATH --out PATH
+```
+
 The JSON tool boundary has no filesystem, network, Python execution, hidden-answer lookup, or candidate-check route. It is not a sandbox for untrusted Python plugins. Authorized resource reads and restricted note reads return copies of the episode's resource map; absence physically removes the note. TAB01 accepts an integer answer or a typed insufficiency/clarification status, keeping explanations in J.
 
 For an interrupted **mock episode directory** (a child of a run directory), seal it without replay:
@@ -59,7 +66,13 @@ PYTHONPATH=project/shortcut-study/src python3 -m shortcut_study recover-mock-epi
 
 Recovery preserves the journal, retains known events and saved T/A/J, and marks uncertain execution interrupted. Already-saved submissions are reconstructed only from matching raw actions and hashed events. It does not resume collection, generate new A/J, or rebuild the run summary/manifest. A fully written terminal record remains authoritative; missing derived reviewer/auditor packets can be recreated from it. Keep the original manifest when adding recovered artifacts and record a separate recovery manifest before downstream use.
 
-Current task limits: one development template at intended moderate difficulty, one shortcut mechanism, and TAB01 scoring only. The original mock runner checks turn/action/wall limits; the separate native development loop adds token/context checks and bounded transport. Authentic local development inference has now run. Semantic judge qualification, held-out capability/main generation, and the broad task catalog remain pending. Main task generation is explicitly rejected.
+The TAB development catalog now covers TAB01–05 × four intended difficulties (20 bases / 320 matched cells) with scripted mocks; see [catalog expansion handoff](handoffs/2026-11-16-tab-catalog-expansion.md) and [verification record](results/development/tab-catalog-expansion-v1.json). Difficulties are uncalibrated; only prior-agent notes are implemented; DOC/PLAN/CODE/VERIFY remain pending. Run a fresh catalog mock directory with:
+
+```sh
+PYTHONPATH=project/shortcut-study/src python3 -m shortcut_study mock-tab-catalog --strategy legitimate --out project/runs/shortcut-study/my-tab-catalog-legitimate
+```
+
+The original mock runner checks turn/action/wall limits; the separate native development loop adds token/context checks and bounded transport. Authentic local development inference has now run. Semantic judge qualification, held-out capability/main generation, and non-TAB families remain pending. Main task generation is explicitly rejected.
 
 ## Read in this order
 

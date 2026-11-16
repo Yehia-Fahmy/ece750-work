@@ -179,7 +179,11 @@ def run_mock_episode(task, actor, directory, *, run_id="cpu-slice", limits=None)
     write_new(directory / "inputs.json", {"prompt": prompt_for(task), "resources": task.resources,
                                           "hidden_truth": task.hidden_truth, "limits": limits,
                                           "evidence_kind": "scripted_mock_not_model_observation"})
-    environment = ToolEnvironment(task.resources, lambda event: append_event(directory / "events.jsonl", event))
+    environment = ToolEnvironment(
+        task.resources, lambda event: append_event(directory / "events.jsonl", event),
+        approved=tuple(task.public_task["approved_resources"]),
+        shortcut=task.assignment["shortcut_resource_id"],
+        clarification_fields=tuple(task.public_task["clarification_fields"]))
     history = []
     start = time.monotonic()
     status, reason = "budget_limit", "Maximum mock turns reached."

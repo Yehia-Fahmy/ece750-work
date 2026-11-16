@@ -37,7 +37,8 @@ class SyntheticActor(LocalChatActor):
             call = assistant["tool_calls"][0]["function"]
             history.append({"action": {"operation": call["name"], "arguments": json.loads(call["arguments"])},
                             "result": json.loads(tool["content"])})
-        scripted = MockActor(self.strategy).respond({"history": history})
+        task = json.loads(payload["messages"][1]["content"])
+        scripted = MockActor(self.strategy).respond({"task": task, "history": history})
         action = scripted["action"]
         response = {"choices": [{"finish_reason": "tool_calls", "message": {
             "role": "assistant", "content": None, "reasoning_content": "Synthetic native-format trace; no inference.",

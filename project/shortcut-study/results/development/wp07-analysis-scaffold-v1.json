@@ -1,0 +1,26 @@
+{
+  "package": "WP07",
+  "status": "scaffolding_ready_for_review",
+  "evidence_kind": "synthetic_injected_effect_not_actor_observation",
+  "frozen_main_results": false,
+  "main_contrasts": "TBD_until_real_closed_archives",
+  "paths": {
+    "analysis_package": "src/shortcut_study/analysis/",
+    "draft_protocol_md": "ANALYSIS_PROTOCOL.md",
+    "draft_protocol_json": "configs/development/analysis_protocol.json",
+    "synthetic_fixtures": "fixtures/analysis/",
+    "tests": "tests/test_analysis.py"
+  },
+  "dry_run": {
+    "command": "PYTHONPATH=project/shortcut-study/src python3 -m shortcut_study analyze-dry --effect T_only --replicates 200 --out /tmp/shortcut-wp07-dry",
+    "note": "Recovers known injected effects on synthetic rows only"
+  },
+  "analyze_when_archives_exist": {
+    "command": "PYTHONPATH=project/shortcut-study/src python3 -m shortcut_study analyze --scored PATH --schedule PATH --out PATH",
+    "note": "Refuses missing/empty inputs; does not invent rows"
+  },
+  "tests": {
+    "command": "PYTHONPATH=project/shortcut-study/src python3 -m unittest discover -s project/shortcut-study/tests -p test_analysis.py -q",
+    "result": "10 tests OK at scaffold handoff"
+  }
+}

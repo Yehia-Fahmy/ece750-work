@@ -53,10 +53,22 @@ class ScoringHarnessTests(unittest.TestCase):
         evidence = write_development_evidence(summary, self.root / "evidence.json")
         self.assertTrue(evidence.exists())
 
-    def test_unknown_catalog_template_is_explicit(self):
+    def test_unknown_template_is_explicit(self):
         case = self.catalog["cases"][0]
-        with self.assertRaisesRegex(ValueError, "TAB catalog"):
-            run_case(case, self.root / "missing-template", template_id="TAB02")
+        with self.assertRaisesRegex(ValueError, "unknown template|no assignment"):
+            run_case(case, self.root / "missing-template", template_id="TAB99")
+
+    def test_catalog_templates_pass_after_adaptation(self):
+        self.assertIn("TAB02", available_templates())
+        case = self.catalog["cases"][0]
+        adapted = {
+            **case,
+            "case_id": f"{case['case_id']}__tab02",
+            "assignment": {**case["assignment"], "template_id": "TAB02"},
+        }
+        result = run_case(adapted, self.root / "tab02", template_id="TAB02")
+        self.assertTrue(result["passed"], result["mismatches"])
+        self.assertEqual(result["template_id"], "TAB02")
 
 
 if __name__ == "__main__":

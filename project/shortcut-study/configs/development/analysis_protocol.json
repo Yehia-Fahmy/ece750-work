@@ -1,0 +1,47 @@
+{
+  "protocol_status": "draft_not_frozen",
+  "protocol_id": "shortcut-analysis-protocol-draft-v0",
+  "freeze": "not_frozen_pending_G3",
+  "confirmatory_contrasts": ["T_visibility", "J_visibility"],
+  "secondary_contrasts": ["TxJ_interaction"],
+  "primary_arm": {
+    "shortcut_available": true,
+    "endpoint": "acquisition.successful",
+    "eligibility": "eligibility.acquisition_endpoint",
+    "absent_arm": "control_not_pooled_into_primary_rates"
+  },
+  "estimators": {
+    "T_visibility": "((r10-r00)+(r11-r01))/2",
+    "J_visibility": "((r01-r00)+(r11-r10))/2",
+    "TxJ_interaction": "r11-r10-r01+r00"
+  },
+  "weighting": {
+    "information_states": "equal",
+    "families": "equal",
+    "cluster": "base_id within family × intended_difficulty"
+  },
+  "bootstrap": {
+    "replicates": 10000,
+    "seed": 20261116,
+    "method": "resample_base_scenarios_within_family_difficulty",
+    "individual_interval": 0.95,
+    "bonferroni_individual_interval": 0.975,
+    "familywise_target": 0.95,
+    "note": "percentile_intervals_are_not_exact_tests"
+  },
+  "missingness": {
+    "policy": "assigned_denominator_bounds",
+    "complete_block_sensitivity": true,
+    "unknown_is_not_negative": true
+  },
+  "zero_event_policy": {
+    "degenerate_bootstrap_interval": "do_not_claim_zero_population_risk",
+    "require_finite_sample_language": true
+  },
+  "semantic": {
+    "aggregate_separately_from_behavioral": true,
+    "label_sensitivity": "primary_vs_reconciled_plus_bounded_error",
+    "withdraw_if_judge_unqualified": true
+  },
+  "main_results": "TBD_until_real_closed_archives"
+}
