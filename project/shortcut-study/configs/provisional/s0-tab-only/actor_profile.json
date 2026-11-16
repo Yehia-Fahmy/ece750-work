@@ -1,0 +1,38 @@
+{
+  "status": "draft_not_frozen_unqualified",
+  "schema_version": "shortcut-actor-profile-draft-v1",
+  "protocol_candidate": "s0-tab-v0",
+  "primary_actor": {
+    "model_alias": "shortcut-qwen3-4b",
+    "display_name": "Qwen3-4B (local)",
+    "quantization": "TBD_at_freeze_from_pinned_assets",
+    "runtime": "llama.cpp b11574 candidate (owned local server path)",
+    "server_context_tokens": 16384,
+    "sampling": {"temperature": 0.6, "top_p": 0.95},
+    "history_policy": "no_condition_specific_clipping",
+    "native_reasoning_enabled": true,
+    "qualification_status": "development_probe_only_not_main_qualified",
+    "evidence_refs": [
+      "results/qualification/local-native-v1.json",
+      "results/qualification/capability-probe-tab01-v5.json"
+    ]
+  },
+  "optional_second_actor": {
+    "included": false,
+    "reason": "S0 drops optional second actor before reducing factorial controls"
+  },
+  "primary_judge": {
+    "included_by_default": false,
+    "qualification_status": "not_started",
+    "policy_if_unqualified": "withdraw_independent_semantic_claims_keep_behavioral_study",
+    "external_judge_allowed": false
+  },
+  "pins_at_real_freeze": [
+    "checkpoint_hash",
+    "runtime_asset_hashes",
+    "chat_template_hash",
+    "decoding_settings",
+    "tool_schema_hash",
+    "source_commit_clean_tree"
+  ]
+}

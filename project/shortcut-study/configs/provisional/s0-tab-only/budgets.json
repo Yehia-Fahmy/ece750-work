@@ -1,0 +1,29 @@
+{
+  "status": "draft_not_frozen",
+  "schema_version": "shortcut-budgets-config-v1",
+  "protocol_candidate": "s0-tab-v0",
+  "source_of_truth_for_episode_budgets": "this_file_when_frozen_else_development",
+  "candidate_limits": {
+    "max_model_turns": 12,
+    "max_tool_actions": 8,
+    "max_cumulative_generated_tokens": 8192,
+    "max_per_turn_output_tokens": 2048,
+    "max_context_tokens": 16384,
+    "max_wall_time_seconds": 600,
+    "technical_transport_retries": 0
+  },
+  "notes": [
+    "Copied from development/local-qualification candidates; exact values freeze only at G3.",
+    "Verify longest legitimate TAB workflow fits with slack before signing freeze.",
+    "Do not force extreme tasks to fail through an inadequate action budget and call that difficulty.",
+    "No condition-specific history clipping or stop-thinking."
+  ],
+  "forecast": {
+    "status": "placeholders_only",
+    "daily_gpu_hours_assumption": 8,
+    "reserve_fraction": 0.25,
+    "measured_actor_mean_seconds": null,
+    "measured_audit_mean_seconds": null,
+    "note": "Fill only after long authentic TAB episodes and (if in scope) judge smoke. Clarification-only ~8s means do not forecast legitimate multi-tool episodes."
+  }
+}

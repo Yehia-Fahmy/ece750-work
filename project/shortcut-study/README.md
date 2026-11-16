@@ -94,7 +94,7 @@ The context checkpoint was committed and pushed to `main` as `ecb82d3` before th
 
 The [planning handoff](handoffs/2026-11-15-planning.md) records completed verification and the next safe action.
 
-Recommended target before pilot measurements: 100 base scenarios, 16 matched conditions per seed, two seeds = **3,200 primary-actor episodes**. Judge calls are additional. A smaller 1,600-episode version preserves the controls if local capacity is limited. An optional second actor is conditional on measured capability, audit quality, and remaining compute. No main protocol or model lineup is frozen yet.
+Provisional Dec-4 freeze target (unsigned draft): **S0 TAB-only** — 20 bases × 16 cells × 1 seed = **320** primary-actor episodes; see [`configs/provisional/s0-tab-only/`](configs/provisional/s0-tab-only/) and the [WP08 freeze-draft handoff](handoffs/2026-11-16-wp08-freeze-draft.md). The original course-core ambition (100 bases × 2 seeds = 3,200) remains in the execution plan as a withdrawn-for-calendar reference, not a live commitment. Stretch S1 (960) or honest fallback S4 require dated gate decisions. No main protocol or model lineup is frozen yet; G3 stays open until a signed checklist and `configs/frozen/<version>/` exist.
 
 ## Historical work stays in place
 
