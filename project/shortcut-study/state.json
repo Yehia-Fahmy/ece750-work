@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "updated_at": "2026-11-16",
-  "phase": "actor_capability_probe_passed_tab01_v5",
+  "phase": "g0_tab_blocked_pending_pass_16cell",
   "context_checkpoint": "ecb82d3",
   "planning_status": "implementation_in_progress",
   "execution_started": true,
@@ -30,7 +30,7 @@
     "optional_second_actor_episodes": 1280
   },
   "gates": {
-    "G0": "in_progress",
+    "G0": "blocked",
     "G1": "in_progress",
     "G2": "not_started",
     "G3": "not_started",
@@ -85,9 +85,11 @@
         "tests/test_tab_catalog.py",
         "configs/development/tab_catalog.json",
         "handoffs/2026-11-15-capability-probe-tab01-v5.md",
-        "results/qualification/capability-probe-tab01-v5.json"
+        "results/qualification/capability-probe-tab01-v5.json",
+        "handoffs/2026-11-16-g0-tab-blocked.md",
+        "https://github.com/Yehia-Fahmy/ece750-work/pull/16"
       ],
-      "note": "TAB01\u201305 catalog retained; TAB01 moderate on tab01-slice-v5. RTX capability probe passed complete+incomplete V00 on main after #10."
+      "note": "TAB01\u201305 catalog retained; TAB01 moderate on tab01-slice-v5. Probe PASS. Fresh 16-cell archive FAIL on PR #16 \u2014 integrator records G0 blocked (not accepted). Five-family G0 out of S0."
     },
     {
       "id": "WP03",
@@ -241,12 +243,12 @@
     }
   ],
   "open_items": [
-    "Authentic capability probe tab01-v5 passed both cells on DESKTOP-VEMMES3 after #10; fresh 16-cell development archive is the next GPU unlock.",
+    "G0 TAB-only is blocked (not accepted): 16-cell archive native-qualification-tab01-v5-16cell FAIL on PR #16 (12 completed / 4 V11 budget_limit; complete strict 5/8; incomplete strict 6/8). Re-evaluate only after a fresh PASS archive.",
+    "G1 not unlocked by FAIL archive; diagnose V11 reasoning-token overflow and complete+sc-present+V00 wrong answer (36 vs 57), then re-run on a new out path.",
     "Actual daily GPU availability must be recorded; eight hours/day is only a forecast assumption.",
     "Final course page limit and presentation arrangements require reconciliation with official instructions.",
     "Actor and judge checkpoints/settings, quality gates, and final scope require pilot qualification.",
-    "G0 remains open until integrator accepts WP01 + TAB-only catalog/spec (TAB01\u201305 evidence now ready for review; five-family G0 not required for S0).",
-    "WP04 scoring fixtures beyond TAB paths, local semantic judge execution/qualification, WP07 analysis, freeze and collection remain pending.",
+    "WP04 scoring fixtures beyond TAB paths, local semantic judge execution/qualification, freeze and collection remain pending.",
     "DOC/PLAN/CODE/VERIFY generators and non-prior-note shortcut mechanisms remain out of S0 unless stretch S1 is chosen later."
   ],
   "session": {
@@ -389,9 +391,24 @@
     "raw_archive": "project/runs/shortcut-study/capability-probe-tab01-v5-main",
     "prior_qualification_evidence_preserved": true,
     "GPU_released": true,
-    "sixteen_cell_archive_after_probe": "not_run_probe_failed",
+    "sixteen_cell_archive_after_probe": "ran_failed_see_pr_16",
     "base_tip": "cb8f5cd",
     "prior_failed_run": "capability-probe-tab01-v3",
-    "note": "Fresh probe after #10 merge; v5 PASS not previously on main (7096ec1 was on PR tip only)."
+    "note": "Probe PASS on #13; follow-up 16-cell FAIL recorded on PR #16. Detailed archive state sync lands with #16; this lane only records G0 blocked."
+  },
+  "g0_gate_review": {
+    "decision": "blocked_not_accepted",
+    "scope": "TAB-only (not five-family)",
+    "date": "2026-11-16",
+    "owner": "integrator",
+    "reason": "Standing G0 close required usable 16-cell development-archive evidence after v5 probe; archive FAIL on PR #16. Catalog mocks alone are insufficient for this acceptance bar.",
+    "fail_pr": "https://github.com/Yehia-Fahmy/ece750-work/pull/16",
+    "fail_run": "native-qualification-tab01-v5-16cell",
+    "fail_evidence_on_pr": "results/qualification/native-qualification-tab01-v5-16cell.json",
+    "fail_handoff_on_pr": "handoffs/2026-11-15-native-qualification-tab01-v5-16cell.md",
+    "summary_sha256": "9a6755a4c138b758d1dee7aeb645caea99700ac499d0486a488f9d27600e0568",
+    "handoff": "handoffs/2026-11-16-g0-tab-blocked.md",
+    "reviewer": "bc-201985da-2443-5421-85c2-2061b5218c10",
+    "self_merge": false
   }
 }
