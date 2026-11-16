@@ -76,6 +76,16 @@ def main():
     qualify = commands.add_parser("qualify-local", help="Qualify the retained local runtime on 16 development assignments")
     qualify.add_argument("--out", type=Path, required=True)
     qualify.add_argument("--port", type=int, default=18080)
+    score_fixtures = commands.add_parser(
+        "score-fixtures",
+        help="Run WP04 CPU scoring fixtures; never model inference or main collection",
+    )
+    score_fixtures.add_argument("--out", type=Path, required=True)
+    score_fixtures.add_argument(
+        "--templates",
+        default="TAB01",
+        help="Comma-separated template IDs (TAB01–05 after catalog merge)",
+    )
     dry = commands.add_parser(
         "analyze-dry",
         help="CPU-only WP07 dry run on synthetic injected-effect fixtures (not actor data)",
@@ -98,6 +108,19 @@ def main():
     analyze.add_argument("--replicates", type=int, default=DEFAULT_BOOTSTRAP_REPLICATES)
     analyze.add_argument("--seed", type=int, default=DEFAULT_BOOTSTRAP_SEED)
     args = parser.parse_args()
+    if args.command == "score-fixtures":
+        from .scoring.harness import run_fixture_suite, write_development_evidence
+
+        templates = tuple(part.strip() for part in args.templates.split(",") if part.strip())
+        summary = run_fixture_suite(args.out, templates=templates)
+        evidence = write_development_evidence(summary)
+        print(
+            f"WP04 scoring fixtures: {summary['passed']}/{summary['assigned']} passed; "
+            f"templates={list(templates)}; evidence={evidence}; output={args.out}"
+        )
+        if summary["failed"]:
+            raise SystemExit(1)
+        return
     if args.command == "qualify-local":
         from .qualification import run_qualification
         summary = run_qualification(args.out, port=args.port)

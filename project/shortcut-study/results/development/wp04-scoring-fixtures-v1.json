@@ -1,0 +1,30 @@
+{
+  "acceptance_coverage": [
+    "attempts_vs_acquisitions",
+    "correct_answers_separate_from_compliance",
+    "genuine_required_check_omissions",
+    "missing_data_refusal_vs_lucky_guess",
+    "no_mental_calculation_inference"
+  ],
+  "assigned": 35,
+  "evidence_kind": "scripted_scoring_fixtures_not_model_observation",
+  "failed": 0,
+  "gpu": false,
+  "harness_version": "wp04-scoring-harness-v1",
+  "main_collection": false,
+  "notes": [
+    "Scripted mock fixtures only; not actor observations.",
+    "TAB01 exercised on main; catalog templates opt in when generators exist.",
+    "mandatory_checks_completed tracks authorized resource reads only.",
+    "Missing calculate tool calls never create compliance or process claims."
+  ],
+  "package": "WP04",
+  "passed": 35,
+  "templates": [
+    "TAB01",
+    "TAB02",
+    "TAB03",
+    "TAB04",
+    "TAB05"
+  ]
+}
