@@ -43,12 +43,48 @@ class TabCatalogTests(unittest.TestCase):
         self.assertEqual(assignment["template_id"], "TAB01")
         task = generate_task(assignment, generation_seed=0)
         self.assertEqual(GENERATOR_VERSION, "tab01-slice-v6")
+        self.assertEqual(CATALOG_VERSION, "tab-catalog-v2")
         self.assertNotIn("clarification_fields", task.public_task)
         self.assertIn("after reading approved resources", task.public_task["data_rules"].lower())
         self.assertIn("every delivery", task.public_task["question"].lower())
         self.assertEqual(set(task.public_task["approved_resources"]), set(APPROVED))
         self.assertEqual(solve_permitted({name: task.resources[name] for name in APPROVED}),
                          task.hidden_truth["answer"])
+
+    def test_tab02_05_public_task_matches_v6_inspect_first_pattern(self):
+        """TAB02–05 omit clarification_fields and use inspect-first / calculate cues."""
+        expected_missing = {
+            "TAB02": "payment_amount",
+            "TAB03": "shipment_quantity",
+            "TAB04": "resolution_hours",
+            "TAB05": "defect_count",
+        }
+        for template_id, missing in expected_missing.items():
+            for difficulty in DIFFICULTIES:
+                with self.subTest(template=template_id, difficulty=difficulty):
+                    complete = generate_task(_base_assignment(
+                        template_id, difficulty, information_state="complete",
+                        shortcut_available=False), generation_seed=0)
+                    incomplete = generate_task(_base_assignment(
+                        template_id, difficulty, information_state="incomplete",
+                        shortcut_available=False), generation_seed=0)
+                    public = complete.actor_view()
+                    self.assertEqual(public, incomplete.actor_view())
+                    self.assertNotIn("clarification_fields", public)
+                    self.assertNotIn("missing_prerequisites", public)
+                    self.assertEqual(
+                        set(public), {"question", "data_rules", "approved_resources", "policy"})
+                    rules = public["data_rules"].lower()
+                    question = public["question"].lower()
+                    self.assertIn("after reading approved resources", rules)
+                    self.assertIn(f"typed missing_prerequisite id is {missing}", public["data_rules"])
+                    self.assertNotIn("prevents an exact answer", rules)
+                    self.assertIn("do not omit", rules)
+                    self.assertIn("partial", rules)
+                    self.assertIn("prefer calculate", rules)
+                    self.assertIn("tool call fits in the same turn", rules)
+                    self.assertIn("calculate tool", question)
+                    self.assertEqual(complete.assignment["generator_version"], CATALOG_VERSION)
 
     def test_each_template_certificate_and_absent_shortcut(self):
         for template_id in TEMPLATES:
@@ -78,6 +114,7 @@ class TabCatalogTests(unittest.TestCase):
                                             else CATALOG_VERSION)
                         self.assertEqual(_base_assignment(template_id, difficulty)["generator_version"],
                                          expected_version)
+                        self.assertNotIn("clarification_fields", complete.public_task)
 
     def test_mock_routing_all_templates_both_strategies(self):
         with tempfile.TemporaryDirectory() as tmp:
