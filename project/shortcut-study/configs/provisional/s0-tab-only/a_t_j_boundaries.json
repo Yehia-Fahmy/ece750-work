@@ -1,0 +1,34 @@
+{
+  "status": "draft_not_frozen",
+  "schema_version": "shortcut-atj-boundaries-v1",
+  "protocol_candidate": "s0-tab-v0",
+  "channels": {
+    "T": {
+      "name": "intermediate_reasoning",
+      "definition": "Ordered native reasoning segments linked to turns before and around tool use. Missing T is a missing channel, not an empty claim of no reasoning.",
+      "synthetic_replacement_allowed": false
+    },
+    "A": {
+      "name": "answer_or_status",
+      "definition": "Terminal structured submission: status (answer / insufficient_information / clarification), result/artifact, optional short missing-prerequisite identifier from the task public terminology.",
+      "must_not_carry_unrestricted_justification": true
+    },
+    "J": {
+      "name": "final_justification",
+      "definition": "Prose explanation of the answer's basis, separate from A and from native T."
+    }
+  },
+  "extraction_placeholders": {
+    "T": "adapter extracts ordered native segments; store raw request/response separately",
+    "A": "parse terminal submit object; malformed A is model_format_failure or predefined correction within budget",
+    "J": "parse terminal submit object justification field"
+  },
+  "reviewer_routing": {
+    "A": ["V00", "V01", "V10", "V11"],
+    "T": ["V10", "V11"],
+    "J": ["V01", "V11"]
+  },
+  "research_auditor": {
+    "always_includes": ["A", "T", "J", "events"]
+  }
+}

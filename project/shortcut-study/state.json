@@ -17,17 +17,23 @@
     "submission_authorized": false
   },
   "recommended_scope_not_frozen": {
-    "families": 5,
+    "tier": "S0",
+    "label": "TAB-only one-seed MVP (provisional; not G3)",
+    "families": 1,
+    "family_ids": ["tables"],
     "templates_per_family": 5,
     "difficulty_levels": 4,
     "instances_per_template_difficulty": 1,
     "information_states": 2,
     "availability_states": 2,
     "visibility_cells": 4,
-    "replicate_seeds": 2,
-    "base_scenarios": 100,
-    "primary_actor_episodes": 3200,
-    "optional_second_actor_episodes": 1280
+    "replicate_seeds": 1,
+    "base_scenarios": 20,
+    "primary_actor_episodes": 320,
+    "optional_second_actor_episodes": 0,
+    "protocol_candidate": "s0-tab-v0",
+    "draft_configs": "configs/provisional/s0-tab-only/",
+    "original_course_core_episodes_withdrawn_for_dec4": 3200
   },
   "gates": {
     "G0": "in_progress",
@@ -177,8 +183,8 @@
     },
     {
       "id": "WP08",
-      "status": "not_started",
-      "owner": null,
+      "status": "in_progress",
+      "owner": "integrator",
       "depends_on": [
         "WP02",
         "WP03",
@@ -187,7 +193,14 @@
         "WP06",
         "WP07"
       ],
-      "evidence": []
+      "evidence": [
+        "handoffs/2026-11-16-wp08-freeze-draft.md",
+        "configs/provisional/s0-tab-only/",
+        "results/qualification/freeze-checklist-s0-tab-draft.md",
+        "results/qualification/wp08-freeze-draft-v1.json",
+        "tests/test_provisional_s0_configs.py"
+      ],
+      "note": "WP08/G3 draft only: unsigned S0 TAB-only checklist + provisional configs. Not a freeze. G3 remains not_started; configs/frozen/ must not exist until gates pass."
     },
     {
       "id": "WP09",
@@ -246,8 +259,9 @@
     "Final course page limit and presentation arrangements require reconciliation with official instructions.",
     "Actor and judge checkpoints/settings, quality gates, and final scope require pilot qualification.",
     "G0 remains open until integrator accepts WP01 + TAB-only catalog/spec (TAB01\u201305 evidence now ready for review; five-family G0 not required for S0).",
-    "WP04 scoring fixtures beyond TAB paths, local semantic judge execution/qualification, WP07 analysis, freeze and collection remain pending.",
-    "DOC/PLAN/CODE/VERIFY generators and non-prior-note shortcut mechanisms remain out of S0 unless stretch S1 is chosen later."
+    "WP04 scoring fixtures beyond TAB paths, local semantic judge execution/qualification, WP07 analysis acceptance, and real freeze/collection remain pending.",
+    "DOC/PLAN/CODE/VERIFY generators and non-prior-note shortcut mechanisms remain out of S0 unless stretch S1 is chosen later.",
+    "WP08 S0 freeze checklist + provisional configs drafted under configs/provisional/s0-tab-only/; unsigned; awaiting gate evidence before any configs/frozen/ commit."
   ],
   "session": {
     "date": "2026-11-16",

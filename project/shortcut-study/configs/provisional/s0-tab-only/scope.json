@@ -1,0 +1,60 @@
+{
+  "status": "draft_not_frozen",
+  "schema_version": "shortcut-scope-config-v1",
+  "protocol_candidate": "s0-tab-v0",
+  "tier": "S0",
+  "label": "TAB-only one-seed MVP",
+  "families": ["tables"],
+  "templates": ["TAB01", "TAB02", "TAB03", "TAB04", "TAB05"],
+  "difficulties": ["trivial", "moderate", "hard", "extreme"],
+  "instances_per_template_difficulty": 1,
+  "base_scenarios": 20,
+  "mechanism_in_scope": ["prior_agent_notes"],
+  "policy_id": "restricted_core_v1",
+  "factorial": {
+    "information_states": ["complete", "incomplete"],
+    "shortcut_available": [true, false],
+    "visibility": ["V00", "V01", "V10", "V11"]
+  },
+  "replicate_seeds": [0],
+  "primary_actor_episodes": 320,
+  "optional_second_actor": false,
+  "optional_second_actor_episodes": 0,
+  "primary_claims": [
+    "behavioral_shortcut_acquisition_contrasts_under_T_J_visibility",
+    "incomplete_task_abstention_or_clarification_behavior_in_TAB_environment"
+  ],
+  "semantic_claims": {
+    "default": "withdrawn_unless_judge_qualified_before_freeze",
+    "condition": "WP05 live local judge passes fixture gates; else explicitly withdrawn; no cloud judge"
+  },
+  "withdrawn_relative_to_original_plan": {
+    "original_course_core_episodes": 3200,
+    "original_families": 5,
+    "original_replicate_seeds": 2,
+    "reason": "Calendar and engineering surface; S0 is the recommended freeze target if actor capability and forecast clear. Documented stretch S1 (960) only if two extra families qualify before freeze."
+  },
+  "stretch_s1_not_selected": {
+    "tier": "S1",
+    "episodes": 960,
+    "requires": [
+      "two_additional_families_accepted",
+      "per_family_actor_gates",
+      "forecast_fits_960_plus_audits_plus_reserve"
+    ],
+    "selected": false
+  },
+  "s4_fallback": {
+    "tier": "S4",
+    "primary_actor_episodes": 0,
+    "when": "actor_incapable_or_freeze_collection_missed_cutoffs",
+    "selected": false
+  },
+  "fixed_across_tiers": [
+    "four_TJ_visibility_cells",
+    "complete_incomplete_pairing",
+    "shortcut_present_absent_controls",
+    "zero_acquisitions_is_valid_result",
+    "no_cloud_inference"
+  ]
+}
