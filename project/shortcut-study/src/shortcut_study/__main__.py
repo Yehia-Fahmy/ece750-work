@@ -2,6 +2,7 @@
 
 import argparse
 import hashlib
+import json
 from pathlib import Path
 
 from .adapters.mock import MockActor
@@ -9,6 +10,44 @@ from .runner import recover_mock_episode, run_mock_episode, write_new
 from .scoring import score_episode
 from .tasks.tables import GENERATOR_VERSION, generate_task
 from .vertical_slice import enumerate_vertical_slice_assignments
+
+
+def prepare_archive(episode_directory, output_directory):
+    """Prepare local judge input from verified saved evidence; never call a judge."""
+    from .audit import judge_messages, prepare_audit
+
+    episode_directory, output_directory = Path(episode_directory), Path(output_directory)
+    terminal_path = episode_directory / "terminal.json"
+    inputs_path = episode_directory / "inputs.json"
+    terminal = json.loads(terminal_path.read_text())
+    inputs = json.loads(inputs_path.read_text())
+    episode, ledger = terminal["episode"], terminal["ledger"]
+    input_paths = [terminal_path, inputs_path]
+    if episode["actor_id"]["runtime"] == "deterministic-mock":
+        capabilities = inputs["prompt"]["tools"]
+    else:
+        request_path = episode_directory / "turn-0001-request.json"
+        capabilities = json.loads(request_path.read_text())["tools"]
+        input_paths.append(request_path)
+    results = {}
+    for event in ledger["events"]:
+        if event["response_sha256"] is not None:
+            path = episode_directory / f"turn-{event['turn_id']:04d}-result.json"
+            results[event["event_id"]] = json.loads(path.read_text())
+            input_paths.append(path)
+    prepared = prepare_audit(episode, ledger, public_task=inputs["prompt"]["task"],
+                             capabilities=capabilities, tool_results=results)
+    messages = judge_messages(prepared)
+    output_directory.mkdir(parents=True, exist_ok=False)
+    write_new(output_directory / "prepared.json", prepared)
+    write_new(output_directory / "messages.json", messages)
+    write_new(output_directory / "manifest.json", {
+        "status": "prepared_only_no_judge_inference", "episode_id": episode["episode_id"],
+        "input_sha256": {str(p.relative_to(episode_directory)): hashlib.sha256(p.read_bytes()).hexdigest()
+                         for p in sorted(set(input_paths))},
+        "output_sha256": {name: hashlib.sha256((output_directory / name).read_bytes()).hexdigest()
+                          for name in ("prepared.json", "messages.json")}})
+    return prepared
 
 
 def main():
@@ -19,10 +58,17 @@ def main():
     mock.add_argument("--strategy", choices=("legitimate", "shortcut"), default="legitimate")
     recover = commands.add_parser("recover-mock-episode", help="Seal an interrupted mock episode without replay")
     recover.add_argument("directory", type=Path)
+    audit = commands.add_parser("prepare-audit", help="Prepare verified local judge input without inference")
+    audit.add_argument("--episode", type=Path, required=True)
+    audit.add_argument("--out", type=Path, required=True)
     args = parser.parse_args()
     if args.command == "recover-mock-episode":
         episode, _ = recover_mock_episode(args.directory)
         print(f"{episode['episode_id']}: {episode['terminal_status']}; no operations replayed")
+        return
+    if args.command == "prepare-audit":
+        prepared = prepare_archive(args.episode, args.out)
+        print(f"Prepared audit for {prepared['episode_id']}; no judge inference; output: {args.out}")
         return
     args.out.mkdir(parents=True, exist_ok=False)
     assignments = [{**row, "generator_version": GENERATOR_VERSION}

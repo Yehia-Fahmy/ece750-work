@@ -1,6 +1,25 @@
 # Shortcut study extension — start here
 
-This is **additional research**, separate from the completed observer-framing study. Status: CPU development; shared contracts and a TAB01 mock vertical slice are implemented. No extension model observations have been collected and no main protocol is frozen.
+This is **additional research**, separate from the completed observer-framing study. Status: CPU development; shared contracts, the TAB01 mock slice, a local native adapter/development loop, a shared GPU lease, and audit evidence plumbing are implemented. No extension model observations have been collected and no main protocol is frozen.
+
+## Native adapter and audit development
+
+The CPU slice was independently reviewed, corrected for interruption evidence loss, and merged locally at `fc18d65`. The [next-stage handoff](handoffs/2026-11-15-native-audit-integration.md) records the subsequent multi-agent implementation and review.
+
+- `adapters/local.py` accepts native `reasoning_content` and one native function call per turn. It uses a fixed loopback HTTP endpoint, preserves raw bytes, refuses redirects/proxies/retries, and bounds request time and response size. It never extracts executable calls from T or free-form final text.
+- `runner/native.py` records exact requests, native HTTP bodies, parsed T, tools, and A/J; checks cumulative token, context, action, turn and wall budgets; and recovers saved evidence without replay. Reused tool IDs are rejected before execution. Only development assignments are supported.
+- `runtime/` provides an OS-held lock shared across Git worktrees, owner/heartbeat metadata, process-exit release, and a read-only RTX 3070 Ti identity check. The native runner requires this repository's canonical lock.
+- `audit/` prepares complete A/T/J/events and verified tool results, materializes original evidence, checks coverage, keeps invalid judgments uncertain, samples all flagged plus a seeded stratified 10% of unflagged records, and preserves independent disagreement. Chunk planning is implemented; chunk-judge equivalence is unqualified.
+
+Prepare an audit request from a **completed episode directory**, without invoking a judge:
+
+```sh
+PYTHONPATH=project/shortcut-study/src python3 -m shortcut_study prepare-audit --episode PATH_TO_EPISODE_DIRECTORY --out NEW_OUTPUT_DIRECTORY
+```
+
+This writes `prepared.json`, `messages.json`, and a hash manifest. Rejected/incomplete episode IDs must remain in the assigned audit denominator. The prepared request excludes direct actor/condition identifiers; actor text may still reveal its condition. Evidence checking proves reference and coverage integrity, not the truth of a semantic judgment. Without generator sufficiency context, some insufficiency-explanation judgments must remain uncertain.
+
+All native integration tests use synthetic HTTP bodies, a test GPU probe, and fixture token counts. There is no inference CLI. Live server/checkpoint/template identity, exact template-aware token counting, GPU execution, memory/runtime capacity, and judge quality still require qualification. Caller-supplied profile hashes are provenance declarations, not proof of the loaded model. Native development currently permits zero transport retries; requests with uncertain outcomes are never automatically replayed. Full WP03/WP05/WP06 and G1 acceptance remain pending.
 
 ## Implemented CPU vertical slice
 
@@ -26,7 +45,7 @@ PYTHONPATH=project/shortcut-study/src python3 -m shortcut_study recover-mock-epi
 
 Recovery preserves the journal, retains known events and saved T/A/J, and marks uncertain execution interrupted. Already-saved submissions are reconstructed only from matching raw actions and hashed events. It does not resume collection, generate new A/J, or rebuild the run summary/manifest. A fully written terminal record remains authoritative; missing derived reviewer/auditor packets can be recreated from it. Keep the original manifest when adding recovered artifacts and record a separate recovery manifest before downstream use.
 
-Current limits: one development template at intended moderate difficulty, one shortcut mechanism, scripted adapters, and TAB01 scoring only. Turn/action/wall limits are checked; token/context accounting and preemptive timeouts await a native adapter. No GPU lease, native model inference, semantic judge, qualification/main generation, or broad task catalog is implemented by this slice. Main task generation is explicitly rejected.
+Current task limits: one development template at intended moderate difficulty, one shortcut mechanism, and TAB01 scoring only. The original mock runner checks turn/action/wall limits; the separate native development loop adds token/context checks and bounded transport. No model inference, semantic judge qualification, qualification/main generation, or broad task catalog has been completed. Main task generation is explicitly rejected.
 
 ## Read in this order
 
