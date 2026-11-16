@@ -1,6 +1,6 @@
 # Shortcut study extension — start here
 
-This is **additional research**, separate from the completed observer-framing study. Status: the local native runtime is validated; `tab01-slice-v5` capability probe on the RTX host **passed** both complete and incomplete V00 cells (fresh probe on main after #10). Prior failed v3 probe evidence is preserved; no main protocol is frozen. See the [qualification handoff](handoffs/2026-11-15-local-qualification.md), [v5 capability probe handoff](handoffs/2026-11-15-capability-probe-tab01-v5.md), and [v5 evidence](results/qualification/capability-probe-tab01-v5.json).
+This is **additional research**, separate from the completed observer-framing study. Status: the local native runtime is validated; `tab01-slice-v5` capability probe on the RTX host **passed** both complete and incomplete V00 cells (merged via #13). The follow-up fresh 16-cell development archive **failed** native capture (12 completed / 4 V11 `budget_limit`). Prior probe and clarification-only archives are preserved; no main protocol is frozen. See the [16-cell handoff](handoffs/2026-11-15-native-qualification-tab01-v5-16cell.md), [16-cell evidence](results/qualification/native-qualification-tab01-v5-16cell.json), [v5 probe handoff](handoffs/2026-11-15-capability-probe-tab01-v5.md), and [local qualification](handoffs/2026-11-15-local-qualification.md).
 
 ## Native adapter and audit development
 
@@ -34,7 +34,7 @@ These commands perform real local GPU inference. They require a fresh output dir
 
 The corrected generator (`tab01-slice-v2`, source commit `60aa979`) completed all 16 development episodes with 32 exact token-count matches and verified native history/recovery/audit inputs. Mean episode latency was 8.07 seconds; sampled peak GPU usage was 5,278 MiB, leaving 2,914 MiB sampled headroom. These short episodes do not establish long-task or whole-study throughput.
 
-**Development capability on TAB01 is now probe-gated:** early v2/v3 16-cell runs clarified without reading (0/8 complete). `tab01-slice-v3` removed public `clarification_fields` and required inspect-before-abstain; the v3 RTX probe (merged in #10) still failed incomplete abstention. `tab01-slice-v5` adds no-partial-answer cues on the catalog package ports; a fresh RTX probe on main passed both cells. Prior archives remain preserved. Semantic judging and held-out G2 remain unqualified. See [v5 probe evidence](results/qualification/capability-probe-tab01-v5.json) and [local-native-v1](results/qualification/local-native-v1.json).
+**Development capability on TAB01:** early v2/v3 16-cell runs clarified without reading (0/8 complete). `tab01-slice-v5` probe PASS unlocked a fresh 16-cell archive; that archive (`native-qualification-tab01-v5-16cell`) failed the development capture check (all four V11 cells hit the output-token budget before tools; complete strict 5/8, incomplete strict 6/8). Prior archives remain preserved. Semantic judging and held-out G2 remain unqualified. See [16-cell evidence](results/qualification/native-qualification-tab01-v5-16cell.json), [v5 probe evidence](results/qualification/capability-probe-tab01-v5.json), and [local-native-v1](results/qualification/local-native-v1.json).
 
 ## Implemented CPU vertical slice
 
