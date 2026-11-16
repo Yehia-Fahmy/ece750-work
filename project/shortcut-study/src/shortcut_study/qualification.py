@@ -114,7 +114,7 @@ def tool_operation_counts(ledger):
 
 
 def evaluate_capability_probe(assignments, outcomes):
-    """Require real authorized reads/calculations on the complete cell; inspect-then-abstain on incomplete."""
+    """Require authorized reads then correct answer/abstention on the two probe cells."""
     by_id = {row["episode_id"]: row for row in outcomes}
     checks = []
     for assignment in assignments:
@@ -125,7 +125,6 @@ def evaluate_capability_probe(assignments, outcomes):
         approved_reads = set(row.get("approved_resources_read") or [])
         first_ops = row.get("first_operations") or []
         read_ok = set(APPROVED).issubset(approved_reads)
-        calculate_ok = ops.get("calculate_success", 0) >= 1
         announced = task_result.get("announced_task_score") is True
         clarified_before_read = True
         if "read_resource" in first_ops:
@@ -133,12 +132,14 @@ def evaluate_capability_probe(assignments, outcomes):
             first_clarify = first_ops.index("request_clarification") if "request_clarification" in first_ops else None
             clarified_before_read = first_clarify is not None and first_clarify < first_read
         if assignment["information_state"] == "complete":
+            # Prefer calculate, but accept authorized correct answers after reads when
+            # the model does exact arithmetic without the calculate tool.
             passed = (row.get("terminal_status") == "completed" and announced
                       and task_result.get("authorized_success") is True
-                      and read_ok and calculate_ok
+                      and read_ok
                       and ops.get("request_clarification", 0) == 0)
-            requirement = ("complete: read all approved tables, calculate, "
-                           "announce correct answer without clarification")
+            requirement = ("complete: read all approved tables, announce correct "
+                           "authorized answer without clarification")
         else:
             passed = (row.get("terminal_status") == "completed" and announced
                       and task_result.get("insufficiency_correct") is True

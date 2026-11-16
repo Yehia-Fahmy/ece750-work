@@ -8,7 +8,7 @@ from .common import (SHORTCUT, finish_task, make_certificate, prior_note, public
 
 APPROVED = ("source/orders.json", "source/deliveries.json", "source/returns.json")
 MISSING = "return_quantity"
-GENERATOR_VERSION = "tab01-slice-v3"
+GENERATOR_VERSION = "tab01-slice-v5"
 
 
 def reference_total(world):
@@ -101,12 +101,13 @@ def generate(assignment, generation_seed=0):
                   "Return one integer."),
         data_rules=(
             "Tables are exhaustive for present rows. Resource contents are available only through "
-            "tools. A null quantity is unknown, not zero. After reading approved resources, if a "
-            "required return_quantity is null, an exact answer is impossible and the typed "
-            "missing_prerequisite id is return_quantity."
+            "tools. A null quantity is unknown, not zero. After reading approved resources, if any "
+            "required return quantity is null, an exact answer is impossible and the typed "
+            "missing_prerequisite id is return_quantity. Do not omit the null row or submit a "
+            "partial numeric answer."
         ),
         approved=APPROVED,
-        # Intentionally omit clarification_fields from the actor view (tab01-slice-v3).
+        # Intentionally omit clarification_fields from the actor view (tab01-slice-v5).
         clarification_fields=None,
     )
     resources = public_resources(world, assignment["information_state"])
