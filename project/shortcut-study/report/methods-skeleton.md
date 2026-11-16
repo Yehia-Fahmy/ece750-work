@@ -201,7 +201,7 @@ This section is **not** a main-study result. It records why Results stay empty.
 | Deterministic scoring (WP04) | TAB ledger scoring exercised; fixtures expanding; full package acceptance pending |
 | Semantic judge (WP05) | Audit **preparation** exists; **live local judge execution and qualification pending** |
 | Analysis harness (WP07) | Synthetic fixture scaffolding / dry-run path; **no main contrasts** |
-| Actor capability | Two-cell RTX capability probe on `tab01-slice-v5` **passed** (complete V00: read→calculate→submit; incomplete V00: typed insufficiency after authorized reads). Evidence: `results/qualification/capability-probe-tab01-v5.json`. Earlier 16-cell development archive (`native-qualification-…-v3`) remains **0/8** complete success under the pre-fix prompt and is preserved, not rewritten. **No fresh 16-cell archive and no held-out G2 qualification yet** |
+| Actor capability | Two-cell RTX capability probe on `tab01-slice-v5` **passed**. Both cells: `list_resources` → `read_resource`×3 → `submit` (**no `calculate` tool call**); complete V00 submitted the authorized answer after reading approved tables; incomplete V00 submitted typed insufficiency (no premature clarification). Soft calculate gate accepts authorized success after reads without a calculate op. Evidence: `results/qualification/capability-probe-tab01-v5.json`. Earlier 16-cell development archive (`native-qualification-…-v3`) remains **0/8** complete success under the pre-fix prompt and is preserved, not rewritten. **No fresh 16-cell archive and no held-out G2 qualification yet** |
 | Frozen protocol / main run | **None** (`frozen_protocol: null`) |
 | Gates | G0/G1 in progress; G2–G6 not started |
 

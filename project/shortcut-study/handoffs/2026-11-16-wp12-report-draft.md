@@ -12,7 +12,8 @@
 - Concrete behavior implemented:
   - Methods/design rewritten around **S0 TAB-only** (20 bases × 16 × 1 seed = 320); 3,200 planning target marked withdrawn for Dec 4 writing.
   - TAB01–05 environment, prior-agent-notes mechanism, tools, visibility notices, and analysis clustering note for 20 bases.
-  - Capability honesty updated: v5 two-cell probe **passed**; prior 16-cell 0/8 archive preserved; no invented main results; G2/freeze still open.
+  - Capability honesty updated: v5 two-cell probe **passed** (`list_resources` → `read_resource`×3 → `submit`; soft-calculate path; no invented `calculate` chain); prior 16-cell 0/8 archive preserved; no invented main results; G2/freeze still open.
+  - Review remediation (ECE-20): §5 Actor capability rewritten to match `capability-probe-tab01-v5.json` tool sequences / verdict notes.
   - Results section and numeric slots remain explicitly empty / TBD.
 - Commands run and actual outcomes:
   - Documentation-only pass; no unittest required for markdown report draft.
