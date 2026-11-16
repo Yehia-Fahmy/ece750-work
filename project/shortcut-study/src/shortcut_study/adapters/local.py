@@ -155,7 +155,11 @@ class LocalChatActor:
         if prompt.get("tools") != TOOL_CONTRACT:
             raise ValueError("unsupported prompt tool contract")
         system = "\n".join(prompt[key] for key in ("channel_instructions", "scoring", "reviewer_notice"))
-        system += "\nUse exactly one provided tool per turn. Finish through submit, with separate A and J."
+        system += (
+            "\nUse exactly one provided tool per turn. Finish through submit, with separate A and J. "
+            "Keep early-turn reasoning short enough to emit a tool call every turn; do not exhaust the "
+            "turn writing plans or the final explanation before tools run."
+        )
         payload = {
             "model": self.model, "messages": [
                 {"role": "system", "content": system},
