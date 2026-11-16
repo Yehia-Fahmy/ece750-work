@@ -1,7 +1,7 @@
 # Package handoff — actor premature-clarification prompt fix — 2026-11-15
 
 - Owner and role: integrator / environment+task prompt owner for WP02/WP03 capability unblock
-- Status: ready_for_review (CPU/prompt verified; authentic GPU probe blocked on this Mac host)
+- Status: ready_for_review (CPU/prompt verified; authentic GPU probe completed on DESKTOP-VEMMES3 — see `handoffs/2026-11-15-capability-probe-tab01-v3.md`)
 - Input commit and dependencies: `76d6db3` (reviewed local runtime qualification stage)
 - Output commit (or explicitly uncommitted paths): branch `cursor/actor-premature-clarification-d3a0` (this handoff lands with the fix commit)
 - Paths changed; shared-contract version:
@@ -41,7 +41,6 @@
 - GPU lease owner/process/job, or no GPU work: no GPU work on this host
 - Terminal/incomplete/unattempted job IDs if applicable: none
 - Next safe action and required dependency:
-  - On the RTX experiment checkout (with `project/models` + `project/tools/runtime`), run:
-    `PYTHONPATH=project/shortcut-study/src python3 -m shortcut_study qualify-local --capability-probe --out project/runs/shortcut-study/capability-probe-tab01-v3 --port 18080`
-  - If complete cell reads/calculates and scores success, re-run full 16-cell development archive under a new versioned out path; then resume G0/G1/WP02 catalog decisions.
+  - GPU probe executed on DESKTOP-VEMMES3 at `project/runs/shortcut-study/capability-probe-tab01-v3` (tracked summary: `results/qualification/capability-probe-tab01-v3.json`): complete cell **passed**; incomplete cell **failed** (answered instead of insufficiency). Overall probe **FAIL**.
+  - Next: version a follow-up incomplete-abstention fix without regressing complete success; re-probe on a fresh out path before any 16-cell archive.
 - Acceptance reviewer, decision, and date (filled on review):

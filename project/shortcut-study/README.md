@@ -1,6 +1,6 @@
 # Shortcut study extension — start here
 
-This is **additional research**, separate from the completed observer-framing study. Status: the local native runtime and development recording path are validated; actor premature-clarification prompts are versioned as `tab01-slice-v3`, and authentic GPU capability proof on the RTX host remains the next measurement. Two separately versioned 16-episode development runs plus later capability probes are preserved when present; no main protocol is frozen. See the [qualification handoff](handoffs/2026-11-15-local-qualification.md) and [capability prompt handoff](handoffs/2026-11-15-actor-capability-prompt.md).
+This is **additional research**, separate from the completed observer-framing study. Status: the local native runtime and development recording path are validated; `tab01-slice-v3` capability probe on the RTX host **failed overall** (complete V00 cell passed; incomplete abstention failed). Two separately versioned 16-episode development runs and the probe archive are preserved; no main protocol is frozen. See the [qualification handoff](handoffs/2026-11-15-local-qualification.md), [capability prompt handoff](handoffs/2026-11-15-actor-capability-prompt.md), and [capability probe handoff](handoffs/2026-11-15-capability-probe-tab01-v3.md).
 
 ## Native adapter and audit development
 

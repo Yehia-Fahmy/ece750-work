@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "updated_at": "2026-11-16",
-  "phase": "actor_capability_prompt_fix_pending_gpu_probe",
+  "phase": "actor_capability_probe_failed_incomplete_abstention",
   "context_checkpoint": "ecb82d3",
   "planning_status": "implementation_in_progress",
   "execution_started": true,
@@ -77,9 +77,11 @@
         "results/development/cpu-vertical-slice-v1.json",
         "tests/test_slice_execution.py",
         "handoffs/2026-11-15-local-qualification.md",
-        "results/qualification/local-native-v1.json"
+        "results/qualification/local-native-v1.json",
+        "handoffs/2026-11-15-capability-probe-tab01-v3.md",
+        "results/qualification/capability-probe-tab01-v3.json"
       ],
-      "note": "TAB01 generator v3 removes public clarification_fields cue and requires inspect-before-abstain wording; one scenario only, broad catalog pending. Authentic GPU capability probe still required."
+      "note": "TAB01 generator v3 removes public clarification_fields cue and requires inspect-before-abstain wording; one scenario only, broad catalog pending. Authentic GPU capability probe ran: complete cell passed; incomplete abstention failed."
     },
     {
       "id": "WP03",
@@ -96,9 +98,11 @@
         "results/development/native-audit-integration-v1.json",
         "handoffs/2026-11-15-local-qualification.md",
         "results/qualification/local-native-v1.json",
-        "handoffs/2026-11-15-actor-capability-prompt.md"
+        "handoffs/2026-11-15-actor-capability-prompt.md",
+        "handoffs/2026-11-15-capability-probe-tab01-v3.md",
+        "results/qualification/capability-probe-tab01-v3.json"
       ],
-      "note": "Authentic local native capture validated on two separately versioned 16-episode development runs. Prompt/tool fix for premature clarification landed as tab01-slice-v3 with --capability-probe; authentic read/calculate proof pending RTX host."
+      "note": "Authentic local native capture validated on two separately versioned 16-episode development runs. tab01-slice-v3 capability probe on RTX: complete V00 read/calculate/submit succeeded; incomplete cell submitted a wrong numeric answer instead of insufficiency. Fresh 16-cell archive deferred."
     },
     {
       "id": "WP04",
@@ -229,7 +233,7 @@
     }
   ],
   "open_items": [
-    "Next engineering: on the RTX experiment host, run qualify-local --capability-probe for tab01-slice-v3; if it passes, collect a fresh 16-cell development archive, then resume G0/WP02 catalog and G1 judge/long-episode work.",
+    "Authentic capability probe on DESKTOP-VEMMES3 failed overall: complete V00 cell passed (read/calculate/submit); incomplete cell answered instead of typed insufficiency. Do not run 16-cell until a follow-up fix re-passes --capability-probe on a fresh out path.",
     "Actual daily GPU availability must be recorded; eight hours/day is only a forecast assumption.",
     "Final course page limit and presentation arrangements require reconciliation with official instructions.",
     "Actor and judge checkpoints/settings, quality gates, and final scope require pilot qualification.",
@@ -242,7 +246,7 @@
     "owner": "integrator",
     "authorization": "User instructed diagnosis and fix of premature clarification with smallest local GPU/native proof and a reviewable branch/PR. Prior multi-agent/review instructions persist.",
     "scope": "Actor capability prompt fix (tab01-slice-v3) and capability-probe CLI; GPU probe on RTX host",
-    "status": "prompt_fix_landed_gpu_probe_pending",
+    "status": "gpu_capability_probe_completed_failed_incomplete",
     "assignments": [
       {
         "owner": "native_adapter",
@@ -304,6 +308,10 @@
     "prompt_correction": "Replace unconditional missing_prerequisites metadata with neutral clarification_fields in generator tab01-slice-v2; complete/incomplete public tasks remain identical. Earlier runs preserved.",
     "capability_prompt_fix": "tab01-slice-v3 removes clarification_fields, strengthens inspect-before-abstain channel/scoring/tool text, adds --capability-probe over two existing vertical-slice cells.",
     "capability_handoff": "handoffs/2026-11-15-actor-capability-prompt.md",
+    "capability_probe_handoff": "handoffs/2026-11-15-capability-probe-tab01-v3.md",
+    "capability_probe_evidence": "results/qualification/capability-probe-tab01-v3.json",
+    "capability_probe_run": "capability-probe-tab01-v3",
+    "capability_probe_passed": false,
     "output_commit": "commit containing actor capability prompt handoff"
   },
   "cpu_slice_review": {
@@ -353,5 +361,24 @@
     "capability_sufficient_for_main": false,
     "GPU_released": true,
     "prior_runs_preserved": true
+  },
+  "capability_probe_review": {
+    "latest_run": "capability-probe-tab01-v3",
+    "exact_source_commit": "ea7df53",
+    "host": "DESKTOP-VEMMES3",
+    "assigned": 2,
+    "completed": 2,
+    "native_slice_capture_passed": true,
+    "capability_probe_passed": false,
+    "complete_cell_passed": true,
+    "incomplete_cell_passed": false,
+    "episode_latency_mean_seconds": 33.1,
+    "sampled_peak_memory_used_mib": 5292,
+    "minimum_sampled_headroom_mib": 2900,
+    "evidence": "results/qualification/capability-probe-tab01-v3.json",
+    "raw_archive": "project/runs/shortcut-study/capability-probe-tab01-v3",
+    "prior_qualification_evidence_preserved": true,
+    "GPU_released": true,
+    "sixteen_cell_archive_after_probe": "not_run_probe_failed"
   }
 }
