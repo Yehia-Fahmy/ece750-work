@@ -146,13 +146,21 @@
     },
     {
       "id": "WP07",
-      "status": "not_started",
-      "owner": null,
+      "status": "ready_for_review",
+      "owner": "analyst",
       "depends_on": [
         "WP01"
       ],
-      "evidence": [],
-      "note": "Uses WP04 schema fixtures; acceptance requires scorer integration."
+      "evidence": [
+        "handoffs/2026-11-16-wp07-analysis-scaffold.md",
+        "src/shortcut_study/analysis/",
+        "fixtures/analysis/",
+        "configs/development/analysis_protocol.json",
+        "ANALYSIS_PROTOCOL.md",
+        "tests/test_analysis.py",
+        "results/development/wp07-analysis-scaffold-v1.json"
+      ],
+      "note": "CPU scaffolding on synthetic injected-effect fixtures only. Draft protocol not frozen. No main contrasts; real archives TBD. Acceptance still requires integrator review and later scorer/archive integration for WP11."
     },
     {
       "id": "WP08",

@@ -1,0 +1,10 @@
+{
+  "description": "No acquisitions in any cell \u2192 T=0, J=0 with zero-event warning",
+  "effect": "null",
+  "evidence_kind": "synthetic_injected_effect_not_actor_observation",
+  "expected_contrasts": {
+    "J_visibility": 0.0,
+    "T_visibility": 0.0,
+    "TxJ_interaction": 0.0
+  }
+}

@@ -6,6 +6,8 @@ import json
 from pathlib import Path
 
 from .adapters.mock import MockActor
+from .analysis.harness import recovery_ok, run_analyze, run_dry
+from .analysis.protocol import DEFAULT_BOOTSTRAP_REPLICATES, DEFAULT_BOOTSTRAP_SEED
 from .runner import recover_mock_episode, run_mock_episode, write_new
 from .scoring import score_episode
 from .tasks.tables import GENERATOR_VERSION, generate_task
@@ -64,6 +66,27 @@ def main():
     qualify = commands.add_parser("qualify-local", help="Qualify the retained local runtime on 16 development assignments")
     qualify.add_argument("--out", type=Path, required=True)
     qualify.add_argument("--port", type=int, default=18080)
+    dry = commands.add_parser(
+        "analyze-dry",
+        help="CPU-only WP07 dry run on synthetic injected-effect fixtures (not actor data)",
+    )
+    dry.add_argument("--out", type=Path, required=True)
+    dry.add_argument(
+        "--effect",
+        choices=("T_only", "J_only", "both", "null"),
+        default="T_only",
+    )
+    dry.add_argument("--replicates", type=int, default=200)
+    dry.add_argument("--seed", type=int, default=DEFAULT_BOOTSTRAP_SEED)
+    analyze = commands.add_parser(
+        "analyze",
+        help="Run WP07 acquisition analysis on scored rows + schedule (TBD until archives exist)",
+    )
+    analyze.add_argument("--scored", type=Path, required=True, help="scored.json tree or analysis_rows.json")
+    analyze.add_argument("--schedule", type=Path, required=True)
+    analyze.add_argument("--out", type=Path, required=True)
+    analyze.add_argument("--replicates", type=int, default=DEFAULT_BOOTSTRAP_REPLICATES)
+    analyze.add_argument("--seed", type=int, default=DEFAULT_BOOTSTRAP_SEED)
     args = parser.parse_args()
     if args.command == "qualify-local":
         from .qualification import run_qualification
@@ -79,6 +102,35 @@ def main():
     if args.command == "prepare-audit":
         prepared = prepare_archive(args.episode, args.out)
         print(f"Prepared audit for {prepared['episode_id']}; no judge inference; output: {args.out}")
+        return
+    if args.command == "analyze-dry":
+        report = run_dry(
+            args.out,
+            effect=args.effect,
+            replicates=args.replicates,
+            seed=args.seed,
+        )
+        ok = recovery_ok(report)
+        print(
+            f"Synthetic dry-run only ({args.effect}): recovery_ok={ok}; "
+            f"warnings={report['warnings']}; output={args.out}; "
+            "not actor data; main results TBD"
+        )
+        if not ok and args.effect != "null":
+            raise SystemExit(1)
+        return
+    if args.command == "analyze":
+        report = run_analyze(
+            args.scored,
+            args.schedule,
+            args.out,
+            replicates=args.replicates,
+            seed=args.seed,
+        )
+        print(
+            f"Analysis wrote {args.out}; evidence_kind={report['evidence_kind']}; "
+            f"warnings={len(report['warnings'])}; frozen_main_results=false"
+        )
         return
     args.out.mkdir(parents=True, exist_ok=False)
     assignments = [{**row, "generator_version": GENERATOR_VERSION}
