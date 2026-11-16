@@ -1,0 +1,29 @@
+{
+  "schema_version": "shortcut-hardware-inventory-v1",
+  "status": "inventory_only_not_model_qualification",
+  "observed_at_utc": "2026-11-15T23:58:16.475333+00:00",
+  "command": [
+    "/usr/lib/wsl/lib/nvidia-smi",
+    "--query-gpu=name,uuid,memory.total,memory.used",
+    "--format=csv,noheader,nounits"
+  ],
+  "execution_context": "approved host query outside restricted sandbox",
+  "stdout": "NVIDIA GeForce RTX 3070 Ti, GPU-e583f0ca-2d1c-f984-d6cd-b0a360822cb4, 8192, 303\n",
+  "gpu": {
+    "name": "NVIDIA GeForce RTX 3070 Ti",
+    "uuid": "GPU-e583f0ca-2d1c-f984-d6cd-b0a360822cb4",
+    "memory_total_mib": 8192,
+    "memory_used_mib_at_observation": 303
+  },
+  "model_inference_started": false,
+  "daily_availability_verified": false,
+  "sandbox_probe": {
+    "returncode": 255,
+    "message": "Failed to initialize NVML: GPU access blocked by the operating system"
+  },
+  "limitations": [
+    "A point inventory is not peak memory or throughput.",
+    "Exact prompt-token counter and live checkpoint/template/runtime qualification remain pending.",
+    "Python NVML subprocess access is blocked in the restricted sandbox; host query succeeds."
+  ]
+}

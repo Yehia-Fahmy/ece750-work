@@ -1,6 +1,6 @@
 # Guide for future orchestrators and workers
 
-Status: handoff plan, not an active swarm. The researcher will configure agents later. This guide does not start a run, create tasks in another application, or authorize course submission.
+Status: execution guide. On November 15 the researcher explicitly authorized continued implementation with multiple agents, review, and code merging. Assignments and handoffs are recorded in `state.json`; this guide does not independently authorize a model run, external messages, or course submission.
 
 ## Starting an execution session
 
@@ -10,7 +10,7 @@ Status: handoff plan, not an active swarm. The researcher will configure agents 
 4. Assign one owner per package and one integration owner. Agree on the shared contracts before parallel implementation. Record assignment, input commit, and output paths in state; use a short commit boundary for each accepted package.
 5. Treat all future CLI names in planning documents as deliverable requirements, not currently installed commands. Inspect implementation before invoking anything.
 
-The original planning handoff contained documentation only. As of November 15, WP01 contracts are accepted and a CPU TAB01 vertical slice is implemented; consult `state.json` and the latest handoff for its limited scope. No extension model is qualified, no main protocol is frozen, and scripted mock records are not a collected model dataset.
+The original planning handoff contained documentation only. As of November 15, WP01 contracts are accepted and the CPU TAB01 slice is reviewed and locally merged. Native adapter/runner, lease, and audit evidence plumbing have CPU implementation evidence; consult `state.json` and the latest handoff for scope and reviews. No extension model is qualified, no main protocol is frozen, and synthetic records are not a collected model dataset.
 
 ## Roles and boundaries
 
