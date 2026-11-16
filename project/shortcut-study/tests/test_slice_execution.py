@@ -208,11 +208,15 @@ class SliceTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             score_episode(task, episode, ledger)
 
-    def test_main_generation_is_explicitly_unavailable(self):
+    def test_main_mock_execution_is_explicitly_unavailable(self):
         assignment = deepcopy(self.assignments[0])
         assignment["split"] = "main"
+        assignment["base_id"] = "main-" + assignment["base_id"].removeprefix("vs-").removeprefix("dev-")
+        # Generators may materialize main for fingerprint reservation; runners refuse.
+        task = generate_task(assignment, generation_seed=assignment.get("generation_seed", 20001))
         with self.assertRaises(ValueError):
-            generate_task(assignment)
+            run_mock_episode(task, MockActor("legitimate"), self.root / "main-blocked",
+                             run_id="slice-test")
 
     def test_immutable_publication_is_atomic_on_encoding_failure(self):
         path = self.root / "record.json"

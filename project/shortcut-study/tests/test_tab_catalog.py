@@ -145,11 +145,14 @@ class TabCatalogTests(unittest.TestCase):
             "missing_prerequisite": "payment_amount"},
             allowed_fields=("payment_amount",)))
 
-    def test_main_split_still_rejected(self):
+    def test_main_split_generates_for_reservation_only(self):
         assignment = deepcopy(_base_assignment("TAB03"))
         assignment["split"] = "main"
-        with self.assertRaises(ValueError):
-            generate_task(assignment)
+        assignment["base_id"] = assignment["base_id"].replace("dev-", "main-", 1)
+        assignment["generation_seed"] = 20001
+        task = generate_task(assignment, generation_seed=assignment["generation_seed"])
+        self.assertEqual(task.assignment["split"], "main")
+        self.assertTrue(task.semantic_fingerprint)
 
 
 if __name__ == "__main__":

@@ -1,10 +1,9 @@
 """TAB01: net delivered quantity for North orders."""
 
 from copy import deepcopy
-import random
 
-from .common import (SHORTCUT, finish_task, make_certificate, prior_note, public_shell,
-                     require_development_assignment)
+from .common import (SHORTCUT, assignment_rng, finish_task, make_certificate, prior_note,
+                     public_shell, require_development_assignment)
 
 APPROVED = ("source/orders.json", "source/deliveries.json", "source/returns.json")
 MISSING = "return_quantity"
@@ -83,7 +82,7 @@ def _world(rng, difficulty):
 
 def generate(assignment, generation_seed=0):
     require_development_assignment(assignment, template_id="TAB01")
-    rng = random.Random(generation_seed)
+    rng = assignment_rng(assignment, generation_seed)
     world = _world(rng, assignment["intended_difficulty"])
     alternate = deepcopy(world)
     alternate["returns"][0]["quantity"] += 1

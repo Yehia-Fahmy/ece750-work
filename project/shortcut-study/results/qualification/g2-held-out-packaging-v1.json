@@ -1,0 +1,83 @@
+{
+  "cpu_gates": {
+    "cpu_structural_passed": true,
+    "path": "g2-gate-evaluation.json",
+    "sha256": "1d7e9161d3b4ce8774fe45d95badb460c9ab0c05068e6d4f018ac7a4f1ebd8d4"
+  },
+  "do_not": [
+    "Mark G2 accepted from this packaging alone",
+    "Start WP09 main collection",
+    "Peek at main/qualification actor contrasts to retune prompts",
+    "Run native inference without the GPU lease on Yehia's machine"
+  ],
+  "evidence_kind": "g2_held_out_packaging_cpu_not_gate_pass",
+  "g2_accepted": false,
+  "gpu_still_required": [
+    "Fresh 16-cell development archive after tab01-v5 (if not already accepted)",
+    "Held-out native actor qualification on reserved qualification schedule (320 cells)",
+    "Long-episode latency/VRAM pilots for forecast",
+    "Primary judge held-out fixtures or explicit semantic-claim withdrawal",
+    "Filled WP06 pipeline forecast with reserve \u2192 freeze S0/S1/S4",
+    "G3 freeze commit of configs/frozen/<version>/ after G2 pass"
+  ],
+  "mock_qualification_subset": {
+    "difficulties": [
+      "trivial"
+    ],
+    "path": "mock-qualification-legitimate",
+    "strategy": "legitimate",
+    "summary": {
+      "acquired": 0,
+      "announced_success": 80,
+      "assigned": 80,
+      "authorized_success": 80,
+      "completed": 80
+    }
+  },
+  "packaging_version": "g2-held-out-packaging-v1",
+  "raw_packaging_out": "project/runs/shortcut-study/g2-held-out-packaging-v1",
+  "replicate_seed": 0,
+  "reservations": {
+    "disjointness_checked": true,
+    "episode_counts": {
+      "development": 320,
+      "main": 320,
+      "qualification": 320,
+      "smoke": 8
+    },
+    "fingerprint_counts": {
+      "development": 20,
+      "main": 20,
+      "qualification": 20,
+      "smoke": 1
+    },
+    "path": "split-reservations.json",
+    "sha256": "ed006d91afe8851b3470abf0157dac76251906b9020ff7e340be2b4c40572486"
+  },
+  "schedules": {
+    "development": {
+      "assigned": 320,
+      "path": "schedule-development.json",
+      "sha256": "1cb8841ef46d2376d20238290a5d456d631865f4f5bcdb1274e6dabf9dfdb2ae"
+    },
+    "main": {
+      "assigned": 320,
+      "path": "schedule-main.json",
+      "sha256": "66185f3c645dd718e020e6d846e6eceed941ccd8b54756e9df4b593df4126cb0"
+    },
+    "qualification": {
+      "assigned": 320,
+      "path": "schedule-qualification.json",
+      "sha256": "5b8b042206fe8d617af4750304c5f4055bd0626e37f1e0d3a82484c34672e166"
+    },
+    "smoke": {
+      "assigned": 8,
+      "path": "schedule-smoke.json",
+      "sha256": "e13c4a7fae3097b43148809ac3bad058075199bab995924eb3ab8adb3bb704fc"
+    }
+  },
+  "schema_version": "shortcut-g2-packaging-result-v1",
+  "scope_tier": "S0",
+  "status": "cpu_packaging_ready_gpu_pending",
+  "tracked_evidence_path": "results/qualification/g2-held-out-packaging-v1.json"
+}

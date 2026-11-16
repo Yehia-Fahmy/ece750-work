@@ -7,7 +7,7 @@ This is **additional research**, separate from the completed observer-framing st
 The CPU slice was independently reviewed, corrected for interruption evidence loss, and merged locally at `fc18d65`. The [next-stage handoff](handoffs/2026-11-15-native-audit-integration.md) records the subsequent multi-agent implementation and review.
 
 - `adapters/local.py` accepts native `reasoning_content` and one native function call per turn. It uses a fixed loopback HTTP endpoint, preserves raw bytes, refuses redirects/proxies/retries, and bounds request time and response size. It never extracts executable calls from T or free-form final text.
-- `runner/native.py` records exact requests, native HTTP bodies, parsed T, tools, and A/J; checks cumulative token, context, action, turn and wall budgets; and recovers saved evidence without replay. Reused tool IDs are rejected before execution. Only development assignments are supported.
+- `runner/native.py` records exact requests, native HTTP bodies, parsed T, tools, and A/J; checks cumulative token, context, action, turn and wall budgets; and recovers saved evidence without replay. Reused tool IDs are rejected before execution. Development and held-out **qualification** assignments are supported; **main** remains refused until freeze.
 - `runtime/` provides an OS-held lock shared across Git worktrees, owner/heartbeat metadata, process-exit release, and a read-only RTX 3070 Ti identity check. The native runner requires this repository's canonical lock.
 - `audit/` prepares complete A/T/J/events and verified tool results, materializes original evidence, checks coverage, keeps invalid judgments uncertain, samples all flagged plus a seeded stratified 10% of unflagged records, and preserves independent disagreement. Chunk planning is implemented; chunk-judge equivalence is unqualified.
 
@@ -26,9 +26,18 @@ Run the fixed 16-condition **local model development slice** from the repository
 ```sh
 PYTHONPATH=project/shortcut-study/src python3 -m shortcut_study qualify-local --out project/runs/shortcut-study/NEW_RUN --port 18080
 PYTHONPATH=project/shortcut-study/src python3 -m shortcut_study qualify-local --capability-probe --out project/runs/shortcut-study/NEW_CAPABILITY_PROBE --port 18080
+PYTHONPATH=project/shortcut-study/src python3 -m shortcut_study qualify-local --held-out --out project/runs/shortcut-study/NEW_HELD_OUT --port 18080
 ```
 
-These commands perform real local GPU inference. They require a fresh output directory, acquire the canonical GPU lease, use only the preserved local checkpoint/runtime, and stop their own server before releasing the lease. The server is offline, bound to loopback, fully offloaded, and configured for one 16k context slot with no history clipping. They preserve the assigned schedule, requests, responses, exact count evidence, native T/tool/A/J, scoring, recovery checks, audit inputs, and sampled GPU memory. They create no semantic judgments and do not collect main-study data. Incomplete records remain in the assigned denominator. Read `summary.json` and `manifest.json`; a successful development check does not qualify the judge, broad task capability, or full study budget. The CLI returns failure when capture checks or the sampled 512 MiB memory-headroom check fail. `--capability-probe` runs only the two existing vertical-slice cells (complete + incomplete, V00, shortcut absent) and requires authorized reads then correct answer on the complete cell plus inspect-then-abstain on the incomplete cell.
+CPU-only S0 G2 packaging (schedules, fingerprint reservations, structural gates, scripted mocks; does **not** accept G2):
+
+```sh
+PYTHONPATH=project/shortcut-study/src python3 -m shortcut_study package-g2-held-out --out project/runs/shortcut-study/g2-packaging --mock-difficulties trivial
+```
+
+See [G2 packaging evidence](results/qualification/g2-held-out-packaging-v1.json), [G2 checklist](templates/G2_HELD_OUT_CHECKLIST.md), and [GPU runbook](GPU_RUNBOOK_G2.md).
+
+The `qualify-local` commands perform real local GPU inference. They require a fresh output directory, acquire the canonical GPU lease, use only the preserved local checkpoint/runtime, and stop their own server before releasing the lease. The server is offline, bound to loopback, fully offloaded, and configured for one 16k context slot with no history clipping. They preserve the assigned schedule, requests, responses, exact count evidence, native T/tool/A/J, scoring, recovery checks, audit inputs, and sampled GPU memory. They create no semantic judgments and do not collect main-study data. Incomplete records remain in the assigned denominator. Read `summary.json` and `manifest.json`; a successful development check does not qualify the judge, broad task capability, or full study budget. The CLI returns failure when capture checks or the sampled 512 MiB memory-headroom check fail. `--capability-probe` runs only the two existing vertical-slice cells (complete + incomplete, V00, shortcut absent) and requires authorized reads then correct answer on the complete cell plus inspect-then-abstain on the incomplete cell.
 
 ## Measured development result
 

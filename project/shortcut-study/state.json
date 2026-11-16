@@ -177,8 +177,8 @@
     },
     {
       "id": "WP08",
-      "status": "not_started",
-      "owner": null,
+      "status": "in_progress",
+      "owner": "integrator",
       "depends_on": [
         "WP02",
         "WP03",
@@ -187,7 +187,16 @@
         "WP06",
         "WP07"
       ],
-      "evidence": []
+      "evidence": [
+        "handoffs/2026-11-16-g2-held-out-packaging.md",
+        "configs/development/g2-held-out.json",
+        "templates/G2_HELD_OUT_CHECKLIST.md",
+        "GPU_RUNBOOK_G2.md",
+        "src/shortcut_study/held_out.py",
+        "tests/test_held_out.py",
+        "results/qualification/g2-held-out-packaging-v1.json"
+      ],
+      "note": "CPU S0 held-out packaging only (schedules, fingerprint reservations, structural gates, scripted mocks). gates.G2 remains not_started until GPU held-out actor/judge/forecast evidence is reviewed. Not a freeze."
     },
     {
       "id": "WP09",
@@ -241,7 +250,8 @@
     }
   ],
   "open_items": [
-    "Authentic capability probe tab01-v5 passed both cells on DESKTOP-VEMMES3 after #10; fresh 16-cell development archive is the next GPU unlock.",
+    "Authentic capability probe tab01-v5 passed both cells on DESKTOP-VEMMES3 after #10; fresh 16-cell development archive is the next GPU unlock before full held-out.",
+    "G2 CPU packaging ready (S0 schedules/reservations/mocks); gates.G2 still requires GPU held-out actor/judge/forecast evidence per GPU_RUNBOOK_G2.md.",
     "Actual daily GPU availability must be recorded; eight hours/day is only a forecast assumption.",
     "Final course page limit and presentation arrangements require reconciliation with official instructions.",
     "Actor and judge checkpoints/settings, quality gates, and final scope require pilot qualification.",

@@ -78,6 +78,18 @@ def main():
     qualify.add_argument("--port", type=int, default=18080)
     qualify.add_argument("--capability-probe", action="store_true",
                          help="Run the smallest existing-slice GPU probe (complete+incomplete V00, shortcut absent)")
+    qualify.add_argument(
+        "--held-out",
+        action="store_true",
+        help="GPU: run S0 held-out qualification schedule (split=qualification); never main",
+    )
+    qualify.add_argument(
+        "--difficulties",
+        nargs="+",
+        default=None,
+        choices=["trivial", "moderate", "hard", "extreme"],
+        help="With --held-out, limit difficulties (default: all four)",
+    )
     score_fixtures = commands.add_parser(
         "score-fixtures",
         help="Run WP04 CPU scoring fixtures; never model inference or main collection",
@@ -109,7 +121,65 @@ def main():
     analyze.add_argument("--out", type=Path, required=True)
     analyze.add_argument("--replicates", type=int, default=DEFAULT_BOOTSTRAP_REPLICATES)
     analyze.add_argument("--seed", type=int, default=DEFAULT_BOOTSTRAP_SEED)
+    package_g2 = commands.add_parser(
+        "package-g2-held-out",
+        help="CPU S0 held-out packaging: schedules, fingerprint reservations, structural gates, tiny mock",
+    )
+    package_g2.add_argument("--out", type=Path, required=True)
+    package_g2.add_argument("--strategy", choices=("legitimate", "shortcut"), default="legitimate")
+    package_g2.add_argument(
+        "--mock-difficulties",
+        nargs="+",
+        default=["trivial"],
+        choices=["trivial", "moderate", "hard", "extreme"],
+        help="Qualification difficulties to exercise with scripted mocks (default: trivial only)",
+    )
+    package_g2.add_argument("--seed", type=int, default=0, help="Replicate seed (not generation seed)")
+    mock_held = commands.add_parser(
+        "mock-held-out",
+        help="Scripted CPU mock of the qualification schedule; never model inference or main",
+    )
+    mock_held.add_argument("--out", type=Path, required=True)
+    mock_held.add_argument("--strategy", choices=("legitimate", "shortcut"), default="legitimate")
+    mock_held.add_argument(
+        "--difficulties",
+        nargs="+",
+        default=["trivial", "moderate", "hard", "extreme"],
+        choices=["trivial", "moderate", "hard", "extreme"],
+    )
+    mock_held.add_argument("--seed", type=int, default=0, help="Replicate seed")
     args = parser.parse_args()
+    if args.command == "package-g2-held-out":
+        from .held_out import package_g2_held_out, write_development_evidence
+
+        summary = package_g2_held_out(
+            args.out,
+            replicate_seed=args.seed,
+            mock_strategy=args.strategy,
+            mock_difficulties=tuple(args.mock_difficulties),
+        )
+        evidence = write_development_evidence(summary, relative_out=str(args.out))
+        print(
+            f"G2 packaging (CPU only): cpu_structural_passed={summary['cpu_gates']['cpu_structural_passed']}; "
+            f"g2_accepted={summary['g2_accepted']}; evidence={evidence}; output={args.out}"
+        )
+        if not summary["cpu_gates"]["cpu_structural_passed"]:
+            raise SystemExit(1)
+        return
+    if args.command == "mock-held-out":
+        from .held_out import run_mock_held_out
+
+        summary = run_mock_held_out(
+            args.out,
+            strategy=args.strategy,
+            difficulties=tuple(args.difficulties),
+            replicate_seed=args.seed,
+        )
+        print(
+            f"Scripted held-out mock only: {summary['completed']}/{summary['assigned']} completed; "
+            f"output={args.out}; not actor evidence"
+        )
+        return
     if args.command == "score-fixtures":
         from .scoring.harness import run_fixture_suite, write_development_evidence
 
@@ -125,13 +195,20 @@ def main():
         return
     if args.command == "qualify-local":
         from .qualification import run_qualification
-        summary = run_qualification(args.out, port=args.port, capability_probe=args.capability_probe)
+        summary = run_qualification(
+            args.out,
+            port=args.port,
+            capability_probe=args.capability_probe,
+            held_out=args.held_out,
+            difficulties=tuple(args.difficulties) if args.difficulties else None,
+        )
         capability = summary.get("capability_probe")
         capability_note = ""
         if capability is not None:
             capability_note = f"; capability probe passed: {capability['passed']}"
+        held_note = "; held-out S0" if summary.get("held_out") else ""
         print(f"Local development: {summary['terminal_counts']}; native capture passed: "
-              f"{summary['native_slice_capture_passed']}{capability_note}; output: {args.out}")
+              f"{summary['native_slice_capture_passed']}{capability_note}{held_note}; output: {args.out}")
         if not summary["local_development_check_passed"]:
             raise SystemExit(1)
         return
@@ -187,8 +264,11 @@ def main():
         **schedule_meta,
         "assignments": assignments})
     rows = []
-    generation_seed = args.seed if args.command == "mock-tab-catalog" else 0
     for assignment in assignments:
+        if args.command == "mock-tab-catalog":
+            generation_seed = assignment.get("generation_seed", args.seed)
+        else:
+            generation_seed = 0
         task = generate_task(assignment, generation_seed=generation_seed)
         episode, ledger = run_mock_episode(task, MockActor(args.strategy), args.out / assignment["episode_id"], run_id=args.out.name)
         row = score_episode(task, episode, ledger)

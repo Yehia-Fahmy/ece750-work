@@ -103,15 +103,18 @@ def restore_native_archive(directory, actor, episode):
     return events
 
 
+_NATIVE_ALLOWED_SPLITS = frozenset({"development", "qualification"})
+
+
 def run_local_episode(task, actor, directory, *, lease, profile, run_id="local-development", limits=None):
-    """Execute one development episode, without retries or history clipping.
+    """Execute one development or held-out qualification episode (never main).
 
     The operator must qualify the pinned server/profile and exact token counter
     before using this for model measurements. There is intentionally no main-run
     CLI. Merely supplying a profile is provenance, not runtime qualification.
     """
-    if not isinstance(actor, LocalChatActor) or task.assignment["split"] != "development":
-        raise ValueError("only local development actors/assignments are supported")
+    if not isinstance(actor, LocalChatActor) or task.assignment["split"] not in _NATIVE_ALLOWED_SPLITS:
+        raise ValueError("only local development/qualification actors/assignments are supported")
     if not isinstance(lease, GpuLease):
         raise ValueError("an OS-held canonical GPU lease is required")
     if lease.canonical_checkout != canonical_experiment_checkout():
