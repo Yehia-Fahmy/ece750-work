@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "updated_at": "2026-11-15",
-  "phase": "native_audit_CPU_reviewed",
+  "phase": "local_native_runtime_validated_actor_capability_pending",
   "context_checkpoint": "ecb82d3",
   "planning_status": "implementation_in_progress",
   "execution_started": true,
@@ -75,9 +75,11 @@
       "evidence": [
         "handoffs/2026-11-15-cpu-vertical-slice.md",
         "results/development/cpu-vertical-slice-v1.json",
-        "tests/test_slice_execution.py"
+        "tests/test_slice_execution.py",
+        "handoffs/2026-11-15-local-qualification.md",
+        "results/qualification/local-native-v1.json"
       ],
-      "note": "TAB01 CPU slice implemented and tested; full package acceptance remains pending."
+      "note": "TAB01 generator v2 fixes misleading missing-prerequisites metadata without leaking information state; one scenario only, broad catalog pending."
     },
     {
       "id": "WP03",
@@ -91,9 +93,11 @@
         "results/development/cpu-vertical-slice-v1.json",
         "tests/test_slice_execution.py",
         "handoffs/2026-11-15-native-audit-integration.md",
-        "results/development/native-audit-integration-v1.json"
+        "results/development/native-audit-integration-v1.json",
+        "handoffs/2026-11-15-local-qualification.md",
+        "results/qualification/local-native-v1.json"
       ],
-      "note": "Native adapter/development loop reviewed with synthetic HTTP fixtures; exact counter and live runtime/model qualification remain pending."
+      "note": "Authentic local native capture validated on two separately versioned 16-episode development runs, 32 turns each; exact counts/history/recovery/audit inputs verified. Real actor exercised clarification/submit only; reading/calculation/acquisition capability pending."
     },
     {
       "id": "WP04",
@@ -118,9 +122,11 @@
       ],
       "evidence": [
         "handoffs/2026-11-15-native-audit-integration.md",
-        "results/development/native-audit-integration-v1.json"
+        "results/development/native-audit-integration-v1.json",
+        "handoffs/2026-11-15-local-qualification.md",
+        "results/qualification/local-native-v1.json"
       ],
-      "note": "Audit preparation/evidence validation/review routing/reconciliation reviewed; local judge executor and semantic qualification pending."
+      "note": "Audit input preparation verified against all 32 authentic completed development records; no judge inference, semantic calibration or held-out qualification."
     },
     {
       "id": "WP06",
@@ -132,9 +138,11 @@
       ],
       "evidence": [
         "handoffs/2026-11-15-native-audit-integration.md",
-        "results/development/native-audit-integration-v1.json"
+        "results/development/native-audit-integration-v1.json",
+        "handoffs/2026-11-15-local-qualification.md",
+        "results/qualification/local-native-v1.json"
       ],
-      "note": "Canonical OS GPU lease reviewed and read-only hardware inventory recorded; model memory/timing and capacity qualification pending."
+      "note": "Owned pinned local runtime, canonical GPU lease, exact template count and full 37/37 offload verified. Latest run sampled 5278 MiB peak / 2914 MiB headroom; mean 8.07s on short clarification-only episodes. Representative long tasks, actor/judge quality and complete pipeline forecast pending."
     },
     {
       "id": "WP07",
@@ -212,74 +220,80 @@
     }
   ],
   "open_items": [
+    "Next engineering: diagnose premature clarification on complete tasks (0/8 development task success after metadata correction), validate authentic reading/calculation and representative long episodes, and qualify actor capability before scaling or main collection.",
     "Actual daily GPU availability must be recorded; eight hours/day is only a forecast assumption.",
     "Final course page limit and presentation arrangements require reconciliation with official instructions.",
     "Actor and judge checkpoints/settings, quality gates, and final scope require pilot qualification.",
     "G0 remains open until WP02 catalog/specification is accepted alongside WP01.",
-    "Next engineering: qualify the live local checkpoint/runtime/template and exact prompt counter, then execute the authentic native 16-condition development slice under the canonical lease.",
-    "Broader WP02 generators, WP04 scoring, local semantic judge execution/qualification, statistical analysis, freeze and collection remain pending.",
-    "Remote publication to origin/main awaits explicit approval following automatic review rejection; local merges are authorized."
+    "Broader WP02 generators, WP04 scoring, local semantic judge execution/qualification, statistical analysis, freeze and collection remain pending."
   ],
   "session": {
     "date": "2026-11-15",
-    "input_commit": "fc18d65",
+    "input_commit": "cf742c0",
     "owner": "integrator",
-    "authorization": "User requested merging followed by implementation with multi-agent workflows and review.",
-    "scope": "WP03 native adapter and fixture integration; WP05 audit plumbing; WP06 shared lease",
-    "output_paths": [
-      "src/shortcut_study/tasks/",
-      "src/shortcut_study/environment/",
-      "src/shortcut_study/adapters/",
-      "src/shortcut_study/runner/",
-      "src/shortcut_study/scoring/",
-      "tests/",
-      "handoffs/"
-    ],
-    "days_until_report": 19,
-    "gpu": "Read-only host query verified RTX 3070 Ti, 8192 MiB total/303 used at observation; Python NVML access blocked in restricted sandbox; no model inference; daily availability unverified.",
-    "checkout": "/home/yehia/ece750-work",
-    "output_commit": null,
-    "status": "reviewed_for_local_merge",
+    "authorization": "User instructed implementation of the next stage after local runtime qualification and an authentic 16-condition development slice were described. Prior multi-agent/review instructions persist.",
+    "scope": "WP03 exact prompt counter and authentic development slice; WP06 pinned owned runtime and measured feasibility",
+    "status": "reviewed_runtime_stage_actor_capability_inadequate",
     "assignments": [
       {
         "owner": "native_adapter",
-        "package": "WP03",
         "paths": [
-          "src/shortcut_study/adapters/local.py",
-          "tests/test_local_adapter.py",
-          "handoffs/2026-11-15-native-adapter.md"
-        ]
-      },
-      {
-        "owner": "audit_pipeline",
-        "package": "WP05",
-        "paths": [
-          "src/shortcut_study/audit/",
-          "tests/test_audit_pipeline.py",
-          "handoffs/2026-11-15-audit-pipeline.md"
-        ]
+          "src/shortcut_study/adapters/token_counter.py",
+          "tests/test_token_counter.py"
+        ],
+        "package": "WP03"
       },
       {
         "owner": "review_cpu",
-        "package": "WP06",
         "paths": [
-          "src/shortcut_study/runtime/",
-          "tests/test_gpu_lease.py",
-          "handoffs/2026-11-15-gpu-lease.md"
-        ]
+          "src/shortcut_study/runtime/server.py",
+          "tests/test_local_server.py"
+        ],
+        "package": "WP06"
+      },
+      {
+        "owner": "audit_pipeline",
+        "paths": [
+          "src/shortcut_study/runtime/telemetry.py",
+          "tests/test_gpu_telemetry.py"
+        ],
+        "package": "WP06 telemetry and independent qualification review"
       },
       {
         "owner": "root",
-        "package": "integration",
         "paths": [
-          "src/shortcut_study/runner/native.py",
-          "tests/test_native_runner.py",
+          "src/shortcut_study/qualification.py",
+          "src/shortcut_study/__main__.py",
+          "tests/test_qualification.py",
+          "configs/development/local-qualification.json",
           "state.json",
           "README.md",
-          "results/development/"
+          "results/qualification/"
+        ],
+        "package": "integration_GPU_operator"
+      },
+      {
+        "owner": "native_adapter",
+        "reviewer": "review_cpu",
+        "package": "WP02 prompt metadata correction",
+        "paths": [
+          "src/shortcut_study/tasks/tables/__init__.py",
+          "tests/test_task_prompt_review.py"
         ]
       }
-    ]
+    ],
+    "startup_attempts": [
+      {
+        "run": "native-qualification-20261115-v1",
+        "status": "readiness_rejected_missing_offload_diagnostics",
+        "generated_episodes": 0,
+        "preserved": true
+      }
+    ],
+    "implementation_commit": "859fd45",
+    "prompt_correction_commit": "60aa979",
+    "prompt_correction": "Replace unconditional missing_prerequisites metadata with neutral clarification_fields in generator tab01-slice-v2; complete/incomplete public tasks remain identical. Earlier runs preserved.",
+    "output_commit": "commit containing final qualification handoff"
   },
   "cpu_slice_review": {
     "reviewer": "review_cpu",
@@ -289,17 +303,44 @@
     "evidence": "results/development/cpu-merge-review-v1.json",
     "full_package_acceptance": false,
     "merge_commit": "fc18d65",
-    "publication": "pending explicit remote push approval after automatic review rejection"
+    "publication": "pushed to origin/main at cf742c0 following explicit user approval"
   },
   "implementation_review": {
-    "evidence": "results/development/native-audit-integration-v1.json",
-    "tests_passed": 107,
+    "evidence": "results/qualification/local-native-v1.json",
+    "tests_passed": 168,
     "historical_tests_passed": 58,
     "reviewers": [
       "root",
       "review_cpu",
-      "native_adapter"
+      "native_adapter",
+      "audit_pipeline"
     ],
-    "status": "CPU_milestone_reviewed_not_model_qualified"
+    "status": "runtime_validated_actor_capability_inadequate",
+    "authentic_development_runs": [
+      "native-qualification-20261115-v2",
+      "native-qualification-20261115-v3"
+    ],
+    "main_qualified": false,
+    "judge_qualified": false
+  },
+  "qualification_review": {
+    "latest_run": "native-qualification-20261115-v3",
+    "exact_source_commit": "60aa979",
+    "assigned": 16,
+    "completed": 16,
+    "native_turns": 32,
+    "exact_count_matches": 32,
+    "complete_task_success": {
+      "successful": 0,
+      "assigned": 8
+    },
+    "incomplete_task_success": {
+      "successful": 8,
+      "assigned": 8
+    },
+    "native_runtime_check_passed": true,
+    "capability_sufficient_for_main": false,
+    "GPU_released": true,
+    "prior_runs_preserved": true
   }
 }

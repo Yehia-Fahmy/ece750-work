@@ -10,7 +10,7 @@ Status: execution guide. On November 15 the researcher explicitly authorized con
 4. Assign one owner per package and one integration owner. Agree on the shared contracts before parallel implementation. Record assignment, input commit, and output paths in state; use a short commit boundary for each accepted package.
 5. Treat all future CLI names in planning documents as deliverable requirements, not currently installed commands. Inspect implementation before invoking anything.
 
-The original planning handoff contained documentation only. As of November 15, WP01 contracts are accepted and the CPU TAB01 slice is reviewed and locally merged. Native adapter/runner, lease, and audit evidence plumbing have CPU implementation evidence; consult `state.json` and the latest handoff for scope and reviews. No extension model is qualified, no main protocol is frozen, and synthetic records are not a collected model dataset.
+The original planning handoff contained documentation only. As of November 15, WP01 contracts are accepted and the CPU TAB01 slice is reviewed and locally merged. Native adapter/runner, lease, exact counter, owned server and audit plumbing now have authentic development runtime evidence; consult `state.json` and the latest qualification handoff. The actor still fails all eight complete-information development cases by asking for clarification before reading resources; diagnose capability before scaling. No extension model is qualified, no main protocol is frozen, and synthetic records are not a collected model dataset.
 
 ## Roles and boundaries
 
