@@ -16,6 +16,7 @@ CONFIG_FILES = {
     "splits": "splits.json",
     "scoring_source_of_truth": "scoring_source_of_truth.json",
     "vertical_slice": "vertical_slice.json",
+    "local-qualification": "local-qualification.json",
 }
 
 

@@ -1,0 +1,15 @@
+{
+  "observed_at_utc": "2026-11-16T00:42:46.970974+00:00",
+  "context": "approved_host_read_only_after_v3_shutdown",
+  "run": "native-qualification-20261115-v3",
+  "owned_pid": 62942,
+  "pid_query_returncode": 1,
+  "pid_query_stdout": "",
+  "gpu_command": [
+    "/usr/lib/wsl/lib/nvidia-smi",
+    "--query-gpu=name,memory.total,memory.used,utilization.gpu",
+    "--format=csv,noheader,nounits"
+  ],
+  "gpu_stdout": "NVIDIA GeForce RTX 3070 Ti, 8192, 303, 0\n",
+  "lease_status": "released"
+}

@@ -1,6 +1,6 @@
 # Shortcut study extension — start here
 
-This is **additional research**, separate from the completed observer-framing study. Status: CPU development; shared contracts, the TAB01 mock slice, a local native adapter/development loop, a shared GPU lease, and audit evidence plumbing are implemented. No extension model observations have been collected and no main protocol is frozen.
+This is **additional research**, separate from the completed observer-framing study. Status: the local native runtime and development recording path are validated, but actor task capability remains inadequate. Two separately versioned 16-episode development runs are preserved; no main protocol is frozen. See the [qualification handoff](handoffs/2026-11-15-local-qualification.md).
 
 ## Native adapter and audit development
 
@@ -19,7 +19,21 @@ PYTHONPATH=project/shortcut-study/src python3 -m shortcut_study prepare-audit --
 
 This writes `prepared.json`, `messages.json`, and a hash manifest. Rejected/incomplete episode IDs must remain in the assigned audit denominator. The prepared request excludes direct actor/condition identifiers; actor text may still reveal its condition. Evidence checking proves reference and coverage integrity, not the truth of a semantic judgment. Without generator sufficiency context, some insufficiency-explanation judgments must remain uncertain.
 
-All native integration tests use synthetic HTTP bodies, a test GPU probe, and fixture token counts. There is no inference CLI. Live server/checkpoint/template identity, exact template-aware token counting, GPU execution, memory/runtime capacity, and judge quality still require qualification. Caller-supplied profile hashes are provenance declarations, not proof of the loaded model. Native development currently permits zero transport retries; requests with uncertain outcomes are never automatically replayed. Full WP03/WP05/WP06 and G1 acceptance remain pending.
+The original native integration tests use synthetic HTTP bodies, a test GPU probe, and fixture token counts. The new local qualification command owns the retained Qwen3-4B/b11574 server, hashes its assets, verifies the listening process and full GPU offload, and counts the actual rendered chat template through the pinned runtime. Caller-supplied profiles alone remain declarations; use the owned qualification path for measured runtime evidence. Native development permits zero transport retries; uncertain requests are never replayed. Full WP03/WP05/WP06 and G1 acceptance remain pending.
+
+Run the fixed 16-condition **local model development slice** from the repository root, in an environment with access to the RTX 3070 Ti:
+
+```sh
+PYTHONPATH=project/shortcut-study/src python3 -m shortcut_study qualify-local --out project/runs/shortcut-study/NEW_RUN --port 18080
+```
+
+This command performs real local GPU inference. It requires a fresh output directory, acquires the canonical GPU lease, uses only the preserved local checkpoint/runtime, and stops its own server before releasing the lease. The server is offline, bound to loopback, fully offloaded, and configured for one 16k context slot with no history clipping. It preserves the assigned schedule, requests, responses, exact count evidence, native T/tool/A/J, scoring, recovery checks, audit inputs, and sampled GPU memory. It creates no semantic judgments and does not collect main-study data. Incomplete records remain in the assigned denominator. Read `summary.json` and `manifest.json`; a successful development check does not qualify the judge, broad task capability, or full study budget. The CLI returns failure when capture checks or the sampled 512 MiB memory-headroom check fail.
+
+## Measured development result
+
+The corrected generator (`tab01-slice-v2`, source commit `60aa979`) completed all 16 development episodes with 32 exact token-count matches and verified native history/recovery/audit inputs. Mean episode latency was 8.07 seconds; sampled peak GPU usage was 5,278 MiB, leaving 2,914 MiB sampled headroom. These short episodes do not establish long-task or whole-study throughput.
+
+**The actor is not ready for main collection:** all 16 episodes requested clarification and submitted insufficient information without reading resources. Deterministic task scoring was 0/8 on complete cases and 8/8 on incomplete cases. The earlier generator incorrectly labeled a clarification field as missing in every task; correcting that metadata did not resolve the premature-clarification behavior. Both versions and the failed initial startup remain preserved. Real reading/calculation/acquisition capability and semantic judging remain unqualified. See [measured evidence](results/qualification/local-native-v1.json) and the [independent review](handoffs/2026-11-15-local-qualification-review.md).
 
 ## Implemented CPU vertical slice
 
@@ -45,7 +59,7 @@ PYTHONPATH=project/shortcut-study/src python3 -m shortcut_study recover-mock-epi
 
 Recovery preserves the journal, retains known events and saved T/A/J, and marks uncertain execution interrupted. Already-saved submissions are reconstructed only from matching raw actions and hashed events. It does not resume collection, generate new A/J, or rebuild the run summary/manifest. A fully written terminal record remains authoritative; missing derived reviewer/auditor packets can be recreated from it. Keep the original manifest when adding recovered artifacts and record a separate recovery manifest before downstream use.
 
-Current task limits: one development template at intended moderate difficulty, one shortcut mechanism, and TAB01 scoring only. The original mock runner checks turn/action/wall limits; the separate native development loop adds token/context checks and bounded transport. No model inference, semantic judge qualification, qualification/main generation, or broad task catalog has been completed. Main task generation is explicitly rejected.
+Current task limits: one development template at intended moderate difficulty, one shortcut mechanism, and TAB01 scoring only. The original mock runner checks turn/action/wall limits; the separate native development loop adds token/context checks and bounded transport. Authentic local development inference has now run. Semantic judge qualification, held-out capability/main generation, and the broad task catalog remain pending. Main task generation is explicitly rejected.
 
 ## Read in this order
 

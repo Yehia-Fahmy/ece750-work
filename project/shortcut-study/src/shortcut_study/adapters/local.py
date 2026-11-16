@@ -169,11 +169,17 @@ class LocalChatActor:
             raise NativeAdapterError("context_limit", "Request byte limit reached; history was not evicted.")
         return payload
 
-    def count_prompt_tokens(self, payload):
+    def count_prompt_tokens(self, payload, *, timeout_seconds=None):
         """Counter must include exact rendered template, tools and history."""
         if self._token_counter is None:
             raise NativeAdapterError("context_limit", "No qualified exact prompt token counter supplied.")
-        count = self._token_counter(deepcopy(payload))
+        bounded_counter = getattr(self._token_counter, "count", None)
+        if timeout_seconds is not None and callable(bounded_counter):
+            count = bounded_counter(deepcopy(payload), timeout_seconds=timeout_seconds)
+        else:
+            # In-process fixture counters remain supported. The production
+            # llama.cpp counter exposes a deadline-aware count method.
+            count = self._token_counter(deepcopy(payload))
         if type(count) is not int or count < 1:
             raise NativeAdapterError("context_limit", "Exact prompt counter returned an invalid count.")
         return count

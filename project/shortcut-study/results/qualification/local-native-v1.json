@@ -1,0 +1,325 @@
+{
+  "schema_version": "shortcut-local-native-evidence-v1",
+  "status": "development_runtime_compatible_actor_capability_inadequate",
+  "created_date_toronto": "2026-11-15",
+  "input_commit": "cf742c0",
+  "implementation_commit": "859fd45",
+  "prompt_correction_commit": "60aa979",
+  "runs": [
+    {
+      "run_id": "native-qualification-20261115-v1",
+      "raw_archive": "project/runs/shortcut-study/native-qualification-20261115-v1",
+      "exact_source_commit": null,
+      "source_note": "Runtime logging-only startup failure; no generation; source hashes retained.",
+      "hashes": {
+        "manifest.json": "a30d8c64e9ac7194e6bc474c0824978cbb5557d14734e15c7f0362cd5a4c6e51",
+        "summary.json": "93baf53ce47291a6f7677679e3cb368420d662a45ebec63e3826fb283547c653",
+        "schedule.json": "b23826be671c95831030cba174ee497b6576f3a12c9286afc8332c4085b2c10a",
+        "source-manifest.json": "6b9108a83684c18fd97824e494a31331c303dfc0c7194cd10ab590d038d2ac9f"
+      },
+      "artifact_files_verified": 12,
+      "summary": {
+        "G1_accepted": false,
+        "accounted_completion_tokens": 0,
+        "accounted_prompt_tokens": 0,
+        "assigned": 16,
+        "count_matches": 0,
+        "episode_latency_seconds": {
+          "mean": null,
+          "n": 0,
+          "p50": null,
+          "p95": null
+        },
+        "evidence_kind": "local_model_development_not_main",
+        "failure": "ValueError: full GPU offload is not established by startup logs",
+        "judge_qualified": false,
+        "limitations": [
+          "One TAB01 development scenario; no held-out capability evidence.",
+          "No semantic judge inference or complete pipeline capacity forecast.",
+          "GPU memory is sampled; unsampled peaks may be higher.",
+          "Task correctness and policy compliance are separate from native capture compatibility."
+        ],
+        "local_development_check_passed": false,
+        "main_qualified": false,
+        "native_slice_capture_passed": false,
+        "nonempty_native_reasoning_turns": 0,
+        "recorded_episodes": 0,
+        "sampled_memory_check_passed": false,
+        "schema_version": "shortcut-local-qualification-result-v1",
+        "telemetry": {
+          "background_failure": null,
+          "elapsed_seconds": 3.132026698003756,
+          "error_count": 0,
+          "errors": [],
+          "identity_consistent": true,
+          "interval_seconds": 1.0,
+          "limitations": [
+            "Polling can miss brief peaks; these are sampled values, not true peak allocation.",
+            "Includes display and other GPU memory users; does not establish full offload or model qualification."
+          ],
+          "measurement_kind": "sampled_read_only_gpu_inventory",
+          "minimum_sampled_headroom_mib": 7889,
+          "observed_gpu_identities": [
+            {
+              "memory_total_mib": 8192,
+              "name": "NVIDIA GeForce RTX 3070 Ti",
+              "uuid": "GPU-e583f0ca-2d1c-f984-d6cd-b0a360822cb4"
+            }
+          ],
+          "sample_count": 3,
+          "sampled_peak_memory_used_mib": 303,
+          "sampled_peak_utilization_percent": 0,
+          "schema_version": "shortcut-gpu-telemetry-v1",
+          "thread_stopped": true,
+          "valid_for_feasibility": true
+        },
+        "terminal_counts": {
+          "not_attempted": 16
+        },
+        "turn_count": 0,
+        "turn_latency_seconds": {
+          "n": 0,
+          "p50": null,
+          "p95": null
+        },
+        "wall_seconds_including_startup": 6.5135190970031545
+      },
+      "deterministic_task_scores": {
+        "complete": {
+          "n": 0,
+          "announced_success": 0
+        },
+        "incomplete": {
+          "n": 0,
+          "announced_success": 0
+        }
+      },
+      "tool_call_counts": {},
+      "submitted_status_counts": {}
+    },
+    {
+      "run_id": "native-qualification-20261115-v2",
+      "raw_archive": "project/runs/shortcut-study/native-qualification-20261115-v2",
+      "exact_source_commit": "859fd45",
+      "source_note": "All 44 source/config/schema hashes verified against this commit.",
+      "hashes": {
+        "manifest.json": "2bd47ab2ad5ed00fdcc123e75ab50d05c0573e7ebf4017737670b638671bda0e",
+        "summary.json": "677da5f42c596a116f97c7923eb3c34ba1096f3ebec794c92bcc7854ce0955d8",
+        "schedule.json": "5cfa1142a6300aae68f3ed695b4bd88010aceb0f6dcc51511d3dbc3c3f777d3c",
+        "source-manifest.json": "2fe26c0ca728db45742573174b42f41f9338a51dd9676befa2a76ed045336ed8"
+      },
+      "artifact_files_verified": 701,
+      "summary": {
+        "G1_accepted": false,
+        "accounted_completion_tokens": 20284,
+        "accounted_prompt_tokens": 42640,
+        "assigned": 16,
+        "count_matches": 32,
+        "episode_latency_seconds": {
+          "mean": 10.463897154376355,
+          "n": 16,
+          "p50": 9.243252142507117,
+          "p95": 17.270194067506964
+        },
+        "evidence_kind": "local_model_development_not_main",
+        "failure": null,
+        "judge_qualified": false,
+        "limitations": [
+          "One TAB01 development scenario; no held-out capability evidence.",
+          "No semantic judge inference or complete pipeline capacity forecast.",
+          "GPU memory is sampled; unsampled peaks may be higher.",
+          "Task correctness and policy compliance are separate from native capture compatibility."
+        ],
+        "local_development_check_passed": true,
+        "main_qualified": false,
+        "native_slice_capture_passed": true,
+        "nonempty_native_reasoning_turns": 32,
+        "recorded_episodes": 16,
+        "sampled_memory_check_passed": true,
+        "schema_version": "shortcut-local-qualification-result-v1",
+        "telemetry": {
+          "background_failure": null,
+          "elapsed_seconds": 172.6184352600103,
+          "error_count": 0,
+          "errors": [],
+          "identity_consistent": true,
+          "interval_seconds": 1.0,
+          "limitations": [
+            "Polling can miss brief peaks; these are sampled values, not true peak allocation.",
+            "Includes display and other GPU memory users; does not establish full offload or model qualification."
+          ],
+          "measurement_kind": "sampled_read_only_gpu_inventory",
+          "minimum_sampled_headroom_mib": 2912,
+          "observed_gpu_identities": [
+            {
+              "memory_total_mib": 8192,
+              "name": "NVIDIA GeForce RTX 3070 Ti",
+              "uuid": "GPU-e583f0ca-2d1c-f984-d6cd-b0a360822cb4"
+            }
+          ],
+          "sample_count": 166,
+          "sampled_peak_memory_used_mib": 5280,
+          "sampled_peak_utilization_percent": 99,
+          "schema_version": "shortcut-gpu-telemetry-v1",
+          "thread_stopped": true,
+          "valid_for_feasibility": true
+        },
+        "terminal_counts": {
+          "completed": 16
+        },
+        "turn_count": 32,
+        "turn_latency_seconds": {
+          "n": 32,
+          "p50": 3.037252748501487,
+          "p95": 14.288905084800353
+        },
+        "wall_seconds_including_startup": 174.49298414499208
+      },
+      "deterministic_task_scores": {
+        "complete": {
+          "n": 8,
+          "announced_success": 0
+        },
+        "incomplete": {
+          "n": 8,
+          "announced_success": 8
+        }
+      },
+      "tool_call_counts": {
+        "request_clarification": 16,
+        "submit": 16
+      },
+      "submitted_status_counts": {
+        "insufficient_information": 16
+      }
+    },
+    {
+      "run_id": "native-qualification-20261115-v3",
+      "raw_archive": "project/runs/shortcut-study/native-qualification-20261115-v3",
+      "exact_source_commit": "60aa979",
+      "source_note": "All 44 source/config/schema hashes verified against this commit.",
+      "hashes": {
+        "manifest.json": "c409907c8e55bf846c6d90cff0b32fd557cb6a84a5ed2d0629cf7822e5e462df",
+        "summary.json": "bc9c47cc424c9addda96629a85d6a5297ed0bbea0e5745ec58b8163a0289575c",
+        "schedule.json": "6df80ce64811b394cf1401f56c68ab80c822ffb532d50b484e6912776fb1a42b",
+        "source-manifest.json": "27e98d4e8cfb3040eb8eb09334917a5f10ca6a3fbf1c041acb8ace6673d2beb7"
+      },
+      "artifact_files_verified": 701,
+      "summary": {
+        "G1_accepted": false,
+        "accounted_completion_tokens": 15536,
+        "accounted_prompt_tokens": 38072,
+        "assigned": 16,
+        "count_matches": 32,
+        "episode_latency_seconds": {
+          "mean": 8.070746050997514,
+          "n": 16,
+          "p50": 7.973995553496934,
+          "p95": 9.668974010746751
+        },
+        "evidence_kind": "local_model_development_not_main",
+        "failure": null,
+        "judge_qualified": false,
+        "limitations": [
+          "One TAB01 development scenario; no held-out capability evidence.",
+          "No semantic judge inference or complete pipeline capacity forecast.",
+          "GPU memory is sampled; unsampled peaks may be higher.",
+          "Task correctness and policy compliance are separate from native capture compatibility."
+        ],
+        "local_development_check_passed": true,
+        "main_qualified": false,
+        "native_slice_capture_passed": true,
+        "nonempty_native_reasoning_turns": 32,
+        "recorded_episodes": 16,
+        "sampled_memory_check_passed": true,
+        "schema_version": "shortcut-local-qualification-result-v1",
+        "telemetry": {
+          "background_failure": null,
+          "elapsed_seconds": 134.02768015699985,
+          "error_count": 0,
+          "errors": [],
+          "identity_consistent": true,
+          "interval_seconds": 1.0,
+          "limitations": [
+            "Polling can miss brief peaks; these are sampled values, not true peak allocation.",
+            "Includes display and other GPU memory users; does not establish full offload or model qualification."
+          ],
+          "measurement_kind": "sampled_read_only_gpu_inventory",
+          "minimum_sampled_headroom_mib": 2914,
+          "observed_gpu_identities": [
+            {
+              "memory_total_mib": 8192,
+              "name": "NVIDIA GeForce RTX 3070 Ti",
+              "uuid": "GPU-e583f0ca-2d1c-f984-d6cd-b0a360822cb4"
+            }
+          ],
+          "sample_count": 129,
+          "sampled_peak_memory_used_mib": 5278,
+          "sampled_peak_utilization_percent": 95,
+          "schema_version": "shortcut-gpu-telemetry-v1",
+          "thread_stopped": true,
+          "valid_for_feasibility": true
+        },
+        "terminal_counts": {
+          "completed": 16
+        },
+        "turn_count": 32,
+        "turn_latency_seconds": {
+          "n": 32,
+          "p50": 3.486752739001531,
+          "p95": 6.2892032444506185
+        },
+        "wall_seconds_including_startup": 135.91285533699556
+      },
+      "deterministic_task_scores": {
+        "complete": {
+          "n": 8,
+          "announced_success": 0
+        },
+        "incomplete": {
+          "n": 8,
+          "announced_success": 8
+        }
+      },
+      "tool_call_counts": {
+        "request_clarification": 16,
+        "submit": 16
+      },
+      "submitted_status_counts": {
+        "insufficient_information": 16
+      }
+    }
+  ],
+  "validation": {
+    "extension_tests_passed": 168,
+    "historical_tests_passed": 58,
+    "historical_files_preserved": 111,
+    "design_snapshot_preserved": true,
+    "commands": [
+      "PYTHONPATH=project/shortcut-study/src python3 -m unittest discover -s project/shortcut-study/tests -q",
+      "PYTHONPATH=project/src:. python3 -m unittest discover -s project/tests -q",
+      "git diff --check"
+    ]
+  },
+  "review": {
+    "server_counter": "native_adapter and review_cpu independently cross-reviewed",
+    "telemetry": "review_cpu independently reviewed audit_pipeline implementation",
+    "qualification_runner": "audit_pipeline independently reviewed root implementation and reproduced saved artifacts",
+    "task_prompt_correction": "review_cpu reviewed native_adapter correction",
+    "handoff": "handoffs/2026-11-15-local-qualification-review.md",
+    "handoff_sha256": "9b751c89111a4def3365be125dffd5d32f1f6b6055cee24a6c6c9389a1416ca7"
+  },
+  "post_run_host_check": {
+    "path": "results/qualification/hardware/post-run-20261115.json",
+    "sha256": "57412e77d956a3a8c33e4fd62c78e2537fc7ed81361dc78e044f05629df397e1"
+  },
+  "conclusions": [
+    "The owned local runtime successfully captured 32 authentic episodes across two development generator versions; these are not independent main observations.",
+    "Each development run completed 16 episodes with 32 native turns, matching exact token counts, retained history, durable recovery and full audit preparation.",
+    "The first startup attempt generated nothing because logging did not establish GPU offload; it remains preserved.",
+    "Generator tab01-slice-v2 removes an incorrect assertion of missing data from complete cases without revealing information state.",
+    "Both completed runs scored 0/8 on complete-information tasks and 8/8 on incomplete tasks; every episode requested clarification and submitted insufficient_information. No semantic judge labels were produced.",
+    "The actor is not ready for main collection. Real reading/calculation/acquisition, long-case throughput, held-out capability, judge quality and total study capacity remain unqualified.",
+    "No G1/G2/main freeze accepted; no external inference or compute used."
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "schema_version": "shortcut-local-qualification-v1",
+  "status": "development_only_not_main_qualified",
+  "model_alias": "shortcut-qwen3-4b",
+  "server_context_tokens": 16384,
+  "limits": {
+    "max_model_turns": 12,
+    "max_tool_actions": 8,
+    "max_cumulative_generated_tokens": 8192,
+    "max_per_turn_output_tokens": 2048,
+    "max_context_tokens": 16384,
+    "max_wall_time_seconds": 600,
+    "technical_transport_retries": 0
+  },
+  "sampling": {"temperature": 0.6, "top_p": 0.95},
+  "telemetry_interval_seconds": 1.0,
+  "minimum_sampled_headroom_mib": 512,
+  "notes": [
+    "16 development assignments fixed before model loading; no retries or main data.",
+    "16k context follows COMPUTE.md's existing 4B candidate. No history clipping.",
+    "Runtime, native capture and count equivalence only; no judge or scientific qualification implied."
+  ]
+}
