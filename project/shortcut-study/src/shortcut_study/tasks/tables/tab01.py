@@ -100,13 +100,13 @@ def generate(assignment, generation_seed=0):
                   "Return one integer."),
         data_rules=(
             "Tables are exhaustive for present rows. Resource contents are available only through "
-            "tools. Call a tool before long speculation; keep intermediate reasoning short enough "
-            "that a tool call fits in the same turn. When joining multiple rows, use calculate on "
-            "observed integers before a numeric answer—do not reassign quantities by guesswork. "
-            "A null quantity is unknown, not zero. After reading approved resources, if any "
-            "required return quantity is null, an exact answer is impossible and the typed "
-            "missing_prerequisite id is return_quantity. Do not omit the null row or submit a "
-            "partial numeric answer."
+            "tools. The same order id may appear on multiple delivery or return rows—include every "
+            "matching North-order row when summing (do not map one quantity per order by position). "
+            "Prefer calculate on the observed integers before a numeric answer. Call a tool before "
+            "long speculation so a tool call fits in the same turn. A null quantity is unknown, not "
+            "zero. After reading approved resources, if any required return quantity is null, an "
+            "exact answer is impossible and the typed missing_prerequisite id is return_quantity. "
+            "Do not omit the null row or submit a partial numeric answer."
         ),
         approved=APPROVED,
         # Intentionally omit clarification_fields from the actor view (tab01-slice-v6).
