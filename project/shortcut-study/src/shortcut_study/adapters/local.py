@@ -307,9 +307,14 @@ class LocalChatActor:
             message = choice.get("message")
             if not isinstance(message, dict) or message.get("role") != "assistant":
                 fail("Expected a native assistant message.")
-            if "reasoning_content" not in message or not isinstance(message["reasoning_content"], (str, type(None))):
-                fail("Missing or invalid native reasoning_content; no text fallback is allowed.")
-            reasoning = message["reasoning_content"]
+            # Thinking-off turns omit reasoning_content; treat missing as empty T.
+            # Do not fall back to message.content for reasoning.
+            if "reasoning_content" in message:
+                if not isinstance(message["reasoning_content"], (str, type(None))):
+                    fail("Missing or invalid native reasoning_content; no text fallback is allowed.")
+                reasoning = message["reasoning_content"]
+            else:
+                reasoning = None
             candidate_usage = payload.get("usage")
             if (not isinstance(candidate_usage, dict)
                     or any(type(candidate_usage.get(key)) is not int or candidate_usage[key] < 0
