@@ -18,12 +18,29 @@ from .runner import write_new
 from .runner.native import canonical_experiment_checkout, native_limits, recover_local_episode, run_local_episode
 from .runtime import GpuLease
 from .scoring import score_episode
-from .tasks.tables import (APPROVED, DIFFICULTIES, GENERATOR_VERSION,
-                           enumerate_tab_catalog_assignments, generate_task)
+from .ids import make_episode_id
+from .runner.metrics import tool_operation_counts as task_tool_operation_counts
+from .tasks.tables import (
+    APPROVED,
+    DIFFICULTIES,
+    SHORTCUT,
+    DEFAULT_FRESH_QUALIFICATION_BATCH_ID,
+    DEFAULT_FRESH_QUALIFICATION_NAMESPACE,
+    BATCH_SEED_NAMESPACES,
+    allocate_qualification_batch,
+    enumerate_tab_catalog_assignments,
+    generate_task,
+    generator_version_for,
+    is_consumed_batch,
+    mark_batch_consumed,
+)
 from .vertical_slice import capability_probe_assignments, enumerate_vertical_slice_assignments
 
 LONG_PILOT_TEMPLATES = ("TAB01", "TAB02", "TAB03", "TAB04", "TAB05")
 LONG_PILOT_DIFFICULTIES = ("hard", "extreme")
+VISIBILITY_CELLS = ("V00", "V01", "V10", "V11")
+INFORMATION_STATES = ("complete", "incomplete")
+SHORTCUT_AVAILABLE = (True, False)
 
 
 def long_pilot_assignments():
@@ -126,23 +143,83 @@ def episode_metrics(directory):
     return turns
 
 
-def tool_operation_counts(ledger):
-    """Count executed tool calls from a durable event ledger."""
-    counts = Counter()
-    approved_reads = set()
-    for event in ledger.get("events", []):
-        if event.get("event_type") == "tool_call" and isinstance(event.get("operation"), str):
-            counts[event["operation"]] += 1
-        if (event.get("event_type") == "tool_result" and event.get("operation") == "read_resource"
-                and event.get("execution_status") == "success"
-                and event.get("resource_id") in APPROVED):
-            approved_reads.add(event["resource_id"])
-            counts["approved_read_success"] += 1
-        if (event.get("event_type") == "tool_result" and event.get("operation") == "calculate"
-                and event.get("execution_status") == "success"):
-            counts["calculate_success"] += 1
-    counts["approved_resources_read"] = len(approved_reads)
-    return dict(counts), approved_reads
+def tool_operation_counts(ledger, *, approved_resources=None):
+    """Count tool calls with task-specific approved reads (IMPL-3 wiring).
+
+    Pass ``approved_resources`` from the task. Omitting it keeps the historical
+    TAB01-only default for older call sites and capability-probe fixtures.
+    """
+    resources = APPROVED if approved_resources is None else approved_resources
+    return task_tool_operation_counts(ledger, approved_resources=resources)
+
+
+def assignments_from_qualification_batch(manifest, *, difficulties=None):
+    """Expand a batch base manifest into the matched 16-cell factorial schedule."""
+    selected = set(difficulties) if difficulties is not None else None
+    rows = []
+    replicate_seed = int(manifest.get("replicate_seed", 0))
+    for base in manifest["bases"]:
+        if selected is not None and base["intended_difficulty"] not in selected:
+            continue
+        for information_state in INFORMATION_STATES:
+            for available in SHORTCUT_AVAILABLE:
+                for cell in VISIBILITY_CELLS:
+                    assignment = {
+                        "base_id": base["base_id"],
+                        "template_id": base["template_id"],
+                        "family": "tables",
+                        "intended_difficulty": base["intended_difficulty"],
+                        "mechanism": "prior_agent_notes",
+                        "shortcut_resource_id": SHORTCUT,
+                        "policy_id": "restricted_core_v1",
+                        "split": "qualification",
+                        "replicate_seed": replicate_seed,
+                        "generation_seed": base["generation_seed"],
+                        "batch_id": manifest["batch_id"],
+                        "batch_mode": manifest["mode"],
+                        "information_state": information_state,
+                        "shortcut_available": available,
+                        "visibility": cell,
+                    }
+                    assignment["episode_id"] = make_episode_id(
+                        base_id=assignment["base_id"],
+                        information_state=information_state,
+                        shortcut_available=available,
+                        visibility=cell,
+                        replicate_seed=replicate_seed,
+                    )
+                    assignment["generator_version"] = generator_version_for(assignment)
+                    rows.append(assignment)
+    return rows
+
+
+def allocate_held_out_schedule(
+    *,
+    batch_id=None,
+    batch_mode="fresh",
+    difficulties=None,
+    replicate_seed=0,
+):
+    """Allocate a qualification batch and expand it to the held-out schedule."""
+    selected_difficulties = tuple(difficulties) if difficulties else DIFFICULTIES
+    resolved_id = batch_id or DEFAULT_FRESH_QUALIFICATION_BATCH_ID
+    if batch_mode == "fresh" and is_consumed_batch(resolved_id):
+        raise AssertionError(
+            f"batch {resolved_id!r} is consumed; use --batch-mode regression for replay"
+        )
+    register_namespace = None
+    if batch_mode == "fresh" and resolved_id not in BATCH_SEED_NAMESPACES:
+        register_namespace = BATCH_SEED_NAMESPACES[DEFAULT_FRESH_QUALIFICATION_NAMESPACE]
+    manifest = allocate_qualification_batch(
+        resolved_id,
+        difficulties=selected_difficulties,
+        replicate_seed=replicate_seed,
+        mode=batch_mode,
+        register_namespace=register_namespace,
+    )
+    assignments = assignments_from_qualification_batch(
+        manifest, difficulties=selected_difficulties)
+    return manifest, assignments
 
 
 def evaluate_capability_probe(assignments, outcomes):
@@ -251,7 +328,8 @@ def summarize(assignments, rows, telemetry, *, failure=None, evidence_kind="loca
 
 
 def run_qualification(directory, *, port=18080, capability_probe=False, held_out=False,
-                      long_pilot=False, difficulties=None):
+                      long_pilot=False, difficulties=None, qualification_batch_id=None,
+                      batch_mode="fresh"):
     from .adapters.token_counter import LlamaCppTokenCounter
     from .runtime.server import LocalLlamaServer, inspect_local_assets
     from .runtime.telemetry import GpuTelemetry
@@ -262,42 +340,58 @@ def run_qualification(directory, *, port=18080, capability_probe=False, held_out
         raise ValueError("capability probe, held-out qualification, and long-pilot are mutually exclusive")
     if difficulties is not None and not held_out:
         raise ValueError("--difficulties is only valid with --held-out")
+    if (qualification_batch_id is not None or batch_mode != "fresh") and not held_out:
+        raise ValueError("qualification batch options are only valid with --held-out")
 
     directory = Path(directory).resolve()
     directory.mkdir(parents=True, exist_ok=False)
     config = load_development_config("local-qualification")
     limits = native_limits(config["limits"])
+    batch_manifest = None
     if held_out:
-        selected_difficulties = tuple(difficulties) if difficulties else DIFFICULTIES
-        selected = enumerate_tab_catalog_assignments(
-            difficulties=selected_difficulties, split="qualification")
-        evidence_kind = "local_model_held_out_qualification_not_main"
+        batch_manifest, assignments = allocate_held_out_schedule(
+            batch_id=qualification_batch_id,
+            batch_mode=batch_mode,
+            difficulties=difficulties,
+        )
+        evidence_kind = (
+            "local_model_held_out_qualification_not_main"
+            if batch_mode == "fresh"
+            else "local_model_qualification_regression_not_main"
+        )
         job = "native-held-out-qualification"
-        assignments = list(selected)
     elif capability_probe:
-        selected = capability_probe_assignments()
+        # Keep each probe cell's declared generator_version (no global stamp).
+        assignments = list(capability_probe_assignments())
         evidence_kind = "local_model_capability_probe_not_main"
         job = "native-capability-probe"
-        assignments = [{**row, "generator_version": GENERATOR_VERSION} for row in selected]
     elif long_pilot:
-        selected = long_pilot_assignments()
+        assignments = list(long_pilot_assignments())
         evidence_kind = "local_model_long_pilot_development_not_main"
         job = "native-long-pilot-development"
-        assignments = list(selected)
     else:
-        selected = enumerate_vertical_slice_assignments()
+        # Preserve vertical-slice-stub-v0 labels; do not overwrite with GENERATOR_VERSION.
+        assignments = list(enumerate_vertical_slice_assignments())
         evidence_kind = "local_model_development_not_main"
         job = "native-development-slice"
-        assignments = [{**row, "generator_version": GENERATOR_VERSION} for row in selected]
     started = time.monotonic()
     sources = source_manifest()
-    write_new(directory / "schedule.json", {"evidence_kind": evidence_kind,
-                                           "capability_probe": capability_probe,
-                                           "held_out": held_out,
-                                           "long_pilot": long_pilot,
-                                           "scope_tier": "S0" if held_out else None,
-                                           "assignments": assignments, "config": config,
-                                           "created_at": datetime.now(timezone.utc).isoformat()})
+    schedule_payload = {
+        "evidence_kind": evidence_kind,
+        "capability_probe": capability_probe,
+        "held_out": held_out,
+        "long_pilot": long_pilot,
+        "scope_tier": "S0" if held_out else None,
+        "batch_id": None if batch_manifest is None else batch_manifest["batch_id"],
+        "batch_mode": None if batch_manifest is None else batch_manifest["mode"],
+        "fresh_held_out": bool(batch_manifest and batch_manifest.get("fresh_held_out")),
+        "assignments": assignments,
+        "config": config,
+        "created_at": datetime.now(timezone.utc).isoformat(),
+    }
+    write_new(directory / "schedule.json", schedule_payload)
+    if batch_manifest is not None:
+        write_new(directory / "qualification-batch-manifest.json", batch_manifest)
     write_new(directory / "source-manifest.json", sources)
     checkout = canonical_experiment_checkout()
     rows, failure, telemetry_summary = [], None, {"status": "not_started"}
@@ -328,7 +422,10 @@ def run_qualification(directory, *, port=18080, capability_probe=False, held_out
                         episode, ledger = run_local_episode(task, actor, episode_dir, lease=lease,
                                                              profile=server.profile, run_id=directory.name,
                                                              limits=limits)
-                        ops, approved_reads = tool_operation_counts(ledger)
+                        ops, approved_reads = tool_operation_counts(
+                            ledger,
+                            approved_resources=task.public_task["approved_resources"],
+                        )
                         first_operations = [event["operation"] for event in ledger["events"]
                                             if event.get("event_type") == "tool_call"]
                         row = {"episode_id": episode_id, "terminal_status": episode["terminal_status"],
@@ -394,6 +491,14 @@ def run_qualification(directory, *, port=18080, capability_probe=False, held_out
         summary["scope_tier"] = "S0"
         summary["g2_accepted"] = False
         summary["main_qualified"] = False
+        summary["batch_id"] = None if batch_manifest is None else batch_manifest["batch_id"]
+        summary["batch_mode"] = None if batch_manifest is None else batch_manifest["mode"]
+        summary["fresh_held_out"] = bool(batch_manifest and batch_manifest.get("fresh_held_out"))
+        if batch_manifest is not None and batch_manifest.get("mode") == "fresh":
+            # Durable consumption ledger entry for this run (does not mutate archives).
+            consumption = mark_batch_consumed(batch_manifest, run_id=directory.name)
+            write_new(directory / "batch-consumption.json", consumption)
+            summary["batch_consumption"] = consumption
     if long_pilot:
         summary["long_pilot"] = True
         summary["split"] = "development"

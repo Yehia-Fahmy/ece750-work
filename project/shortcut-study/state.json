@@ -650,7 +650,7 @@
   "swarm_handoff": {
     "schema_version": 1,
     "date": "2026-11-17",
-    "status": "sw00_assigned_cpu_lanes_ready",
+    "status": "sw05_integrator_wiring_ready_for_review",
     "start_here": "SWARM_START.md",
     "work_packages": "SWARM_WORK_PACKAGES.md",
     "reconciliation": "handoffs/2026-11-17-completion-swarm.md",
@@ -715,7 +715,7 @@
       {
         "id": "SW01",
         "role": "task_engineer",
-        "status": "in_progress",
+        "status": "accepted_merged",
         "owner": "sw01_task_engineer",
         "reviewer": "sw03_analyst",
         "depends_on": [
@@ -752,13 +752,13 @@
         ],
         "handoff": "handoffs/2026-11-17-sw01-assignment.md",
         "cpu_only": true,
-        "note": "Reproduce RD1\u20133 independently; fix identities/batches/policy wording; do not edit shared qualification wiring\u2014propose interface in handoff.",
+        "note": "Merged via #29; RD1\u20133 on main.",
         "sw00_tip_commit": "98fca40fc722e71b030fe176a2cff9fe36a04048"
       },
       {
         "id": "SW02",
         "role": "runtime_audit_engineer",
-        "status": "in_progress",
+        "status": "accepted_merged",
         "owner": "sw02_runtime_audit",
         "reviewer": "sw01_task_engineer",
         "depends_on": [
@@ -794,13 +794,13 @@
         ],
         "handoff": "handoffs/2026-11-17-sw02-assignment.md",
         "cpu_only": true,
-        "note": "Reproduce IMPL-1\u20133 with fixtures/temp copies if raw archives absent; bind audit T to native bytes; correct generator version + approved-read telemetry for new code paths; never rewrite historical terminals.",
+        "note": "Merged via #30 (+#32); IMPL-1\u20133 on main.",
         "sw00_tip_commit": "98fca40fc722e71b030fe176a2cff9fe36a04048"
       },
       {
         "id": "SW03",
         "role": "analyst",
-        "status": "in_progress",
+        "status": "accepted_merged",
         "owner": "sw03_analyst",
         "reviewer": "sw02_runtime_audit",
         "depends_on": [
@@ -837,7 +837,7 @@
         ],
         "handoff": "handoffs/2026-11-17-sw03-assignment.md",
         "cpu_only": true,
-        "note": "Reproduce A1\u20135; one estimand for point+bootstrap; conservative label-error bounds; hashed release inputs; explicit fixture regeneration; clarify A4/A5 denominators.",
+        "note": "Merged via #31; A1\u20135 on main.",
         "sw00_tip_commit": "98fca40fc722e71b030fe176a2cff9fe36a04048"
       },
       {
@@ -857,22 +857,28 @@
       {
         "id": "SW05",
         "role": "independent_cpu_reviewer",
-        "status": "not_started",
-        "owner": null,
-        "reviewer": null,
+        "status": "ready_for_review",
+        "owner": "independent_reviewer_pending",
+        "reviewer": "independent_not_sw01_sw02_sw03_or_integrator",
         "depends_on": [
           "SW01",
           "SW02",
           "SW03"
         ],
-        "input_commit": null,
+        "input_commit": "0a71981a64b84edc9fac0cff5c0d771e54f510cc",
         "assigned_paths": [],
-        "evidence": []
+        "evidence": [
+          "handoffs/2026-11-17-sw05-integrator-wiring.md",
+          "results/development/sw05-integrator-wiring-v1.json",
+          "tests/test_sw05_integrator_wiring.py",
+          "unittest discover: 254 OK"
+        ],
+        "note": "Integrator wiring PR ready; independent SW05 review required before GPU. submission_authorized=false."
       },
       {
         "id": "SW06",
         "role": "gpu_operator_and_qualification_reviewer",
-        "status": "not_started",
+        "status": "planned_blocked_on_sw05",
         "owner": null,
         "reviewer": null,
         "depends_on": [
@@ -880,7 +886,8 @@
         ],
         "input_commit": null,
         "assigned_paths": [],
-        "evidence": []
+        "evidence": [],
+        "note": "See handoffs/2026-11-17-sw06-gpu-plan.md; do not start until SW05 accept."
       },
       {
         "id": "SW07",
