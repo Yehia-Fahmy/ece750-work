@@ -313,8 +313,8 @@
     "SW00 in progress: assignments issued; integrate SW01\u201303 after independent reviews (author\u2260reviewer).",
     "Launch sibling workers for ECE-36/37/38 (SW01/02/03) with path allowlists in assignment handoffs.",
     "Repair RD1/RD2/RD3 (SW01), IMPL-1/2/3 (SW02), A1\u2013A5 (SW03) before any new 320-episode qualification.",
-    "No GPU on current orchestrator host; GPU work later only on user WSL RTX 3070 Ti after SW05.",
-    "G2 remains failed (239/320; easy 11/20); prior catalog-v2 run reused worlds; no gate accepted by SW00.",
+    "No GPU on current orchestrator host; SW06 WSL sole GPU lease while collecting qual-fresh-tab-catalog-v3-001.",
+    "G2 remains failed on prior archives (239/320; easy 11/20); SW06 collecting fresh qual-fresh-tab-catalog-v3-001 \u2014 not yet accepted.",
     "Independently accept fresh qualification and commit freeze by 2026-11-22 18:00 America/Toronto or automatically select S4.",
     "Local project/runs archives absent on orchestrator host; preserve review evidence; authenticity checks need WSL archives later.",
     "Agents must build final report PDF, deck and notes by Dec 3 18:00; course submission remains researcher-only.",
@@ -650,7 +650,7 @@
   "swarm_handoff": {
     "schema_version": 1,
     "date": "2026-11-17",
-    "status": "sw06_dev_pr41_in_review_awaiting_accept_before_fresh_qual",
+    "status": "sw06_collecting_fresh_qual_batch_v3_001",
     "start_here": "SWARM_START.md",
     "work_packages": "SWARM_WORK_PACKAGES.md",
     "reconciliation": "handoffs/2026-11-17-completion-swarm.md",
@@ -886,7 +886,7 @@
       {
         "id": "SW06",
         "role": "gpu_operator_and_qualification_reviewer",
-        "status": "in_progress",
+        "status": "collecting",
         "owner": "bc-1121d0a4-6c7d-5e71-adea-be1427c7815d",
         "reviewer": "independent_pending_not_author",
         "depends_on": [
@@ -898,9 +898,11 @@
           "https://github.com/Yehia-Fahmy/ece750-work/pull/35 (merged be3ccda)",
           "https://github.com/Yehia-Fahmy/ece750-work/pull/37 (merged 272e4d7)",
           "https://github.com/Yehia-Fahmy/ece750-work/pull/39 (merged bffede3)",
-          "https://github.com/Yehia-Fahmy/ece750-work/pull/41 (open tip 521afb8)"
+          "https://github.com/Yehia-Fahmy/ece750-work/pull/41 (merged f016540)",
+          "https://github.com/Yehia-Fahmy/ece750-work/pull/42 (merged 5a7ab09)",
+          "fresh batch qual-fresh-tab-catalog-v3-001 collecting (outcomes pending)"
         ],
-        "note": "ECE-42 / WSL sole GPU operator. Dev PR #41 @ 521afb8 (force first list_resources + reasoning-budget 256; token budgets unchanged) \u2014 NOT G2. Development probes cleared TAB03 V01/V10 (and TAB02/02\u201305 checks). Fresh qual-fresh-tab-catalog-v3-001 intentionally NOT started until #41 accepted + coordinator greenlight. Independent reviewer pending \u2260 bc-1121d0a4. Orchestrator must not take GPU lease.",
+        "note": "ECE-42 / WSL sole GPU operator. #41/#42 on main (merge f016540 / 5a7ab09). Root authorized fresh G2; SW06 collecting qual-fresh-tab-catalog-v3-001. G2 not accepted until held-out outcomes independently reviewed. Orchestrator prepares ledger/state appends only \u2014 no GPU lease. submission_authorized=false.",
         "tracker_task": "ECE-42",
         "host": {
           "worker_id": "a09a6978",
@@ -942,15 +944,33 @@
           {
             "number": 41,
             "url": "https://github.com/Yehia-Fahmy/ece750-work/pull/41",
-            "tip": "521afb87a655659ceb7b7be3280acdbb9bb22284",
             "branch": "cursor/sw06-force-first-list-resources-815d",
             "kind": "development_force_first_list_resources",
-            "status": "open",
+            "status": "merged",
             "g2_accepted": false,
             "fresh_qualification_batch_consumed": false,
-            "summary": "force first list_resources + reasoning-budget 256; TAB03 V01/V10 cleared in development probes; fresh qual intentionally not started until #41 accepted"
+            "summary": "force first list_resources + reasoning-budget 256; #41/#42 on main; fresh qual-fresh-tab-catalog-v3-001 collecting under SW06; G2 not yet accepted",
+            "merge_sha": "f016540fe6d128bd1a74982d0923666eb79df233",
+            "fresh_qualification_batch_status": "collecting"
           }
-        ]
+        ],
+        "fresh_qualification": {
+          "batch_id": "qual-fresh-tab-catalog-v3-001",
+          "batch_mode": "fresh",
+          "status": "collecting",
+          "authorized_by": "root",
+          "operator": "bc-1121d0a4-6c7d-5e71-adea-be1427c7815d",
+          "g2_accepted": false,
+          "orchestrator_gpu_lease": false,
+          "basis_pr": "https://github.com/Yehia-Fahmy/ece750-work/pull/41",
+          "basis_merge": "f016540fe6d128bd1a74982d0923666eb79df233",
+          "outcomes_recorded": false,
+          "bookkeeping_prs_on_main": [
+            "https://github.com/Yehia-Fahmy/ece750-work/pull/41",
+            "https://github.com/Yehia-Fahmy/ece750-work/pull/42"
+          ],
+          "next_orchestrator_action": "append claim-ledger and state when SW06 reports batch outcomes; do not touch GPU"
+        }
       },
       {
         "id": "SW07",
@@ -972,7 +992,7 @@
           "results/qualification/sw07-freeze-prep-v1.json",
           "results/qualification/freeze-checklist-s0-tab-post-sw05.md"
         ],
-        "note": "CPU freeze-prep stubs only; G3 unsigned; no configs/frozen/; blocked on SW06 accept before guarded main path work."
+        "note": "CPU freeze-prep stubs only; G3 unsigned; no configs/frozen/; blocked on accepted SW06 fresh G2 (SW06 currently collecting qual-fresh-tab-catalog-v3-001)."
       },
       {
         "id": "SW08",
