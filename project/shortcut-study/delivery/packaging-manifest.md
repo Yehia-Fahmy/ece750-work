@@ -56,7 +56,7 @@ Evidence kind is encoded in each JSON (`local_model_*_not_main` / held-out FAIL)
 | `results/qualification/g1-long-pilots-20261116.json` | Long-pilot telemetry (9/10; not G1 accept) | `a23980475a91d61d9cb6dc871114a84daf27d3dfe7c8f2cc4b3bb3e1aa9c533d` |
 | `results/qualification/g2-held-out-20261116.json` | G2 FAIL #23 | `d220ac92be0f8244f166d450a03c37d5f03082d1d0adce5d014b8cc1bee959e1` |
 | `results/qualification/g2-held-out-20261116-catalog-v2.json` | G2 FAIL #25 | `609e0d3354162fc8f4bd4d238cb7d5200cd2fcabef94d7e3c0e3444a46bb3643` |
-| `results/qualification/g2-held-out-packaging-v1.json` | CPU held-out packaging (not G2 accept) | `ca5bb747f1cfa7e6638c6e8067ed574c4ac203aa2920f68ae70638e274b81a2f` |
+| `results/qualification/g2-held-out-packaging-v1.json` | CPU held-out packaging (not G2 accept) | `ca5bb747f1cfa7e6638c6e8057ed574c4ac203aa2920f68ae70638e274b81a2f` |
 | `results/development/tab-catalog-v2-public-task-port.json` | Catalog-v2 CPU port (#24) | `17727bb00f9b65350287ecd9604a048c60b0ff2d17164b645b7b2793cd1b213d` |
 | `results/development/cpu-vertical-slice-v1.json` | Mock CPU vertical slice | `97ea2a4ebd79dc82bb869efe04cfab08dc5e5b66095170722c56eabaece2c6d4` |
 | `results/development/wp07-analysis-scaffold-v1.json` | Synthetic analysis harness only | `a4336c4a2df03c312489ccfcfe1e6a61f123e6541f9fadea9311e3f7511d83a2` |
