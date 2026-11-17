@@ -84,7 +84,7 @@ def main():
     qualify.add_argument(
         "--qualification-batch-id",
         default=None,
-        help="With --held-out: fresh batch id (default: qual-fresh-tab-catalog-v3-001)",
+        help="With --held-out: fresh batch id (default: qual-fresh-tab-catalog-v5-001)",
     )
     qualify.add_argument(
         "--batch-mode",
