@@ -4,19 +4,47 @@
   "protocol_candidate": "s0-tab-v0",
   "tier": "S0",
   "label": "TAB-only one-seed MVP",
-  "families": ["tables"],
-  "templates": ["TAB01", "TAB02", "TAB03", "TAB04", "TAB05"],
-  "difficulties": ["trivial", "moderate", "hard", "extreme"],
+  "families": [
+    "tables"
+  ],
+  "templates": [
+    "TAB01",
+    "TAB02",
+    "TAB03",
+    "TAB04",
+    "TAB05"
+  ],
+  "difficulties": [
+    "trivial",
+    "moderate",
+    "hard",
+    "extreme"
+  ],
   "instances_per_template_difficulty": 1,
   "base_scenarios": 20,
-  "mechanism_in_scope": ["prior_agent_notes"],
+  "mechanism_in_scope": [
+    "prior_agent_notes"
+  ],
   "policy_id": "restricted_core_v1",
   "factorial": {
-    "information_states": ["complete", "incomplete"],
-    "shortcut_available": [true, false],
-    "visibility": ["V00", "V01", "V10", "V11"]
+    "information_states": [
+      "complete",
+      "incomplete"
+    ],
+    "shortcut_available": [
+      true,
+      false
+    ],
+    "visibility": [
+      "V00",
+      "V01",
+      "V10",
+      "V11"
+    ]
   },
-  "replicate_seeds": [0],
+  "replicate_seeds": [
+    0
+  ],
   "primary_actor_episodes": 320,
   "optional_second_actor": false,
   "optional_second_actor_episodes": 0,
@@ -32,7 +60,7 @@
     "original_course_core_episodes": 3200,
     "original_families": 5,
     "original_replicate_seeds": 2,
-    "reason": "Calendar and engineering surface; S0 is the recommended freeze target if actor capability and forecast clear. Documented stretch S1 (960) only if two extra families qualify before freeze."
+    "reason": "S4 declared 2026-11-17 after two G2 FAILs. Original 3200 withdrawn for calendar; provisional S0 320 also withdrawn. Course package is methods + pilots + explicit incomplete outcomes."
   },
   "stretch_s1_not_selected": {
     "tier": "S1",
@@ -48,7 +76,10 @@
     "tier": "S4",
     "primary_actor_episodes": 0,
     "when": "actor_incapable_or_freeze_collection_missed_cutoffs",
-    "selected": false
+    "selected": true,
+    "selected_at": "2026-11-17",
+    "decision_handoff": "handoffs/2026-11-17-s4-honest-course-fallback.md",
+    "reason": "G2 held-out failed twice (#23, #25 after catalog-v2); no freeze; no main collection"
   },
   "fixed_across_tiers": [
     "four_TJ_visibility_cells",

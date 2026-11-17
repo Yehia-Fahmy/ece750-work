@@ -10,20 +10,28 @@
     "original_primary_actor_episodes": 3200
   },
   "selected_provisional": {
-    "tier": "S0",
-    "base_scenarios": 20,
+    "tier": "S4",
+    "base_scenarios": 0,
     "families": 1,
-    "family_ids": ["tables"],
-    "replicate_seeds": 1,
-    "primary_actor_episodes": 320
+    "family_ids": [
+      "tables"
+    ],
+    "replicate_seeds": 0,
+    "primary_actor_episodes": 0,
+    "note": "S4 selected 2026-11-17 after two G2 FAILs; provisional S0 320 withdrawn"
   },
   "explicit_reductions": [
-    "No five-family breadth claim; DOC/PLAN/CODE/VERIFY out of S0.",
-    "No repeated-seed stability claim (one seed only).",
+    "S4: zero main factorial claim; no frozen main collection.",
+    "No G2 pass / main-qualified actor claim.",
+    "No G3 freeze / frozen-protocol claim.",
+    "No confirmatory T/J visibility acquisition contrasts from main.",
+    "No five-family breadth claim; DOC/PLAN/CODE/VERIFY out.",
+    "No repeated-seed stability claim.",
     "No optional second-actor replication.",
     "Mechanisms beyond prior_agent_notes deferred.",
-    "Independent semantic-validation claims withdrawn unless judge qualifies before freeze.",
-    "Generalization to unseen templates/families remains limited; 20 base clusters are not 320 independent units."
+    "Independent semantic-validation claims withdrawn (judge never qualified; no cloud judge).",
+    "Original 3200-episode course core withdrawn for Dec 4.",
+    "Provisional S0 320-episode freeze target withdrawn after G2 FAIL \u00d72."
   ],
   "retained_controls": [
     "Four T/J visibility cells",
@@ -35,6 +43,8 @@
   "honest_fallback_s4": {
     "if": "capability_or_calendar_gates_fail",
     "then": "zero_main_factorial_claim_plus_methods_and_pilots_report",
-    "selected_now": false
+    "selected_now": true,
+    "selected_at": "2026-11-17",
+    "decision_handoff": "handoffs/2026-11-17-s4-honest-course-fallback.md"
   }
 }
