@@ -3,7 +3,7 @@
 - Owner and role: `sw01_task_engineer` (ECE-36); CPU-only task engineer
 - Status: ready_for_review
 - Input commit and dependencies: `3f77a18` on `cursor/sw00-completion-baseline-be8a` (SW00 tip); findings RD1–3; assignment `handoffs/2026-11-17-sw01-assignment.md`
-- Output commit (or explicitly uncommitted paths): see git tip of `cursor/sw01-task-identity-batches-1b07` after push
+- Output commit (or explicitly uncommitted paths): `ac9ba322f2ea0c18be652f2f310b394dc462d3ad` on `cursor/sw01-task-identity-batches-1b07`
 - Paths changed; shared-contract version: allowlisted SW01 paths only; catalog `tab-catalog-v3`, TAB01 slice `tab01-slice-v7`; batch schema `shortcut-qualification-batch-v1` / reservation `shortcut-cpu-reservation-manifest-v1`
 - Concrete behavior implemented:
   1. **RD1:** Removed split/base_id fingerprint salt; fingerprints are content-only (`canonical_semantic_material` ignores incidental public wording). Expanded TAB04 entropy so development / qualification / main worlds are content-disjoint. Cross-split identical semantics now fail `check_split_disjointness`.
