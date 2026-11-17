@@ -3,7 +3,7 @@
 - Owner and role: `sw03_analyst` (worker bc-1a2b628e-1c8d-5000-b76b-bdf1c33ec6c4); analyst
 - Status: ready_for_review
 - Input commit and dependencies: `3f77a18` on `cursor/sw00-completion-baseline-be8a` (SW00 tip); tracker ECE-38; findings A1–5
-- Output commit (or explicitly uncommitted paths): see branch `cursor/sw03-analysis-release-c6c4` (filled after push)
+- Output commit (or explicitly uncommitted paths): `69fd5fbe4a2c9579fc129ea6903fa2043cf38962` on `cursor/sw03-analysis-release-c6c4`
 - Paths changed; shared-contract version: analysis package + tests + protocol draft only (allowlist). No `state.json` / schemas / configs / `__main__.py` edits. Proposed shared-contract bumps listed below for integrator.
 - Concrete behavior implemented:
   - **A1:** Complete-base sensitivity estimand — a base is included only when all matched information-state blocks are identified; point and complete-base bootstrap share inclusion/weighting. Fixed `blocks_used` to count matched blocks.
