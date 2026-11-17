@@ -47,8 +47,9 @@ Use this table for report prose. Prefer hashes/paths over adjectives like “val
 | C-SW06-DEV-TOOLFIRST | Development tool-first cues / TAB03 long-T repair (TAB02–05 V00 improved; visibility residuals remain) | Development split only; **not** held-out; no fresh qual batch | PR #37 merged `272e4d7` | **Not G2**; #37 merged |
 | C-SW06-DEV-TOOLCHOICE | Development `tool_choice=required` + cooler sampling; TAB02 visibility cleared; TAB03 V01/V10 still budget_limit | Development split only; **not** held-out; no fresh qual batch | PR #39 merged `bffede3` | **Not G2**; #39 merged |
 | C-SW06-DEV-FORCEFIRST | Development force-first `list_resources` + reasoning-budget 256; TAB03 V01/V10 cleared in probes | Development split only; then used under fresh qual | PR #41 merged `f016540` (+ bookkeeping #42/#43) | **Not G2**; enabled fresh attempt |
-| C-SW06-DEV-RESIDUAL | Post-v3 FAIL residual repair: adapter v5 later-turn thinking off; tool/turn headroom; temp 0.2 | Development split only; **not** held-out | PR #46 merged `0290663` / `results/development/sw06-residual-format-budget-probes-v1.json` | **Not G2**; format **24/24**; TAB05 extreme **15/16**; `credibility_for_fresh_qual.ready=false`; ECE-59 follow-up |
-| C-BATCH-V3 | Fresh batch API + catalog v3 wired | CPU reservation / allocate API | `results/development/sw01-cpu-reservation-manifest-v1.json`, `#33` | Batch id **consumed** after FAIL; next attempt needs a new id after greenlight |
+| C-SW06-DEV-RESIDUAL | Post-v3 FAIL residual repair: adapter v5 later-turn thinking off; tool/turn headroom; temp 0.2 | Development split only; **not** held-out | PR #46 merged `0290663` / `results/development/sw06-residual-format-budget-probes-v1.json` | **Not G2**; format **24/24**; TAB05 extreme was **15/16** → ECE-59 |
+| C-SW06-DEV-TAB05-EXTREME | TAB05 extreme residual clearance: adapter v6 anti-dupe; probe-only turns 20; live qual turns stay 16 | Development split only; **not** held-out | PR #48 merged `430c86b` / `results/development/sw06-tab05-extreme-residual-clearance-v1.json` | **Not G2**; TAB05 extreme **16/16**; live-qual turns **16**; root greenlit ECE-63 fresh (g2_accepted still false) |
+| C-BATCH-V3 | Fresh batch API + catalog v3 wired | CPU reservation / allocate API | `results/development/sw01-cpu-reservation-manifest-v1.json`, `#33` | v3-001 **consumed** FAIL; ECE-63 needs a **new** batch id (root-greenlit) |
 | C-MAIN | Main factorial effects / visibility contrasts | Frozen main denominator | — | **No claim** (no freeze, no main collection) |
 | C-SEM | Semantic judge conclusions | Qualified judge + frozen audit scope | — | **Withdrawn / unqualified** unless later accepted |
 
@@ -65,8 +66,9 @@ Use this table for report prose. Prefer hashes/paths over adjectives like “val
 - GPU operator: `bc-1121d0a4…` on WSL DESKTOP-VEMMES3 / RTX 3070 Ti.
 - Orchestrator / SW04–SW07 CPU authors **must not** acquire the GPU lease or start a second qualification operator.
 - Fresh v3-001 **FAIL** on main (#44/#45); prior FAIL rows (`C-G2-ORIG`, `C-G2-V2`, `C-G2-FRESH-V3`) preserved — do not rewrite.
-- ECE-53 **done**: #46 merged `0290663` (format 24/24). Independent greenlight remains **NO** until root says otherwise.
-- ECE-59: TAB05 extreme residual development wave **16/16** on `cursor/sw06-tab05-extreme-residual-815d` (evidence `results/development/sw06-tab05-extreme-residual-clearance-v1.json`). Still **no** fresh 320 until root greenlight + **new** batch id.
+- ECE-53 **done**: #46 merged `0290663` (format 24/24).
+- ECE-59 **done**: #48 merged `430c86b` — TAB05 extreme **16/16**; live qual turns 16; probe-only turns 20 (evidence `results/development/sw06-tab05-extreme-residual-clearance-v1.json`).
+- ECE-63: root greenlit **NEW** fresh G2; SW06 collecting on WSL; `g2_accepted=false` until batch finishes; requires **new** batch id (do not reuse v3-001).
 - Cutoff: Nov 22 18:00 America/Toronto → automatic S4 if no accepted qual+freeze. `submission_authorized=false`.
 
 ## Do not
@@ -74,7 +76,7 @@ Use this table for report prose. Prefer hashes/paths over adjectives like “val
 - Present catalog-v2 as a second independent held-out confirmation
 - Soft-accept G2 on 87.5% completion or treat easy 85% as overall pass
 - Reuse `qual-fresh-tab-catalog-v3-001` as fresh
-- Greenlight / burn a new fresh 320 without root approval after ECE-59 review/merge
+- Soft-accept ECE-63 mid-collection (`g2_accepted` stays false until honest finish)
 - Call development PASS “qualified”
 - Invent main effects or exploratory pilot estimates as confirmation
 - Soft-wash G2 FAIL or raise budgets as the primary remediation story
