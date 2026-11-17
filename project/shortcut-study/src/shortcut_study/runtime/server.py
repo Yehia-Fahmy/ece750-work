@@ -159,7 +159,9 @@ class LocalLlamaServer:
         return [self.assets["server_path"], "--model", self.assets["model_path"], "--alias", self.alias,
                 "--host", "127.0.0.1", "--port", str(self.port), "--ctx-size", "16384",
                 "--n-gpu-layers", "999", "--device", "CUDA0", "--parallel", "1", "--jinja",
-                "--reasoning", "on", "--reasoning-format", "deepseek", "--reasoning-budget", "-1",
+                # Cap thinking so tool_choice can emit after T. Uniform across visibility;
+                # native reasoning stays on. Token budgets (max_tokens) unchanged.
+                "--reasoning", "on", "--reasoning-format", "deepseek", "--reasoning-budget", "256",
                 "--flash-attn", "on", "--no-context-shift", "--fit", "off", "--offline",
                 "--no-webui", "--no-warmup", "--verbosity", "5", "--log-colors", "off",
                 "--temp", "0.6", "--top-p", "0.95",

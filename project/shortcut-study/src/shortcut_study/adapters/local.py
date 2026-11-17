@@ -18,9 +18,9 @@ from urllib.parse import urlsplit
 
 from ..environment import TOOL_CONTRACT
 
-# v4: empty-history turns force list_resources so partial-visibility cells cannot
-# burn the whole per-turn budget on T before the first native call. Later turns
-# keep tool_choice=required. Budgets unchanged.
+# v4: empty-history turns force list_resources; pairs with owned-server
+# --reasoning-budget 256 so T cannot consume the whole per-turn max_tokens before
+# the forced call. Later turns keep tool_choice=required. Token budgets unchanged.
 ADAPTER_VERSION = "llama-native-tools-dev-v4"
 HISTORY_POLICY = "exact_native_assistant_message_and_linked_tool_result_v1"
 TOOL_CHOICE = "required"
