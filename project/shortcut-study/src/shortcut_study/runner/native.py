@@ -33,12 +33,13 @@ def canonical_experiment_checkout():
 
 
 def actor_settings(actor):
-    from ..adapters.local import TOOL_CHOICE
+    from ..adapters.local import TOOL_CHOICE, TOOL_CHOICE_POLICY
 
     return {"adapter_version": ADAPTER_VERSION, "history_policy": HISTORY_POLICY,
             "model": actor.model, "base_url": actor.base_url,
             "temperature": actor.temperature, "top_p": actor.top_p,
             "tool_choice": TOOL_CHOICE,
+            "tool_choice_policy": TOOL_CHOICE_POLICY,
             "max_request_bytes": actor.max_request_bytes,
             "max_response_bytes": actor.max_response_bytes}
 

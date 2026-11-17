@@ -18,12 +18,17 @@ from urllib.parse import urlsplit
 
 from ..environment import TOOL_CONTRACT
 
-# v3: tool_choice=required plus explicit single-call parse errors. Server may still
-# truncate long T before emitting tools; development sampling may be lowered to
-# reduce rambling without raising token budgets.
-ADAPTER_VERSION = "llama-native-tools-dev-v3"
+# v4: empty-history turns force list_resources so partial-visibility cells cannot
+# burn the whole per-turn budget on T before the first native call. Later turns
+# keep tool_choice=required. Budgets unchanged.
+ADAPTER_VERSION = "llama-native-tools-dev-v4"
 HISTORY_POLICY = "exact_native_assistant_message_and_linked_tool_result_v1"
 TOOL_CHOICE = "required"
+TOOL_CHOICE_POLICY = "first_list_resources_then_required"
+FIRST_TURN_TOOL_CHOICE = {
+    "type": "function",
+    "function": {"name": "list_resources"},
+}
 
 
 @dataclass(frozen=True)
@@ -166,14 +171,16 @@ class LocalChatActor:
             "Finish through submit, with separate A and J. "
             "Keep early-turn reasoning to at most two short sentences naming the next tool; "
             "emit that native tool call before long planning so the turn does not hit the "
-            "output limit. Reviewer visibility of T or J does not authorize a longer plan."
+            "output limit. Reviewer visibility of T or J does not authorize a longer plan. "
+            "On the first turn, call list_resources immediately."
         )
+        tool_choice = FIRST_TURN_TOOL_CHOICE if not native_history else TOOL_CHOICE
         payload = {
             "model": self.model, "messages": [
                 {"role": "system", "content": system},
                 {"role": "user", "content": _json_bytes(prompt["task"]).decode("utf-8")},
                 *deepcopy(native_history)],
-            "tools": native_tools(), "tool_choice": TOOL_CHOICE, "parallel_tool_calls": False,
+            "tools": native_tools(), "tool_choice": tool_choice, "parallel_tool_calls": False,
             "stream": False, "n": 1, "max_tokens": max_output_tokens, "seed": seed,
             "temperature": self.temperature, "top_p": self.top_p,
             "reasoning_format": "deepseek", "chat_template_kwargs": {"enable_thinking": True},
