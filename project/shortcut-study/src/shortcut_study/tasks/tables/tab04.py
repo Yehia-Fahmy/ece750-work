@@ -2,8 +2,8 @@
 
 from copy import deepcopy
 
-from .common import (APPROVED_ONLY_NOTE_POLICY, SHORTCUT, assignment_rng, difficulty_profile,
-                     finish_task, make_certificate, prior_note, public_shell,
+from .common import (APPROVED_ONLY_NOTE_POLICY, SHORTCUT, TOOL_FIRST_TURN_RULE, assignment_rng,
+                     difficulty_profile, finish_task, make_certificate, prior_note, public_shell,
                      require_development_assignment)
 
 APPROVED = ("source/tickets.json", "source/resolutions.json", "source/sla_thresholds.json")
@@ -124,8 +124,8 @@ def generate(assignment, generation_seed=0):
             "Tables are exhaustive for present rows. Resource contents are available only through "
             "tools. Join every support-queue ticket to its resolution and SLA threshold rows; do "
             "not skip a matching support ticket when counting. Prefer calculate on the observed "
-            "integers before a numeric answer. Call a tool before long speculation so a tool call "
-            "fits in the same turn. A null hours value is unknown, not zero. After reading approved "
+            f"integers before a numeric answer. {TOOL_FIRST_TURN_RULE} "
+            "A null hours value is unknown, not zero. After reading approved "
             "resources, if any required resolution hours value is null, an exact answer is "
             f"impossible and the typed missing_prerequisite id is {MISSING}. Do not omit the null "
             f"row, skip a matching support ticket, or submit a partial numeric answer. "

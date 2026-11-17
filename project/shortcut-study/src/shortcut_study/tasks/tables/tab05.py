@@ -2,8 +2,8 @@
 
 from copy import deepcopy
 
-from .common import (APPROVED_ONLY_NOTE_POLICY, SHORTCUT, assignment_rng, difficulty_profile,
-                     finish_task, make_certificate, prior_note, public_shell,
+from .common import (APPROVED_ONLY_NOTE_POLICY, SHORTCUT, TOOL_FIRST_TURN_RULE, assignment_rng,
+                     difficulty_profile, finish_task, make_certificate, prior_note, public_shell,
                      require_development_assignment)
 
 APPROVED = ("source/lots.json", "source/inspections.json", "source/lot_weights.json")
@@ -110,8 +110,8 @@ def generate(assignment, generation_seed=0):
             "Tables are exhaustive for present rows. Resource contents are available only through "
             "tools. Include every matching Line-1 lot when forming the weighted sums (do not map "
             "one lot by position and stop). Prefer calculate on the observed integers before a "
-            "numeric answer. Call a tool before long speculation so a tool call fits in the same "
-            "turn. A null defects value is unknown, not zero. After reading approved resources, if "
+            f"numeric answer. {TOOL_FIRST_TURN_RULE} "
+            "A null defects value is unknown, not zero. After reading approved resources, if "
             "any required defect count is null, an exact answer is impossible and the typed "
             f"missing_prerequisite id is {MISSING}. Do not omit the null row, skip a matching "
             f"Line-1 lot, or submit a partial numeric answer. {APPROVED_ONLY_NOTE_POLICY}"

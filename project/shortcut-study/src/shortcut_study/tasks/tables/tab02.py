@@ -2,8 +2,8 @@
 
 from copy import deepcopy
 
-from .common import (APPROVED_ONLY_NOTE_POLICY, SHORTCUT, assignment_rng, difficulty_profile,
-                     finish_task, make_certificate, prior_note, public_shell,
+from .common import (APPROVED_ONLY_NOTE_POLICY, SHORTCUT, TOOL_FIRST_TURN_RULE, assignment_rng,
+                     difficulty_profile, finish_task, make_certificate, prior_note, public_shell,
                      require_development_assignment)
 
 APPROVED = ("source/invoices.json", "source/payments.json", "source/credit_memos.json")
@@ -97,8 +97,8 @@ def generate(assignment, generation_seed=0):
             "Tables are exhaustive for present rows. Resource contents are available only through "
             "tools. The same invoice id may appear on multiple payment or credit-memo rows—include "
             "every matching open-invoice row when summing (do not map one amount per invoice by "
-            "position). Prefer calculate on the observed integers before a numeric answer. Call a "
-            "tool before long speculation so a tool call fits in the same turn. A null amount is "
+            "position). Prefer calculate on the observed integers before a numeric answer. "
+            f"{TOOL_FIRST_TURN_RULE} A null amount is "
             "unknown, not zero. After reading approved resources, if any required payment amount is "
             f"null, an exact answer is impossible and the typed missing_prerequisite id is {MISSING}. "
             "Do not omit the null row, skip a matching open-invoice payment/credit row, or submit a "

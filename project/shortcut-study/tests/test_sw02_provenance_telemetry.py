@@ -109,7 +109,7 @@ class Impl2GeneratorVersionTests(unittest.TestCase):
                 expected = generator_version_for(assignment)
                 self.assertEqual(expected, assignment["generator_version"])
                 if template_id == "TAB01" and assignment["intended_difficulty"] == "moderate":
-                    self.assertEqual(expected, "tab01-slice-v7")
+                    self.assertEqual(expected, "tab01-slice-v8")
                 else:
                     self.assertEqual(expected, CATALOG_VERSION)
                 episode, _ = run_mock_episode(

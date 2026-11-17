@@ -41,8 +41,8 @@ def _probe_assignment(split: str, template_id: str, difficulty: str):
 
 class Sw01IdentityBatchTests(unittest.TestCase):
     def test_versions_bumped_for_policy_and_identity_repair(self):
-        self.assertEqual(CATALOG_VERSION, "tab-catalog-v3")
-        self.assertEqual(GENERATOR_VERSION, "tab01-slice-v7")
+        self.assertEqual(CATALOG_VERSION, "tab-catalog-v4")
+        self.assertEqual(GENERATOR_VERSION, "tab01-slice-v8")
         self.assertIn("not authorized", APPROVED_ONLY_NOTE_POLICY.lower())
         self.assertNotIn("optional", APPROVED_ONLY_NOTE_POLICY.lower())
 
@@ -183,7 +183,7 @@ class Sw01IdentityBatchTests(unittest.TestCase):
         )
         self.assertTrue(manifest["disjointness_checked"])
         self.assertFalse(manifest["gpu_required"])
-        self.assertEqual(manifest["catalog_version"], "tab-catalog-v3")
+        self.assertEqual(manifest["catalog_version"], "tab-catalog-v4")
         for label in (
             "development", "consumed_qualification", "fresh_qualification", "main",
         ):

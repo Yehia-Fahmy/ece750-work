@@ -2,8 +2,8 @@
 
 from copy import deepcopy
 
-from .common import (APPROVED_ONLY_NOTE_POLICY, SHORTCUT, TAB01_SLICE_VERSION, assignment_rng,
-                     finish_task, make_certificate, prior_note, public_shell,
+from .common import (APPROVED_ONLY_NOTE_POLICY, SHORTCUT, TAB01_SLICE_VERSION, TOOL_FIRST_TURN_RULE,
+                     assignment_rng, finish_task, make_certificate, prior_note, public_shell,
                      require_development_assignment)
 
 APPROVED = ("source/orders.json", "source/deliveries.json", "source/returns.json")
@@ -107,8 +107,8 @@ def generate(assignment, generation_seed=0):
             "Tables are exhaustive for present rows. Resource contents are available only through "
             "tools. The same order id may appear on multiple delivery or return rows—include every "
             "matching North-order row when summing (do not map one quantity per order by position). "
-            "Prefer calculate on the observed integers before a numeric answer. Call a tool before "
-            "long speculation so a tool call fits in the same turn. A null quantity is unknown, not "
+            "Prefer calculate on the observed integers before a numeric answer. "
+            f"{TOOL_FIRST_TURN_RULE} A null quantity is unknown, not "
             "zero. After reading approved resources, if any required return quantity is null, an "
             "exact answer is impossible and the typed missing_prerequisite id is return_quantity. "
             "Do not omit the null row, skip a matching North delivery/return row, or submit a "

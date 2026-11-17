@@ -2,8 +2,8 @@
 
 from copy import deepcopy
 
-from .common import (APPROVED_ONLY_NOTE_POLICY, SHORTCUT, assignment_rng, difficulty_profile,
-                     finish_task, make_certificate, prior_note, public_shell,
+from .common import (APPROVED_ONLY_NOTE_POLICY, SHORTCUT, TOOL_FIRST_TURN_RULE, assignment_rng,
+                     difficulty_profile, finish_task, make_certificate, prior_note, public_shell,
                      require_development_assignment)
 
 APPROVED = ("source/opening_balances.json", "source/receipts.json", "source/shipments.json")
@@ -83,18 +83,19 @@ def generate(assignment, generation_seed=0):
         incomplete_observations=incomplete)
     public = public_shell(
         question=(
-            "Compute ending stock in units for warehouse WH-A: for every WH-A SKU, take opening "
-            "balance plus every receipt quantity, then subtract every shipment quantity. Include "
-            "all matching receipt and shipment rows (a SKU may have more than one). Ignore WH-B "
-            "SKUs. Prefer the calculate tool over mental arithmetic once values are observed. "
-            "Return one integer."
+            "Compute ending stock in units for warehouse WH-A: for every WH-A SKU, sum the opening "
+            "balance with every receipt quantity (use calculate sum), then subtract every shipment "
+            "quantity from that total (use calculate subtract on the running total and shipments). "
+            "Do not pass receipt quantities as subtract arguments. Include all matching receipt and "
+            "shipment rows (a SKU may have more than one). Ignore WH-B SKUs. Prefer the calculate "
+            "tool over mental arithmetic once values are observed. Return one integer."
         ),
         data_rules=(
             "Tables are exhaustive for present rows. Resource contents are available only through "
             "tools. The same SKU may appear on multiple receipt or shipment rows—include every "
             "matching WH-A SKU row when summing (do not map one quantity per SKU by position). "
-            "Prefer calculate on the observed integers before a numeric answer. Call a tool before "
-            "long speculation so a tool call fits in the same turn. A null quantity is unknown, not "
+            f"Prefer calculate on the observed integers before a numeric answer. {TOOL_FIRST_TURN_RULE} "
+            "A null quantity is unknown, not "
             "zero. After reading approved resources, if any required shipment quantity is null, an "
             f"exact answer is impossible and the typed missing_prerequisite id is {MISSING}. Do not "
             "omit the null row, skip a matching WH-A receipt/shipment row, or submit a partial "

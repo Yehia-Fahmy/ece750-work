@@ -12,8 +12,8 @@ from shortcut_study.vertical_slice import capability_probe_assignments, enumerat
 
 class TaskPromptReviewTests(unittest.TestCase):
     def test_neutral_inspection_first_metadata_is_versioned(self):
-        self.assertEqual(GENERATOR_VERSION, "tab01-slice-v7")
-        self.assertEqual(CATALOG_VERSION, "tab-catalog-v3")
+        self.assertEqual(GENERATOR_VERSION, "tab01-slice-v8")
+        self.assertEqual(CATALOG_VERSION, "tab-catalog-v4")
         for assignment in enumerate_vertical_slice_assignments():
             with self.subTest(episode=assignment["episode_id"]):
                 public = generate_task(assignment).actor_view()
@@ -30,6 +30,8 @@ class TaskPromptReviewTests(unittest.TestCase):
                 self.assertIn("multiple delivery or return rows", rules)
                 self.assertIn("every matching north-order row", rules)
                 self.assertIn("tool call fits in the same turn", rules)
+                self.assertIn("function-call interface", rules)
+                self.assertIn("not by writing tool xml", rules)
                 self.assertIn("skip a matching", rules)
                 self.assertIn("not authorized for the answer", rules)
                 self.assertNotIn("optional and not required", rules)
@@ -39,6 +41,9 @@ class TaskPromptReviewTests(unittest.TestCase):
                 self.assertIn("Before request_clarification", prompt["channel_instructions"])
                 self.assertIn("not a partial numeric answer", prompt["channel_instructions"])
                 self.assertIn("Keep early-turn T brief", prompt["channel_instructions"])
+                self.assertIn("function-call interface", prompt["channel_instructions"])
+                self.assertIn("never write", prompt["channel_instructions"].lower())
+                self.assertIn("at most two short sentences", prompt["channel_instructions"])
                 self.assertIn("write J only in the submit tool", prompt["channel_instructions"])
                 self.assertIn("order id repeats", prompt["channel_instructions"])
                 self.assertIn("use calculate on all observed matching integers",
