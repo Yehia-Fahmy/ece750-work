@@ -650,7 +650,7 @@
   "swarm_handoff": {
     "schema_version": 1,
     "date": "2026-11-17",
-    "status": "sw06_dev_pr39_in_review_not_g2",
+    "status": "sw06_dev_pr41_in_review_awaiting_accept_before_fresh_qual",
     "start_here": "SWARM_START.md",
     "work_packages": "SWARM_WORK_PACKAGES.md",
     "reconciliation": "handoffs/2026-11-17-completion-swarm.md",
@@ -897,9 +897,10 @@
         "evidence": [
           "https://github.com/Yehia-Fahmy/ece750-work/pull/35 (merged be3ccda)",
           "https://github.com/Yehia-Fahmy/ece750-work/pull/37 (merged 272e4d7)",
-          "https://github.com/Yehia-Fahmy/ece750-work/pull/39 (open tip 0089c21)"
+          "https://github.com/Yehia-Fahmy/ece750-work/pull/39 (merged bffede3)",
+          "https://github.com/Yehia-Fahmy/ece750-work/pull/41 (open tip 521afb8)"
         ],
-        "note": "ECE-42 / WSL sole GPU operator. Dev PR #39 @ 0089c21 (tool_choice=required, temp 0.3; budgets unchanged) \u2014 NOT G2. TAB02 visibility cleared; TAB03 V01/V10 still block fresh qual; qual-fresh-tab-catalog-v3-001 NOT consumed. Independent reviewer pending \u2260 bc-1121d0a4. Orchestrator must not take GPU lease.",
+        "note": "ECE-42 / WSL sole GPU operator. Dev PR #41 @ 521afb8 (force first list_resources + reasoning-budget 256; token budgets unchanged) \u2014 NOT G2. Development probes cleared TAB03 V01/V10 (and TAB02/02\u201305 checks). Fresh qual-fresh-tab-catalog-v3-001 intentionally NOT started until #41 accepted + coordinator greenlight. Independent reviewer pending \u2260 bc-1121d0a4. Orchestrator must not take GPU lease.",
         "tracker_task": "ECE-42",
         "host": {
           "worker_id": "a09a6978",
@@ -916,7 +917,7 @@
             "status": "merged",
             "g2_accepted": false,
             "fresh_qualification_batch_consumed": false,
-            "summary": "n-ary calculate subtract + TAB02/TAB02\u201305 development probes (merged)"
+            "summary": "n-ary calculate subtract (merged)"
           },
           {
             "number": 37,
@@ -926,18 +927,28 @@
             "status": "merged",
             "g2_accepted": false,
             "fresh_qualification_batch_consumed": false,
-            "summary": "tool-first / TAB03 long-T; catalog v4/v8 (merged)"
+            "summary": "tool-first / TAB03 (merged)"
           },
           {
             "number": 39,
             "url": "https://github.com/Yehia-Fahmy/ece750-work/pull/39",
-            "tip": "0089c2158dd1c5c813bb1fa71cb5dcc1a419b5a4",
-            "branch": "cursor/sw06-tool-choice-required-815d",
+            "merge_sha": "bffede31bb0c1b76717a59381dea2feab51b9cf6",
             "kind": "development_tool_choice_required",
+            "status": "merged",
+            "g2_accepted": false,
+            "fresh_qualification_batch_consumed": false,
+            "summary": "tool_choice=required; TAB02 vis cleared (merged)"
+          },
+          {
+            "number": 41,
+            "url": "https://github.com/Yehia-Fahmy/ece750-work/pull/41",
+            "tip": "521afb87a655659ceb7b7be3280acdbb9bb22284",
+            "branch": "cursor/sw06-force-first-list-resources-815d",
+            "kind": "development_force_first_list_resources",
             "status": "open",
             "g2_accepted": false,
             "fresh_qualification_batch_consumed": false,
-            "summary": "tool_choice=required + cooler sampling; TAB02 visibility 4/4 cleared; TAB03 V11 cleared; TAB03 V01/V10 still budget_limit \u2014 blocks fresh qual"
+            "summary": "force first list_resources + reasoning-budget 256; TAB03 V01/V10 cleared in development probes; fresh qual intentionally not started until #41 accepted"
           }
         ]
       },
