@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-11-16",
-  "phase": "g2_held_out_gpu_fail_long_pilots_recorded",
+  "updated_at": "2026-11-17",
+  "phase": "g2_held_out_catalog_v2_fail_recorded",
   "context_checkpoint": "ecb82d3",
   "planning_status": "implementation_in_progress",
   "execution_started": true,
@@ -106,7 +106,7 @@
         "handoffs/2026-11-16-tab-catalog-v2-public-task-port.md",
         "results/development/tab-catalog-v2-public-task-port.json"
       ],
-      "note": "TAB01\u201305 catalog on tab-catalog-v2 (TAB02\u201305 public-task port of tab01-slice-v6); TAB01 moderate still tab01-slice-v6. v5 16-cell FAIL preserved (#16); v6 probe+16-cell PASS (#20); G2 held-out FAIL preserved (#23). Integrator accepted G0 TAB-only / S0 earlier; WP02 remains in_progress (not five-family). G1/G2/G3 not accepted; catalog-v2 awaits lagging review + GPU re-qual."
+      "note": "TAB01\u201305 catalog on tab-catalog-v2 (TAB02\u201305 public-task port of tab01-slice-v6); TAB01 moderate still tab01-slice-v6. v5 16-cell FAIL preserved (#16); v6 probe+16-cell PASS (#20); G2 held-out FAIL preserved (#23); post-catalog-v2 re-held-out also FAIL (g2-held-out-20261116-catalog-v2). Integrator accepted G0 TAB-only / S0 earlier; WP02 remains in_progress (not five-family). G1/G2/G3 not accepted."
     },
     {
       "id": "WP03",
@@ -178,9 +178,11 @@
         "handoffs/2026-11-16-g1-long-pilots.md",
         "results/qualification/g1-long-pilots-20261116.json",
         "handoffs/2026-11-16-g2-held-out-gpu.md",
-        "results/qualification/g2-held-out-20261116.json"
+        "results/qualification/g2-held-out-20261116.json",
+        "handoffs/2026-11-16-g2-held-out-catalog-v2.md",
+        "results/qualification/g2-held-out-20261116-catalog-v2.json"
       ],
-      "note": "Owned pinned local runtime, canonical GPU lease, exact template count and full 37/37 offload verified. Latest run sampled 5278 MiB peak / 2914 MiB headroom; mean 8.07s on short clarification-only episodes. Representative long tasks, actor/judge quality and complete pipeline forecast pending. Long-pilot telemetry recorded 2026-11-16 (development hard/extreme); held-out GPU FAIL preserved."
+      "note": "Owned pinned local runtime, canonical GPU lease, exact template count and full 37/37 offload verified. Latest run sampled 5278 MiB peak / 2914 MiB headroom; mean 8.07s on short clarification-only episodes. Representative long tasks, actor/judge quality and complete pipeline forecast pending. Long-pilot telemetry recorded 2026-11-16 (development hard/extreme); held-out GPU FAIL preserved (#23 and catalog-v2 re-run)."
     },
     {
       "id": "WP07",
@@ -226,9 +228,11 @@
         "tests/test_held_out.py",
         "results/qualification/g2-held-out-packaging-v1.json",
         "handoffs/2026-11-16-g2-held-out-gpu.md",
-        "results/qualification/g2-held-out-20261116.json"
+        "results/qualification/g2-held-out-20261116.json",
+        "handoffs/2026-11-16-g2-held-out-catalog-v2.md",
+        "results/qualification/g2-held-out-20261116-catalog-v2.json"
       ],
-      "note": "WP08 prep: (1) unsigned S0 provisional freeze checklist under configs/provisional/s0-tab-only/ (G3 not_started). (2) CPU S0 G2 held-out packaging (schedules/reservations/mocks; g2_accepted=false). (3) Authentic GPU held-out actor run FAIL recorded (g2-held-out-20261116); gates.G2 in_progress but not accepted."
+      "note": "WP08 prep: (1) unsigned S0 provisional freeze checklist under configs/provisional/s0-tab-only/ (G3 not_started). (2) CPU S0 G2 held-out packaging (schedules/reservations/mocks; g2_accepted=false). (3) Authentic GPU held-out actor FAIL recorded twice (g2-held-out-20261116 and post-catalog-v2 g2-held-out-20261116-catalog-v2); gates.G2 in_progress but not accepted."
     },
     {
       "id": "WP09",
@@ -284,7 +288,7 @@
   "open_items": [
     "G0 TAB-only / S0 accepted (WP01 + TAB catalog/spec + v6 PASS archive #20); five-family G0 remains out of S0. See handoffs/2026-11-16-g0-tab-accepted.md.",
     "G1: TAB01 v6 development capture+capability cleared; long-episode WP06 pilots recorded (g1-long-pilots-20261116, 9/10 completed); still need isolation/scorer completeness notes + integrator acceptance.",
-    "G2: authentic held-out GPU run recorded FAIL (g2-held-out-20261116: completion 74.38%, easy success 55%); gates.G2 not accepted. CPU tab-catalog-v2 ports TAB02–05 to tab01-slice-v6 public-task pattern (mocks only); WSL GPU re-qual after merge; judge/forecast still open.",
+    "G2: post-tab-catalog-v2 authentic held-out FAIL (g2-held-out-20261116-catalog-v2: completion 74.69%, easy success 55%); prior FAIL g2-held-out-20261116 preserved. gates.G2 not accepted. Judge/forecast still open; do not start main.",
     "Actual daily GPU availability must be recorded; eight hours/day is only a forecast assumption.",
     "Final course page limit and presentation arrangements require reconciliation with official instructions.",
     "Actor and judge checkpoints/settings, quality gates, and final scope require pilot qualification.",
@@ -293,16 +297,25 @@
     "WP08 S0 freeze checklist + provisional configs drafted under configs/provisional/s0-tab-only/; unsigned; awaiting gate evidence before any configs/frozen/ commit."
   ],
   "session": {
-    "date": "2026-11-16",
-    "input_commit": "7a5aba3",
+    "date": "2026-11-17",
+    "input_commit": "18f2b9f",
     "owner": "gpu_operator",
-    "authorization": "Coordinator assigned ECE-24 G2 held-out GPU + ECE-25 G1 long pilots; do not self-merge.",
-    "scope": "S0 held-out qualify-local --held-out; development --long-pilot; zero external inference",
-    "status": "g2_held_out_fail_g1_pilots_recorded",
-    "held_out_run": "g2-held-out-20261116",
-    "held_out_evidence": "results/qualification/g2-held-out-20261116.json",
-    "held_out_handoff": "handoffs/2026-11-16-g2-held-out-gpu.md",
+    "authorization": "Coordinator assigned ECE-30 G2 re-held-out after catalog-v2; do not self-merge; do not auto-accept G2.",
+    "scope": "S0 held-out qualify-local --held-out on tab-catalog-v2; zero external inference; no main",
+    "status": "g2_held_out_catalog_v2_fail_recorded",
+    "held_out_run": "g2-held-out-20261116-catalog-v2",
+    "held_out_evidence": "results/qualification/g2-held-out-20261116-catalog-v2.json",
+    "held_out_handoff": "handoffs/2026-11-16-g2-held-out-catalog-v2.md",
     "held_out_verdict": "FAIL",
+    "held_out_completion": "239/320",
+    "held_out_easy_success": "11/20",
+    "prior_held_out_fail_preserved": {
+      "run_id": "g2-held-out-20261116",
+      "evidence": "results/qualification/g2-held-out-20261116.json",
+      "handoff": "handoffs/2026-11-16-g2-held-out-gpu.md",
+      "pr": "https://github.com/Yehia-Fahmy/ece750-work/pull/23",
+      "untouched": true
+    },
     "long_pilot_run": "g1-long-pilots-20261116",
     "long_pilot_evidence": "results/qualification/g1-long-pilots-20261116.json",
     "long_pilot_handoff": "handoffs/2026-11-16-g1-long-pilots.md",
