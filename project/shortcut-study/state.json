@@ -313,8 +313,9 @@
     "SW00 in progress: assignments issued; integrate SW01\u201303 after independent reviews (author\u2260reviewer).",
     "Launch sibling workers for ECE-36/37/38 (SW01/02/03) with path allowlists in assignment handoffs.",
     "Repair RD1/RD2/RD3 (SW01), IMPL-1/2/3 (SW02), A1\u2013A5 (SW03) before any new 320-episode qualification.",
-    "ECE-53 done (#46 merged 0290663): format residuals cleared 24/24; TAB05 extreme still 15/16 \u2192 ECE-59 follow-up. No fresh 320; no g2_accepted.",
-    "G2 remains failed: prior archives + fresh qual-fresh-tab-catalog-v3-001 FAIL (280/320=87.5%; easy 17/20=85%); not accepted; batch consumed.",
+    "ECE-59 done (#48 merged 430c86b): TAB05 extreme 16/16; live qual turns stay 16; probe-only turns 20. ECE-53 (#46) format 24/24 prior.",
+    "Root greenlit ECE-63 NEW fresh G2 (SW06 on WSL); fresh_320_greenlight=true for this attempt only; g2_accepted=false until batch finishes. No second GPU worker.",
+    "G2 remains failed pending ECE-63: prior archives + fresh qual-fresh-tab-catalog-v3-001 FAIL (280/320=87.5%; easy 17/20=85%); v3-001 consumed; do not reuse.",
     "Independently accept fresh qualification and commit freeze by 2026-11-22 18:00 America/Toronto or automatically select S4.",
     "Local project/runs archives absent on orchestrator host; preserve review evidence; authenticity checks need WSL archives later.",
     "Agents must build final report PDF, deck and notes by Dec 3 18:00; course submission remains researcher-only.",
@@ -650,7 +651,7 @@
   "swarm_handoff": {
     "schema_version": 1,
     "date": "2026-11-17",
-    "status": "sw06_ece53_merged_awaiting_ece59_tab05_extreme",
+    "status": "sw06_ece59_merged_ece63_fresh_greenlit_collecting",
     "start_here": "SWARM_START.md",
     "work_packages": "SWARM_WORK_PACKAGES.md",
     "reconciliation": "handoffs/2026-11-17-completion-swarm.md",
@@ -858,7 +859,7 @@
           "report/claim-evidence-ledger.md",
           "handoffs/2026-11-17-sw04-claim-ledger.md"
         ],
-        "note": "Ledger: C-G2-FRESH-V3 FAIL + C-SW06-DEV-RESIDUAL (#46). Await ECE-59 before fresh narrative. No GPU."
+        "note": "Ledger: C-G2-FRESH-V3 FAIL + C-SW06-DEV-RESIDUAL (#46) + C-SW06-DEV-TAB05-EXTREME (#48). ECE-63 fresh greenlit; g2_accepted=false until batch. No GPU on SW04."
       },
       {
         "id": "SW05",
@@ -886,7 +887,7 @@
       {
         "id": "SW06",
         "role": "gpu_operator_and_qualification_reviewer",
-        "status": "ece59_tab05_extreme_in_progress",
+        "status": "ece63_fresh_g2_collecting",
         "owner": "bc-1121d0a4-6c7d-5e71-adea-be1427c7815d",
         "reviewer": "independent_pending_not_author",
         "depends_on": [
@@ -899,11 +900,13 @@
           "https://github.com/Yehia-Fahmy/ece750-work/pull/44 (merged 6aabed2)",
           "https://github.com/Yehia-Fahmy/ece750-work/pull/45 (merged 1e001b5)",
           "https://github.com/Yehia-Fahmy/ece750-work/pull/46 (merged 0290663) \u2014 ECE-53 residual format/budget",
+          "https://github.com/Yehia-Fahmy/ece750-work/pull/48 (merged 430c86b) \u2014 ECE-59 TAB05 extreme 16/16",
           "results/development/sw06-residual-format-budget-probes-v1.json",
-          "ECE-58 APPROVE (bc-c56d270e); greenlight=NO for fresh 320"
+          "results/development/sw06-tab05-extreme-residual-clearance-v1.json",
+          "ECE-58 APPROVE (bc-c56d270e); lagging + ECE-62 APPROVE on #48 tip 86f0046; root greenlight ECE-63"
         ],
-        "note": "ECE-53 done: #46 merged 0290663 (adapter v5; format 24/24; TAB05 extreme 15/16). G2 not accepted; v3-001 remains consumed; submission_authorized=false. Independent review greenlight=NO until TAB05 extreme residual cleared. ECE-59: SW06 continues TAB05 extreme on a NEW follow-up PR from main (root-dispatched). Do NOT allocate/start a new fresh 320 until root greenlight after ECE-59 clear/waive. Orchestrator does not take GPU lease / does not spawn second GPU worker. Cutoff Nov 22 18:00 America/Toronto \u2192 S4.",
-        "tracker_task": "ECE-59",
+        "note": "ECE-59 done: #48 merged 430c86b (adapter v6 + anti-dupe; TAB05 extreme 16/16; live qual turns 16; probe-only turns 20). Root greenlit ECE-63 NEW fresh G2; SW06 collecting on WSL. g2_accepted=false until batch finishes; v3-001 remains consumed FAIL; submission_authorized=false. Orchestrator does not take GPU lease / does not spawn second GPU worker. Cutoff Nov 22 18:00 America/Toronto \u2192 S4.",
+        "tracker_task": "ECE-63",
         "host": {
           "worker_id": "a09a6978",
           "machine": "DESKTOP-VEMMES3",
@@ -958,10 +961,11 @@
             "url": "https://github.com/Yehia-Fahmy/ece750-work/pull/44",
             "branch": "cursor/sw06-fresh-qual-v3-001-815d",
             "kind": "fresh_qualification_fail_packaging",
-            "status": "open_rebased",
+            "status": "merged",
+            "merge_sha": "6aabed2163a2700c839803e9903f27c3d8a9cad4",
             "g2_accepted": false,
             "fresh_qualification_batch_consumed": true,
-            "summary": "Package honest FAIL evidence for qual-fresh-tab-catalog-v3-001; rebased onto main after #43"
+            "summary": "Package honest FAIL evidence for qual-fresh-tab-catalog-v3-001"
           },
           {
             "number": 46,
@@ -971,6 +975,15 @@
             "kind": "development_residual_format_budget",
             "g2_accepted": false,
             "summary": "adapter v5 + tool/turn headroom; format 24/24; TAB05 extreme 15/16; not G2; no fresh 320"
+          },
+          {
+            "number": 48,
+            "url": "https://github.com/Yehia-Fahmy/ece750-work/pull/48",
+            "status": "merged",
+            "merge_sha": "430c86ba83cb6e291ea6ad4b67b90f7dd171bf7f",
+            "kind": "development_tab05_extreme_residual",
+            "g2_accepted": false,
+            "summary": "adapter v6 + anti-dupe; TAB05 extreme 16/16; live qual turns 16; probe-only turns 20; not G2"
           }
         ],
         "fresh_qualification": {
@@ -983,9 +996,18 @@
           "easy_no_shortcut": "17/20",
           "tracked_evidence": "results/qualification/qual-fresh-tab-catalog-v3-001.json",
           "next_fresh_batch_id": null,
-          "fresh_320_authorized": false,
-          "fresh_320_greenlight": false,
-          "greenlight_blocker": "TAB05 extreme residual 15/16 after #46; ECE-59 must clear to 16/16 or root waive",
+          "next_attempt": {
+            "tracker": "ECE-63",
+            "status": "collecting",
+            "owner": "bc-1121d0a4-6c7d-5e71-adea-be1427c7815d",
+            "requires_new_batch_id": true,
+            "do_not_reuse": "qual-fresh-tab-catalog-v3-001",
+            "base_main": "430c86ba83cb6e291ea6ad4b67b90f7dd171bf7f"
+          },
+          "fresh_320_authorized": true,
+          "fresh_320_greenlight": true,
+          "greenlight_scope": "ECE-63 new fresh G2 attempt only; root-authorized after #48",
+          "greenlight_blocker": null,
           "orchestrator_gpu_lease": false
         },
         "residual_repair": {
@@ -996,14 +1018,20 @@
           "independent_review": "ECE-58 APPROVE bc-c56d270e",
           "format_probes": "24/24",
           "tab05_extreme_probes": "15/16",
-          "credibility_for_fresh_qual_ready": false,
-          "fresh_320_authorized": false,
+          "credibility_for_fresh_qual_ready": true,
+          "fresh_320_authorized": true,
           "follow_up": {
             "tracker": "ECE-59",
+            "status": "merged",
+            "pr": "https://github.com/Yehia-Fahmy/ece750-work/pull/48",
+            "merge_sha": "430c86ba83cb6e291ea6ad4b67b90f7dd171bf7f",
             "scope": "TAB05 extreme residual clearance",
+            "tab05_extreme_probes": "16/16",
             "owner": "bc-1121d0a4-6c7d-5e71-adea-be1427c7815d",
-            "mode": "new_follow_up_pr_from_main",
-            "fresh_320_authorized": false
+            "independent_review": "lagging APPROVE + ECE-62 APPROVE tip 86f0046",
+            "credibility_for_fresh_qual_ready": true,
+            "fresh_320_authorized": true,
+            "root_greenlight": "ECE-63"
           }
         }
       },
@@ -1027,7 +1055,7 @@
           "results/qualification/sw07-freeze-prep-v1.json",
           "results/qualification/freeze-checklist-s0-tab-post-sw05.md"
         ],
-        "note": "CPU freeze-prep stubs only; G3 unsigned; blocked on accepted fresh G2. #46 residual merged but fresh greenlight=NO (TAB05 extreme 15/16 \u2192 ECE-59). Cutoff Nov 22 18:00 America/Toronto \u2192 S4."
+        "note": "CPU freeze-prep stubs only; G3 unsigned; blocked on accepted fresh G2. #48 TAB05 extreme cleared; ECE-63 fresh collecting (g2_accepted=false until finish). Cutoff Nov 22 18:00 America/Toronto \u2192 S4."
       },
       {
         "id": "SW08",
