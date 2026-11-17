@@ -44,6 +44,19 @@ CONSUMED_QUALIFICATION_BATCHES: dict[str, dict[str, Any]] = {
             "Useful regression comparison; not independent held-out validation."
         ),
     },
+    "qual-fresh-tab-catalog-v3-001": {
+        "batch_id": "qual-fresh-tab-catalog-v3-001",
+        "status": "consumed",
+        "mode": "fresh_held_out",
+        "split": "qualification",
+        "catalog_version_at_run": "tab-catalog-v4",
+        "seed_namespace": "qual-fresh-tab-catalog-v3-001",
+        "fresh_held_out": False,
+        "notes": (
+            "Honest G2 FAIL (280/320=87.5%); batch consumed. Do not reuse as fresh. "
+            "Next held-out requires a new content-disjoint batch id (v4-001)."
+        ),
+    },
 }
 
 # Seed namespaces for content-disjoint reservations. Historical qualification keeps
@@ -53,11 +66,14 @@ BATCH_SEED_NAMESPACES: dict[str, int] = {
     "development": 0,
     "qualification": 10_000,  # consumed historical namespace
     "qualification-fresh-v3": 30_000,
+    "qual-fresh-tab-catalog-v3-001": 30_000,  # consumed fresh FAIL archive
+    "qualification-fresh-v4": 40_000,
+    "qual-fresh-tab-catalog-v4-001": 40_000,  # ECE-63 greenlit fresh attempt
     "main": 20_000,
 }
 
-DEFAULT_FRESH_QUALIFICATION_BATCH_ID = "qual-fresh-tab-catalog-v3-001"
-DEFAULT_FRESH_QUALIFICATION_NAMESPACE = "qualification-fresh-v3"
+DEFAULT_FRESH_QUALIFICATION_BATCH_ID = "qual-fresh-tab-catalog-v4-001"
+DEFAULT_FRESH_QUALIFICATION_NAMESPACE = "qualification-fresh-v4"
 
 
 def is_consumed_batch(batch_id: str) -> bool:
@@ -336,7 +352,7 @@ def _probe_base(
 def build_cpu_reservation_manifest(
     *,
     fresh_batch_id: str = DEFAULT_FRESH_QUALIFICATION_BATCH_ID,
-    fresh_namespace_base: int = 30_000,
+    fresh_namespace_base: int = 40_000,
 ) -> dict[str, Any]:
     """CPU-only proof that development / consumed-qual / fresh-qual / main are disjoint."""
     register_batch_namespace(fresh_batch_id, fresh_namespace_base)
@@ -382,6 +398,7 @@ def build_cpu_reservation_manifest(
         "consumed_batches": [
             consumed_batch_record("g2-held-out-20261116"),
             consumed_batch_record("g2-held-out-20261116-catalog-v2"),
+            consumed_batch_record("qual-fresh-tab-catalog-v3-001"),
         ],
         "reservation_labels": [label for label, _, _ in labels],
         "base_counts": {label: len(rows) for label, rows in by_label.items()},
