@@ -176,7 +176,10 @@ class LocalChatActor:
             "Batch calculate values when possible; reserve a final tool action for submit. "
             "Never repeat an identical tool call (same name and arguments). If you already "
             "have a calculate result, move to a different calculation or submit/"
-            "request_clarification instead of calling calculate again with the same values."
+            "request_clarification instead of calling calculate again with the same values. "
+            "If a tool result reports identical_tool_call_already_executed, change strategy "
+            "on the next turn—usually submit (including insufficient_information when a "
+            "required field is missing) rather than repeating calculate."
         )
         first_turn = not native_history
         tool_choice = FIRST_TURN_TOOL_CHOICE if first_turn else TOOL_CHOICE

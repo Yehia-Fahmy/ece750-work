@@ -240,8 +240,8 @@ class NativeRunnerTests(unittest.TestCase):
                         "operation": "read_resource",
                         "arguments": {"resource_id": "source/orders.json"},
                     }
-                elif n in (2, 3):
-                    # Identical calculate twice — second should hit anti-dupe guard.
+                elif 2 <= n <= 8:
+                    # Spam identical calculate; duplicates must not burn action budget.
                     action = {"operation": "calculate", "arguments": {"operation": "sum", "values": [1, 2]}}
                 else:
                     action = {
@@ -261,10 +261,13 @@ class NativeRunnerTests(unittest.TestCase):
                             "usage": {"prompt_tokens": 100, "completion_tokens": 20, "total_tokens": 120}}
                 return HTTPResponse(200, json.dumps(response).encode())
 
-        _, _, directory, episode, ledger = self.run_one(LoopThenSubmit())
+        # Tight action budget: without skipping duplicate counts this would exhaust.
+        limits = native.native_limits(None)
+        limits.update(max_tool_actions=4, max_model_turns=16)
+        _, _, directory, episode, ledger = self.run_one(LoopThenSubmit(), limits=limits)
         self.assertEqual(episode["terminal_status"], "completed")
         statuses = [e["execution_status"] for e in ledger["events"] if e["event_type"] == "tool_result"]
-        self.assertIn("error", statuses)
+        self.assertGreaterEqual(statuses.count("error"), 6)
         dupe = next(
             e for e in ledger["events"]
             if e["event_type"] == "tool_result" and e["execution_status"] == "error")
