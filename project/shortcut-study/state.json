@@ -650,7 +650,7 @@
   "swarm_handoff": {
     "schema_version": 1,
     "date": "2026-11-17",
-    "status": "sw06_dev_pr35_in_review_not_g2",
+    "status": "sw06_dev_pr37_in_review_not_g2",
     "start_here": "SWARM_START.md",
     "work_packages": "SWARM_WORK_PACKAGES.md",
     "reconciliation": "handoffs/2026-11-17-completion-swarm.md",
@@ -895,11 +895,10 @@
         "input_commit": "91baf90d8111e7f0b6a7ed670ad510dea1b79e19",
         "assigned_paths": [],
         "evidence": [
-          "https://github.com/Yehia-Fahmy/ece750-work/pull/35",
-          "handoffs/2026-11-17-sw06-nary-calculate.md (on PR tip)",
-          "results/development/sw06-nary-calculate-probes-v1.json (on PR tip)"
+          "https://github.com/Yehia-Fahmy/ece750-work/pull/35 (merged be3ccda)",
+          "https://github.com/Yehia-Fahmy/ece750-work/pull/37 (open tip 4159c92)"
         ],
-        "note": "ECE-42 / WSL sole GPU operator. First development PR #35 @ c4a4db6 (n-ary subtract + dev probes) \u2014 NOT G2; no fresh qual batch. Independent reviewer launching (\u2260 bc-1121d0a4). Next after accept: TAB03 development budget/tool-first repair, then maybe qual-fresh-tab-catalog-v3-001. Orchestrator must not take GPU lease.",
+        "note": "ECE-42 / WSL sole GPU operator. Dev PR #37 @ 4159c92 (tool-first / TAB03, catalog tip claims v4/v8) \u2014 NOT G2; fresh batch qual-fresh-tab-catalog-v3-001 NOT consumed. Visibility residuals block fresh qual. Independent reviewer pending \u2260 bc-1121d0a4. Orchestrator must not take GPU lease.",
         "tracker_task": "ECE-42",
         "host": {
           "worker_id": "a09a6978",
@@ -911,12 +910,27 @@
           {
             "number": 35,
             "url": "https://github.com/Yehia-Fahmy/ece750-work/pull/35",
-            "tip": "c4a4db6472372abff7579ae3eebcc5b94ebf5a7f",
-            "branch": "cursor/sw06-calculate-nary-subtract-815d",
+            "merge_sha": "be3ccdae629ded285218372a625a0ba88da50f10",
             "kind": "development_repair_and_probes",
+            "status": "merged",
             "g2_accepted": false,
             "fresh_qualification_batch_consumed": false,
-            "summary": "n-ary calculate subtract repair + TAB02/TAB02\u201305 development probes; TAB03 residual budget_limit; independent reviewer launching"
+            "summary": "n-ary calculate subtract + TAB02/TAB02\u201305 development probes (merged)"
+          },
+          {
+            "number": 37,
+            "url": "https://github.com/Yehia-Fahmy/ece750-work/pull/37",
+            "tip": "4159c926340d4e947965679598a8247c0b906c16",
+            "branch": "cursor/sw06-tool-first-tab03-815d",
+            "kind": "development_tool_first_tab03",
+            "status": "open",
+            "g2_accepted": false,
+            "fresh_qualification_batch_consumed": false,
+            "catalog_versions_claimed_on_tip": {
+              "catalog_version": "tab-catalog-v4",
+              "tab01_slice_version": "tab01-slice-v8"
+            },
+            "summary": "tool-first cues / TAB03 long-T repair; TAB02\u201305 V00 8/8 completed; visibility residuals remain; fresh qual intentionally not started"
           }
         ]
       },
