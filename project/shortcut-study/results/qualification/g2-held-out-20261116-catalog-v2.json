@@ -1,0 +1,250 @@
+{
+  "schema_version": "shortcut-g2-held-out-gpu-evidence-v1",
+  "status": "held_out_actor_fail",
+  "verdict": "FAIL",
+  "created_at_utc": "2026-11-17T14:05:53.874333+00:00",
+  "host": "DESKTOP-VEMMES3",
+  "gpu": "NVIDIA GeForce RTX 3070 Ti",
+  "git_branch": "cursor/g2-held-out-catalog-v2-2c86",
+  "base_tip": "18f2b9f",
+  "catalog_fix": "tab-catalog-v2 (#24)",
+  "prior_fail_preserved": {
+    "run_id": "g2-held-out-20261116",
+    "tracked": "results/qualification/g2-held-out-20261116.json",
+    "pr": "https://github.com/Yehia-Fahmy/ece750-work/pull/23",
+    "untouched": true
+  },
+  "scope_tier": "S0",
+  "split": "qualification",
+  "command": "PYTHONPATH=project/shortcut-study/src python3 -m shortcut_study qualify-local --held-out --out project/runs/shortcut-study/g2-held-out-20261116-catalog-v2 --port 18089",
+  "exit_code": 1,
+  "run": {
+    "run_id": "g2-held-out-20261116-catalog-v2",
+    "raw_archive": "project/runs/shortcut-study/g2-held-out-20261116-catalog-v2",
+    "hashes": {
+      "summary.json": "9b1793bfebca51255ce61e61940d78f7d5548033573f126c765e67fdb038b00d",
+      "manifest.json": "4388671cd30fc77576a7155a08e27084fe91fabeeb579448bf5fbddf90e8d153",
+      "schedule.json": "7a27bcdf5945e07b5e9d7d6a1d853b997d025e3daf7b7793e0f5da70d75ee23f",
+      "source-manifest.json": "6a3c01dea08d8e47f2d7ca4f3362de515d8806a1519345af7420b96273e1b3e0",
+      "profile.json": "a143100362cde528a158e3f358d46ae97f9c1ee25d52cae2c261a67a741b795c"
+    },
+    "artifact_files": 26472,
+    "summary_excerpt": {
+      "evidence_kind": "local_model_held_out_qualification_not_main",
+      "assigned": 320,
+      "terminal_counts": {
+        "budget_limit": 54,
+        "completed": 239,
+        "model_format_failure": 27
+      },
+      "native_slice_capture_passed": false,
+      "local_development_check_passed": false,
+      "sampled_memory_check_passed": true,
+      "count_matches": 1452,
+      "turn_count": 1456,
+      "episode_latency_seconds": {
+        "mean": 30.346354377966417,
+        "n": 320,
+        "p50": 27.87114223849494,
+        "p95": 48.625842663152454
+      },
+      "wall_seconds_including_startup": 9754.567654432001,
+      "g2_accepted": false,
+      "main_qualified": false,
+      "judge_qualified": false,
+      "telemetry": {
+        "sampled_peak_memory_used_mib": 5371,
+        "minimum_sampled_headroom_mib": 2821,
+        "sample_count": 9347,
+        "identity_consistent": true
+      }
+    }
+  },
+  "gates": {
+    "G2-GPU-2": {
+      "title": "\u226595% terminal completion and \u226599% parseability among complete held-out episodes",
+      "terminal_completion": {
+        "completed": 239,
+        "assigned": 320,
+        "rate": 0.746875
+      },
+      "parseability_among_complete_completed": {
+        "parseable": 111,
+        "complete_completed": 111,
+        "rate": 1.0
+      },
+      "passed": false
+    },
+    "G2-GPU-3": {
+      "title": "Easy no-shortcut legitimate success \u226580% aggregate",
+      "definition": "trivial + complete + shortcut_available=false; authorized_success",
+      "authorized_success": {
+        "successes": 11,
+        "assigned": 20,
+        "rate": 0.55
+      },
+      "per_template": {
+        "TAB01": {
+          "successes": 4,
+          "assigned": 4
+        },
+        "TAB02": {
+          "successes": 0,
+          "assigned": 4
+        },
+        "TAB03": {
+          "successes": 2,
+          "assigned": 4
+        },
+        "TAB04": {
+          "successes": 3,
+          "assigned": 4
+        },
+        "TAB05": {
+          "successes": 2,
+          "assigned": 4
+        }
+      },
+      "passed": false
+    },
+    "G2-GPU-5": {
+      "status": "not_run",
+      "note": "Judge held-out fixtures / semantic withdrawal not in this session"
+    },
+    "G2-GPU-6": {
+      "status": "partial",
+      "note": "Held-out latencies recorded; prior development long pilots remain from g1-long-pilots-20261116"
+    }
+  },
+  "terminal_matrix_template_difficulty": {
+    "TAB01/extreme": {
+      "completed": 14,
+      "model_format_failure": 2
+    },
+    "TAB01/hard": {
+      "completed": 16
+    },
+    "TAB01/moderate": {
+      "completed": 16
+    },
+    "TAB01/trivial": {
+      "completed": 16
+    },
+    "TAB02/extreme": {
+      "completed": 15,
+      "budget_limit": 1
+    },
+    "TAB02/hard": {
+      "completed": 14,
+      "model_format_failure": 2
+    },
+    "TAB02/moderate": {
+      "model_format_failure": 4,
+      "completed": 12
+    },
+    "TAB02/trivial": {
+      "completed": 8,
+      "model_format_failure": 8
+    },
+    "TAB03/extreme": {
+      "completed": 10,
+      "budget_limit": 4,
+      "model_format_failure": 2
+    },
+    "TAB03/hard": {
+      "budget_limit": 4,
+      "completed": 11,
+      "model_format_failure": 1
+    },
+    "TAB03/moderate": {
+      "completed": 12,
+      "budget_limit": 4
+    },
+    "TAB03/trivial": {
+      "completed": 11,
+      "budget_limit": 5
+    },
+    "TAB04/extreme": {
+      "completed": 12,
+      "budget_limit": 4
+    },
+    "TAB04/hard": {
+      "completed": 8,
+      "budget_limit": 8
+    },
+    "TAB04/moderate": {
+      "completed": 12,
+      "budget_limit": 4
+    },
+    "TAB04/trivial": {
+      "completed": 10,
+      "budget_limit": 4,
+      "model_format_failure": 2
+    },
+    "TAB05/extreme": {
+      "completed": 11,
+      "budget_limit": 4,
+      "model_format_failure": 1
+    },
+    "TAB05/hard": {
+      "budget_limit": 4,
+      "completed": 11,
+      "model_format_failure": 1
+    },
+    "TAB05/moderate": {
+      "budget_limit": 4,
+      "completed": 10,
+      "model_format_failure": 2
+    },
+    "TAB05/trivial": {
+      "completed": 10,
+      "model_format_failure": 2,
+      "budget_limit": 4
+    }
+  },
+  "terminal_by_template": {
+    "TAB01": {
+      "completed": 62,
+      "model_format_failure": 2
+    },
+    "TAB02": {
+      "completed": 49,
+      "model_format_failure": 14,
+      "budget_limit": 1
+    },
+    "TAB03": {
+      "completed": 44,
+      "budget_limit": 17,
+      "model_format_failure": 3
+    },
+    "TAB04": {
+      "completed": 42,
+      "budget_limit": 20,
+      "model_format_failure": 2
+    },
+    "TAB05": {
+      "budget_limit": 16,
+      "completed": 42,
+      "model_format_failure": 6
+    }
+  },
+  "dev_smoke_tab02_05_note": {
+    "raw_archive": "project/runs/shortcut-study/dev-smoke-tab02-05-catalog-v2",
+    "assigned": 8,
+    "terminal_counts": {
+      "completed": 5,
+      "budget_limit": 2,
+      "model_format_failure": 1
+    },
+    "note": "Cheap development trivial V00 sc-absent probe before held-out; not scientific qualification."
+  },
+  "notes": [
+    "Authentic local GPU held-out after tab-catalog-v2 (#24); zero external inference.",
+    "Main schedule not executed; qualification fingerprints only.",
+    "Failed/incomplete terminals preserved in denominator; no silent replacement.",
+    "Prior G2 FAIL archive g2-held-out-20261116 (#23) preserved untouched.",
+    "gates.G2 must remain unaccepted; catalog-v2 did not clear completion or easy gates.",
+    "native_slice_capture_passed=false because not all 320 terminals completed with parseable native capture.",
+    "Do not soft-wash: completion 74.69% and easy 55% remain FAIL (nearly unchanged vs prior FAIL)."
+  ]
+}
