@@ -45,8 +45,9 @@ Use this table for report prose. Prefer hashes/paths over adjectives like “val
 | C-SW06-DEV-NARY | Development n-ary `subtract` repair + TAB02/02–05 probes (partial; TAB03 budget_limit remains) | Development split only; **not** held-out | PR #35 / `results/development/sw06-nary-calculate-probes-v1.json` (on tip) | **Not G2**; #35 merged `be3ccda` |
 | C-SW06-DEV-TOOLFIRST | Development tool-first cues / TAB03 long-T repair (TAB02–05 V00 improved; visibility residuals remain) | Development split only; **not** held-out; no fresh qual batch | PR #37 merged `272e4d7` | **Not G2**; #37 merged |
 | C-SW06-DEV-TOOLCHOICE | Development `tool_choice=required` + cooler sampling; TAB02 visibility cleared; TAB03 V01/V10 still budget_limit | Development split only; **not** held-out; no fresh qual batch | PR #39 merged `bffede3` | **Not G2**; #39 merged |
-| C-SW06-DEV-FORCEFIRST | Development force-first `list_resources` + reasoning-budget 256; TAB03 V01/V10 cleared in probes | Development split only; **not** held-out; fresh qual deferred until #41 accept | PR #41 / tip `521afb8` | **Not G2**; independent review pending; no fresh qual yet |
-| C-BATCH-V3 | Fresh batch API + catalog v3 wired | CPU reservation / allocate API | `results/development/sw01-cpu-reservation-manifest-v1.json`, `#33` | Enables future fresh G2; **does not claim G2 PASS** |
+| C-SW06-DEV-FORCEFIRST | Development force-first `list_resources` + reasoning-budget 256; TAB03 V01/V10 cleared in probes | Development split only; **not** held-out | PR #41 merged `f016540` (+ bookkeeping #42 `5a7ab09`) | **Not G2**; development credibility only |
+| C-SW06-FRESH-G2 | Fresh held-out G2 on content-disjoint batch `qual-fresh-tab-catalog-v3-001` | 320 assigned qualification cells; `batch_mode=fresh` | *pending — SW06 collecting on WSL* | **Collecting**; append run id / hashes / PASS|FAIL when reported; do not rewrite prior FAIL rows |
+| C-BATCH-V3 | Fresh batch API + catalog v3 wired | CPU reservation / allocate API | `results/development/sw01-cpu-reservation-manifest-v1.json`, `#33` | Batch now in use for C-SW06-FRESH-G2; **does not claim G2 PASS** |
 | C-MAIN | Main factorial effects / visibility contrasts | Frozen main denominator | — | **No claim** (no freeze, no main collection) |
 | C-SEM | Semantic judge conclusions | Qualified judge + frozen audit scope | — | **Withdrawn / unqualified** unless later accepted |
 
@@ -62,7 +63,8 @@ Use this table for report prose. Prefer hashes/paths over adjectives like “val
 
 - GPU operator: `bc-1121d0a4…` on WSL DESKTOP-VEMMES3 / RTX 3070 Ti (ECE-42).
 - Orchestrator / SW04–SW07 CPU authors **must not** acquire the GPU lease or start a second qualification operator.
-- When SW06 posts outcomes: append rows here with run id, batch id, freshness mode (`fresh` vs `regression`), gate PASS/FAIL, and hashes — do not rewrite prior FAIL rows.
+- `#41`/`#42` are on `main`. SW06 is **collecting** fresh G2 (`qual-fresh-tab-catalog-v3-001`). `submission_authorized=false`.
+- When SW06 posts outcomes: fill `C-SW06-FRESH-G2` with run id, batch id, freshness mode (`fresh`), gate PASS/FAIL, tracked JSON path, and hashes — do not rewrite prior FAIL rows (`C-G2-ORIG`, `C-G2-V2`).
 
 ## Do not
 
