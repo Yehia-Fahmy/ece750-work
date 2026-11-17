@@ -5,7 +5,7 @@
   "source_of_truth_for_episode_budgets": "this_file_when_frozen_else_development",
   "candidate_limits": {
     "max_model_turns": 12,
-    "max_tool_actions": 8,
+    "max_tool_actions": 12,
     "max_cumulative_generated_tokens": 12288,
     "max_per_turn_output_tokens": 3072,
     "max_context_tokens": 16384,
@@ -17,7 +17,8 @@
     "Aligned with tab01-slice-v6 uniform per-turn/cumulative headroom after V11 turn-1 overflows.",
     "Verify longest legitimate TAB workflow fits with slack before signing freeze.",
     "Do not force extreme tasks to fail through an inadequate action budget and call that difficulty.",
-    "No condition-specific history clipping or stop-thinking."
+    "max_tool_actions 12 after v3-001 extreme calculate exhaustion (token budgets unchanged).",
+    "No condition-specific history clipping; later-turn thinking-off is uniform (adapter v5), not visibility-specific."
   ],
   "forecast": {
     "status": "placeholders_only",

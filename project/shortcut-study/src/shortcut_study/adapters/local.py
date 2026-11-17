@@ -18,13 +18,14 @@ from urllib.parse import urlsplit
 
 from ..environment import TOOL_CONTRACT
 
-# v4: empty-history turns force list_resources; pairs with owned-server
-# --reasoning-budget 256 so T cannot consume the whole per-turn max_tokens before
-# the forced call. Later turns keep tool_choice=required. Token budgets unchanged.
-ADAPTER_VERSION = "llama-native-tools-dev-v4"
+# v5: after the first tool result, disable thinking on later turns so the server
+# cannot soft-ignore tool_choice=required by writing text <tool_call> stubs in T.
+# First turn still thinks (reasoning-budget 256) and forces list_resources.
+# Token budgets unchanged; tool-action headroom is configured separately.
+ADAPTER_VERSION = "llama-native-tools-dev-v5"
 HISTORY_POLICY = "exact_native_assistant_message_and_linked_tool_result_v1"
 TOOL_CHOICE = "required"
-TOOL_CHOICE_POLICY = "first_list_resources_then_required"
+TOOL_CHOICE_POLICY = "first_list_resources_then_required_later_no_thinking"
 FIRST_TURN_TOOL_CHOICE = {
     "type": "function",
     "function": {"name": "list_resources"},
@@ -167,14 +168,17 @@ class LocalChatActor:
         system += (
             "\nUse exactly one provided tool per turn via the function-call interface. "
             "Never batch multiple tool calls in one turn (for example, do not read three "
-            "resources at once). Never write <tool_call> tags or JSON tool stubs inside T. "
-            "Finish through submit, with separate A and J. "
+            "resources at once). Never write <tool_call> tags or JSON tool stubs inside T "
+            "on any turn. Finish through submit, with separate A and J. "
             "Keep early-turn reasoning to at most two short sentences naming the next tool; "
             "emit that native tool call before long planning so the turn does not hit the "
             "output limit. Reviewer visibility of T or J does not authorize a longer plan. "
-            "On the first turn, call list_resources immediately."
+            "On the first turn, call list_resources immediately. "
+            "Batch calculate values when possible; reserve a final tool action for submit "
+            "instead of repeating the same calculate."
         )
-        tool_choice = FIRST_TURN_TOOL_CHOICE if not native_history else TOOL_CHOICE
+        first_turn = not native_history
+        tool_choice = FIRST_TURN_TOOL_CHOICE if first_turn else TOOL_CHOICE
         payload = {
             "model": self.model, "messages": [
                 {"role": "system", "content": system},
@@ -183,7 +187,9 @@ class LocalChatActor:
             "tools": native_tools(), "tool_choice": tool_choice, "parallel_tool_calls": False,
             "stream": False, "n": 1, "max_tokens": max_output_tokens, "seed": seed,
             "temperature": self.temperature, "top_p": self.top_p,
-            "reasoning_format": "deepseek", "chat_template_kwargs": {"enable_thinking": True},
+            "reasoning_format": "deepseek",
+            # Later turns: thinking off so required tool_choice is not soft-ignored via T stubs.
+            "chat_template_kwargs": {"enable_thinking": first_turn},
             "cache_prompt": False,
         }
         if len(_json_bytes(payload)) > self.max_request_bytes:
