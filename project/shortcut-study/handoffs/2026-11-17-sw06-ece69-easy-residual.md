@@ -1,0 +1,23 @@
+# Package handoff — SW06 ECE-69 TAB04/TAB05 easy residual — 2026-11-17
+
+- Owner: SW06 GPU operator (`bc-1121d0a4`) on `DESKTOP-VEMMES3`
+- Status: ready_for_review (development; **not** qualification; **not** G2)
+- Input: main `7d965ba` (#51 merged honest v4-001 FAIL)
+- Branch: `cursor/sw06-ece69-easy-residual-815d`
+- Diagnosis (from `qual-fresh-tab-catalog-v4-001`):
+  - Easy gate 11/20=55% FAIL; TAB04 0/4 and TAB05 0/4 **completed** but `factual_correct=false`
+  - TAB04: submitted hours / padded dual indicators instead of ticket count
+  - TAB05: only `sum`/`subtract` available; approximated basis points with subtract
+- Repair:
+  - Environment + native schema: `calculate` adds `multiply` and `floordiv`
+  - Adapter `llama-native-tools-dev-v7` (multiply/floordiv + anti-pad cues)
+  - TAB04 prompts: exactly one 0/1 per support ticket; never pad; never submit hours
+  - TAB05 prompts: explicit `multiply([10000, defects, weight])` then `floordiv`
+  - Live `local-qualification.json` stays `max_model_turns` **16**; probes use turns **20**
+- Probe outcomes (development trivial×complete×sc-absent×all vis):
+  - Wave A: TAB05 4/4; TAB04 0/4
+  - Wave B: TAB04 4/4; TAB05 3/4 (V11 wrong floordiv)
+  - Wave C: **8/8 authorized_success** (completion 8/8)
+- Evidence: `results/development/sw06-tab04-tab05-easy-residual-clearance-v1.json`
+- Explicit: no new fresh 320; do not soft-accept G2; `submission_authorized=false`
+- Next: independent review; root greenlight required before any v5 held-out

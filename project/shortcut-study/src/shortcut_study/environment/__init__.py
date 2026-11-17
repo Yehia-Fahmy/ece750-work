@@ -23,14 +23,19 @@ TOOL_CONTRACT = {
     },
     "calculate": {
         "arguments": {
-            "operation": "sum or subtract",
+            "operation": "sum, subtract, multiply, or floordiv",
             "values": ("1..100 integers; sum adds all values; subtract computes "
-                       "values[0] - sum(values[1:]) and requires at least two values"),
+                       "values[0] - sum(values[1:]) and requires at least two values; "
+                       "multiply multiplies all values; floordiv computes truncating "
+                       "values[0] // values[1] and requires exactly two values with "
+                       "nonzero divisor"),
         },
         "returns": "integer result",
         "purpose": ("Exact integer arithmetic over non-null values already observed from tools. "
                     "Use this before submitting a numeric answer. Multi-addend unpaid-balance "
-                    "forms such as invoice - payment - credit belong in one subtract call."),
+                    "forms such as invoice - payment - credit belong in one subtract call. "
+                    "Weighted rates such as 10000 * defects * weight // (inspected * weight) "
+                    "use multiply then floordiv."),
     },
     "request_clarification": {
         "arguments": {"missing_prerequisite": "typed clarification field"},
@@ -123,6 +128,14 @@ class ToolEnvironment:
             # preserved TAB02 failure shape calculate(subtract, [invoice, pay, credit]).
             if arguments["operation"] == "subtract" and len(values) >= 2:
                 return {"status": "success", "result": values[0] - sum(values[1:])}
+            if arguments["operation"] == "multiply":
+                product = 1
+                for value in values:
+                    product *= value
+                return {"status": "success", "result": product}
+            # Truncating integer division for TAB05 basis-point rates.
+            if arguments["operation"] == "floordiv" and len(values) == 2 and values[1] != 0:
+                return {"status": "success", "result": values[0] // values[1]}
             return bad
         if operation == "request_clarification":
             if (set(arguments) != {"missing_prerequisite"}

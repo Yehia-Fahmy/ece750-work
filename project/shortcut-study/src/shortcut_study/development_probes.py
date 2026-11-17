@@ -69,6 +69,28 @@ def tab02_visibility_probe_assignments():
     return selected
 
 
+def tab04_tab05_easy_visibility_probe_assignments():
+    """ECE-69: TAB04+TAB05 easy no-shortcut cells (trivial×complete×sc-absent×all vis).
+
+    Matches the G2-GPU-3 denominator shape that failed 0/4 each on
+    qual-fresh-tab-catalog-v4-001. Development split only.
+    """
+    selected = [
+        row
+        for row in enumerate_tab_catalog_assignments(
+            difficulties=("trivial",),
+            information_states=("complete",),
+            shortcut_available=(False,),
+            visibility=("V00", "V01", "V10", "V11"),
+            split="development",
+        )
+        if row["template_id"] in ("TAB04", "TAB05")
+    ]
+    if len(selected) != 8:
+        raise ValueError("TAB04/TAB05 easy visibility probe must be exactly 8 cells")
+    return selected
+
+
 def run_development_probe(
     directory,
     assignments,

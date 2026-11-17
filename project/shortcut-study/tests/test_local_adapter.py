@@ -64,7 +64,7 @@ class LocalAdapterTests(unittest.TestCase):
         self.assertFalse(payload["stream"])
         self.assertFalse(payload["parallel_tool_calls"])
         self.assertEqual(payload["tool_choice"], FIRST_TURN_TOOL_CHOICE)
-        self.assertEqual(ADAPTER_VERSION, "llama-native-tools-dev-v6")
+        self.assertEqual(ADAPTER_VERSION, "llama-native-tools-dev-v7")
         self.assertIn("Never repeat an identical tool call", payload["messages"][0]["content"])
         self.assertEqual(payload["reasoning_format"], "deepseek")
         self.assertTrue(payload["chat_template_kwargs"]["enable_thinking"])
