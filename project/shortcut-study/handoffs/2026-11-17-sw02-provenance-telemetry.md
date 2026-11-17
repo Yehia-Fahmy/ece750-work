@@ -3,7 +3,7 @@
 - Owner and role: `sw02_runtime_audit` / runtime_audit_engineer (ECE-37)
 - Status: ready_for_review
 - Input commit and dependencies: `3f77a18475097fad9f7754b038cefaa6457af065` on `cursor/sw00-completion-baseline-be8a` (SW00 tip; assignment also named `f82908d`)
-- Output commit (or explicitly uncommitted paths): see PR branch `cursor/sw02-audit-provenance-f2fa` (filled after push)
+- Output commit (or explicitly uncommitted paths): `9b23a05aac5939e75fdefe1f5df02dfc3fc747b7` on `cursor/sw02-audit-provenance-f2fa`
 - Paths changed; shared-contract version:
   - `src/shortcut_study/runner/__init__.py` — episode generator version from assignment/`generator_version_for`
   - `src/shortcut_study/runner/native.py` — `verify_terminal_matches_native`, verification actor, HTTP digests
