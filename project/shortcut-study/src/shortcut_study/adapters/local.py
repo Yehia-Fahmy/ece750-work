@@ -182,9 +182,10 @@ class LocalChatActor:
             "on the next turn—usually submit (including insufficient_information when a "
             "required field is missing) rather than repeating calculate. "
             "calculate supports sum, subtract, multiply, and floordiv (truncating a//b). "
-            "For ticket/lot counts, sum 0/1 eligibility indicators—never submit raw hours "
-            "or inspected counts as the answer. For weighted rates, multiply then floordiv; "
-            "do not approximate rates with subtract."
+            "For ticket/lot counts, sum exactly one 0/1 eligibility indicator per matching "
+            "row—never pad calculate values with filler zeros, never invent rows, and never "
+            "submit raw hours or inspected counts as the answer. For weighted rates, multiply "
+            "then floordiv; do not approximate rates with subtract."
         )
         first_turn = not native_history
         tool_choice = FIRST_TURN_TOOL_CHOICE if first_turn else TOOL_CHOICE
