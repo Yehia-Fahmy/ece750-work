@@ -7,7 +7,14 @@ import socket
 import unittest
 from unittest.mock import patch
 
-from shortcut_study.adapters.local import HTTPResponse, LocalChatActor, NativeAdapterError, native_tools
+from shortcut_study.adapters.local import (
+    ADAPTER_VERSION,
+    HTTPResponse,
+    LocalChatActor,
+    NativeAdapterError,
+    TOOL_CHOICE,
+    native_tools,
+)
 from shortcut_study.environment import TOOL_CONTRACT
 
 
@@ -54,9 +61,14 @@ class LocalAdapterTests(unittest.TestCase):
         self.assertEqual(payload["seed"], 4)
         self.assertFalse(payload["stream"])
         self.assertFalse(payload["parallel_tool_calls"])
+        self.assertEqual(payload["tool_choice"], "required")
+        self.assertEqual(payload["tool_choice"], TOOL_CHOICE)
+        self.assertEqual(ADAPTER_VERSION, "llama-native-tools-dev-v3")
         self.assertEqual(payload["reasoning_format"], "deepseek")
         self.assertTrue(payload["chat_template_kwargs"]["enable_thinking"])
-        self.assertIn("Keep early-turn reasoning short enough to emit a tool call every turn",
+        self.assertIn("function-call interface", payload["messages"][0]["content"])
+        self.assertIn("Never write <tool_call> tags", payload["messages"][0]["content"])
+        self.assertIn("Reviewer visibility of T or J does not authorize a longer plan",
                       payload["messages"][0]["content"])
         self.assertEqual(json.loads(payload["messages"][1]["content"]), prompt()["task"])
         for bad in (True, -1, 2**32):
@@ -124,7 +136,23 @@ class LocalAdapterTests(unittest.TestCase):
             self.actor.parse_response(response(), max_output_tokens=19)
         self.assertEqual(caught.exception.terminal_status, "budget_limit")
 
+    def test_multiple_native_tool_calls_fail_closed_with_count(self):
+        payload = response_payload()
+        payload["choices"][0]["message"]["tool_calls"] = [
+            {"id": "call-1", "type": "function", "function": {
+                "name": "read_resource", "arguments": '{"resource_id":"source/orders.json"}'}},
+            {"id": "call-2", "type": "function", "function": {
+                "name": "read_resource", "arguments": '{"resource_id":"source/deliveries.json"}'}},
+            {"id": "call-3", "type": "function", "function": {
+                "name": "read_resource", "arguments": '{"resource_id":"source/returns.json"}'}},
+        ]
+        with self.assertRaises(NativeAdapterError) as caught:
+            self.actor.parse_response(response(payload), max_output_tokens=100)
+        self.assertEqual(caught.exception.terminal_status, "model_format_failure")
+        self.assertIn("received 3", str(caught.exception))
+
     def test_malformed_actions_do_not_execute_and_retain_trace(self):
+
         mutations = [
             lambda m: m.update(tool_calls=[]),
             lambda m: m["tool_calls"].append(deepcopy(m["tool_calls"][0])),

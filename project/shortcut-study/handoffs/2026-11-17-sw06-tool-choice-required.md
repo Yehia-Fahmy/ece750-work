@@ -1,0 +1,23 @@
+# Package handoff — SW06 tool_choice=required + temp 0.3 — 2026-11-17
+
+- Owner and role: SW06 GPU operator (`bc-1121d0a4`) on `DESKTOP-VEMMES3`
+- Status: ready_for_review (development; **not** qualification; **not** G2)
+- Input commit: `fc7a29e` (main after #37/#38)
+- Output commits: `76faecd`, `71f0b99` on `cursor/sw06-tool-choice-required-815d`
+- Paths changed:
+  - `adapters/local.py` → `llama-native-tools-dev-v3`, `tool_choice=required`, multi-tool count errors, stronger one-tool trailer
+  - `runner/native.py` records `tool_choice` in actor settings
+  - `configs/development/local-qualification.json` temperature `0.6 → 0.3` (anti-ramble; budgets unchanged)
+  - tests
+- Concrete behavior: force native function calls when the server cooperates; clearer parallel-call failures; cooler sampling
+- Commands / outcomes:
+  - 256 unit tests OK
+  - Wave A (temp 0.6 + required): TAB02 vis 2/4 auth; TAB03 multi-tool / length residuals
+  - Wave B (temp 0.3 + required): **TAB02×4 vis 4/4 auth + local check passed**; TAB02–05 V00 8/8 completed (7/8 auth); **TAB03 V11 fixed**; TAB03 V01/V10 still length-without-tools
+- Evidence: `results/development/sw06-tool-choice-required-probes-v1.json`
+- Failures / limits:
+  - **Not ready for `qual-fresh-tab-catalog-v3-001`** — TAB03 V01/V10 still burn 3072 tokens of T with zero tools despite `tool_choice=required` (server soft-enforce)
+  - TAB02 incomplete V00 still sometimes submits a numeric answer instead of insufficiency
+- GPU: exclusive lease; released after probes
+- Next: further TAB03 V01/V10 development (still no budget bump / no qual burn)
+- `submission_authorized=false`
