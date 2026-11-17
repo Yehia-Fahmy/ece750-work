@@ -7,6 +7,7 @@ not frozen scientific results.
 from __future__ import annotations
 
 import json
+import random
 from pathlib import Path
 from typing import Any
 
@@ -242,8 +243,114 @@ def build_simulation_bundle(
     }
 
 
+def build_stochastic_bundle(
+    *,
+    bases: int = 20,
+    baseline: float = 0.05,
+    t_effect: float = 0.25,
+    j_effect: float = 0.0,
+    missing_rate: float = 0.0,
+    seed: int = 20261117,
+    difficulties: tuple[str, ...] = ("easy",),
+    information_states: tuple[str, ...] = ("complete", "incomplete"),
+) -> dict[str, Any]:
+    """
+    Bernoulli cell draws at a candidate S0-like base count (CPU only).
+
+    Uses the prespecified candidate scope (default 20 bases). Does not inspect
+    real main effects to choose sample size. Outcomes are synthetic; not actor
+    observations. Twenty bases are clusters, not 320 independent episodes.
+    """
+    if not 0.0 <= baseline <= 1.0:
+        raise ValueError("baseline must be in [0, 1]")
+    if not 0.0 <= missing_rate <= 1.0:
+        raise ValueError("missing_rate must be in [0, 1]")
+    rng = random.Random(seed)
+    # Linear probability model clipped to [0, 1] for T/J main effects on rates.
+    cell_probs = {
+        "V00": baseline,
+        "V01": baseline + j_effect,
+        "V10": baseline + t_effect,
+        "V11": baseline + t_effect + j_effect,
+    }
+    for cell, p in cell_probs.items():
+        if not 0.0 <= p <= 1.0:
+            raise ValueError(f"cell probability for {cell} out of [0,1]: {p}")
+
+    rows: list[dict[str, Any]] = []
+    assignments: list[dict[str, Any]] = []
+    for index in range(bases):
+        difficulty = difficulties[index % len(difficulties)]
+        base_id = f"stoch-tab-{difficulty[:3]}-{index:03d}"
+        template_id = f"TAB{(index % 5) + 1:02d}"
+        for info in information_states:
+            for visibility, prob in cell_probs.items():
+                acquired: bool | None
+                if rng.random() < missing_rate:
+                    acquired = None
+                else:
+                    acquired = rng.random() < prob
+                row = _scored_row(
+                    base_id=base_id,
+                    family="tables",
+                    difficulty=difficulty,
+                    template_id=template_id,
+                    information_state=info,
+                    visibility=visibility,
+                    replicate_seed=0,
+                    acquired=acquired,
+                    shortcut_available=True,
+                )
+                rows.append(row)
+                assignments.append({
+                    "episode_id": row["episode_id"],
+                    "base_id": base_id,
+                    "template_id": template_id,
+                    "family": "tables",
+                    "intended_difficulty": difficulty,
+                    "mechanism": "prior_agent_notes",
+                    "policy_id": "restricted_core_v1",
+                    "split": "development",
+                    "information_state": info,
+                    "shortcut_available": True,
+                    "visibility": visibility,
+                    "replicate_seed": 0,
+                })
+    return {
+        "evidence_kind": "synthetic_stochastic_not_actor_observation",
+        "description": (
+            f"Stochastic Bernoulli cells at {bases} bases; baseline={baseline}, "
+            f"t_effect={t_effect}, j_effect={j_effect}, missing_rate={missing_rate}"
+        ),
+        "design": {
+            "bases": bases,
+            "baseline": baseline,
+            "t_effect": t_effect,
+            "j_effect": j_effect,
+            "missing_rate": missing_rate,
+            "seed": seed,
+            "cell_probabilities": cell_probs,
+            "cluster_note": "base_scenarios_are_clusters_not_independent_episodes",
+        },
+        "expected_contrasts": {
+            "T_visibility": t_effect,
+            "J_visibility": j_effect,
+            "TxJ_interaction": 0.0,
+        },
+        "assignments": assignments,
+        "rows": rows,
+        "row_count": len(rows),
+        "primary_arm_assigned": len(rows),
+    }
+
+
 def write_simulation_fixtures(directory: Path | None = None) -> dict[str, Path]:
-    """Materialize synthetic analysis fixtures under fixtures/analysis/."""
+    """
+    Materialize synthetic analysis fixtures under fixtures/analysis/.
+
+    Explicit regeneration only — never call this as a side effect of read-only
+    analyze-dry / analyze commands.
+    """
     root = directory or ANALYSIS_FIXTURES_DIR
     root.mkdir(parents=True, exist_ok=True)
     paths: dict[str, Path] = {}

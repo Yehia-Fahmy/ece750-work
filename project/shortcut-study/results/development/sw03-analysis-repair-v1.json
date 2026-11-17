@@ -1,0 +1,55 @@
+{
+  "analyze_dry_fixture_side_effect": "fixed_default_materialize_fixtures_false",
+  "branch": "cursor/sw03-analysis-release-c6c4",
+  "cpu_only": true,
+  "dry_release_sha256": {
+    "analysis_manifest.json": "e22a56dc7a74842cdd1bd6af1f8e16f4b293396ccd769b334718b2190800ddc1",
+    "analysis_protocol_snapshot.json": "0f4e30817de4175f3e5d639ae52663c95a1c70477e0ef7f2f5386a9f1234b2e4",
+    "analysis_report.json": "e2374bdd0db96741c2d4f4951d7569de81b9cce68983bf4fea7af644597ad621",
+    "retained_inputs/analysis_rows.json": "48f8775216f4dd5b762de8bdd054a1f71cca22bf7abe32ba4c41f7ed28fbc06c",
+    "retained_inputs/schedule.json": "d9f24488611066ea33499ffd11d619571683c558c8b7bfd57b084709862e501b"
+  },
+  "evidence_kind": "development_sw03_analysis_repair",
+  "findings_closed": [
+    "A1",
+    "A2",
+    "A3",
+    "A4",
+    "A5"
+  ],
+  "gpu_work": false,
+  "input_commit": "3f77a18475097fad9f7754b038cefaa6457af065",
+  "output_commit": "69fd5fbe4a2c9579fc129ea6903fa2043cf38962",
+  "package": "SW03",
+  "source_sha256": {
+    "project/shortcut-study/ANALYSIS_PROTOCOL.md": "5f23cde44e56f4645020a26006a252417da3d895cd248626c62c6fdd2367b6ae",
+    "project/shortcut-study/src/shortcut_study/analysis/__init__.py": "6f70bf99ec0c36633753427b7780d2c94b15b607abcfe5f96a851de5658b30dc",
+    "project/shortcut-study/src/shortcut_study/analysis/aggregate.py": "47b72162064a28f11d399f9c030a89b85ffcc0286a9cb6514bc01b9abad0fe3f",
+    "project/shortcut-study/src/shortcut_study/analysis/compare.py": "16c1e35f436e355b8c83e0896707db52b9143e297697b1b42c91d7bc6f24cacf",
+    "project/shortcut-study/src/shortcut_study/analysis/harness.py": "dae73af5422e1a678636283f315cb9bb3065cb36e9915ce4b6a5cf63f71d6003",
+    "project/shortcut-study/src/shortcut_study/analysis/io.py": "62a189ad38baa445248e46034ca0b497184665c48bdb584f831bf642a88012fb",
+    "project/shortcut-study/src/shortcut_study/analysis/metrics.py": "e525d070f09f20d1a9e1a014aaf95bee222139c87068c527f0c44dfe12b8b295",
+    "project/shortcut-study/src/shortcut_study/analysis/protocol.py": "1d5a9f5170ea0e40542ff515a8ee9522a5edef1984dcbc08b202a3e4ae3a7abf",
+    "project/shortcut-study/src/shortcut_study/analysis/semantic.py": "685e7699748c18f03c9ac04ad02b46a853214a1840837344cf58c66ad517642e",
+    "project/shortcut-study/src/shortcut_study/analysis/simulate.py": "dfddb7e9da84ddb4dd90b9b64089fa3da94876f38a40a0c3e8b82ec5d7c33e46",
+    "project/shortcut-study/tests/test_analysis.py": "f9ea1c68e129dbabfa3b5d6a9312b4e2234a0b73ab56c4df59ed8176ad41fc54",
+    "project/shortcut-study/tests/test_sw03_analysis_release.py": "fdab68164594709d21480f1b4003f6719f9e660d2cdea2a9f44c4ae5c0af932f"
+  },
+  "stochastic_candidate_scope": {
+    "T_percentile_95": [
+      0.18718750000000006,
+      0.40031250000000007
+    ],
+    "T_point": 0.2875,
+    "bases": 20,
+    "note": "synthetic_not_actor; bases_are_clusters"
+  },
+  "tests": {
+    "commands": [
+      "PYTHONPATH=project/shortcut-study/src python3 -m unittest discover -s project/shortcut-study/tests -p 'test_analysis.py' -v",
+      "PYTHONPATH=project/shortcut-study/src python3 -m unittest discover -s project/shortcut-study/tests -p 'test_sw03*.py' -v"
+    ],
+    "outcome": "19 tests OK (10 test_analysis + 9 test_sw03)"
+  },
+  "tracker": "ECE-38"
+}

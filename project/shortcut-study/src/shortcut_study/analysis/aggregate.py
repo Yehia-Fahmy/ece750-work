@@ -149,8 +149,13 @@ def average_contrast_bounds(
     Equal family weight; within family equal difficulty strata; within stratum
     equal blocks; equal information-state mixing is achieved by including both
     info blocks when present in the simulation/schedule.
+
+    ``complete_only=True`` is retained for block-level diagnostics only. The
+    confirmatory complete-base sensitivity estimand (identical point and
+    bootstrap inclusion) lives in ``compare.complete_base_contrast``.
     """
     by_family: dict[str, list[tuple[float, float]]] = defaultdict(list)
+    blocks_used = 0
     for stratum_key, items in strata_blocks.items():
         family = stratum_key.split("|", 1)[0]
         values = []
@@ -158,6 +163,7 @@ def average_contrast_bounds(
             if complete_only and not item["identified"].get(contrast, False):
                 continue
             values.append(item["contrasts"][contrast])
+            blocks_used += 1
         if values:
             # Equal weight across difficulty strata keys is applied by caller
             # grouping; here each stratum contributes its block mean.
@@ -172,9 +178,7 @@ def average_contrast_bounds(
             "point": None,
         }
     family_means = []
-    blocks_used = 0
-    for family, stratum_means in sorted(by_family.items()):
-        blocks_used += len(stratum_means)
+    for _family, stratum_means in sorted(by_family.items()):
         family_means.append((
             sum(v[0] for v in stratum_means) / len(stratum_means),
             sum(v[1] for v in stratum_means) / len(stratum_means),
@@ -186,4 +190,95 @@ def average_contrast_bounds(
         "blocks_used": blocks_used,
         "bounds": [lo, hi],
         "point": lo if lo == hi else None,
+    }
+
+
+def reporting_denominators(rows: Iterable[Mapping[str, Any]]) -> dict[str, Any]:
+    """
+    Separate completion / parse / valid-A denominators for gate reporting.
+
+    Does not redefine historical qualification gate counts. Conditional
+    parseability among completed episodes is distinct from assigned-denominator
+    valid-answer rates.
+    """
+    rows = list(rows)
+    assigned = len(rows)
+    complete_info = [r for r in rows if r.get("information_state") == "complete"]
+
+    def _terminal(row: Mapping[str, Any]) -> str:
+        integrity = row.get("integrity") or {}
+        if isinstance(integrity, Mapping) and integrity.get("terminal_status"):
+            return str(integrity["terminal_status"])
+        return str(row.get("terminal_status") or "unknown_terminal")
+
+    def _answer_valid(row: Mapping[str, Any]) -> bool | None:
+        task = row.get("task_result") or {}
+        if isinstance(task, Mapping) and "answer_valid" in task:
+            value = task.get("answer_valid")
+            if value is True or value is False or value is None:
+                return value
+        value = row.get("answer_valid")
+        if value is True or value is False or value is None:
+            return value
+        return None
+
+    def _parseable_response(row: Mapping[str, Any]) -> bool | None:
+        """Native response parse success when recorded; else fall back to answer_valid."""
+        integrity = row.get("integrity") or {}
+        if isinstance(integrity, Mapping) and "extraction_failure" in integrity:
+            # extraction_failure True → not parseable; False → parseable when completed.
+            failed = integrity.get("extraction_failure")
+            if failed is True:
+                return False
+            if failed is False:
+                return True
+        return _answer_valid(row)
+
+    completed = [r for r in rows if _terminal(r) == "completed"]
+    complete_completed = [r for r in complete_info if _terminal(r) == "completed"]
+    parseable_complete_completed = [
+        r for r in complete_completed if _parseable_response(r) is True
+    ]
+    valid_assigned = [r for r in rows if _answer_valid(r) is True]
+    valid_complete_assigned = [r for r in complete_info if _answer_valid(r) is True]
+
+    def _rate(num: int, den: int) -> float | None:
+        return (num / den) if den else None
+
+    return {
+        "assigned": assigned,
+        "terminal_completion": {
+            "numerator": len(completed),
+            "denominator": assigned,
+            "rate": _rate(len(completed), assigned),
+            "definition": "terminal_status=completed / assigned",
+        },
+        "response_parse_among_complete_completed": {
+            "numerator": len(parseable_complete_completed),
+            "denominator": len(complete_completed),
+            "rate": _rate(len(parseable_complete_completed), len(complete_completed)),
+            "definition": (
+                "parseable response among complete-information episodes with "
+                "terminal_status=completed (conditional; not assigned-denominator)"
+            ),
+        },
+        "valid_answer_among_assigned": {
+            "numerator": len(valid_assigned),
+            "denominator": assigned,
+            "rate": _rate(len(valid_assigned), assigned),
+            "definition": "task_result.answer_valid is True / assigned",
+        },
+        "valid_answer_among_complete_assigned": {
+            "numerator": len(valid_complete_assigned),
+            "denominator": len(complete_info),
+            "rate": _rate(len(valid_complete_assigned), len(complete_info)),
+            "definition": (
+                "task_result.answer_valid is True among assigned "
+                "complete-information episodes"
+            ),
+        },
+        "note": (
+            "Reporting definitions only; do not retroactively redefine "
+            "historical gate failures that used a selected completed denominator."
+        ),
     }

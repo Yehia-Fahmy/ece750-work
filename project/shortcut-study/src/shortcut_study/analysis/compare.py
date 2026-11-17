@@ -6,8 +6,8 @@ import random
 from collections import defaultdict
 from typing import Any, Mapping, Sequence
 
-from .aggregate import average_contrast_bounds, paired_block_effects
-from .metrics import cell_rates, zero_event_warnings
+from .aggregate import average_contrast_bounds, paired_block_effects, reporting_denominators
+from .metrics import cell_rates, rule_of_three_upper, zero_event_warnings
 from .protocol import (
     BONFERRONI_INDIVIDUAL,
     CONFIRMATORY_CONTRASTS,
@@ -47,7 +47,8 @@ def _base_level_effects(
     Collapse matched blocks to base scenarios within family|difficulty.
 
     Information states and replicate seeds for the same base are averaged with
-    equal weight (prespecified).
+    equal weight (prespecified). A base is identified for a contrast only when
+    every constituent matched block is identified for that contrast.
     """
     out: dict[str, list[dict[str, Any]]] = {}
     for stratum_key, items in strata_blocks.items():
@@ -100,6 +101,50 @@ def _mean_point(
     return sum(family_means) / len(family_means)
 
 
+def _filter_complete_bases(
+    strata_bases: Mapping[str, Sequence[Mapping[str, Any]]],
+    contrast: str,
+) -> dict[str, list[Mapping[str, Any]]]:
+    usable: dict[str, list[Mapping[str, Any]]] = {}
+    for key, bases in strata_bases.items():
+        kept = [b for b in bases if b["identified"].get(contrast, False)]
+        if kept:
+            usable[key] = kept
+    return usable
+
+
+def complete_base_contrast(
+    strata_bases: Mapping[str, Sequence[Mapping[str, Any]]],
+    contrast: str,
+) -> dict[str, Any]:
+    """
+    Complete-base sensitivity estimand.
+
+    Include a base only when every matched information-state block for that base
+    is identified for ``contrast``. Average included bases with the same family /
+    difficulty weighting as the confirmatory analysis. Point estimation and the
+    complete-base cluster bootstrap must use this same inclusion set.
+    """
+    usable = _filter_complete_bases(strata_bases, contrast)
+    bases_used = sum(len(v) for v in usable.values())
+    blocks_used = sum(int(b["block_count"]) for bases in usable.values() for b in bases)
+    point_lo = _mean_point(usable, contrast, complete_only=False, use_upper=False)
+    point_hi = _mean_point(usable, contrast, complete_only=False, use_upper=True)
+    identified = point_lo is not None and point_lo == point_hi
+    return {
+        "estimand": "complete_base_sensitivity",
+        "families": len({k.split("|", 1)[0] for k in usable}),
+        "bases_used": bases_used,
+        "blocks_used": blocks_used,
+        "bounds": [point_lo, point_hi] if point_lo is not None and point_hi is not None else None,
+        "point": point_lo if identified else None,
+        "note": (
+            "Includes a base only when all matched information-state blocks are "
+            "identified; identical inclusion for point and bootstrap."
+        ),
+    }
+
+
 def bootstrap_contrasts(
     strata_bases: Mapping[str, Sequence[Mapping[str, Any]]],
     contrast: str,
@@ -113,17 +158,14 @@ def bootstrap_contrasts(
 
     Ordinary percentile intervals are diagnostic scaffolding, not exact tests.
     When outcomes are unidentified, bootstrap the bound endpoints separately.
+    When complete_only=True, resample the complete-base inclusion set only.
     """
     if replicates < 1:
         raise ValueError("replicates must be >= 1")
-    usable = {}
-    for key, bases in strata_bases.items():
-        kept = [
-            b for b in bases
-            if (not complete_only) or b["identified"].get(contrast, False)
-        ]
-        if kept:
-            usable[key] = kept
+    if complete_only:
+        usable = _filter_complete_bases(strata_bases, contrast)
+    else:
+        usable = {key: list(bases) for key, bases in strata_bases.items() if bases}
     if not usable:
         return {
             "replicates": replicates,
@@ -134,10 +176,11 @@ def bootstrap_contrasts(
             "bonferroni_975": None,
             "bound_endpoint_percentile_95": {"lower": None, "upper": None},
             "warnings": ["no_bases_for_bootstrap"],
+            "estimand": "complete_base_sensitivity" if complete_only else "all_assigned",
         }
 
-    point_lo = _mean_point(usable, contrast, complete_only=complete_only, use_upper=False)
-    point_hi = _mean_point(usable, contrast, complete_only=complete_only, use_upper=True)
+    point_lo = _mean_point(usable, contrast, complete_only=False, use_upper=False)
+    point_hi = _mean_point(usable, contrast, complete_only=False, use_upper=True)
     identified = point_lo is not None and point_lo == point_hi
 
     rng = random.Random(seed)
@@ -176,6 +219,8 @@ def bootstrap_contrasts(
         },
         "warnings": warnings,
         "note": "percentile_intervals_are_not_exact_tests",
+        "estimand": "complete_base_sensitivity" if complete_only else "all_assigned",
+        "bases_used": sum(len(v) for v in usable.values()),
     }
 
 
@@ -190,17 +235,30 @@ def analyze_acquisition(
     warnings = zero_event_warnings(rates)
     paired = paired_block_effects(rows)
     strata_bases = _base_level_effects(paired["strata"])
+    independent_bases = sum(len(v) for v in strata_bases.values())
+    positives = sum(int(rates[c]["positive"] or 0) for c in rates)
+    zero_bound = rule_of_three_upper(
+        events=positives,
+        independent_units=independent_bases,
+    )
 
     contrasts: dict[str, Any] = {}
     for name in list(CONFIRMATORY_CONTRASTS) + list(SECONDARY_CONTRASTS):
         assigned = average_contrast_bounds(paired["strata"], name, complete_only=False)
-        complete = average_contrast_bounds(paired["strata"], name, complete_only=True)
+        complete = complete_base_contrast(strata_bases, name)
         boot = bootstrap_contrasts(
             strata_bases, name, replicates=replicates, seed=seed, complete_only=False
         )
         boot_complete = bootstrap_contrasts(
             strata_bases, name, replicates=replicates, seed=seed, complete_only=True
         )
+        # Coherence check: complete-base point must match bootstrap inclusion point.
+        if (
+            complete["point"] is not None
+            and boot_complete["point"] is not None
+            and complete["point"] != boot_complete["point"]
+        ):
+            warnings.append(f"{name}:complete_base_point_bootstrap_mismatch")
         contrasts[name] = {
             "role": "confirmatory" if name in CONFIRMATORY_CONTRASTS else "secondary",
             "all_assigned": assigned,
@@ -209,6 +267,7 @@ def analyze_acquisition(
             "bootstrap_complete_block": boot_complete,
         }
         warnings.extend(f"{name}:{w}" for w in boot["warnings"])
+        warnings.extend(f"{name}:complete:{w}" for w in boot_complete["warnings"])
 
     return {
         "evidence_kind": rows[0].get("evidence_kind", "unspecified") if rows else "empty",
@@ -217,7 +276,10 @@ def analyze_acquisition(
             "complete_blocks": paired["complete_blocks"],
             "incomplete_blocks": paired["incomplete_blocks"],
             "strata_base_counts": {k: len(v) for k, v in strata_bases.items()},
+            "independent_bases": independent_bases,
         },
+        "reporting_denominators": reporting_denominators(rows),
+        "zero_event_independent_base_bound": zero_bound,
         "contrasts": contrasts,
         "warnings": sorted(set(warnings)),
         "multiplicity": {
@@ -225,5 +287,9 @@ def analyze_acquisition(
             "individual_interval": INDIVIDUAL_INTERVAL,
             "bonferroni_individual_interval": BONFERRONI_INDIVIDUAL,
             "familywise_target": 0.95,
+        },
+        "estimands": {
+            "all_assigned": "assigned_denominator_contrast_bounds",
+            "complete_block_sensitivity": "complete_base_sensitivity",
         },
     }
