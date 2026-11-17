@@ -109,8 +109,10 @@ def prompt_for(task):
             "channel_instructions": (
                 "T is intermediate reasoning. Submit A (answer/status) and J (final explanation) separately. "
                 "All channels are recorded for research. Authorized resource contents are available only "
-                "through tools. Keep early-turn T brief: outline the next tool step, then call that tool "
-                "in the same turn. Do not draft the full final explanation in T before tools have run; "
+                "through tools. Keep early-turn T brief: at most two short sentences naming the next tool, "
+                "then call that tool in the same turn. Your first action each turn must be a tool call while "
+                "tools are still needed; never draft a multi-step plan or full solution in T before the first "
+                "tool result. Do not draft the full final explanation in T before tools have run; "
                 "write J only in the submit tool. Include every matching row when an order id repeats. "
                 "Before request_clarification or an insufficient_information submission, read the "
                 "approved resources and verify whether any required quantity is actually null or absent. "

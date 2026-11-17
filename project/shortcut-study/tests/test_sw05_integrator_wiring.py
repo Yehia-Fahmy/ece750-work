@@ -45,7 +45,7 @@ CONFIGS = ROOT / "configs" / "development"
 class TabCatalogConfigTests(unittest.TestCase):
     def test_development_catalog_matches_code_versions(self):
         catalog = json.loads((CONFIGS / "tab_catalog.json").read_text())
-        self.assertEqual(catalog["catalog_version"], "tab-catalog-v3")
+        self.assertEqual(catalog["catalog_version"], "tab-catalog-v4")
         self.assertEqual(catalog["catalog_version"], CATALOG_VERSION)
         self.assertEqual(catalog["tab01_moderate_generator_version"], TAB01_SLICE_VERSION)
         self.assertEqual(catalog["other_generator_version"], CATALOG_VERSION)

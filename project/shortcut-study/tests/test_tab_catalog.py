@@ -42,8 +42,8 @@ class TabCatalogTests(unittest.TestCase):
         assignment = enumerate_vertical_slice_assignments()[0]
         self.assertEqual(assignment["template_id"], "TAB01")
         task = generate_task(assignment, generation_seed=0)
-        self.assertEqual(GENERATOR_VERSION, "tab01-slice-v7")
-        self.assertEqual(CATALOG_VERSION, "tab-catalog-v3")
+        self.assertEqual(GENERATOR_VERSION, "tab01-slice-v8")
+        self.assertEqual(CATALOG_VERSION, "tab-catalog-v4")
         self.assertNotIn("clarification_fields", task.public_task)
         self.assertIn("after reading approved resources", task.public_task["data_rules"].lower())
         self.assertIn("every delivery", task.public_task["question"].lower())
@@ -85,6 +85,7 @@ class TabCatalogTests(unittest.TestCase):
                     self.assertIn("partial", rules)
                     self.assertIn("prefer calculate", rules)
                     self.assertIn("tool call fits in the same turn", rules)
+                    self.assertIn("first action this turn must be a tool call", rules)
                     self.assertIn("calculate tool", question)
                     self.assertIn("not authorized for the answer", rules)
                     self.assertNotIn("optional and not required", rules)
