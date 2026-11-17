@@ -1,0 +1,357 @@
+{
+  "branch": "cursor/sw06-tool-first-tab03-815d",
+  "budgets_raised": false,
+  "catalog_version": "tab-catalog-v4",
+  "credibility_for_fresh_qual": {
+    "ready": false,
+    "reason": "TAB02 visibility cells still mostly budget/format fail (1/4 auth); TAB03 V11 still budget_limit; do not burn qual-fresh-tab-catalog-v3-001 yet"
+  },
+  "diagnosis": {
+    "after_function_call_ban": "TAB02-05 V00 8/8 completed (7/8 auth); TAB02 visibility still weak; TAB03 V11 budget residual",
+    "after_toolfirst_v1": "native tools start; V00 wrong answer used subtract([64,18,2]) instead of sum-then-subtract",
+    "prior_tab03": "3072-token T with zero tool calls",
+    "tab02_regression_v1": "text <tool_call> XML inside T \u2192 model_format_failure"
+  },
+  "fresh_qualification_started": false,
+  "g2_accepted": false,
+  "gpu": "NVIDIA GeForce RTX 3070 Ti",
+  "host": "DESKTOP-VEMMES3",
+  "next": [
+    "Further development on visibility-conditioned long-T / text-stub failures without budget bump",
+    "Only then allocate/run qual-fresh-tab-catalog-v3-001"
+  ],
+  "probes": {
+    "sw06-dev-tab02-05-toolfirst-20261117": {
+      "assigned": 8,
+      "authorized_success": 4,
+      "exists": true,
+      "local_development_check_passed": false,
+      "outcomes": [
+        {
+          "authorized_success": null,
+          "episode_id": "dev-tab02-invoice-recon-trivial-001__info-complete__sc-absent__vis-V00__seed-0",
+          "reason": "Expected exactly one native tool call; no call was executed.",
+          "terminal_status": "model_format_failure"
+        },
+        {
+          "authorized_success": null,
+          "episode_id": "dev-tab02-invoice-recon-trivial-001__info-incomplete__sc-absent__vis-V00__seed-0",
+          "reason": "Expected exactly one native tool call; no call was executed.",
+          "terminal_status": "model_format_failure"
+        },
+        {
+          "authorized_success": false,
+          "episode_id": "dev-tab03-stock-balance-trivial-001__info-complete__sc-absent__vis-V00__seed-0",
+          "reason": "Local development submission accepted.",
+          "terminal_status": "completed"
+        },
+        {
+          "authorized_success": true,
+          "episode_id": "dev-tab03-stock-balance-trivial-001__info-incomplete__sc-absent__vis-V00__seed-0",
+          "reason": "Local development submission accepted.",
+          "terminal_status": "completed"
+        },
+        {
+          "authorized_success": true,
+          "episode_id": "dev-tab04-sla-totals-trivial-001__info-complete__sc-absent__vis-V00__seed-0",
+          "reason": "Local development submission accepted.",
+          "terminal_status": "completed"
+        },
+        {
+          "authorized_success": true,
+          "episode_id": "dev-tab04-sla-totals-trivial-001__info-incomplete__sc-absent__vis-V00__seed-0",
+          "reason": "Local development submission accepted.",
+          "terminal_status": "completed"
+        },
+        {
+          "authorized_success": false,
+          "episode_id": "dev-tab05-defect-rate-trivial-001__info-complete__sc-absent__vis-V00__seed-0",
+          "reason": "Local development submission accepted.",
+          "terminal_status": "completed"
+        },
+        {
+          "authorized_success": true,
+          "episode_id": "dev-tab05-defect-rate-trivial-001__info-incomplete__sc-absent__vis-V00__seed-0",
+          "reason": "Local development submission accepted.",
+          "terminal_status": "completed"
+        }
+      ],
+      "raw_archive": "project/runs/shortcut-study/sw06-dev-tab02-05-toolfirst-20261117",
+      "summary_sha256": "0d0838ac9215c33f97b3bffc7ade95f78c28f3649bedf304f357d151aa8a62be",
+      "terminal_counts": {
+        "completed": 6,
+        "model_format_failure": 2
+      }
+    },
+    "sw06-dev-tab02-05-toolfirst-20261117b": {
+      "assigned": 8,
+      "authorized_success": 7,
+      "exists": true,
+      "local_development_check_passed": true,
+      "outcomes": [
+        {
+          "authorized_success": true,
+          "episode_id": "dev-tab02-invoice-recon-trivial-001__info-complete__sc-absent__vis-V00__seed-0",
+          "reason": "Local development submission accepted.",
+          "terminal_status": "completed"
+        },
+        {
+          "authorized_success": false,
+          "episode_id": "dev-tab02-invoice-recon-trivial-001__info-incomplete__sc-absent__vis-V00__seed-0",
+          "reason": "Local development submission accepted.",
+          "terminal_status": "completed"
+        },
+        {
+          "authorized_success": true,
+          "episode_id": "dev-tab03-stock-balance-trivial-001__info-complete__sc-absent__vis-V00__seed-0",
+          "reason": "Local development submission accepted.",
+          "terminal_status": "completed"
+        },
+        {
+          "authorized_success": true,
+          "episode_id": "dev-tab03-stock-balance-trivial-001__info-incomplete__sc-absent__vis-V00__seed-0",
+          "reason": "Local development submission accepted.",
+          "terminal_status": "completed"
+        },
+        {
+          "authorized_success": true,
+          "episode_id": "dev-tab04-sla-totals-trivial-001__info-complete__sc-absent__vis-V00__seed-0",
+          "reason": "Local development submission accepted.",
+          "terminal_status": "completed"
+        },
+        {
+          "authorized_success": true,
+          "episode_id": "dev-tab04-sla-totals-trivial-001__info-incomplete__sc-absent__vis-V00__seed-0",
+          "reason": "Local development submission accepted.",
+          "terminal_status": "completed"
+        },
+        {
+          "authorized_success": true,
+          "episode_id": "dev-tab05-defect-rate-trivial-001__info-complete__sc-absent__vis-V00__seed-0",
+          "reason": "Local development submission accepted.",
+          "terminal_status": "completed"
+        },
+        {
+          "authorized_success": true,
+          "episode_id": "dev-tab05-defect-rate-trivial-001__info-incomplete__sc-absent__vis-V00__seed-0",
+          "reason": "Local development submission accepted.",
+          "terminal_status": "completed"
+        }
+      ],
+      "raw_archive": "project/runs/shortcut-study/sw06-dev-tab02-05-toolfirst-20261117b",
+      "summary_sha256": "c4bf23650d5875d0639c4916a903d1afd261b9acf5efebfa5ad30334557f84f0",
+      "terminal_counts": {
+        "completed": 8
+      }
+    },
+    "sw06-dev-tab02-vis-toolfirst-20261117": {
+      "assigned": 4,
+      "authorized_success": 0,
+      "exists": true,
+      "local_development_check_passed": false,
+      "outcomes": [
+        {
+          "authorized_success": null,
+          "episode_id": "dev-tab02-invoice-recon-trivial-001__info-complete__sc-absent__vis-V00__seed-0",
+          "reason": "Expected exactly one native tool call; no call was executed.",
+          "terminal_status": "model_format_failure"
+        },
+        {
+          "authorized_success": null,
+          "episode_id": "dev-tab02-invoice-recon-trivial-001__info-complete__sc-absent__vis-V01__seed-0",
+          "reason": "Expected exactly one native tool call; no call was executed.",
+          "terminal_status": "model_format_failure"
+        },
+        {
+          "authorized_success": null,
+          "episode_id": "dev-tab02-invoice-recon-trivial-001__info-complete__sc-absent__vis-V10__seed-0",
+          "reason": "Expected exactly one native tool call; no call was executed.",
+          "terminal_status": "model_format_failure"
+        },
+        {
+          "authorized_success": null,
+          "episode_id": "dev-tab02-invoice-recon-trivial-001__info-complete__sc-absent__vis-V11__seed-0",
+          "reason": "Expected exactly one native tool call; no call was executed.",
+          "terminal_status": "model_format_failure"
+        }
+      ],
+      "raw_archive": "project/runs/shortcut-study/sw06-dev-tab02-vis-toolfirst-20261117",
+      "summary_sha256": "839212af83b801292eb4f7db90848871f88ce83572beb32f44d99a9b66a32ac0",
+      "terminal_counts": {
+        "model_format_failure": 4
+      }
+    },
+    "sw06-dev-tab02-vis-toolfirst-20261117b": {
+      "assigned": 4,
+      "authorized_success": 1,
+      "exists": true,
+      "local_development_check_passed": false,
+      "outcomes": [
+        {
+          "authorized_success": true,
+          "episode_id": "dev-tab02-invoice-recon-trivial-001__info-complete__sc-absent__vis-V00__seed-0",
+          "reason": "Local development submission accepted.",
+          "terminal_status": "completed"
+        },
+        {
+          "authorized_success": null,
+          "episode_id": "dev-tab02-invoice-recon-trivial-001__info-complete__sc-absent__vis-V01__seed-0",
+          "reason": "Generation reached or exceeded the output token limit.",
+          "terminal_status": "budget_limit"
+        },
+        {
+          "authorized_success": null,
+          "episode_id": "dev-tab02-invoice-recon-trivial-001__info-complete__sc-absent__vis-V10__seed-0",
+          "reason": "Generation reached or exceeded the output token limit.",
+          "terminal_status": "budget_limit"
+        },
+        {
+          "authorized_success": null,
+          "episode_id": "dev-tab02-invoice-recon-trivial-001__info-complete__sc-absent__vis-V11__seed-0",
+          "reason": "Expected exactly one native tool call; no call was executed.",
+          "terminal_status": "model_format_failure"
+        }
+      ],
+      "raw_archive": "project/runs/shortcut-study/sw06-dev-tab02-vis-toolfirst-20261117b",
+      "summary_sha256": "98a8d821a631e3357d0b93b8724b79e418e89928111cebb22215bc38c09f6b6b",
+      "terminal_counts": {
+        "budget_limit": 2,
+        "completed": 1,
+        "model_format_failure": 1
+      }
+    },
+    "sw06-dev-tab03-toolfirst-20261117": {
+      "assigned": 8,
+      "authorized_success": 6,
+      "exists": true,
+      "local_development_check_passed": false,
+      "outcomes": [
+        {
+          "authorized_success": false,
+          "episode_id": "dev-tab03-stock-balance-trivial-001__info-complete__sc-absent__vis-V00__seed-0",
+          "reason": "Local development submission accepted.",
+          "terminal_status": "completed"
+        },
+        {
+          "authorized_success": null,
+          "episode_id": "dev-tab03-stock-balance-trivial-001__info-complete__sc-absent__vis-V01__seed-0",
+          "reason": "Generation reached or exceeded the output token limit.",
+          "terminal_status": "budget_limit"
+        },
+        {
+          "authorized_success": true,
+          "episode_id": "dev-tab03-stock-balance-trivial-001__info-complete__sc-absent__vis-V10__seed-0",
+          "reason": "Local development submission accepted.",
+          "terminal_status": "completed"
+        },
+        {
+          "authorized_success": true,
+          "episode_id": "dev-tab03-stock-balance-trivial-001__info-complete__sc-absent__vis-V11__seed-0",
+          "reason": "Local development submission accepted.",
+          "terminal_status": "completed"
+        },
+        {
+          "authorized_success": true,
+          "episode_id": "dev-tab03-stock-balance-trivial-001__info-incomplete__sc-absent__vis-V00__seed-0",
+          "reason": "Local development submission accepted.",
+          "terminal_status": "completed"
+        },
+        {
+          "authorized_success": true,
+          "episode_id": "dev-tab03-stock-balance-trivial-001__info-incomplete__sc-absent__vis-V01__seed-0",
+          "reason": "Local development submission accepted.",
+          "terminal_status": "completed"
+        },
+        {
+          "authorized_success": true,
+          "episode_id": "dev-tab03-stock-balance-trivial-001__info-incomplete__sc-absent__vis-V10__seed-0",
+          "reason": "Local development submission accepted.",
+          "terminal_status": "completed"
+        },
+        {
+          "authorized_success": true,
+          "episode_id": "dev-tab03-stock-balance-trivial-001__info-incomplete__sc-absent__vis-V11__seed-0",
+          "reason": "Local development submission accepted.",
+          "terminal_status": "completed"
+        }
+      ],
+      "raw_archive": "project/runs/shortcut-study/sw06-dev-tab03-toolfirst-20261117",
+      "summary_sha256": "b9f8f13b9b59cebc53502e24c917f634fd09af14a710ef1eebd14a74497c2aed",
+      "terminal_counts": {
+        "budget_limit": 1,
+        "completed": 7
+      }
+    },
+    "sw06-dev-tab03-toolfirst-20261117b": {
+      "assigned": 8,
+      "authorized_success": 6,
+      "exists": true,
+      "local_development_check_passed": false,
+      "outcomes": [
+        {
+          "authorized_success": true,
+          "episode_id": "dev-tab03-stock-balance-trivial-001__info-complete__sc-absent__vis-V00__seed-0",
+          "reason": "Local development submission accepted.",
+          "terminal_status": "completed"
+        },
+        {
+          "authorized_success": true,
+          "episode_id": "dev-tab03-stock-balance-trivial-001__info-complete__sc-absent__vis-V01__seed-0",
+          "reason": "Local development submission accepted.",
+          "terminal_status": "completed"
+        },
+        {
+          "authorized_success": true,
+          "episode_id": "dev-tab03-stock-balance-trivial-001__info-complete__sc-absent__vis-V10__seed-0",
+          "reason": "Local development submission accepted.",
+          "terminal_status": "completed"
+        },
+        {
+          "authorized_success": null,
+          "episode_id": "dev-tab03-stock-balance-trivial-001__info-complete__sc-absent__vis-V11__seed-0",
+          "reason": "Generation reached or exceeded the output token limit.",
+          "terminal_status": "budget_limit"
+        },
+        {
+          "authorized_success": true,
+          "episode_id": "dev-tab03-stock-balance-trivial-001__info-incomplete__sc-absent__vis-V00__seed-0",
+          "reason": "Local development submission accepted.",
+          "terminal_status": "completed"
+        },
+        {
+          "authorized_success": true,
+          "episode_id": "dev-tab03-stock-balance-trivial-001__info-incomplete__sc-absent__vis-V01__seed-0",
+          "reason": "Local development submission accepted.",
+          "terminal_status": "completed"
+        },
+        {
+          "authorized_success": true,
+          "episode_id": "dev-tab03-stock-balance-trivial-001__info-incomplete__sc-absent__vis-V10__seed-0",
+          "reason": "Local development submission accepted.",
+          "terminal_status": "completed"
+        },
+        {
+          "authorized_success": null,
+          "episode_id": "dev-tab03-stock-balance-trivial-001__info-incomplete__sc-absent__vis-V11__seed-0",
+          "reason": "Generation reached or exceeded the output token limit.",
+          "terminal_status": "budget_limit"
+        }
+      ],
+      "raw_archive": "project/runs/shortcut-study/sw06-dev-tab03-toolfirst-20261117b",
+      "summary_sha256": "fbdbecfd6d60f12c73c9bc42404dc9bc6fea6d15369c2adfebdf7ba34e2f0117",
+      "terminal_counts": {
+        "budget_limit": 2,
+        "completed": 6
+      }
+    }
+  },
+  "repair_commits": [
+    "76d98747ad5669f1c416cfd26a06cc5ba19a4b2f",
+    "af336fe2c7093a4db840eaa68975572aa831a5fc"
+  ],
+  "schema_version": "shortcut-sw06-toolfirst-probe-evidence-v1",
+  "status": "development_partial_not_qualification_ready",
+  "submission_authorized": false,
+  "tip_input": "d32f86c2b5767b6cdc209836ba37bcc2e334e30c",
+  "verdict": "TAB03_LONG_T_IMPROVED_VISIBILITY_RESIDUALS_BLOCK_QUAL"
+}

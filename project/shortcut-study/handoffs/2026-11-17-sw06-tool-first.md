@@ -1,0 +1,25 @@
+# Package handoff — SW06 tool-first / TAB03 budget — 2026-11-17
+
+- Owner and role: SW06 GPU operator (`bc-1121d0a4`) on `DESKTOP-VEMMES3`
+- Status: ready_for_review (development repair + probes; **not** qualification; **not** G2)
+- Input commit: `d32f86c` (main after #35/#36)
+- Output commits: `76d9874`, `af336fe` on `cursor/sw06-tool-first-tab03-815d`
+- Paths changed:
+  - `configs/development/tab_catalog.json` → `tab-catalog-v4` / `tab01-slice-v8` (fresh batch id remains `qual-fresh-tab-catalog-v3-001`)
+  - `tasks/tables/common.py` `TOOL_FIRST_TURN_RULE`; tab01–05 data_rules; tab03 question sum-then-subtract
+  - `runner/__init__.py` channel instructions (function-call only; ban text `<tool_call>` stubs)
+  - matching tests
+- Concrete behavior: no budget bump; require native function-call tools with short T; clarify TAB03 arithmetic composition
+- Commands / outcomes:
+  - 255 unit tests OK
+  - Probe wave A (`…-20261117`): TAB03 7/8 completed with tools (vs prior 0-tool budget death); TAB02 visibility collapsed to text-stub tool XML
+  - Probe wave B (`…-20261117b`): TAB02–05 V00 **8/8 completed, 7/8 auth, local_development_check_passed=true**; TAB02 visibility 1/4 auth; TAB03 visibility 6/8 auth (V11 still budget)
+- Evidence: `results/development/sw06-toolfirst-probes-v1.json`; raw under `project/runs/shortcut-study/sw06-dev-*-toolfirst-*`
+- Failures / limits:
+  - **Not ready for `qual-fresh-tab-catalog-v3-001`** — visibility cells still fail (TAB02 V01/V10/V11; TAB03 V11)
+  - TAB02 incomplete V00 still submitted a numeric answer instead of insufficiency
+  - Text-stub `<tool_call>` can still appear under V11
+- GPU: exclusive `sw06-gpu-operator` lease; released after probes
+- Next safe action: more visibility-focused development (still no budget bump / no qual burn), then allocate fresh batch only when multi-visibility development looks credible
+- Acceptance reviewer: pending (≠ SW06 author)
+- `submission_authorized=false`
