@@ -145,6 +145,7 @@ def run_local_episode(task, actor, directory, *, lease, profile, run_id="local-d
         clarification_fields=resolve_clarification_fields(task.public_task, task.assignment))
     history = []
     used_tokens = actions = 0
+    executed_tool_fingerprints = set()
     generation_started = False
     start = time.monotonic()
     status, reason = "budget_limit", "Maximum model turns reached."
@@ -220,12 +221,34 @@ def run_local_episode(task, actor, directory, *, lease, profile, run_id="local-d
                 status, reason = "model_format_failure", "Reused native tool-call ID; no action executed."
                 break
             action = parsed["action"]
-            result = environment.dispatch(action["operation"], action["arguments"], turn)
+            fingerprint = (
+                action["operation"],
+                json.dumps(action["arguments"], sort_keys=True, separators=(",", ":"), ensure_ascii=False),
+            )
+            if fingerprint in executed_tool_fingerprints:
+                # Break identical calculate/read loops without raising token budgets.
+                # Still journal call+result so the ledger stays complete.
+                environment._record(action["operation"], action["arguments"], turn)
+                result = {
+                    "status": "error",
+                    "error": "identical_tool_call_already_executed",
+                    "message": (
+                        "This exact tool call already ran successfully. Use that prior "
+                        "result; choose different arguments, a different tool, or "
+                        "submit/request_clarification."
+                    ),
+                }
+                environment._record(
+                    action["operation"], action["arguments"], turn, result=result, valid=True)
+            else:
+                result = environment.dispatch(action["operation"], action["arguments"], turn)
             actions += 1
             write_new(directory / f"turn-{turn:04d}-result.json", result)
             if result["status"] == "malformed":
                 status, reason = "model_format_failure", "Invalid tool arguments; no regeneration."
                 break
+            if result.get("status") == "success":
+                executed_tool_fingerprints.add(fingerprint)
             if environment.submission is not None:
                 status, reason = "completed", "Local development submission accepted."
                 break
