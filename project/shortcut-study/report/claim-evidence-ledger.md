@@ -47,7 +47,8 @@ Use this table for report prose. Prefer hashes/paths over adjectives like “val
 | C-SW06-DEV-TOOLFIRST | Development tool-first cues / TAB03 long-T repair (TAB02–05 V00 improved; visibility residuals remain) | Development split only; **not** held-out; no fresh qual batch | PR #37 merged `272e4d7` | **Not G2**; #37 merged |
 | C-SW06-DEV-TOOLCHOICE | Development `tool_choice=required` + cooler sampling; TAB02 visibility cleared; TAB03 V01/V10 still budget_limit | Development split only; **not** held-out; no fresh qual batch | PR #39 merged `bffede3` | **Not G2**; #39 merged |
 | C-SW06-DEV-FORCEFIRST | Development force-first `list_resources` + reasoning-budget 256; TAB03 V01/V10 cleared in probes | Development split only; then used under fresh qual | PR #41 merged `f016540` (+ bookkeeping #42/#43) | **Not G2**; enabled fresh attempt |
-| C-BATCH-V3 | Fresh batch API + catalog v3 wired | CPU reservation / allocate API | `results/development/sw01-cpu-reservation-manifest-v1.json`, `#33` | Batch id **consumed** after FAIL; next attempt needs a new id |
+| C-SW06-DEV-RESIDUAL | Post-v3 FAIL residual repair: adapter v5 later-turn thinking off; tool/turn headroom; temp 0.2 | Development split only; **not** held-out | PR #46 merged `0290663` / `results/development/sw06-residual-format-budget-probes-v1.json` | **Not G2**; format **24/24**; TAB05 extreme **15/16**; `credibility_for_fresh_qual.ready=false`; ECE-59 follow-up |
+| C-BATCH-V3 | Fresh batch API + catalog v3 wired | CPU reservation / allocate API | `results/development/sw01-cpu-reservation-manifest-v1.json`, `#33` | Batch id **consumed** after FAIL; next attempt needs a new id after greenlight |
 | C-MAIN | Main factorial effects / visibility contrasts | Frozen main denominator | — | **No claim** (no freeze, no main collection) |
 | C-SEM | Semantic judge conclusions | Qualified judge + frozen audit scope | — | **Withdrawn / unqualified** unless later accepted |
 
@@ -61,10 +62,11 @@ Use this table for report prose. Prefer hashes/paths over adjectives like “val
 
 ## Parallel SW06 coordination
 
-- GPU operator: `bc-1121d0a4…` on WSL DESKTOP-VEMMES3 / RTX 3070 Ti (ECE-53 residual repair after ECE-42).
+- GPU operator: `bc-1121d0a4…` on WSL DESKTOP-VEMMES3 / RTX 3070 Ti.
 - Orchestrator / SW04–SW07 CPU authors **must not** acquire the GPU lease or start a second qualification operator.
-- Fresh v3-001 **FAIL** packaged (PR #44); prior FAIL rows (`C-G2-ORIG`, `C-G2-V2`, `C-G2-FRESH-V3`) preserved — do not rewrite.
-- Next: development probes for TAB01/03/04 format + TAB05 extreme budget → greenlight → **new** fresh batch id only then. No fresh 320 until greenlit.
+- Fresh v3-001 **FAIL** on main (#44/#45); prior FAIL rows preserved — do not rewrite.
+- ECE-53 **done**: #46 merged `0290663` (format 24/24; TAB05 extreme 15/16). Independent greenlight = **NO**.
+- ECE-59: TAB05 extreme residual on a **new** follow-up PR — clear to 16/16 or root waive before any fresh-320 greenlight.
 - Cutoff: Nov 22 18:00 America/Toronto → automatic S4 if no accepted qual+freeze. `submission_authorized=false`.
 
 ## Do not
@@ -72,8 +74,8 @@ Use this table for report prose. Prefer hashes/paths over adjectives like “val
 - Present catalog-v2 as a second independent held-out confirmation
 - Soft-accept G2 on 87.5% completion or treat easy 85% as overall pass
 - Reuse `qual-fresh-tab-catalog-v3-001` as fresh
+- Greenlight / burn a new fresh 320 while TAB05 extreme remains 15/16 (unless root waive)
 - Call development PASS “qualified”
 - Invent main effects or exploratory pilot estimates as confirmation
 - Soft-wash G2 FAIL or raise budgets as the primary remediation story
 - Claim course submission readiness
-- Burn a new 320-cell held-out before residual repairs are greenlit

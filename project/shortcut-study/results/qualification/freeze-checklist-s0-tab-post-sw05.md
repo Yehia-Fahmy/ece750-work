@@ -16,7 +16,7 @@ Parallel: SW06 fresh qualification is running on user WSL (ECE-42). This documen
 
 ## Still blocked before any real freeze signature
 
-- [ ] **Fresh** held-out G2 PASS on content-disjoint batch (SW06) — `qual-fresh-tab-catalog-v3-001` **FAIL** (consumed); next attempt needs a **new** batch id after ECE-53 greenlit repairs
+- [ ] **Fresh** held-out G2 PASS on content-disjoint batch (SW06) — `qual-fresh-tab-catalog-v3-001` **FAIL** (consumed); next attempt needs a **new** batch id after ECE-59 TAB05 extreme clear/waive + root greenlight (#46 format residuals merged; TAB05 extreme still 15/16)
 - [ ] G1 scientific closure recorded with long-pilot + runtime evidence as required by gates
 - [ ] Judge qualification **or** explicit behavioral-only scope + semantic withdrawal before freeze
 - [ ] Pre-freeze analysis simulation at candidate scope (A1–5 tooling ready; simulation not a freeze)
