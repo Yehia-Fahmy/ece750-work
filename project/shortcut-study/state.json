@@ -650,7 +650,7 @@
   "swarm_handoff": {
     "schema_version": 1,
     "date": "2026-11-17",
-    "status": "sw06_dev_pr37_in_review_not_g2",
+    "status": "sw06_dev_pr39_in_review_not_g2",
     "start_here": "SWARM_START.md",
     "work_packages": "SWARM_WORK_PACKAGES.md",
     "reconciliation": "handoffs/2026-11-17-completion-swarm.md",
@@ -896,9 +896,10 @@
         "assigned_paths": [],
         "evidence": [
           "https://github.com/Yehia-Fahmy/ece750-work/pull/35 (merged be3ccda)",
-          "https://github.com/Yehia-Fahmy/ece750-work/pull/37 (open tip 4159c92)"
+          "https://github.com/Yehia-Fahmy/ece750-work/pull/37 (merged 272e4d7)",
+          "https://github.com/Yehia-Fahmy/ece750-work/pull/39 (open tip 0089c21)"
         ],
-        "note": "ECE-42 / WSL sole GPU operator. Dev PR #37 @ 4159c92 (tool-first / TAB03, catalog tip claims v4/v8) \u2014 NOT G2; fresh batch qual-fresh-tab-catalog-v3-001 NOT consumed. Visibility residuals block fresh qual. Independent reviewer pending \u2260 bc-1121d0a4. Orchestrator must not take GPU lease.",
+        "note": "ECE-42 / WSL sole GPU operator. Dev PR #39 @ 0089c21 (tool_choice=required, temp 0.3; budgets unchanged) \u2014 NOT G2. TAB02 visibility cleared; TAB03 V01/V10 still block fresh qual; qual-fresh-tab-catalog-v3-001 NOT consumed. Independent reviewer pending \u2260 bc-1121d0a4. Orchestrator must not take GPU lease.",
         "tracker_task": "ECE-42",
         "host": {
           "worker_id": "a09a6978",
@@ -920,17 +921,23 @@
           {
             "number": 37,
             "url": "https://github.com/Yehia-Fahmy/ece750-work/pull/37",
-            "tip": "4159c926340d4e947965679598a8247c0b906c16",
-            "branch": "cursor/sw06-tool-first-tab03-815d",
+            "merge_sha": "272e4d773625bb2aea067de14513cf21f4c4ab94",
             "kind": "development_tool_first_tab03",
+            "status": "merged",
+            "g2_accepted": false,
+            "fresh_qualification_batch_consumed": false,
+            "summary": "tool-first / TAB03 long-T; catalog v4/v8 (merged)"
+          },
+          {
+            "number": 39,
+            "url": "https://github.com/Yehia-Fahmy/ece750-work/pull/39",
+            "tip": "0089c2158dd1c5c813bb1fa71cb5dcc1a419b5a4",
+            "branch": "cursor/sw06-tool-choice-required-815d",
+            "kind": "development_tool_choice_required",
             "status": "open",
             "g2_accepted": false,
             "fresh_qualification_batch_consumed": false,
-            "catalog_versions_claimed_on_tip": {
-              "catalog_version": "tab-catalog-v4",
-              "tab01_slice_version": "tab01-slice-v8"
-            },
-            "summary": "tool-first cues / TAB03 long-T repair; TAB02\u201305 V00 8/8 completed; visibility residuals remain; fresh qual intentionally not started"
+            "summary": "tool_choice=required + cooler sampling; TAB02 visibility 4/4 cleared; TAB03 V11 cleared; TAB03 V01/V10 still budget_limit \u2014 blocks fresh qual"
           }
         ]
       },
