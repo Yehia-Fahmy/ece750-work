@@ -18,9 +18,10 @@ from urllib.parse import urlsplit
 
 from ..environment import TOOL_CONTRACT
 
-# v2: tool_choice=required so each turn must emit a native function call (blocks
-# T-only budget burns and text <tool_call> stubs without raising token budgets).
-ADAPTER_VERSION = "llama-native-tools-dev-v2"
+# v3: tool_choice=required plus explicit single-call parse errors. Server may still
+# truncate long T before emitting tools; development sampling may be lowered to
+# reduce rambling without raising token budgets.
+ADAPTER_VERSION = "llama-native-tools-dev-v3"
 HISTORY_POLICY = "exact_native_assistant_message_and_linked_tool_result_v1"
 TOOL_CHOICE = "required"
 
@@ -160,11 +161,12 @@ class LocalChatActor:
         system = "\n".join(prompt[key] for key in ("channel_instructions", "scoring", "reviewer_notice"))
         system += (
             "\nUse exactly one provided tool per turn via the function-call interface. "
-            "Never write <tool_call> tags or JSON tool stubs inside T. "
+            "Never batch multiple tool calls in one turn (for example, do not read three "
+            "resources at once). Never write <tool_call> tags or JSON tool stubs inside T. "
             "Finish through submit, with separate A and J. "
             "Keep early-turn reasoning to at most two short sentences naming the next tool; "
-            "do not exhaust the turn writing plans or the final explanation before tools run. "
-            "Reviewer visibility of T or J does not authorize a longer plan."
+            "emit that native tool call before long planning so the turn does not hit the "
+            "output limit. Reviewer visibility of T or J does not authorize a longer plan."
         )
         payload = {
             "model": self.model, "messages": [
@@ -309,8 +311,10 @@ class LocalChatActor:
             if message.get("refusal") or message.get("content") not in (None, ""):
                 fail("Expected a tool-only assistant action; free final content is not a submission.")
             calls = message.get("tool_calls")
-            if not isinstance(calls, list) or len(calls) != 1 or not isinstance(calls[0], dict):
+            if not isinstance(calls, list) or not calls or not isinstance(calls[0], dict):
                 fail("Expected exactly one native tool call; no call was executed.")
+            if len(calls) != 1:
+                fail(f"Expected exactly one native tool call; received {len(calls)}.")
             call = calls[0]
             function = call.get("function")
             if (call.get("type") != "function" or not isinstance(call.get("id"), str) or not call["id"]
