@@ -315,7 +315,7 @@
     "Repair RD1/RD2/RD3 (SW01), IMPL-1/2/3 (SW02), A1\u2013A5 (SW03) before any new 320-episode qualification.",
     "ECE-59 done (#48 merged 430c86b): TAB05 extreme 16/16; live qual turns stay 16; probe-only turns 20. ECE-53 (#46) format 24/24 prior.",
     "ECE-63 done: #51 merged 7d965ba \u2014 qual-fresh-tab-catalog-v4-001 honest FAIL (completion 315/320=98.4% PASS; easy 11/20=55% FAIL). Batch consumed; g2_accepted=false. No soft-accept.",
-    "G2 remains failed: v3-001 FAIL + v4-001 FAIL (easy 55%); do not reuse either batch. No v5 greenlight.",
+    "G2 remains failed: v3-001 FAIL + v4-001 FAIL (easy 55%); do not reuse either batch. Root has greenlit ECE-74 v5-001 separately; g2_accepted stays false until that batch finishes honestly.",
     "ECE-69 done: #53 merged 096afd9 \u2014 TAB04/TAB05 easy residual wave C 8/8 (dev only). Live turns stay 16. No soft-accept.",
     "Root greenlit ECE-74: qual-fresh-tab-catalog-v5-001 (ns 50000) after ECE-69/#53. g2_accepted=false until finish. No soft-accept; no second GPU.",
     "Independently accept fresh qualification and commit freeze by 2026-11-22 18:00 America/Toronto or automatically select S4.",
@@ -1076,8 +1076,9 @@
             "probes_wave_c": "8/8",
             "g2_accepted": false,
             "fresh_320_authorized": false,
-            "v5_greenlight": false,
-            "await": "root greenlight for new fresh batch id"
+            "v5_greenlight": true,
+            "root_greenlight": "ECE-74",
+            "note": "Historical ECE-69 completion. Root subsequently greenlit ECE-74 / qual-fresh-tab-catalog-v5-001; g2_accepted remains false until that held-out finishes."
           }
         },
         "residual_repair": {
@@ -1100,7 +1101,7 @@
             "owner": "bc-1121d0a4-6c7d-5e71-adea-be1427c7815d",
             "independent_review": "lagging APPROVE + ECE-62 APPROVE tip 86f0046",
             "credibility_for_fresh_qual_ready": false,
-            "fresh_320_authorized": true,
+            "fresh_320_authorized": false,
             "root_greenlight": "ECE-63"
           },
           "easy_residual": {
