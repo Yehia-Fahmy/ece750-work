@@ -64,9 +64,9 @@ Use this table for report prose. Prefer hashes/paths over adjectives like “val
 
 - GPU operator: `bc-1121d0a4…` on WSL DESKTOP-VEMMES3 / RTX 3070 Ti.
 - Orchestrator / SW04–SW07 CPU authors **must not** acquire the GPU lease or start a second qualification operator.
-- Fresh v3-001 **FAIL** on main (#44/#45); prior FAIL rows preserved — do not rewrite.
-- ECE-53 **done**: #46 merged `0290663` (format 24/24; TAB05 extreme 15/16). Independent greenlight = **NO**.
-- ECE-59: TAB05 extreme residual on a **new** follow-up PR — clear to 16/16 or root waive before any fresh-320 greenlight.
+- Fresh v3-001 **FAIL** on main (#44/#45); prior FAIL rows (`C-G2-ORIG`, `C-G2-V2`, `C-G2-FRESH-V3`) preserved — do not rewrite.
+- ECE-53 **done**: #46 merged `0290663` (format 24/24). Independent greenlight remains **NO** until root says otherwise.
+- ECE-59: TAB05 extreme residual development wave **16/16** on `cursor/sw06-tab05-extreme-residual-815d` (evidence `results/development/sw06-tab05-extreme-residual-clearance-v1.json`). Still **no** fresh 320 until root greenlight + **new** batch id.
 - Cutoff: Nov 22 18:00 America/Toronto → automatic S4 if no accepted qual+freeze. `submission_authorized=false`.
 
 ## Do not
@@ -74,7 +74,7 @@ Use this table for report prose. Prefer hashes/paths over adjectives like “val
 - Present catalog-v2 as a second independent held-out confirmation
 - Soft-accept G2 on 87.5% completion or treat easy 85% as overall pass
 - Reuse `qual-fresh-tab-catalog-v3-001` as fresh
-- Greenlight / burn a new fresh 320 while TAB05 extreme remains 15/16 (unless root waive)
+- Greenlight / burn a new fresh 320 without root approval after ECE-59 review/merge
 - Call development PASS “qualified”
 - Invent main effects or exploratory pilot estimates as confirmation
 - Soft-wash G2 FAIL or raise budgets as the primary remediation story
