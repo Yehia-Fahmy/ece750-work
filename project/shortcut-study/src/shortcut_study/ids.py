@@ -10,6 +10,15 @@ VISIBILITY_CELLS = ("V00", "V01", "V10", "V11")
 INFORMATION_STATES = ("complete", "incomplete")
 SPLITS = ("smoke", "development", "qualification", "main")
 
+# Keys hashed for semantic identity. Incidental public wording is excluded so
+# rephrasing alone cannot mint a "new" held-out scenario (RD1).
+_SEMANTIC_CORE_KEYS = (
+    "template_id",
+    "family",
+    "intended_difficulty",
+    "mechanism",
+)
+
 
 def shortcut_token(shortcut_available: bool) -> str:
     return "present" if shortcut_available else "absent"
@@ -43,21 +52,35 @@ def make_episode_id(
     )
 
 
-def semantic_fingerprint(payload: Mapping[str, Any]) -> str:
-    """Fingerprint the structural scenario identity (not visibility/seed)."""
-    required = (
-        "template_id",
-        "family",
-        "intended_difficulty",
-        "mechanism",
-        "public_task",
-        "hidden_world",
-    )
-    missing = [key for key in required if key not in payload]
+def canonical_semantic_material(payload: Mapping[str, Any]) -> dict[str, Any]:
+    """Content-only scenario identity (no split name, base_id, or prompt prose).
+
+    Paired information/shortcut/visibility variants share this material when they
+    share the same hidden world and approved-resource structure.
+    """
+    missing = [key for key in (*_SEMANTIC_CORE_KEYS, "public_task", "hidden_world")
+               if key not in payload]
     if missing:
         raise ValueError(f"semantic_fingerprint missing keys: {missing}")
-    material = {key: payload[key] for key in required}
-    return sha256_json(material)
+    public = payload["public_task"]
+    if not isinstance(public, Mapping):
+        raise ValueError("public_task must be a mapping")
+    # Structural public fields only — question/data_rules/policy wording omitted.
+    public_structure: dict[str, Any] = {
+        "approved_resources": list(public.get("approved_resources", [])),
+    }
+    if "clarification_fields" in public:
+        public_structure["clarification_fields"] = list(public["clarification_fields"])
+    return {
+        **{key: payload[key] for key in _SEMANTIC_CORE_KEYS},
+        "public_structure": public_structure,
+        "hidden_world": payload["hidden_world"],
+    }
+
+
+def semantic_fingerprint(payload: Mapping[str, Any]) -> str:
+    """Fingerprint the structural scenario identity (not visibility/seed/split)."""
+    return sha256_json(canonical_semantic_material(payload))
 
 
 def actor_settings_hash(settings: Mapping[str, Any]) -> str:

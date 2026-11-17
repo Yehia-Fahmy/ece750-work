@@ -21,11 +21,11 @@ BASE_SCENARIOS = {
 }
 
 # Disjoint generation-seed namespaces so identical template×difficulty worlds do not
-# collide across splits (semantic_fingerprint ignores base_id).
+# collide across splits. Fingerprints are content-only (no base_id/split salt).
 SPLIT_SEED_BASE = {
     "smoke": 1_000,
     "development": 0,
-    "qualification": 10_000,
+    "qualification": 10_000,  # consumed historical qualification namespace
     "main": 20_000,
 }
 
