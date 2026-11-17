@@ -33,7 +33,7 @@ def payload():
         "tools": [{"type": "function", "function": {"name": "read_resource", "parameters": {
             "type": "object", "properties": {"resource_id": {"type": "string"}}}}}],
         "chat_template_kwargs": {"enable_thinking": True}, "reasoning_format": "deepseek",
-        "tool_choice": "auto", "parallel_tool_calls": False, "max_tokens": 12, "seed": 42}
+        "tool_choice": "required", "parallel_tool_calls": False, "max_tokens": 12, "seed": 42}
 
 
 def rendered():
