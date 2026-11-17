@@ -13,7 +13,7 @@ from ..hashing import sha256_json
 from ..ids import passage_id, text_digest
 from ..packets import project_auditor_packet, project_reviewer_packet
 from ..schemas import validate
-from ..tasks.tables import GENERATOR_VERSION, resolve_clarification_fields, valid_answer
+from ..tasks.tables import generator_version_for, resolve_clarification_fields, valid_answer
 
 
 def write_new(path, value):
@@ -122,14 +122,36 @@ def prompt_for(task):
             "reviewer_notice": config["cells"][task.assignment["visibility"]]["notice"]}
 
 
+def resolve_episode_generator_version(assignment):
+    """Prefer template/difficulty derivation; retain explicit historical stubs.
+
+    Catalog assignments must match generator_version_for. The legacy vertical-slice
+    schedule may still declare vertical-slice-stub-v0. Wrong TAB01-slice stamps on
+    non-matching templates fail closed.
+    """
+    derived = generator_version_for(assignment)
+    assigned = assignment.get("generator_version")
+    if assigned is None:
+        return derived
+    if assigned == derived:
+        return derived
+    if assigned == "vertical-slice-stub-v0":
+        return assigned
+    raise ValueError(
+        "assignment generator_version "
+        f"{assigned!r} disagrees with derived template/difficulty version {derived!r}"
+    )
+
+
 def initial_record(task, run_id, strategy, limits):
     assignment = task.assignment
+    version = resolve_episode_generator_version(assignment)
     identity = {key: assignment[key] for key in (
         "episode_id", "base_id", "template_id", "family", "split", "intended_difficulty",
         "mechanism", "information_state", "shortcut_available", "policy_id", "visibility", "replicate_seed")}
     return {
         **identity, "schema_version": "shortcut-episode-v1", "protocol_version": None,
-        "run_id": run_id, "generator_version": GENERATOR_VERSION,
+        "run_id": run_id, "generator_version": version,
         "generation_seed": task.generation_seed, "semantic_fingerprint": task.semantic_fingerprint,
         "hidden_world_hash": sha256_json(task.hidden_truth["world"]),
         "actor_id": {"alias": "mock-actor-dev", "checkpoint_revision": "no-model",
