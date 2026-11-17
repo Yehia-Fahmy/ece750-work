@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "updated_at": "2026-11-17",
-  "phase": "g2_held_out_catalog_v2_fail_recorded",
+  "phase": "s4_honest_course_fallback_declared",
   "context_checkpoint": "ecb82d3",
-  "planning_status": "implementation_in_progress",
+  "planning_status": "s4_course_fallback",
   "execution_started": true,
   "frozen_protocol": null,
   "active_run": null,
@@ -17,8 +17,8 @@
     "submission_authorized": false
   },
   "recommended_scope_not_frozen": {
-    "tier": "S0",
-    "label": "TAB-only one-seed MVP (provisional; not G3)",
+    "tier": "S4",
+    "label": "Honest course fallback \u2014 no main factorial claim",
     "families": 1,
     "family_ids": [
       "tables"
@@ -29,21 +29,25 @@
     "information_states": 2,
     "availability_states": 2,
     "visibility_cells": 4,
-    "replicate_seeds": 1,
-    "base_scenarios": 20,
-    "primary_actor_episodes": 320,
+    "replicate_seeds": 0,
+    "base_scenarios": 0,
+    "primary_actor_episodes": 0,
     "optional_second_actor_episodes": 0,
-    "protocol_candidate": "s0-tab-v0",
+    "protocol_candidate": null,
     "draft_configs": "configs/provisional/s0-tab-only/",
-    "original_course_core_episodes_withdrawn_for_dec4": 3200
+    "original_course_core_episodes_withdrawn_for_dec4": 3200,
+    "s0_tab_only_320_withdrawn": true,
+    "reason": "G2 held-out failed twice (#23 then #25 after catalog-v2); no freeze; no main collection",
+    "selected_at": "2026-11-17",
+    "decision_handoff": "handoffs/2026-11-17-s4-honest-course-fallback.md"
   },
   "gates": {
     "G0": "accepted",
     "G1": "in_progress",
-    "G2": "in_progress",
-    "G3": "not_started",
-    "G4": "not_started",
-    "G5": "not_started",
+    "G2": "failed",
+    "G3": "canceled",
+    "G4": "canceled",
+    "G5": "canceled",
     "G6": "not_started"
   },
   "packages": [
@@ -230,49 +234,60 @@
         "handoffs/2026-11-16-g2-held-out-gpu.md",
         "results/qualification/g2-held-out-20261116.json",
         "handoffs/2026-11-16-g2-held-out-catalog-v2.md",
-        "results/qualification/g2-held-out-20261116-catalog-v2.json"
+        "results/qualification/g2-held-out-20261116-catalog-v2.json",
+        "handoffs/2026-11-17-s4-honest-course-fallback.md"
       ],
-      "note": "WP08 prep: (1) unsigned S0 provisional freeze checklist under configs/provisional/s0-tab-only/ (G3 not_started). (2) CPU S0 G2 held-out packaging (schedules/reservations/mocks; g2_accepted=false). (3) Authentic GPU held-out actor FAIL recorded twice (g2-held-out-20261116 and post-catalog-v2 g2-held-out-20261116-catalog-v2); gates.G2 in_progress but not accepted."
+      "note": "S4 declared 2026-11-17 after two G2 FAILs (#23, #25). Unsigned S0 provisional freeze draft retained as historical prep only; G3 canceled; no configs/frozen/ commit. Do not start main collection."
     },
     {
       "id": "WP09",
-      "status": "not_started",
-      "owner": null,
-      "depends_on": [
-        "WP08"
-      ],
-      "evidence": []
-    },
-    {
-      "id": "WP10",
-      "status": "not_started",
+      "status": "canceled",
       "owner": null,
       "depends_on": [
         "WP08"
       ],
       "evidence": [],
-      "note": "Can process closed WP09 batches; acceptance requires final episode accounting."
+      "note": "Canceled under S4: no frozen main actor collection / no main factorial claim."
+    },
+    {
+      "id": "WP10",
+      "status": "canceled",
+      "owner": null,
+      "depends_on": [
+        "WP08"
+      ],
+      "evidence": [],
+      "note": "Canceled under S4: no main semantic audit (no main episodes)."
     },
     {
       "id": "WP11",
-      "status": "not_started",
+      "status": "canceled",
       "owner": null,
       "depends_on": [
         "WP07",
         "WP09",
         "WP10"
       ],
-      "evidence": []
+      "evidence": [],
+      "note": "Canceled under S4: no main confirmatory analysis; course package uses development/pilot evidence only."
     },
     {
       "id": "WP12",
-      "status": "not_started",
-      "owner": null,
+      "status": "in_progress",
+      "owner": "report_author",
       "depends_on": [
         "WP00"
       ],
-      "evidence": [],
-      "note": "Background and methods begin early; acceptance requires WP11."
+      "evidence": [
+        "handoffs/2026-11-16-wp12-methods-skeleton.md",
+        "handoffs/2026-11-16-wp12-report-draft.md",
+        "handoffs/2026-11-16-wp12-report-v6-pass.md",
+        "handoffs/2026-11-17-s4-honest-course-fallback.md",
+        "handoffs/2026-11-17-wp12-s4-report.md",
+        "report/methods-skeleton.md",
+        "report/README.md"
+      ],
+      "note": "S4 honest course-report draft: methods + development/pilot evidence (TAB01 v6 PASS; G2 FAILs #23/#25); explicit withdrawal of main factorial / G2-pass / freeze claims. Not WP12 acceptance (PDF/slides/WP13 still open)."
     },
     {
       "id": "WP13",
@@ -282,62 +297,85 @@
         "WP11",
         "WP12"
       ],
-      "evidence": []
+      "evidence": [],
+      "note": "Delivery packaging still required under S4 (pilot-only course package); no main reproduction."
     }
   ],
   "open_items": [
-    "G0 TAB-only / S0 accepted (WP01 + TAB catalog/spec + v6 PASS archive #20); five-family G0 remains out of S0. See handoffs/2026-11-16-g0-tab-accepted.md.",
-    "G1: TAB01 v6 development capture+capability cleared; long-episode WP06 pilots recorded (g1-long-pilots-20261116, 9/10 completed); still need isolation/scorer completeness notes + integrator acceptance.",
-    "G2: post-tab-catalog-v2 authentic held-out FAIL (g2-held-out-20261116-catalog-v2: completion 74.69%, easy success 55%); prior FAIL g2-held-out-20261116 preserved. gates.G2 not accepted. Judge/forecast still open; do not start main.",
-    "Actual daily GPU availability must be recorded; eight hours/day is only a forecast assumption.",
+    "S4 honest course fallback DECLARED 2026-11-17: no frozen main collection; G2 not accepted (failed twice); G3/G4/G5 canceled; reduced claims. See handoffs/2026-11-17-s4-honest-course-fallback.md.",
+    "G0 TAB-only accepted (WP01 + TAB catalog/spec + v6 PASS archive #20); five-family G0 remains out of scope.",
+    "G1: long-episode WP06 pilots recorded (g1-long-pilots-20261116, 9/10); not formally accepted as G1; under S4 this is pilot evidence only.",
+    "G2 FAILED twice: #23 g2-held-out-20261116 (238/320, easy 55%) and #25 g2-held-out-20261116-catalog-v2 (239/320, easy 55%). gates.G2=failed; do not start main.",
+    "WP12 S4 draft in progress (report/methods-skeleton.md); PDF/slides, page limit, presentation date, and WP13 packaging remain open for Dec 4.",
+    "Independent semantic judge never qualified; semantic claims withdrawn for course delivery.",
     "Final course page limit and presentation arrangements require reconciliation with official instructions.",
-    "Actor and judge checkpoints/settings, quality gates, and final scope require pilot qualification.",
-    "WP04 scoring fixtures beyond TAB paths, local semantic judge execution/qualification, WP07 analysis acceptance, and real freeze/collection remain pending.",
-    "DOC/PLAN/CODE/VERIFY generators and non-prior-note shortcut mechanisms remain out of S0 unless stretch S1 is chosen later.",
-    "WP08 S0 freeze checklist + provisional configs drafted under configs/provisional/s0-tab-only/; unsigned; awaiting gate evidence before any configs/frozen/ commit."
+    "Submission remains Yehia-only (submission_authorized=false)."
   ],
   "session": {
     "date": "2026-11-17",
-    "input_commit": "18f2b9f",
-    "owner": "gpu_operator",
-    "authorization": "Coordinator assigned ECE-30 G2 re-held-out after catalog-v2; do not self-merge; do not auto-accept G2.",
-    "scope": "S0 held-out qualify-local --held-out on tab-catalog-v2; zero external inference; no main",
-    "status": "g2_held_out_catalog_v2_fail_recorded",
-    "held_out_run": "g2-held-out-20261116-catalog-v2",
-    "held_out_evidence": "results/qualification/g2-held-out-20261116-catalog-v2.json",
-    "held_out_handoff": "handoffs/2026-11-16-g2-held-out-catalog-v2.md",
-    "held_out_verdict": "FAIL",
-    "held_out_completion": "239/320",
-    "held_out_easy_success": "11/20",
-    "prior_held_out_fail_preserved": {
-      "run_id": "g2-held-out-20261116",
-      "evidence": "results/qualification/g2-held-out-20261116.json",
-      "handoff": "handoffs/2026-11-16-g2-held-out-gpu.md",
-      "pr": "https://github.com/Yehia-Fahmy/ece750-work/pull/23",
-      "untouched": true
-    },
-    "long_pilot_run": "g1-long-pilots-20261116",
-    "long_pilot_evidence": "results/qualification/g1-long-pilots-20261116.json",
-    "long_pilot_handoff": "handoffs/2026-11-16-g1-long-pilots.md",
-    "prior_session_tab01_v6": {
-      "date": "2026-11-15",
-      "input_commit": "838be79",
-      "status": "gpu_16cell_archive_passed_tab01_v6",
-      "capability_probe_evidence": "results/qualification/capability-probe-tab01-v6.json",
-      "sixteen_cell_handoff": "handoffs/2026-11-15-native-qualification-tab01-v6-16cell.md",
-      "sixteen_cell_evidence": "results/qualification/native-qualification-tab01-v6-16cell.json",
-      "sixteen_cell_run": "native-qualification-tab01-v6-16cell",
-      "sixteen_cell_passed": true,
-      "prior_failed_probe_evidence": "results/qualification/capability-probe-tab01-v3.json",
-      "prior_v5_sixteen_cell_evidence": "results/qualification/native-qualification-tab01-v5-16cell.json",
-      "prior_v5_capability_probe_evidence": "results/qualification/capability-probe-tab01-v5.json"
-    },
-    "prior_session_g0_accept": {
-      "date": "2026-11-16",
-      "status": "g0_tab_accepted_after_tab01_v6_pass",
-      "acceptance_handoff": "handoffs/2026-11-16-g0-tab-accepted.md",
-      "g0_decision": "accepted",
-      "scope": "TAB-only (not five-family)"
+    "input_commit": "6eb9633",
+    "owner": "integrator",
+    "authorization": "Coordinator assigned ECE-32 Ship S4 honest course fallback; do not self-merge.",
+    "scope": "S4 honest course fallback: declare no main factorial; advance WP12 S4 draft; include #25 FAIL evidence",
+    "status": "s4_honest_course_fallback_declared",
+    "tier": "S4",
+    "primary_actor_episodes": 0,
+    "frozen_protocol": null,
+    "main_collection": false,
+    "g2_accepted": false,
+    "g3_freeze": "canceled",
+    "decision_handoff": "handoffs/2026-11-17-s4-honest-course-fallback.md",
+    "wp12_handoff": "handoffs/2026-11-17-wp12-s4-report.md",
+    "basis": [
+      "G0 TAB-only accepted (#22)",
+      "TAB01 v6 development probe+16-cell PASS (#20)",
+      "G2 FAIL #23 (238/320; easy 55%)",
+      "catalog-v2 (#24) then G2 FAIL #25 (239/320; easy 55%)",
+      "G1 long pilots recorded (9/10); not G1 acceptance"
+    ],
+    "prior_session_g2_catalog_v2_fail": {
+      "date": "2026-11-17",
+      "input_commit": "18f2b9f",
+      "owner": "gpu_operator",
+      "authorization": "Coordinator assigned ECE-30 G2 re-held-out after catalog-v2; do not self-merge; do not auto-accept G2.",
+      "scope": "S0 held-out qualify-local --held-out on tab-catalog-v2; zero external inference; no main",
+      "status": "g2_held_out_catalog_v2_fail_recorded",
+      "held_out_run": "g2-held-out-20261116-catalog-v2",
+      "held_out_evidence": "results/qualification/g2-held-out-20261116-catalog-v2.json",
+      "held_out_handoff": "handoffs/2026-11-16-g2-held-out-catalog-v2.md",
+      "held_out_verdict": "FAIL",
+      "held_out_completion": "239/320",
+      "held_out_easy_success": "11/20",
+      "prior_held_out_fail_preserved": {
+        "run_id": "g2-held-out-20261116",
+        "evidence": "results/qualification/g2-held-out-20261116.json",
+        "handoff": "handoffs/2026-11-16-g2-held-out-gpu.md",
+        "pr": "https://github.com/Yehia-Fahmy/ece750-work/pull/23",
+        "untouched": true
+      },
+      "long_pilot_run": "g1-long-pilots-20261116",
+      "long_pilot_evidence": "results/qualification/g1-long-pilots-20261116.json",
+      "long_pilot_handoff": "handoffs/2026-11-16-g1-long-pilots.md",
+      "prior_session_tab01_v6": {
+        "date": "2026-11-15",
+        "input_commit": "838be79",
+        "status": "gpu_16cell_archive_passed_tab01_v6",
+        "capability_probe_evidence": "results/qualification/capability-probe-tab01-v6.json",
+        "sixteen_cell_handoff": "handoffs/2026-11-15-native-qualification-tab01-v6-16cell.md",
+        "sixteen_cell_evidence": "results/qualification/native-qualification-tab01-v6-16cell.json",
+        "sixteen_cell_run": "native-qualification-tab01-v6-16cell",
+        "sixteen_cell_passed": true,
+        "prior_failed_probe_evidence": "results/qualification/capability-probe-tab01-v3.json",
+        "prior_v5_sixteen_cell_evidence": "results/qualification/native-qualification-tab01-v5-16cell.json",
+        "prior_v5_capability_probe_evidence": "results/qualification/capability-probe-tab01-v5.json"
+      },
+      "prior_session_g0_accept": {
+        "date": "2026-11-16",
+        "status": "g0_tab_accepted_after_tab01_v6_pass",
+        "acceptance_handoff": "handoffs/2026-11-16-g0-tab-accepted.md",
+        "g0_decision": "accepted",
+        "scope": "TAB-only (not five-family)"
+      }
     }
   },
   "cpu_slice_review": {
@@ -446,5 +484,51 @@
     "catalog_handoff": "handoffs/2026-11-16-tab-catalog-expansion.md",
     "wp01_evidence": "handoffs/2026-11-15-wp01-contracts.md",
     "raw_archives_note": "Raw WSL trees under gitignored project/runs/ are not in git; tracked qualification JSON embeds archive sha256 hashes."
+  },
+  "s4_decision": {
+    "decision": "declared",
+    "tier": "S4",
+    "date": "2026-11-17",
+    "owner": "integrator",
+    "reason": "Held-out G2 failed twice (#23 then #25 after tab-catalog-v2). Completion stayed ~75% and easy no-shortcut success 55% (gate \u226580%). No credible path to freeze S0 320 and collect a main factorial before Dec 4. Arm honest course fallback: methods + validated development/pilot evidence + explicit incomplete outcomes; zero main factorial claim.",
+    "handoff": "handoffs/2026-11-17-s4-honest-course-fallback.md",
+    "claims_retained": [
+      "Original observer-study result (historical; separate namespace)",
+      "Validated extension methods/contracts/runtime stack",
+      "TAB01 tab01-slice-v6 development capability probe + 16-cell PASS",
+      "G1 long-pilot telemetry recorded (9/10 completed)",
+      "Two preserved G2 held-out FAIL archives as negative evidence",
+      "Explicit limitations and AI disclosure"
+    ],
+    "claims_withdrawn": [
+      "Main S0/S1/S2/S3 factorial collection and confirmatory T/J visibility acquisition contrasts",
+      "G2 pass / main-qualified actor",
+      "G3 freeze / frozen protocol",
+      "WP09\u2013WP11 main analysis findings",
+      "Independent semantic-judge conclusions",
+      "3200-episode five-family course core",
+      "Any visibility-effect estimate derived from development or failed held-out archives"
+    ],
+    "g2_fail_evidence": [
+      {
+        "pr": "https://github.com/Yehia-Fahmy/ece750-work/pull/23",
+        "run": "g2-held-out-20261116",
+        "tracked": "results/qualification/g2-held-out-20261116.json",
+        "completion": "238/320",
+        "easy_success": "11/20"
+      },
+      {
+        "pr": "https://github.com/Yehia-Fahmy/ece750-work/pull/25",
+        "run": "g2-held-out-20261116-catalog-v2",
+        "tracked": "results/qualification/g2-held-out-20261116-catalog-v2.json",
+        "completion": "239/320",
+        "easy_success": "11/20"
+      }
+    ],
+    "development_pass_evidence": {
+      "pr": "https://github.com/Yehia-Fahmy/ece750-work/pull/20",
+      "probe": "results/qualification/capability-probe-tab01-v6.json",
+      "sixteen_cell": "results/qualification/native-qualification-tab01-v6-16cell.json"
+    }
   }
 }
