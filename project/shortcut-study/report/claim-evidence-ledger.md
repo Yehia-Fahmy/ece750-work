@@ -14,7 +14,7 @@ The two archived held-out attempts are **not** two independent fresh validations
 
 Evidence: `reviews/2026-11-17/research-design.md` (RD2); `reviews/2026-11-17/research-design-evidence.json` (`qualification_reuse`); consumed registry in `src/shortcut_study/tasks/tables/batches.py`.
 
-Fresh qualification after SW05 must use a **new** content-disjoint batch (default id `qual-fresh-tab-catalog-v3-001`). A new output directory alone is not freshness.
+`qual-fresh-tab-catalog-v3-001` is now **consumed** (honest FAIL). Any further held-out attempt needs a **new** content-disjoint batch id after greenlit residual repairs. A new output directory alone is not freshness.
 
 ## Repair status (code vs gates)
 
@@ -26,7 +26,7 @@ Fresh qualification after SW05 must use a **new** content-disjoint batch (defaul
 | A4/A5 | Addressed in SW03 package; dispositions retained as conditional/clarify in `state.json` until freeze narrative locks denominators | Do not retroactively rewrite historical gate counts |
 | G0 (TAB-only) | Historical acceptance (#22) | Scope candidate only |
 | G1 | Development/runtime evidence exists | Not a substitute for held-out G2 |
-| G2 | Two FAIL archives | **failed / not accepted** |
+| G2 | Three FAIL archives (incl. fresh v3-001) | **failed / not accepted** — no soft-accept |
 | G3 | Unsigned draft checklist only | **not_started** — blocked on accepted fresh G2 + freeze review |
 
 ## Quantitative claims → artifacts
@@ -40,14 +40,14 @@ Use this table for report prose. Prefer hashes/paths over adjectives like “val
 | C-G1-PILOTS | Long pilots: 10 development hard/extreme complete V00 sc-absent episodes | Development split only | `results/qualification/g1-long-pilots-20261116.json` | WP06 notes; not G2 |
 | C-G2-ORIG | Held-out G2 FAIL (original) | 320 assigned qualification cells | `results/qualification/g2-held-out-20261116.json` + runs archive | FAIL preserved |
 | C-G2-V2 | Held-out G2 FAIL (catalog-v2 regression reuse) | 320 assigned; **reused worlds** | `results/qualification/g2-held-out-20261116-catalog-v2.json` | FAIL preserved; **not independent** |
-| C-G2-EASY | Easy no-shortcut legitimate success on held-out ≈ 11/20 bases (both FAIL runs) | Easy complete sc-absent bases among qualification | Analysis evidence tables in `reviews/2026-11-17/analysis-evidence.md` | Below 80% gate; do not soft-wash |
+| C-G2-EASY | Easy no-shortcut on prior FAIL runs ≈ 11/20 (55%) | Easy complete sc-absent bases among qualification | Analysis evidence tables in `reviews/2026-11-17/analysis-evidence.md` | Below 80% on prior FAILs |
+| C-G2-FRESH-V3 | Fresh content-disjoint held-out attempt `qual-fresh-tab-catalog-v3-001` | 320 assigned; **new** worlds (not catalog-v2 reuse) | `results/qualification/qual-fresh-tab-catalog-v3-001.json` + runs archive | **FAIL** completion 280/320=87.5% &lt;95%; easy 17/20=85% passes that subgate; **G2 not accepted**; batch **consumed** |
 | C-CPU-SUITE | Extension unit suite green at SW05 tip | Full `tests/` discover | SW05 handoff; tip `96eab5b` / main `91baf90` | CPU acceptance only |
 | C-SW06-DEV-NARY | Development n-ary `subtract` repair + TAB02/02–05 probes (partial; TAB03 budget_limit remains) | Development split only; **not** held-out | PR #35 / `results/development/sw06-nary-calculate-probes-v1.json` (on tip) | **Not G2**; #35 merged `be3ccda` |
 | C-SW06-DEV-TOOLFIRST | Development tool-first cues / TAB03 long-T repair (TAB02–05 V00 improved; visibility residuals remain) | Development split only; **not** held-out; no fresh qual batch | PR #37 merged `272e4d7` | **Not G2**; #37 merged |
 | C-SW06-DEV-TOOLCHOICE | Development `tool_choice=required` + cooler sampling; TAB02 visibility cleared; TAB03 V01/V10 still budget_limit | Development split only; **not** held-out; no fresh qual batch | PR #39 merged `bffede3` | **Not G2**; #39 merged |
-| C-SW06-DEV-FORCEFIRST | Development force-first `list_resources` + reasoning-budget 256; TAB03 V01/V10 cleared in probes | Development split only; **not** held-out | PR #41 merged `f016540` (+ bookkeeping #42 `5a7ab09`) | **Not G2**; development credibility only |
-| C-SW06-FRESH-G2 | Fresh held-out G2 on content-disjoint batch `qual-fresh-tab-catalog-v3-001` | 320 assigned qualification cells; `batch_mode=fresh` | *pending — SW06 collecting on WSL* | **Collecting**; append run id / hashes / PASS|FAIL when reported; do not rewrite prior FAIL rows |
-| C-BATCH-V3 | Fresh batch API + catalog v3 wired | CPU reservation / allocate API | `results/development/sw01-cpu-reservation-manifest-v1.json`, `#33` | Batch now in use for C-SW06-FRESH-G2; **does not claim G2 PASS** |
+| C-SW06-DEV-FORCEFIRST | Development force-first `list_resources` + reasoning-budget 256; TAB03 V01/V10 cleared in probes | Development split only; then used under fresh qual | PR #41 merged `f016540` (+ bookkeeping #42/#43) | **Not G2**; enabled fresh attempt |
+| C-BATCH-V3 | Fresh batch API + catalog v3 wired | CPU reservation / allocate API | `results/development/sw01-cpu-reservation-manifest-v1.json`, `#33` | Batch id **consumed** after FAIL; next attempt needs a new id |
 | C-MAIN | Main factorial effects / visibility contrasts | Frozen main denominator | — | **No claim** (no freeze, no main collection) |
 | C-SEM | Semantic judge conclusions | Qualified judge + frozen audit scope | — | **Withdrawn / unqualified** unless later accepted |
 
@@ -61,15 +61,19 @@ Use this table for report prose. Prefer hashes/paths over adjectives like “val
 
 ## Parallel SW06 coordination
 
-- GPU operator: `bc-1121d0a4…` on WSL DESKTOP-VEMMES3 / RTX 3070 Ti (ECE-42).
+- GPU operator: `bc-1121d0a4…` on WSL DESKTOP-VEMMES3 / RTX 3070 Ti (ECE-53 residual repair after ECE-42).
 - Orchestrator / SW04–SW07 CPU authors **must not** acquire the GPU lease or start a second qualification operator.
-- `#41`/`#42` are on `main`. SW06 is **collecting** fresh G2 (`qual-fresh-tab-catalog-v3-001`). `submission_authorized=false`.
-- When SW06 posts outcomes: fill `C-SW06-FRESH-G2` with run id, batch id, freshness mode (`fresh`), gate PASS/FAIL, tracked JSON path, and hashes — do not rewrite prior FAIL rows (`C-G2-ORIG`, `C-G2-V2`).
+- Fresh v3-001 **FAIL** packaged (PR #44); prior FAIL rows (`C-G2-ORIG`, `C-G2-V2`, `C-G2-FRESH-V3`) preserved — do not rewrite.
+- Next: development probes for TAB01/03/04 format + TAB05 extreme budget → greenlight → **new** fresh batch id only then. No fresh 320 until greenlit.
+- Cutoff: Nov 22 18:00 America/Toronto → automatic S4 if no accepted qual+freeze. `submission_authorized=false`.
 
 ## Do not
 
 - Present catalog-v2 as a second independent held-out confirmation
+- Soft-accept G2 on 87.5% completion or treat easy 85% as overall pass
+- Reuse `qual-fresh-tab-catalog-v3-001` as fresh
 - Call development PASS “qualified”
 - Invent main effects or exploratory pilot estimates as confirmation
 - Soft-wash G2 FAIL or raise budgets as the primary remediation story
 - Claim course submission readiness
+- Burn a new 320-cell held-out before residual repairs are greenlit
