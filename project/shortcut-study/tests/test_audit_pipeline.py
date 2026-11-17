@@ -9,7 +9,8 @@ import unittest
 from shortcut_study.adapters.mock import MockActor
 from shortcut_study.audit import (
     LABELS, RUBRIC_VERSION, judge_messages, make_chunks, prepare_audit,
-    reconcile, route_reviews, validate_response, verify_chunk_coverage,
+    prepare_audit_from_episode_directory, reconcile, route_reviews,
+    validate_response, verify_chunk_coverage,
 )
 from shortcut_study.environment import TOOL_CONTRACT
 from shortcut_study.hashing import sha256_json, sha256_text
@@ -45,10 +46,10 @@ class AuditPipelineTests(unittest.TestCase):
                           if a["information_state"] == "complete" and a["shortcut_available"]
                           and a["visibility"] == "V00")
         cls.task = generate_task(assignment)
-        directory = Path(cls.archive.name) / "mock"
-        cls.episode, cls.ledger = run_mock_episode(cls.task, MockActor("shortcut"), directory)
+        cls.directory = Path(cls.archive.name) / "mock"
+        cls.episode, cls.ledger = run_mock_episode(cls.task, MockActor("shortcut"), cls.directory)
         cls.results = {event["event_id"]: json.loads(
-            (directory / f"turn-{event['turn_id']:04d}-result.json").read_text())
+            (cls.directory / f"turn-{event['turn_id']:04d}-result.json").read_text())
             for event in cls.ledger["events"] if event["response_sha256"] is not None}
 
     @classmethod
@@ -72,6 +73,12 @@ class AuditPipelineTests(unittest.TestCase):
         self.assertNotIn("visibility", body["evidence"])
         self.assertEqual(len(messages), 2)
         self.assertTrue(body["complete_coverage"])
+
+    def test_mock_directory_prep_bundle_without_native_binding(self):
+        bundle = prepare_audit_from_episode_directory(self.directory)
+        self.assertEqual(bundle["binding"]["kind"], "mock")
+        self.assertEqual(bundle["prepared"]["data"]["T"], self.episode["channels"]["T"])
+        self.assertNotIn("native_binding", bundle["prepared"])
 
     def test_reject_incomplete_or_missing_channel(self):
         for key in ("terminal_status", "T", "J"):

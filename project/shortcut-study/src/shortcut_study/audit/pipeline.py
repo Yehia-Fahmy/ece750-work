@@ -6,8 +6,10 @@ resists instructions inside that data still requires separate qualification.
 """
 
 from copy import deepcopy
+import hashlib
 import json
 import math
+from pathlib import Path
 import random
 
 from jsonschema import ValidationError
@@ -15,6 +17,9 @@ from jsonschema import ValidationError
 from ..hashing import canonical_json, sha256_json, sha256_text
 from ..packets import project_auditor_packet
 from ..schemas import validate
+
+AUDIT_BINDING_SCHEMA = "shortcut-audit-binding-v1"
+AUDIT_PREP_BUNDLE_SCHEMA = "shortcut-audit-prep-bundle-v1"
 
 RUBRIC_VERSION = "development-evidence-rubric-v1"
 LABELS = {
@@ -74,18 +79,36 @@ def _check_prepared(prepared):
         raise ValueError("audit coverage does not match supplied data")
 
 
-def prepare_audit(episode, ledger, *, public_task, capabilities, tool_results):
+def prepare_audit(episode, ledger, *, public_task, capabilities, tool_results,
+                  native_binding=None):
     """Prepare a complete, source-verified record, or reject it as ineligible.
 
     tool_results maps every event having a response hash to its original JSON
     response. A ledger hash alone does not substitute for returned content.
     Callers retain rejected episode IDs in their assigned audit denominator.
+
+    For native episodes, callers must supply native_binding from
+    verify_terminal_matches_native (or use prepare_audit_from_episode_directory).
+    Self-hashes alone are insufficient to bind terminal T to HTTP bytes.
     """
     validate("episode", episode)
     validate("events", ledger)
     if episode["terminal_status"] != "completed" or any(
             episode["channels"][c] is None for c in ("A", "T", "J")):
         raise ValueError("ineligible incomplete episode or missing channel")
+    runtime = episode.get("actor_id", {}).get("runtime")
+    if runtime != "deterministic-mock":
+        if native_binding is None:
+            raise ValueError(
+                "native episode requires verified native_binding before audit preparation; "
+                "use prepare_audit_from_episode_directory"
+            )
+        if (not isinstance(native_binding, dict) or native_binding.get("verified") is not True
+                or native_binding.get("episode_id") != episode["episode_id"]
+                or not native_binding.get("native_http_sha256")):
+            raise ValueError("invalid native_binding for audit preparation")
+    elif native_binding is not None:
+        raise ValueError("native_binding is not valid for mock episodes")
     if sha256_json(public_task) != episode["references"]["public_task_hash"]:
         raise ValueError("public task hash mismatch")
     if not isinstance(public_task.get("policy"), str) or not public_task["policy"].strip():
@@ -190,10 +213,84 @@ def prepare_audit(episode, ledger, *, public_task, capabilities, tool_results):
             "T": packet["T"], "J": packet["J"], "events": packet["events"],
             "tool_results": deepcopy(tool_results)}
     coverage = _coverage(data)
-    return _seal({"schema_version": "shortcut-audit-input-v1",
-                  "episode_id": episode["episode_id"], "data": data,
-                  "coverage": coverage, "expected_coverage": deepcopy(coverage),
-                  "evidence_index": index, "strategy": "whole"})
+    prepared = {"schema_version": "shortcut-audit-input-v1",
+                "episode_id": episode["episode_id"], "data": data,
+                "coverage": coverage, "expected_coverage": deepcopy(coverage),
+                "evidence_index": index, "strategy": "whole"}
+    if native_binding is not None:
+        prepared["native_binding"] = {
+            "schema_version": AUDIT_BINDING_SCHEMA,
+            "verified": True,
+            "native_http_sha256": deepcopy(native_binding["native_http_sha256"]),
+            "source_fingerprint": native_binding.get("source_fingerprint"),
+        }
+    return _seal(prepared)
+
+
+def prepare_audit_from_episode_directory(episode_directory, *, actor=None):
+    """Standalone prep bound to immutable native sources when applicable.
+
+    Mock archives use prompt tool schemas. Native archives require HTTP↔terminal
+    verification via recover-equivalent checks before preparation. Original HTTP
+    bytes are never rewritten. Interrupted/incomplete natives stay unprepared.
+    """
+    episode_directory = Path(episode_directory)
+    terminal_path = episode_directory / "terminal.json"
+    inputs_path = episode_directory / "inputs.json"
+    if not terminal_path.exists():
+        raise ValueError("native terminal missing; interrupted records remain unprepared")
+    if not inputs_path.exists():
+        raise ValueError("episode inputs.json missing")
+    terminal = json.loads(terminal_path.read_text())
+    inputs = json.loads(inputs_path.read_text())
+    episode, ledger = terminal["episode"], terminal["ledger"]
+    input_paths = [terminal_path, inputs_path]
+    native_binding = None
+    if episode["actor_id"]["runtime"] == "deterministic-mock":
+        capabilities = inputs["prompt"]["tools"]
+        binding_kind = "mock"
+    else:
+        from ..runner.native import (
+            verification_actor_from_inputs,
+            verify_terminal_matches_native,
+        )
+        verify_actor = actor if actor is not None else verification_actor_from_inputs(inputs)
+        native_binding = verify_terminal_matches_native(episode_directory, verify_actor)
+        request_path = episode_directory / "turn-0001-request.json"
+        if not request_path.exists():
+            raise ValueError("native request source missing")
+        capabilities = json.loads(request_path.read_text())["tools"]
+        input_paths.append(request_path)
+        for path in sorted(episode_directory.glob("turn-*-http.json")):
+            input_paths.append(path)
+        binding_kind = "native"
+    results = {}
+    for event in ledger["events"]:
+        if event["response_sha256"] is not None:
+            path = episode_directory / f"turn-{event['turn_id']:04d}-result.json"
+            if not path.exists():
+                raise ValueError(f"missing tool result source: {path.name}")
+            results[event["event_id"]] = json.loads(path.read_text())
+            input_paths.append(path)
+    prepared = prepare_audit(
+        episode, ledger, public_task=inputs["prompt"]["task"],
+        capabilities=capabilities, tool_results=results, native_binding=native_binding)
+    binding = {
+        "schema_version": AUDIT_BINDING_SCHEMA,
+        "kind": binding_kind,
+        "verified": True,
+        "episode_id": episode["episode_id"],
+        "native_http_sha256": (native_binding or {}).get("native_http_sha256", {}),
+        "input_sha256": {
+            str(path.relative_to(episode_directory)): hashlib.sha256(path.read_bytes()).hexdigest()
+            for path in sorted(set(input_paths))
+        },
+    }
+    return {
+        "schema_version": AUDIT_PREP_BUNDLE_SCHEMA,
+        "prepared": prepared,
+        "binding": binding,
+    }
 
 
 def judge_messages(prepared):

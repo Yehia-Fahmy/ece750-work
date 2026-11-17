@@ -10,8 +10,8 @@ from unittest.mock import patch
 
 from shortcut_study.adapters.local import HTTPResponse, LocalChatActor, NativeAdapterError
 from shortcut_study.adapters.mock import MockActor
-from shortcut_study.__main__ import prepare_archive
-from shortcut_study.hashing import sha256_json
+from shortcut_study.audit import prepare_audit_from_episode_directory
+from shortcut_study.hashing import sha256_json, sha256_text
 from shortcut_study.runtime import GpuLease
 import shortcut_study.runner.native as native
 from shortcut_study.scoring import score_episode
@@ -237,15 +237,32 @@ class NativeRunnerTests(unittest.TestCase):
 
     def test_native_archive_prepares_full_audit_without_judge_inference(self):
         _, actor, directory, episode, ledger = self.run_one(SyntheticActor("shortcut"))
-        prepared = prepare_archive(directory, self.root / "prepared-audit")
+        bundle = prepare_audit_from_episode_directory(directory, actor=actor)
+        prepared = bundle["prepared"]
         self.assertEqual(prepared["data"]["A"], episode["channels"]["A"])
         self.assertEqual(prepared["data"]["T"], episode["channels"]["T"])
         self.assertEqual(prepared["data"]["events"], ledger["events"])
         self.assertEqual(prepared["data"]["capabilities"], actor.requests[0]["tools"])
-        messages = json.loads((self.root / "prepared-audit/messages.json").read_text())
-        self.assertNotIn(episode["episode_id"], json.dumps(messages))
-        self.assertNotIn("hidden_truth", json.dumps(messages))
+        self.assertTrue(prepared["native_binding"]["verified"])
+        self.assertTrue(bundle["binding"]["native_http_sha256"])
         self.assertEqual(len(actor.requests), 3)
+
+    def test_bound_audit_rejects_terminal_t_disagreeing_with_http(self):
+        _, actor, directory, episode, _ = self.run_one(SyntheticActor("shortcut"))
+        http_path = directory / "turn-0001-http.json"
+        http_sha = __import__("hashlib").sha256(http_path.read_bytes()).hexdigest()
+        terminal_path = directory / "terminal.json"
+        terminal = json.loads(terminal_path.read_text())
+        replacement = "REVIEW FIXTURE: I deliberately acquired the prohibited previous attempt."
+        terminal["episode"]["channels"]["T"][0].update(
+            text=replacement, text_sha256=sha256_text(replacement))
+        terminal_path.write_text(json.dumps(terminal))
+        with self.assertRaisesRegex(ValueError, "terminal record differs from native archive"):
+            prepare_audit_from_episode_directory(directory, actor=actor)
+        with self.assertRaisesRegex(ValueError, "terminal record differs from native archive"):
+            native.recover_local_episode(directory, actor)
+        self.assertEqual(__import__("hashlib").sha256(http_path.read_bytes()).hexdigest(), http_sha)
+        self.assertNotEqual(episode["channels"]["T"][0]["text"], replacement)
 
 
 if __name__ == "__main__":

@@ -243,6 +243,62 @@ def run_local_episode(task, actor, directory, *, lease, profile, run_id="local-d
     return finish(directory, episode, events)
 
 
+def verification_actor_from_inputs(inputs):
+    """Build a transport-idle actor matching archived settings for verify-only paths."""
+    settings = inputs["actor_settings"]
+    required = {"base_url", "model", "temperature", "top_p", "max_request_bytes", "max_response_bytes"}
+    if not required.issubset(settings):
+        raise ValueError("native archive actor_settings incomplete for verification")
+    return LocalChatActor(
+        settings["base_url"], settings["model"],
+        token_counter=lambda _payload: 0,
+        temperature=settings["temperature"], top_p=settings["top_p"],
+        max_request_bytes=settings["max_request_bytes"],
+        max_response_bytes=settings["max_response_bytes"])
+
+
+def native_http_source_hashes(directory):
+    """Immutable native HTTP body file digests; never rewrite those files."""
+    directory = Path(directory)
+    return {
+        path.name: hashlib.sha256(path.read_bytes()).hexdigest()
+        for path in sorted(directory.glob("turn-*-http.json"))
+    }
+
+
+def verify_terminal_matches_native(directory, actor):
+    """Reject sealed terminals that disagree with re-extracted HTTP bytes.
+
+    Reuses restore_native_archive checks without transport, tool replay, or
+    mutation of archived evidence. Does not publish packets.
+    """
+    directory = Path(directory)
+    inputs = json.loads((directory / "inputs.json").read_text())
+    if inputs["actor_settings"] != actor_settings(actor) or inputs["source_fingerprint"] != source_fingerprint():
+        raise ValueError("native recovery implementation/settings mismatch")
+    terminal = directory / "terminal.json"
+    if not terminal.exists():
+        raise ValueError("native terminal missing; interrupted records remain unprepared")
+    saved = json.loads(terminal.read_text())
+    validate("episode", saved["episode"])
+    validate("events", saved["ledger"])
+    if saved["ledger"]["integrity_sha256"] != sha256_json(saved["ledger"]["events"]):
+        raise ValueError("terminal event integrity mismatch")
+    if not list(directory.glob("turn-*-http.json")):
+        raise ValueError("native HTTP source bytes missing")
+    reconstructed = deepcopy(saved["episode"])
+    events = restore_native_archive(directory, actor, reconstructed)
+    if reconstructed != saved["episode"] or events != saved["ledger"]["events"]:
+        raise ValueError("terminal record differs from native archive")
+    return {
+        "schema_version": "shortcut-native-binding-v1",
+        "verified": True,
+        "episode_id": saved["episode"]["episode_id"],
+        "native_http_sha256": native_http_source_hashes(directory),
+        "source_fingerprint": inputs["source_fingerprint"],
+    }
+
+
 def recover_local_episode(directory, actor):
     """Re-extract already saved HTTP bodies; never call transport or execute tools."""
     directory = Path(directory)
@@ -252,14 +308,8 @@ def recover_local_episode(directory, actor):
     terminal = directory / "terminal.json"
     if terminal.exists():
         saved = json.loads(terminal.read_text())
-        validate("episode", saved["episode"])
-        validate("events", saved["ledger"])
-        if saved["ledger"]["integrity_sha256"] != sha256_json(saved["ledger"]["events"]):
-            raise ValueError("terminal event integrity mismatch")
-        reconstructed = deepcopy(saved["episode"])
-        events = restore_native_archive(directory, actor, reconstructed)
-        if reconstructed != saved["episode"] or events != saved["ledger"]["events"]:
-            raise ValueError("terminal record differs from native archive")
+        # Shared strong check: terminal must equal re-extraction from HTTP bytes.
+        verify_terminal_matches_native(directory, actor)
         publish_packets(directory, saved["episode"], saved["ledger"])
         return saved["episode"], saved["ledger"]
     episode = json.loads((directory / "assignment.json").read_text())

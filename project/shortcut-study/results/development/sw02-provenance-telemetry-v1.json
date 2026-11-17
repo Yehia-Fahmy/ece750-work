@@ -1,0 +1,165 @@
+{
+  "authentic_archive_note": "project/runs/shortcut-study/g2-held-out-20261116-catalog-v2 is absent on this host. IMPL-1\u20133 reproduced with fixture/temp-copy native+mock episodes. Dated review counts (304 version mismatches / 208 approved-read mismatches) cited from reviews/2026-11-17/implementation-results.json; not re-measured from raw archives here.",
+  "authentic_archives_present": false,
+  "cpu_only": true,
+  "host": "cursor-cloud",
+  "impl1_fixture": {
+    "altered_t_rejected_by_bound_prep": true,
+    "altered_t_rejected_message": "terminal record differs from native archive",
+    "binding_kind": "native",
+    "http_sha256": {
+      "turn-0001-http.json": "f2350a9fa3b0109bfa5e7a7c8af9bb734f733d129bc3c253b0203ae3321c6b77",
+      "turn-0002-http.json": "99b756666a75a5fef4c41f1b13fef98d2797aeeef5adf69d72849d9d4fc45269",
+      "turn-0003-http.json": "77b7dff9b691996d983570333c22f135ccaaf1fb74399fad6a68ebc0d1f86651",
+      "turn-0004-http.json": "e7207f622bd74a21a8eed7721f2bdb946a710985257be8014e2ab8ea5d3d7b00",
+      "turn-0005-http.json": "b361de539e5fe905684b8e4c6084e83b3fd7c61531cf49e3975e8f86aa0b36bd"
+    },
+    "http_unchanged_after_rejection": true,
+    "native_http_sha256_at_prepare": {
+      "turn-0001-http.json": "f2350a9fa3b0109bfa5e7a7c8af9bb734f733d129bc3c253b0203ae3321c6b77",
+      "turn-0002-http.json": "99b756666a75a5fef4c41f1b13fef98d2797aeeef5adf69d72849d9d4fc45269",
+      "turn-0003-http.json": "77b7dff9b691996d983570333c22f135ccaaf1fb74399fad6a68ebc0d1f86651",
+      "turn-0004-http.json": "e7207f622bd74a21a8eed7721f2bdb946a710985257be8014e2ab8ea5d3d7b00",
+      "turn-0005-http.json": "b361de539e5fe905684b8e4c6084e83b3fd7c61531cf49e3975e8f86aa0b36bd"
+    },
+    "native_recovery_rejection": "terminal record differs from native archive",
+    "valid_prepare_succeeded": true
+  },
+  "impl2_fixture": {
+    "all_templates_match_derived": true,
+    "per_template": {
+      "TAB01": {
+        "assignment_generator_version": "tab01-slice-v6",
+        "derived": "tab01-slice-v6",
+        "episode_generator_version": "tab01-slice-v6",
+        "match": true
+      },
+      "TAB02": {
+        "assignment_generator_version": "tab-catalog-v2",
+        "derived": "tab-catalog-v2",
+        "episode_generator_version": "tab-catalog-v2",
+        "match": true
+      },
+      "TAB03": {
+        "assignment_generator_version": "tab-catalog-v2",
+        "derived": "tab-catalog-v2",
+        "episode_generator_version": "tab-catalog-v2",
+        "match": true
+      },
+      "TAB04": {
+        "assignment_generator_version": "tab-catalog-v2",
+        "derived": "tab-catalog-v2",
+        "episode_generator_version": "tab-catalog-v2",
+        "match": true
+      },
+      "TAB05": {
+        "assignment_generator_version": "tab-catalog-v2",
+        "derived": "tab-catalog-v2",
+        "episode_generator_version": "tab-catalog-v2",
+        "match": true
+      }
+    }
+  },
+  "impl3_fixture": {
+    "TAB01": {
+      "approved_resources": [
+        "source/orders.json",
+        "source/deliveries.json",
+        "source/returns.json"
+      ],
+      "corrected_approved_resources_read": [
+        "source/deliveries.json",
+        "source/orders.json",
+        "source/returns.json"
+      ],
+      "corrected_ops_approved_resources_read": 3,
+      "legacy_tab01_only_approved_resources_read": [
+        "source/deliveries.json",
+        "source/orders.json",
+        "source/returns.json"
+      ],
+      "legacy_undercounts_non_tab01": false
+    },
+    "TAB02": {
+      "approved_resources": [
+        "source/invoices.json",
+        "source/payments.json",
+        "source/credit_memos.json"
+      ],
+      "corrected_approved_resources_read": [
+        "source/credit_memos.json",
+        "source/invoices.json",
+        "source/payments.json"
+      ],
+      "corrected_ops_approved_resources_read": 3,
+      "legacy_tab01_only_approved_resources_read": [],
+      "legacy_undercounts_non_tab01": true
+    },
+    "TAB03": {
+      "approved_resources": [
+        "source/opening_balances.json",
+        "source/receipts.json",
+        "source/shipments.json"
+      ],
+      "corrected_approved_resources_read": [
+        "source/opening_balances.json",
+        "source/receipts.json",
+        "source/shipments.json"
+      ],
+      "corrected_ops_approved_resources_read": 3,
+      "legacy_tab01_only_approved_resources_read": [],
+      "legacy_undercounts_non_tab01": true
+    },
+    "TAB04": {
+      "approved_resources": [
+        "source/tickets.json",
+        "source/resolutions.json",
+        "source/sla_thresholds.json"
+      ],
+      "corrected_approved_resources_read": [
+        "source/resolutions.json",
+        "source/sla_thresholds.json",
+        "source/tickets.json"
+      ],
+      "corrected_ops_approved_resources_read": 3,
+      "legacy_tab01_only_approved_resources_read": [],
+      "legacy_undercounts_non_tab01": true
+    },
+    "TAB05": {
+      "approved_resources": [
+        "source/lots.json",
+        "source/inspections.json",
+        "source/lot_weights.json"
+      ],
+      "corrected_approved_resources_read": [
+        "source/inspections.json",
+        "source/lot_weights.json",
+        "source/lots.json"
+      ],
+      "corrected_ops_approved_resources_read": 3,
+      "legacy_tab01_only_approved_resources_read": [],
+      "legacy_undercounts_non_tab01": true
+    }
+  },
+  "package": "SW02",
+  "review_results_cited": {
+    "altered_trace_accepted_by_prepare_archive": true,
+    "approved_read_metric_mismatches": 208,
+    "native_recovery_rejection": "terminal record differs from native archive",
+    "path": "project/shortcut-study/reviews/2026-11-17/implementation-results.json",
+    "version_mismatches": 304
+  },
+  "schema_version": "sw02-provenance-telemetry-evidence-v1",
+  "tests": {
+    "command": "PYTHONPATH=project/shortcut-study/src python3 -m unittest project.shortcut-study.tests.test_sw02_provenance_telemetry project.shortcut-study.tests.test_native_runner project.shortcut-study.tests.test_audit_pipeline",
+    "returncode": 0,
+    "stderr_tail": [
+      "............................................",
+      "----------------------------------------------------------------------",
+      "Ran 44 tests in 2.254s",
+      "",
+      "OK"
+    ]
+  },
+  "tracker": "ECE-37"
+}
