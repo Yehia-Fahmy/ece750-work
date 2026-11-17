@@ -579,7 +579,7 @@
     "e94722c fix(shortcut-study): block identical tool-call loops (TAB05 extreme)",
     "96d81c1 fix(shortcut-study): identical tool repeats skip action budget",
     "a282791 docs(shortcut-study): package TAB05 extreme 16/16 residual clearance",
-    "f7b006b fix(shortcut-study): keep live qual turns 16; probe-only turns 20"
+    "c44c2ae fix(shortcut-study): keep live qual turns 16; probe-only turns 20"
   ],
   "claim_correction_utc": "2026-11-17T22:06:55.568341+00:00"
 }
