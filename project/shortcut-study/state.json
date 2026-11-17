@@ -650,7 +650,7 @@
   "swarm_handoff": {
     "schema_version": 1,
     "date": "2026-11-17",
-    "status": "sw05_integrator_wiring_ready_for_review",
+    "status": "sw05_accepted_awaiting_sw06_wsl_placement",
     "start_here": "SWARM_START.md",
     "work_packages": "SWARM_WORK_PACKAGES.md",
     "reconciliation": "handoffs/2026-11-17-completion-swarm.md",
@@ -857,9 +857,9 @@
       {
         "id": "SW05",
         "role": "independent_cpu_reviewer",
-        "status": "ready_for_review",
-        "owner": "independent_reviewer_pending",
-        "reviewer": "independent_not_sw01_sw02_sw03_or_integrator",
+        "status": "accepted",
+        "owner": "bc-ece62cad-b32b-5b8f-b2e7-56b9dbc6be8a",
+        "reviewer": "bc-4f8d0fae",
         "depends_on": [
           "SW01",
           "SW02",
@@ -870,15 +870,17 @@
         "evidence": [
           "handoffs/2026-11-17-sw05-integrator-wiring.md",
           "results/development/sw05-integrator-wiring-v1.json",
-          "tests/test_sw05_integrator_wiring.py",
+          "PR #33 @ 96eab5b",
+          "independent review: approve-with-nits (bc-4f8d0fae)",
           "unittest discover: 254 OK"
         ],
-        "note": "Integrator wiring PR ready; independent SW05 review required before GPU. submission_authorized=false."
+        "note": "Independent SW05 approve-with-nits by bc-4f8d0fae on 96eab5b; suite 254 OK; G2 remains failed; reviews/2026-11-17 untouched; submission_authorized=false.",
+        "output_commit": "96eab5bcec445d1796bb56e344df10e0d151911e"
       },
       {
         "id": "SW06",
         "role": "gpu_operator_and_qualification_reviewer",
-        "status": "planned_blocked_on_sw05",
+        "status": "planned_awaiting_wsl_gpu_worker",
         "owner": null,
         "reviewer": null,
         "depends_on": [
@@ -887,7 +889,7 @@
         "input_commit": null,
         "assigned_paths": [],
         "evidence": [],
-        "note": "See handoffs/2026-11-17-sw06-gpu-plan.md; do not start until SW05 accept."
+        "note": "SW05 accepted. Follow handoffs/2026-11-17-sw06-gpu-plan.md only after root places a user WSL RTX 3070 Ti worker. Do not start qualification on cloud host."
       },
       {
         "id": "SW07",
@@ -934,40 +936,103 @@
     },
     "finding_disposition": {
       "RD1": {
-        "status": "open",
-        "package": "SW01"
+        "status": "repaired_with_evidence",
+        "package": "SW01",
+        "evidence": [
+          "PR #29/#30/#31 merged to main",
+          "PR #33 integrator tip 96eab5b",
+          "SW05 review approve-with-nits (bc-4f8d0fae)",
+          "unittest discover: 254 OK"
+        ],
+        "accepted_at_commit": "96eab5bcec445d1796bb56e344df10e0d151911e"
       },
       "RD2": {
-        "status": "open",
-        "package": "SW01"
+        "status": "repaired_with_evidence",
+        "package": "SW01",
+        "evidence": [
+          "PR #29/#30/#31 merged to main",
+          "PR #33 integrator tip 96eab5b",
+          "SW05 review approve-with-nits (bc-4f8d0fae)",
+          "unittest discover: 254 OK"
+        ],
+        "accepted_at_commit": "96eab5bcec445d1796bb56e344df10e0d151911e"
       },
       "RD3": {
-        "status": "open",
-        "package": "SW01"
+        "status": "repaired_with_evidence",
+        "package": "SW01",
+        "evidence": [
+          "PR #29/#30/#31 merged to main",
+          "PR #33 integrator tip 96eab5b",
+          "SW05 review approve-with-nits (bc-4f8d0fae)",
+          "unittest discover: 254 OK"
+        ],
+        "accepted_at_commit": "96eab5bcec445d1796bb56e344df10e0d151911e"
       },
       "IMPL-1": {
-        "status": "open",
-        "package": "SW02"
+        "status": "repaired_with_evidence",
+        "package": "SW02",
+        "evidence": [
+          "PR #29/#30/#31 merged to main",
+          "PR #33 integrator tip 96eab5b",
+          "SW05 review approve-with-nits (bc-4f8d0fae)",
+          "unittest discover: 254 OK"
+        ],
+        "accepted_at_commit": "96eab5bcec445d1796bb56e344df10e0d151911e"
       },
       "IMPL-2": {
-        "status": "open",
-        "package": "SW02"
+        "status": "repaired_with_evidence",
+        "package": "SW02",
+        "evidence": [
+          "PR #29/#30/#31 merged to main",
+          "PR #33 integrator tip 96eab5b",
+          "SW05 review approve-with-nits (bc-4f8d0fae)",
+          "unittest discover: 254 OK"
+        ],
+        "accepted_at_commit": "96eab5bcec445d1796bb56e344df10e0d151911e"
       },
       "IMPL-3": {
-        "status": "open",
-        "package": "SW02"
+        "status": "repaired_with_evidence",
+        "package": "SW02",
+        "evidence": [
+          "PR #29/#30/#31 merged to main",
+          "PR #33 integrator tip 96eab5b",
+          "SW05 review approve-with-nits (bc-4f8d0fae)",
+          "unittest discover: 254 OK"
+        ],
+        "accepted_at_commit": "96eab5bcec445d1796bb56e344df10e0d151911e"
       },
       "A1": {
-        "status": "open",
-        "package": "SW03"
+        "status": "repaired_with_evidence",
+        "package": "SW03",
+        "evidence": [
+          "PR #29/#30/#31 merged to main",
+          "PR #33 integrator tip 96eab5b",
+          "SW05 review approve-with-nits (bc-4f8d0fae)",
+          "unittest discover: 254 OK"
+        ],
+        "accepted_at_commit": "96eab5bcec445d1796bb56e344df10e0d151911e"
       },
       "A2": {
-        "status": "open",
-        "package": "SW03"
+        "status": "repaired_with_evidence",
+        "package": "SW03",
+        "evidence": [
+          "PR #29/#30/#31 merged to main",
+          "PR #33 integrator tip 96eab5b",
+          "SW05 review approve-with-nits (bc-4f8d0fae)",
+          "unittest discover: 254 OK"
+        ],
+        "accepted_at_commit": "96eab5bcec445d1796bb56e344df10e0d151911e"
       },
       "A3": {
-        "status": "open",
-        "package": "SW03"
+        "status": "repaired_with_evidence",
+        "package": "SW03",
+        "evidence": [
+          "PR #29/#30/#31 merged to main",
+          "PR #33 integrator tip 96eab5b",
+          "SW05 review approve-with-nits (bc-4f8d0fae)",
+          "unittest discover: 254 OK"
+        ],
+        "accepted_at_commit": "96eab5bcec445d1796bb56e344df10e0d151911e"
       },
       "RD4": {
         "status": "partly_superseded",
