@@ -3,7 +3,7 @@
   "schema_version": "shortcut-budgets-config-v1",
   "source_of_truth_for_episode_budgets": "this_file",
   "development": {
-    "max_model_turns": 12,
+    "max_model_turns": 16,
     "max_tool_actions": 12,
     "max_cumulative_generated_tokens": 12288,
     "max_per_turn_output_tokens": 3072,
@@ -12,7 +12,7 @@
     "technical_transport_retries": 1
   },
   "qualification": {
-    "max_model_turns": 12,
+    "max_model_turns": 16,
     "max_tool_actions": 12,
     "max_cumulative_generated_tokens": 12288,
     "max_per_turn_output_tokens": 3072,
@@ -24,7 +24,7 @@
     "Candidate limits for development and the 16-episode vertical slice.",
     "qualification mirrors local-qualification.json context/retry posture for held-out packaging mocks.",
     "tab01-slice-v6 raised per-turn/cumulative output headroom uniformly after V11 dual-visibility turn-1 overflows at 2048; still no visibility-specific decoding.",
-    "max_tool_actions 8→12 after fresh qual v3-001: extreme TAB05 exhausted 8 actions on calculate before submit (token budgets unchanged).",
+    "max_tool_actions 8→12 and max_model_turns 12→16 after fresh qual v3-001 extreme calculate loops before submit (token budgets unchanged).",
     "Exact values become frozen only with the main protocol.",
     "Do not force extreme tasks to fail through an inadequate action budget and call that difficulty."
   ]

@@ -4,7 +4,7 @@
   "model_alias": "shortcut-qwen3-4b",
   "server_context_tokens": 16384,
   "limits": {
-    "max_model_turns": 12,
+    "max_model_turns": 16,
     "max_tool_actions": 12,
     "max_cumulative_generated_tokens": 12288,
     "max_per_turn_output_tokens": 3072,

@@ -4,7 +4,7 @@
   "protocol_candidate": "s0-tab-v0",
   "source_of_truth_for_episode_budgets": "this_file_when_frozen_else_development",
   "candidate_limits": {
-    "max_model_turns": 12,
+    "max_model_turns": 16,
     "max_tool_actions": 12,
     "max_cumulative_generated_tokens": 12288,
     "max_per_turn_output_tokens": 3072,
