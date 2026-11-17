@@ -1,5 +1,7 @@
 # GPU runbook — G2 held-out qualification (S0)
 
+**November 17 stop condition for the examples below:** the old `--held-out` path reuses fixed qualification worlds. A fresh output directory does not make a fresh batch. Follow [SWARM_START](SWARM_START.md) and SW01/SW05/SW06 in [completion packages](SWARM_WORK_PACKAGES.md): accept content-level split/batch repairs and development capability first, then use the implemented batch-aware CLI documented by that handoff. Do not copy the historical fixed-batch examples into a new qualification campaign. Local GPU execution is authorized for the next swarm within those gates and the November 22 freeze cutoff; it is not part of this documentation-preparation session.
+
 Audience: Yehia / designated GPU operator on the RTX 3070 Ti host (WSL).  
 CPU agents stop here: packaging is already on disk; this document is the handoff packet for inference.
 

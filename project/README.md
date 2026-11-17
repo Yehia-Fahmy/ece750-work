@@ -2,6 +2,8 @@
 
 **Additional research:** [Shortcut study extension — context and agent starting point](shortcut-study/README.md). This adds a new local-only study while preserving the completed experiment below.
 
+**Completion swarm:** use [SWARM_START](shortcut-study/SWARM_START.md) for the latest user-selected goal, deadlines, ownership, review gaps and launch instruction. The original completed experiment below remains protected.
+
 **Course deadlines:** Final project report due **December 4, 2026** (11:59pm ET under the general written-work policy). Project presentation date **TBD**. See the [course deadline table](../README.md#deliverables-and-due-dates) for the instructor’s clarification.
 
 **Completed:** [final report (PDF)](report/final-report.pdf), [readable Markdown](report/final-report.md), and [reproduction instructions](report/README.md). The report has four main pages plus references. All 240 responses were audited, all 179 eligible automated judgments revalidated, both original analyses reproduced, and 58 tests passed. The [final evaluation](results/final-automated-evaluation.json) includes derived rows and automated grading robustness checks.

@@ -17,6 +17,8 @@ Recorded November 15, 2026. IDs are stable for work-package references.
 | D11 | Keep V2 as a dated design snapshot; add current constraints and execution decisions here | Additive organization |
 | D12 | No new experimental generations in this planning pass | User assigned planning and future orchestration |
 
+D12 describes the original planning session, not a permanent execution prohibition. See the dated completion instruction below.
+
 ## Superseded suggestions
 
 - Renting 24–48 GB GPUs or paying hosted judges: excluded by D09.
@@ -36,3 +38,15 @@ Record future decisions as dated entries with evidence, affected artifact/versio
 The context checkpoint `ecb82d3` was committed and pushed before the execution plan. The proposed course core is 100 base scenarios × 16 matched conditions × two seeds = 3,200 episodes on one primary actor. Scope may decrease before main collection using the documented budget/capability gates. These counts are a planning recommendation, not a powered-study guarantee or a frozen protocol.
 
 Proposed candidates are the existing Qwen3-4B actor, Qwen3-8B local primary judge, and a qualified small different-family alternative for independent review/optional replication. None is newly qualified by this documentation. A failed independent judge is a disclosed limitation; it does not permit external compute. Main actor collection targets November 27, audits November 29, full report November 30, and final packaging December 1–3.
+
+### November 17 — user-authorized completion swarm, S0 attempt with firm S4 fallback
+
+After reviewing the work, the researcher asked for committed/pushed instructions enabling another swarm to independently complete it. When offered existing-results-only delivery versus a new experiment with fallback, the researcher selected: **“Attempt the new experiment, with a firm S4 fallback cutoff.”**
+
+- **D13:** Attempt repaired, freshly qualified S0 and complete all report/reproduction deliverables. The prior S4-only declaration at `d0b65c3` remains historical and supplies the fallback; it is no longer the sole active target. This does not accept G2 or freeze a protocol.
+- **D14:** Operational cutoff set in this handoff: **November 22, 2026, 18:00 America/Toronto** for accepted qualification plus committed freeze. Missing either automatically selects S4. Stop starting actor blocks November 27 at 18:00; end experimental inference November 29 at 18:00. Preserve frozen denominators and attempted outcomes when time expires. Target a reviewed delivery package December 3 at 18:00 before the December 4 report deadline. These are orchestration deadlines implementing the user's firm-fallback instruction, not claims that the user specified each exact hour.
+- **D15:** Agents own PDF, final deck, speaker notes, visual checks and reproduction, not merely Markdown/outline preparation. Old “Yehia-only” artifact-production labels are superseded. Actual course submission and unavailable official logistics remain researcher-owned. Routine implementation/gate transitions within authorized scope do not need repeated permission.
+
+The current session prepares/publishes guidance and review evidence; it does not start experiments. The next executing swarm may implement, qualify and collect under these decisions. Its exact scope, actor/judge configuration and inference plan still require accepted scientific gates, the local RTX 3070 Ti lease, zero external experimental inference, and an immutable pre-main freeze. No permission is granted to change protected original science or erase failed runs.
+
+Current plan: [SWARM_START](SWARM_START.md). Assignments/acceptance: `state.json.swarm_handoff`. Review/source-baseline reconciliation: [November 17 handoff](handoffs/2026-11-17-completion-swarm.md).

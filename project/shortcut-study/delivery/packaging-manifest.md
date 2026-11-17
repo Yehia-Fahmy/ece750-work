@@ -1,5 +1,7 @@
 # Packaging manifest — S4 course package (WP13)
 
+**Historical packaging inventory at the base below.** The later [completion handoff](../SWARM_START.md) assigns a gated S0 attempt with S4 fallback and delegates all artifact production to agents. “Yehia packaging/only” labels in this dated inventory describe prior ownership, not current instructions. Keep its recorded hashes as evidence; publish a new final manifest after completion. Existing “held-out” labels retain archive names but do not establish freshness: the review found all worlds reused in the second run.
+
 - **Base tip (includes #26 S4 declaration):** `d0b65c3913ec20808d7d23658c543eda3f977b18`
 - **Tier:** S4 honest course fallback (`primary_actor_episodes = 0`)
 - **Frozen protocol:** none (`frozen_protocol = null`; G3 canceled)

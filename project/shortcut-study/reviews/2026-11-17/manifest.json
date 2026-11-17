@@ -1,0 +1,21 @@
+{
+  "input_commit": "3c155baf4af8a2c6bbed8da769f533ecc3847413",
+  "scope": "New review artifacts only; excludes this manifest from its own hashes",
+  "sha256": {
+    "README.md": "801c89a6667aa9064165f83f479cbd6912bd01b7cd3a19353e9aa51cc764b680",
+    "analysis-evidence-archives.json": "ed99911c90665678bfb39ac0827b118b1b632036dea6714a083c5b1f53cd5800",
+    "analysis-evidence-archives.py": "b5c396c6503cd27e10b8729776ee788e7ba0b7573b11c688d8e3d67d3adfed0b",
+    "analysis-evidence-repro.json": "7f49b485a2b65988e1ddc71975058f786a96c75309e8fc5f5cced0905866f9c0",
+    "analysis-evidence-repro.py": "3b8e889b9b54b84b60a4105fdcbe76c0a11d54b61c59010bb6801f5b63efaf7a",
+    "analysis-evidence.md": "933a9188befe116126d06035a009a4be59dae46e7d41df6c8f590eb694006938",
+    "implementation-reproduce.py": "9f98a2b54c00c947a2f16718acdaadb32d69fbb03923a9827b9324c784d71f71",
+    "implementation-results.json": "292f34ab56bf8f99c49c024709bc95a480182f290e1bfc4bce22e14bd8efed88",
+    "implementation.md": "56b8cb6bc556bd9d65cffc66d24b6f032ad509f0a4cf4d4722006526e18e2305",
+    "original-study.md": "5c9a0fdad7c837da94520515959cc4df7c3fbda1313c60200a34d24182d7976e",
+    "research-design-evidence.json": "bcf67019d4b80c95923d4ccd38e73d8b21569ea70a285ee09a912ec3c557b2e4",
+    "research-design-reproduce.py": "a4bae56ecac9d0f14bac8213969bc4837020db5cc8cb56b33c779b3b901f6d0a",
+    "research-design.md": "85a538e6af37bcba96d83d1239a4b781bd4c484f2113ea33827ff36d3af33e4e",
+    "state.json": "8fbfa9441f3727e3cd0e916d8792e8ae8e8a2d535e73b03beb8aeb552db15417",
+    "verification.json": "2fda6eed02700d5ec9ad663ed92c81b2545fdacefbf53d6696b1669db844c8dc"
+  }
+}

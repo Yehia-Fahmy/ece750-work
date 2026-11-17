@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "updated_at": "2026-11-17",
-  "phase": "s4_wp13_packaging_ready_for_review",
+  "phase": "completion_swarm_sw00_assigned",
   "context_checkpoint": "ecb82d3",
-  "planning_status": "s4_course_fallback",
+  "planning_status": "s0_attempt_with_firm_s4_fallback",
   "execution_started": true,
   "frozen_protocol": null,
   "active_run": null,
@@ -17,8 +17,8 @@
     "submission_authorized": false
   },
   "recommended_scope_not_frozen": {
-    "tier": "S4",
-    "label": "Honest course fallback \u2014 no main factorial claim",
+    "tier": "S0",
+    "label": "S0 TAB-only candidate, pending repairs, fresh qualification and freeze; automatic S4 fallback",
     "families": 1,
     "family_ids": [
       "tables"
@@ -29,26 +29,23 @@
     "information_states": 2,
     "availability_states": 2,
     "visibility_cells": 4,
-    "replicate_seeds": 0,
-    "base_scenarios": 0,
-    "primary_actor_episodes": 0,
+    "replicate_seeds": 1,
+    "base_scenarios": 20,
+    "primary_actor_episodes": 320,
     "optional_second_actor_episodes": 0,
-    "protocol_candidate": null,
+    "protocol_candidate": "s0-tab-v0",
     "draft_configs": "configs/provisional/s0-tab-only/",
     "original_course_core_episodes_withdrawn_for_dec4": 3200,
-    "s0_tab_only_320_withdrawn": true,
-    "reason": "G2 held-out failed twice (#23 then #25 after catalog-v2); no freeze; no main collection",
-    "selected_at": "2026-11-17",
-    "decision_handoff": "handoffs/2026-11-17-s4-honest-course-fallback.md"
+    "note": "Prior provisional files retain S4-era history; not executable freeze authority. Create versioned current candidate/frozen artifacts only after accepted repairs."
   },
   "gates": {
     "G0": "accepted",
     "G1": "in_progress",
     "G2": "failed",
-    "G3": "canceled",
-    "G4": "canceled",
-    "G5": "canceled",
-    "G6": "ready_for_review"
+    "G3": "not_started",
+    "G4": "not_started",
+    "G5": "not_started",
+    "G6": "in_progress"
   },
   "packages": [
     {
@@ -237,31 +234,31 @@
         "results/qualification/g2-held-out-20261116-catalog-v2.json",
         "handoffs/2026-11-17-s4-honest-course-fallback.md"
       ],
-      "note": "S4 declared 2026-11-17 after two G2 FAILs (#23, #25). Unsigned S0 provisional freeze draft retained as historical prep only; G3 canceled; no configs/frozen/ commit. Do not start main collection."
+      "note": "New S0 attempt authorized; G2 remains failed and G3 not accepted. Repair review findings and consumed-batch identity before fresh qualification. Previous S4 decision retained as fallback."
     },
     {
       "id": "WP09",
-      "status": "canceled",
+      "status": "not_started",
       "owner": null,
       "depends_on": [
         "WP08"
       ],
       "evidence": [],
-      "note": "Canceled under S4: no frozen main actor collection / no main factorial claim."
+      "note": "Reopened as conditional planned work by November 17 user instruction; only after accepted fresh qualification and G3 freeze before cutoff. Otherwise deferred under S4. No main results exist."
     },
     {
       "id": "WP10",
-      "status": "canceled",
+      "status": "not_started",
       "owner": null,
       "depends_on": [
         "WP08"
       ],
       "evidence": [],
-      "note": "Canceled under S4: no main semantic audit (no main episodes)."
+      "note": "Reopened as conditional planned work by November 17 user instruction; only after accepted fresh qualification and G3 freeze before cutoff. Otherwise deferred under S4. No main results exist."
     },
     {
       "id": "WP11",
-      "status": "canceled",
+      "status": "not_started",
       "owner": null,
       "depends_on": [
         "WP07",
@@ -269,12 +266,12 @@
         "WP10"
       ],
       "evidence": [],
-      "note": "Canceled under S4: no main confirmatory analysis; course package uses development/pilot evidence only."
+      "note": "Reopened as conditional planned work by November 17 user instruction; only after accepted fresh qualification and G3 freeze before cutoff. Otherwise deferred under S4. No main results exist."
     },
     {
       "id": "WP12",
-      "status": "ready_for_review",
-      "owner": "report_author",
+      "status": "in_progress",
+      "owner": null,
       "depends_on": [
         "WP00"
       ],
@@ -290,12 +287,12 @@
         "delivery/",
         "handoffs/2026-11-17-wp13-s4-delivery.md"
       ],
-      "note": "S4 submission-oriented Markdown draft + slide outline; PDF/final deck still Yehia. No fabricated main findings. Ready for lagging review (not full WP12 acceptance until PDF/deck)."
+      "note": "Prior S4 Markdown/outline/packaging drafts retained. Next swarm owns final PDF, deck, speaker notes and independent reproduction under actual S0/S4 outcome. Not accepted; course submission remains researcher-only."
     },
     {
       "id": "WP13",
-      "status": "ready_for_review",
-      "owner": "integrator",
+      "status": "in_progress",
+      "owner": null,
       "depends_on": [
         "WP12"
       ],
@@ -309,108 +306,129 @@
         "report/slides-outline.md",
         "handoffs/2026-11-17-s4-honest-course-fallback.md"
       ],
-      "note": "S4 pilot-only delivery packaging: Git vs raw vs GPU classes documented; preservation 111/111; observer verify_final_results OK; 213 extension tests; submission_authorized remains false. Not accepted until lagging review; PDF/deck Yehia-only."
+      "note": "Prior S4 Markdown/outline/packaging drafts retained. Next swarm owns final PDF, deck, speaker notes and independent reproduction under actual S0/S4 outcome. Not accepted; course submission remains researcher-only."
     }
   ],
   "open_items": [
-    "G6/WP13 S4 packaging ready_for_review (delivery/); lagging review required; do not self-merge; submission remains Yehia-only.",
-    "S4 honest course fallback DECLARED 2026-11-17: no frozen main collection; G2 not accepted (failed twice); G3/G4/G5 canceled; reduced claims. See handoffs/2026-11-17-s4-honest-course-fallback.md.",
-    "G0 TAB-only accepted (WP01 + TAB catalog/spec + v6 PASS archive #20); five-family G0 remains out of scope.",
-    "G1: long-episode WP06 pilots recorded (g1-long-pilots-20261116, 9/10); not formally accepted as G1; under S4 this is pilot evidence only.",
-    "G2 FAILED twice: #23 g2-held-out-20261116 (238/320, easy 55%) and #25 g2-held-out-20261116-catalog-v2 (239/320, easy 55%). gates.G2=failed; do not start main.",
-    "WP12 S4 Markdown + slide outline ready_for_review; extension PDF/final deck and page-limit/presentation logistics remain Yehia/TBD. See delivery/submission-checklist.md.",
-    "Independent semantic judge never qualified; semantic claims withdrawn for course delivery.",
-    "Final course page limit and presentation arrangements require reconciliation with official instructions.",
-    "Submission remains Yehia-only (submission_authorized=false)."
+    "SW00 in progress: assignments issued; integrate SW01\u201303 after independent reviews (author\u2260reviewer).",
+    "Launch sibling workers for ECE-36/37/38 (SW01/02/03) with path allowlists in assignment handoffs.",
+    "Repair RD1/RD2/RD3 (SW01), IMPL-1/2/3 (SW02), A1\u2013A5 (SW03) before any new 320-episode qualification.",
+    "No GPU on current orchestrator host; GPU work later only on user WSL RTX 3070 Ti after SW05.",
+    "G2 remains failed (239/320; easy 11/20); prior catalog-v2 run reused worlds; no gate accepted by SW00.",
+    "Independently accept fresh qualification and commit freeze by 2026-11-22 18:00 America/Toronto or automatically select S4.",
+    "Local project/runs archives absent on orchestrator host; preserve review evidence; authenticity checks need WSL archives later.",
+    "Agents must build final report PDF, deck and notes by Dec 3 18:00; course submission remains researcher-only.",
+    "Qualified semantic executor, validation and complete pipeline forecast remain pending; explicitly withdraw semantic conclusions if scope is behavioral-only.",
+    "Official final page limit and presentation arrangements remain unresolved; continue with documented provisional format.",
+    "Course submission remains researcher-only; historical artifacts and local asset-dependent worktrees remain protected."
   ],
   "session": {
     "date": "2026-11-17",
-    "input_commit": "d0b65c3",
-    "owner": "integrator",
-    "authorization": "Coordinator assigned ECE-33 Package G6 S4 course deliverable; do not self-merge; submission_authorized stays false.",
-    "scope": "WP13/G6 S4 delivery packaging after #26; tighten WP12 links; slide outline; no GPU; no course submission",
-    "status": "s4_wp13_packaging_ready_for_review",
-    "tier": "S4",
-    "primary_actor_episodes": 0,
-    "frozen_protocol": null,
-    "main_collection": false,
-    "g2_accepted": false,
-    "g3_freeze": "canceled",
-    "g6": "ready_for_review",
-    "wp13": "ready_for_review",
-    "submission_authorized": false,
-    "decision_handoff": "handoffs/2026-11-17-s4-honest-course-fallback.md",
-    "wp12_handoff": "handoffs/2026-11-17-wp12-s4-report.md",
-    "wp13_handoff": "handoffs/2026-11-17-wp13-s4-delivery.md",
-    "delivery_dir": "delivery/",
-    "reproduction_log": "delivery/reproduction-log.md",
-    "prior_session_s4_declaration": {
+    "input_commit": "f82908d62889fbd6ea3ffa79e041ac17ffb6b094",
+    "owner": "bc-ece62cad-b32b-5b8f-b2e7-56b9dbc6be8a",
+    "host": "cursor",
+    "authorization": "User/coordinator authorized completion swarm execution from SWARM_START; submission_authorized stays false.",
+    "scope": "SW00 baseline + assign SW01\u201303 CPU lanes; no GPU qualification this wave.",
+    "status": "sw00_in_progress_cpu_lanes_assigned",
+    "working_branch": "cursor/sw00-completion-baseline-be8a",
+    "prior_session": {
       "date": "2026-11-17",
-      "input_commit": "6eb9633",
-      "owner": "integrator",
-      "authorization": "Coordinator assigned ECE-32 Ship S4 honest course fallback; do not self-merge.",
-      "scope": "S4 honest course fallback: declare no main factorial; advance WP12 S4 draft; include #25 FAIL evidence",
-      "status": "s4_honest_course_fallback_declared",
-      "tier": "S4",
-      "primary_actor_episodes": 0,
-      "frozen_protocol": null,
-      "main_collection": false,
-      "g2_accepted": false,
-      "g3_freeze": "canceled",
-      "decision_handoff": "handoffs/2026-11-17-s4-honest-course-fallback.md",
-      "wp12_handoff": "handoffs/2026-11-17-wp12-s4-report.md",
-      "basis": [
-        "G0 TAB-only accepted (#22)",
-        "TAB01 v6 development probe+16-cell PASS (#20)",
-        "G2 FAIL #23 (238/320; easy 55%)",
-        "catalog-v2 (#24) then G2 FAIL #25 (239/320; easy 55%)",
-        "G1 long pilots recorded (9/10); not G1 acceptance"
-      ],
-      "prior_session_g2_catalog_v2_fail": {
+      "input_commit": "7c4aed7de6e51c8cff09e608b0d395cd56042334",
+      "owner": "handoff_preparer",
+      "authorization": "User requested committed/pushed organized orchestrator/swarm guidance; selected: Attempt the new experiment, with a firm S4 fallback cutoff.",
+      "scope": "Guidance/state/review publication only in this session; next swarm executes gated repairs and completion.",
+      "status": "handoff_prepared_not_executed",
+      "prior_session_wp13": {
         "date": "2026-11-17",
-        "input_commit": "18f2b9f",
-        "owner": "gpu_operator",
-        "authorization": "Coordinator assigned ECE-30 G2 re-held-out after catalog-v2; do not self-merge; do not auto-accept G2.",
-        "scope": "S0 held-out qualify-local --held-out on tab-catalog-v2; zero external inference; no main",
-        "status": "g2_held_out_catalog_v2_fail_recorded",
-        "held_out_run": "g2-held-out-20261116-catalog-v2",
-        "held_out_evidence": "results/qualification/g2-held-out-20261116-catalog-v2.json",
-        "held_out_handoff": "handoffs/2026-11-16-g2-held-out-catalog-v2.md",
-        "held_out_verdict": "FAIL",
-        "held_out_completion": "239/320",
-        "held_out_easy_success": "11/20",
-        "prior_held_out_fail_preserved": {
-          "run_id": "g2-held-out-20261116",
-          "evidence": "results/qualification/g2-held-out-20261116.json",
-          "handoff": "handoffs/2026-11-16-g2-held-out-gpu.md",
-          "pr": "https://github.com/Yehia-Fahmy/ece750-work/pull/23",
-          "untouched": true
-        },
-        "long_pilot_run": "g1-long-pilots-20261116",
-        "long_pilot_evidence": "results/qualification/g1-long-pilots-20261116.json",
-        "long_pilot_handoff": "handoffs/2026-11-16-g1-long-pilots.md",
-        "prior_session_tab01_v6": {
-          "date": "2026-11-15",
-          "input_commit": "838be79",
-          "status": "gpu_16cell_archive_passed_tab01_v6",
-          "capability_probe_evidence": "results/qualification/capability-probe-tab01-v6.json",
-          "sixteen_cell_handoff": "handoffs/2026-11-15-native-qualification-tab01-v6-16cell.md",
-          "sixteen_cell_evidence": "results/qualification/native-qualification-tab01-v6-16cell.json",
-          "sixteen_cell_run": "native-qualification-tab01-v6-16cell",
-          "sixteen_cell_passed": true,
-          "prior_failed_probe_evidence": "results/qualification/capability-probe-tab01-v3.json",
-          "prior_v5_sixteen_cell_evidence": "results/qualification/native-qualification-tab01-v5-16cell.json",
-          "prior_v5_capability_probe_evidence": "results/qualification/capability-probe-tab01-v5.json"
-        },
-        "prior_session_g0_accept": {
-          "date": "2026-11-16",
-          "status": "g0_tab_accepted_after_tab01_v6_pass",
-          "acceptance_handoff": "handoffs/2026-11-16-g0-tab-accepted.md",
-          "g0_decision": "accepted",
-          "scope": "TAB-only (not five-family)"
+        "input_commit": "d0b65c3",
+        "owner": "integrator",
+        "authorization": "Coordinator assigned ECE-33 Package G6 S4 course deliverable; do not self-merge; submission_authorized stays false.",
+        "scope": "WP13/G6 S4 delivery packaging after #26; tighten WP12 links; slide outline; no GPU; no course submission",
+        "status": "s4_wp13_packaging_ready_for_review",
+        "tier": "S4",
+        "primary_actor_episodes": 0,
+        "frozen_protocol": null,
+        "main_collection": false,
+        "g2_accepted": false,
+        "g3_freeze": "canceled",
+        "g6": "ready_for_review",
+        "wp13": "ready_for_review",
+        "submission_authorized": false,
+        "decision_handoff": "handoffs/2026-11-17-s4-honest-course-fallback.md",
+        "wp12_handoff": "handoffs/2026-11-17-wp12-s4-report.md",
+        "wp13_handoff": "handoffs/2026-11-17-wp13-s4-delivery.md",
+        "delivery_dir": "delivery/",
+        "reproduction_log": "delivery/reproduction-log.md",
+        "prior_session_s4_declaration": {
+          "date": "2026-11-17",
+          "input_commit": "6eb9633",
+          "owner": "integrator",
+          "authorization": "Coordinator assigned ECE-32 Ship S4 honest course fallback; do not self-merge.",
+          "scope": "S4 honest course fallback: declare no main factorial; advance WP12 S4 draft; include #25 FAIL evidence",
+          "status": "s4_honest_course_fallback_declared",
+          "tier": "S4",
+          "primary_actor_episodes": 0,
+          "frozen_protocol": null,
+          "main_collection": false,
+          "g2_accepted": false,
+          "g3_freeze": "canceled",
+          "decision_handoff": "handoffs/2026-11-17-s4-honest-course-fallback.md",
+          "wp12_handoff": "handoffs/2026-11-17-wp12-s4-report.md",
+          "basis": [
+            "G0 TAB-only accepted (#22)",
+            "TAB01 v6 development probe+16-cell PASS (#20)",
+            "G2 FAIL #23 (238/320; easy 55%)",
+            "catalog-v2 (#24) then G2 FAIL #25 (239/320; easy 55%)",
+            "G1 long pilots recorded (9/10); not G1 acceptance"
+          ],
+          "prior_session_g2_catalog_v2_fail": {
+            "date": "2026-11-17",
+            "input_commit": "18f2b9f",
+            "owner": "gpu_operator",
+            "authorization": "Coordinator assigned ECE-30 G2 re-held-out after catalog-v2; do not self-merge; do not auto-accept G2.",
+            "scope": "S0 held-out qualify-local --held-out on tab-catalog-v2; zero external inference; no main",
+            "status": "g2_held_out_catalog_v2_fail_recorded",
+            "held_out_run": "g2-held-out-20261116-catalog-v2",
+            "held_out_evidence": "results/qualification/g2-held-out-20261116-catalog-v2.json",
+            "held_out_handoff": "handoffs/2026-11-16-g2-held-out-catalog-v2.md",
+            "held_out_verdict": "FAIL",
+            "held_out_completion": "239/320",
+            "held_out_easy_success": "11/20",
+            "prior_held_out_fail_preserved": {
+              "run_id": "g2-held-out-20261116",
+              "evidence": "results/qualification/g2-held-out-20261116.json",
+              "handoff": "handoffs/2026-11-16-g2-held-out-gpu.md",
+              "pr": "https://github.com/Yehia-Fahmy/ece750-work/pull/23",
+              "untouched": true
+            },
+            "long_pilot_run": "g1-long-pilots-20261116",
+            "long_pilot_evidence": "results/qualification/g1-long-pilots-20261116.json",
+            "long_pilot_handoff": "handoffs/2026-11-16-g1-long-pilots.md",
+            "prior_session_tab01_v6": {
+              "date": "2026-11-15",
+              "input_commit": "838be79",
+              "status": "gpu_16cell_archive_passed_tab01_v6",
+              "capability_probe_evidence": "results/qualification/capability-probe-tab01-v6.json",
+              "sixteen_cell_handoff": "handoffs/2026-11-15-native-qualification-tab01-v6-16cell.md",
+              "sixteen_cell_evidence": "results/qualification/native-qualification-tab01-v6-16cell.json",
+              "sixteen_cell_run": "native-qualification-tab01-v6-16cell",
+              "sixteen_cell_passed": true,
+              "prior_failed_probe_evidence": "results/qualification/capability-probe-tab01-v3.json",
+              "prior_v5_sixteen_cell_evidence": "results/qualification/native-qualification-tab01-v5-16cell.json",
+              "prior_v5_capability_probe_evidence": "results/qualification/capability-probe-tab01-v5.json"
+            },
+            "prior_session_g0_accept": {
+              "date": "2026-11-16",
+              "status": "g0_tab_accepted_after_tab01_v6_pass",
+              "acceptance_handoff": "handoffs/2026-11-16-g0-tab-accepted.md",
+              "g0_decision": "accepted",
+              "scope": "TAB-only (not five-family)"
+            }
+          }
         }
       }
-    }
+    },
+    "sw00_output_commit": "98fca40fc722e71b030fe176a2cff9fe36a04048"
   },
   "cpu_slice_review": {
     "reviewer": "review_cpu",
@@ -563,7 +581,8 @@
       "pr": "https://github.com/Yehia-Fahmy/ece750-work/pull/20",
       "probe": "results/qualification/capability-probe-tab01-v6.json",
       "sixteen_cell": "results/qualification/native-qualification-tab01-v6-16cell.json"
-    }
+    },
+    "current_role": "Historical S4-only decision now retained as automatic fallback under latest user instruction; no prior outcome/gate evidence erased."
   },
   "g6_packaging_review": {
     "status": "ready_for_review",
@@ -584,7 +603,428 @@
     },
     "raw_archive_on_packaging_host": false,
     "gpu_rerun": false,
-    "pdf_deck": "Yehia-only / TBD",
+    "pdf_deck": "Agent-owned completion task under current swarm handoff; not yet produced",
     "note": "Packaging ready for lagging review; not G6 accepted; not course submission."
+  },
+  "scope_history": [
+    {
+      "recorded_at": "2026-11-17",
+      "base_commit": "7c4aed7",
+      "scope": {
+        "tier": "S4",
+        "label": "Honest course fallback \u2014 no main factorial claim",
+        "families": 1,
+        "family_ids": [
+          "tables"
+        ],
+        "templates_per_family": 5,
+        "difficulty_levels": 4,
+        "instances_per_template_difficulty": 1,
+        "information_states": 2,
+        "availability_states": 2,
+        "visibility_cells": 4,
+        "replicate_seeds": 0,
+        "base_scenarios": 0,
+        "primary_actor_episodes": 0,
+        "optional_second_actor_episodes": 0,
+        "protocol_candidate": null,
+        "draft_configs": "configs/provisional/s0-tab-only/",
+        "original_course_core_episodes_withdrawn_for_dec4": 3200,
+        "s0_tab_only_320_withdrawn": true,
+        "reason": "G2 held-out failed twice (#23 then #25 after catalog-v2); no freeze; no main collection",
+        "selected_at": "2026-11-17",
+        "decision_handoff": "handoffs/2026-11-17-s4-honest-course-fallback.md"
+      },
+      "gates": {
+        "G0": "accepted",
+        "G1": "in_progress",
+        "G2": "failed",
+        "G3": "canceled",
+        "G4": "canceled",
+        "G5": "canceled",
+        "G6": "ready_for_review"
+      },
+      "reason": "Prior S4-only scope retained; latest user requests S0 attempt with firm S4 fallback."
+    }
+  ],
+  "swarm_handoff": {
+    "schema_version": 1,
+    "date": "2026-11-17",
+    "status": "sw00_assigned_cpu_lanes_ready",
+    "start_here": "SWARM_START.md",
+    "work_packages": "SWARM_WORK_PACKAGES.md",
+    "reconciliation": "handoffs/2026-11-17-completion-swarm.md",
+    "review": "reviews/2026-11-17/README.md",
+    "review_commit": "3c155baf4af8a2c6bbed8da769f533ecc3847413",
+    "handoff_base_commit": "7c4aed7de6e51c8cff09e608b0d395cd56042334",
+    "selected_target": "Attempt newly qualified S0; automatic S4 fallback if qualification and committed freeze miss cutoff",
+    "user_choice_verbatim": "Attempt the new experiment, with a firm S4 fallback cutoff",
+    "timezone": "America/Toronto",
+    "deadlines": {
+      "qualification_and_freeze": "2026-11-22T18:00:00-05:00",
+      "stop_starting_actor_blocks": "2026-11-27T18:00:00-05:00",
+      "end_experimental_inference": "2026-11-29T18:00:00-05:00",
+      "full_report_draft": "2026-11-30",
+      "delivery_ready": "2026-12-03T18:00:00-05:00",
+      "report_due": "2026-12-04T23:59:00-05:00"
+    },
+    "fallback_automatic": true,
+    "suggested_max_concurrent_agents": 4,
+    "gpu_owners_at_once": 1,
+    "shared_paths_owner": "orchestrator: state.json, schemas/, configs/, dependency metadata, src/shortcut_study/{__main__,qualification,held_out}.py; transfer ownership explicitly",
+    "artifact_production_owner": "swarm",
+    "course_submission_authorized": false,
+    "baseline_validation": {
+      "extension_tests": 213,
+      "result": "passed",
+      "at_commit": "7c4aed7",
+      "log_in_current_preparation_environment": "/tmp/ece750-handoff-baseline-tests.log"
+    },
+    "packages": [
+      {
+        "id": "SW00",
+        "role": "orchestrator",
+        "status": "in_progress",
+        "owner": "bc-ece62cad-b32b-5b8f-b2e7-56b9dbc6be8a",
+        "reviewer": "project_root_independent",
+        "depends_on": [],
+        "input_commit": "f82908d62889fbd6ea3ffa79e041ac17ffb6b094",
+        "assigned_paths": [
+          "project/shortcut-study/state.json",
+          "project/shortcut-study/handoffs/2026-11-17-sw00-baseline.md",
+          "project/shortcut-study/handoffs/2026-11-17-sw01-assignment.md",
+          "project/shortcut-study/handoffs/2026-11-17-sw02-assignment.md",
+          "project/shortcut-study/handoffs/2026-11-17-sw03-assignment.md",
+          "project/shortcut-study/results/development/sw00-baseline-v1.json",
+          "project/shortcut-study/schemas/",
+          "project/shortcut-study/configs/",
+          "project/shortcut-study/src/shortcut_study/__main__.py",
+          "project/shortcut-study/src/shortcut_study/qualification.py",
+          "project/shortcut-study/src/shortcut_study/held_out.py"
+        ],
+        "evidence": [
+          "handoffs/2026-11-17-sw00-baseline.md",
+          "results/development/sw00-baseline-v1.json",
+          "reviews/2026-11-17/manifest.json (15/15)",
+          "preservation-manifest.json (111/111)",
+          "commit:98fca40fc722e71b030fe176a2cff9fe36a04048"
+        ],
+        "note": "Baseline established on cloud host cursor (no GPU, no project/runs). Assignments issued for SW01\u201303; awaiting sibling workers + independent reviews.",
+        "output_commit": "98fca40fc722e71b030fe176a2cff9fe36a04048"
+      },
+      {
+        "id": "SW01",
+        "role": "task_engineer",
+        "status": "in_progress",
+        "owner": "sw01_task_engineer",
+        "reviewer": "sw03_analyst",
+        "depends_on": [
+          "SW00"
+        ],
+        "input_commit": "f82908d62889fbd6ea3ffa79e041ac17ffb6b094",
+        "assigned_paths": [
+          "project/shortcut-study/src/shortcut_study/tasks/tables/",
+          "project/shortcut-study/src/shortcut_study/ids.py",
+          "project/shortcut-study/src/shortcut_study/splits.py",
+          "project/shortcut-study/tests/test_ids_splits.py",
+          "project/shortcut-study/tests/test_tab_catalog.py",
+          "project/shortcut-study/tests/test_task_prompt_review.py",
+          "project/shortcut-study/tests/test_sw01_identity_batches.py",
+          "project/shortcut-study/handoffs/2026-11-17-sw01-*.md",
+          "project/shortcut-study/results/development/sw01-*.json"
+        ],
+        "evidence": [],
+        "tracker_task": "ECE-36",
+        "findings": [
+          "RD1",
+          "RD2",
+          "RD3"
+        ],
+        "forbidden_paths": [
+          "project/shortcut-study/state.json",
+          "project/shortcut-study/src/shortcut_study/qualification.py",
+          "project/shortcut-study/src/shortcut_study/held_out.py",
+          "project/shortcut-study/src/shortcut_study/__main__.py",
+          "project/shortcut-study/src/shortcut_study/runner/",
+          "project/shortcut-study/src/shortcut_study/audit/",
+          "project/shortcut-study/src/shortcut_study/analysis/",
+          "project/shortcut-study/reviews/"
+        ],
+        "handoff": "handoffs/2026-11-17-sw01-assignment.md",
+        "cpu_only": true,
+        "note": "Reproduce RD1\u20133 independently; fix identities/batches/policy wording; do not edit shared qualification wiring\u2014propose interface in handoff.",
+        "sw00_tip_commit": "98fca40fc722e71b030fe176a2cff9fe36a04048"
+      },
+      {
+        "id": "SW02",
+        "role": "runtime_audit_engineer",
+        "status": "in_progress",
+        "owner": "sw02_runtime_audit",
+        "reviewer": "sw01_task_engineer",
+        "depends_on": [
+          "SW00"
+        ],
+        "input_commit": "f82908d62889fbd6ea3ffa79e041ac17ffb6b094",
+        "assigned_paths": [
+          "project/shortcut-study/src/shortcut_study/runner/",
+          "project/shortcut-study/src/shortcut_study/audit/",
+          "project/shortcut-study/tests/test_audit_pipeline.py",
+          "project/shortcut-study/tests/test_native_runner.py",
+          "project/shortcut-study/tests/test_sw02_provenance_telemetry.py",
+          "project/shortcut-study/handoffs/2026-11-17-sw02-*.md",
+          "project/shortcut-study/results/development/sw02-*.json"
+        ],
+        "evidence": [],
+        "tracker_task": "ECE-37",
+        "findings": [
+          "IMPL-1",
+          "IMPL-2",
+          "IMPL-3"
+        ],
+        "forbidden_paths": [
+          "project/shortcut-study/state.json",
+          "project/shortcut-study/src/shortcut_study/qualification.py",
+          "project/shortcut-study/src/shortcut_study/held_out.py",
+          "project/shortcut-study/src/shortcut_study/__main__.py",
+          "project/shortcut-study/src/shortcut_study/tasks/",
+          "project/shortcut-study/src/shortcut_study/ids.py",
+          "project/shortcut-study/src/shortcut_study/splits.py",
+          "project/shortcut-study/src/shortcut_study/analysis/",
+          "project/shortcut-study/reviews/"
+        ],
+        "handoff": "handoffs/2026-11-17-sw02-assignment.md",
+        "cpu_only": true,
+        "note": "Reproduce IMPL-1\u20133 with fixtures/temp copies if raw archives absent; bind audit T to native bytes; correct generator version + approved-read telemetry for new code paths; never rewrite historical terminals.",
+        "sw00_tip_commit": "98fca40fc722e71b030fe176a2cff9fe36a04048"
+      },
+      {
+        "id": "SW03",
+        "role": "analyst",
+        "status": "in_progress",
+        "owner": "sw03_analyst",
+        "reviewer": "sw02_runtime_audit",
+        "depends_on": [
+          "SW00"
+        ],
+        "input_commit": "f82908d62889fbd6ea3ffa79e041ac17ffb6b094",
+        "assigned_paths": [
+          "project/shortcut-study/src/shortcut_study/analysis/",
+          "project/shortcut-study/tests/test_analysis.py",
+          "project/shortcut-study/tests/test_sw03_analysis_release.py",
+          "project/shortcut-study/fixtures/analysis/",
+          "project/shortcut-study/ANALYSIS_PROTOCOL.md",
+          "project/shortcut-study/handoffs/2026-11-17-sw03-*.md",
+          "project/shortcut-study/results/development/sw03-*.json"
+        ],
+        "evidence": [],
+        "tracker_task": "ECE-38",
+        "findings": [
+          "A1",
+          "A2",
+          "A3",
+          "A4",
+          "A5"
+        ],
+        "forbidden_paths": [
+          "project/shortcut-study/state.json",
+          "project/shortcut-study/src/shortcut_study/qualification.py",
+          "project/shortcut-study/src/shortcut_study/held_out.py",
+          "project/shortcut-study/src/shortcut_study/__main__.py",
+          "project/shortcut-study/src/shortcut_study/tasks/",
+          "project/shortcut-study/src/shortcut_study/runner/",
+          "project/shortcut-study/src/shortcut_study/audit/",
+          "project/shortcut-study/reviews/"
+        ],
+        "handoff": "handoffs/2026-11-17-sw03-assignment.md",
+        "cpu_only": true,
+        "note": "Reproduce A1\u20135; one estimand for point+bootstrap; conservative label-error bounds; hashed release inputs; explicit fixture regeneration; clarify A4/A5 denominators.",
+        "sw00_tip_commit": "98fca40fc722e71b030fe176a2cff9fe36a04048"
+      },
+      {
+        "id": "SW04",
+        "role": "report_author",
+        "status": "not_started",
+        "owner": null,
+        "reviewer": "project_root_independent",
+        "depends_on": [
+          "SW00"
+        ],
+        "input_commit": "f82908d62889fbd6ea3ffa79e041ac17ffb6b094",
+        "assigned_paths": [],
+        "evidence": [],
+        "note": "May start after SW00; do not block CPU repairs. Add reuse caveat; claim/evidence ledger."
+      },
+      {
+        "id": "SW05",
+        "role": "independent_cpu_reviewer",
+        "status": "not_started",
+        "owner": null,
+        "reviewer": null,
+        "depends_on": [
+          "SW01",
+          "SW02",
+          "SW03"
+        ],
+        "input_commit": null,
+        "assigned_paths": [],
+        "evidence": []
+      },
+      {
+        "id": "SW06",
+        "role": "gpu_operator_and_qualification_reviewer",
+        "status": "not_started",
+        "owner": null,
+        "reviewer": null,
+        "depends_on": [
+          "SW05"
+        ],
+        "input_commit": null,
+        "assigned_paths": [],
+        "evidence": []
+      },
+      {
+        "id": "SW07",
+        "role": "integrator_and_freeze_reviewer",
+        "status": "not_started",
+        "owner": null,
+        "reviewer": null,
+        "depends_on": [
+          "SW06"
+        ],
+        "input_commit": null,
+        "assigned_paths": [],
+        "evidence": []
+      },
+      {
+        "id": "SW08",
+        "role": "gpu_operator_auditor_analyst",
+        "status": "not_started",
+        "owner": null,
+        "reviewer": null,
+        "depends_on": [
+          "SW07"
+        ],
+        "input_commit": null,
+        "assigned_paths": [],
+        "evidence": []
+      },
+      {
+        "id": "SW09",
+        "role": "report_build_author_and_independent_reviewer",
+        "status": "not_started",
+        "owner": null,
+        "reviewer": null,
+        "depends_on": [
+          "SW04"
+        ],
+        "input_commit": null,
+        "assigned_paths": [],
+        "evidence": []
+      }
+    ],
+    "conditional_dependencies": {
+      "SW09": "Final acceptance requires accepted SW08 evidence if a main study ran, or a dated S4 scope decision with honest accounting of any attempted main outcomes. Artifact drafting/building proceeds in parallel."
+    },
+    "finding_disposition": {
+      "RD1": {
+        "status": "open",
+        "package": "SW01"
+      },
+      "RD2": {
+        "status": "open",
+        "package": "SW01"
+      },
+      "RD3": {
+        "status": "open",
+        "package": "SW01"
+      },
+      "IMPL-1": {
+        "status": "open",
+        "package": "SW02"
+      },
+      "IMPL-2": {
+        "status": "open",
+        "package": "SW02"
+      },
+      "IMPL-3": {
+        "status": "open",
+        "package": "SW02"
+      },
+      "A1": {
+        "status": "open",
+        "package": "SW03"
+      },
+      "A2": {
+        "status": "open",
+        "package": "SW03"
+      },
+      "A3": {
+        "status": "open",
+        "package": "SW03"
+      },
+      "RD4": {
+        "status": "partly_superseded",
+        "package": "SW04",
+        "note": "#26/#27 include both FAILs and S4 draft; reuse caveat and final artifacts remain."
+      },
+      "A4": {
+        "status": "conditional_risk_to_address",
+        "package": "SW03"
+      },
+      "A5": {
+        "status": "gate_definition_to_clarify",
+        "package": "SW03"
+      }
+    },
+    "acceptance_rule": "Independent non-author review at exact integrated commit; actual tests/outputs/hashes; no self-certified scientific success.",
+    "execution_started_at": "2026-11-17T11:51:55.652884-05:00",
+    "orchestrator": {
+      "agent_id": "bc-ece62cad-b32b-5b8f-b2e7-56b9dbc6be8a",
+      "role": "SW00_orchestrator_integrator",
+      "host": "cursor",
+      "working_branch": "cursor/sw00-completion-baseline-be8a",
+      "handoff_ref": "codex/shortcut-swarm-handoff",
+      "handoff_tip": "f82908d62889fbd6ea3ffa79e041ac17ffb6b094",
+      "handoff_base": "7c4aed7de6e51c8cff09e608b0d395cd56042334",
+      "review_commit_verified": "3c155baf4af8a2c6bbed8da769f533ecc3847413",
+      "toronto_now": "2026-11-17T11:51:55.652884-05:00",
+      "freeze_cutoff": "2026-11-22T18:00:00-05:00",
+      "hours_to_freeze_cutoff": 126.13,
+      "gpu_on_host": false,
+      "local_runs_archive": false,
+      "extension_tests_at_input": {
+        "passed": 213,
+        "seconds": 8.457
+      },
+      "review_manifest_hashes": "15/15 ok",
+      "preservation_historical": "111/111 ok",
+      "src_diff_review_to_base": "empty (defects remain open)",
+      "tracker": {
+        "parent": "ECE-34",
+        "sw00": "ECE-35",
+        "sw01": "ECE-36",
+        "sw02": "ECE-37",
+        "sw03": "ECE-38",
+        "sw09": "ECE-39"
+      },
+      "sw00_output_commit": "98fca40fc722e71b030fe176a2cff9fe36a04048"
+    },
+    "interface_decisions": {
+      "recorded_at": "2026-11-17T11:51:55.652884-05:00",
+      "semantic_identity": "Fingerprints must be content-semantic only; exclude split name and split-salted base IDs. Paired variants share base identity. SW01 implements in ids/splits/tables; integrator owns qualification/held_out wiring after proposal.",
+      "batch_allocation": "SW01 proposes immutable batch-id + seed/semantic manifest + consumption records API; integrator merges into qualification.py / schemas / configs sequentially after SW01 ready_for_review.",
+      "audit_provenance": "SW02 binds standalone audit prep to native request/response bytes + validated extraction; proposes shared telemetry fields; integrator applies shared CLI/qualification schema changes.",
+      "analysis_release": "SW03 defines one complete-block sensitivity estimand with matching bootstrap weighting; release manifests must hash/retain schedule+scored inputs+protocol; analyze-dry must not silently rewrite tracked fixtures.",
+      "shared_paths_remain_integrator": [
+        "project/shortcut-study/state.json",
+        "project/shortcut-study/schemas/",
+        "project/shortcut-study/configs/",
+        "project/shortcut-study/src/shortcut_study/__main__.py",
+        "project/shortcut-study/src/shortcut_study/qualification.py",
+        "project/shortcut-study/src/shortcut_study/held_out.py",
+        "project/shortcut-study/requirements.txt",
+        "project/shortcut-study/pyproject.toml"
+      ]
+    }
   }
 }

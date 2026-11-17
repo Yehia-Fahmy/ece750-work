@@ -1,0 +1,51 @@
+{
+  "content_duplicate_pairs_across_splits": [
+    {
+      "first": {
+        "base_id": "dev-tab04-sla-totals-trivial-001",
+        "semantic_fingerprint": "5116e5b02c614e0201aa8cd1bac4ca7d29cb848028ed92eabb94e337d72eaa69",
+        "split": "development"
+      },
+      "same_public_and_world_hash": "4643002f9615831159672585d1de34c9b2e9f8d51d18ecd63c81f213adb3802a",
+      "second": {
+        "base_id": "main-tab04-sla-totals-trivial-001",
+        "semantic_fingerprint": "626db785d47377b8237f38c8de92a3d2db47e780ef3fa27766b5ead1a8f14920",
+        "split": "main"
+      }
+    }
+  ],
+  "existing_split_disjointness_check": "passed",
+  "input_commit": "3c155baf4af8a2c6bbed8da769f533ecc3847413",
+  "qualification_reuse": {
+    "episodes_compared": 320,
+    "equal_input_field_counts": {
+      "hidden_truth": 320,
+      "prompt": 64,
+      "resources": 320
+    },
+    "input_hash_manifest_digests": {
+      "g2-held-out-20261116": "d538ac138445545f94cec4b7c0a4689718921d510ca288c9653e1c43701438a0",
+      "g2-held-out-20261116-catalog-v2": "21a750bc0379191c5d8459c1feeb9526c12259d887c99ee9dc896ee97f126c4f"
+    },
+    "runs": [
+      "g2-held-out-20261116",
+      "g2-held-out-20261116-catalog-v2"
+    ],
+    "same_assignments_except_generator_version": true,
+    "same_episode_ids_in_order": true,
+    "schedule_sha256": {
+      "g2-held-out-20261116": "811ac25d8882008ef2071eb35a2840cb3f1d0694556b8cec8ce69d7275d3f245",
+      "g2-held-out-20261116-catalog-v2": "7a27bcdf5945e07b5e9d7d6a1d853b997d025e3daf7b7793e0f5da70d75ee23f"
+    }
+  },
+  "reserved_bases_checked": 60,
+  "review_kind": "read_only_cpu_research_design_review",
+  "source_sha256": {
+    "src/shortcut_study/ids.py": "aac71233bcf38e9da8911ff0c9a4e5138208ec704b43cd797caf1513dc23dd3b",
+    "src/shortcut_study/qualification.py": "86fcf5df08ebfdb18b9cde7d0e7f727072bea5f330bb598ed3f5c410e1cce84c",
+    "src/shortcut_study/splits.py": "901ba9b8bda9dcd42d488d6c7eb3b2d66c46c1fbf53165a8d632fdf847c313c0",
+    "src/shortcut_study/tasks/tables/catalog.py": "3ba0577fa93b1c77b2603f03c021376dda4b6bd9199baad08c9bf26babdf161d",
+    "src/shortcut_study/tasks/tables/common.py": "3352359abcc8bddf2db783ef815f91c8b54e81b9bca5db96a336368f5a3399e9",
+    "src/shortcut_study/tasks/tables/tab04.py": "67d915b9b2162104fa67072c3a31852a0c32e2c8f4262550e17622f795a49121"
+  }
+}

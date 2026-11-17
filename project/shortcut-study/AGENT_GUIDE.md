@@ -1,10 +1,12 @@
 # Guide for future orchestrators and workers
 
+**Current execution entry:** [SWARM_START](SWARM_START.md), [completion packages](SWARM_WORK_PACKAGES.md), and `state.json.swarm_handoff`. The November 17 user-selected target is an S0 attempt with automatic S4 fallback if qualification and committed freeze are missing at **November 22, 18:00 America/Toronto**. This supersedes the prior S4-only completion target and the old planning-only restriction for the next executing swarm; all scientific gates, local-compute and preservation constraints remain. The older wave descriptions below are architectural background, not a request to restart completed work.
+
 Status: execution guide. On November 15 the researcher explicitly authorized continued implementation with multiple agents, review, and code merging. Assignments and handoffs are recorded in `state.json`; this guide does not independently authorize a model run, external messages, or course submission.
 
 ## Starting an execution session
 
-1. Read [README](README.md), [DECISIONS](DECISIONS.md), [EXECUTION_PLAN](EXECUTION_PLAN.md), [WORK_PACKAGES](WORK_PACKAGES.md), and [state](state.json). Read the latest handoffs and inspect the actual Git working tree; status files can be stale.
+1. Read [SWARM_START](SWARM_START.md), [DECISIONS](DECISIONS.md), [completion packages](SWARM_WORK_PACKAGES.md), and [state](state.json), then assigned sections of [EXECUTION_PLAN](EXECUTION_PLAN.md) and [original work packages](WORK_PACKAGES.md). Read the latest handoff reconciliation and inspect the actual Git working tree; status files can be stale.
 2. Verify the historical hashes. Preserve uncommitted user work. Locate the canonical checkout, original model symlink, and existing raw archives without moving them.
 3. Record current date, remaining course time, actual GPU availability, and active processes. Select the next dependency-ready package. A past calendar target is not permission to skip qualification.
 4. Assign one owner per package and one integration owner. Agree on the shared contracts before parallel implementation. Record assignment, input commit, and output paths in state; use a short commit boundary for each accepted package.
@@ -60,6 +62,8 @@ Routine implementation choices within the accepted contracts do not need repeate
 Insufficient local hardware or failed judge qualification leads to the documented reduced scope or limitation. A zero measured effect is a finding. No desired finding, grade, or publication aspiration authorizes changing a denominator or hiding an unsuccessful run.
 
 ## Suggested launch instruction for the researcher
+
+Use the current pasteable launch instruction in [SWARM_START](SWARM_START.md#pasteable-launch-instruction). The earlier example below predates the review and is retained for context.
 
 > Execute the shortcut-study extension from `project/shortcut-study/README.md`. Follow the state and work-package dependencies; preserve the original study. You may delegate independent packages to agents. Use only the local RTX 3070 Ti, with one GPU owner and zero external inference. Start with contracts and the vertical slice, then qualify and freeze a feasible scope before main collection. Keep durable handoffs, finish the report and reproduction package by the documented December deadline, and leave course submission to me.
 

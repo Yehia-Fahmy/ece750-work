@@ -1,0 +1,30 @@
+{
+  "status": "complete",
+  "date": "2026-11-17",
+  "input_commit": "3c155ba",
+  "scope": "Independent review of shortcut extension plus original study verification",
+  "owner": "root",
+  "historical_files_verified": 111,
+  "days_to_report_deadline": 17,
+  "gpu": "No nvidia-smi in review environment; no model execution planned",
+  "assignments": {
+    "root": "Integration, original study reproduction, historical preservation, final gap report",
+    "research_design_review": "Research design, sources, split validity -> research-design.md",
+    "implementation_review": "Environment, runner, scoring, audit integrity -> implementation.md",
+    "analysis_evidence_review": "Statistics and qualification provenance -> analysis-evidence.md"
+  },
+  "constraints": [
+    "Review only; no scientific inputs or results changed",
+    "No GPU or remote inference",
+    "CPU validation outputs in /tmp or review directory"
+  ],
+  "assessment": "Original study reproduced; extension incomplete with confirmed defects; no fixes applied",
+  "integrated_report": "README.md",
+  "verification": "verification.json",
+  "reviewer_reports": [
+    "original-study.md",
+    "research-design.md",
+    "implementation.md",
+    "analysis-evidence.md"
+  ]
+}

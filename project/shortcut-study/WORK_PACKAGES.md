@@ -1,5 +1,7 @@
 # Work packages and acceptance evidence
 
+**Current dispatch plan:** [SWARM_WORK_PACKAGES](SWARM_WORK_PACKAGES.md) maps review findings and remaining completion work onto the packages below. Use `state.json.swarm_handoff.packages` for active owners/dependencies and current [SWARM_START](SWARM_START.md) for scope/cutoffs. Do not dispatch all historical families or restart already validated milestones. Original WP/gate records retain lineage; current acceptance requires actual artifacts.
+
 Every package below is a planned deliverable unless marked accepted in [state](state.json). Effort estimates are rough **active engineering time**, excluding model inference, downloads, and review. They are scheduling aids, not guarantees. Run only checks relevant to changed behavior; do not repeatedly rerun the entire suite without a reason.
 
 | ID | Package / dependencies | Intended outputs and ownership | Acceptance evidence | Effort |

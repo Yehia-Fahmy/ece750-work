@@ -1,6 +1,8 @@
 # Shortcut study extension — start here
 
-This is **additional research**, separate from the completed observer-framing study. Status: **S4 honest course fallback declared** (2026-11-17) after G2 held-out **FAIL** twice — [#23](https://github.com/Yehia-Fahmy/ece750-work/pull/23) (238/320; easy 55%) then [#25](https://github.com/Yehia-Fahmy/ece750-work/pull/25) post-`tab-catalog-v2` (239/320; easy 55%). `tab01-slice-v6` development 16-cell **passed**; long pilots recorded (9/10). **G0 TAB-only accepted** ([acceptance handoff](handoffs/2026-11-16-g0-tab-accepted.md)); `gates.G2=failed`; **G3/G4/G5 canceled**; **no main factorial claim**. See [S4 handoff](handoffs/2026-11-17-s4-honest-course-fallback.md), [S4 WP12 draft](report/methods-skeleton.md), [catalog-v2 held-out FAIL](results/qualification/g2-held-out-20261116-catalog-v2.json), [prior held-out FAIL](results/qualification/g2-held-out-20261116.json), [v6 16-cell](results/qualification/native-qualification-tab01-v6-16cell.json), and [G0 acceptance](handoffs/2026-11-16-g0-tab-accepted.md).
+**Active completion handoff:** [SWARM_START](SWARM_START.md) → [assigned work packages](SWARM_WORK_PACKAGES.md) → [state](state.json). The November 17 user instruction reopens an **S0 attempt with a firm S4 fallback**: repair independently reviewed defects, qualify on fresh instances, and commit a valid freeze by **November 22 at 18:00 America/Toronto**, or automatically finish S4. Agents own the final PDF/deck/notes/reproduction package in either outcome. See [baseline reconciliation](handoffs/2026-11-17-completion-swarm.md) and [dated review](reviews/2026-11-17/README.md).
+
+This is **additional research**, separate from the completed observer-framing study. Latest measured status: G2 qualification **FAIL** twice — [#23](https://github.com/Yehia-Fahmy/ece750-work/pull/23) (238/320; easy 55%) then [#25](https://github.com/Yehia-Fahmy/ece750-work/pull/25) post-`tab-catalog-v2` (239/320; easy 55%). The review established that the second run reused the first run's worlds after prompt changes; it is not fresh held-out validation. `tab01-slice-v6` development 16-cell **passed**; long pilots recorded (9/10). **G0 TAB-only accepted historically**; G2 remains **failed/not accepted**; no main protocol, new main episodes, or semantic qualification exists. The prior [S4 declaration](handoffs/2026-11-17-s4-honest-course-fallback.md), [S4 report draft](report/methods-skeleton.md), and [delivery drafts](delivery/README.md) are retained as the fallback. The new goal changes planned work, not any recorded result or gate acceptance.
 
 ## Native adapter and audit development
 
@@ -13,6 +15,8 @@ The CPU slice was independently reviewed, corrected for interruption evidence lo
 
 Prepare an audit request from a **completed episode directory**, without invoking a judge:
 
+**Review caveat:** the standalone command below lacks native-to-terminal source verification (IMPL-1). SW02 must repair it before new semantic evidence is accepted; existing self-hash checks do not prove raw extraction consistency.
+
 ```sh
 PYTHONPATH=project/shortcut-study/src python3 -m shortcut_study prepare-audit --episode PATH_TO_EPISODE_DIRECTORY --out NEW_OUTPUT_DIRECTORY
 ```
@@ -22,6 +26,8 @@ This writes `prepared.json`, `messages.json`, and a hash manifest. Rejected/inco
 The original native integration tests use synthetic HTTP bodies, a test GPU probe, and fixture token counts. The new local qualification command owns the retained Qwen3-4B/b11574 server, hashes its assets, verifies the listening process and full GPU offload, and counts the actual rendered chat template through the pinned runtime. Caller-supplied profiles alone remain declarations; use the owned qualification path for measured runtime evidence. Native development permits zero transport retries; uncertain requests are never replayed. Full WP03/WP05/WP06 and G1 acceptance remain pending.
 
 Run the fixed 16-condition **local model development slice** from the repository root, in an environment with access to the RTX 3070 Ti:
+
+**Qualification caveat:** the historical `--held-out` example below selects fixed, already consumed worlds. Do not use a new output directory as a substitute for SW01's fresh-batch implementation and SW05 acceptance. Consult the current [GPU runbook](GPU_RUNBOOK_G2.md).
 
 ```sh
 PYTHONPATH=project/shortcut-study/src python3 -m shortcut_study qualify-local --out project/runs/shortcut-study/NEW_RUN --port 18080
@@ -125,6 +131,6 @@ The [preservation manifest](preservation-manifest.json) records historical track
 - Zero external-compute budget: no paid GPU, hosted inference, hosted judge, or remote generation, even with free credits. Public documentation and free checkpoint downloads are not remote inference.
 - Course report due **December 4, 2026**, Toronto time. The date is confirmed in the [course README](../../README.md); 11:59pm follows the general written-work policy. Presentation arrangements and final formatting instructions remain unresolved.
 - Automated evaluation; no mandatory human-labeling dependency. Semantic limitations must remain visible.
-- Future orchestrators execute the work; this planning pass does not start experiments.
+- The next completion swarm executes the authorized, gated work; this handoff-preparation session starts no experiments. The current scope/cutoffs are in [SWARM_START](SWARM_START.md).
 
 Latest explicit user instructions take precedence. Within this extension, the decision record supersedes conflicting planning suggestions in V2; a future frozen protocol controls a named run and cannot be retroactively changed.

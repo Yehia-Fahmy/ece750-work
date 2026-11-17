@@ -1,0 +1,126 @@
+{
+  "package": "SW00",
+  "recorded_at": "2026-11-17T11:55:00-05:00",
+  "timezone": "America/Toronto",
+  "host": "cursor",
+  "hostname": "cursor",
+  "orchestrator_agent_id": "bc-ece62cad-b32b-5b8f-b2e7-56b9dbc6be8a",
+  "working_branch": "cursor/sw00-completion-baseline-be8a",
+  "handoff_branch": "codex/shortcut-swarm-handoff",
+  "input_commit": "f82908d62889fbd6ea3ffa79e041ac17ffb6b094",
+  "handoff_base_commit": "7c4aed7de6e51c8cff09e608b0d395cd56042334",
+  "review_commit": "3c155baf4af8a2c6bbed8da769f533ecc3847413",
+  "merge_base_with_main": "7c4aed7de6e51c8cff09e608b0d395cd56042334",
+  "hardware": {
+    "cpu_count": 4,
+    "mem_available_gi": 5.2,
+    "gpu": null,
+    "nvidia_smi": false,
+    "note": "Cloud orchestrator host has no RTX 3070 Ti. GPU qualification/collection later only on user WSL DESKTOP host."
+  },
+  "cutoffs_america_toronto": {
+    "now": "2026-11-17T11:49:43-05:00",
+    "qualification_and_freeze": "2026-11-22T18:00:00-05:00",
+    "hours_to_freeze": 126.17,
+    "stop_starting_actor_blocks": "2026-11-27T18:00:00-05:00",
+    "end_experimental_inference": "2026-11-29T18:00:00-05:00",
+    "delivery_ready": "2026-12-03T18:00:00-05:00",
+    "report_due": "2026-12-04T23:59:00-05:00",
+    "automatic_s4_if_freeze_missing": true
+  },
+  "verification": {
+    "review_manifest_sha256": "15/15 ok",
+    "preservation_historical_sha256": "111/111 ok",
+    "design_snapshot_sha256": "1 entry present",
+    "src_tests_results_diff_review_to_handoff_base": [],
+    "extension_unittests": {
+      "passed": 213,
+      "seconds": 8.457,
+      "at_commit": "f82908d62889fbd6ea3ffa79e041ac17ffb6b094"
+    },
+    "defect_reproducibility": {
+      "RD1": {
+        "status": "reproduced",
+        "command": "PYTHONPATH=project/shortcut-study/src python3 project/shortcut-study/reviews/2026-11-17/research-design-reproduce.py",
+        "note": "dev/main TAB04 trivial duplicate still same public+world hash; existing split check still passes because fingerprint salts hide it"
+      },
+      "RD2": {
+        "status": "archives_unavailable_on_host",
+        "note": "project/runs missing; dated review + tracked FAIL JSONs remain evidence; do not treat as cleared"
+      },
+      "IMPL-1_2_3": {
+        "status": "blocked_on_raw_archives",
+        "note": "implementation-reproduce.py needs g2-held-out-20261116-catalog-v2 schedule under project/runs; worker must use temp-copy fixtures and/or WSL archives; review results JSON still authoritative for defect existence"
+      },
+      "A1_A2_A4": {
+        "status": "reproduced",
+        "command": "PYTHONPATH=project/shortcut-study/src python3 project/shortcut-study/reviews/2026-11-17/analysis-evidence-repro.py",
+        "complete_block_point": 0.3333333333333333,
+        "bootstrap_complete_block_point": 0.0,
+        "label_envelope_claimed": [
+          -0.1,
+          0.1
+        ],
+        "actual_reachable_T": -0.2
+      }
+    },
+    "local_runs_archive": false,
+    "gpu_lease": null,
+    "submission_authorized": false
+  },
+  "assignments": {
+    "SW01": {
+      "tracker": "ECE-36",
+      "owner": "sw01_task_engineer",
+      "reviewer": "sw03_analyst",
+      "findings": [
+        "RD1",
+        "RD2",
+        "RD3"
+      ],
+      "input_commit": "f82908d62889fbd6ea3ffa79e041ac17ffb6b094",
+      "handoff": "handoffs/2026-11-17-sw01-assignment.md"
+    },
+    "SW02": {
+      "tracker": "ECE-37",
+      "owner": "sw02_runtime_audit",
+      "reviewer": "sw01_task_engineer",
+      "findings": [
+        "IMPL-1",
+        "IMPL-2",
+        "IMPL-3"
+      ],
+      "input_commit": "f82908d62889fbd6ea3ffa79e041ac17ffb6b094",
+      "handoff": "handoffs/2026-11-17-sw02-assignment.md"
+    },
+    "SW03": {
+      "tracker": "ECE-38",
+      "owner": "sw03_analyst",
+      "reviewer": "sw02_runtime_audit",
+      "findings": [
+        "A1",
+        "A2",
+        "A3",
+        "A4",
+        "A5"
+      ],
+      "input_commit": "f82908d62889fbd6ea3ffa79e041ac17ffb6b094",
+      "handoff": "handoffs/2026-11-17-sw03-assignment.md"
+    }
+  },
+  "gates_unchanged": {
+    "G0": "accepted",
+    "G1": "in_progress",
+    "G2": "failed",
+    "G3": "not_started",
+    "G4": "not_started",
+    "G5": "not_started",
+    "G6": "in_progress"
+  },
+  "next_actions": [
+    "Project root launches sibling workers for SW01/SW02/SW03 with assignment briefs",
+    "Workers reproduce defects, fix within path allowlists, add regressions, hand off for cross-review",
+    "Orchestrator integrates reviewed commits; no 320-episode qualification before SW05"
+  ],
+  "output_commit": "98fca40fc722e71b030fe176a2cff9fe36a04048"
+}

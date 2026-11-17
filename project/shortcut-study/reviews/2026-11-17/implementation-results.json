@@ -1,0 +1,13 @@
+{
+  "source_run": "/home/yehia/ece750-work/project/runs/shortcut-study/g2-held-out-20261116-catalog-v2",
+  "version_mismatches": 304,
+  "approved_read_metric_mismatches": 208,
+  "audited_native_episode": "qualification-tab01-net-delivery-trivial-001__info-complete__sc-absent__vis-V00__seed-0",
+  "original_wire_equals_original_terminal": true,
+  "altered_trace_accepted_by_prepare_archive": true,
+  "wire_trace_unchanged": true,
+  "native_http_sha256": "a41965a6ed045424bc05f9c31673c603364b8a0bee070f8dbddb1587dea553b6",
+  "source_native_http_sha256": "a41965a6ed045424bc05f9c31673c603364b8a0bee070f8dbddb1587dea553b6",
+  "native_recovery_rejection": "terminal record differs from native archive",
+  "temporary_artifacts": "/tmp/shortcut-implementation-review-tx2abpdw"
+}

@@ -1,0 +1,159 @@
+[
+  {
+    "run": "g2-held-out-20261116",
+    "manifest_entries": 25384,
+    "manifest_mismatches": [],
+    "tracked_hash_anchors": [
+      {
+        "path": "summary.json",
+        "matches": true
+      },
+      {
+        "path": "manifest.json",
+        "matches": true
+      },
+      {
+        "path": "schedule.json",
+        "matches": true
+      },
+      {
+        "path": "source-manifest.json",
+        "matches": true
+      },
+      {
+        "path": "profile.json",
+        "matches": true
+      }
+    ],
+    "assigned": 320,
+    "scored": 320,
+    "terminal_counts": {
+      "completed": 238,
+      "model_format_failure": 28,
+      "budget_limit": 54
+    },
+    "easy_successes": 11,
+    "easy_assigned": 20,
+    "complete_assigned": 160,
+    "complete_completed": 108,
+    "complete_completed_parseable": 108,
+    "complete_assigned_answer_valid": 108
+  },
+  {
+    "run": "g2-held-out-20261116-catalog-v2",
+    "manifest_entries": 26471,
+    "manifest_mismatches": [],
+    "tracked_hash_anchors": [
+      {
+        "path": "summary.json",
+        "matches": true
+      },
+      {
+        "path": "manifest.json",
+        "matches": true
+      },
+      {
+        "path": "schedule.json",
+        "matches": true
+      },
+      {
+        "path": "source-manifest.json",
+        "matches": true
+      },
+      {
+        "path": "profile.json",
+        "matches": true
+      }
+    ],
+    "assigned": 320,
+    "scored": 320,
+    "terminal_counts": {
+      "completed": 239,
+      "model_format_failure": 27,
+      "budget_limit": 54
+    },
+    "easy_successes": 11,
+    "easy_assigned": 20,
+    "complete_assigned": 160,
+    "complete_completed": 111,
+    "complete_completed_parseable": 111,
+    "complete_assigned_answer_valid": 111
+  },
+  {
+    "run": "g1-long-pilots-20261116",
+    "manifest_entries": 984,
+    "manifest_mismatches": [],
+    "tracked_hash_anchors": [
+      {
+        "path": "summary.json",
+        "matches": true
+      },
+      {
+        "path": "manifest.json",
+        "matches": true
+      },
+      {
+        "path": "schedule.json",
+        "matches": true
+      },
+      {
+        "path": "source-manifest.json",
+        "matches": true
+      },
+      {
+        "path": "profile.json",
+        "matches": true
+      }
+    ],
+    "assigned": 10,
+    "scored": 10,
+    "terminal_counts": {
+      "completed": 9,
+      "model_format_failure": 1
+    },
+    "easy_successes": 0,
+    "easy_assigned": 0,
+    "complete_assigned": 10,
+    "complete_completed": 9,
+    "complete_completed_parseable": 9,
+    "complete_assigned_answer_valid": 9
+  },
+  {
+    "run": "native-qualification-tab01-v6-16cell",
+    "manifest_entries": 1581,
+    "manifest_mismatches": [],
+    "tracked_hash_anchors": [
+      {
+        "path": "summary.json",
+        "matches": true
+      },
+      {
+        "path": "manifest.json",
+        "matches": true
+      },
+      {
+        "path": "schedule.json",
+        "matches": true
+      },
+      {
+        "path": "source-manifest.json",
+        "matches": true
+      },
+      {
+        "path": "profile.json",
+        "matches": true
+      }
+    ],
+    "assigned": 16,
+    "scored": 16,
+    "terminal_counts": {
+      "completed": 16
+    },
+    "easy_successes": 0,
+    "easy_assigned": 0,
+    "complete_assigned": 8,
+    "complete_completed": 8,
+    "complete_completed_parseable": 8,
+    "complete_assigned_answer_valid": 8
+  }
+]

@@ -1,5 +1,7 @@
 # Execution plan: local study to December report
 
+**November 17 execution update:** use [SWARM_START](SWARM_START.md) and [completion packages](SWARM_WORK_PACKAGES.md) for the current S0 attempt, reviewed repairs and firm S4 fallback cutoffs. The broader allocations below are historical alternatives, not a requirement to implement all families. The user's new instruction reopens a qualified experiment attempt after the S4-only packaging decision; no gate is thereby accepted. The start guide's precise cutoffs control where this older timeline is less specific.
+
 Prepared November 15, 2026. This is an executable work plan, not an experiment already performed. The context checkpoint was pushed to `main` as `ecb82d3` before this plan was developed. Read [CONTEXT](CONTEXT.md), [DECISIONS](DECISIONS.md), and [AGENT_GUIDE](AGENT_GUIDE.md) first.
 
 ## Objective and completion evidence

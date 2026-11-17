@@ -1,61 +1,31 @@
-# Submission checklist — S4 course package
+# Completion and submission checklist
 
-**Course report due:** 2026-12-04 (America/Toronto; 11:59pm under general written-work policy).  
-**Presentation date / official page limit:** **TBD** (reconcile with instructor instructions).  
-**`state.json` → `constraints.submission_authorized`:** **false** — this checklist does **not** authorize upload.
+Current scope: [user-authorized S0 attempt with firm S4 fallback](../SWARM_START.md). Course report due **December 4, 2026, 23:59 America/Toronto**. Final page limit and presentation arrangements remain unconfirmed. Keep `constraints.submission_authorized=false`; building artifacts is authorized, uploading to the course is not.
 
-Legend: **Ready** = available from Git / already done · **Yehia-only** = researcher action or local machine · **Blocked/TBD** = unresolved course logistics
+The prior S4 delivery inventory/reproduction log remains dated evidence, not proof that this checklist is finished. Do not check an item until the named artifact and independent acceptance evidence exist at the integrated commit.
 
----
+## Agent-owned completion
 
-## A. Ready from Git (packaging / review)
+- [ ] Independently reproduce and repair confirmed task-identity, audit, telemetry and statistics defects; preserve original review/results and record versioned fix evidence.
+- [ ] Reconcile the second qualification as a reused-world post-tuning run; report both failures and exact denominators without implying two fresh validations.
+- [ ] Decide S0/S4 under the November 22 at 18:00 qualification-plus-freeze cutoff; record accepted evidence or automatic fallback and resulting claims.
+- [ ] If S0: freeze exact protocol, executable main path, inputs, schedule, denominator, analysis and semantic scope before any main generation; account for all assignments at actor/audit cutoffs.
+- [ ] If S4: no new main factorial claim; clearly state that the extension's scientific question remains unanswered. If main was attempted, retain and describe its actual incomplete outcome rather than reclassifying it as pilot data.
+- [ ] Finish the integrated course report source and **PDF**, including verified numbers/citations, original-study separation, literature comparison, limitations and AI disclosure.
+- [ ] Produce the **final slide deck and speaker notes**; an outline is insufficient. Choose a maintainable template/toolchain without waiting for the researcher to build it.
+- [ ] Generate tables/figures from versioned derived evidence and retain exact input/source/config/output hashes.
+- [ ] Provide reproducible report/deck build commands and dependencies; provisional four-page report core plus references/appendices if official requirements remain unavailable.
+- [ ] Reproduce reported statistics/derived evidence from a clean checkout; distinguish raw authenticity that requires ignored local archives.
+- [ ] Verify all available local raw archives needed for current claims; document specific unavailable inputs rather than requiring new inference to reproduce statistics.
+- [ ] Visually inspect every final report/deck page; verify layout, legibility, citations and figures against tables.
+- [ ] Verify protected historical files and the dated review manifest remain intact.
+- [ ] Independent non-author reviewer accepts the exact final commit and deliverables; then reconcile WP12/WP13/G6 and publish final delivery manifest/reproduction log.
+- [ ] Have the completed package ready by **December 3 at 18:00 Toronto time**.
 
-- [x] S4 declared on `main` via [#26](https://github.com/Yehia-Fahmy/ece750-work/pull/26); `primary_actor_episodes = 0`
-- [x] WP12 Markdown draft: `report/methods-skeleton.md` (methods + pilots + dual G2 FAIL + withdrawals; **no fabricated main results**)
-- [x] Gate honesty in report/README + state: G0 accepted; G2 failed; G3/G4/G5 canceled; WP09–WP11 canceled
-- [x] Tracked qualification evidence for all cited pilot / FAIL numbers
-- [x] Historical observer report untouched: `project/report/final-report.md` + PDF
-- [x] Preservation: 111/111 historical hashes match (checked in `reproduction-log.md`)
-- [x] Observer stats reproduce: `project/verify_final_results.py`
-- [x] Extension CPU tests: 213 passed (with `requirements.txt`)
-- [x] WP13 delivery artifacts: `delivery/packaging-manifest.md`, `reproduction-log.md`, this checklist
-- [x] Slide **outline** present: `report/slides-outline.md` (no in-repo deck template)
-- [x] AI disclosure draft present in methods skeleton
-- [x] Explicit statement that semantic-judge claims are withdrawn
-- [x] Explicit empty main-results slots (not filled with development stand-ins)
+## Researcher-owned logistics and submission
 
-## B. Yehia-only before / at submission
+- [ ] Supply/confirm official page limit and presentation date/format if still unavailable. Agents should continue artifact construction using the visible provisional assumptions.
+- [ ] Review the completed package and any unresolved scientific or formatting limitations.
+- [ ] Perform or explicitly authorize the actual course/LMS submission. No repository instruction implicitly grants this authority.
 
-- [ ] Confirm official page limit and presentation date/format with course instructions
-- [ ] Produce extension **course PDF** from S4 Markdown (four-page core + separated appendices/references until limit known); do not invent numeric main contrasts
-- [ ] Produce **slide deck + speaker notes** from `report/slides-outline.md` (deck shell/template **TBD** — none shipped in this repo)
-- [ ] Optional: generate compact **pilot-only** summary tables/figures for the four-page core (sourced only from tracked qualification JSON)
-- [ ] Finalize AI-disclosure wording to match actual assistance used in the submitted PDF
-- [ ] On the research machine: confirm local raw archives listed in packaging manifest §B still present if authenticity questions arise
-- [ ] Visual PDF/slide inspection (links, figures vs tables, no soft-washed G2)
-- [ ] Set / keep scope claims in the submitted PDF to **S4 (0 main episodes)** — not 320 or 3,200
-- [ ] **Course upload / LMS submission** — researcher only; flip `submission_authorized` only under explicit Yehia authorization
-- [ ] Do **not** start WP09 main collection or rewrite FAIL archives as part of packaging
-
-## C. Explicitly out of scope for Dec 4 (do not treat as incomplete homework)
-
-- [x] G2 pass / main-qualified actor — **failed**; not required under S4
-- [x] G3 freeze / `configs/frozen/` — **canceled**
-- [x] WP09–WP11 confirmatory main analysis — **canceled**
-- [x] Independent semantic-judge conclusions — **withdrawn**
-- [x] Visibility acquisition-effect estimates from development or failed held-out — **withdrawn**
-
-## D. Ready vs Yehia-only summary
-
-| Item | Owner |
-| --- | --- |
-| S4 declaration + state honesty | Ready (Git; lagging review of this packaging PR) |
-| Methods / limitations / evidence tables (Markdown) | Ready for review |
-| Delivery manifest + reproduction log + checklist | Ready for review |
-| Slide outline | Ready (outline only) |
-| Extension PDF | **Yehia-only** |
-| Final slide deck / speaker notes | **Yehia-only** (template TBD) |
-| Page limit / presentation logistics | **TBD** |
-| LMS / course submission | **Yehia-only** (`submission_authorized=false`) |
-| Raw archive authenticity rehash | **Yehia-only** (local machine) |
-| GPU re-run of held-out | Not required for S4 package; **Yehia-only** if attempted later |
+Local GPU experiments are agent-owned only within the accepted protocol/gates, the canonical lease and recorded cutoffs. External experimental inference/spending, altering protected original science and removing historical evidence remain outside this delegation.
