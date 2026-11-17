@@ -64,7 +64,7 @@ class LocalAdapterTests(unittest.TestCase):
         self.assertFalse(payload["stream"])
         self.assertFalse(payload["parallel_tool_calls"])
         self.assertEqual(payload["tool_choice"], FIRST_TURN_TOOL_CHOICE)
-        self.assertEqual(ADAPTER_VERSION, "llama-native-tools-dev-v4")
+        self.assertEqual(ADAPTER_VERSION, "llama-native-tools-dev-v5")
         self.assertEqual(payload["reasoning_format"], "deepseek")
         self.assertTrue(payload["chat_template_kwargs"]["enable_thinking"])
         self.assertIn("function-call interface", payload["messages"][0]["content"])
@@ -80,7 +80,7 @@ class LocalAdapterTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.actor.build_request(prompt(), [], max_output_tokens=0, seed=1)
 
-    def test_later_turns_use_required_tool_choice(self):
+    def test_later_turns_use_required_tool_choice_without_thinking(self):
         history = [{
             "role": "assistant", "content": None, "reasoning_content": "list",
             "tool_calls": [{"id": "call_1", "type": "function", "function": {
@@ -90,6 +90,7 @@ class LocalAdapterTests(unittest.TestCase):
         payload = self.actor.build_request(prompt(), history, max_output_tokens=100, seed=4)
         self.assertEqual(payload["tool_choice"], "required")
         self.assertEqual(payload["tool_choice"], TOOL_CHOICE)
+        self.assertFalse(payload["chat_template_kwargs"]["enable_thinking"])
 
     def test_byte_limit_preserves_history(self):
         actor = LocalChatActor("http://127.0.0.1:8080", "model", max_request_bytes=10)
@@ -192,11 +193,15 @@ class LocalAdapterTests(unittest.TestCase):
         payload["choices"][0]["message"]["tool_calls"][0]["function"]["name"] = "unknown_tool"
         self.assertEqual(self.actor.parse_response(response(payload), max_output_tokens=100)["action"]["operation"], "unknown_tool")
 
-    def test_missing_native_reasoning_and_invalid_usage_fail_closed(self):
+    def test_missing_reasoning_content_allowed_when_native_tool_present(self):
+        # Thinking-off turns omit reasoning_content; empty T is OK if the tool call is native.
         payload = response_payload()
         del payload["choices"][0]["message"]["reasoning_content"]
-        with self.assertRaises(NativeAdapterError):
-            self.actor.parse_response(response(payload), max_output_tokens=100)
+        parsed = self.actor.parse_response(response(payload), max_output_tokens=100)
+        self.assertIsNone(parsed["reasoning"])
+        self.assertEqual(parsed["action"]["operation"], "read_resource")
+
+    def test_invalid_usage_fail_closed(self):
         for usage in (None, {}, {"prompt_tokens": True, "completion_tokens": 20, "total_tokens": 21},
                       {"prompt_tokens": 50, "completion_tokens": 20, "total_tokens": 99}):
             payload = response_payload()

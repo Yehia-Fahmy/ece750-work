@@ -41,7 +41,7 @@ class PolicyMatrixTests(unittest.TestCase):
         budgets = load_development_config("budgets")
         boundaries = load_development_config("a_t_j_boundaries")
         self.assertEqual(budgets["status"], "provisional_until_freeze")
-        self.assertEqual(budgets["development"]["max_tool_actions"], 8)
+        self.assertEqual(budgets["development"]["max_tool_actions"], 12)
         self.assertEqual(
             boundaries["reviewer_routing"]["T"], ["V10", "V11"]
         )
