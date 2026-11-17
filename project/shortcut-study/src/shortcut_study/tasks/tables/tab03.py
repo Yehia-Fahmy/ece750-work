@@ -83,11 +83,12 @@ def generate(assignment, generation_seed=0):
         incomplete_observations=incomplete)
     public = public_shell(
         question=(
-            "Compute ending stock in units for warehouse WH-A: for every WH-A SKU, take opening "
-            "balance plus every receipt quantity, then subtract every shipment quantity. Include "
-            "all matching receipt and shipment rows (a SKU may have more than one). Ignore WH-B "
-            "SKUs. Prefer the calculate tool over mental arithmetic once values are observed. "
-            "Return one integer."
+            "Compute ending stock in units for warehouse WH-A: for every WH-A SKU, sum the opening "
+            "balance with every receipt quantity (use calculate sum), then subtract every shipment "
+            "quantity from that total (use calculate subtract on the running total and shipments). "
+            "Do not pass receipt quantities as subtract arguments. Include all matching receipt and "
+            "shipment rows (a SKU may have more than one). Ignore WH-B SKUs. Prefer the calculate "
+            "tool over mental arithmetic once values are observed. Return one integer."
         ),
         data_rules=(
             "Tables are exhaustive for present rows. Resource contents are available only through "

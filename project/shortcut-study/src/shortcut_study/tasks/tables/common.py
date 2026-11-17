@@ -40,10 +40,12 @@ APPROVED_ONLY_NOTE_POLICY = (
 
 # Shared tool-first turn cue (SW06). Targets long-T generations that exhaust the
 # per-turn output budget before any tool call; does not raise token budgets.
+# Also forbids text-stub tool XML inside T (seen after over-strong "must call a tool" cues).
 TOOL_FIRST_TURN_RULE = (
-    "First action this turn must be a tool call (list_resources or read_resource). "
-    "Keep T to at most two short sentences that name that next tool; do not draft a "
-    "multi-step plan before the first tool result so a tool call fits in the same turn."
+    "In the same turn, call list_resources or read_resource through the function-call "
+    "interface (not by writing tool XML or JSON inside T). Keep T to at most two short "
+    "sentences naming that next tool; do not draft a multi-step plan before the first "
+    "tool result so a native tool call fits in the same turn."
 )
 
 
