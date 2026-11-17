@@ -17,6 +17,7 @@ CONFIG_FILES = {
     "scoring_source_of_truth": "scoring_source_of_truth.json",
     "vertical_slice": "vertical_slice.json",
     "local-qualification": "local-qualification.json",
+    "local-development-probes": "local-development-probes.json",
     "g2-held-out": "g2-held-out.json",
 }
 

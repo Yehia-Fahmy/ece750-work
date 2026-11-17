@@ -1,0 +1,25 @@
+{
+  "schema_version": "shortcut-local-development-probes-v1",
+  "status": "development_probes_only_not_qualification",
+  "model_alias": "shortcut-qwen3-4b",
+  "server_context_tokens": 16384,
+  "limits": {
+    "max_model_turns": 20,
+    "max_tool_actions": 12,
+    "max_cumulative_generated_tokens": 12288,
+    "max_per_turn_output_tokens": 3072,
+    "max_context_tokens": 16384,
+    "max_wall_time_seconds": 600,
+    "technical_transport_retries": 0
+  },
+  "sampling": {"temperature": 0.2, "top_p": 0.95},
+  "telemetry_interval_seconds": 1.0,
+  "minimum_sampled_headroom_mib": 512,
+  "notes": [
+    "Used only by development_probes.py (SW06 residual / catalog probes).",
+    "Does NOT feed qualification.py or held-out fresh 320; that path reads local-qualification.json (turns 16).",
+    "max_model_turns 20 gives headroom after identical_tool_call_already_executed rejects that skip action budget.",
+    "Token budgets match local-qualification; not a token raise.",
+    "Adapter/runner anti-dupe (v6 + fingerprint guard) applies regardless of which config supplies limits."
+  ]
+}

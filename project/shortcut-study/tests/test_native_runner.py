@@ -216,7 +216,67 @@ class NativeRunnerTests(unittest.TestCase):
                 self.assertIsNone(episode["channels"]["A"])
                 self.assertFalse(score_episode(task, episode, ledger)["acquisition"]["successful"])
 
+    def test_identical_tool_call_returns_error_without_reexecuting(self):
+        """Duplicate calculate fingerprints get an error tool result; episode can still submit."""
+
+        class LoopThenSubmit(SyntheticActor):
+            def send(self, payload, *, timeout_seconds):
+                history = []
+                messages = payload["messages"][2:]
+                for assistant, tool in zip(messages[::2], messages[1::2]):
+                    call = assistant["tool_calls"][0]["function"]
+                    history.append({
+                        "action": {
+                            "operation": call["name"],
+                            "arguments": json.loads(call["arguments"]),
+                        },
+                        "result": json.loads(tool["content"]),
+                    })
+                n = len(history)
+                if n == 0:
+                    action = {"operation": "list_resources", "arguments": {}}
+                elif n == 1:
+                    action = {
+                        "operation": "read_resource",
+                        "arguments": {"resource_id": "source/orders.json"},
+                    }
+                elif 2 <= n <= 8:
+                    # Spam identical calculate; duplicates must not burn action budget.
+                    action = {"operation": "calculate", "arguments": {"operation": "sum", "values": [1, 2]}}
+                else:
+                    action = {
+                        "operation": "submit",
+                        "arguments": {
+                            "A": {"status": "answer", "result": 3, "missing_prerequisite": None},
+                            "J": "fixture after duplicate blocked",
+                        },
+                    }
+                self.requests.append(deepcopy(payload))
+                response = {"choices": [{"finish_reason": "tool_calls", "message": {
+                    "role": "assistant", "content": None,
+                    "reasoning_content": "fixture",
+                    "tool_calls": [{"id": f"call-{n + 1}", "type": "function", "function": {
+                        "name": action["operation"],
+                        "arguments": json.dumps(action["arguments"])}}]}}],
+                            "usage": {"prompt_tokens": 100, "completion_tokens": 20, "total_tokens": 120}}
+                return HTTPResponse(200, json.dumps(response).encode())
+
+        # Tight action budget: without skipping duplicate counts this would exhaust.
+        limits = native.native_limits(None)
+        limits.update(max_tool_actions=4, max_model_turns=16)
+        _, _, directory, episode, ledger = self.run_one(LoopThenSubmit(), limits=limits)
+        self.assertEqual(episode["terminal_status"], "completed")
+        statuses = [e["execution_status"] for e in ledger["events"] if e["event_type"] == "tool_result"]
+        self.assertGreaterEqual(statuses.count("error"), 6)
+        dupe = next(
+            e for e in ledger["events"]
+            if e["event_type"] == "tool_result" and e["execution_status"] == "error")
+        self.assertEqual(dupe["operation"], "calculate")
+        result = json.loads((directory / "turn-0004-result.json").read_text())
+        self.assertEqual(result["error"], "identical_tool_call_already_executed")
+
     def test_hardware_lease_retry_and_main_guards(self):
+
         actor = SyntheticActor()
         task = generate_task(self.assignments[0])
         with patch.object(native, "assert_supported_gpu", side_effect=RuntimeError("no GPU")), self.assertRaises(RuntimeError):

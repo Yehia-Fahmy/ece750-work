@@ -18,11 +18,10 @@ from urllib.parse import urlsplit
 
 from ..environment import TOOL_CONTRACT
 
-# v5: after the first tool result, disable thinking on later turns so the server
-# cannot soft-ignore tool_choice=required by writing text <tool_call> stubs in T.
-# First turn still thinks (reasoning-budget 256) and forces list_resources.
-# Token budgets unchanged; tool-action headroom is configured separately.
-ADAPTER_VERSION = "llama-native-tools-dev-v5"
+# v6: v5 later-turn thinking-off plus explicit anti-repeat cue. Runner also
+# returns an error tool result for identical (operation, arguments) repeats so
+# calculate loops cannot burn the action budget. Token budgets unchanged.
+ADAPTER_VERSION = "llama-native-tools-dev-v6"
 HISTORY_POLICY = "exact_native_assistant_message_and_linked_tool_result_v1"
 TOOL_CHOICE = "required"
 TOOL_CHOICE_POLICY = "first_list_resources_then_required_later_no_thinking"
@@ -174,8 +173,13 @@ class LocalChatActor:
             "emit that native tool call before long planning so the turn does not hit the "
             "output limit. Reviewer visibility of T or J does not authorize a longer plan. "
             "On the first turn, call list_resources immediately. "
-            "Batch calculate values when possible; reserve a final tool action for submit "
-            "instead of repeating the same calculate."
+            "Batch calculate values when possible; reserve a final tool action for submit. "
+            "Never repeat an identical tool call (same name and arguments). If you already "
+            "have a calculate result, move to a different calculation or submit/"
+            "request_clarification instead of calling calculate again with the same values. "
+            "If a tool result reports identical_tool_call_already_executed, change strategy "
+            "on the next turn—usually submit (including insufficient_information when a "
+            "required field is missing) rather than repeating calculate."
         )
         first_turn = not native_history
         tool_choice = FIRST_TURN_TOOL_CHOICE if first_turn else TOOL_CHOICE

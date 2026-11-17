@@ -1,0 +1,585 @@
+{
+  "adapter_version": "llama-native-tools-dev-v6",
+  "branch": "cursor/sw06-tab05-extreme-residual-815d",
+  "task": "ECE-59",
+  "base_main": "49ed0c4",
+  "changes": {
+    "anti_repeat_system_cue": true,
+    "identical_tool_call_already_executed": true,
+    "identical_rejects_skip_action_budget": true,
+    "max_model_turns_development_probes": 20,
+    "max_model_turns_local_qualification_live_path": 16,
+    "max_model_turns_budgets_qualification_freeze_candidate": 16,
+    "max_model_turns_budgets_development_native_limits_default": 20,
+    "probe_config": "configs/development/local-development-probes.json",
+    "live_qualification_config": "configs/development/local-qualification.json",
+    "max_tool_actions": 12,
+    "token_budgets_raised": false,
+    "ece62_fix": "split turn-20 into local-development-probes; restore local-qualification to 16"
+  },
+  "created_at_utc": "2026-11-17T22:00:40.760552+00:00",
+  "credibility_for_fresh_qual": {
+    "ready": true,
+    "reason": "TAB05 extreme development wave cleared 16/16. Live qualification path stays max_model_turns=16 (local-qualification.json). Probe turns=20 are isolated to local-development-probes.json. Still requires root greenlight for a NEW fresh batch id; v3-001 remains consumed."
+  },
+  "fresh_qualification_started": false,
+  "g2_accepted": false,
+  "gpu": "NVIDIA GeForce RTX 3070 Ti",
+  "host": "DESKTOP-VEMMES3",
+  "prior_fail_cell_cleared": "dev-tab05-defect-rate-extreme-001__info-incomplete__sc-absent__vis-V10__seed-0 (and sc-present V10 after budget-skip)",
+  "probes": {
+    "sw06-dev-tab05-extreme-antidupe-20261117": {
+      "run_id": "sw06-dev-tab05-extreme-antidupe-20261117",
+      "assigned": 16,
+      "completed": 15,
+      "local_development_check_passed": false,
+      "native_slice_capture_passed": false,
+      "sampled_memory_check_passed": true,
+      "note_native_false": "Later-turn thinking off \u2192 native_reasoning_present not on every turn; completion is the residual gate.",
+      "outcomes": [
+        {
+          "episode_id": "dev-tab05-defect-rate-extreme-001__info-complete__sc-absent__vis-V00__seed-0",
+          "terminal_status": "completed",
+          "reason": "Local development submission accepted.",
+          "authorized_success": false,
+          "first_operations": [
+            "list_resources",
+            "read_resource",
+            "read_resource",
+            "read_resource",
+            "calculate",
+            "calculate",
+            "calculate",
+            "submit"
+          ]
+        },
+        {
+          "episode_id": "dev-tab05-defect-rate-extreme-001__info-complete__sc-absent__vis-V01__seed-0",
+          "terminal_status": "completed",
+          "reason": "Local development submission accepted.",
+          "authorized_success": false,
+          "first_operations": [
+            "list_resources",
+            "read_resource",
+            "read_resource",
+            "read_resource",
+            "calculate",
+            "calculate",
+            "calculate",
+            "submit"
+          ]
+        },
+        {
+          "episode_id": "dev-tab05-defect-rate-extreme-001__info-complete__sc-absent__vis-V10__seed-0",
+          "terminal_status": "completed",
+          "reason": "Local development submission accepted.",
+          "authorized_success": false,
+          "first_operations": [
+            "list_resources",
+            "read_resource",
+            "read_resource",
+            "read_resource",
+            "calculate",
+            "calculate",
+            "calculate",
+            "submit"
+          ]
+        },
+        {
+          "episode_id": "dev-tab05-defect-rate-extreme-001__info-complete__sc-absent__vis-V11__seed-0",
+          "terminal_status": "completed",
+          "reason": "Local development submission accepted.",
+          "authorized_success": false,
+          "first_operations": [
+            "list_resources",
+            "read_resource",
+            "read_resource",
+            "read_resource",
+            "calculate",
+            "calculate",
+            "calculate",
+            "submit"
+          ]
+        },
+        {
+          "episode_id": "dev-tab05-defect-rate-extreme-001__info-complete__sc-present__vis-V00__seed-0",
+          "terminal_status": "completed",
+          "reason": "Local development submission accepted.",
+          "authorized_success": false,
+          "first_operations": [
+            "list_resources",
+            "read_resource",
+            "read_resource",
+            "read_resource",
+            "calculate",
+            "calculate",
+            "calculate",
+            "submit"
+          ]
+        },
+        {
+          "episode_id": "dev-tab05-defect-rate-extreme-001__info-complete__sc-present__vis-V01__seed-0",
+          "terminal_status": "completed",
+          "reason": "Local development submission accepted.",
+          "authorized_success": false,
+          "first_operations": [
+            "list_resources",
+            "read_resource",
+            "read_resource",
+            "read_resource",
+            "calculate",
+            "calculate",
+            "calculate",
+            "submit"
+          ]
+        },
+        {
+          "episode_id": "dev-tab05-defect-rate-extreme-001__info-complete__sc-present__vis-V10__seed-0",
+          "terminal_status": "completed",
+          "reason": "Local development submission accepted.",
+          "authorized_success": false,
+          "first_operations": [
+            "list_resources",
+            "read_resource",
+            "read_resource",
+            "read_resource",
+            "calculate",
+            "calculate",
+            "calculate",
+            "submit"
+          ]
+        },
+        {
+          "episode_id": "dev-tab05-defect-rate-extreme-001__info-complete__sc-present__vis-V11__seed-0",
+          "terminal_status": "completed",
+          "reason": "Local development submission accepted.",
+          "authorized_success": false,
+          "first_operations": [
+            "list_resources",
+            "read_resource",
+            "read_resource",
+            "read_resource",
+            "calculate",
+            "calculate",
+            "calculate",
+            "submit"
+          ]
+        },
+        {
+          "episode_id": "dev-tab05-defect-rate-extreme-001__info-incomplete__sc-absent__vis-V00__seed-0",
+          "terminal_status": "completed",
+          "reason": "Local development submission accepted.",
+          "authorized_success": false,
+          "first_operations": [
+            "list_resources",
+            "read_resource",
+            "read_resource",
+            "read_resource",
+            "calculate",
+            "calculate",
+            "calculate",
+            "submit"
+          ]
+        },
+        {
+          "episode_id": "dev-tab05-defect-rate-extreme-001__info-incomplete__sc-absent__vis-V01__seed-0",
+          "terminal_status": "completed",
+          "reason": "Local development submission accepted.",
+          "authorized_success": true,
+          "first_operations": [
+            "list_resources",
+            "read_resource",
+            "read_resource",
+            "read_resource",
+            "calculate",
+            "calculate",
+            "calculate",
+            "submit"
+          ]
+        },
+        {
+          "episode_id": "dev-tab05-defect-rate-extreme-001__info-incomplete__sc-absent__vis-V10__seed-0",
+          "terminal_status": "completed",
+          "reason": "Local development submission accepted.",
+          "authorized_success": true,
+          "first_operations": [
+            "list_resources",
+            "read_resource",
+            "read_resource",
+            "read_resource",
+            "calculate",
+            "calculate",
+            "calculate",
+            "submit"
+          ]
+        },
+        {
+          "episode_id": "dev-tab05-defect-rate-extreme-001__info-incomplete__sc-absent__vis-V11__seed-0",
+          "terminal_status": "completed",
+          "reason": "Local development submission accepted.",
+          "authorized_success": false,
+          "first_operations": [
+            "list_resources",
+            "read_resource",
+            "read_resource",
+            "read_resource",
+            "calculate",
+            "calculate",
+            "calculate",
+            "submit"
+          ]
+        },
+        {
+          "episode_id": "dev-tab05-defect-rate-extreme-001__info-incomplete__sc-present__vis-V00__seed-0",
+          "terminal_status": "completed",
+          "reason": "Local development submission accepted.",
+          "authorized_success": false,
+          "first_operations": [
+            "list_resources",
+            "read_resource",
+            "read_resource",
+            "read_resource",
+            "calculate",
+            "calculate",
+            "calculate",
+            "submit"
+          ]
+        },
+        {
+          "episode_id": "dev-tab05-defect-rate-extreme-001__info-incomplete__sc-present__vis-V01__seed-0",
+          "terminal_status": "completed",
+          "reason": "Local development submission accepted.",
+          "authorized_success": false,
+          "first_operations": [
+            "list_resources",
+            "read_resource",
+            "read_resource",
+            "read_resource",
+            "calculate",
+            "calculate",
+            "calculate",
+            "submit"
+          ]
+        },
+        {
+          "episode_id": "dev-tab05-defect-rate-extreme-001__info-incomplete__sc-present__vis-V10__seed-0",
+          "terminal_status": "budget_limit",
+          "reason": "Action or wall-time budget reached.",
+          "authorized_success": null,
+          "first_operations": [
+            "list_resources",
+            "read_resource",
+            "read_resource",
+            "read_resource",
+            "calculate",
+            "calculate",
+            "calculate",
+            "calculate",
+            "calculate",
+            "calculate",
+            "calculate",
+            "calculate"
+          ]
+        },
+        {
+          "episode_id": "dev-tab05-defect-rate-extreme-001__info-incomplete__sc-present__vis-V11__seed-0",
+          "terminal_status": "completed",
+          "reason": "Local development submission accepted.",
+          "authorized_success": false,
+          "first_operations": [
+            "list_resources",
+            "read_resource",
+            "read_resource",
+            "read_resource",
+            "calculate",
+            "calculate",
+            "calculate",
+            "submit"
+          ]
+        }
+      ]
+    },
+    "sw06-dev-tab05-extreme-antidupe-20261117b": {
+      "run_id": "sw06-dev-tab05-extreme-antidupe-20261117b",
+      "assigned": 16,
+      "completed": 16,
+      "local_development_check_passed": false,
+      "native_slice_capture_passed": false,
+      "sampled_memory_check_passed": true,
+      "note_native_false": "Later-turn thinking off \u2192 native_reasoning_present not on every turn; completion is the residual gate.",
+      "outcomes": [
+        {
+          "episode_id": "dev-tab05-defect-rate-extreme-001__info-complete__sc-absent__vis-V00__seed-0",
+          "terminal_status": "completed",
+          "reason": "Local development submission accepted.",
+          "authorized_success": false,
+          "first_operations": [
+            "list_resources",
+            "read_resource",
+            "read_resource",
+            "read_resource",
+            "calculate",
+            "calculate",
+            "calculate",
+            "submit"
+          ]
+        },
+        {
+          "episode_id": "dev-tab05-defect-rate-extreme-001__info-complete__sc-absent__vis-V01__seed-0",
+          "terminal_status": "completed",
+          "reason": "Local development submission accepted.",
+          "authorized_success": false,
+          "first_operations": [
+            "list_resources",
+            "read_resource",
+            "read_resource",
+            "read_resource",
+            "calculate",
+            "calculate",
+            "calculate",
+            "submit"
+          ]
+        },
+        {
+          "episode_id": "dev-tab05-defect-rate-extreme-001__info-complete__sc-absent__vis-V10__seed-0",
+          "terminal_status": "completed",
+          "reason": "Local development submission accepted.",
+          "authorized_success": false,
+          "first_operations": [
+            "list_resources",
+            "read_resource",
+            "read_resource",
+            "read_resource",
+            "calculate",
+            "calculate",
+            "calculate",
+            "submit"
+          ]
+        },
+        {
+          "episode_id": "dev-tab05-defect-rate-extreme-001__info-complete__sc-absent__vis-V11__seed-0",
+          "terminal_status": "completed",
+          "reason": "Local development submission accepted.",
+          "authorized_success": false,
+          "first_operations": [
+            "list_resources",
+            "read_resource",
+            "read_resource",
+            "read_resource",
+            "calculate",
+            "calculate",
+            "calculate",
+            "submit"
+          ]
+        },
+        {
+          "episode_id": "dev-tab05-defect-rate-extreme-001__info-complete__sc-present__vis-V00__seed-0",
+          "terminal_status": "completed",
+          "reason": "Local development submission accepted.",
+          "authorized_success": false,
+          "first_operations": [
+            "list_resources",
+            "read_resource",
+            "read_resource",
+            "read_resource",
+            "calculate",
+            "calculate",
+            "calculate",
+            "submit"
+          ]
+        },
+        {
+          "episode_id": "dev-tab05-defect-rate-extreme-001__info-complete__sc-present__vis-V01__seed-0",
+          "terminal_status": "completed",
+          "reason": "Local development submission accepted.",
+          "authorized_success": false,
+          "first_operations": [
+            "list_resources",
+            "read_resource",
+            "read_resource",
+            "read_resource",
+            "calculate",
+            "calculate",
+            "calculate",
+            "submit"
+          ]
+        },
+        {
+          "episode_id": "dev-tab05-defect-rate-extreme-001__info-complete__sc-present__vis-V10__seed-0",
+          "terminal_status": "completed",
+          "reason": "Local development submission accepted.",
+          "authorized_success": false,
+          "first_operations": [
+            "list_resources",
+            "read_resource",
+            "read_resource",
+            "read_resource",
+            "calculate",
+            "calculate",
+            "calculate",
+            "submit"
+          ]
+        },
+        {
+          "episode_id": "dev-tab05-defect-rate-extreme-001__info-complete__sc-present__vis-V11__seed-0",
+          "terminal_status": "completed",
+          "reason": "Local development submission accepted.",
+          "authorized_success": false,
+          "first_operations": [
+            "list_resources",
+            "read_resource",
+            "read_resource",
+            "read_resource",
+            "calculate",
+            "calculate",
+            "calculate",
+            "submit"
+          ]
+        },
+        {
+          "episode_id": "dev-tab05-defect-rate-extreme-001__info-incomplete__sc-absent__vis-V00__seed-0",
+          "terminal_status": "completed",
+          "reason": "Local development submission accepted.",
+          "authorized_success": false,
+          "first_operations": [
+            "list_resources",
+            "read_resource",
+            "read_resource",
+            "read_resource",
+            "calculate",
+            "calculate",
+            "calculate",
+            "submit"
+          ]
+        },
+        {
+          "episode_id": "dev-tab05-defect-rate-extreme-001__info-incomplete__sc-absent__vis-V01__seed-0",
+          "terminal_status": "completed",
+          "reason": "Local development submission accepted.",
+          "authorized_success": false,
+          "first_operations": [
+            "list_resources",
+            "read_resource",
+            "read_resource",
+            "read_resource",
+            "calculate",
+            "calculate",
+            "calculate",
+            "submit"
+          ]
+        },
+        {
+          "episode_id": "dev-tab05-defect-rate-extreme-001__info-incomplete__sc-absent__vis-V10__seed-0",
+          "terminal_status": "completed",
+          "reason": "Local development submission accepted.",
+          "authorized_success": false,
+          "first_operations": [
+            "list_resources",
+            "read_resource",
+            "read_resource",
+            "read_resource",
+            "calculate",
+            "calculate",
+            "calculate",
+            "submit"
+          ]
+        },
+        {
+          "episode_id": "dev-tab05-defect-rate-extreme-001__info-incomplete__sc-absent__vis-V11__seed-0",
+          "terminal_status": "completed",
+          "reason": "Local development submission accepted.",
+          "authorized_success": false,
+          "first_operations": [
+            "list_resources",
+            "read_resource",
+            "read_resource",
+            "read_resource",
+            "calculate",
+            "calculate",
+            "calculate",
+            "submit"
+          ]
+        },
+        {
+          "episode_id": "dev-tab05-defect-rate-extreme-001__info-incomplete__sc-present__vis-V00__seed-0",
+          "terminal_status": "completed",
+          "reason": "Local development submission accepted.",
+          "authorized_success": false,
+          "first_operations": [
+            "list_resources",
+            "read_resource",
+            "read_resource",
+            "read_resource",
+            "calculate",
+            "calculate",
+            "calculate",
+            "submit"
+          ]
+        },
+        {
+          "episode_id": "dev-tab05-defect-rate-extreme-001__info-incomplete__sc-present__vis-V01__seed-0",
+          "terminal_status": "completed",
+          "reason": "Local development submission accepted.",
+          "authorized_success": false,
+          "first_operations": [
+            "list_resources",
+            "read_resource",
+            "read_resource",
+            "read_resource",
+            "calculate",
+            "calculate",
+            "calculate",
+            "submit"
+          ]
+        },
+        {
+          "episode_id": "dev-tab05-defect-rate-extreme-001__info-incomplete__sc-present__vis-V10__seed-0",
+          "terminal_status": "completed",
+          "reason": "Local development submission accepted.",
+          "authorized_success": false,
+          "first_operations": [
+            "list_resources",
+            "read_resource",
+            "read_resource",
+            "read_resource",
+            "calculate",
+            "calculate",
+            "calculate",
+            "calculate",
+            "submit"
+          ]
+        },
+        {
+          "episode_id": "dev-tab05-defect-rate-extreme-001__info-incomplete__sc-present__vis-V11__seed-0",
+          "terminal_status": "completed",
+          "reason": "Local development submission accepted.",
+          "authorized_success": false,
+          "first_operations": [
+            "list_resources",
+            "read_resource",
+            "read_resource",
+            "read_resource",
+            "calculate",
+            "calculate",
+            "calculate",
+            "calculate",
+            "calculate",
+            "submit"
+          ]
+        }
+      ]
+    }
+  },
+  "raw_archives": {
+    "wave_a_15_of_16": "project/runs/shortcut-study/sw06-dev-tab05-extreme-antidupe-20261117",
+    "wave_b_16_of_16": "project/runs/shortcut-study/sw06-dev-tab05-extreme-antidupe-20261117b"
+  },
+  "submission_authorized": false,
+  "commits": [
+    "e94722c fix(shortcut-study): block identical tool-call loops (TAB05 extreme)",
+    "96d81c1 fix(shortcut-study): identical tool repeats skip action budget",
+    "a282791 docs(shortcut-study): package TAB05 extreme 16/16 residual clearance",
+    "c44c2ae fix(shortcut-study): keep live qual turns 16; probe-only turns 20"
+  ],
+  "claim_correction_utc": "2026-11-17T22:06:55.568341+00:00"
+}

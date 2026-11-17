@@ -3,7 +3,7 @@
   "schema_version": "shortcut-budgets-config-v1",
   "source_of_truth_for_episode_budgets": "this_file",
   "development": {
-    "max_model_turns": 16,
+    "max_model_turns": 20,
     "max_tool_actions": 12,
     "max_cumulative_generated_tokens": 12288,
     "max_per_turn_output_tokens": 3072,
@@ -25,6 +25,9 @@
     "qualification mirrors local-qualification.json context/retry posture for held-out packaging mocks.",
     "tab01-slice-v6 raised per-turn/cumulative output headroom uniformly after V11 dual-visibility turn-1 overflows at 2048; still no visibility-specific decoding.",
     "max_tool_actions 8→12 and max_model_turns 12→16 after fresh qual v3-001 extreme calculate loops before submit (token budgets unchanged).",
+    "development max_model_turns 16→20 for native_limits(None)/CPU-dev defaults + anti-dupe headroom.",
+    "Live GPU qualification path reads local-qualification.json (turns 16), not this development stanza.",
+    "SW06 residual probes read local-development-probes.json (turns 20); budgets.qualification stays 16 (freeze candidate).",
     "Exact values become frozen only with the main protocol.",
     "Do not force extreme tasks to fail through an inadequate action budget and call that difficulty."
   ]

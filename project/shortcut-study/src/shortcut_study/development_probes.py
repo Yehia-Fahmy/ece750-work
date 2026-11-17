@@ -82,7 +82,8 @@ def run_development_probe(
     directory = Path(directory)
     directory.mkdir(parents=True, exist_ok=False)
     checkout = canonical_experiment_checkout()
-    config = load_development_config("local-qualification")
+    # Probe-only budget (turns 20). Live qualification path keeps local-qualification.json (turns 16).
+    config = load_development_config("local-development-probes")
     limits = native_limits(config["limits"])
     evidence_kind = "local_model_development_probe_not_main"
     started = time.monotonic()
