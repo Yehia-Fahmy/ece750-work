@@ -317,7 +317,7 @@
     "ECE-63 done: #51 merged 7d965ba \u2014 qual-fresh-tab-catalog-v4-001 honest FAIL (completion 315/320=98.4% PASS; easy 11/20=55% FAIL). Batch consumed; g2_accepted=false. No soft-accept.",
     "G2 remains failed: v3-001 FAIL + v4-001 FAIL (easy 55%); do not reuse either batch. No v5 greenlight.",
     "ECE-69 done: #53 merged 096afd9 \u2014 TAB04/TAB05 easy residual wave C 8/8 (dev only). Live turns stay 16. No soft-accept.",
-    "Await root greenlight before any v5 fresh batch; g2_accepted=false; no second GPU.",
+    "Root greenlit ECE-74: qual-fresh-tab-catalog-v5-001 (ns 50000) after ECE-69/#53. g2_accepted=false until finish. No soft-accept; no second GPU.",
     "Independently accept fresh qualification and commit freeze by 2026-11-22 18:00 America/Toronto or automatically select S4.",
     "Local project/runs archives absent on orchestrator host; preserve review evidence; authenticity checks need WSL archives later.",
     "Agents must build final report PDF, deck and notes by Dec 3 18:00; course submission remains researcher-only.",
@@ -653,7 +653,7 @@
   "swarm_handoff": {
     "schema_version": 1,
     "date": "2026-11-17",
-    "status": "sw06_ece69_merged_awaiting_root_v5_greenlight",
+    "status": "sw06_ece69_merged_ece74_fresh_v5_greenlit",
     "start_here": "SWARM_START.md",
     "work_packages": "SWARM_WORK_PACKAGES.md",
     "reconciliation": "handoffs/2026-11-17-completion-swarm.md",
@@ -861,7 +861,7 @@
           "report/claim-evidence-ledger.md",
           "handoffs/2026-11-17-sw04-claim-ledger.md"
         ],
-        "note": "Ledger: C-G2-FRESH-V3/V4 FAIL; C-SW06-DEV-EASY residual (#53). Await root v5 greenlight. No GPU on SW04."
+        "note": "Ledger: C-G2-FRESH-V3/V4 FAIL; ECE-69 easy residual merged; ECE-74 v5 greenlit. No GPU on SW04."
       },
       {
         "id": "SW05",
@@ -889,7 +889,7 @@
       {
         "id": "SW06",
         "role": "gpu_operator_and_qualification_reviewer",
-        "status": "ece69_merged_awaiting_root_v5_greenlight",
+        "status": "ece74_fresh_v5_greenlit_awaiting_collect",
         "owner": "bc-1121d0a4-6c7d-5e71-adea-be1427c7815d",
         "reviewer": "independent_pending_not_author",
         "depends_on": [
@@ -911,10 +911,11 @@
           "ECE-68/lagging APPROVE on #51; merged 7d965ba",
           "https://github.com/Yehia-Fahmy/ece750-work/pull/53 (merged 096afd9) \u2014 ECE-69 easy residual",
           "results/development/sw06-tab04-tab05-easy-residual-clearance-v1.json",
-          "Lagging independent APPROVE on #53; wave C 8/8"
+          "Lagging independent APPROVE on #53; wave C 8/8",
+          "Root greenlight ECE-74 for qual-fresh-tab-catalog-v5-001 (after ECE-69 book)"
         ],
-        "note": "ECE-69 done: #53 merged 096afd9 (adapter v7; calculate multiply/floordiv; TAB04/TAB05 easy wave C 8/8). Development only \u2014 not G2. Live qual turns stay 16. v4-001 remains consumed FAIL; g2_accepted=false; no soft-accept. Await root greenlight before any v5 fresh batch. No second GPU worker. Cutoff Nov 22 18:00 America/Toronto \u2192 S4.",
-        "tracker_task": "ECE-69",
+        "note": "ECE-69 done (#53 / 096afd9): TAB04/TAB05 easy wave C 8/8 (dev only). Root greenlit ECE-74 NEW fresh G2 batch qual-fresh-tab-catalog-v5-001 (seed ns 50000; content-disjoint from v3/v4; TAB-only; live turns=16; WSL RTX 3070 Ti). g2_accepted=false until honest finish; v3/v4 remain consumed FAIL; submission_authorized=false. No soft-accept; orchestrator does not take GPU lease / no second GPU worker. Cutoff Nov 22 18:00 America/Toronto \u2192 S4.",
+        "tracker_task": "ECE-74",
         "host": {
           "worker_id": "a09a6978",
           "machine": "DESKTOP-VEMMES3",
@@ -1024,25 +1025,33 @@
           "completion": "315/320",
           "easy_no_shortcut": "11/20",
           "tracked_evidence": "results/qualification/qual-fresh-tab-catalog-v4-001.json",
-          "next_fresh_batch_id": null,
+          "next_fresh_batch_id": "qual-fresh-tab-catalog-v5-001",
           "next_attempt": {
-            "tracker": "ECE-63",
-            "batch_id": "qual-fresh-tab-catalog-v4-001",
-            "status": "consumed_fail",
+            "tracker": "ECE-74",
+            "batch_id": "qual-fresh-tab-catalog-v5-001",
+            "status": "authorized_awaiting_collect",
             "owner": "bc-1121d0a4-6c7d-5e71-adea-be1427c7815d",
-            "allocate_tip": "76adc3b73b5bb1ed7c614d65e6b708e2f433e385",
-            "packaging_pr": 51,
-            "seed_namespace": "qualification-fresh-v4",
-            "seed_namespace_base": 40000,
+            "seed_namespace": "qualification-fresh-v5",
+            "seed_namespace_base": 50000,
+            "scope": "TAB-only",
+            "max_model_turns": 16,
+            "host": "WSL DESKTOP-VEMMES3 RTX 3070 Ti",
+            "content_disjoint_from": [
+              "qual-fresh-tab-catalog-v3-001",
+              "qual-fresh-tab-catalog-v4-001"
+            ],
+            "do_not_reuse": [
+              "qual-fresh-tab-catalog-v3-001",
+              "qual-fresh-tab-catalog-v4-001"
+            ],
             "g2_accepted": false,
-            "outcomes_recorded": true,
-            "do_not_reuse": true,
-            "packaging_merge_sha": "7d965bada6a8f3f96f756beae6f212f73b893795"
+            "outcomes_recorded": false,
+            "base_main": "096afd93755cbe78139a3d95e94403f97e7130d1"
           },
-          "fresh_320_authorized": false,
-          "fresh_320_greenlight": false,
-          "greenlight_scope": null,
-          "greenlight_blocker": "ECE-69 development residual merged; still need root greenlight before any v5 fresh batch (v4-001 consumed FAIL)",
+          "fresh_320_authorized": true,
+          "fresh_320_greenlight": true,
+          "greenlight_scope": "ECE-74 new fresh G2 attempt only; root-authorized after #53/ECE-69; batch v5-001",
+          "greenlight_blocker": null,
           "orchestrator_gpu_lease": false,
           "prior_fresh_fails": [
             {
@@ -1058,7 +1067,7 @@
           "parseability_complete_completed": "160/160",
           "easy_no_shortcut_rate": 0.55,
           "fail_gate": "easy_no_shortcut < 80% (TAB04 0/4, TAB05 0/4)",
-          "follow_up": {
+          "ece69_follow_up_completed": {
             "tracker": "ECE-69",
             "status": "merged",
             "pr": "https://github.com/Yehia-Fahmy/ece750-work/pull/53",
@@ -1080,7 +1089,7 @@
           "format_probes": "24/24",
           "tab05_extreme_probes": "15/16",
           "credibility_for_fresh_qual_ready": true,
-          "fresh_320_authorized": false,
+          "fresh_320_authorized": true,
           "follow_up": {
             "tracker": "ECE-59",
             "status": "merged",
@@ -1091,7 +1100,7 @@
             "owner": "bc-1121d0a4-6c7d-5e71-adea-be1427c7815d",
             "independent_review": "lagging APPROVE + ECE-62 APPROVE tip 86f0046",
             "credibility_for_fresh_qual_ready": false,
-            "fresh_320_authorized": false,
+            "fresh_320_authorized": true,
             "root_greenlight": "ECE-63"
           },
           "easy_residual": {
@@ -1100,7 +1109,8 @@
             "pr": 53,
             "merge_sha": "096afd93755cbe78139a3d95e94403f97e7130d1",
             "wave_c": "8/8",
-            "not_g2": true
+            "not_g2": true,
+            "root_greenlight": "ECE-74"
           }
         }
       },
@@ -1124,7 +1134,7 @@
           "results/qualification/sw07-freeze-prep-v1.json",
           "results/qualification/freeze-checklist-s0-tab-post-sw05.md"
         ],
-        "note": "CPU freeze-prep stubs only; G3 unsigned; blocked on accepted fresh G2. ECE-69 easy residual merged (dev only); await root v5 greenlight. Cutoff Nov 22 18:00 America/Toronto \u2192 S4."
+        "note": "CPU freeze-prep stubs only; G3 unsigned; blocked on accepted fresh G2. ECE-69 done; ECE-74 v5 greenlit collecting next. Cutoff Nov 22 18:00 America/Toronto \u2192 S4."
       },
       {
         "id": "SW08",

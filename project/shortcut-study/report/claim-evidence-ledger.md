@@ -68,8 +68,8 @@ Use this table for report prose. Prefer hashes/paths over adjectives like “val
 - GPU operator: `bc-1121d0a4…` on WSL DESKTOP-VEMMES3 / RTX 3070 Ti.
 - Orchestrator / SW04–SW07 CPU authors **must not** acquire the GPU lease or start a second qualification operator.
 - Fresh v3-001 **FAIL** on main (#44/#45); fresh v4-001 **FAIL** packaged (ECE-63 / #51); prior FAIL rows (`C-G2-ORIG`, `C-G2-V2`, `C-G2-FRESH-V3`, `C-G2-FRESH-V4`) preserved — do not rewrite.
-- ECE-53 **done** (#46); ECE-59 **done** (#48); ECE-63 **done** (#51 honest FAIL); ECE-69 development easy residual TAB04/TAB05 **8/8** on probes (adapter v7); G2 still not accepted.
-- Next held-out needs another **new** batch id + greenlight after review; development PASS ≠ qualified; `submission_authorized=false`.
+- ECE-53 **done** (#46); ECE-59 **done** (#48); ECE-63 **done** (#51 honest FAIL); ECE-69 **done** (#53 — TAB04/TAB05 easy wave C **8/8** on probes; adapter v7); G2 still not accepted.
+- ECE-74: root greenlit **NEW** fresh batch `qual-fresh-tab-catalog-v5-001` (ns 50000; TAB-only; turns 16; content-disjoint from v3/v4); `g2_accepted=false` until honest finish; development PASS ≠ qualified; `submission_authorized=false`.
 - Cutoff: Nov 22 18:00 America/Toronto → automatic S4 if no accepted qual+freeze. `submission_authorized=false`.
 
 ## Do not
@@ -78,7 +78,7 @@ Use this table for report prose. Prefer hashes/paths over adjectives like “val
 - Soft-accept G2 on 87.5% completion or treat easy 85% as overall pass
 - Reuse `qual-fresh-tab-catalog-v3-001` or `qual-fresh-tab-catalog-v4-001` as fresh
 - Soft-accept G2 when completion/parse pass but easy auth fails (v4-001: 11/20=55%)
-- Greenlight / burn a new fresh 320 without root approval
+- Soft-accept ECE-74 mid-collection (`g2_accepted` stays false until honest finish)
 - Call development PASS “qualified”
 - Invent main effects or exploratory pilot estimates as confirmation
 - Soft-wash G2 FAIL or raise budgets as the primary remediation story
