@@ -179,7 +179,7 @@ class Sw01IdentityBatchTests(unittest.TestCase):
     def test_cpu_reservation_manifest_is_disjoint(self):
         manifest = build_cpu_reservation_manifest(
             fresh_batch_id=DEFAULT_FRESH_QUALIFICATION_BATCH_ID,
-            fresh_namespace_base=40_000,
+            fresh_namespace_base=50_000,
         )
         self.assertTrue(manifest["disjointness_checked"])
         self.assertFalse(manifest["gpu_required"])
