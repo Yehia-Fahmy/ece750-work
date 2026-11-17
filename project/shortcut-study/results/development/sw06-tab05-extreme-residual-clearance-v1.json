@@ -2,20 +2,25 @@
   "adapter_version": "llama-native-tools-dev-v6",
   "branch": "cursor/sw06-tab05-extreme-residual-815d",
   "task": "ECE-59",
-  "base_main": "0290663",
+  "base_main": "49ed0c4",
   "changes": {
     "anti_repeat_system_cue": true,
     "identical_tool_call_already_executed": true,
     "identical_rejects_skip_action_budget": true,
-    "max_model_turns_development": 20,
+    "max_model_turns_development_probes": 20,
+    "max_model_turns_local_qualification_live_path": 16,
+    "max_model_turns_budgets_qualification_freeze_candidate": 16,
+    "max_model_turns_budgets_development_native_limits_default": 20,
+    "probe_config": "configs/development/local-development-probes.json",
+    "live_qualification_config": "configs/development/local-qualification.json",
     "max_tool_actions": 12,
-    "qualification_max_model_turns_unchanged": 16,
-    "token_budgets_raised": false
+    "token_budgets_raised": false,
+    "ece62_fix": "split turn-20 into local-development-probes; restore local-qualification to 16"
   },
   "created_at_utc": "2026-11-17T22:00:40.760552+00:00",
   "credibility_for_fresh_qual": {
     "ready": true,
-    "reason": "TAB05 extreme development wave cleared 16/16 completed after anti-dupe + action-budget skip + turns 20. Still requires root greenlight for a NEW fresh batch id; v3-001 remains consumed."
+    "reason": "TAB05 extreme development wave cleared 16/16. Live qualification path stays max_model_turns=16 (local-qualification.json). Probe turns=20 are isolated to local-development-probes.json. Still requires root greenlight for a NEW fresh batch id; v3-001 remains consumed."
   },
   "fresh_qualification_started": false,
   "g2_accepted": false,
@@ -571,7 +576,10 @@
   },
   "submission_authorized": false,
   "commits": [
-    "b895f9c fix(shortcut-study): block identical tool-call loops (TAB05 extreme)",
-    "bbbdc3e fix(shortcut-study): identical tool repeats skip action budget"
-  ]
+    "e94722c fix(shortcut-study): block identical tool-call loops (TAB05 extreme)",
+    "96d81c1 fix(shortcut-study): identical tool repeats skip action budget",
+    "a282791 docs(shortcut-study): package TAB05 extreme 16/16 residual clearance",
+    "f7b006b fix(shortcut-study): keep live qual turns 16; probe-only turns 20"
+  ],
+  "claim_correction_utc": "2026-11-17T22:06:55.568341+00:00"
 }

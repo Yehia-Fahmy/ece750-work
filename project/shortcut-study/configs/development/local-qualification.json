@@ -4,7 +4,7 @@
   "model_alias": "shortcut-qwen3-4b",
   "server_context_tokens": 16384,
   "limits": {
-    "max_model_turns": 20,
+    "max_model_turns": 16,
     "max_tool_actions": 12,
     "max_cumulative_generated_tokens": 12288,
     "max_per_turn_output_tokens": 3072,
@@ -16,13 +16,13 @@
   "telemetry_interval_seconds": 1.0,
   "minimum_sampled_headroom_mib": 512,
   "notes": [
+    "Live path for qualification.py (held-out / local qualify). Freeze-candidate turns stay 16.",
     "16 development assignments fixed before model loading; no retries or main data.",
     "16k context follows COMPUTE.md's existing 4B candidate. No history clipping.",
     "Runtime, native capture and count equivalence only; no judge or scientific qualification implied.",
     "temperature 0.2 (was 0.6→0.3) continues anti-ramble / anti-stub sampling; token budgets unchanged.",
     "tool_choice policy is llama-native-tools-dev-v6 (first list_resources; later turns thinking off + required; anti-repeat cue).",
     "max_tool_actions 12 matches budgets.json after v3-001 extreme action exhaustion (not a token raise).",
-    "max_model_turns 16→20 so identical-call rejects (which do not burn actions) still have headroom to submit.",
-    "Runner rejects identical successful (op,args) fingerprints with identical_tool_call_already_executed (no action-budget burn)."
+    "ECE-59 residual turn-20 headroom lives only in local-development-probes.json — not here."
   ]
 }

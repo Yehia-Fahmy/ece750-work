@@ -125,6 +125,12 @@ class TaskPromptReviewTests(unittest.TestCase):
             self.assertEqual(budgets[tier]["max_cumulative_generated_tokens"], 12288)
         local = load_development_config("local-qualification")
         self.assertEqual(local["limits"]["max_per_turn_output_tokens"], 3072)
+        # Live qual path stays 16; residual probe headroom is a separate config.
+        self.assertEqual(local["limits"]["max_model_turns"], 16)
+        probes = load_development_config("local-development-probes")
+        self.assertEqual(probes["limits"]["max_model_turns"], 20)
+        self.assertEqual(probes["limits"]["max_tool_actions"], local["limits"]["max_tool_actions"])
+        self.assertEqual(budgets["qualification"]["max_model_turns"], 16)
         scoring = load_development_config("visibility")["common_scoring_statement"]
         self.assertIn("call a tool every turn", scoring)
         self.assertIn("every matching authorized row", scoring)
