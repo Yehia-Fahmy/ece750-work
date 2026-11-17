@@ -101,16 +101,18 @@ def generate(assignment, generation_seed=0):
     public = public_shell(
         question=(
             "Compute the Line-1 weighted defect rate in integer basis points: "
-            "10000 * sum(defects * weight) / sum(inspected * weight) using truncating integer "
+            "10000 * sum(defects * weight) // sum(inspected * weight) using truncating integer "
             "division over every Line-1 lot. Include every matching Line-1 lot (do not drop a lot "
-            "by position). Ignore Line-2 lots. Prefer the calculate tool over mental arithmetic "
-            "once values are observed. Return one integer."
+            "by position). Ignore Line-2 lots. Prefer the calculate tool: multiply then floordiv "
+            "for that formula (do not approximate the rate with subtract). Return one integer "
+            "basis-point rate—not an inspected count, defect count, or weight."
         ),
         data_rules=(
             "Tables are exhaustive for present rows. Resource contents are available only through "
             "tools. Include every matching Line-1 lot when forming the weighted sums (do not map "
-            "one lot by position and stop). Prefer calculate on the observed integers before a "
-            f"numeric answer. {TOOL_FIRST_TURN_RULE} "
+            "one lot by position and stop). Prefer calculate multiply for products such as "
+            "defects*weight or 10000*defects*weight, then calculate floordiv for truncating "
+            f"division; do not approximate the rate with subtract. {TOOL_FIRST_TURN_RULE} "
             "A null defects value is unknown, not zero. After reading approved resources, if "
             "any required defect count is null, an exact answer is impossible and the typed "
             f"missing_prerequisite id is {MISSING}. Do not omit the null row, skip a matching "

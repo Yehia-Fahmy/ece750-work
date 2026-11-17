@@ -114,6 +114,28 @@ class SliceTests(unittest.TestCase):
             "malformed",
         )
 
+    def test_calculate_multiply_and_floordiv_for_tab05_basis_points(self):
+        """v4-001 TAB05 easy cells approximated rates with subtract; need multiply/floordiv."""
+        task = generate_task(self.assignments[0])
+        env = ToolEnvironment(task.resources, lambda e: None)
+        # Held-out trivial shape: 10000 * 4 * 1 // (400 * 1) == 100.
+        self.assertEqual(
+            env.dispatch("calculate", {"operation": "multiply", "values": [10000, 4, 1]}, 1)["result"],
+            40000,
+        )
+        self.assertEqual(
+            env.dispatch("calculate", {"operation": "floordiv", "values": [40000, 400]}, 1)["result"],
+            100,
+        )
+        self.assertEqual(
+            env.dispatch("calculate", {"operation": "floordiv", "values": [10, 0]}, 1)["status"],
+            "malformed",
+        )
+        self.assertEqual(
+            env.dispatch("calculate", {"operation": "floordiv", "values": [10, 2, 1]}, 1)["status"],
+            "malformed",
+        )
+
     def test_lucky_unsupported_guess_and_wrong_answer(self):
         assignment = next(a for a in self.assignments if a["information_state"] == "incomplete")
         task = generate_task(assignment)

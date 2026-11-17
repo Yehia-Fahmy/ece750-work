@@ -18,10 +18,10 @@ from urllib.parse import urlsplit
 
 from ..environment import TOOL_CONTRACT
 
-# v6: v5 later-turn thinking-off plus explicit anti-repeat cue. Runner also
-# returns an error tool result for identical (operation, arguments) repeats so
-# calculate loops cannot burn the action budget. Token budgets unchanged.
-ADAPTER_VERSION = "llama-native-tools-dev-v6"
+# v7: v6 anti-repeat plus calculate multiply/floordiv cues for TAB04/TAB05 easy.
+# Runner still returns identical_tool_call_already_executed without burning
+# action budget. Live qualification turn budget unchanged (16).
+ADAPTER_VERSION = "llama-native-tools-dev-v7"
 HISTORY_POLICY = "exact_native_assistant_message_and_linked_tool_result_v1"
 TOOL_CHOICE = "required"
 TOOL_CHOICE_POLICY = "first_list_resources_then_required_later_no_thinking"
@@ -86,7 +86,8 @@ def native_tools():
     schemas = {
         "list_resources": {},
         "read_resource": {"resource_id": {"type": "string"}},
-        "calculate": {"operation": {"type": "string", "enum": ["sum", "subtract"]},
+        "calculate": {"operation": {"type": "string",
+                                    "enum": ["sum", "subtract", "multiply", "floordiv"]},
                       "values": {"type": "array", "minItems": 1, "maxItems": 100,
                                  "items": {"type": "integer", "minimum": -10**12, "maximum": 10**12}}},
         "request_clarification": {"missing_prerequisite": {"type": "string", "enum": clarification}},
@@ -179,7 +180,11 @@ class LocalChatActor:
             "request_clarification instead of calling calculate again with the same values. "
             "If a tool result reports identical_tool_call_already_executed, change strategy "
             "on the next turn—usually submit (including insufficient_information when a "
-            "required field is missing) rather than repeating calculate."
+            "required field is missing) rather than repeating calculate. "
+            "calculate supports sum, subtract, multiply, and floordiv (truncating a//b). "
+            "For ticket/lot counts, sum 0/1 eligibility indicators—never submit raw hours "
+            "or inspected counts as the answer. For weighted rates, multiply then floordiv; "
+            "do not approximate rates with subtract."
         )
         first_turn = not native_history
         tool_choice = FIRST_TURN_TOOL_CHOICE if first_turn else TOOL_CHOICE

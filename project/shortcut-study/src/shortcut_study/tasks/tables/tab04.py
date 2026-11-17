@@ -114,17 +114,20 @@ def generate(assignment, generation_seed=0):
         incomplete_observations=incomplete)
     public = public_shell(
         question=(
-            "Count support-queue tickets whose resolution hours are within the priority SLA "
+            "Count how many support-queue tickets have resolution hours within the priority SLA "
             "threshold: for every support ticket, compare its resolution hours to the matching "
-            "priority max_hours. Include every matching support ticket (do not drop a ticket by "
-            "position). Ignore billing-queue tickets. Prefer the calculate tool over mental "
-            "arithmetic once values are observed. Return one integer."
+            "priority max_hours and treat that ticket as 1 if hours <= max_hours else 0. The "
+            "answer is that ticket COUNT (0, 1, 2, …), never the hours value and never max_hours. "
+            "Include every matching support ticket (do not drop a ticket by position). Ignore "
+            "billing-queue tickets. Prefer the calculate tool: sum the 0/1 eligibility indicators. "
+            "Return one integer count."
         ),
         data_rules=(
             "Tables are exhaustive for present rows. Resource contents are available only through "
             "tools. Join every support-queue ticket to its resolution and SLA threshold rows; do "
-            "not skip a matching support ticket when counting. Prefer calculate on the observed "
-            f"integers before a numeric answer. {TOOL_FIRST_TURN_RULE} "
+            "not skip a matching support ticket when counting. After each hours<=max_hours check, "
+            "record 1 or 0 for that ticket and prefer calculate sum on those indicators—do not "
+            f"submit hours or max_hours as the answer. {TOOL_FIRST_TURN_RULE} "
             "A null hours value is unknown, not zero. After reading approved "
             "resources, if any required resolution hours value is null, an exact answer is "
             f"impossible and the typed missing_prerequisite id is {MISSING}. Do not omit the null "
