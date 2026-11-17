@@ -45,7 +45,7 @@
   "replicate_seed": 0,
   "run_id": "dev-contract-fixtures",
   "schema_version": "shortcut-episode-v1",
-  "semantic_fingerprint": "a7cb97fa06c6de08f4800a504fcecf59c8536e1b6cccecfc129f83af303be6f4",
+  "semantic_fingerprint": "9c55ae9b17f36c3d247a952413b39c836dbff05f8450e52de0e3a70eb749f4c2",
   "shortcut_available": true,
   "split": "development",
   "template_id": "TAB01",

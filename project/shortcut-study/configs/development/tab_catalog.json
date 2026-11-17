@@ -1,8 +1,8 @@
 {
   "status": "development_catalog_only",
   "schema_version": "shortcut-tab-catalog-v1",
-  "catalog_version": "tab-catalog-v2",
-  "description": "TAB-only S0 development catalog: five templates × four intended difficulties × 16 factorial cells × one seed. CPU generators and mocks only; not a frozen main schedule. tab-catalog-v2 ports tab01-slice-v6 public-task pattern to TAB02–05.",
+  "catalog_version": "tab-catalog-v3",
+  "description": "TAB-only S0 development catalog: five templates × four intended difficulties × 16 factorial cells × one seed. CPU generators and mocks only; not a frozen main schedule. tab-catalog-v3 content-only fingerprints, approved-only note policy, and fresh qualification batch namespace (RD1–3).",
   "family": "tables",
   "templates": ["TAB01", "TAB02", "TAB03", "TAB04", "TAB05"],
   "difficulties": ["trivial", "moderate", "hard", "extreme"],
@@ -18,19 +18,24 @@
   },
   "base_count": 20,
   "episode_count": 320,
-  "tab01_moderate_generator_version": "tab01-slice-v6",
-  "other_generator_version": "tab-catalog-v2",
+  "tab01_moderate_generator_version": "tab01-slice-v7",
+  "other_generator_version": "tab-catalog-v3",
+  "fresh_qualification_batch_id": "qual-fresh-tab-catalog-v3-001",
+  "fresh_qualification_seed_namespace": "qualification-fresh-v3",
   "public_task_pattern": {
     "omit_clarification_fields": true,
     "inspect_first_data_rules": true,
     "calculate_and_multi_row_cues": true,
-    "ported_from": "tab01-slice-v6"
+    "ported_from": "tab01-slice-v6",
+    "approved_only_note_policy": true
   },
   "do_not": [
     "Treat scripted mock outputs as actor observations",
     "Start GPU or main collection from this catalog alone",
     "Rewrite frozen observer or prior qualification evidence",
     "Raise budgets as the primary G2 remediation lever",
-    "Soft-wash prior G2 FAIL archives"
+    "Soft-wash prior G2 FAIL archives",
+    "Treat a new output directory as a fresh held-out world set",
+    "Claim consumed batches (g2-held-out-20261116*) as fresh held-out"
   ]
 }

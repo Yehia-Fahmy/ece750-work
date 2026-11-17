@@ -1,0 +1,42 @@
+{
+  "schema_version": "shortcut-sw05-integrator-wiring-v1",
+  "evidence_kind": "cpu_integrator_wiring_not_gpu_qualification",
+  "submission_authorized": false,
+  "base_commit_main": "0a71981a64b84edc9fac0cff5c0d771e54f510cc",
+  "suite": {
+    "command": "PYTHONPATH=src python3 -m unittest discover -s tests",
+    "result": "254 OK",
+    "host": "cloud-cpu"
+  },
+  "wiring": {
+    "sw01": [
+      "allocate_held_out_schedule",
+      "tab_catalog.json\u2192tab-catalog-v3",
+      "batch consumption ledger"
+    ],
+    "sw02": [
+      "prepare_archive\u2192prepare_audit_from_episode_directory",
+      "tool_operation_counts\u2192runner.metrics",
+      "no GENERATOR_VERSION schedule stamp"
+    ],
+    "sw03": [
+      "analysis_protocol.json mirrors protocol.py",
+      "--materialize-fixtures CLI flag"
+    ]
+  },
+  "source_sha256": {
+    "src/shortcut_study/qualification.py": "ed327df89fccdbca50678ada721d7b211e35dad6e54b85d62f8cfbe499b56969",
+    "src/shortcut_study/__main__.py": "f88346a02dc307efc7d450b48453f8112c4a25af1e60ca51dcc4510cfaba3384",
+    "src/shortcut_study/tasks/tables/__init__.py": "07241cfa4e75275844bb5c372518032bdc19834b5592e86f0b7b479060ec9c9a",
+    "configs/development/tab_catalog.json": "af7b228ebec4ef6124b7a7f4575cea1b81c94fd4d736c81641ae74ae6a6c5a89",
+    "configs/development/analysis_protocol.json": "c2695e9cb4553e15d0e9b9eeeb3998bc5fb256cac1781f4551e4c2b5c9ffbb57",
+    "tests/test_sw05_integrator_wiring.py": "61952d2f9f08d53df56350e0db7e98a7bd00e7f201f9479bc7233cb08c0eaad1",
+    "handoffs/2026-11-17-sw05-integrator-wiring.md": "5e4208c6e7f394d98aeca0ca90e23349c0f0cd1d894b58171436ce5d944ea008",
+    "handoffs/2026-11-17-sw06-gpu-plan.md": "fce9fc9860d29e42ae874124d6cd250b429c3776a282a6bc3b65c3c6f58b0bc7"
+  },
+  "do_not": [
+    "Start GPU qualification before SW05 independent accept",
+    "Treat this evidence as G2/G3 acceptance",
+    "Claim submission_authorized"
+  ]
+}

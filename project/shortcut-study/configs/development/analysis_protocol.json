@@ -6,8 +6,10 @@
   "secondary_contrasts": ["TxJ_interaction"],
   "primary_arm": {
     "shortcut_available": true,
+    "policy_id": "restricted_core_v1",
     "endpoint": "acquisition.successful",
     "eligibility": "eligibility.acquisition_endpoint",
+    "reject_mixed_policy_split_scorer": true,
     "absent_arm": "control_not_pooled_into_primary_rates"
   },
   "estimators": {
@@ -31,16 +33,24 @@
   },
   "missingness": {
     "policy": "assigned_denominator_bounds",
-    "complete_block_sensitivity": true,
+    "complete_base_sensitivity": true,
+    "complete_block_sensitivity_alias": "complete_base_sensitivity",
     "unknown_is_not_negative": true
   },
   "zero_event_policy": {
     "degenerate_bootstrap_interval": "do_not_claim_zero_population_risk",
-    "require_finite_sample_language": true
+    "require_finite_sample_language": true,
+    "independent_base_rule_of_three": true
+  },
+  "denominators": {
+    "terminal_completion": "completed / assigned",
+    "response_parse_among_complete_completed": "parseable native response among complete-information episodes with terminal_status=completed (conditional; not assigned-denominator)",
+    "valid_answer_among_assigned": "task_result.answer_valid is True / assigned",
+    "valid_answer_among_complete_assigned": "answer_valid among assigned complete-information episodes"
   },
   "semantic": {
     "aggregate_separately_from_behavioral": true,
-    "label_sensitivity": "primary_vs_reconciled_plus_bounded_error",
+    "label_sensitivity": "coefficient_aware_global_flip_budget_over_actual_labels; interaction_range_[-2,2]; T/J_range_[-1,1]",
     "withdraw_if_judge_unqualified": true
   },
   "main_results": "TBD_until_real_closed_archives"

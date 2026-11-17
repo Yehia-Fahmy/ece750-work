@@ -2,7 +2,8 @@
 
 from . import tab01, tab02, tab03, tab04, tab05
 from .batches import (BATCH_SEED_NAMESPACES, CONSUMED_QUALIFICATION_BATCHES,
-                      DEFAULT_FRESH_QUALIFICATION_BATCH_ID, allocate_qualification_batch,
+                      DEFAULT_FRESH_QUALIFICATION_BATCH_ID,
+                      DEFAULT_FRESH_QUALIFICATION_NAMESPACE, allocate_qualification_batch,
                       assert_batch_not_masquerading_as_fresh, build_cpu_reservation_manifest,
                       consumed_batch_record, is_consumed_batch, mark_batch_consumed,
                       register_batch_namespace)
@@ -68,6 +69,7 @@ __all__ = [
     "CLARIFICATION_FIELDS",
     "CONSUMED_QUALIFICATION_BATCHES",
     "DEFAULT_FRESH_QUALIFICATION_BATCH_ID",
+    "DEFAULT_FRESH_QUALIFICATION_NAMESPACE",
     "DIFFICULTIES",
     "GENERATOR_SPLITS",
     "GENERATOR_VERSION",

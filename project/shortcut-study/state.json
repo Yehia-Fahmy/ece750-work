@@ -650,7 +650,7 @@
   "swarm_handoff": {
     "schema_version": 1,
     "date": "2026-11-17",
-    "status": "sw00_assigned_cpu_lanes_ready",
+    "status": "sw05_accepted_awaiting_sw06_wsl_placement",
     "start_here": "SWARM_START.md",
     "work_packages": "SWARM_WORK_PACKAGES.md",
     "reconciliation": "handoffs/2026-11-17-completion-swarm.md",
@@ -715,7 +715,7 @@
       {
         "id": "SW01",
         "role": "task_engineer",
-        "status": "in_progress",
+        "status": "accepted_merged",
         "owner": "sw01_task_engineer",
         "reviewer": "sw03_analyst",
         "depends_on": [
@@ -752,13 +752,13 @@
         ],
         "handoff": "handoffs/2026-11-17-sw01-assignment.md",
         "cpu_only": true,
-        "note": "Reproduce RD1\u20133 independently; fix identities/batches/policy wording; do not edit shared qualification wiring\u2014propose interface in handoff.",
+        "note": "Merged via #29; RD1\u20133 on main.",
         "sw00_tip_commit": "98fca40fc722e71b030fe176a2cff9fe36a04048"
       },
       {
         "id": "SW02",
         "role": "runtime_audit_engineer",
-        "status": "in_progress",
+        "status": "accepted_merged",
         "owner": "sw02_runtime_audit",
         "reviewer": "sw01_task_engineer",
         "depends_on": [
@@ -794,13 +794,13 @@
         ],
         "handoff": "handoffs/2026-11-17-sw02-assignment.md",
         "cpu_only": true,
-        "note": "Reproduce IMPL-1\u20133 with fixtures/temp copies if raw archives absent; bind audit T to native bytes; correct generator version + approved-read telemetry for new code paths; never rewrite historical terminals.",
+        "note": "Merged via #30 (+#32); IMPL-1\u20133 on main.",
         "sw00_tip_commit": "98fca40fc722e71b030fe176a2cff9fe36a04048"
       },
       {
         "id": "SW03",
         "role": "analyst",
-        "status": "in_progress",
+        "status": "accepted_merged",
         "owner": "sw03_analyst",
         "reviewer": "sw02_runtime_audit",
         "depends_on": [
@@ -837,7 +837,7 @@
         ],
         "handoff": "handoffs/2026-11-17-sw03-assignment.md",
         "cpu_only": true,
-        "note": "Reproduce A1\u20135; one estimand for point+bootstrap; conservative label-error bounds; hashed release inputs; explicit fixture regeneration; clarify A4/A5 denominators.",
+        "note": "Merged via #31; A1\u20135 on main.",
         "sw00_tip_commit": "98fca40fc722e71b030fe176a2cff9fe36a04048"
       },
       {
@@ -857,22 +857,30 @@
       {
         "id": "SW05",
         "role": "independent_cpu_reviewer",
-        "status": "not_started",
-        "owner": null,
-        "reviewer": null,
+        "status": "accepted",
+        "owner": "bc-ece62cad-b32b-5b8f-b2e7-56b9dbc6be8a",
+        "reviewer": "bc-4f8d0fae",
         "depends_on": [
           "SW01",
           "SW02",
           "SW03"
         ],
-        "input_commit": null,
+        "input_commit": "0a71981a64b84edc9fac0cff5c0d771e54f510cc",
         "assigned_paths": [],
-        "evidence": []
+        "evidence": [
+          "handoffs/2026-11-17-sw05-integrator-wiring.md",
+          "results/development/sw05-integrator-wiring-v1.json",
+          "PR #33 @ 96eab5b",
+          "independent review: approve-with-nits (bc-4f8d0fae)",
+          "unittest discover: 254 OK"
+        ],
+        "note": "Independent SW05 approve-with-nits by bc-4f8d0fae on 96eab5b; suite 254 OK; G2 remains failed; reviews/2026-11-17 untouched; submission_authorized=false.",
+        "output_commit": "96eab5bcec445d1796bb56e344df10e0d151911e"
       },
       {
         "id": "SW06",
         "role": "gpu_operator_and_qualification_reviewer",
-        "status": "not_started",
+        "status": "planned_awaiting_wsl_gpu_worker",
         "owner": null,
         "reviewer": null,
         "depends_on": [
@@ -880,7 +888,8 @@
         ],
         "input_commit": null,
         "assigned_paths": [],
-        "evidence": []
+        "evidence": [],
+        "note": "SW05 accepted. Follow handoffs/2026-11-17-sw06-gpu-plan.md only after root places a user WSL RTX 3070 Ti worker. Do not start qualification on cloud host."
       },
       {
         "id": "SW07",
@@ -927,40 +936,103 @@
     },
     "finding_disposition": {
       "RD1": {
-        "status": "open",
-        "package": "SW01"
+        "status": "repaired_with_evidence",
+        "package": "SW01",
+        "evidence": [
+          "PR #29/#30/#31 merged to main",
+          "PR #33 integrator tip 96eab5b",
+          "SW05 review approve-with-nits (bc-4f8d0fae)",
+          "unittest discover: 254 OK"
+        ],
+        "accepted_at_commit": "96eab5bcec445d1796bb56e344df10e0d151911e"
       },
       "RD2": {
-        "status": "open",
-        "package": "SW01"
+        "status": "repaired_with_evidence",
+        "package": "SW01",
+        "evidence": [
+          "PR #29/#30/#31 merged to main",
+          "PR #33 integrator tip 96eab5b",
+          "SW05 review approve-with-nits (bc-4f8d0fae)",
+          "unittest discover: 254 OK"
+        ],
+        "accepted_at_commit": "96eab5bcec445d1796bb56e344df10e0d151911e"
       },
       "RD3": {
-        "status": "open",
-        "package": "SW01"
+        "status": "repaired_with_evidence",
+        "package": "SW01",
+        "evidence": [
+          "PR #29/#30/#31 merged to main",
+          "PR #33 integrator tip 96eab5b",
+          "SW05 review approve-with-nits (bc-4f8d0fae)",
+          "unittest discover: 254 OK"
+        ],
+        "accepted_at_commit": "96eab5bcec445d1796bb56e344df10e0d151911e"
       },
       "IMPL-1": {
-        "status": "open",
-        "package": "SW02"
+        "status": "repaired_with_evidence",
+        "package": "SW02",
+        "evidence": [
+          "PR #29/#30/#31 merged to main",
+          "PR #33 integrator tip 96eab5b",
+          "SW05 review approve-with-nits (bc-4f8d0fae)",
+          "unittest discover: 254 OK"
+        ],
+        "accepted_at_commit": "96eab5bcec445d1796bb56e344df10e0d151911e"
       },
       "IMPL-2": {
-        "status": "open",
-        "package": "SW02"
+        "status": "repaired_with_evidence",
+        "package": "SW02",
+        "evidence": [
+          "PR #29/#30/#31 merged to main",
+          "PR #33 integrator tip 96eab5b",
+          "SW05 review approve-with-nits (bc-4f8d0fae)",
+          "unittest discover: 254 OK"
+        ],
+        "accepted_at_commit": "96eab5bcec445d1796bb56e344df10e0d151911e"
       },
       "IMPL-3": {
-        "status": "open",
-        "package": "SW02"
+        "status": "repaired_with_evidence",
+        "package": "SW02",
+        "evidence": [
+          "PR #29/#30/#31 merged to main",
+          "PR #33 integrator tip 96eab5b",
+          "SW05 review approve-with-nits (bc-4f8d0fae)",
+          "unittest discover: 254 OK"
+        ],
+        "accepted_at_commit": "96eab5bcec445d1796bb56e344df10e0d151911e"
       },
       "A1": {
-        "status": "open",
-        "package": "SW03"
+        "status": "repaired_with_evidence",
+        "package": "SW03",
+        "evidence": [
+          "PR #29/#30/#31 merged to main",
+          "PR #33 integrator tip 96eab5b",
+          "SW05 review approve-with-nits (bc-4f8d0fae)",
+          "unittest discover: 254 OK"
+        ],
+        "accepted_at_commit": "96eab5bcec445d1796bb56e344df10e0d151911e"
       },
       "A2": {
-        "status": "open",
-        "package": "SW03"
+        "status": "repaired_with_evidence",
+        "package": "SW03",
+        "evidence": [
+          "PR #29/#30/#31 merged to main",
+          "PR #33 integrator tip 96eab5b",
+          "SW05 review approve-with-nits (bc-4f8d0fae)",
+          "unittest discover: 254 OK"
+        ],
+        "accepted_at_commit": "96eab5bcec445d1796bb56e344df10e0d151911e"
       },
       "A3": {
-        "status": "open",
-        "package": "SW03"
+        "status": "repaired_with_evidence",
+        "package": "SW03",
+        "evidence": [
+          "PR #29/#30/#31 merged to main",
+          "PR #33 integrator tip 96eab5b",
+          "SW05 review approve-with-nits (bc-4f8d0fae)",
+          "unittest discover: 254 OK"
+        ],
+        "accepted_at_commit": "96eab5bcec445d1796bb56e344df10e0d151911e"
       },
       "RD4": {
         "status": "partly_superseded",

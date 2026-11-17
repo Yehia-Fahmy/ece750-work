@@ -10,46 +10,32 @@ from .analysis.harness import recovery_ok, run_analyze, run_dry
 from .analysis.protocol import DEFAULT_BOOTSTRAP_REPLICATES, DEFAULT_BOOTSTRAP_SEED
 from .runner import recover_mock_episode, run_mock_episode, write_new
 from .scoring import score_episode
-from .tasks.tables import (CATALOG_VERSION, GENERATOR_VERSION, enumerate_tab_catalog_assignments,
+from .tasks.tables import (CATALOG_VERSION, enumerate_tab_catalog_assignments,
                            generate_task)
 from .vertical_slice import enumerate_vertical_slice_assignments
 
 
 def prepare_archive(episode_directory, output_directory):
     """Prepare local judge input from verified saved evidence; never call a judge."""
-    from .audit import judge_messages, prepare_audit
+    from .audit import judge_messages, prepare_audit_from_episode_directory
 
     episode_directory, output_directory = Path(episode_directory), Path(output_directory)
-    terminal_path = episode_directory / "terminal.json"
-    inputs_path = episode_directory / "inputs.json"
-    terminal = json.loads(terminal_path.read_text())
-    inputs = json.loads(inputs_path.read_text())
-    episode, ledger = terminal["episode"], terminal["ledger"]
-    input_paths = [terminal_path, inputs_path]
-    if episode["actor_id"]["runtime"] == "deterministic-mock":
-        capabilities = inputs["prompt"]["tools"]
-    else:
-        request_path = episode_directory / "turn-0001-request.json"
-        capabilities = json.loads(request_path.read_text())["tools"]
-        input_paths.append(request_path)
-    results = {}
-    for event in ledger["events"]:
-        if event["response_sha256"] is not None:
-            path = episode_directory / f"turn-{event['turn_id']:04d}-result.json"
-            results[event["event_id"]] = json.loads(path.read_text())
-            input_paths.append(path)
-    prepared = prepare_audit(episode, ledger, public_task=inputs["prompt"]["task"],
-                             capabilities=capabilities, tool_results=results)
+    bundle = prepare_audit_from_episode_directory(episode_directory)
+    prepared = bundle["prepared"]
     messages = judge_messages(prepared)
     output_directory.mkdir(parents=True, exist_ok=False)
     write_new(output_directory / "prepared.json", prepared)
     write_new(output_directory / "messages.json", messages)
     write_new(output_directory / "manifest.json", {
-        "status": "prepared_only_no_judge_inference", "episode_id": episode["episode_id"],
-        "input_sha256": {str(p.relative_to(episode_directory)): hashlib.sha256(p.read_bytes()).hexdigest()
-                         for p in sorted(set(input_paths))},
-        "output_sha256": {name: hashlib.sha256((output_directory / name).read_bytes()).hexdigest()
-                          for name in ("prepared.json", "messages.json")}})
+        "status": "prepared_only_no_judge_inference",
+        "episode_id": prepared["episode_id"],
+        "binding": bundle["binding"],
+        "input_sha256": bundle["binding"]["input_sha256"],
+        "output_sha256": {
+            name: hashlib.sha256((output_directory / name).read_bytes()).hexdigest()
+            for name in ("prepared.json", "messages.json")
+        },
+    })
     return prepared
 
 
@@ -95,6 +81,17 @@ def main():
         choices=["trivial", "moderate", "hard", "extreme"],
         help="With --held-out, limit difficulties (default: all four)",
     )
+    qualify.add_argument(
+        "--qualification-batch-id",
+        default=None,
+        help="With --held-out: fresh batch id (default: qual-fresh-tab-catalog-v3-001)",
+    )
+    qualify.add_argument(
+        "--batch-mode",
+        choices=["fresh", "regression"],
+        default="fresh",
+        help="With --held-out: allocate fresh content-disjoint batch or explicit regression replay",
+    )
     score_fixtures = commands.add_parser(
         "score-fixtures",
         help="Run WP04 CPU scoring fixtures; never model inference or main collection",
@@ -117,6 +114,11 @@ def main():
     )
     dry.add_argument("--replicates", type=int, default=200)
     dry.add_argument("--seed", type=int, default=DEFAULT_BOOTSTRAP_SEED)
+    dry.add_argument(
+        "--materialize-fixtures",
+        action="store_true",
+        help="Opt-in rewrite of tracked fixtures/analysis; default leaves fixtures untouched",
+    )
     analyze = commands.add_parser(
         "analyze",
         help="Run WP07 acquisition analysis on scored rows + schedule (TBD until archives exist)",
@@ -207,6 +209,8 @@ def main():
             held_out=args.held_out,
             long_pilot=args.long_pilot,
             difficulties=tuple(args.difficulties) if args.difficulties else None,
+            qualification_batch_id=args.qualification_batch_id,
+            batch_mode=args.batch_mode,
         )
         capability = summary.get("capability_probe")
         capability_note = ""
@@ -234,6 +238,7 @@ def main():
             effect=args.effect,
             replicates=args.replicates,
             seed=args.seed,
+            materialize_fixtures=args.materialize_fixtures,
         )
         ok = recovery_ok(report)
         print(
@@ -264,9 +269,12 @@ def main():
         schedule_meta = {"catalog_version": CATALOG_VERSION, "difficulties": list(args.difficulties),
                          "replicate_seed": args.seed}
     else:
-        assignments = [{**row, "generator_version": GENERATOR_VERSION}
-                       for row in enumerate_vertical_slice_assignments()]
-        schedule_meta = {"catalog_version": GENERATOR_VERSION, "path": "vertical_slice"}
+        # Keep each assignment's declared generator_version (vertical-slice-stub-v0).
+        assignments = list(enumerate_vertical_slice_assignments())
+        schedule_meta = {
+            "path": "vertical_slice",
+            "generator_versions": sorted({row["generator_version"] for row in assignments}),
+        }
     write_new(args.out / "schedule.json", {
         "evidence_kind": "scripted_mock_not_model_observation",
         **schedule_meta,
