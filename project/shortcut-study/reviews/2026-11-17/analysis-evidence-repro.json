@@ -1,0 +1,28 @@
+{
+  "complete_block_mismatch": {
+    "complete_block_point": 0.3333333333333333,
+    "bootstrap_complete_block_point": 0.0,
+    "bootstrap_complete_block_interval": [
+      0.0,
+      0.0
+    ],
+    "structurally_complete_blocks": 4,
+    "reported_blocks_used": 1
+  },
+  "mixed_policy_in_primary_arm": {
+    "expected_restricted_T": 1.0,
+    "reported_T": 0.5,
+    "reported_J": 0.5,
+    "V00_assigned": 4
+  },
+  "label_sensitivity_underbounds": {
+    "flipped_outcomes": 4,
+    "outcomes": 40,
+    "flip_fraction": 0.1,
+    "claimed_envelope": [
+      -0.1,
+      0.1
+    ],
+    "actual_reachable_T": -0.2
+  }
+}

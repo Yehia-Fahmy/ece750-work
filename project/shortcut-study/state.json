@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "updated_at": "2026-11-17",
-  "phase": "s4_wp13_packaging_ready_for_review",
+  "phase": "completion_swarm_handoff_ready",
   "context_checkpoint": "ecb82d3",
-  "planning_status": "s4_course_fallback",
+  "planning_status": "s0_attempt_with_firm_s4_fallback",
   "execution_started": true,
   "frozen_protocol": null,
   "active_run": null,
@@ -17,8 +17,8 @@
     "submission_authorized": false
   },
   "recommended_scope_not_frozen": {
-    "tier": "S4",
-    "label": "Honest course fallback \u2014 no main factorial claim",
+    "tier": "S0",
+    "label": "S0 TAB-only candidate, pending repairs, fresh qualification and freeze; automatic S4 fallback",
     "families": 1,
     "family_ids": [
       "tables"
@@ -29,26 +29,23 @@
     "information_states": 2,
     "availability_states": 2,
     "visibility_cells": 4,
-    "replicate_seeds": 0,
-    "base_scenarios": 0,
-    "primary_actor_episodes": 0,
+    "replicate_seeds": 1,
+    "base_scenarios": 20,
+    "primary_actor_episodes": 320,
     "optional_second_actor_episodes": 0,
-    "protocol_candidate": null,
+    "protocol_candidate": "s0-tab-v0",
     "draft_configs": "configs/provisional/s0-tab-only/",
     "original_course_core_episodes_withdrawn_for_dec4": 3200,
-    "s0_tab_only_320_withdrawn": true,
-    "reason": "G2 held-out failed twice (#23 then #25 after catalog-v2); no freeze; no main collection",
-    "selected_at": "2026-11-17",
-    "decision_handoff": "handoffs/2026-11-17-s4-honest-course-fallback.md"
+    "note": "Prior provisional files retain S4-era history; not executable freeze authority. Create versioned current candidate/frozen artifacts only after accepted repairs."
   },
   "gates": {
     "G0": "accepted",
     "G1": "in_progress",
     "G2": "failed",
-    "G3": "canceled",
-    "G4": "canceled",
-    "G5": "canceled",
-    "G6": "ready_for_review"
+    "G3": "not_started",
+    "G4": "not_started",
+    "G5": "not_started",
+    "G6": "in_progress"
   },
   "packages": [
     {
@@ -237,31 +234,31 @@
         "results/qualification/g2-held-out-20261116-catalog-v2.json",
         "handoffs/2026-11-17-s4-honest-course-fallback.md"
       ],
-      "note": "S4 declared 2026-11-17 after two G2 FAILs (#23, #25). Unsigned S0 provisional freeze draft retained as historical prep only; G3 canceled; no configs/frozen/ commit. Do not start main collection."
+      "note": "New S0 attempt authorized; G2 remains failed and G3 not accepted. Repair review findings and consumed-batch identity before fresh qualification. Previous S4 decision retained as fallback."
     },
     {
       "id": "WP09",
-      "status": "canceled",
+      "status": "not_started",
       "owner": null,
       "depends_on": [
         "WP08"
       ],
       "evidence": [],
-      "note": "Canceled under S4: no frozen main actor collection / no main factorial claim."
+      "note": "Reopened as conditional planned work by November 17 user instruction; only after accepted fresh qualification and G3 freeze before cutoff. Otherwise deferred under S4. No main results exist."
     },
     {
       "id": "WP10",
-      "status": "canceled",
+      "status": "not_started",
       "owner": null,
       "depends_on": [
         "WP08"
       ],
       "evidence": [],
-      "note": "Canceled under S4: no main semantic audit (no main episodes)."
+      "note": "Reopened as conditional planned work by November 17 user instruction; only after accepted fresh qualification and G3 freeze before cutoff. Otherwise deferred under S4. No main results exist."
     },
     {
       "id": "WP11",
-      "status": "canceled",
+      "status": "not_started",
       "owner": null,
       "depends_on": [
         "WP07",
@@ -269,12 +266,12 @@
         "WP10"
       ],
       "evidence": [],
-      "note": "Canceled under S4: no main confirmatory analysis; course package uses development/pilot evidence only."
+      "note": "Reopened as conditional planned work by November 17 user instruction; only after accepted fresh qualification and G3 freeze before cutoff. Otherwise deferred under S4. No main results exist."
     },
     {
       "id": "WP12",
-      "status": "ready_for_review",
-      "owner": "report_author",
+      "status": "in_progress",
+      "owner": null,
       "depends_on": [
         "WP00"
       ],
@@ -290,12 +287,12 @@
         "delivery/",
         "handoffs/2026-11-17-wp13-s4-delivery.md"
       ],
-      "note": "S4 submission-oriented Markdown draft + slide outline; PDF/final deck still Yehia. No fabricated main findings. Ready for lagging review (not full WP12 acceptance until PDF/deck)."
+      "note": "Prior S4 Markdown/outline/packaging drafts retained. Next swarm owns final PDF, deck, speaker notes and independent reproduction under actual S0/S4 outcome. Not accepted; course submission remains researcher-only."
     },
     {
       "id": "WP13",
-      "status": "ready_for_review",
-      "owner": "integrator",
+      "status": "in_progress",
+      "owner": null,
       "depends_on": [
         "WP12"
       ],
@@ -309,105 +306,115 @@
         "report/slides-outline.md",
         "handoffs/2026-11-17-s4-honest-course-fallback.md"
       ],
-      "note": "S4 pilot-only delivery packaging: Git vs raw vs GPU classes documented; preservation 111/111; observer verify_final_results OK; 213 extension tests; submission_authorized remains false. Not accepted until lagging review; PDF/deck Yehia-only."
+      "note": "Prior S4 Markdown/outline/packaging drafts retained. Next swarm owns final PDF, deck, speaker notes and independent reproduction under actual S0/S4 outcome. Not accepted; course submission remains researcher-only."
     }
   ],
   "open_items": [
-    "G6/WP13 S4 packaging ready_for_review (delivery/); lagging review required; do not self-merge; submission remains Yehia-only.",
-    "S4 honest course fallback DECLARED 2026-11-17: no frozen main collection; G2 not accepted (failed twice); G3/G4/G5 canceled; reduced claims. See handoffs/2026-11-17-s4-honest-course-fallback.md.",
-    "G0 TAB-only accepted (WP01 + TAB catalog/spec + v6 PASS archive #20); five-family G0 remains out of scope.",
-    "G1: long-episode WP06 pilots recorded (g1-long-pilots-20261116, 9/10); not formally accepted as G1; under S4 this is pilot evidence only.",
-    "G2 FAILED twice: #23 g2-held-out-20261116 (238/320, easy 55%) and #25 g2-held-out-20261116-catalog-v2 (239/320, easy 55%). gates.G2=failed; do not start main.",
-    "WP12 S4 Markdown + slide outline ready_for_review; extension PDF/final deck and page-limit/presentation logistics remain Yehia/TBD. See delivery/submission-checklist.md.",
-    "Independent semantic judge never qualified; semantic claims withdrawn for course delivery.",
-    "Final course page limit and presentation arrangements require reconciliation with official instructions.",
-    "Submission remains Yehia-only (submission_authorized=false)."
+    "Start SWARM_START.md and SWARM_WORK_PACKAGES.md; assign active owners/reviewers in swarm_handoff.packages.",
+    "Repair RD1/RD2/RD3: semantic split identity, fresh consumed-once qualification batches and policy wording before new qualification.",
+    "Repair IMPL-1/2/3: native audit provenance, per-task generator versions and approved-read telemetry; preserve immutable archives.",
+    "Repair A1/A2/A3 and address A4/A5: analysis estimand/interval consistency, sensitivity bounds, exact input provenance and eligibility/denominators; complete precision/zero-event/template checks.",
+    "G2 remains failed (239/320 completed, 11/20 easy); latest run reused previous qualification worlds. No gate is accepted by this planning update.",
+    "Independently accept fresh qualification and commit freeze by 2026-11-22 18:00 America/Toronto or automatically select S4.",
+    "Qualified semantic executor, validation and complete pipeline forecast remain pending; explicitly withdraw semantic conclusions if scope is behavioral-only.",
+    "Update current report with reused-qualification and repair caveats; RD4 omission of the two failures was partly addressed by #26/#27.",
+    "Agents must build final report PDF, final deck and notes, visually inspect them, reproduce final numbers, and complete delivery by Dec 3 18:00.",
+    "Official final page limit and presentation arrangements remain unresolved; continue with documented provisional format.",
+    "Course submission remains researcher-only; historical artifacts and local asset-dependent worktrees remain protected."
   ],
   "session": {
     "date": "2026-11-17",
-    "input_commit": "d0b65c3",
-    "owner": "integrator",
-    "authorization": "Coordinator assigned ECE-33 Package G6 S4 course deliverable; do not self-merge; submission_authorized stays false.",
-    "scope": "WP13/G6 S4 delivery packaging after #26; tighten WP12 links; slide outline; no GPU; no course submission",
-    "status": "s4_wp13_packaging_ready_for_review",
-    "tier": "S4",
-    "primary_actor_episodes": 0,
-    "frozen_protocol": null,
-    "main_collection": false,
-    "g2_accepted": false,
-    "g3_freeze": "canceled",
-    "g6": "ready_for_review",
-    "wp13": "ready_for_review",
-    "submission_authorized": false,
-    "decision_handoff": "handoffs/2026-11-17-s4-honest-course-fallback.md",
-    "wp12_handoff": "handoffs/2026-11-17-wp12-s4-report.md",
-    "wp13_handoff": "handoffs/2026-11-17-wp13-s4-delivery.md",
-    "delivery_dir": "delivery/",
-    "reproduction_log": "delivery/reproduction-log.md",
-    "prior_session_s4_declaration": {
+    "input_commit": "7c4aed7de6e51c8cff09e608b0d395cd56042334",
+    "owner": "handoff_preparer",
+    "authorization": "User requested committed/pushed organized orchestrator/swarm guidance; selected: Attempt the new experiment, with a firm S4 fallback cutoff.",
+    "scope": "Guidance/state/review publication only in this session; next swarm executes gated repairs and completion.",
+    "status": "handoff_prepared_not_executed",
+    "prior_session_wp13": {
       "date": "2026-11-17",
-      "input_commit": "6eb9633",
+      "input_commit": "d0b65c3",
       "owner": "integrator",
-      "authorization": "Coordinator assigned ECE-32 Ship S4 honest course fallback; do not self-merge.",
-      "scope": "S4 honest course fallback: declare no main factorial; advance WP12 S4 draft; include #25 FAIL evidence",
-      "status": "s4_honest_course_fallback_declared",
+      "authorization": "Coordinator assigned ECE-33 Package G6 S4 course deliverable; do not self-merge; submission_authorized stays false.",
+      "scope": "WP13/G6 S4 delivery packaging after #26; tighten WP12 links; slide outline; no GPU; no course submission",
+      "status": "s4_wp13_packaging_ready_for_review",
       "tier": "S4",
       "primary_actor_episodes": 0,
       "frozen_protocol": null,
       "main_collection": false,
       "g2_accepted": false,
       "g3_freeze": "canceled",
+      "g6": "ready_for_review",
+      "wp13": "ready_for_review",
+      "submission_authorized": false,
       "decision_handoff": "handoffs/2026-11-17-s4-honest-course-fallback.md",
       "wp12_handoff": "handoffs/2026-11-17-wp12-s4-report.md",
-      "basis": [
-        "G0 TAB-only accepted (#22)",
-        "TAB01 v6 development probe+16-cell PASS (#20)",
-        "G2 FAIL #23 (238/320; easy 55%)",
-        "catalog-v2 (#24) then G2 FAIL #25 (239/320; easy 55%)",
-        "G1 long pilots recorded (9/10); not G1 acceptance"
-      ],
-      "prior_session_g2_catalog_v2_fail": {
+      "wp13_handoff": "handoffs/2026-11-17-wp13-s4-delivery.md",
+      "delivery_dir": "delivery/",
+      "reproduction_log": "delivery/reproduction-log.md",
+      "prior_session_s4_declaration": {
         "date": "2026-11-17",
-        "input_commit": "18f2b9f",
-        "owner": "gpu_operator",
-        "authorization": "Coordinator assigned ECE-30 G2 re-held-out after catalog-v2; do not self-merge; do not auto-accept G2.",
-        "scope": "S0 held-out qualify-local --held-out on tab-catalog-v2; zero external inference; no main",
-        "status": "g2_held_out_catalog_v2_fail_recorded",
-        "held_out_run": "g2-held-out-20261116-catalog-v2",
-        "held_out_evidence": "results/qualification/g2-held-out-20261116-catalog-v2.json",
-        "held_out_handoff": "handoffs/2026-11-16-g2-held-out-catalog-v2.md",
-        "held_out_verdict": "FAIL",
-        "held_out_completion": "239/320",
-        "held_out_easy_success": "11/20",
-        "prior_held_out_fail_preserved": {
-          "run_id": "g2-held-out-20261116",
-          "evidence": "results/qualification/g2-held-out-20261116.json",
-          "handoff": "handoffs/2026-11-16-g2-held-out-gpu.md",
-          "pr": "https://github.com/Yehia-Fahmy/ece750-work/pull/23",
-          "untouched": true
-        },
-        "long_pilot_run": "g1-long-pilots-20261116",
-        "long_pilot_evidence": "results/qualification/g1-long-pilots-20261116.json",
-        "long_pilot_handoff": "handoffs/2026-11-16-g1-long-pilots.md",
-        "prior_session_tab01_v6": {
-          "date": "2026-11-15",
-          "input_commit": "838be79",
-          "status": "gpu_16cell_archive_passed_tab01_v6",
-          "capability_probe_evidence": "results/qualification/capability-probe-tab01-v6.json",
-          "sixteen_cell_handoff": "handoffs/2026-11-15-native-qualification-tab01-v6-16cell.md",
-          "sixteen_cell_evidence": "results/qualification/native-qualification-tab01-v6-16cell.json",
-          "sixteen_cell_run": "native-qualification-tab01-v6-16cell",
-          "sixteen_cell_passed": true,
-          "prior_failed_probe_evidence": "results/qualification/capability-probe-tab01-v3.json",
-          "prior_v5_sixteen_cell_evidence": "results/qualification/native-qualification-tab01-v5-16cell.json",
-          "prior_v5_capability_probe_evidence": "results/qualification/capability-probe-tab01-v5.json"
-        },
-        "prior_session_g0_accept": {
-          "date": "2026-11-16",
-          "status": "g0_tab_accepted_after_tab01_v6_pass",
-          "acceptance_handoff": "handoffs/2026-11-16-g0-tab-accepted.md",
-          "g0_decision": "accepted",
-          "scope": "TAB-only (not five-family)"
+        "input_commit": "6eb9633",
+        "owner": "integrator",
+        "authorization": "Coordinator assigned ECE-32 Ship S4 honest course fallback; do not self-merge.",
+        "scope": "S4 honest course fallback: declare no main factorial; advance WP12 S4 draft; include #25 FAIL evidence",
+        "status": "s4_honest_course_fallback_declared",
+        "tier": "S4",
+        "primary_actor_episodes": 0,
+        "frozen_protocol": null,
+        "main_collection": false,
+        "g2_accepted": false,
+        "g3_freeze": "canceled",
+        "decision_handoff": "handoffs/2026-11-17-s4-honest-course-fallback.md",
+        "wp12_handoff": "handoffs/2026-11-17-wp12-s4-report.md",
+        "basis": [
+          "G0 TAB-only accepted (#22)",
+          "TAB01 v6 development probe+16-cell PASS (#20)",
+          "G2 FAIL #23 (238/320; easy 55%)",
+          "catalog-v2 (#24) then G2 FAIL #25 (239/320; easy 55%)",
+          "G1 long pilots recorded (9/10); not G1 acceptance"
+        ],
+        "prior_session_g2_catalog_v2_fail": {
+          "date": "2026-11-17",
+          "input_commit": "18f2b9f",
+          "owner": "gpu_operator",
+          "authorization": "Coordinator assigned ECE-30 G2 re-held-out after catalog-v2; do not self-merge; do not auto-accept G2.",
+          "scope": "S0 held-out qualify-local --held-out on tab-catalog-v2; zero external inference; no main",
+          "status": "g2_held_out_catalog_v2_fail_recorded",
+          "held_out_run": "g2-held-out-20261116-catalog-v2",
+          "held_out_evidence": "results/qualification/g2-held-out-20261116-catalog-v2.json",
+          "held_out_handoff": "handoffs/2026-11-16-g2-held-out-catalog-v2.md",
+          "held_out_verdict": "FAIL",
+          "held_out_completion": "239/320",
+          "held_out_easy_success": "11/20",
+          "prior_held_out_fail_preserved": {
+            "run_id": "g2-held-out-20261116",
+            "evidence": "results/qualification/g2-held-out-20261116.json",
+            "handoff": "handoffs/2026-11-16-g2-held-out-gpu.md",
+            "pr": "https://github.com/Yehia-Fahmy/ece750-work/pull/23",
+            "untouched": true
+          },
+          "long_pilot_run": "g1-long-pilots-20261116",
+          "long_pilot_evidence": "results/qualification/g1-long-pilots-20261116.json",
+          "long_pilot_handoff": "handoffs/2026-11-16-g1-long-pilots.md",
+          "prior_session_tab01_v6": {
+            "date": "2026-11-15",
+            "input_commit": "838be79",
+            "status": "gpu_16cell_archive_passed_tab01_v6",
+            "capability_probe_evidence": "results/qualification/capability-probe-tab01-v6.json",
+            "sixteen_cell_handoff": "handoffs/2026-11-15-native-qualification-tab01-v6-16cell.md",
+            "sixteen_cell_evidence": "results/qualification/native-qualification-tab01-v6-16cell.json",
+            "sixteen_cell_run": "native-qualification-tab01-v6-16cell",
+            "sixteen_cell_passed": true,
+            "prior_failed_probe_evidence": "results/qualification/capability-probe-tab01-v3.json",
+            "prior_v5_sixteen_cell_evidence": "results/qualification/native-qualification-tab01-v5-16cell.json",
+            "prior_v5_capability_probe_evidence": "results/qualification/capability-probe-tab01-v5.json"
+          },
+          "prior_session_g0_accept": {
+            "date": "2026-11-16",
+            "status": "g0_tab_accepted_after_tab01_v6_pass",
+            "acceptance_handoff": "handoffs/2026-11-16-g0-tab-accepted.md",
+            "g0_decision": "accepted",
+            "scope": "TAB-only (not five-family)"
+          }
         }
       }
     }
@@ -563,7 +570,8 @@
       "pr": "https://github.com/Yehia-Fahmy/ece750-work/pull/20",
       "probe": "results/qualification/capability-probe-tab01-v6.json",
       "sixteen_cell": "results/qualification/native-qualification-tab01-v6-16cell.json"
-    }
+    },
+    "current_role": "Historical S4-only decision now retained as automatic fallback under latest user instruction; no prior outcome/gate evidence erased."
   },
   "g6_packaging_review": {
     "status": "ready_for_review",
@@ -584,7 +592,269 @@
     },
     "raw_archive_on_packaging_host": false,
     "gpu_rerun": false,
-    "pdf_deck": "Yehia-only / TBD",
+    "pdf_deck": "Agent-owned completion task under current swarm handoff; not yet produced",
     "note": "Packaging ready for lagging review; not G6 accepted; not course submission."
+  },
+  "scope_history": [
+    {
+      "recorded_at": "2026-11-17",
+      "base_commit": "7c4aed7",
+      "scope": {
+        "tier": "S4",
+        "label": "Honest course fallback \u2014 no main factorial claim",
+        "families": 1,
+        "family_ids": [
+          "tables"
+        ],
+        "templates_per_family": 5,
+        "difficulty_levels": 4,
+        "instances_per_template_difficulty": 1,
+        "information_states": 2,
+        "availability_states": 2,
+        "visibility_cells": 4,
+        "replicate_seeds": 0,
+        "base_scenarios": 0,
+        "primary_actor_episodes": 0,
+        "optional_second_actor_episodes": 0,
+        "protocol_candidate": null,
+        "draft_configs": "configs/provisional/s0-tab-only/",
+        "original_course_core_episodes_withdrawn_for_dec4": 3200,
+        "s0_tab_only_320_withdrawn": true,
+        "reason": "G2 held-out failed twice (#23 then #25 after catalog-v2); no freeze; no main collection",
+        "selected_at": "2026-11-17",
+        "decision_handoff": "handoffs/2026-11-17-s4-honest-course-fallback.md"
+      },
+      "gates": {
+        "G0": "accepted",
+        "G1": "in_progress",
+        "G2": "failed",
+        "G3": "canceled",
+        "G4": "canceled",
+        "G5": "canceled",
+        "G6": "ready_for_review"
+      },
+      "reason": "Prior S4-only scope retained; latest user requests S0 attempt with firm S4 fallback."
+    }
+  ],
+  "swarm_handoff": {
+    "schema_version": 1,
+    "date": "2026-11-17",
+    "status": "ready_for_execution",
+    "start_here": "SWARM_START.md",
+    "work_packages": "SWARM_WORK_PACKAGES.md",
+    "reconciliation": "handoffs/2026-11-17-completion-swarm.md",
+    "review": "reviews/2026-11-17/README.md",
+    "review_commit": "3c155baf4af8a2c6bbed8da769f533ecc3847413",
+    "handoff_base_commit": "7c4aed7de6e51c8cff09e608b0d395cd56042334",
+    "selected_target": "Attempt newly qualified S0; automatic S4 fallback if qualification and committed freeze miss cutoff",
+    "user_choice_verbatim": "Attempt the new experiment, with a firm S4 fallback cutoff",
+    "timezone": "America/Toronto",
+    "deadlines": {
+      "qualification_and_freeze": "2026-11-22T18:00:00-05:00",
+      "stop_starting_actor_blocks": "2026-11-27T18:00:00-05:00",
+      "end_experimental_inference": "2026-11-29T18:00:00-05:00",
+      "full_report_draft": "2026-11-30",
+      "delivery_ready": "2026-12-03T18:00:00-05:00",
+      "report_due": "2026-12-04T23:59:00-05:00"
+    },
+    "fallback_automatic": true,
+    "suggested_max_concurrent_agents": 4,
+    "gpu_owners_at_once": 1,
+    "shared_paths_owner": "orchestrator: state.json, schemas/, configs/, dependency metadata, src/shortcut_study/{__main__,qualification,held_out}.py; transfer ownership explicitly",
+    "artifact_production_owner": "swarm",
+    "course_submission_authorized": false,
+    "baseline_validation": {
+      "extension_tests": 213,
+      "result": "passed",
+      "at_commit": "7c4aed7",
+      "log_in_current_preparation_environment": "/tmp/ece750-handoff-baseline-tests.log"
+    },
+    "packages": [
+      {
+        "id": "SW00",
+        "role": "orchestrator",
+        "status": "not_started",
+        "owner": null,
+        "reviewer": null,
+        "depends_on": [],
+        "input_commit": null,
+        "assigned_paths": [],
+        "evidence": []
+      },
+      {
+        "id": "SW01",
+        "role": "task_engineer",
+        "status": "not_started",
+        "owner": null,
+        "reviewer": null,
+        "depends_on": [
+          "SW00"
+        ],
+        "input_commit": null,
+        "assigned_paths": [],
+        "evidence": []
+      },
+      {
+        "id": "SW02",
+        "role": "runtime_audit_engineer",
+        "status": "not_started",
+        "owner": null,
+        "reviewer": null,
+        "depends_on": [
+          "SW00"
+        ],
+        "input_commit": null,
+        "assigned_paths": [],
+        "evidence": []
+      },
+      {
+        "id": "SW03",
+        "role": "analyst",
+        "status": "not_started",
+        "owner": null,
+        "reviewer": null,
+        "depends_on": [
+          "SW00"
+        ],
+        "input_commit": null,
+        "assigned_paths": [],
+        "evidence": []
+      },
+      {
+        "id": "SW04",
+        "role": "report_author",
+        "status": "not_started",
+        "owner": null,
+        "reviewer": null,
+        "depends_on": [
+          "SW00"
+        ],
+        "input_commit": null,
+        "assigned_paths": [],
+        "evidence": []
+      },
+      {
+        "id": "SW05",
+        "role": "independent_cpu_reviewer",
+        "status": "not_started",
+        "owner": null,
+        "reviewer": null,
+        "depends_on": [
+          "SW01",
+          "SW02",
+          "SW03"
+        ],
+        "input_commit": null,
+        "assigned_paths": [],
+        "evidence": []
+      },
+      {
+        "id": "SW06",
+        "role": "gpu_operator_and_qualification_reviewer",
+        "status": "not_started",
+        "owner": null,
+        "reviewer": null,
+        "depends_on": [
+          "SW05"
+        ],
+        "input_commit": null,
+        "assigned_paths": [],
+        "evidence": []
+      },
+      {
+        "id": "SW07",
+        "role": "integrator_and_freeze_reviewer",
+        "status": "not_started",
+        "owner": null,
+        "reviewer": null,
+        "depends_on": [
+          "SW06"
+        ],
+        "input_commit": null,
+        "assigned_paths": [],
+        "evidence": []
+      },
+      {
+        "id": "SW08",
+        "role": "gpu_operator_auditor_analyst",
+        "status": "not_started",
+        "owner": null,
+        "reviewer": null,
+        "depends_on": [
+          "SW07"
+        ],
+        "input_commit": null,
+        "assigned_paths": [],
+        "evidence": []
+      },
+      {
+        "id": "SW09",
+        "role": "report_build_author_and_independent_reviewer",
+        "status": "not_started",
+        "owner": null,
+        "reviewer": null,
+        "depends_on": [
+          "SW04"
+        ],
+        "input_commit": null,
+        "assigned_paths": [],
+        "evidence": []
+      }
+    ],
+    "conditional_dependencies": {
+      "SW09": "Final acceptance requires accepted SW08 evidence if a main study ran, or a dated S4 scope decision with honest accounting of any attempted main outcomes. Artifact drafting/building proceeds in parallel."
+    },
+    "finding_disposition": {
+      "RD1": {
+        "status": "open",
+        "package": "SW01"
+      },
+      "RD2": {
+        "status": "open",
+        "package": "SW01"
+      },
+      "RD3": {
+        "status": "open",
+        "package": "SW01"
+      },
+      "IMPL-1": {
+        "status": "open",
+        "package": "SW02"
+      },
+      "IMPL-2": {
+        "status": "open",
+        "package": "SW02"
+      },
+      "IMPL-3": {
+        "status": "open",
+        "package": "SW02"
+      },
+      "A1": {
+        "status": "open",
+        "package": "SW03"
+      },
+      "A2": {
+        "status": "open",
+        "package": "SW03"
+      },
+      "A3": {
+        "status": "open",
+        "package": "SW03"
+      },
+      "RD4": {
+        "status": "partly_superseded",
+        "package": "SW04",
+        "note": "#26/#27 include both FAILs and S4 draft; reuse caveat and final artifacts remain."
+      },
+      "A4": {
+        "status": "conditional_risk_to_address",
+        "package": "SW03"
+      },
+      "A5": {
+        "status": "gate_definition_to_clarify",
+        "package": "SW03"
+      }
+    },
+    "acceptance_rule": "Independent non-author review at exact integrated commit; actual tests/outputs/hashes; no self-certified scientific success."
   }
 }

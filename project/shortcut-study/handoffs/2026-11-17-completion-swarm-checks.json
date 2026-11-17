@@ -1,0 +1,64 @@
+{
+  "historical_files_sha256": {
+    "checked": 111,
+    "all_match": true
+  },
+  "design_snapshot_sha256": {
+    "checked": 1,
+    "all_match": true
+  },
+  "review_manifest": {
+    "checked": 15,
+    "all_match": true
+  },
+  "state": {
+    "packages": 10,
+    "dependencies_acyclic": true,
+    "no_false_gate_acceptance": true
+  },
+  "links": {
+    "checked": 178,
+    "missing": [],
+    "scope": "All new/changed Markdown files, local path existence; anchors not checked"
+  },
+  "extension_tests": {
+    "commit": "7c4aed7",
+    "passed": 213,
+    "log": "/tmp/ece750-handoff-baseline-tests.log"
+  },
+  "preparation_did_not_modify_scientific_source_tests_configs_results": true,
+  "checked_date": "2026-11-17",
+  "timezone": "America/Toronto",
+  "input_commit": "7c4aed7de6e51c8cff09e608b0d395cd56042334",
+  "independent_document_review": {
+    "reviewer": "handoff_check",
+    "verdict": "approve_with_minor_fixes",
+    "blocking_findings": 0,
+    "fixes_addressed": [
+      "Original observer report link resolves to project/report",
+      "Source ownership paths explicitly include src/shortcut_study",
+      "This promised verification artifact is produced"
+    ]
+  },
+  "diff_check": "passed",
+  "handoff_sha256": {
+    "README.md": "f005d1c4c1d1d38a424ba524cb20754ac4128f020c805b923a684cec038ef17d",
+    "project/README.md": "c892002f578c92b5f7cdd231588bc9769962e54aeea090c232b3fbf670bc8351",
+    "project/shortcut-study/AGENTS.md": "13a656cd18b532d98b6fb74e8e482eb4082a8a807863b339f3b6b0710814eb0c",
+    "project/shortcut-study/AGENT_GUIDE.md": "7b05c08990526fe05cfbb58b0a52d6e2a1a4f5b1a3d9d6cc9ae4028b9e590e0b",
+    "project/shortcut-study/DECISIONS.md": "18c0c280e52ae5c03323794683405959e9dff8e5cc03929e682aecbec7e58226",
+    "project/shortcut-study/EXECUTION_PLAN.md": "8ade91189674ea5cd858cdf92f11c5678da88c1d48ee6f2888a21eef3b35440f",
+    "project/shortcut-study/GPU_RUNBOOK_G2.md": "08a0afc2a26b81ab9571050c777f04d4824bb18c72c1e16d74c0f29f3e6f1854",
+    "project/shortcut-study/README.md": "adc9ae57cb0017dfa603270cf38e14bebf9f0c1da6ffeb8c88e4cc81b62706cd",
+    "project/shortcut-study/WORK_PACKAGES.md": "ff23ebead04597969da58f12f953b90a48ead69de4c304cb17b586e6febd3fbe",
+    "project/shortcut-study/delivery/README.md": "1ffdafeba3fd347765781c556b113ae4779b11451bb3ac569815a11f90266e06",
+    "project/shortcut-study/delivery/packaging-manifest.md": "80702d53246db96c57e24aecae6ff51dbf44b1e9d0d0d0ce223135f8e3a5940a",
+    "project/shortcut-study/delivery/submission-checklist.md": "9d9058ce47a358b3c777d8a8af597fe43ecee6306bf9f7c77eb25a288b39f66b",
+    "project/shortcut-study/report/README.md": "d941dc76f9d2fb60dc1c065976d1f07240f74b4bf2fe51428acb83747d86a79d",
+    "project/shortcut-study/state.json": "59ef33bf11b02875f07cf972c737ac113ccb5606183187a7161fc174fc5387ec",
+    "AGENTS.md": "0ab9d90338e0287f599275bbd11386f82c09d60b4207638465019294d127a36a",
+    "project/shortcut-study/SWARM_START.md": "397ac945aad68ede93438e4c7d50be1c81f3bfe4f38cd05a9c97eb352138a8d6",
+    "project/shortcut-study/SWARM_WORK_PACKAGES.md": "f307eaa6da92203341ccaa1dd1bf1dd020226f41f0258b44eab23818300c8263",
+    "project/shortcut-study/handoffs/2026-11-17-completion-swarm.md": "d4b266022a7271f6ac482833f53d463270b4aa6943a25c55b2d7b5030a31c786"
+  }
+}

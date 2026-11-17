@@ -2,6 +2,8 @@
 
 Course work for ECE 750T at the University of Waterloo, Fall 2026.
 
+**Research completion agents:** start with the [swarm handoff](project/shortcut-study/SWARM_START.md), [prioritized packages](project/shortcut-study/SWARM_WORK_PACKAGES.md), and [dated review](project/shortcut-study/reviews/2026-11-17/README.md). The active goal is a repaired, qualified shortcut-study attempt with a firm fallback and complete report/delivery artifacts.
+
 Instructor: Prof. Elliot Creager. TAs: Chenghao Tan and Ambreesh Parthasarathy.
 
 Class meets Fridays, 1:00–3:50pm, in PSE 4053. Office hours are by appointment in EIT 3116. Announcements and files are on LEARN. Lectures are not recorded. Written work goes to both Crowdmark and LEARN Dropbox unless a handout says otherwise, and is due at 11:59pm ET on the stated date. The Week 1 slides say late submissions are not accepted except where an accommodation applies. The project proposal is the one published exception: it has a no-penalty window through October 12.
