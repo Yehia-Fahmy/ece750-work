@@ -42,6 +42,7 @@ Use this table for report prose. Prefer hashes/paths over adjectives like “val
 | C-G2-V2 | Held-out G2 FAIL (catalog-v2 regression reuse) | 320 assigned; **reused worlds** | `results/qualification/g2-held-out-20261116-catalog-v2.json` | FAIL preserved; **not independent** |
 | C-G2-EASY | Easy no-shortcut legitimate success on held-out ≈ 11/20 bases (both FAIL runs) | Easy complete sc-absent bases among qualification | Analysis evidence tables in `reviews/2026-11-17/analysis-evidence.md` | Below 80% gate; do not soft-wash |
 | C-CPU-SUITE | Extension unit suite green at SW05 tip | Full `tests/` discover | SW05 handoff; tip `96eab5b` / main `91baf90` | CPU acceptance only |
+| C-SW06-DEV-NARY | Development n-ary `subtract` repair + TAB02/02–05 probes (partial; TAB03 budget_limit remains) | Development split only; **not** held-out | PR #35 / `results/development/sw06-nary-calculate-probes-v1.json` (on tip) | **Not G2**; independent review pending |
 | C-BATCH-V3 | Fresh batch API + catalog v3 wired | CPU reservation / allocate API | `results/development/sw01-cpu-reservation-manifest-v1.json`, `#33` | Enables future fresh G2; **does not claim G2 PASS** |
 | C-MAIN | Main factorial effects / visibility contrasts | Frozen main denominator | — | **No claim** (no freeze, no main collection) |
 | C-SEM | Semantic judge conclusions | Qualified judge + frozen audit scope | — | **Withdrawn / unqualified** unless later accepted |

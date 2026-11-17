@@ -650,7 +650,7 @@
   "swarm_handoff": {
     "schema_version": 1,
     "date": "2026-11-17",
-    "status": "sw06_gpu_in_progress_sw04_sw07_cpu_prep",
+    "status": "sw06_dev_pr35_in_review_not_g2",
     "start_here": "SWARM_START.md",
     "work_packages": "SWARM_WORK_PACKAGES.md",
     "reconciliation": "handoffs/2026-11-17-completion-swarm.md",
@@ -888,21 +888,37 @@
         "role": "gpu_operator_and_qualification_reviewer",
         "status": "in_progress",
         "owner": "bc-1121d0a4-6c7d-5e71-adea-be1427c7815d",
-        "reviewer": null,
+        "reviewer": "independent_pending_not_author",
         "depends_on": [
           "SW05"
         ],
         "input_commit": "91baf90d8111e7f0b6a7ed670ad510dea1b79e19",
         "assigned_paths": [],
-        "evidence": [],
-        "note": "WSL GPU operator owns the sole qualification lease (ECE-42). Orchestrator must not start a second GPU operator. Plan: handoffs/2026-11-17-sw06-gpu-plan.md",
+        "evidence": [
+          "https://github.com/Yehia-Fahmy/ece750-work/pull/35",
+          "handoffs/2026-11-17-sw06-nary-calculate.md (on PR tip)",
+          "results/development/sw06-nary-calculate-probes-v1.json (on PR tip)"
+        ],
+        "note": "ECE-42 / WSL sole GPU operator. First development PR #35 @ c4a4db6 (n-ary subtract + dev probes) \u2014 NOT G2; no fresh qual batch. Independent reviewer launching (\u2260 bc-1121d0a4). Next after accept: TAB03 development budget/tool-first repair, then maybe qual-fresh-tab-catalog-v3-001. Orchestrator must not take GPU lease.",
         "tracker_task": "ECE-42",
         "host": {
           "worker_id": "a09a6978",
           "machine": "DESKTOP-VEMMES3",
           "gpu": "NVIDIA GeForce RTX 3070 Ti",
           "environment": "WSL self-hosted"
-        }
+        },
+        "active_prs": [
+          {
+            "number": 35,
+            "url": "https://github.com/Yehia-Fahmy/ece750-work/pull/35",
+            "tip": "c4a4db6472372abff7579ae3eebcc5b94ebf5a7f",
+            "branch": "cursor/sw06-calculate-nary-subtract-815d",
+            "kind": "development_repair_and_probes",
+            "g2_accepted": false,
+            "fresh_qualification_batch_consumed": false,
+            "summary": "n-ary calculate subtract repair + TAB02/TAB02\u201305 development probes; TAB03 residual budget_limit; independent reviewer launching"
+          }
+        ]
       },
       {
         "id": "SW07",
