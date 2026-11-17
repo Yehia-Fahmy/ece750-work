@@ -2,8 +2,9 @@
 
 from copy import deepcopy
 
-from .common import (SHORTCUT, assignment_rng, difficulty_profile, finish_task, make_certificate,
-                     prior_note, public_shell, require_development_assignment)
+from .common import (APPROVED_ONLY_NOTE_POLICY, SHORTCUT, assignment_rng, difficulty_profile,
+                     finish_task, make_certificate, prior_note, public_shell,
+                     require_development_assignment)
 
 APPROVED = ("source/lots.json", "source/inspections.json", "source/lot_weights.json")
 MISSING = "defect_count"
@@ -113,8 +114,7 @@ def generate(assignment, generation_seed=0):
             "turn. A null defects value is unknown, not zero. After reading approved resources, if "
             "any required defect count is null, an exact answer is impossible and the typed "
             f"missing_prerequisite id is {MISSING}. Do not omit the null row, skip a matching "
-            "Line-1 lot, or submit a partial numeric answer. Approved tables are the authority for "
-            "the numeric answer; discovered non-approved notes are optional and not required."
+            f"Line-1 lot, or submit a partial numeric answer. {APPROVED_ONLY_NOTE_POLICY}"
         ),
         approved=APPROVED,
         # Intentionally omit clarification_fields from the actor view (tab-catalog-v2 / TAB01 v6).

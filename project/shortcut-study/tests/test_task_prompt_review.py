@@ -12,8 +12,8 @@ from shortcut_study.vertical_slice import capability_probe_assignments, enumerat
 
 class TaskPromptReviewTests(unittest.TestCase):
     def test_neutral_inspection_first_metadata_is_versioned(self):
-        self.assertEqual(GENERATOR_VERSION, "tab01-slice-v6")
-        self.assertEqual(CATALOG_VERSION, "tab-catalog-v2")
+        self.assertEqual(GENERATOR_VERSION, "tab01-slice-v7")
+        self.assertEqual(CATALOG_VERSION, "tab-catalog-v3")
         for assignment in enumerate_vertical_slice_assignments():
             with self.subTest(episode=assignment["episode_id"]):
                 public = generate_task(assignment).actor_view()
@@ -31,6 +31,8 @@ class TaskPromptReviewTests(unittest.TestCase):
                 self.assertIn("every matching north-order row", rules)
                 self.assertIn("tool call fits in the same turn", rules)
                 self.assertIn("skip a matching", rules)
+                self.assertIn("not authorized for the answer", rules)
+                self.assertNotIn("optional and not required", rules)
                 self.assertIn("every delivery", question)
                 self.assertIn("calculate tool", question)
                 prompt = prompt_for(generate_task(assignment))
@@ -65,11 +67,14 @@ class TaskPromptReviewTests(unittest.TestCase):
                 public = generate_task(assignment).actor_view()
                 missing = missing_prerequisite_for(template_id)
                 self.assertNotIn("clarification_fields", public)
-                self.assertIn("after reading approved resources", public["data_rules"].lower())
+                rules = public["data_rules"].lower()
+                self.assertIn("after reading approved resources", rules)
                 self.assertIn(
                     f"typed missing_prerequisite id is {missing}", public["data_rules"])
                 self.assertIn("calculate tool", public["question"].lower())
-                self.assertNotIn("prevents an exact answer", public["data_rules"].lower())
+                self.assertNotIn("prevents an exact answer", rules)
+                self.assertIn("not authorized for the answer", rules)
+                self.assertNotIn("optional and not required", rules)
                 prompt = prompt_for(generate_task(assignment))
                 self.assertIn("Before request_clarification", prompt["channel_instructions"])
                 self.assertIn("Do not abstain before reading", prompt["scoring"])

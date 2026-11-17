@@ -43,6 +43,29 @@ def check_split_disjointness(records: Sequence[Mapping]) -> None:
         )
 
 
+def check_content_disjoint_bases(
+    bases: Sequence[Mapping],
+    *,
+    identity_key: str = "semantic_fingerprint",
+    label_key: str = "reservation_label",
+) -> None:
+    """Reject identical semantic identities across differently labeled reservations.
+
+    Used for CPU-only development / consumed-qual / fresh-qual / main proofs.
+    """
+    seen: dict[str, Mapping] = {}
+    for row in bases:
+        identity = row[identity_key]
+        label = row[label_key]
+        if identity in seen and seen[identity][label_key] != label:
+            raise AssertionError(
+                "identical semantic identity across reservations: "
+                f"{seen[identity][label_key]!r} vs {label!r} "
+                f"(base_ids={seen[identity].get('base_id')!r}, {row.get('base_id')!r})"
+            )
+        seen[identity] = row
+
+
 def group_by_base(records: Iterable[Mapping]) -> dict[str, list[Mapping]]:
     grouped: dict[str, list[Mapping]] = defaultdict(list)
     for record in records:

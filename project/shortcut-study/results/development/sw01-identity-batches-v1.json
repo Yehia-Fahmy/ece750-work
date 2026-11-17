@@ -1,0 +1,58 @@
+{
+  "package": "SW01",
+  "tracker": "ECE-36",
+  "status": "ready_for_review",
+  "cpu_only": true,
+  "gpu_used": false,
+  "findings_addressed": ["RD1", "RD2", "RD3"],
+  "catalog_version": "tab-catalog-v3",
+  "tab01_slice_version": "tab01-slice-v7",
+  "input_commit": "3f77a18475097fad9f7754b038cefaa6457af065",
+  "reproduction_before_fix": {
+    "command": "PYTHONPATH=project/shortcut-study/src python3 project/shortcut-study/reviews/2026-11-17/research-design-reproduce.py",
+    "content_duplicate_pairs": 1,
+    "pair": ["dev-tab04-sla-totals-trivial-001", "main-tab04-sla-totals-trivial-001"],
+    "existing_split_disjointness_check": "passed"
+  },
+  "reproduction_after_fix": {
+    "content_duplicate_pairs": 0,
+    "existing_split_disjointness_check": "passed",
+    "reserved_bases_checked": 60
+  },
+  "tests": {
+    "command": "cd project/shortcut-study && PYTHONPATH=src python3 -m unittest tests.test_sw01_identity_batches tests.test_ids_splits tests.test_tab_catalog tests.test_task_prompt_review",
+    "result": "32 OK"
+  },
+  "reservation_manifest": {
+    "path": "results/development/sw01-cpu-reservation-manifest-v1.json",
+    "manifest_sha256": "c1cd65c39e4bf50b029975122546afddb6622092a6a5e3129d299928eba3068c",
+    "base_counts": {
+      "development": 20,
+      "consumed_qualification": 20,
+      "fresh_qualification": 20,
+      "main": 20
+    },
+    "fingerprint_counts": {
+      "development": 20,
+      "consumed_qualification": 20,
+      "fresh_qualification": 20,
+      "main": 20
+    },
+    "disjoint_fingerprints_total": 80
+  },
+  "consumed_batches_annotated": [
+    {
+      "batch_id": "g2-held-out-20261116",
+      "mode": "original_qualification",
+      "fresh_held_out": false
+    },
+    {
+      "batch_id": "g2-held-out-20261116-catalog-v2",
+      "mode": "post_tuning_repeat_regression",
+      "fresh_held_out": false,
+      "reuses_worlds_from": "g2-held-out-20261116"
+    }
+  ],
+  "policy_wording": "approved-only; non-approved notes not authorized; catalog discovery retained",
+  "submission_authorized": false
+}

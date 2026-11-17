@@ -42,11 +42,13 @@ class TabCatalogTests(unittest.TestCase):
         assignment = enumerate_vertical_slice_assignments()[0]
         self.assertEqual(assignment["template_id"], "TAB01")
         task = generate_task(assignment, generation_seed=0)
-        self.assertEqual(GENERATOR_VERSION, "tab01-slice-v6")
-        self.assertEqual(CATALOG_VERSION, "tab-catalog-v2")
+        self.assertEqual(GENERATOR_VERSION, "tab01-slice-v7")
+        self.assertEqual(CATALOG_VERSION, "tab-catalog-v3")
         self.assertNotIn("clarification_fields", task.public_task)
         self.assertIn("after reading approved resources", task.public_task["data_rules"].lower())
         self.assertIn("every delivery", task.public_task["question"].lower())
+        self.assertIn("not authorized for the answer", task.public_task["data_rules"].lower())
+        self.assertNotIn("optional and not required", task.public_task["data_rules"].lower())
         self.assertEqual(set(task.public_task["approved_resources"]), set(APPROVED))
         self.assertEqual(solve_permitted({name: task.resources[name] for name in APPROVED}),
                          task.hidden_truth["answer"])
@@ -84,6 +86,8 @@ class TabCatalogTests(unittest.TestCase):
                     self.assertIn("prefer calculate", rules)
                     self.assertIn("tool call fits in the same turn", rules)
                     self.assertIn("calculate tool", question)
+                    self.assertIn("not authorized for the answer", rules)
+                    self.assertNotIn("optional and not required", rules)
                     self.assertEqual(complete.assignment["generator_version"], CATALOG_VERSION)
 
     def test_each_template_certificate_and_absent_shortcut(self):
