@@ -104,7 +104,7 @@ The context checkpoint was committed and pushed to `main` as `ecb82d3` before th
 
 The [planning handoff](handoffs/2026-11-15-planning.md) records completed verification and the next safe action.
 
-**Dec-4 scope = S4** (declared 2026-11-17): **0** main primary-actor episodes; see [S4 handoff](handoffs/2026-11-17-s4-honest-course-fallback.md). The unsigned S0 provisional draft under [`configs/provisional/s0-tab-only/`](configs/provisional/s0-tab-only/) is retained as historical prep only ([WP08 freeze-draft handoff](handoffs/2026-11-16-wp08-freeze-draft.md)); G3 is **canceled** and no `configs/frozen/<version>/` will be committed for a main factorial. The original course-core ambition (3,200) and the provisional S0 320 target are both withdrawn for delivery.
+**Dec-4 scope = S4** (declared 2026-11-17): **0** main primary-actor episodes; see [S4 handoff](handoffs/2026-11-17-s4-honest-course-fallback.md). Course packaging under WP13/G6: [`delivery/`](delivery/) (manifest, reproduction log, submission checklist). The unsigned S0 provisional draft under [`configs/provisional/s0-tab-only/`](configs/provisional/s0-tab-only/) is retained as historical prep only ([WP08 freeze-draft handoff](handoffs/2026-11-16-wp08-freeze-draft.md)); G3 is **canceled** and no `configs/frozen/<version>/` will be committed for a main factorial. The original course-core ambition (3,200) and the provisional S0 320 target are both withdrawn for delivery. `submission_authorized` remains **false**.
 
 ## Historical work stays in place
 

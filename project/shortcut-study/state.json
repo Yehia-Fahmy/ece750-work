@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "updated_at": "2026-11-17",
-  "phase": "s4_honest_course_fallback_declared",
+  "phase": "s4_wp13_packaging_ready_for_review",
   "context_checkpoint": "ecb82d3",
   "planning_status": "s4_course_fallback",
   "execution_started": true,
@@ -48,7 +48,7 @@
     "G3": "canceled",
     "G4": "canceled",
     "G5": "canceled",
-    "G6": "not_started"
+    "G6": "ready_for_review"
   },
   "packages": [
     {
@@ -273,7 +273,7 @@
     },
     {
       "id": "WP12",
-      "status": "in_progress",
+      "status": "ready_for_review",
       "owner": "report_author",
       "depends_on": [
         "WP00"
@@ -285,96 +285,130 @@
         "handoffs/2026-11-17-s4-honest-course-fallback.md",
         "handoffs/2026-11-17-wp12-s4-report.md",
         "report/methods-skeleton.md",
-        "report/README.md"
+        "report/README.md",
+        "report/slides-outline.md",
+        "delivery/",
+        "handoffs/2026-11-17-wp13-s4-delivery.md"
       ],
-      "note": "S4 honest course-report draft: methods + development/pilot evidence (TAB01 v6 PASS; G2 FAILs #23/#25); explicit withdrawal of main factorial / G2-pass / freeze claims. Not WP12 acceptance (PDF/slides/WP13 still open)."
+      "note": "S4 submission-oriented Markdown draft + slide outline; PDF/final deck still Yehia. No fabricated main findings. Ready for lagging review (not full WP12 acceptance until PDF/deck)."
     },
     {
       "id": "WP13",
-      "status": "not_started",
-      "owner": null,
+      "status": "ready_for_review",
+      "owner": "integrator",
       "depends_on": [
-        "WP11",
         "WP12"
       ],
-      "evidence": [],
-      "note": "Delivery packaging still required under S4 (pilot-only course package); no main reproduction."
+      "evidence": [
+        "delivery/README.md",
+        "delivery/packaging-manifest.md",
+        "delivery/reproduction-log.md",
+        "delivery/submission-checklist.md",
+        "handoffs/2026-11-17-wp13-s4-delivery.md",
+        "report/methods-skeleton.md",
+        "report/slides-outline.md",
+        "handoffs/2026-11-17-s4-honest-course-fallback.md"
+      ],
+      "note": "S4 pilot-only delivery packaging: Git vs raw vs GPU classes documented; preservation 111/111; observer verify_final_results OK; 213 extension tests; submission_authorized remains false. Not accepted until lagging review; PDF/deck Yehia-only."
     }
   ],
   "open_items": [
+    "G6/WP13 S4 packaging ready_for_review (delivery/); lagging review required; do not self-merge; submission remains Yehia-only.",
     "S4 honest course fallback DECLARED 2026-11-17: no frozen main collection; G2 not accepted (failed twice); G3/G4/G5 canceled; reduced claims. See handoffs/2026-11-17-s4-honest-course-fallback.md.",
     "G0 TAB-only accepted (WP01 + TAB catalog/spec + v6 PASS archive #20); five-family G0 remains out of scope.",
     "G1: long-episode WP06 pilots recorded (g1-long-pilots-20261116, 9/10); not formally accepted as G1; under S4 this is pilot evidence only.",
     "G2 FAILED twice: #23 g2-held-out-20261116 (238/320, easy 55%) and #25 g2-held-out-20261116-catalog-v2 (239/320, easy 55%). gates.G2=failed; do not start main.",
-    "WP12 S4 draft in progress (report/methods-skeleton.md); PDF/slides, page limit, presentation date, and WP13 packaging remain open for Dec 4.",
+    "WP12 S4 Markdown + slide outline ready_for_review; extension PDF/final deck and page-limit/presentation logistics remain Yehia/TBD. See delivery/submission-checklist.md.",
     "Independent semantic judge never qualified; semantic claims withdrawn for course delivery.",
     "Final course page limit and presentation arrangements require reconciliation with official instructions.",
     "Submission remains Yehia-only (submission_authorized=false)."
   ],
   "session": {
     "date": "2026-11-17",
-    "input_commit": "6eb9633",
+    "input_commit": "d0b65c3",
     "owner": "integrator",
-    "authorization": "Coordinator assigned ECE-32 Ship S4 honest course fallback; do not self-merge.",
-    "scope": "S4 honest course fallback: declare no main factorial; advance WP12 S4 draft; include #25 FAIL evidence",
-    "status": "s4_honest_course_fallback_declared",
+    "authorization": "Coordinator assigned ECE-33 Package G6 S4 course deliverable; do not self-merge; submission_authorized stays false.",
+    "scope": "WP13/G6 S4 delivery packaging after #26; tighten WP12 links; slide outline; no GPU; no course submission",
+    "status": "s4_wp13_packaging_ready_for_review",
     "tier": "S4",
     "primary_actor_episodes": 0,
     "frozen_protocol": null,
     "main_collection": false,
     "g2_accepted": false,
     "g3_freeze": "canceled",
+    "g6": "ready_for_review",
+    "wp13": "ready_for_review",
+    "submission_authorized": false,
     "decision_handoff": "handoffs/2026-11-17-s4-honest-course-fallback.md",
     "wp12_handoff": "handoffs/2026-11-17-wp12-s4-report.md",
-    "basis": [
-      "G0 TAB-only accepted (#22)",
-      "TAB01 v6 development probe+16-cell PASS (#20)",
-      "G2 FAIL #23 (238/320; easy 55%)",
-      "catalog-v2 (#24) then G2 FAIL #25 (239/320; easy 55%)",
-      "G1 long pilots recorded (9/10); not G1 acceptance"
-    ],
-    "prior_session_g2_catalog_v2_fail": {
+    "wp13_handoff": "handoffs/2026-11-17-wp13-s4-delivery.md",
+    "delivery_dir": "delivery/",
+    "reproduction_log": "delivery/reproduction-log.md",
+    "prior_session_s4_declaration": {
       "date": "2026-11-17",
-      "input_commit": "18f2b9f",
-      "owner": "gpu_operator",
-      "authorization": "Coordinator assigned ECE-30 G2 re-held-out after catalog-v2; do not self-merge; do not auto-accept G2.",
-      "scope": "S0 held-out qualify-local --held-out on tab-catalog-v2; zero external inference; no main",
-      "status": "g2_held_out_catalog_v2_fail_recorded",
-      "held_out_run": "g2-held-out-20261116-catalog-v2",
-      "held_out_evidence": "results/qualification/g2-held-out-20261116-catalog-v2.json",
-      "held_out_handoff": "handoffs/2026-11-16-g2-held-out-catalog-v2.md",
-      "held_out_verdict": "FAIL",
-      "held_out_completion": "239/320",
-      "held_out_easy_success": "11/20",
-      "prior_held_out_fail_preserved": {
-        "run_id": "g2-held-out-20261116",
-        "evidence": "results/qualification/g2-held-out-20261116.json",
-        "handoff": "handoffs/2026-11-16-g2-held-out-gpu.md",
-        "pr": "https://github.com/Yehia-Fahmy/ece750-work/pull/23",
-        "untouched": true
-      },
-      "long_pilot_run": "g1-long-pilots-20261116",
-      "long_pilot_evidence": "results/qualification/g1-long-pilots-20261116.json",
-      "long_pilot_handoff": "handoffs/2026-11-16-g1-long-pilots.md",
-      "prior_session_tab01_v6": {
-        "date": "2026-11-15",
-        "input_commit": "838be79",
-        "status": "gpu_16cell_archive_passed_tab01_v6",
-        "capability_probe_evidence": "results/qualification/capability-probe-tab01-v6.json",
-        "sixteen_cell_handoff": "handoffs/2026-11-15-native-qualification-tab01-v6-16cell.md",
-        "sixteen_cell_evidence": "results/qualification/native-qualification-tab01-v6-16cell.json",
-        "sixteen_cell_run": "native-qualification-tab01-v6-16cell",
-        "sixteen_cell_passed": true,
-        "prior_failed_probe_evidence": "results/qualification/capability-probe-tab01-v3.json",
-        "prior_v5_sixteen_cell_evidence": "results/qualification/native-qualification-tab01-v5-16cell.json",
-        "prior_v5_capability_probe_evidence": "results/qualification/capability-probe-tab01-v5.json"
-      },
-      "prior_session_g0_accept": {
-        "date": "2026-11-16",
-        "status": "g0_tab_accepted_after_tab01_v6_pass",
-        "acceptance_handoff": "handoffs/2026-11-16-g0-tab-accepted.md",
-        "g0_decision": "accepted",
-        "scope": "TAB-only (not five-family)"
+      "input_commit": "6eb9633",
+      "owner": "integrator",
+      "authorization": "Coordinator assigned ECE-32 Ship S4 honest course fallback; do not self-merge.",
+      "scope": "S4 honest course fallback: declare no main factorial; advance WP12 S4 draft; include #25 FAIL evidence",
+      "status": "s4_honest_course_fallback_declared",
+      "tier": "S4",
+      "primary_actor_episodes": 0,
+      "frozen_protocol": null,
+      "main_collection": false,
+      "g2_accepted": false,
+      "g3_freeze": "canceled",
+      "decision_handoff": "handoffs/2026-11-17-s4-honest-course-fallback.md",
+      "wp12_handoff": "handoffs/2026-11-17-wp12-s4-report.md",
+      "basis": [
+        "G0 TAB-only accepted (#22)",
+        "TAB01 v6 development probe+16-cell PASS (#20)",
+        "G2 FAIL #23 (238/320; easy 55%)",
+        "catalog-v2 (#24) then G2 FAIL #25 (239/320; easy 55%)",
+        "G1 long pilots recorded (9/10); not G1 acceptance"
+      ],
+      "prior_session_g2_catalog_v2_fail": {
+        "date": "2026-11-17",
+        "input_commit": "18f2b9f",
+        "owner": "gpu_operator",
+        "authorization": "Coordinator assigned ECE-30 G2 re-held-out after catalog-v2; do not self-merge; do not auto-accept G2.",
+        "scope": "S0 held-out qualify-local --held-out on tab-catalog-v2; zero external inference; no main",
+        "status": "g2_held_out_catalog_v2_fail_recorded",
+        "held_out_run": "g2-held-out-20261116-catalog-v2",
+        "held_out_evidence": "results/qualification/g2-held-out-20261116-catalog-v2.json",
+        "held_out_handoff": "handoffs/2026-11-16-g2-held-out-catalog-v2.md",
+        "held_out_verdict": "FAIL",
+        "held_out_completion": "239/320",
+        "held_out_easy_success": "11/20",
+        "prior_held_out_fail_preserved": {
+          "run_id": "g2-held-out-20261116",
+          "evidence": "results/qualification/g2-held-out-20261116.json",
+          "handoff": "handoffs/2026-11-16-g2-held-out-gpu.md",
+          "pr": "https://github.com/Yehia-Fahmy/ece750-work/pull/23",
+          "untouched": true
+        },
+        "long_pilot_run": "g1-long-pilots-20261116",
+        "long_pilot_evidence": "results/qualification/g1-long-pilots-20261116.json",
+        "long_pilot_handoff": "handoffs/2026-11-16-g1-long-pilots.md",
+        "prior_session_tab01_v6": {
+          "date": "2026-11-15",
+          "input_commit": "838be79",
+          "status": "gpu_16cell_archive_passed_tab01_v6",
+          "capability_probe_evidence": "results/qualification/capability-probe-tab01-v6.json",
+          "sixteen_cell_handoff": "handoffs/2026-11-15-native-qualification-tab01-v6-16cell.md",
+          "sixteen_cell_evidence": "results/qualification/native-qualification-tab01-v6-16cell.json",
+          "sixteen_cell_run": "native-qualification-tab01-v6-16cell",
+          "sixteen_cell_passed": true,
+          "prior_failed_probe_evidence": "results/qualification/capability-probe-tab01-v3.json",
+          "prior_v5_sixteen_cell_evidence": "results/qualification/native-qualification-tab01-v5-16cell.json",
+          "prior_v5_capability_probe_evidence": "results/qualification/capability-probe-tab01-v5.json"
+        },
+        "prior_session_g0_accept": {
+          "date": "2026-11-16",
+          "status": "g0_tab_accepted_after_tab01_v6_pass",
+          "acceptance_handoff": "handoffs/2026-11-16-g0-tab-accepted.md",
+          "g0_decision": "accepted",
+          "scope": "TAB-only (not five-family)"
+        }
       }
     }
   },
@@ -530,5 +564,27 @@
       "probe": "results/qualification/capability-probe-tab01-v6.json",
       "sixteen_cell": "results/qualification/native-qualification-tab01-v6-16cell.json"
     }
+  },
+  "g6_packaging_review": {
+    "status": "ready_for_review",
+    "date": "2026-11-17",
+    "tier": "S4",
+    "owner": "integrator",
+    "submission_authorized": false,
+    "evidence": [
+      "delivery/packaging-manifest.md",
+      "delivery/reproduction-log.md",
+      "delivery/submission-checklist.md",
+      "handoffs/2026-11-17-wp13-s4-delivery.md"
+    ],
+    "git_alone_checks": {
+      "preservation_historical_files": "111/111",
+      "observer_verify_final_results": "240 rows reproduced",
+      "extension_unittests": "213 passed"
+    },
+    "raw_archive_on_packaging_host": false,
+    "gpu_rerun": false,
+    "pdf_deck": "Yehia-only / TBD",
+    "note": "Packaging ready for lagging review; not G6 accepted; not course submission."
   }
 }

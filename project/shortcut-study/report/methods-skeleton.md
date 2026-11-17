@@ -179,8 +179,8 @@ All times America/Toronto.
 | Through Nov 16 | TAB01 v6 PASS; G0 TAB-only accept; G2 FAIL #23; catalog-v2; long pilots | Pilot + negative held-out evidence accrued |
 | Nov 17 | G2 FAIL #25; **S4 declared** | Methods + pilots + withdrawals; **no main Results** |
 | Nov 17–30 | Finish S4 WP12 narrative / figures shells from **pilot-only** evidence | No new main GPU collection |
-| Dec 1–3 | WP13 packaging (pilot-only bundle) | Submission-ready under S4 |
-| **Dec 4** | Course report due | Presentation date **TBD**; page limit **TBD** |
+| Dec 1–3 | WP13 packaging (pilot-only bundle) | `delivery/` manifest + reproduction log + checklist (PDF/deck Yehia) |
+| **Dec 4** | Course report due | Presentation date **TBD**; page limit **TBD**; `submission_authorized=false` |
 
 ---
 
@@ -262,11 +262,18 @@ Under S4, the extension delivers a reproducible local evaluation stack and an ho
 
 ### Reproducibility, AI disclosure, and grading notes
 
-- Derived statistics for any pilot tables must regenerate from committed qualification JSON/scripts without hidden spreadsheet edits.
-- Raw HTTP/tool archives under ignored `project/runs/shortcut-study/` are a separate authenticity package; say so honestly.
-- Historical files in `preservation-manifest.json` must still match.
+- Derived statistics for any pilot tables must regenerate from committed qualification JSON/scripts without hidden spreadsheet edits. Cited pilot / FAIL counts reconcile to:
+  - `results/qualification/capability-probe-tab01-v6.json`
+  - `results/qualification/native-qualification-tab01-v6-16cell.json`
+  - `results/qualification/g1-long-pilots-20261116.json`
+  - `results/qualification/g2-held-out-20261116.json`
+  - `results/qualification/g2-held-out-20261116-catalog-v2.json`
+- Raw HTTP/tool archives under ignored `project/runs/shortcut-study/` are a separate authenticity package; see `delivery/packaging-manifest.md` §B.
+- Historical files in `preservation-manifest.json` must still match (checked in `delivery/reproduction-log.md`).
+- Packaging / reproduction / submission checklist: `delivery/` (WP13).
+- Observer preliminary evidence (do not overwrite): `project/report/final-report.md` · PDF `project/report/final-report.pdf` · stats via `project/verify_final_results.py`.
 - **AI disclosure:** AI assistance was used extensively for code, orchestration, drafting, and automated tooling in this extension. This does **not** constitute human grading accuracy, independent human scientific validation, or a claim that model traces are faithful internal accounts. No cloud inference was used for actor/judge episodes.
-- Course format: four-page core + separated references/appendices until official page limits arrive; presentation **TBD**; submission is a researcher action (`submission_authorized: false` in `state.json`).
+- Course format: four-page core + separated references/appendices until official page limits arrive; presentation **TBD**; slide outline at `report/slides-outline.md` (deck template absent); submission is a researcher action (`submission_authorized: false` in `state.json`).
 - Scope claims in the final PDF must match **S4** (0 main factorial episodes), not the withdrawn 3,200 or provisional 320 targets.
 
 ---
@@ -280,8 +287,8 @@ Under S4, the extension delivers a reproducible local evaluation stack and an ho
 | C | Original observer-study summary (pointer to frozen report; do not rewrite history) |
 | D | Qualification/gate evidence: tab01-v6 PASS; G2 FAILs #23/#25; S4 decision |
 | E | Judge validation — **withdrawn** (prep-only) |
-| F | Reproduction commands and delivery checklist (WP13; pilot-only) |
-| G | Slides + speaker notes *(separate artifacts)* |
+| F | Reproduction commands and delivery checklist — `delivery/` (WP13; pilot-only) |
+| G | Slides + speaker notes — outline in `slides-outline.md`; final deck **TBD** |
 
 ---
 
@@ -296,5 +303,5 @@ Under S4, the extension delivers a reproducible local evaluation stack and an ho
 - [ ] G1 formal acceptance (optional under S4; long pilots already recorded)
 - [ ] Generated pilot-only summary tables for the four-page core (no faux main contrasts)
 - [ ] AI-disclosure wording matched to actual assistance used (draft present; finalize in PDF)
-- [ ] Slide deck and speaker notes
-- [ ] WP13 reproduction record and submission checklist
+- [x] Slide **outline** (`slides-outline.md`); final deck / speaker notes **TBD** (no in-repo template)
+- [x] WP13 packaging manifest + reproduction log + submission checklist (`delivery/`); PDF upload still Yehia-only (`submission_authorized=false`)
