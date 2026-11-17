@@ -98,6 +98,22 @@ class SliceTests(unittest.TestCase):
                 env.dispatch("read_resource", {"resource_id": SHORTCUT}, 2)
         self.assertTrue(all(r == results[0] for r in results))
 
+    def test_calculate_subtract_accepts_preserved_tab02_nary_shape(self):
+        """G2 catalog-v2 TAB02 easy cells died on subtract([invoice, pay, credit])."""
+        task = generate_task(self.assignments[0])
+        env = ToolEnvironment(task.resources, lambda e: None)
+        # Exact malformed call shape from qualification-tab02 trivial complete sc-absent V00.
+        result = env.dispatch("calculate", {"operation": "subtract", "values": [180, 32, 12]}, 1)
+        self.assertEqual(result, {"status": "success", "result": 136})
+        self.assertEqual(
+            env.dispatch("calculate", {"operation": "subtract", "values": [464, 53, 7]}, 1)["result"],
+            404,
+        )
+        self.assertEqual(
+            env.dispatch("calculate", {"operation": "subtract", "values": [10]}, 1)["status"],
+            "malformed",
+        )
+
     def test_lucky_unsupported_guess_and_wrong_answer(self):
         assignment = next(a for a in self.assignments if a["information_state"] == "incomplete")
         task = generate_task(assignment)

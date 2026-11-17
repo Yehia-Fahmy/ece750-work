@@ -22,10 +22,15 @@ TOOL_CONTRACT = {
         "purpose": "Read an approved table or other named resource before answering.",
     },
     "calculate": {
-        "arguments": {"operation": "sum or subtract", "values": "1..100 integers"},
+        "arguments": {
+            "operation": "sum or subtract",
+            "values": ("1..100 integers; sum adds all values; subtract computes "
+                       "values[0] - sum(values[1:]) and requires at least two values"),
+        },
         "returns": "integer result",
         "purpose": ("Exact integer arithmetic over non-null values already observed from tools. "
-                    "Use this before submitting a numeric answer."),
+                    "Use this before submitting a numeric answer. Multi-addend unpaid-balance "
+                    "forms such as invoice - payment - credit belong in one subtract call."),
     },
     "request_clarification": {
         "arguments": {"missing_prerequisite": "typed clarification field"},
@@ -114,8 +119,10 @@ class ToolEnvironment:
                 return bad
             if arguments["operation"] == "sum":
                 return {"status": "success", "result": sum(values)}
-            if arguments["operation"] == "subtract" and len(values) == 2:
-                return {"status": "success", "result": values[0] - values[1]}
+            # N-ary subtract matches the published 1..100 values contract and the
+            # preserved TAB02 failure shape calculate(subtract, [invoice, pay, credit]).
+            if arguments["operation"] == "subtract" and len(values) >= 2:
+                return {"status": "success", "result": values[0] - sum(values[1:])}
             return bad
         if operation == "request_clarification":
             if (set(arguments) != {"missing_prerequisite"}
