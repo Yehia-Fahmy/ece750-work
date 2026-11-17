@@ -68,7 +68,7 @@ Use this table for report prose. Prefer hashes/paths over adjectives like “val
 - Fresh v3-001 **FAIL** on main (#44/#45); prior FAIL rows (`C-G2-ORIG`, `C-G2-V2`, `C-G2-FRESH-V3`) preserved — do not rewrite.
 - ECE-53 **done**: #46 merged `0290663` (format 24/24).
 - ECE-59 **done**: #48 merged `430c86b` — TAB05 extreme **16/16**; live qual turns 16; probe-only turns 20 (evidence `results/development/sw06-tab05-extreme-residual-clearance-v1.json`).
-- ECE-63: root greenlit **NEW** fresh G2; SW06 collecting on WSL; `g2_accepted=false` until batch finishes; requires **new** batch id (do not reuse v3-001).
+- ECE-63: collecting **`qual-fresh-tab-catalog-v4-001`** (allocate tip `76adc3b`; ~13+/320 mid-run); `g2_accepted=false` until finish packaging; do not reuse v3-001.
 - Cutoff: Nov 22 18:00 America/Toronto → automatic S4 if no accepted qual+freeze. `submission_authorized=false`.
 
 ## Do not
