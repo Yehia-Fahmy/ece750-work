@@ -427,7 +427,8 @@
           }
         }
       }
-    }
+    },
+    "sw00_output_commit": "98fca40fc722e71b030fe176a2cff9fe36a04048"
   },
   "cpu_slice_review": {
     "reviewer": "review_cpu",
@@ -705,9 +706,11 @@
           "handoffs/2026-11-17-sw00-baseline.md",
           "results/development/sw00-baseline-v1.json",
           "reviews/2026-11-17/manifest.json (15/15)",
-          "preservation-manifest.json (111/111)"
+          "preservation-manifest.json (111/111)",
+          "commit:98fca40fc722e71b030fe176a2cff9fe36a04048"
         ],
-        "note": "Baseline established on cloud host cursor (no GPU, no project/runs). Assignments issued for SW01\u201303; awaiting sibling workers + independent reviews."
+        "note": "Baseline established on cloud host cursor (no GPU, no project/runs). Assignments issued for SW01\u201303; awaiting sibling workers + independent reviews.",
+        "output_commit": "98fca40fc722e71b030fe176a2cff9fe36a04048"
       },
       {
         "id": "SW01",
@@ -749,7 +752,8 @@
         ],
         "handoff": "handoffs/2026-11-17-sw01-assignment.md",
         "cpu_only": true,
-        "note": "Reproduce RD1\u20133 independently; fix identities/batches/policy wording; do not edit shared qualification wiring\u2014propose interface in handoff."
+        "note": "Reproduce RD1\u20133 independently; fix identities/batches/policy wording; do not edit shared qualification wiring\u2014propose interface in handoff.",
+        "sw00_tip_commit": "98fca40fc722e71b030fe176a2cff9fe36a04048"
       },
       {
         "id": "SW02",
@@ -790,7 +794,8 @@
         ],
         "handoff": "handoffs/2026-11-17-sw02-assignment.md",
         "cpu_only": true,
-        "note": "Reproduce IMPL-1\u20133 with fixtures/temp copies if raw archives absent; bind audit T to native bytes; correct generator version + approved-read telemetry for new code paths; never rewrite historical terminals."
+        "note": "Reproduce IMPL-1\u20133 with fixtures/temp copies if raw archives absent; bind audit T to native bytes; correct generator version + approved-read telemetry for new code paths; never rewrite historical terminals.",
+        "sw00_tip_commit": "98fca40fc722e71b030fe176a2cff9fe36a04048"
       },
       {
         "id": "SW03",
@@ -832,7 +837,8 @@
         ],
         "handoff": "handoffs/2026-11-17-sw03-assignment.md",
         "cpu_only": true,
-        "note": "Reproduce A1\u20135; one estimand for point+bootstrap; conservative label-error bounds; hashed release inputs; explicit fixture regeneration; clarify A4/A5 denominators."
+        "note": "Reproduce A1\u20135; one estimand for point+bootstrap; conservative label-error bounds; hashed release inputs; explicit fixture regeneration; clarify A4/A5 denominators.",
+        "sw00_tip_commit": "98fca40fc722e71b030fe176a2cff9fe36a04048"
       },
       {
         "id": "SW04",
@@ -1000,7 +1006,8 @@
         "sw02": "ECE-37",
         "sw03": "ECE-38",
         "sw09": "ECE-39"
-      }
+      },
+      "sw00_output_commit": "98fca40fc722e71b030fe176a2cff9fe36a04048"
     },
     "interface_decisions": {
       "recorded_at": "2026-11-17T11:51:55.652884-05:00",

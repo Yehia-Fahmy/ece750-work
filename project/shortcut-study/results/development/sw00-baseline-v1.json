@@ -57,7 +57,10 @@
         "command": "PYTHONPATH=project/shortcut-study/src python3 project/shortcut-study/reviews/2026-11-17/analysis-evidence-repro.py",
         "complete_block_point": 0.3333333333333333,
         "bootstrap_complete_block_point": 0.0,
-        "label_envelope_claimed": [-0.1, 0.1],
+        "label_envelope_claimed": [
+          -0.1,
+          0.1
+        ],
         "actual_reachable_T": -0.2
       }
     },
@@ -70,7 +73,11 @@
       "tracker": "ECE-36",
       "owner": "sw01_task_engineer",
       "reviewer": "sw03_analyst",
-      "findings": ["RD1", "RD2", "RD3"],
+      "findings": [
+        "RD1",
+        "RD2",
+        "RD3"
+      ],
       "input_commit": "f82908d62889fbd6ea3ffa79e041ac17ffb6b094",
       "handoff": "handoffs/2026-11-17-sw01-assignment.md"
     },
@@ -78,7 +85,11 @@
       "tracker": "ECE-37",
       "owner": "sw02_runtime_audit",
       "reviewer": "sw01_task_engineer",
-      "findings": ["IMPL-1", "IMPL-2", "IMPL-3"],
+      "findings": [
+        "IMPL-1",
+        "IMPL-2",
+        "IMPL-3"
+      ],
       "input_commit": "f82908d62889fbd6ea3ffa79e041ac17ffb6b094",
       "handoff": "handoffs/2026-11-17-sw02-assignment.md"
     },
@@ -86,7 +97,13 @@
       "tracker": "ECE-38",
       "owner": "sw03_analyst",
       "reviewer": "sw02_runtime_audit",
-      "findings": ["A1", "A2", "A3", "A4", "A5"],
+      "findings": [
+        "A1",
+        "A2",
+        "A3",
+        "A4",
+        "A5"
+      ],
       "input_commit": "f82908d62889fbd6ea3ffa79e041ac17ffb6b094",
       "handoff": "handoffs/2026-11-17-sw03-assignment.md"
     }
@@ -104,5 +121,6 @@
     "Project root launches sibling workers for SW01/SW02/SW03 with assignment briefs",
     "Workers reproduce defects, fix within path allowlists, add regressions, hand off for cross-review",
     "Orchestrator integrates reviewed commits; no 320-episode qualification before SW05"
-  ]
+  ],
+  "output_commit": "98fca40fc722e71b030fe176a2cff9fe36a04048"
 }
