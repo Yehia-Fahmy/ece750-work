@@ -149,8 +149,21 @@ class AnalysisScaffoldTests(unittest.TestCase):
         self.assertEqual(diag["reviewed"], 2)
         self.assertEqual(diag["disagree"], 1)
         self.assertGreater(diag["weighted_disagreement_mass"], 0)
-        sens = label_error_sensitivity({"T_visibility": 0.5}, flip_rate=0.1)
-        self.assertEqual(sens["envelopes"]["T_visibility"]["envelope"], [0.4, 0.6])
+        with self.assertRaises(ValueError):
+            label_error_sensitivity({"T_visibility": 0.5}, flip_rate=0.1)
+        bundle = build_simulation_bundle(
+            "null",
+            bases_per_family=10,
+            difficulties=("trivial",),
+            information_states=("complete",),
+            include_absent_controls=False,
+        )
+        sens = label_error_sensitivity(bundle["rows"], flip_rate=0.1)
+        envelope = sens["envelopes"]["T_visibility"]["envelope"]
+        self.assertLessEqual(envelope[0], 0.0)
+        self.assertGreaterEqual(envelope[1], 0.0)
+        # 10% of 40 labels → budget 4; adversarial V00 flips move T by -0.2.
+        self.assertLessEqual(envelope[0], -0.2 + 1e-12)
 
 
 if __name__ == "__main__":
