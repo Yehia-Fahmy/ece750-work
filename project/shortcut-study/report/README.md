@@ -1,11 +1,16 @@
 # Shortcut-study report (WP12)
 
-**Active assignment (November 17):** [SWARM_START](../SWARM_START.md) reopens a repaired S0 attempt with a firm S4 fallback. The S4 Markdown below describes evidence collected so far and remains the fallback draft, not a claim the new attempt succeeded. Agents must produce the final report PDF, deck and speaker notes; historical “Yehia packaging” labels are superseded. Only course logistics/actual submission remain researcher-owned. Include the review's reused-qualification caveat in the next report revision.
+**Active assignment (November 17):** [SWARM_START](../SWARM_START.md) reopens a repaired S0 attempt with a firm S4 fallback. The S4 Markdown below describes evidence collected so far and remains the fallback draft, not a claim the new attempt succeeded. Agents must produce the final report PDF, deck and speaker notes; historical “Yehia packaging” labels are superseded. Only course logistics/actual submission remain researcher-owned.
 
-**Existing artifacts:** **S4 submission-oriented Markdown draft** (2026-11-17). Methods + development/pilot evidence + two G2 qualification FAILs (#23, #25). **No frozen protocol**, **no main factorial claim**, **no invented main findings**. Extension PDF and final deck remain agent completion tasks; slide **outline** present.
+**Qualification-reuse caveat:** `g2-held-out-20261116-catalog-v2` reused the same hidden worlds as the first FAIL after prompt tuning — useful regression, **not** a second independent held-out confirmation (RD2). See the claim ledger.
+
+**Parallel GPU:** SW06 fresh qualification is assigned to WSL operator `bc-1121d0a4…` (ECE-42). Report/CPU authors must not take the GPU lease.
+
+**Existing artifacts:** **S4 submission-oriented Markdown draft** (2026-11-17). Methods + development/pilot evidence + two G2 qualification FAILs (#23, #25). CPU repairs SW01–03 + integrator SW05 are on `main` (`91baf90`) — that is **not** G2/G3 acceptance. **No frozen protocol**, **no main factorial claim**, **no invented main findings**. Extension PDF and final deck remain agent completion tasks; slide **outline** present.
 
 | Artifact | Role |
 | --- | --- |
+| [`claim-evidence-ledger.md`](claim-evidence-ledger.md) | SW04 claim→artifact table, reuse caveat, repair vs gate status |
 | [`methods-skeleton.md`](methods-skeleton.md) | Working S4 course-report draft: questions, intended design, metrics, analysis plan (unused on main), v6 PASS + G2 FAIL evidence, withdrawals, limitations, AI disclosure |
 | [`slides-outline.md`](slides-outline.md) | Presentation outline only — no in-repo deck template |
 | *(next swarm)* extension PDF / final deck / notes | Produce from verified evidence and the Markdown/outline; do not invent numeric main results |

@@ -1,0 +1,43 @@
+{
+  "schema_version": "shortcut-sw07-freeze-prep-v1",
+  "status": "draft_not_frozen",
+  "package": "SW07",
+  "gate": "G3",
+  "signed": false,
+  "frozen_directory_created": false,
+  "base_main_commit": "91baf90d8111e7f0b6a7ed670ad510dea1b79e19",
+  "sw05_accepted": true,
+  "sw06_owner": "bc-1121d0a4-6c7d-5e71-adea-be1427c7815d",
+  "sw06_host": "DESKTOP-VEMMES3 / WSL worker a09a6978 / RTX 3070 Ti",
+  "tracker_task": "ECE-42",
+  "gpu_lease_holder": "sw06_wsl_operator_only",
+  "orchestrator_takes_gpu_lease": false,
+  "artifacts": {
+    "handoff": "handoffs/2026-11-17-sw07-freeze-prep.md",
+    "checklist_prep": "results/qualification/freeze-checklist-s0-tab-post-sw05.md",
+    "prior_draft_checklist": "results/qualification/freeze-checklist-s0-tab-draft.md",
+    "provisional_configs": "configs/provisional/s0-tab-only/"
+  },
+  "cpu_prerequisites_ready": [
+    "tab-catalog-v3 / tab01-slice-v7",
+    "allocate_qualification_batch fresh API",
+    "bound prepare_archive wiring",
+    "task-specific tool_operation_counts wiring",
+    "analysis protocol sync + release retention"
+  ],
+  "blockers_before_real_freeze": [
+    "SW06 fresh G2 accept on content-disjoint batch",
+    "Judge qualify or behavioral-only scope decision",
+    "Pre-freeze simulation + forecast fit",
+    "configs/frozen/<version>/ with hashes + guarded main path",
+    "Independent freeze reviewer signature"
+  ],
+  "do_not": [
+    "Create configs/frozen/ from this prep alone",
+    "Remove main-split refusal before signed freeze",
+    "Start a second GPU qualification operator",
+    "Claim G3 complete",
+    "Treat provisional configs as freeze authority"
+  ],
+  "submission_authorized": false
+}
