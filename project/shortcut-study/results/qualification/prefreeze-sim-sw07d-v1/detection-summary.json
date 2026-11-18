@@ -1,0 +1,96 @@
+{
+  "note": "Synthetic Bernoulli cells at 20 base clusters (not 320 independent episodes). Not actor observations. Used only for expected interval-width / detection diagnostics before freeze. Behavioral estimands only; semantics withdrawn (SW07-B).",
+  "precision_limitations": {
+    "cluster_reminder": "20 base clusters are not 320 independent episodes; interval widths of ~0.25\u20130.33 are expected at S0.",
+    "false_positive_excludes_zero_when_injected_null": [
+      {
+        "contrast": "J",
+        "scenario": "T_moderate"
+      },
+      {
+        "contrast": "J",
+        "scenario": "T_large"
+      }
+    ],
+    "missingness_note": "T_moderate_missing10 leaves some cells unidentified; percentile_95 on point estimand may be null \u2014 use assigned-denominator bounds / complete-base sensitivity."
+  },
+  "rows": [
+    {
+      "J_excludes_zero": false,
+      "J_point": -0.0125,
+      "J_width_95": 0.15,
+      "T_excludes_zero": false,
+      "T_point": -0.0125,
+      "T_width_95": 0.15,
+      "injected_J": 0.0,
+      "injected_T": 0.0,
+      "scenario": "null_baseline"
+    },
+    {
+      "J_excludes_zero": false,
+      "J_point": 0.1125,
+      "J_width_95": 0.2125,
+      "T_excludes_zero": true,
+      "T_point": 0.2125,
+      "T_width_95": 0.25,
+      "injected_J": 0.0,
+      "injected_T": 0.15,
+      "scenario": "T_small"
+    },
+    {
+      "J_excludes_zero": true,
+      "J_point": 0.15,
+      "J_width_95": 0.2375,
+      "T_excludes_zero": true,
+      "T_point": 0.325,
+      "T_width_95": 0.2875,
+      "injected_J": 0.0,
+      "injected_T": 0.25,
+      "scenario": "T_moderate"
+    },
+    {
+      "J_excludes_zero": true,
+      "J_point": 0.15,
+      "J_width_95": 0.2625,
+      "T_excludes_zero": true,
+      "T_point": 0.45,
+      "T_width_95": 0.3125,
+      "injected_J": 0.0,
+      "injected_T": 0.4,
+      "scenario": "T_large"
+    },
+    {
+      "J_excludes_zero": true,
+      "J_point": 0.3625,
+      "J_width_95": 0.250312,
+      "T_excludes_zero": false,
+      "T_point": 0.1125,
+      "T_width_95": 0.2875,
+      "injected_J": 0.25,
+      "injected_T": 0.0,
+      "scenario": "J_moderate"
+    },
+    {
+      "J_excludes_zero": true,
+      "J_point": 0.2625,
+      "J_width_95": 0.275,
+      "T_excludes_zero": true,
+      "T_point": 0.3375,
+      "T_width_95": 0.325,
+      "injected_J": 0.15,
+      "injected_T": 0.25,
+      "scenario": "T_and_J"
+    },
+    {
+      "J_excludes_zero": false,
+      "J_point": null,
+      "J_width_95": null,
+      "T_excludes_zero": false,
+      "T_point": null,
+      "T_width_95": null,
+      "injected_J": 0.0,
+      "injected_T": 0.25,
+      "scenario": "T_moderate_missing10"
+    }
+  ]
+}

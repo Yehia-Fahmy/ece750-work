@@ -21,11 +21,21 @@
     "No condition-specific history clipping; later-turn thinking-off is uniform (adapter v5), not visibility-specific."
   ],
   "forecast": {
-    "status": "placeholders_only",
+    "status": "measured_forecast_provisional_unsigned",
     "daily_gpu_hours_assumption": 8,
     "reserve_fraction": 0.25,
-    "measured_actor_mean_seconds": null,
-    "measured_audit_mean_seconds": null,
-    "note": "Fill only after long authentic TAB episodes and (if in scope) judge smoke. Clarification-only ~8s means do not forecast legitimate multi-tool episodes."
+    "loading_preflight_recovery_overhead_fraction": 0.15,
+    "measured_actor_mean_seconds": 31.861766222000007,
+    "measured_actor_p95_seconds": 43.138898839891766,
+    "planning_actor_seconds_per_episode": 43.138898839891766,
+    "measured_audit_mean_seconds": 0.0,
+    "planned_gpu_hours_with_overhead": 4.4098,
+    "required_gpu_hours_with_reserve": 5.5122,
+    "fits_nov27_actor_cutoff_with_reserve": true,
+    "fits_nov29_inference_cutoff_with_reserve": true,
+    "verdict": "FITS",
+    "evidence_ref": "results/qualification/prefreeze-sim-sw07d-v1/forecast.json",
+    "package": "SW07-D",
+    "note": "SW07-D / ECE-82 filled from long-pilot hard/extreme p95 (not clarification-only ~8s). Behavioral-only: live judge GPU=0. Not freeze signature."
   }
 }

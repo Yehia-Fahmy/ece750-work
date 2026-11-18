@@ -1,0 +1,95 @@
+{
+  "assumptions": {
+    "audit_note": "SW07-B behavioral-only: no live judge GPU budget; audit prep is non-semantic and recorded during actor episodes.",
+    "collection_start_assumption": "2026-11-22T18:00:00-05:00",
+    "daily_gpu_hours": 8.0,
+    "daily_gpu_hours_status": "provisional_until_operator_logs_availability",
+    "loading_preflight_recovery_overhead_fraction": 0.15,
+    "measured_actor_mean_seconds": 31.861766222000007,
+    "measured_actor_p95_seconds": 43.138898839891766,
+    "measured_audit_mean_seconds": 0.0,
+    "note": "Forecast assumes G3 signed by Nov 22 18:00. If unsigned, S4 automatic \u2014 no main collection.",
+    "planning_actor_seconds_per_episode": 43.138898839891766,
+    "reserve_fraction": 0.25
+  },
+  "cutoffs": {
+    "end_experimental_inference": "2026-11-29T18:00:00-05:00",
+    "g3_freeze": "2026-11-22T18:00:00-05:00",
+    "stop_starting_actor_blocks": "2026-11-27T18:00:00-05:00"
+  },
+  "do_not": [
+    "Treat this forecast as freeze signature",
+    "Set gates.G3=accepted",
+    "Start SW08 without signed G3",
+    "Claim executable main",
+    "Budget live semantic judge GPU under behavioral-only scope"
+  ],
+  "fit": {
+    "fits_nov27_actor_cutoff_with_reserve": true,
+    "fits_nov29_inference_cutoff_with_reserve": true,
+    "slack_gpu_hours_vs_nov27_required": 34.4878,
+    "verdict": "FITS"
+  },
+  "measured_inputs": {
+    "primary_conservative_source": {
+      "mean_seconds": 31.861766222000007,
+      "n": 10,
+      "p50_seconds": 31.63833509750839,
+      "p95_seconds": 43.138898839891766,
+      "path": "results/qualification/g1-long-pilots-20261116.json",
+      "selection": "development hard/extreme complete V00 sc-absent",
+      "wall_seconds_including_startup": 326.4605110840057
+    },
+    "selection_rule": "Use long-pilot hard/extreme p95 as planning seconds/episode; do not use held-out mixed-difficulty wall mean (~8s) for multi-tool forecast.",
+    "supporting_sources": [
+      {
+        "mean_seconds": 28.5886048833745,
+        "n": 16,
+        "p95_seconds": 40.36345988649555,
+        "path": "results/qualification/native-qualification-tab01-v6-16cell.json"
+      },
+      {
+        "assigned": 320,
+        "mean_wall_per_assigned_seconds": 7.996478752796873,
+        "note": "Mixed difficulties including easy/trivial; COMPUTE.md forbids using clarification-only ~8s as multi-tool forecast. Recorded for provenance only.",
+        "path": "results/qualification/qual-fresh-tab-catalog-v5-001.json",
+        "wall_seconds_including_startup": 2558.873200894999
+      }
+    ]
+  },
+  "package": "SW07-D",
+  "pipeline": {
+    "actor_gpu_hours_with_overhead": 4.4098,
+    "actor_raw_gpu_hours": 3.8346,
+    "live_audit_gpu_hours": 0.0,
+    "n_actor": 320,
+    "planned_gpu_hours": 4.4098,
+    "report_writing": "CPU_independent_of_GPU_lease",
+    "required_gpu_hours_with_reserve": 5.5122
+  },
+  "schema_version": "shortcut-prefreeze-forecast-sw07d-v1",
+  "scope": {
+    "live_judge_gpu_episodes": 0,
+    "non_semantic_audit_prep": "bundled_in_actor_wall_prepared_no_judge",
+    "primary_actor_episodes": 320,
+    "semantic_scope": "withdrawn_behavioral_only",
+    "tier": "S0"
+  },
+  "status": "measured_forecast_provisional_unsigned",
+  "stretch_s1_960_sensitivity": {
+    "fits_nov27_with_reserve": true,
+    "note": "Not selected; recorded only as sensitivity. Still fits under provisional 8h/day.",
+    "planned_gpu_hours_with_overhead": 13.2293,
+    "required_with_reserve": 16.5366,
+    "selected": false
+  },
+  "submission_authorized": false,
+  "timezone": "America/Toronto",
+  "tracker_task": "ECE-82",
+  "windows": {
+    "actor_collection_days": 5.0,
+    "actor_gpu_hours_available_provisional": 40.0,
+    "inference_gpu_hours_available_provisional": 56.0,
+    "inference_window_days": 7.0
+  }
+}

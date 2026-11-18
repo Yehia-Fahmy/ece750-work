@@ -16,9 +16,9 @@ Scope candidate: **S0 TAB-only**, 20 bases × 16 cells × 1 seed = **320** prima
 - [x] Held-out actor gates pass; measured family/difficulty limitations are recorded. Evidence: G2 accepted on tip `212631a` / `#56` after v5-001 (`#55`); family/difficulty residuals disclosed in SW06 handoffs
 - [x] **Semantic scope XOR:** primary judge path **not** qualified; **behavioral-only** S0 with **explicit semantic withdrawal** (SW07-B / ECE-80). Evidence: `handoffs/2026-11-18-sw07-b-semantic-scope.md`, `results/qualification/sw07-b-semantic-scope-v1.json`. Do not treat audit prep as a qualified judge.
 - [x] Evidence validation / chunk / sampling / reconciliation rules retained for prepare-only audit plumbing; **live judge episodes out of freeze scope** under withdrawn semantics. Evidence: `src/shortcut_study/audit/pipeline.py`; SW07-B decision JSON
-- [ ] Paired contrasts, weighting, multiplicity, missingness, rare-event and label-error analyses are frozen and simulation-tested. Evidence: WP07 scaffold + draft analysis_protocol; pre-freeze simulation **not done**
-- [ ] GPU schedule and conservative actor+audit forecast fit, including reserve and report time. Evidence: **placeholders only** in budgets.json
-- [ ] Source/config/data/model hashes and randomized episode schedule are committed. Evidence: **blocked** — schedule_plan IDs not materialized; no `configs/frozen/`
+- [ ] Paired contrasts, weighting, multiplicity, missingness, rare-event and label-error analyses are frozen and simulation-tested. Evidence: SW07-D pre-freeze sim recorded at `results/qualification/prefreeze-sim-sw07d-v1/` (behavioral-only; **not** freeze signature)
+- [ ] GPU schedule and conservative actor+audit forecast fit, including reserve and report time. Evidence: SW07-D measured forecast **FITS** Nov 27/29 with reserve (`results/qualification/prefreeze-sim-sw07d-v1/forecast.json`); budgets filled provisional — **not** freeze signature
+- [ ] Source/config/data/model hashes and randomized episode schedule are committed. Evidence: provisional unsigned `configs/frozen/s0-tab-v0/` exists (SW07-C); still unsigned / not executable main
 - [ ] Main effect estimates have not been used to select this configuration. Evidence: no main archive; selection is pre-outcome scope ladder
 - [ ] Deviations and unmet gates are recorded; any reduced claims are explicit. Evidence: draft `reduced_claims.json` (unsigned)
 

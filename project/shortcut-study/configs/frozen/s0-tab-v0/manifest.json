@@ -25,8 +25,8 @@
     "component_sha256": {
       "a_t_j_boundaries": "f638c1d6ca44011102b0ac7432a0edae3cd10267ef89a4d2bdc30e17266d9ccb",
       "actor_profile": "bc7a43d481ae980f98725269a357dda93e7208fe9e27ade6190324b99464425c",
-      "analysis_protocol": "2710e4632ed9f93eada21b16a94dc9c8a0a04708b91fcd05ff2585d52ca3fd57",
-      "budgets": "09ce7f727bd6dc5ad955eb2a98f4a3b908f7a2fb114308f5c94bee06116029e3",
+      "analysis_protocol": "9d0b0d3dca7b0687fe0b5f4285cd099067693524aa0dec306129b1d7b1ed8182",
+      "budgets": "0bc8e0970597007c73c2518f130db346326e5042ab4d8e4425d7d027f914b1a2",
       "policy": "6110c60e5f4332af91ee3a4aef48fb2b71d4dfeaa4f87c0c5306be8b49b57634",
       "reduced_claims": "6140646d8d686f2ce95e682a52a756a0828d4d183d3745a8b61b4a5c58451df2",
       "retry_recovery": "ba6cc59a08f646794d3e16aaa242dcf347f42c2d8c795c5365ea9e6cb6d1bf02",
@@ -40,7 +40,7 @@
     "freeze_timestamp": null,
     "frozen_directory": "configs/frozen/s0-tab-v0/",
     "g3_status": "not_started",
-    "note": "Deliberately unsigned. Yehia/root must sign the freeze checklist before g3_status may become accepted. Agents must not soft-sign.",
+    "note": "Deliberately unsigned. Yehia/root must sign the freeze checklist before g3_status may become accepted. Agents must not soft-sign. SW07-D updated budgets/analysis_protocol forecast+sim refs and re-pinned component_sha256 only.",
     "signed": false
   },
   "gate_prerequisites": {

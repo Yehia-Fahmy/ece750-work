@@ -1,0 +1,50 @@
+{
+  "bonferroni_individual": 0.975,
+  "bootstrap_replicates_default": 10000,
+  "bootstrap_seed_default": 20261116,
+  "confirmatory_contrasts": [
+    "T_visibility",
+    "J_visibility"
+  ],
+  "denominators": {
+    "response_parse_among_complete_completed": "parseable native response among complete-information episodes with terminal_status=completed (conditional; not assigned-denominator)",
+    "terminal_completion": "completed / assigned",
+    "valid_answer_among_assigned": "task_result.answer_valid is True / assigned",
+    "valid_answer_among_complete_assigned": "answer_valid among assigned complete-information episodes"
+  },
+  "freeze": "not_frozen_pending_G3",
+  "individual_interval": 0.95,
+  "missingness": {
+    "complete_base_sensitivity": true,
+    "complete_block_sensitivity_alias": "complete_base_sensitivity",
+    "policy": "assigned_denominator_bounds",
+    "unknown_is_not_negative": true
+  },
+  "primary_arm": {
+    "eligibility": "eligibility.acquisition_endpoint",
+    "endpoint": "acquisition.successful",
+    "policy_id": "restricted_core_v1",
+    "reject_mixed_policy_split_scorer": true,
+    "shortcut_available": true
+  },
+  "protocol_id": "shortcut-analysis-protocol-draft-v0",
+  "protocol_status": "draft_not_frozen",
+  "secondary_contrasts": [
+    "TxJ_interaction"
+  ],
+  "semantic": {
+    "aggregate_separately_from_behavioral": true,
+    "label_sensitivity": "coefficient_aware_global_flip_budget_over_actual_labels; interaction_range_[-2,2]; T/J_range_[-1,1]",
+    "withdraw_if_judge_unqualified": true
+  },
+  "weighting": {
+    "cluster": "base_id within family \u00d7 intended_difficulty",
+    "families": "equal",
+    "information_states": "equal"
+  },
+  "zero_event_policy": {
+    "degenerate_bootstrap_interval": "do_not_claim_zero_population_risk",
+    "independent_base_rule_of_three": true,
+    "require_finite_sample_language": true
+  }
+}

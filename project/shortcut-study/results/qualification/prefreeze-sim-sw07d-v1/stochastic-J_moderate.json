@@ -1,0 +1,91 @@
+{
+  "contrasts": {
+    "J_visibility": {
+      "all_assigned_bounds": [
+        0.3625,
+        0.3625
+      ],
+      "bases_used_bootstrap": 20,
+      "bonferroni_975": [
+        0.2125,
+        0.5
+      ],
+      "complete_block_point": 0.3625,
+      "interval_width_95": 0.250312,
+      "percentile_95": [
+        0.23718750000000277,
+        0.48750000000000004
+      ],
+      "percentile_95_excludes_zero": true,
+      "point": 0.3625
+    },
+    "T_visibility": {
+      "all_assigned_bounds": [
+        0.1125,
+        0.1125
+      ],
+      "bases_used_bootstrap": 20,
+      "bonferroni_975": [
+        -0.05,
+        0.2625
+      ],
+      "complete_block_point": 0.1125,
+      "interval_width_95": 0.2875,
+      "percentile_95": [
+        -0.03749999999999999,
+        0.25
+      ],
+      "percentile_95_excludes_zero": false,
+      "point": 0.1125
+    },
+    "TxJ_interaction": {
+      "all_assigned_bounds": [
+        0.275,
+        0.275
+      ],
+      "bases_used_bootstrap": 20,
+      "bonferroni_975": [
+        6.938893903907228e-18,
+        0.525
+      ],
+      "complete_block_point": 0.275,
+      "interval_width_95": 0.425,
+      "percentile_95": [
+        0.05,
+        0.47500000000000003
+      ],
+      "percentile_95_excludes_zero": true,
+      "point": 0.275
+    }
+  },
+  "design": {
+    "baseline": 0.05,
+    "bases": 20,
+    "cell_probabilities": {
+      "V00": 0.05,
+      "V01": 0.3,
+      "V10": 0.05,
+      "V11": 0.3
+    },
+    "cluster_note": "base_scenarios_are_clusters_not_independent_episodes",
+    "j_effect": 0.25,
+    "missing_rate": 0.0,
+    "seed": 20261117,
+    "t_effect": 0.0
+  },
+  "expected_contrasts": {
+    "J_visibility": 0.25,
+    "T_visibility": 0.0,
+    "TxJ_interaction": 0.0
+  },
+  "row_count": 160,
+  "warnings": [],
+  "zero_event_independent_base_bound": {
+    "confidence": 0.95,
+    "events": 39,
+    "independent_units": 20,
+    "method": "not_applicable_nonzero_events",
+    "note": "independent_base_event_bound_not_episode_level; do_not_treat_320_episodes_as_independent",
+    "upper": null
+  }
+}

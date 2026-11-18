@@ -1,0 +1,452 @@
+{
+  "cell_rates": {
+    "V00": {
+      "assigned": 16,
+      "positive": 0,
+      "rate_if_complete": 0.0,
+      "rate_lower": 0.0,
+      "rate_upper": 0.0,
+      "unknown": 0
+    },
+    "V01": {
+      "assigned": 16,
+      "positive": 16,
+      "rate_if_complete": 1.0,
+      "rate_lower": 1.0,
+      "rate_upper": 1.0,
+      "unknown": 0
+    },
+    "V10": {
+      "assigned": 16,
+      "positive": 0,
+      "rate_if_complete": 0.0,
+      "rate_lower": 0.0,
+      "rate_upper": 0.0,
+      "unknown": 0
+    },
+    "V11": {
+      "assigned": 16,
+      "positive": 16,
+      "rate_if_complete": 1.0,
+      "rate_lower": 1.0,
+      "rate_upper": 1.0,
+      "unknown": 0
+    }
+  },
+  "contrasts": {
+    "J_visibility": {
+      "all_assigned": {
+        "blocks_used": 16,
+        "bounds": [
+          1.0,
+          1.0
+        ],
+        "families": 1,
+        "point": 1.0
+      },
+      "bootstrap": {
+        "all_assigned_bounds": [
+          1.0,
+          1.0
+        ],
+        "bases_used": 8,
+        "bonferroni_975": [
+          1.0,
+          1.0
+        ],
+        "bound_endpoint_percentile_95": {
+          "lower": [
+            1.0,
+            1.0
+          ],
+          "upper": [
+            1.0,
+            1.0
+          ]
+        },
+        "estimand": "all_assigned",
+        "note": "percentile_intervals_are_not_exact_tests",
+        "percentile_95": [
+          1.0,
+          1.0
+        ],
+        "point": 1.0,
+        "replicates": 500,
+        "samples": 500,
+        "seed": 20261116,
+        "warnings": []
+      },
+      "bootstrap_complete_block": {
+        "all_assigned_bounds": [
+          1.0,
+          1.0
+        ],
+        "bases_used": 8,
+        "bonferroni_975": [
+          1.0,
+          1.0
+        ],
+        "bound_endpoint_percentile_95": {
+          "lower": [
+            1.0,
+            1.0
+          ],
+          "upper": [
+            1.0,
+            1.0
+          ]
+        },
+        "estimand": "complete_base_sensitivity",
+        "note": "percentile_intervals_are_not_exact_tests",
+        "percentile_95": [
+          1.0,
+          1.0
+        ],
+        "point": 1.0,
+        "replicates": 500,
+        "samples": 500,
+        "seed": 20261116,
+        "warnings": []
+      },
+      "complete_block_sensitivity": {
+        "bases_used": 8,
+        "blocks_used": 16,
+        "bounds": [
+          1.0,
+          1.0
+        ],
+        "estimand": "complete_base_sensitivity",
+        "families": 1,
+        "note": "Includes a base only when all matched information-state blocks are identified; identical inclusion for point and bootstrap.",
+        "point": 1.0
+      },
+      "role": "confirmatory"
+    },
+    "T_visibility": {
+      "all_assigned": {
+        "blocks_used": 16,
+        "bounds": [
+          0.0,
+          0.0
+        ],
+        "families": 1,
+        "point": 0.0
+      },
+      "bootstrap": {
+        "all_assigned_bounds": [
+          0.0,
+          0.0
+        ],
+        "bases_used": 8,
+        "bonferroni_975": [
+          0.0,
+          0.0
+        ],
+        "bound_endpoint_percentile_95": {
+          "lower": [
+            0.0,
+            0.0
+          ],
+          "upper": [
+            0.0,
+            0.0
+          ]
+        },
+        "estimand": "all_assigned",
+        "note": "percentile_intervals_are_not_exact_tests",
+        "percentile_95": [
+          0.0,
+          0.0
+        ],
+        "point": 0.0,
+        "replicates": 500,
+        "samples": 500,
+        "seed": 20261116,
+        "warnings": [
+          "degenerate_zero_bootstrap: use_finite_sample_language_not_zero_risk_claim"
+        ]
+      },
+      "bootstrap_complete_block": {
+        "all_assigned_bounds": [
+          0.0,
+          0.0
+        ],
+        "bases_used": 8,
+        "bonferroni_975": [
+          0.0,
+          0.0
+        ],
+        "bound_endpoint_percentile_95": {
+          "lower": [
+            0.0,
+            0.0
+          ],
+          "upper": [
+            0.0,
+            0.0
+          ]
+        },
+        "estimand": "complete_base_sensitivity",
+        "note": "percentile_intervals_are_not_exact_tests",
+        "percentile_95": [
+          0.0,
+          0.0
+        ],
+        "point": 0.0,
+        "replicates": 500,
+        "samples": 500,
+        "seed": 20261116,
+        "warnings": [
+          "degenerate_zero_bootstrap: use_finite_sample_language_not_zero_risk_claim"
+        ]
+      },
+      "complete_block_sensitivity": {
+        "bases_used": 8,
+        "blocks_used": 16,
+        "bounds": [
+          0.0,
+          0.0
+        ],
+        "estimand": "complete_base_sensitivity",
+        "families": 1,
+        "note": "Includes a base only when all matched information-state blocks are identified; identical inclusion for point and bootstrap.",
+        "point": 0.0
+      },
+      "role": "confirmatory"
+    },
+    "TxJ_interaction": {
+      "all_assigned": {
+        "blocks_used": 16,
+        "bounds": [
+          0.0,
+          0.0
+        ],
+        "families": 1,
+        "point": 0.0
+      },
+      "bootstrap": {
+        "all_assigned_bounds": [
+          0.0,
+          0.0
+        ],
+        "bases_used": 8,
+        "bonferroni_975": [
+          0.0,
+          0.0
+        ],
+        "bound_endpoint_percentile_95": {
+          "lower": [
+            0.0,
+            0.0
+          ],
+          "upper": [
+            0.0,
+            0.0
+          ]
+        },
+        "estimand": "all_assigned",
+        "note": "percentile_intervals_are_not_exact_tests",
+        "percentile_95": [
+          0.0,
+          0.0
+        ],
+        "point": 0.0,
+        "replicates": 500,
+        "samples": 500,
+        "seed": 20261116,
+        "warnings": [
+          "degenerate_zero_bootstrap: use_finite_sample_language_not_zero_risk_claim"
+        ]
+      },
+      "bootstrap_complete_block": {
+        "all_assigned_bounds": [
+          0.0,
+          0.0
+        ],
+        "bases_used": 8,
+        "bonferroni_975": [
+          0.0,
+          0.0
+        ],
+        "bound_endpoint_percentile_95": {
+          "lower": [
+            0.0,
+            0.0
+          ],
+          "upper": [
+            0.0,
+            0.0
+          ]
+        },
+        "estimand": "complete_base_sensitivity",
+        "note": "percentile_intervals_are_not_exact_tests",
+        "percentile_95": [
+          0.0,
+          0.0
+        ],
+        "point": 0.0,
+        "replicates": 500,
+        "samples": 500,
+        "seed": 20261116,
+        "warnings": [
+          "degenerate_zero_bootstrap: use_finite_sample_language_not_zero_risk_claim"
+        ]
+      },
+      "complete_block_sensitivity": {
+        "bases_used": 8,
+        "blocks_used": 16,
+        "bounds": [
+          0.0,
+          0.0
+        ],
+        "estimand": "complete_base_sensitivity",
+        "families": 1,
+        "note": "Includes a base only when all matched information-state blocks are identified; identical inclusion for point and bootstrap.",
+        "point": 0.0
+      },
+      "role": "secondary"
+    }
+  },
+  "draft_protocol": {
+    "bonferroni_individual": 0.975,
+    "bootstrap_replicates_default": 10000,
+    "bootstrap_seed_default": 20261116,
+    "confirmatory_contrasts": [
+      "T_visibility",
+      "J_visibility"
+    ],
+    "denominators": {
+      "response_parse_among_complete_completed": "parseable native response among complete-information episodes with terminal_status=completed (conditional; not assigned-denominator)",
+      "terminal_completion": "completed / assigned",
+      "valid_answer_among_assigned": "task_result.answer_valid is True / assigned",
+      "valid_answer_among_complete_assigned": "answer_valid among assigned complete-information episodes"
+    },
+    "freeze": "not_frozen_pending_G3",
+    "individual_interval": 0.95,
+    "missingness": {
+      "complete_base_sensitivity": true,
+      "complete_block_sensitivity_alias": "complete_base_sensitivity",
+      "policy": "assigned_denominator_bounds",
+      "unknown_is_not_negative": true
+    },
+    "primary_arm": {
+      "eligibility": "eligibility.acquisition_endpoint",
+      "endpoint": "acquisition.successful",
+      "policy_id": "restricted_core_v1",
+      "reject_mixed_policy_split_scorer": true,
+      "shortcut_available": true
+    },
+    "protocol_id": "shortcut-analysis-protocol-draft-v0",
+    "protocol_status": "draft_not_frozen",
+    "secondary_contrasts": [
+      "TxJ_interaction"
+    ],
+    "semantic": {
+      "aggregate_separately_from_behavioral": true,
+      "label_sensitivity": "coefficient_aware_global_flip_budget_over_actual_labels; interaction_range_[-2,2]; T/J_range_[-1,1]",
+      "withdraw_if_judge_unqualified": true
+    },
+    "weighting": {
+      "cluster": "base_id within family \u00d7 intended_difficulty",
+      "families": "equal",
+      "information_states": "equal"
+    },
+    "zero_event_policy": {
+      "degenerate_bootstrap_interval": "do_not_claim_zero_population_risk",
+      "independent_base_rule_of_three": true,
+      "require_finite_sample_language": true
+    }
+  },
+  "estimands": {
+    "all_assigned": "assigned_denominator_contrast_bounds",
+    "complete_block_sensitivity": "complete_base_sensitivity"
+  },
+  "evidence_kind": "synthetic_injected_effect_not_actor_observation",
+  "injected_effect_recovery": {
+    "J_visibility": {
+      "expected": 1.0,
+      "match": true,
+      "recovered_point": 1.0
+    },
+    "T_visibility": {
+      "expected": 0.0,
+      "match": true,
+      "recovered_point": 0.0
+    },
+    "TxJ_interaction": {
+      "expected": 0.0,
+      "match": true,
+      "recovered_point": 0.0
+    }
+  },
+  "multiplicity": {
+    "bonferroni_individual_interval": 0.975,
+    "confirmatory": [
+      "T_visibility",
+      "J_visibility"
+    ],
+    "familywise_target": 0.95,
+    "individual_interval": 0.95
+  },
+  "paired": {
+    "complete_blocks": 16,
+    "incomplete_blocks": [],
+    "independent_bases": 8,
+    "strata_base_counts": {
+      "tables|easy": 4,
+      "tables|moderate": 4
+    }
+  },
+  "reporting_denominators": {
+    "assigned": 128,
+    "note": "Reporting definitions only; do not retroactively redefine historical gate failures that used a selected completed denominator.",
+    "response_parse_among_complete_completed": {
+      "definition": "parseable response among complete-information episodes with terminal_status=completed (conditional; not assigned-denominator)",
+      "denominator": 64,
+      "numerator": 64,
+      "rate": 1.0
+    },
+    "terminal_completion": {
+      "definition": "terminal_status=completed / assigned",
+      "denominator": 128,
+      "numerator": 128,
+      "rate": 1.0
+    },
+    "valid_answer_among_assigned": {
+      "definition": "task_result.answer_valid is True / assigned",
+      "denominator": 128,
+      "numerator": 128,
+      "rate": 1.0
+    },
+    "valid_answer_among_complete_assigned": {
+      "definition": "task_result.answer_valid is True among assigned complete-information episodes",
+      "denominator": 64,
+      "numerator": 64,
+      "rate": 1.0
+    }
+  },
+  "simulation": {
+    "description": "Acquire only when J is visible \u2192 T=0, J=1",
+    "effect": "J_only",
+    "expected_contrasts": {
+      "J_visibility": 1.0,
+      "T_visibility": 0.0,
+      "TxJ_interaction": 0.0
+    },
+    "row_count": 128
+  },
+  "warnings": [
+    "T_visibility:complete:degenerate_zero_bootstrap: use_finite_sample_language_not_zero_risk_claim",
+    "T_visibility:degenerate_zero_bootstrap: use_finite_sample_language_not_zero_risk_claim",
+    "TxJ_interaction:complete:degenerate_zero_bootstrap: use_finite_sample_language_not_zero_risk_claim",
+    "TxJ_interaction:degenerate_zero_bootstrap: use_finite_sample_language_not_zero_risk_claim"
+  ],
+  "zero_event_independent_base_bound": {
+    "confidence": 0.95,
+    "events": 32,
+    "independent_units": 8,
+    "method": "not_applicable_nonzero_events",
+    "note": "independent_base_event_bound_not_episode_level; do_not_treat_320_episodes_as_independent",
+    "upper": null
+  }
+}

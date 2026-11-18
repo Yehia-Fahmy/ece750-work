@@ -78,12 +78,21 @@ class ProvisionalS0ConfigTests(unittest.TestCase):
         self.assertFalse(schedule["materialization"]["done"])
         self.assertEqual(schedule["assigned_denominator"]["primary_actor_episodes"], 320)
 
-    def test_checklist_all_unchecked(self):
+    def test_checklist_stays_draft_unsigned(self):
+        """Draft checklist may record prep [x] rows; it must not claim freeze.
+
+        SW07-B/D left evidence-checked rows on the draft twin while the freeze
+        signature remains blank. Soft-signing / treating [x] prep as G3 is still
+        forbidden; the post-SW05 checklist owns freeze-prep closure tracking.
+        """
         text = CHECKLIST.read_text(encoding="utf-8")
         self.assertIn("DRAFT", text)
-        self.assertNotIn("- [x]", text)
-        self.assertGreaterEqual(text.count("- [ ]"), 17)
         self.assertIn("deliberately blank", text.lower())
+        self.assertIn("_None — deliberately blank", text)
+        self.assertIn("not an approved freeze", text.lower())
+        # Still a checklist with remaining open items; not a fully signed freeze.
+        self.assertGreaterEqual(text.count("- [ ]"), 1)
+        self.assertNotRegex(text, r"(?i)freeze commit\s*/\s*timestamp\s*/\s*accepting owner:\s*\n\n`?[0-9a-f]{7}")
 
     def test_evidence_marker(self):
         evidence = json.loads(EVIDENCE.read_text(encoding="utf-8"))
