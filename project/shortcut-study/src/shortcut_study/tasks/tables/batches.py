@@ -70,6 +70,19 @@ CONSUMED_QUALIFICATION_BATCHES: dict[str, dict[str, Any]] = {
             "easy auth 11/20=55% fails (≥80%). Batch consumed; do not reuse as fresh."
         ),
     },
+    "qual-fresh-tab-catalog-v5-001": {
+        "batch_id": "qual-fresh-tab-catalog-v5-001",
+        "status": "consumed",
+        "mode": "fresh_held_out",
+        "split": "qualification",
+        "catalog_version_at_run": "tab-catalog-v4",
+        "seed_namespace": "qual-fresh-tab-catalog-v5-001",
+        "fresh_held_out": False,
+        "notes": (
+            "Honest G2 PASS after #53/#54: completion 315/320=98.4375%; parse 156/156; "
+            "easy auth 20/20=100%. Batch consumed; do not reuse as fresh."
+        ),
+    },
 }
 
 # Seed namespaces for content-disjoint reservations. Historical qualification keeps
@@ -83,13 +96,15 @@ BATCH_SEED_NAMESPACES: dict[str, int] = {
     "qualification-fresh-v4": 40_000,
     "qual-fresh-tab-catalog-v4-001": 40_000,  # ECE-63 fresh FAIL; consumed
     "qualification-fresh-v5": 50_000,
-    "qual-fresh-tab-catalog-v5-001": 50_000,  # next unused fresh id (not greenlit)
+    "qual-fresh-tab-catalog-v5-001": 50_000,  # ECE-74 fresh PASS; consumed
+    "qualification-fresh-v6": 60_000,
+    "qual-fresh-tab-catalog-v6-001": 60_000,  # next unused fresh id (not greenlit)
     "main": 20_000,
 }
 
-# Default points at the next unused content-disjoint id (v4-001 consumed FAIL).
-DEFAULT_FRESH_QUALIFICATION_BATCH_ID = "qual-fresh-tab-catalog-v5-001"
-DEFAULT_FRESH_QUALIFICATION_NAMESPACE = "qualification-fresh-v5"
+# Default points at the next unused content-disjoint id (v5-001 consumed PASS).
+DEFAULT_FRESH_QUALIFICATION_BATCH_ID = "qual-fresh-tab-catalog-v6-001"
+DEFAULT_FRESH_QUALIFICATION_NAMESPACE = "qualification-fresh-v6"
 
 
 def is_consumed_batch(batch_id: str) -> bool:
@@ -368,7 +383,7 @@ def _probe_base(
 def build_cpu_reservation_manifest(
     *,
     fresh_batch_id: str = DEFAULT_FRESH_QUALIFICATION_BATCH_ID,
-    fresh_namespace_base: int = 50_000,
+    fresh_namespace_base: int = 60_000,
 ) -> dict[str, Any]:
     """CPU-only proof that development / consumed-qual / fresh-qual / main are disjoint."""
     register_batch_namespace(fresh_batch_id, fresh_namespace_base)
@@ -416,6 +431,7 @@ def build_cpu_reservation_manifest(
             consumed_batch_record("g2-held-out-20261116-catalog-v2"),
             consumed_batch_record("qual-fresh-tab-catalog-v3-001"),
             consumed_batch_record("qual-fresh-tab-catalog-v4-001"),
+            consumed_batch_record("qual-fresh-tab-catalog-v5-001"),
         ],
         "reservation_labels": [label for label, _, _ in labels],
         "base_counts": {label: len(rows) for label, rows in by_label.items()},

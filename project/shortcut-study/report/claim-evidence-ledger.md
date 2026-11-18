@@ -14,20 +14,20 @@ The two archived held-out attempts are **not** two independent fresh validations
 
 Evidence: `reviews/2026-11-17/research-design.md` (RD2); `reviews/2026-11-17/research-design-evidence.json` (`qualification_reuse`); consumed registry in `src/shortcut_study/tasks/tables/batches.py`.
 
-`qual-fresh-tab-catalog-v3-001` and `qual-fresh-tab-catalog-v4-001` are **consumed** (honest FAILs). Any further held-out attempt needs a **new** content-disjoint batch id. A new output directory alone is not freshness.
+`qual-fresh-tab-catalog-v3-001` and `qual-fresh-tab-catalog-v4-001` are **consumed** (honest FAILs). `qual-fresh-tab-catalog-v5-001` is **consumed** (honest **PASS**; `g2_accepted=true`). Any further held-out attempt needs a **new** content-disjoint batch id. A new output directory alone is not freshness.
 
 ## Repair status (code vs gates)
 
 | Finding | Code repair | Scientific gate status |
 | --- | --- | --- |
-| RD1–3 | Merged (#29); SW05 accepted | Content-disjoint batch API available; **G2 still failed** on consumed archives |
-| IMPL-1–3 | Merged (#30/#32); SW05 accepted | Bound audit + task-specific metrics wired; **no new held-out PASS** |
+| RD1–3 | Merged (#29); SW05 accepted | Content-disjoint batch API available; v5-001 held-out **PASS** |
+| IMPL-1–3 | Merged (#30/#32); SW05 accepted | Bound audit + task-specific metrics wired; v5-001 held-out **PASS** |
 | A1–3 | Merged (#31); SW05 accepted | Estimands/release inputs repaired; **no main analysis** |
 | A4/A5 | Addressed in SW03 package; dispositions retained as conditional/clarify in `state.json` until freeze narrative locks denominators | Do not retroactively rewrite historical gate counts |
 | G0 (TAB-only) | Historical acceptance (#22) | Scope candidate only |
 | G1 | Development/runtime evidence exists | Not a substitute for held-out G2 |
-| G2 | Four FAIL archives (incl. fresh v3-001 + v4-001) | **failed / not accepted** — no soft-accept |
-| G3 | Unsigned draft checklist only | **not_started** — blocked on accepted fresh G2 + freeze review |
+| G2 | Fresh v5-001 **PASS** (ECE-74); prior FAIL archives preserved | **accepted on v5-001 gates** — prior FAILs not rewritten; freeze/G3 still separate |
+| G3 | Unsigned draft checklist only | **not_started** — G2 actor gates met on v5-001; freeze still needs review/signature |
 
 ## Quantitative claims → artifacts
 
@@ -43,6 +43,7 @@ Use this table for report prose. Prefer hashes/paths over adjectives like “val
 | C-G2-EASY | Easy no-shortcut on prior FAIL runs ≈ 11/20 (55%) | Easy complete sc-absent bases among qualification | Analysis evidence tables in `reviews/2026-11-17/analysis-evidence.md` | Below 80% on prior FAILs |
 | C-G2-FRESH-V3 | Fresh content-disjoint held-out attempt `qual-fresh-tab-catalog-v3-001` | 320 assigned; **new** worlds (not catalog-v2 reuse) | `results/qualification/qual-fresh-tab-catalog-v3-001.json` + runs archive | **FAIL** completion 280/320=87.5% &lt;95%; easy 17/20=85% passes that subgate; **G2 not accepted**; batch **consumed** |
 | C-G2-FRESH-V4 | Fresh content-disjoint held-out attempt `qual-fresh-tab-catalog-v4-001` (post-#48) | 320 assigned; seed ns 40000 | `results/qualification/qual-fresh-tab-catalog-v4-001.json` + runs archive | **FAIL** completion 315/320=98.4375% **pass**; parse 160/160 **pass**; easy 11/20=55% **fail**; **G2 not accepted**; batch **consumed** |
+| C-G2-FRESH-V5 | Fresh content-disjoint held-out attempt `qual-fresh-tab-catalog-v5-001` (post-#53/#54) | 320 assigned; seed ns 50000 | `results/qualification/qual-fresh-tab-catalog-v5-001.json` + runs archive | **PASS** completion 315/320=98.4375%; parse 156/156=100%; easy 20/20=100%; **g2_accepted=true**; batch **consumed**; `submission_authorized=false` |
 | C-CPU-SUITE | Extension unit suite green at SW05 tip | Full `tests/` discover | SW05 handoff; tip `96eab5b` / main `91baf90` | CPU acceptance only |
 | C-SW06-DEV-NARY | Development n-ary `subtract` repair + TAB02/02–05 probes (partial; TAB03 budget_limit remains) | Development split only; **not** held-out | PR #35 / `results/development/sw06-nary-calculate-probes-v1.json` (on tip) | **Not G2**; #35 merged `be3ccda` |
 | C-SW06-DEV-TOOLFIRST | Development tool-first cues / TAB03 long-T repair (TAB02–05 V00 improved; visibility residuals remain) | Development split only; **not** held-out; no fresh qual batch | PR #37 merged `272e4d7` | **Not G2**; #37 merged |
@@ -67,19 +68,20 @@ Use this table for report prose. Prefer hashes/paths over adjectives like “val
 
 - GPU operator: `bc-1121d0a4…` on WSL DESKTOP-VEMMES3 / RTX 3070 Ti.
 - Orchestrator / SW04–SW07 CPU authors **must not** acquire the GPU lease or start a second qualification operator.
-- Fresh v3-001 **FAIL** on main (#44/#45); fresh v4-001 **FAIL** packaged (ECE-63 / #51); prior FAIL rows (`C-G2-ORIG`, `C-G2-V2`, `C-G2-FRESH-V3`, `C-G2-FRESH-V4`) preserved — do not rewrite.
-- ECE-53 **done** (#46); ECE-59 **done** (#48); ECE-63 **done** (#51 honest FAIL); ECE-69 **done** (#53 — TAB04/TAB05 easy wave C **8/8** on probes; adapter v7); G2 still not accepted.
-- ECE-74: root greenlit **NEW** fresh batch `qual-fresh-tab-catalog-v5-001` (ns 50000; TAB-only; turns 16; content-disjoint from v3/v4); `g2_accepted=false` until honest finish; development PASS ≠ qualified; `submission_authorized=false`.
-- Cutoff: Nov 22 18:00 America/Toronto → automatic S4 if no accepted qual+freeze. `submission_authorized=false`.
+- Fresh v3-001/v4-001 **FAIL** preserved; fresh v5-001 **PASS** packaged (ECE-74); prior FAIL rows not rewritten.
+- ECE-53/59/63/69 **done**; ECE-74 v5-001 honest G2 **PASS** (completion/parse/easy all pass); `submission_authorized=false`; freeze/G3 still unsigned.
+- Next unused default fresh id `qual-fresh-tab-catalog-v6-001` (ns 60000) — **not** greenlit/run.
+- Cutoff: Nov 22 18:00 America/Toronto → S4 if freeze/course path still unmet. `submission_authorized=false`.
 
 ## Do not
 
 - Present catalog-v2 as a second independent held-out confirmation
 - Soft-accept G2 on 87.5% completion or treat easy 85% as overall pass
-- Reuse `qual-fresh-tab-catalog-v3-001` or `qual-fresh-tab-catalog-v4-001` as fresh
+- Reuse `qual-fresh-tab-catalog-v3-001`, `v4-001`, or `v5-001` as fresh
 - Soft-accept G2 when completion/parse pass but easy auth fails (v4-001: 11/20=55%)
-- Soft-accept ECE-74 mid-collection (`g2_accepted` stays false until honest finish)
+- Treat G2 actor PASS as freeze signature or course submission readiness
 - Call development PASS “qualified”
 - Invent main effects or exploratory pilot estimates as confirmation
 - Soft-wash G2 FAIL or raise budgets as the primary remediation story
 - Claim course submission readiness
+- Greenlight / burn a new fresh 320 without root approval
