@@ -170,7 +170,37 @@ def main():
         action="store_true",
         help="Also require signature/G3 fields (fails on provisional unsigned trees)",
     )
+    collect_main = commands.add_parser(
+        "collect-main",
+        help="GPU: signed-freeze split=main collection (SW08); local inference only",
+    )
+    collect_main.add_argument("--out", type=Path, required=True)
+    collect_main.add_argument("--port", type=int, default=18300)
+    collect_main.add_argument(
+        "--freeze-dir",
+        type=Path,
+        default=None,
+        help="Signed freeze directory (default: configs/frozen/s0-tab-v0)",
+    )
     args = parser.parse_args()
+    if args.command == "collect-main":
+        from .main_collection import run_main_collection
+
+        summary = run_main_collection(
+            args.out,
+            port=args.port,
+            freeze_path=args.freeze_dir,
+        )
+        print(
+            f"Frozen main collection: {summary['completed']}/{summary['assigned']} completed; "
+            f"native_capture={summary['native_slice_capture_passed']}; "
+            f"memory_ok={summary['sampled_memory_check_passed']}; "
+            f"submission_authorized=false; output={args.out}",
+            flush=True,
+        )
+        if not summary.get("local_main_collection_check_passed"):
+            raise SystemExit(1)
+        return
     if args.command == "validate-freeze":
         from .freeze import (
             FreezeAuthorityError,
