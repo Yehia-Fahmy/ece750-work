@@ -53,8 +53,13 @@
     "incomplete_task_abstention_or_clarification_behavior_in_TAB_environment"
   ],
   "semantic_claims": {
-    "default": "withdrawn_unless_judge_qualified_before_freeze",
-    "condition": "WP05 live local judge passes fixture gates; else explicitly withdrawn; no cloud judge"
+    "default": "withdrawn_behavioral_only",
+    "decision": "behavioral_only_plus_semantic_withdrawal",
+    "xor_rejected_alternative": "qualify_local_semantic_judge_before_freeze",
+    "decided_at": "2026-11-18",
+    "decision_ref": "handoffs/2026-11-18-sw07-b-semantic-scope.md",
+    "evidence_ref": "results/qualification/sw07-b-semantic-scope-v1.json",
+    "condition": "SW07-B/ECE-80 selected behavioral-only before freeze; live local judge not qualified; no cloud judge; semantic conclusions withdrawn"
   },
   "withdrawn_relative_to_original_plan": {
     "original_course_core_episodes": 3200,

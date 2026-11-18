@@ -28,7 +28,8 @@
       "insufficiency_explanation"
     ],
     "reconciliation_rule": "agree_keep_or_uncertain",
-    "s0_default": "withdrawn_unless_judge_qualified"
+    "s0_default": "withdrawn_behavioral_only",
+    "decision_ref": "results/qualification/sw07-b-semantic-scope-v1.json"
   },
   "episode_budgets": {
     "owner": "configs/provisional/s0-tab-only/budgets.json until freeze",

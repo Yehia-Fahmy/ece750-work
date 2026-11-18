@@ -54,7 +54,7 @@ Use this table for report prose. Prefer hashes/paths over adjectives like “val
 | C-SW06-DEV-EASY-TAB04-05 | ECE-69 TAB04/TAB05 easy no-shortcut residual: calculate multiply/floordiv + count/rate cues; adapter v7 | Development split only; **not** held-out | `results/development/sw06-tab04-tab05-easy-residual-clearance-v1.json` | **Not G2**; wave C **8/8** authorized_success; live-qual turns still **16**; no fresh 320 |
 | C-BATCH-V3 | Fresh batch API + catalog v3 wired | CPU reservation / allocate API | `results/development/sw01-cpu-reservation-manifest-v1.json`, `#33` | v3-001 **consumed** FAIL; ECE-63 needs a **new** batch id (root-greenlit) |
 | C-MAIN | Main factorial effects / visibility contrasts | Frozen main denominator | — | **No claim** (no freeze, no main collection) |
-| C-SEM | Semantic judge conclusions | Qualified judge + frozen audit scope | — | **Withdrawn / unqualified** unless later accepted |
+| C-SEM | Semantic judge conclusions | Qualified judge + frozen audit scope | SW07-B/ECE-80 XOR on `212631a`: behavioral-only selected; `handoffs/2026-11-18-sw07-b-semantic-scope.md`, `results/qualification/sw07-b-semantic-scope-v1.json` | **Withdrawn** for freeze candidate (judge path not selected); not G3; not submission |
 
 ## Original study vs extension
 
