@@ -25,9 +25,9 @@ Evidence: `reviews/2026-11-17/research-design.md` (RD2); `reviews/2026-11-17/res
 | A1–3 | Merged (#31); SW05 accepted | Estimands/release inputs repaired; **no main analysis** |
 | A4/A5 | Addressed in SW03 package; dispositions retained as conditional/clarify in `state.json` until freeze narrative locks denominators | Do not retroactively rewrite historical gate counts |
 | G0 (TAB-only) | Historical acceptance (#22) | Scope candidate only |
-| G1 | Development/runtime evidence exists | Not a substitute for held-out G2 |
+| G1 | Vertical slice + isolation/scorer + runtime + long-pilot pack (SW07-A / ECE-79) | **booking proposed `accepted`** pending independent review ≠ author; not freeze/G3 |
 | G2 | Fresh v5-001 **PASS** (ECE-74); prior FAIL archives preserved | **accepted on v5-001 gates** — prior FAILs not rewritten; freeze/G3 still separate |
-| G3 | Unsigned draft checklist only | **not_started** — G2 actor gates met on v5-001; freeze still needs review/signature |
+| G3 | Unsigned draft checklist only | **not_started** — G1/G2 evidence ≠ freeze signature; do not soft-sign |
 
 ## Quantitative claims → artifacts
 
@@ -37,7 +37,8 @@ Use this table for report prose. Prefer hashes/paths over adjectives like “val
 | --- | --- | --- | --- | --- |
 | C-DEV-TAB01-V6 | TAB01 development 16-cell native slice completed with capture gates | Assigned development vertical-slice cells | `results/qualification/native-qualification-tab01-v6-16cell.json` | Recorded development evidence — **not** held-out |
 | C-CAP-TAB01-V6 | TAB01 capability probe (2 cells) passed under probe gates | Probe assignment set | `results/qualification/capability-probe-tab01-v6.json` | Narrow probe only |
-| C-G1-PILOTS | Long pilots: 10 development hard/extreme complete V00 sc-absent episodes | Development split only | `results/qualification/g1-long-pilots-20261116.json` | WP06 notes; not G2 |
+| C-G1-PILOTS | Long pilots: 10 development hard/extreme complete V00 sc-absent episodes | Development split only | `results/qualification/g1-long-pilots-20261116.json` | WP06 notes; 9/10 completed; not G2 |
+| C-G1-CLOSURE | G1 scientific closure: slice + isolation/scorer + runtime + long-pilot | Gate definition in WORK_PACKAGES / SWARM_WORK_PACKAGES | `results/qualification/g1-scientific-closure-sw07a-v1.json` + `handoffs/2026-11-18-sw07a-g1-closure.md` | **PASS_BOOK_G1** proposed; independent review required; not freeze |
 | C-G2-ORIG | Held-out G2 FAIL (original) | 320 assigned qualification cells | `results/qualification/g2-held-out-20261116.json` + runs archive | FAIL preserved |
 | C-G2-V2 | Held-out G2 FAIL (catalog-v2 regression reuse) | 320 assigned; **reused worlds** | `results/qualification/g2-held-out-20261116-catalog-v2.json` | FAIL preserved; **not independent** |
 | C-G2-EASY | Easy no-shortcut on prior FAIL runs ≈ 11/20 (55%) | Easy complete sc-absent bases among qualification | Analysis evidence tables in `reviews/2026-11-17/analysis-evidence.md` | Below 80% on prior FAILs |
@@ -69,6 +70,8 @@ Use this table for report prose. Prefer hashes/paths over adjectives like “val
 - GPU operator: `bc-1121d0a4…` on WSL DESKTOP-VEMMES3 / RTX 3070 Ti.
 - Orchestrator / SW04–SW07 CPU authors **must not** acquire the GPU lease or start a second qualification operator.
 - Fresh v3-001/v4-001 **FAIL** preserved; fresh v5-001 **PASS** packaged (#55 / `c3db94e`, ECE-74) and booked in `state.json` (ECE-77: `gates.G2=accepted`, `g2_accepted=true` on v5 evidence only); prior FAIL rows not rewritten.
+- SW07-A / ECE-79 proposes booking `gates.G1=accepted` from closure pack (slice/isolation/scorer/runtime/long-pilot); rebased onto `#58`/`7ada69d` behavioral-only XOR; independent review ≠ author required; **not** freeze soft-sign.
+- SW07-B / ECE-80 **done** on main (`7ada69d`): behavioral-only + semantic withdrawal; C-SEM withdrawn; G1 booking must not reopen judge path.
 - ECE-53/59/63/69/74/76 **done**; `submission_authorized=false`; course submission remains **Yehia-only**; freeze/G3 still **unsigned** (no soft-sign).
 - Next unused default fresh id `qual-fresh-tab-catalog-v6-001` (ns 60000) — **not** greenlit/run; **no v6**; **no second GPU**.
 - Cutoff: Nov 22 18:00 America/Toronto → S4 if freeze/course path still unmet. `submission_authorized=false`.

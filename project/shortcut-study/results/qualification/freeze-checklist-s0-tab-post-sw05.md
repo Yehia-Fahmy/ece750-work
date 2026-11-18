@@ -19,7 +19,7 @@ This document does not authorize a second GPU worker or a v6 fresh batch.
 ## Still blocked before any real freeze signature
 
 - [x] **Fresh** held-out G2 PASS on content-disjoint batch (SW06) — `qual-fresh-tab-catalog-v5-001` **PASS** (completion 315/320; parse 156/156; easy 20/20); packaged `#55`/`c3db94e`; ECE-77 books `g2_accepted=true` / `gates.G2=accepted`; v3/v4 FAIL archives preserved consumed
-- [ ] G1 scientific closure recorded with long-pilot + runtime evidence as required by gates
+- [x] G1 scientific closure recorded with long-pilot + runtime/isolation/scorer evidence (SW07-A / ECE-79) — pack `results/qualification/g1-scientific-closure-sw07a-v1.json`; proposes `gates.G1=accepted` pending independent review ≠ author; long-pilot 9/10 disclosed partial; **not** freeze
 - [x] **Semantic scope XOR closed (SW07-B / ECE-80):** explicit **behavioral-only** S0 + **semantic withdrawal** — judge qualification **not** selected before freeze. Evidence: `handoffs/2026-11-18-sw07-b-semantic-scope.md`, `results/qualification/sw07-b-semantic-scope-v1.json`. Independent review ≠ author still required before merge/use as freeze input.
 - [ ] Pre-freeze analysis simulation at candidate scope (A1–5 tooling ready; simulation not a freeze) — **behavioral estimands only** under withdrawn semantics
 - [ ] Measured actor (+ non-semantic audit-prep if any) forecast with reserve fitting cutoffs — **no** live judge GPU budget under this scope
@@ -29,12 +29,18 @@ This document does not authorize a second GPU worker or a v6 fresh batch.
 
 Freeze commit / timestamp / accepting owner:
 
-_None — deliberately blank. G2 actor PASS ≠ freeze signature. SW07-B does not soft-sign._
+_None — deliberately blank. G1/G2 evidence + SW07-B semantic withdrawal ≠ freeze signature. Do not soft-sign._
 
 Accepted evidence paths for freeze:
 
-_G2 actor evidence (complete); semantic-scope decision recorded (unsigned freeze); freeze signature still pending:_
+_G1+G2 scientific evidence recorded; semantic-scope decision recorded (unsigned freeze); freeze signature still pending:_
 
+- `results/qualification/g1-scientific-closure-sw07a-v1.json`
+- `handoffs/2026-11-18-sw07a-g1-closure.md`
+- `results/qualification/g1-long-pilots-20261116.json`
+- `results/qualification/local-native-v1.json`
+- `results/development/cpu-vertical-slice-v1.json`
+- `results/development/wp04-scoring-fixtures-v1.json`
 - `results/qualification/qual-fresh-tab-catalog-v5-001.json`
 - `handoffs/2026-11-17-sw06-fresh-qual-v5-001.md`
 - semantic-scope: `handoffs/2026-11-18-sw07-b-semantic-scope.md`
