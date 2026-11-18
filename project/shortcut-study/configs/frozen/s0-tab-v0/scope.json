@@ -60,13 +60,13 @@
   },
   "schema_version": "shortcut-scope-config-v1",
   "semantic_claims": {
-    "default": "withdrawn_behavioral_only",
-    "decision": "behavioral_only_plus_semantic_withdrawal",
-    "xor_rejected_alternative": "qualify_local_semantic_judge_before_freeze",
+    "condition": "SW07-B/ECE-80 selected behavioral-only before freeze; live local judge not qualified; no cloud judge; semantic conclusions withdrawn",
     "decided_at": "2026-11-18",
+    "decision": "behavioral_only_plus_semantic_withdrawal",
     "decision_ref": "handoffs/2026-11-18-sw07-b-semantic-scope.md",
+    "default": "withdrawn_behavioral_only",
     "evidence_ref": "results/qualification/sw07-b-semantic-scope-v1.json",
-    "condition": "SW07-B/ECE-80 selected behavioral-only before freeze; live local judge not qualified; no cloud judge; semantic conclusions withdrawn"
+    "xor_rejected_alternative": "qualify_local_semantic_judge_before_freeze"
   },
   "status": "provisional_materialization_unsigned",
   "stretch_s1_not_selected": {

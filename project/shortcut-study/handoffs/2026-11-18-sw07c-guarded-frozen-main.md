@@ -2,7 +2,7 @@
 
 - Owner and role: CPU integrator worker (`bc-c874d68f…`); **not** freeze signer
 - Status: ready_for_review — provisional unsigned frozen tree + guarded path; **G3 remains not_started**
-- Input commit: originally `212631a`; **rebased onto `937248b`** (SW07-A / #57 G1 + SW07-B / #58 behavioral-only). Freeze remains `signed=false` / signature blank.
+- Input commit: originally `212631a`; **rebased onto `937248b`** (SW07-A / #57 G1 + SW07-B / #58 behavioral-only). Frozen tree **rematerialized** from post-`#58` provisional (`withdrawn_behavioral_only`); hashes re-pinned. Freeze remains `signed=false` / signature blank.
 - Output paths:
   - `src/shortcut_study/freeze.py`
   - `configs/frozen/s0-tab-v0/` (unsigned provisional materialization)

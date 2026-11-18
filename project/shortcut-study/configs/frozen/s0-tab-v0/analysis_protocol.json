@@ -39,11 +39,11 @@
   ],
   "semantic": {
     "aggregate_separately_from_behavioral": true,
-    "label_sensitivity": "primary_vs_reconciled_plus_bounded_error",
-    "withdraw_if_judge_unqualified": true,
-    "scope_decision": "withdrawn_behavioral_only",
     "decision_ref": "results/qualification/sw07-b-semantic-scope-v1.json",
-    "live_judge_in_freeze_scope": false
+    "label_sensitivity": "primary_vs_reconciled_plus_bounded_error",
+    "live_judge_in_freeze_scope": false,
+    "scope_decision": "withdrawn_behavioral_only",
+    "withdraw_if_judge_unqualified": true
   },
   "simulation_before_freeze": {
     "done": false,

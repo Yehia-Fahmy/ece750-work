@@ -9,6 +9,9 @@
   "input_commit": "212631a798ea6ca930aaef4626001002d79e707a",
   "rebased_onto": "937248bb4f67e13e5929e8d5a92ed327adb8f247",
   "rebase_note": "Rebased onto #57 G1 + #58 behavioral-only tip (937248b); freeze remains signed=false / blank",
+  "rematerialized_after_review": true,
+  "semantic_scope_default": "withdrawn_behavioral_only",
+  "review_fix": "Lagging review: rematerialized frozen scope from post-#58 provisional; re-pinned component_sha256; stale withdrawn_unless_judge_qualified_before_freeze removed",
   "protocol_version": "s0-tab-v0",
   "frozen_directory": "configs/frozen/s0-tab-v0/",
   "artifacts": {

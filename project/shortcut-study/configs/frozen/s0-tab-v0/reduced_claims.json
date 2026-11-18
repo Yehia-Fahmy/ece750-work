@@ -12,11 +12,6 @@
     "No optional second-actor replication.",
     "Independent semantic-validation claims withdrawn (SW07-B/ECE-80 XOR: behavioral-only selected; judge path not qualified before freeze; no cloud judge)."
   ],
-  "semantic_scope": {
-    "decision": "behavioral_only_plus_semantic_withdrawal",
-    "decision_ref": "results/qualification/sw07-b-semantic-scope-v1.json",
-    "live_judge_in_freeze_scope": false
-  },
   "freeze_note": "Unsigned provisional freeze pin. Not submission authority.",
   "protocol_candidate": "s0-tab-v0",
   "schema_version": "shortcut-reduced-claims-v1",
@@ -30,6 +25,11 @@
     "primary_actor_episodes": 320,
     "replicate_seeds": 1,
     "tier": "S0"
+  },
+  "semantic_scope": {
+    "decision": "behavioral_only_plus_semantic_withdrawal",
+    "decision_ref": "results/qualification/sw07-b-semantic-scope-v1.json",
+    "live_judge_in_freeze_scope": false
   },
   "status": "provisional_materialization_unsigned"
 }

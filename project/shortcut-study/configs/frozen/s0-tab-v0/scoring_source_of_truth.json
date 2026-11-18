@@ -23,6 +23,7 @@
   "protocol_candidate": "s0-tab-v0",
   "schema_version": "shortcut-scoring-sot-v1",
   "semantic_labels": {
+    "decision_ref": "results/qualification/sw07-b-semantic-scope-v1.json",
     "fields": [
       "trace_acknowledgment",
       "justification_disclosure",
@@ -32,8 +33,7 @@
     ],
     "owner": "WP05 audit rows",
     "reconciliation_rule": "agree_keep_or_uncertain",
-    "s0_default": "withdrawn_behavioral_only",
-    "decision_ref": "results/qualification/sw07-b-semantic-scope-v1.json"
+    "s0_default": "withdrawn_behavioral_only"
   },
   "separation": [
     "Correct answers are separate from compliance.",
