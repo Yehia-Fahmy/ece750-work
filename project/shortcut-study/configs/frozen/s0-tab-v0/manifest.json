@@ -1,0 +1,60 @@
+{
+  "blocked_actions_until_signed": [
+    "WP09 / SW08 main actor collection",
+    "Setting gates.G3=accepted",
+    "Flipping submission_authorized",
+    "Treating this tree as immutable scientific freeze authority"
+  ],
+  "components": {
+    "a_t_j_boundaries": "a_t_j_boundaries.json",
+    "actor_profile": "actor_profile.json",
+    "analysis_protocol": "analysis_protocol.json",
+    "budgets": "budgets.json",
+    "policy": "policy.json",
+    "reduced_claims": "reduced_claims.json",
+    "retry_recovery": "retry_recovery.json",
+    "schedule": "schedule.json",
+    "scope": "scope.json",
+    "scoring_source_of_truth": "scoring_source_of_truth.json",
+    "splits_reservation": "splits_reservation.json",
+    "visibility": "visibility.json"
+  },
+  "created_for": "SW07-C / ECE-81 provisional frozen materialization",
+  "freeze": {
+    "accepting_owner": null,
+    "component_sha256": {
+      "a_t_j_boundaries": "f638c1d6ca44011102b0ac7432a0edae3cd10267ef89a4d2bdc30e17266d9ccb",
+      "actor_profile": "bc7a43d481ae980f98725269a357dda93e7208fe9e27ade6190324b99464425c",
+      "analysis_protocol": "2710e4632ed9f93eada21b16a94dc9c8a0a04708b91fcd05ff2585d52ca3fd57",
+      "budgets": "09ce7f727bd6dc5ad955eb2a98f4a3b908f7a2fb114308f5c94bee06116029e3",
+      "policy": "6110c60e5f4332af91ee3a4aef48fb2b71d4dfeaa4f87c0c5306be8b49b57634",
+      "reduced_claims": "6140646d8d686f2ce95e682a52a756a0828d4d183d3745a8b61b4a5c58451df2",
+      "retry_recovery": "ba6cc59a08f646794d3e16aaa242dcf347f42c2d8c795c5365ea9e6cb6d1bf02",
+      "schedule": "55391e0b3c51aca49114751e6902bb98cc08f79b589a24ae3ee81ed32ef0c2b5",
+      "scope": "aeeb7617b7a75343e1789a158b2f7fdef5c7c8b64e30f9a8065dbd1b71f17bc1",
+      "scoring_source_of_truth": "8f8601b2bb01b7a14da4ff4fca16430156e9438778b0d396c827441b21461d05",
+      "splits_reservation": "bca7b64c61cc04d66f8c0a1fdd539cc7ddce2afa6e9ea91070f044591d110924",
+      "visibility": "8e29040ea6557308aaa5c2bd5698e8377d31ddf3fe4d867265e3203f1f6eb091"
+    },
+    "freeze_commit": null,
+    "freeze_timestamp": null,
+    "frozen_directory": "configs/frozen/s0-tab-v0/",
+    "g3_status": "not_started",
+    "note": "Deliberately unsigned. Yehia/root must sign the freeze checklist before g3_status may become accepted. Agents must not soft-sign.",
+    "signed": false
+  },
+  "gate_prerequisites": {
+    "G0": "accepted",
+    "G1": "still open scientific closure",
+    "G2": "accepted (qual-fresh-tab-catalog-v5-001)",
+    "G3": "requires Yehia signature — not_started"
+  },
+  "protocol_candidate": "s0-tab-v0",
+  "protocol_version": "s0-tab-v0",
+  "schema_version": "shortcut-freeze-manifest-v1",
+  "source_provisional": "configs/provisional/s0-tab-only/",
+  "status": "provisional_materialization_unsigned",
+  "submission_authorized": false,
+  "tier": "S0",
+  "timezone": "America/Toronto"
+}

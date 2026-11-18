@@ -110,14 +110,26 @@ def restore_native_archive(directory, actor, episode):
 _NATIVE_ALLOWED_SPLITS = frozenset({"development", "qualification"})
 
 
-def run_local_episode(task, actor, directory, *, lease, profile, run_id="local-development", limits=None):
-    """Execute one development or held-out qualification episode (never main).
+def run_local_episode(task, actor, directory, *, lease, profile, run_id="local-development",
+                      limits=None, freeze_dir=None):
+    """Execute one development, qualification, or *signed-freeze* main episode.
 
-    The operator must qualify the pinned server/profile and exact token counter
-    before using this for model measurements. There is intentionally no main-run
-    CLI. Merely supplying a profile is provenance, not runtime qualification.
+    ``split=main`` requires ``freeze_dir`` with a signed matching freeze tree.
+    Unsigned/provisional/mismatched frozen configs are rejected. Merely
+    supplying a profile is provenance, not runtime qualification or G3.
     """
-    if not isinstance(actor, LocalChatActor) or task.assignment["split"] not in _NATIVE_ALLOWED_SPLITS:
+    from ..freeze import FreezeAuthorityError, authorize_main_execution
+
+    if not isinstance(actor, LocalChatActor):
+        raise ValueError("only local development/qualification actors/assignments are supported")
+    split = task.assignment["split"]
+    freeze_authority = None
+    if split == "main":
+        try:
+            freeze_authority = authorize_main_execution(freeze_dir)
+        except FreezeAuthorityError as exc:
+            raise ValueError(str(exc)) from exc
+    elif split not in _NATIVE_ALLOWED_SPLITS:
         raise ValueError("only local development/qualification actors/assignments are supported")
     if not isinstance(lease, GpuLease):
         raise ValueError("an OS-held canonical GPU lease is required")
@@ -133,11 +145,24 @@ def run_local_episode(task, actor, directory, *, lease, profile, run_id="local-d
     episode.update(actor_id=actor_id, terminal_reason="Assigned local development episode; no generation attempted.")
     validate("episode", episode)
     write_new(directory / "assignment.json", episode)
-    write_new(directory / "inputs.json", {
+    inputs = {
         "prompt": prompt_for(task), "resources": task.resources, "hidden_truth": task.hidden_truth,
         "profile": profile, "actor_settings": actor_settings(actor), "gpu": gpu,
         "source_fingerprint": source_fingerprint(), "limits": limits,
-        "qualification_status": "unqualified_development", "history_policy": HISTORY_POLICY})
+        "qualification_status": (
+            "frozen_main_signed" if freeze_authority is not None else "unqualified_development"
+        ),
+        "history_policy": HISTORY_POLICY,
+    }
+    if freeze_authority is not None:
+        inputs["freeze_authority"] = {
+            "protocol_version": freeze_authority["protocol_version"],
+            "directory": freeze_authority["directory"],
+            "freeze_commit": freeze_authority["freeze_commit"],
+            "accepting_owner": freeze_authority["accepting_owner"],
+            "component_sha256": freeze_authority["component_sha256"],
+        }
+    write_new(directory / "inputs.json", inputs)
     environment = ToolEnvironment(
         task.resources, lambda event: append_event(directory / "events.jsonl", event),
         approved=tuple(task.public_task["approved_resources"]),

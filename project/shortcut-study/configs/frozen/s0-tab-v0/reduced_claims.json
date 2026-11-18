@@ -1,0 +1,35 @@
+{
+  "compared_to": {
+    "original_families": 5,
+    "original_plan_label": "course_core_3200",
+    "original_primary_actor_episodes": 3200,
+    "original_replicate_seeds": 2
+  },
+  "explicit_reductions": [
+    "No soft-signed G3 / frozen-protocol claim from this materialization alone.",
+    "No main collection authorization while freeze.signed is false.",
+    "No five-family breadth claim; DOC/PLAN/CODE/VERIFY out.",
+    "No optional second-actor replication.",
+    "Independent semantic-validation claims withdrawn (SW07-B/ECE-80 XOR: behavioral-only selected; judge path not qualified before freeze; no cloud judge)."
+  ],
+  "freeze_note": "Unsigned provisional freeze pin. Not submission authority.",
+  "protocol_candidate": "s0-tab-v0",
+  "schema_version": "shortcut-reduced-claims-v1",
+  "selected_candidate": {
+    "base_scenarios": 20,
+    "families": 1,
+    "family_ids": [
+      "tables"
+    ],
+    "note": "Candidate after G2 accept. Freeze signature blank; G3 not_started; submission_authorized=false.",
+    "primary_actor_episodes": 320,
+    "replicate_seeds": 1,
+    "tier": "S0"
+  },
+  "semantic_scope": {
+    "decision": "behavioral_only_plus_semantic_withdrawal",
+    "decision_ref": "results/qualification/sw07-b-semantic-scope-v1.json",
+    "live_judge_in_freeze_scope": false
+  },
+  "status": "provisional_materialization_unsigned"
+}

@@ -1,0 +1,29 @@
+# Package handoff — SW07-C / ECE-81 guarded main + provisional frozen — 2026-11-18
+
+- Owner and role: CPU integrator worker (`bc-c874d68f…`); **not** freeze signer
+- Status: ready_for_review — provisional unsigned frozen tree + guarded path; **G3 remains not_started**
+- Input commit: originally `212631a`; **rebased onto `937248b`** (SW07-A / #57 G1 + SW07-B / #58 behavioral-only). Frozen tree **rematerialized** from post-`#58` provisional (`withdrawn_behavioral_only`); hashes re-pinned. Freeze remains `signed=false` / signature blank.
+- Output paths:
+  - `src/shortcut_study/freeze.py`
+  - `configs/frozen/s0-tab-v0/` (unsigned provisional materialization)
+  - `tests/test_frozen_main_path.py`
+  - `tests/test_provisional_s0_configs.py` (draft invariants retained; frozen-absent ban lifted)
+  - `src/shortcut_study/runner/__init__.py`, `runner/native.py` (`freeze_dir` guard)
+  - `src/shortcut_study/__main__.py` (`validate-freeze`)
+  - `results/qualification/sw07c-guarded-frozen-main-v1.json`
+  - `results/qualification/freeze-checklist-s0-tab-post-sw05.md` (prep items checked; signature blank)
+  - this handoff
+- Concrete behavior:
+  - Materialized 320-row main schedule with fingerprints under `configs/frozen/s0-tab-v0/`
+  - Pinned `component_sha256` for every required freeze file
+  - `freeze.signed=false`; accepting_owner / freeze_commit / timestamp deliberately blank
+  - Mock/native runners reject `split=main` without a **signed** matching freeze; unsigned/mismatched reject
+  - Draft-era main-refusal tests kept; separate frozen-path tests added
+  - Interrupted main mock terminal remains recoverable without replacement
+- Commands / outcomes: see PR body / evidence JSON after local unittest run
+- GPU: **none** (CPU only)
+- Next safe action:
+  - Independent reviewer ≠ this author inspects the PR
+  - Yehia/root signs only after remaining checklist blockers (G1, semantic scope, pre-freeze sim, forecast)
+  - Do **not** set G3 or start SW08 from this PR
+- Acceptance reviewer, decision, and date (filled on review):

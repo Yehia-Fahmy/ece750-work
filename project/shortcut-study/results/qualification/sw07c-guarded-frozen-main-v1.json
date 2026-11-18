@@ -1,0 +1,39 @@
+{
+  "schema_version": "shortcut-sw07c-guarded-frozen-main-v1",
+  "package": "SW07-C",
+  "tracker_task": "ECE-81",
+  "status": "provisional_materialization_unsigned",
+  "signed": false,
+  "g3_set": false,
+  "submission_authorized": false,
+  "input_commit": "212631a798ea6ca930aaef4626001002d79e707a",
+  "rebased_onto": "937248bb4f67e13e5929e8d5a92ed327adb8f247",
+  "rebase_note": "Rebased onto #57 G1 + #58 behavioral-only tip (937248b); freeze remains signed=false / blank",
+  "rematerialized_after_review": true,
+  "semantic_scope_default": "withdrawn_behavioral_only",
+  "review_fix": "Lagging review: rematerialized frozen scope from post-#58 provisional; re-pinned component_sha256; stale withdrawn_unless_judge_qualified_before_freeze removed",
+  "protocol_version": "s0-tab-v0",
+  "frozen_directory": "configs/frozen/s0-tab-v0/",
+  "artifacts": {
+    "freeze_module": "src/shortcut_study/freeze.py",
+    "frozen_tree": "configs/frozen/s0-tab-v0/",
+    "tests": "tests/test_frozen_main_path.py",
+    "cli": "python -m shortcut_study validate-freeze",
+    "checklist": "results/qualification/freeze-checklist-s0-tab-post-sw05.md",
+    "handoff": "handoffs/2026-11-18-sw07c-guarded-frozen-main.md"
+  },
+  "behavior": {
+    "unsigned_frozen_rejects_main": true,
+    "mismatched_hashes_reject": true,
+    "draft_refusal_tests_retained": true,
+    "signed_matching_freeze_allows_mock_main": true,
+    "soft_sign_forbidden": true
+  },
+  "do_not": [
+    "Soft-sign freeze.signed / accepting_owner / freeze_commit",
+    "Set gates.G3=accepted from this PR alone",
+    "Flip submission_authorized",
+    "Start SW08 main collection",
+    "Self-merge without independent reviewer ≠ SW07-C author"
+  ]
+}

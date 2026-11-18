@@ -1,0 +1,54 @@
+{
+  "freeze_note": "Unsigned provisional freeze pin. Rejected for main execution until signature.",
+  "protocol_candidate": "s0-tab-v0",
+  "reservations": {
+    "development": {
+      "catalog_seed_base": 0,
+      "generation_seed_inclusive_range": [
+        0,
+        0
+      ],
+      "grandfathered_generation_seed": 0,
+      "instance_key_prefix": "dev-"
+    },
+    "main": {
+      "catalog_seed_base": 20000,
+      "generation_seed_inclusive_range": [
+        20000,
+        29999
+      ],
+      "instance_key_prefix": "main-",
+      "planned_primary_actor_episodes": 320
+    },
+    "qualification": {
+      "catalog_seed_base": 10000,
+      "generation_seed_inclusive_range": [
+        10000,
+        19999
+      ],
+      "instance_key_prefix": "qual-",
+      "note": "Historical consumed namespaces may differ; fresh batches allocate via batch API."
+    },
+    "smoke": {
+      "catalog_seed_base": 1000,
+      "generation_seed_inclusive_range": [
+        1000,
+        1999
+      ],
+      "instance_key_prefix": "smoke-"
+    }
+  },
+  "rules": {
+    "disjoint_by": [
+      "semantic_fingerprint",
+      "episode_id"
+    ],
+    "notes": [
+      "Pinned to catalog SPLIT_SEED_BASE namespaces used by generate_task.",
+      "Main generation seeds are 20000+ (not the older provisional 2000 draft range)."
+    ],
+    "shared_base_across_conditions_within_split": true
+  },
+  "schema_version": "shortcut-splits-reservation-v1",
+  "status": "provisional_materialization_unsigned"
+}
