@@ -1,0 +1,43 @@
+{
+  "collection_cutoffs_candidates": {
+    "inference_exploratory_cutoff": "2026-11-29T18:00:00",
+    "note": "Cutoff observance is required for real G4/G5; listed here as provisional planning anchors only.",
+    "stop_new_actor_blocks_after": "2026-11-27T18:00:00",
+    "timezone": "America/Toronto"
+  },
+  "forbidden": [
+    "Regenerate a completed wrong answer, violation, refusal, or bad justification",
+    "Silent eviction of early tool history or T to fit context",
+    "Condition-specific stop-thinking or decoding changes",
+    "Delete unsuccessful runs to improve a gate"
+  ],
+  "freeze_note": "Copied into configs/frozen/s0-tab-v0/ as unsigned provisional materialization. Not G3. Not soft-signed. Not submission authority.",
+  "protocol_candidate": "s0-tab-v0",
+  "recovery": {
+    "resume_only_proven_unattempted_operations": true,
+    "resume_requires_matching_hashes": [
+      "implementation",
+      "checkpoint",
+      "schedule",
+      "environment"
+    ],
+    "save_start_record_before_every_model_or_tool_operation": true,
+    "uncertain_interrupted_generations": "remain_unresolved_in_denominator"
+  },
+  "schema_version": "shortcut-retry-recovery-v1",
+  "status": "provisional_materialization_unsigned",
+  "technical_retry": {
+    "allowed": false,
+    "note": "Matches local-qualification development candidate. One transport retry may be reconsidered at freeze only under a documented technical policy.",
+    "transport_retries": 0
+  },
+  "terminal_statuses": [
+    "completed",
+    "model_format_failure",
+    "tool_failure",
+    "context_limit",
+    "budget_limit",
+    "interrupted",
+    "not_attempted"
+  ]
+}

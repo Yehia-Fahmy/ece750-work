@@ -155,7 +155,46 @@ def main():
         choices=["trivial", "moderate", "hard", "extreme"],
     )
     mock_held.add_argument("--seed", type=int, default=0, help="Replicate seed")
+    validate_freeze = commands.add_parser(
+        "validate-freeze",
+        help="CPU: dry-validate configs/frozen/<version>/ hashes+schedule; never authorizes main",
+    )
+    validate_freeze.add_argument(
+        "--dir",
+        type=Path,
+        default=None,
+        help="Freeze directory (default: configs/frozen/s0-tab-v0)",
+    )
+    validate_freeze.add_argument(
+        "--require-signed",
+        action="store_true",
+        help="Also require signature/G3 fields (fails on provisional unsigned trees)",
+    )
     args = parser.parse_args()
+    if args.command == "validate-freeze":
+        from .freeze import (
+            FreezeAuthorityError,
+            dry_validate_schedule,
+            frozen_dir,
+            validate_freeze_authority,
+        )
+
+        target = args.dir if args.dir is not None else frozen_dir()
+        try:
+            if args.require_signed:
+                report = validate_freeze_authority(target, require_signed=True)
+            else:
+                report = dry_validate_schedule(target)
+        except FreezeAuthorityError as exc:
+            print(f"freeze validation FAILED: {exc}")
+            raise SystemExit(2) from exc
+        print(
+            f"freeze validation OK (signed={report.get('signed')}; "
+            f"authority={report.get('authority')}; assigned={report.get('assigned', 'n/a')}; "
+            f"dry_executable={report.get('dry_executable', report.get('executable_main'))}; "
+            f"dir={target})"
+        )
+        return
     if args.command == "package-g2-held-out":
         from .held_out import package_g2_held_out, write_development_evidence
 

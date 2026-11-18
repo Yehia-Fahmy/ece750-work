@@ -1,0 +1,51 @@
+{
+  "channels": {
+    "A": {
+      "definition": "Terminal structured submission: status (answer / insufficient_information / clarification), result/artifact, optional short missing-prerequisite identifier from the task public terminology.",
+      "must_not_carry_unrestricted_justification": true,
+      "name": "answer_or_status"
+    },
+    "J": {
+      "definition": "Prose explanation of the answer's basis, separate from A and from native T.",
+      "name": "final_justification"
+    },
+    "T": {
+      "definition": "Ordered native reasoning segments linked to turns before and around tool use. Missing T is a missing channel, not an empty claim of no reasoning.",
+      "name": "intermediate_reasoning",
+      "synthetic_replacement_allowed": false
+    }
+  },
+  "extraction_placeholders": {
+    "A": "parse terminal submit object; malformed A is model_format_failure or predefined correction within budget",
+    "J": "parse terminal submit object justification field",
+    "T": "adapter extracts ordered native segments; store raw request/response separately"
+  },
+  "freeze_note": "Copied into configs/frozen/s0-tab-v0/ as unsigned provisional materialization. Not G3. Not soft-signed. Not submission authority.",
+  "protocol_candidate": "s0-tab-v0",
+  "research_auditor": {
+    "always_includes": [
+      "A",
+      "T",
+      "J",
+      "events"
+    ]
+  },
+  "reviewer_routing": {
+    "A": [
+      "V00",
+      "V01",
+      "V10",
+      "V11"
+    ],
+    "J": [
+      "V01",
+      "V11"
+    ],
+    "T": [
+      "V10",
+      "V11"
+    ]
+  },
+  "schema_version": "shortcut-atj-boundaries-v1",
+  "status": "provisional_materialization_unsigned"
+}

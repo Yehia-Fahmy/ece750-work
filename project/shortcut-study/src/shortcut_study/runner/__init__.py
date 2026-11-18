@@ -197,24 +197,43 @@ def finish(directory, episode, events):
     return episode, ledger
 
 
-def run_mock_episode(task, actor, directory, *, run_id="cpu-slice", limits=None):
-    """Run a trusted test adapter. Never accept native models or main assignments.
+def run_mock_episode(task, actor, directory, *, run_id="cpu-slice", limits=None,
+                     freeze_dir=None):
+    """Run a trusted test adapter.
 
-    Turn/action/wall limits are enforced. Token/context limits require a real
-    tokenizer and are intentionally not claimed by this mock-only runner.
+    Smoke/development/qualification stay open without a freeze. ``split=main``
+    requires ``freeze_dir`` pointing at a **signed** ``configs/frozen/<version>/``
+    tree whose component hashes match; unsigned/mismatched trees are rejected.
+    Do not delete this guard — see ``shortcut_study.freeze``.
     """
     from ..adapters.mock import MockActor
+    from ..freeze import FreezeAuthorityError, authorize_main_execution, load_json
     from ..tasks.tables import MOCK_RUNNER_SPLITS
 
-    if not isinstance(actor, MockActor) or task.assignment["split"] not in MOCK_RUNNER_SPLITS:
+    if not isinstance(actor, MockActor):
         raise ValueError(
             "only scripted mock actors on smoke/development/qualification splits are supported"
         )
-    budget_key = (
-        "qualification" if task.assignment["split"] == "qualification" else "development"
-    )
-    budgets = load_development_config("budgets")
-    default_limits = budgets.get(budget_key, budgets["development"])
+    split = task.assignment["split"]
+    freeze_authority = None
+    if split == "main":
+        try:
+            freeze_authority = authorize_main_execution(freeze_dir)
+        except FreezeAuthorityError as exc:
+            raise ValueError(str(exc)) from exc
+    elif split not in MOCK_RUNNER_SPLITS:
+        raise ValueError(
+            "only scripted mock actors on smoke/development/qualification splits are supported"
+        )
+    if split == "main" and freeze_dir is not None:
+        frozen_budgets = load_json(Path(freeze_dir) / "budgets.json")
+        default_limits = frozen_budgets.get("candidate_limits") or frozen_budgets.get("development")
+        if not isinstance(default_limits, dict):
+            raise ValueError("frozen budgets.json missing candidate_limits")
+    else:
+        budget_key = "qualification" if split == "qualification" else "development"
+        budgets = load_development_config("budgets")
+        default_limits = budgets.get(budget_key, budgets["development"])
     limits = deepcopy(limits if limits is not None else default_limits)
     for key in ("max_model_turns", "max_tool_actions", "max_wall_time_seconds"):
         if type(limits.get(key)) is not int or limits[key] < 1:
@@ -223,9 +242,22 @@ def run_mock_episode(task, actor, directory, *, run_id="cpu-slice", limits=None)
     directory.mkdir(parents=True, exist_ok=False)
     episode = initial_record(task, run_id, actor.strategy, limits)
     write_new(directory / "assignment.json", episode)
-    write_new(directory / "inputs.json", {"prompt": prompt_for(task), "resources": task.resources,
-                                          "hidden_truth": task.hidden_truth, "limits": limits,
-                                          "evidence_kind": "scripted_mock_not_model_observation"})
+    inputs = {
+        "prompt": prompt_for(task),
+        "resources": task.resources,
+        "hidden_truth": task.hidden_truth,
+        "limits": limits,
+        "evidence_kind": "scripted_mock_not_model_observation",
+    }
+    if freeze_authority is not None:
+        inputs["freeze_authority"] = {
+            "protocol_version": freeze_authority["protocol_version"],
+            "directory": freeze_authority["directory"],
+            "freeze_commit": freeze_authority["freeze_commit"],
+            "accepting_owner": freeze_authority["accepting_owner"],
+            "component_sha256": freeze_authority["component_sha256"],
+        }
+    write_new(directory / "inputs.json", inputs)
     environment = ToolEnvironment(
         task.resources, lambda event: append_event(directory / "events.jsonl", event),
         approved=tuple(task.public_task["approved_resources"]),

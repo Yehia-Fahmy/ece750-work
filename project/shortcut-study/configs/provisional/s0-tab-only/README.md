@@ -36,4 +36,4 @@ Human checklist draft: `results/qualification/freeze-checklist-s0-tab-draft.md` 
 
 1. Leaving an item unchecked is correct until evidence exists.
 2. Agent review ≠ human scientific validation (G3).
-3. Promoting this tree into `configs/frozen/` without G2 evidence is forbidden.
+3. After G2 accept, an **unsigned** provisional promotion may live at `configs/frozen/s0-tab-v0/` for SW07-C review. That tree does **not** authorize main until Yehia signs; soft-sign is forbidden.

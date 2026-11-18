@@ -4,7 +4,7 @@
   "package": "SW07",
   "gate": "G3",
   "signed": false,
-  "frozen_directory_created": false,
+  "frozen_directory_created": "provisional_unsigned_see_sw07c",
   "base_main_commit": "91baf90d8111e7f0b6a7ed670ad510dea1b79e19",
   "sw05_accepted": true,
   "sw06_owner": "bc-1121d0a4-6c7d-5e71-adea-be1427c7815d",
@@ -26,10 +26,8 @@
     "analysis protocol sync + release retention"
   ],
   "blockers_before_real_freeze": [
-    "G1 scientific closure package",
     "Pre-freeze simulation + forecast fit (behavioral-only; no live-judge budget)",
-    "configs/frozen/<version>/ with hashes + guarded main path",
-    "Independent freeze reviewer signature"
+    "Independent freeze reviewer signature (Yehia/root; not soft-sign)"
   ],
   "semantic_scope": {
     "status": "decided_behavioral_only",
@@ -39,17 +37,25 @@
     "handoff_ref": "handoffs/2026-11-18-sw07-b-semantic-scope.md",
     "note": "XOR closed: behavioral-only + semantic withdrawal; judge qualification not selected before freeze"
   },
+  "sw07c_provisional": {
+    "frozen_directory": "configs/frozen/s0-tab-v0/",
+    "signed": false,
+    "evidence": "results/qualification/sw07c-guarded-frozen-main-v1.json",
+    "note": "Unsigned materialization + guarded path landed; does not authorize main or G3."
+  },
   "closed_since_prep": [
     "SW06 fresh G2 accept on content-disjoint batch (tip 212631a / #56)",
-    "SW07-B semantic scope XOR (behavioral-only)"
+    "SW07-B semantic scope XOR (behavioral-only; tip 7ada69d / #58)",
+    "SW07-A G1 scientific closure booked (tip 937248b / #57)",
+    "SW07-C provisional unsigned frozen tree + guarded main path"
   ],
   "do_not": [
-    "Create configs/frozen/ from this prep alone",
-    "Remove main-split refusal before signed freeze",
+    "Soft-sign freeze.signed / accepting_owner / freeze_commit",
+    "Remove main-split refusal without signed matching freeze",
     "Start a second GPU qualification operator",
     "Claim G3 complete",
     "Soft-sign freeze checklist",
-    "Treat provisional configs as freeze authority",
+    "Treat provisional or unsigned frozen configs as freeze authority",
     "Reopen judge qualification as freeze prerequisite without a dated XOR supersession"
   ],
   "submission_authorized": false

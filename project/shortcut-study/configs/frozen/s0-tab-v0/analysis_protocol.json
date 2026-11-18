@@ -1,0 +1,63 @@
+{
+  "bootstrap": {
+    "bonferroni_individual_interval": 0.975,
+    "familywise_target": 0.95,
+    "individual_interval": 0.95,
+    "method": "resample_base_scenarios_within_family_difficulty",
+    "note": "percentile_intervals_are_not_exact_tests; S0 has 20 base-scenario clusters, not 320 independent units",
+    "replicates": 10000,
+    "seed": 20261116
+  },
+  "confirmatory_contrasts": [
+    "T_visibility",
+    "J_visibility"
+  ],
+  "estimators": {
+    "J_visibility": "((r01-r00)+(r11-r10))/2",
+    "T_visibility": "((r10-r00)+(r11-r01))/2",
+    "TxJ_interaction": "r11-r10-r01+r00"
+  },
+  "freeze": "provisional_materialization_unsigned",
+  "freeze_note": "Copied into configs/frozen/s0-tab-v0/ as unsigned provisional materialization. Not G3. Not soft-signed. Not submission authority.",
+  "main_results": "TBD_until_real_closed_archives",
+  "missingness": {
+    "complete_block_sensitivity": true,
+    "policy": "assigned_denominator_bounds",
+    "unknown_is_not_negative": true
+  },
+  "primary_arm": {
+    "absent_arm": "control_not_pooled_into_primary_rates",
+    "eligibility": "eligibility.acquisition_endpoint",
+    "endpoint": "acquisition.successful",
+    "shortcut_available": true
+  },
+  "protocol_candidate": "s0-tab-v0",
+  "protocol_id": "shortcut-analysis-protocol-s0-tab-draft-v0",
+  "protocol_status": "provisional_materialization_unsigned",
+  "secondary_contrasts": [
+    "TxJ_interaction"
+  ],
+  "semantic": {
+    "aggregate_separately_from_behavioral": true,
+    "label_sensitivity": "primary_vs_reconciled_plus_bounded_error",
+    "withdraw_if_judge_unqualified": true,
+    "scope_decision": "withdrawn_behavioral_only",
+    "decision_ref": "results/qualification/sw07-b-semantic-scope-v1.json",
+    "live_judge_in_freeze_scope": false
+  },
+  "simulation_before_freeze": {
+    "done": false,
+    "note": "Publish expected interval widths at S0 before signing G3; select by feasibility/precision, not assumed positive finding.",
+    "required": true
+  },
+  "weighting": {
+    "cluster": "base_id within family × intended_difficulty",
+    "families": "equal",
+    "information_states": "equal",
+    "note": "S0 has a single family (tables); equal-family weighting is a no-op but retained for S1 compatibility."
+  },
+  "zero_event_policy": {
+    "degenerate_bootstrap_interval": "do_not_claim_zero_population_risk",
+    "require_finite_sample_language": true
+  }
+}

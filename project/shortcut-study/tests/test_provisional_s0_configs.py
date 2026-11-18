@@ -1,4 +1,9 @@
-"""Guards for WP08/G3 provisional S0 drafts — must stay unsigned and non-frozen."""
+"""Guards for WP08/G3 provisional S0 drafts — must stay unsigned draft configs.
+
+SW07-C may commit an unsigned ``configs/frozen/<version>/`` materialization.
+These draft invariants still apply to ``configs/provisional/``; frozen-path
+authority is covered by ``test_frozen_main_path.py``.
+"""
 
 from __future__ import annotations
 
@@ -20,13 +25,17 @@ def _load(name: str) -> dict:
 
 
 class ProvisionalS0ConfigTests(unittest.TestCase):
-    def test_provisional_tree_exists_and_frozen_absent(self):
+    def test_provisional_tree_exists_and_stays_draft(self):
         self.assertTrue(PROVISIONAL_DIR.is_dir())
         self.assertTrue((PROVISIONAL_DIR / "manifest.json").is_file())
-        self.assertFalse(
-            FROZEN_DIR.exists(),
-            "configs/frozen/ must not exist for this draft PR",
-        )
+        # If a frozen tree exists, it must not be soft-signed via the provisional path.
+        if FROZEN_DIR.exists():
+            for manifest_path in FROZEN_DIR.glob("*/manifest.json"):
+                frozen = json.loads(manifest_path.read_text(encoding="utf-8"))
+                self.assertFalse(
+                    frozen.get("freeze", {}).get("signed") is True,
+                    f"{manifest_path} must remain unsigned until Yehia signs",
+                )
 
     def test_manifest_unsigned(self):
         manifest = _load("manifest.json")
