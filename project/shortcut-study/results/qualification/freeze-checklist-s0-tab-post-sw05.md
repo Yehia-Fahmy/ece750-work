@@ -31,6 +31,10 @@ Freeze commit / timestamp / accepting owner:
 
 `571d88865ee3d2d83ea152275b58436fccacc06c` / `2026-11-17T22:45:00-05:00` / `Yehia F`
 
+### Errata ECE-90 (Yehia-authorized)
+
+- [x] `primary_actor.sampling.temperature` **0.6 → 0.2** in `configs/frozen/s0-tab-v0/actor_profile.json` to align with accepted G2 qualification T=0.2 (`local-qualification.json` / `qual-fresh-tab-catalog-v5-001`); component hashes re-pinned; `freeze.signed` / G3 accepted / accepting owner Yehia F kept; `submission_authorized=false`. Independent errata review ≠ this PR author before merge.
+
 Accepted evidence paths for freeze:
 
 _G1+G2 scientific evidence; semantic-scope decision; signed frozen materialization + guarded path; pre-freeze sim + measured forecast; Yehia ECE-87 signature:_

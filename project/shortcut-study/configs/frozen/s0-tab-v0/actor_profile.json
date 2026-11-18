@@ -1,5 +1,20 @@
 {
-  "freeze_note": "Signed into configs/frozen/s0-tab-v0/ under ECE-87. G3 accepted. Behavioral-only / semantic withdrawal unchanged. submission_authorized remains false.",
+  "errata": {
+    "authorized_by": "Yehia F",
+    "field": "primary_actor.sampling.temperature",
+    "from": 0.6,
+    "id": "ECE-90",
+    "preserves": {
+      "freeze.accepting_owner": "Yehia F",
+      "freeze.g3_status": "accepted",
+      "freeze.signed": true,
+      "freeze_commit": "571d88865ee3d2d83ea152275b58436fccacc06c",
+      "submission_authorized": false
+    },
+    "reason": "Align frozen main actor sampling temperature with accepted G2 qualification temperature T=0.2 (local-qualification.json / qual-fresh-tab-catalog-v5-001).",
+    "to": 0.2
+  },
+  "freeze_note": "Signed into configs/frozen/s0-tab-v0/ under ECE-87. G3 accepted. Behavioral-only / semantic withdrawal unchanged. submission_authorized remains false. ERRATA (ECE-90, Yehia-authorized): primary_actor.sampling.temperature 0.6→0.2 to align frozen main decoding with accepted G2 qualification sampling (configs/development/local-qualification.json T=0.2; qual-fresh-tab-catalog-v5-001).",
   "optional_second_actor": {
     "included": false,
     "reason": "S0 drops optional second actor before reducing factorial controls"
@@ -25,7 +40,7 @@
     "quantization": "TBD_at_freeze_from_pinned_assets",
     "runtime": "llama.cpp b11574 candidate (owned local server path)",
     "sampling": {
-      "temperature": 0.6,
+      "temperature": 0.2,
       "top_p": 0.95
     },
     "server_context_tokens": 16384
