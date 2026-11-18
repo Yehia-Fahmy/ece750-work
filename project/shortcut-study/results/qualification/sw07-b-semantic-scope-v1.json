@@ -1,0 +1,65 @@
+{
+  "schema_version": "shortcut-sw07-b-semantic-scope-v1",
+  "package": "SW07-B",
+  "tracker_task": "ECE-80",
+  "status": "ready_for_independent_review",
+  "decision": "behavioral_only_plus_semantic_withdrawal",
+  "xor_rejected_alternative": "qualify_local_semantic_judge_before_freeze",
+  "decision_is_xor": true,
+  "base_main_commit": "212631a798ea6ca930aaef4626001002d79e707a",
+  "decided_at": "2026-11-18",
+  "timezone": "America/Toronto",
+  "author_agent": "bc-9e07f3b8-08a5-565b-8555-d4c5610d848f",
+  "gpu_used": false,
+  "freeze_signed": false,
+  "gates": {
+    "G2_on_tip": "accepted",
+    "G3": "not_started",
+    "do_not_set_G3_in_this_package": true
+  },
+  "submission_authorized": false,
+  "rationale": [
+    "No durable local semantic judge executor exists; audit/ only prepares inputs and validates response envelopes (prepare-audit explicitly performs no inference).",
+    "state.json records judge_qualified=false; reviews/2026-11-17 and WP05 handoffs still mark live judge, held-out rubric, natural-record, and chunk equivalence as unqualified.",
+    "Judge qualification requires local GPU inference on fixtures; this package is CPU-only, and the single RTX 3070 Ti must remain reserved for post-G3 actor collection rather than a late pre-freeze judge campaign.",
+    "SWARM_START and EXECUTION_PLAN authorize documented behavioral-only S0 with explicit semantic withdrawal when the judge path is inadequate; they forbid cloud judges.",
+    "Provisional S0 already defaulted to withdraw_if_judge_unqualified; this package converts that conditional into a freeze-blocking XOR choice: behavioral-only is selected; judge qualification is withdrawn from the freeze path."
+  ],
+  "scientific_consequences": {
+    "in_scope_primary_claims": [
+      "behavioral_shortcut_acquisition_contrasts_under_T_J_visibility",
+      "incomplete_task_abstention_or_clarification_behavior_in_TAB_environment"
+    ],
+    "withdrawn_claims": [
+      "independent_semantic_validation_of_T_or_J",
+      "trace_acknowledgment_as_grounded_semantic_label",
+      "justification_disclosure_as_grounded_semantic_label",
+      "process_claims_semantic_audit_conclusions",
+      "t_j_relationship_semantic_audit_conclusions",
+      "insufficiency_explanation_semantic_audit_conclusions",
+      "any_main_study_conclusion_that_requires_a_qualified_judge"
+    ],
+    "audit_pipeline_status": "prepare_only_retained; no live judge episodes planned under frozen S0",
+    "sw08_semantic_audits": "not_in_scope_under_this_decision"
+  },
+  "evidence_paths": [
+    "handoffs/2026-11-18-sw07-b-semantic-scope.md",
+    "results/qualification/freeze-checklist-s0-tab-post-sw05.md",
+    "configs/provisional/s0-tab-only/scope.json",
+    "configs/provisional/s0-tab-only/reduced_claims.json",
+    "src/shortcut_study/audit/pipeline.py",
+    "reviews/2026-11-17/README.md",
+    "handoffs/2026-11-15-audit-pipeline.md"
+  ],
+  "checklist_item_closed": "Judge qualification or explicit behavioral-only scope + semantic withdrawal before freeze",
+  "independent_review_required": true,
+  "independent_reviewer_must_differ_from_author": true,
+  "do_not": [
+    "Soft-sign freeze checklist",
+    "Create or promote configs/frozen/ from this decision alone",
+    "Set gates.G3=accepted",
+    "Set submission_authorized=true",
+    "Start GPU judge qualification to reopen semantic claims without a new dated XOR supersession before freeze",
+    "Treat audit plumbing or fixture validators as a qualified judge"
+  ]
+}

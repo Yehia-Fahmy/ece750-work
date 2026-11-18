@@ -50,3 +50,7 @@ After reviewing the work, the researcher asked for committed/pushed instructions
 The current session prepares/publishes guidance and review evidence; it does not start experiments. The next executing swarm may implement, qualify and collect under these decisions. Its exact scope, actor/judge configuration and inference plan still require accepted scientific gates, the local RTX 3070 Ti lease, zero external experimental inference, and an immutable pre-main freeze. No permission is granted to change protected original science or erase failed runs.
 
 Current plan: [SWARM_START](SWARM_START.md). Assignments/acceptance: `state.json.swarm_handoff`. Review/source-baseline reconciliation: [November 17 handoff](handoffs/2026-11-17-completion-swarm.md).
+
+### November 18 — SW07-B / ECE-80 semantic scope XOR (pre-freeze)
+
+- **D16:** For the S0 freeze candidate on main tip `212631a`, choose **behavioral-only scope + explicit semantic withdrawal**. Do **not** pursue local judge qualification as a freeze prerequisite. Rationale: no live judge executor; `judge_qualified=false`; judge qualification needs the only GPU; protocol already authorizes withdrawing semantics rather than inventing labels or using a cloud judge. Evidence: [SW07-B handoff](handoffs/2026-11-18-sw07-b-semantic-scope.md), [decision JSON](results/qualification/sw07-b-semantic-scope-v1.json). This does **not** sign freeze, set G3, or authorize course submission. A later dated decision would be required to reopen the judge XOR before freeze signature.

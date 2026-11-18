@@ -31,7 +31,7 @@
   "gate_prerequisites": {
     "G0": "TAB-only catalog/spec acceptance (not five-family)",
     "G1": "vertical slice + isolation/scorer + long-episode WP06 notes",
-    "G2": "held-out actor (and judge if in scope) qualification + measured forecast",
+    "G2": "held-out actor qualification + measured forecast (judge out of scope per SW07-B behavioral-only)",
     "G3": "signed checklist + configs/frozen/<version>/ commit"
   },
   "blocked_actions_until_real_freeze": [

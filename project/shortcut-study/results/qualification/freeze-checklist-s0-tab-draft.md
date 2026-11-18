@@ -13,9 +13,9 @@ Scope candidate: **S0 TAB-only**, 20 bases × 16 cells × 1 seed = **320** prima
 - [ ] Exact observation notices, announced scoring, and policy wording are recorded. Evidence: provisional copies under `configs/provisional/s0-tab-only/`
 - [ ] Model checkpoint, quantization, runtime/template, context/decoding/history policy, and tool/episode budgets are pinned. Evidence: _hashes TBD at freeze; actor_profile.json is unqualified_
 - [ ] Terminal failure, retry, recovery, and stop rules are fixed. Evidence: draft `retry_recovery.json` only
-- [ ] Held-out actor gates pass; measured family/difficulty limitations are recorded. Evidence: **G2 not started**
-- [ ] Primary judge and any independent reviewer pass recorded fixture gates; natural agreement and rare-class limitations are disclosed. Evidence: **judge unqualified**; default S0 withdraws semantic claims
-- [ ] Evidence validation, chunk coverage, review sampling, reconciliation, and uncertainty rules are fixed. Evidence: audit prep exists; live judge pending
+- [x] Held-out actor gates pass; measured family/difficulty limitations are recorded. Evidence: G2 accepted on tip `212631a` / `#56` after v5-001 (`#55`); family/difficulty residuals disclosed in SW06 handoffs
+- [x] **Semantic scope XOR:** primary judge path **not** qualified; **behavioral-only** S0 with **explicit semantic withdrawal** (SW07-B / ECE-80). Evidence: `handoffs/2026-11-18-sw07-b-semantic-scope.md`, `results/qualification/sw07-b-semantic-scope-v1.json`. Do not treat audit prep as a qualified judge.
+- [x] Evidence validation / chunk / sampling / reconciliation rules retained for prepare-only audit plumbing; **live judge episodes out of freeze scope** under withdrawn semantics. Evidence: `src/shortcut_study/audit/pipeline.py`; SW07-B decision JSON
 - [ ] Paired contrasts, weighting, multiplicity, missingness, rare-event and label-error analyses are frozen and simulation-tested. Evidence: WP07 scaffold + draft analysis_protocol; pre-freeze simulation **not done**
 - [ ] GPU schedule and conservative actor+audit forecast fit, including reserve and report time. Evidence: **placeholders only** in budgets.json
 - [ ] Source/config/data/model hashes and randomized episode schedule are committed. Evidence: **blocked** — schedule_plan IDs not materialized; no `configs/frozen/`

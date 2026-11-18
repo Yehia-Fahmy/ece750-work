@@ -13,7 +13,7 @@
 | Seeds | **1** (`replicate_seed=0`) |
 | Primary actor episodes | **320** assigned denominator |
 | Optional second actor | Out |
-| Semantic claims | Withdrawn unless WP05 live judge qualifies before real freeze |
+| Semantic claims | **Withdrawn** — SW07-B/ECE-80 XOR chose behavioral-only; judge not qualified before freeze |
 
 ## What is here
 
