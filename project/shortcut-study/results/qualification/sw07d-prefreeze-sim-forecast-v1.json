@@ -1,0 +1,34 @@
+{
+  "artifacts": {
+    "checklist": "results/qualification/freeze-checklist-s0-tab-post-sw05.md",
+    "detection_summary": "results/qualification/prefreeze-sim-sw07d-v1/detection-summary.json",
+    "forecast": "results/qualification/prefreeze-sim-sw07d-v1/forecast.json",
+    "handoff": "handoffs/2026-11-18-sw07d-prefreeze-sim-forecast.md",
+    "simulation_dir": "results/qualification/prefreeze-sim-sw07d-v1/",
+    "simulation_summary": "results/qualification/prefreeze-sim-sw07d-v1/simulation-summary.json"
+  },
+  "cpu_only": true,
+  "g3_set": false,
+  "gpu_used": false,
+  "input_commit": "8251978",
+  "package": "SW07-D",
+  "results": {
+    "actor_gpu_hours_available": 40.0,
+    "complete_base_point_bootstrap_match": true,
+    "deterministic_all_recovered": true,
+    "fits_nov27": true,
+    "fits_nov29": true,
+    "forecast_verdict": "FITS",
+    "required_gpu_hours_with_reserve": 5.5122
+  },
+  "schema_version": "shortcut-sw07d-prefreeze-sim-forecast-v1",
+  "sha256": {
+    "detection-summary.json": "a0f8544825ab6e74a4f97d9d4321ae37c281302e13c1928830be569a5d057310",
+    "forecast.json": "c251d33b5f97aaaf0947cf6257ff2e1b636f02dcb88809f9c14f9f051f085d99",
+    "simulation-summary.json": "1c85ebbc6ed845db5955cd93c47ff8ab422d9e35b72f630d54c1ce1b447eaa44"
+  },
+  "signed": false,
+  "status": "ready_for_independent_review",
+  "submission_authorized": false,
+  "tracker_task": "ECE-82"
+}

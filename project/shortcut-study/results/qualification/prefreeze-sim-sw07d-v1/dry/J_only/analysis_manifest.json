@@ -1,0 +1,44 @@
+{
+  "command": "python -m shortcut_study analyze-dry --effect J_only --replicates 500 --seed 20261116 --out /agent/repos/ece750-work/project/shortcut-study/results/qualification/prefreeze-sim-sw07d-v1/dry/J_only",
+  "evidence_kind": "synthetic_injected_effect_not_actor_observation",
+  "frozen_main_results": false,
+  "input_sha256": {
+    "analysis_protocol_snapshot.json": "0f4e30817de4175f3e5d639ae52663c95a1c70477e0ef7f2f5386a9f1234b2e4",
+    "analysis_rows_sha256": "a631ecaf462015369a4f39329c8fc8ae624321238941ab69c4becc4b084ffbdc",
+    "protocol_sha256": "566fe5a0ecda404781bf601aa7a39b9280a01d68119fd01980c65044a2deae78",
+    "retained:analysis_rows.json": "79f3498130aad6766509f6222d08e60332c5617218cf046bcde3e8ce10384b50",
+    "retained:schedule.json": "606025e2f799922d1cbe7f59af6c086cee2ec36a370384ad115d2a40cdafe7ba",
+    "schedule_sha256": "f7567e4121115cdd202de1839f7747b473075e0bba3d88bb0c824d0699396d7b"
+  },
+  "input_source_paths": {
+    "analysis_rows.json": "/tmp/shortcut-analyze-dry-7pjmlaa1/analysis_rows.json",
+    "schedule.json": "/tmp/shortcut-analyze-dry-7pjmlaa1/schedule.json"
+  },
+  "inputs": {
+    "analysis_rows_sha256": "a631ecaf462015369a4f39329c8fc8ae624321238941ab69c4becc4b084ffbdc",
+    "effect": "J_only",
+    "materialize_fixtures": false,
+    "protocol_id": "shortcut-analysis-protocol-draft-v0",
+    "protocol_sha256": "566fe5a0ecda404781bf601aa7a39b9280a01d68119fd01980c65044a2deae78",
+    "replicates": 500,
+    "schedule_sha256": "f7567e4121115cdd202de1839f7747b473075e0bba3d88bb0c824d0699396d7b",
+    "seed": 20261116,
+    "source": "synthetic_build_simulation_bundle"
+  },
+  "note": "Scaffolding/dry outputs are not main scientific findings. Main contrasts remain TBD until real closed archives exist.",
+  "output_sha256": {
+    "analysis_protocol_snapshot.json": "0f4e30817de4175f3e5d639ae52663c95a1c70477e0ef7f2f5386a9f1234b2e4",
+    "analysis_report.json": "bc203990148d97faa17a20cf942ee76e4afb3d4977722e8609a7d55cb66015ab"
+  },
+  "protocol_id": "shortcut-analysis-protocol-draft-v0",
+  "protocol_sha256": "0f4e30817de4175f3e5d639ae52663c95a1c70477e0ef7f2f5386a9f1234b2e4",
+  "protocol_status": "draft_not_frozen",
+  "reproduction": {
+    "native_authenticity": "Separate raw-archive package and SW02 provenance checks; not claimed by this analysis release alone.",
+    "statistical": "Replay from retained_inputs/ plus this protocol snapshot; does not prove native inference authenticity."
+  },
+  "retained_inputs": {
+    "analysis_rows.json": "retained_inputs/analysis_rows.json",
+    "schedule.json": "retained_inputs/schedule.json"
+  }
+}

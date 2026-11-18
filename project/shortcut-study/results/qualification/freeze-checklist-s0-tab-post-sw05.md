@@ -21,19 +21,19 @@ This document does not authorize a second GPU worker or a v6 fresh batch.
 - [x] **Fresh** held-out G2 PASS on content-disjoint batch (SW06) — `qual-fresh-tab-catalog-v5-001` **PASS** (completion 315/320; parse 156/156; easy 20/20); packaged `#55`/`c3db94e`; ECE-77 books `g2_accepted=true` / `gates.G2=accepted`; v3/v4 FAIL archives preserved consumed
 - [x] G1 scientific closure recorded with long-pilot + runtime/isolation/scorer evidence (SW07-A / ECE-79) — pack `results/qualification/g1-scientific-closure-sw07a-v1.json`; booked `gates.G1=accepted` on tip `937248b` / `#57`; long-pilot 9/10 disclosed partial; **not** freeze
 - [x] **Semantic scope XOR closed (SW07-B / ECE-80):** explicit **behavioral-only** S0 + **semantic withdrawal** — judge qualification **not** selected before freeze. Evidence: `handoffs/2026-11-18-sw07-b-semantic-scope.md`, `results/qualification/sw07-b-semantic-scope-v1.json`. Independent review ≠ author still required before merge/use as freeze input.
-- [ ] Pre-freeze analysis simulation at candidate scope (A1–5 tooling ready; simulation not a freeze) — **behavioral estimands only** under withdrawn semantics
-- [ ] Measured actor (+ non-semantic audit-prep if any) forecast with reserve fitting cutoffs — **no** live judge GPU budget under this scope
-- [x] Materialized main schedule + pinned hashes under `configs/frozen/<version>/` — **provisional unsigned** `configs/frozen/s0-tab-v0/` (SW07-C / ECE-81); runners still reject until signature
+- [x] Pre-freeze analysis simulation at candidate scope (A1–5 tooling; **not** a freeze) — **behavioral estimands only** under withdrawn semantics — SW07-D / ECE-82: `results/qualification/prefreeze-sim-sw07d-v1/simulation-summary.json`
+- [x] Measured actor (+ non-semantic audit-prep) forecast with reserve fitting Nov 27 / Nov 29 cutoffs — **no** live judge GPU budget under this scope — SW07-D / ECE-82: `results/qualification/prefreeze-sim-sw07d-v1/forecast.json` (verdict **FITS**; provisional 8 GPU-h/day)
+- [x] Materialized main schedule + pinned hashes under `configs/frozen/<version>/` — **provisional unsigned** `configs/frozen/s0-tab-v0/` (SW07-C / ECE-81; SW07-D re-pinned budgets/analysis_protocol hashes); runners still reject until signature
 - [x] Guarded executable main path implemented and regression-tested (do not merely delete refusal) — `shortcut_study.freeze` + `tests/test_frozen_main_path.py`; draft refusal tests retained
-- [ ] Independent freeze reviewer signature on checklist with actual evidence (Yehia/root — **not** soft-signed by orchestrator; SW07-C author ≠ freeze signer)
+- [ ] Independent freeze reviewer signature on checklist with actual evidence (Yehia/root — **not** soft-signed by orchestrator; SW07-D author ≠ freeze signer)
 
 Freeze commit / timestamp / accepting owner:
 
-_None — deliberately blank. G1/G2 evidence + SW07-B semantic withdrawal + SW07-C provisional frozen path ≠ freeze signature. Do not soft-sign._
+_None — deliberately blank. G1/G2 evidence + SW07-B semantic withdrawal + SW07-C provisional frozen path + SW07-D sim/forecast ≠ freeze signature. Do not soft-sign._
 
 Accepted evidence paths for freeze:
 
-_G1+G2 scientific evidence recorded; semantic-scope decision recorded; provisional frozen materialization + guarded path (unsigned); freeze signature still pending:_
+_G1+G2 scientific evidence recorded; semantic-scope decision recorded; provisional frozen materialization + guarded path (unsigned); pre-freeze sim + measured forecast recorded; freeze signature still pending:_
 
 - `results/qualification/g1-scientific-closure-sw07a-v1.json`
 - `handoffs/2026-11-18-sw07a-g1-closure.md`
@@ -48,6 +48,9 @@ _G1+G2 scientific evidence recorded; semantic-scope decision recorded; provision
 - provisional frozen: `configs/frozen/s0-tab-v0/`
 - guarded path: `handoffs/2026-11-18-sw07c-guarded-frozen-main.md`
 - guarded path: `results/qualification/sw07c-guarded-frozen-main-v1.json`
+- pre-freeze sim/forecast: `results/qualification/sw07d-prefreeze-sim-forecast-v1.json`
+- pre-freeze sim/forecast: `results/qualification/prefreeze-sim-sw07d-v1/`
+- pre-freeze sim/forecast: `handoffs/2026-11-18-sw07d-prefreeze-sim-forecast.md`
 - prep-only: `handoffs/2026-11-17-sw07-freeze-prep.md`
 - prep-only: `results/qualification/sw07-freeze-prep-v1.json`
 - prior draft: `results/qualification/freeze-checklist-s0-tab-draft.md`

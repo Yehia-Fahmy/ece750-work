@@ -26,9 +26,18 @@
     "analysis protocol sync + release retention"
   ],
   "blockers_before_real_freeze": [
-    "Pre-freeze simulation + forecast fit (behavioral-only; no live-judge budget)",
     "Independent freeze reviewer signature (Yehia/root; not soft-sign)"
   ],
+  "sw07d_prefreeze_sim_forecast": {
+    "status": "recorded_ready_for_independent_review",
+    "package": "SW07-D",
+    "tracker_task": "ECE-82",
+    "evidence": "results/qualification/sw07d-prefreeze-sim-forecast-v1.json",
+    "simulation": "results/qualification/prefreeze-sim-sw07d-v1/simulation-summary.json",
+    "forecast": "results/qualification/prefreeze-sim-sw07d-v1/forecast.json",
+    "forecast_verdict": "FITS",
+    "note": "Behavioral-only; no live-judge GPU; unsigned provisional; not G3"
+  },
   "semantic_scope": {
     "status": "decided_behavioral_only",
     "package": "SW07-B",
@@ -47,7 +56,8 @@
     "SW06 fresh G2 accept on content-disjoint batch (tip 212631a / #56)",
     "SW07-B semantic scope XOR (behavioral-only; tip 7ada69d / #58)",
     "SW07-A G1 scientific closure booked (tip 937248b / #57)",
-    "SW07-C provisional unsigned frozen tree + guarded main path"
+    "SW07-C provisional unsigned frozen tree + guarded main path",
+    "SW07-D pre-freeze analysis simulation + Nov 27/29 forecast FITS (unsigned)"
   ],
   "do_not": [
     "Soft-sign freeze.signed / accepting_owner / freeze_commit",

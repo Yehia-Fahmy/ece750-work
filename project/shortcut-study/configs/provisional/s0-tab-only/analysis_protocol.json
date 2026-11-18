@@ -51,7 +51,9 @@
   "main_results": "TBD_until_real_closed_archives",
   "simulation_before_freeze": {
     "required": true,
-    "done": false,
-    "note": "Publish expected interval widths at S0 before signing G3; select by feasibility/precision, not assumed positive finding."
+    "done": true,
+    "package": "SW07-D",
+    "evidence_ref": "results/qualification/prefreeze-sim-sw07d-v1/simulation-summary.json",
+    "note": "SW07-D / ECE-82 published expected interval widths + detection diagnostics at S0 (20 clusters). Synthetic only; not actor findings. Select by feasibility/precision, not assumed positive finding."
   }
 }

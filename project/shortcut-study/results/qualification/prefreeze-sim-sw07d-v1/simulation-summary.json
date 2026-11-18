@@ -1,0 +1,920 @@
+{
+  "a1_a5_notes": {
+    "A1": "complete_base_sensitivity point matches bootstrap inclusion on missingness probe",
+    "A2": "semantic label-error envelopes out of scope under withdrawn semantics; not exercised as freeze input",
+    "A3": "analyze-dry releases retain hashed schedule + rows under retained_inputs/",
+    "A4": "simulation bundles use restricted_core_v1 only; mixed-policy rejection covered by existing tests",
+    "A5": "reporting_denominators retained separately; sim does not redefine gate failures"
+  },
+  "detection_summary": {
+    "note": "Synthetic Bernoulli cells at 20 base clusters (not 320 independent episodes). Not actor observations. Used only for expected interval-width / detection diagnostics before freeze. Behavioral estimands only; semantics withdrawn (SW07-B).",
+    "precision_limitations": {
+      "cluster_reminder": "20 base clusters are not 320 independent episodes; interval widths of ~0.25\u20130.33 are expected at S0.",
+      "false_positive_excludes_zero_when_injected_null": [
+        {
+          "contrast": "J",
+          "scenario": "T_moderate"
+        },
+        {
+          "contrast": "J",
+          "scenario": "T_large"
+        }
+      ],
+      "missingness_note": "T_moderate_missing10 leaves some cells unidentified; percentile_95 on point estimand may be null \u2014 use assigned-denominator bounds / complete-base sensitivity."
+    },
+    "rows": [
+      {
+        "J_excludes_zero": false,
+        "J_point": -0.0125,
+        "J_width_95": 0.15,
+        "T_excludes_zero": false,
+        "T_point": -0.0125,
+        "T_width_95": 0.15,
+        "injected_J": 0.0,
+        "injected_T": 0.0,
+        "scenario": "null_baseline"
+      },
+      {
+        "J_excludes_zero": false,
+        "J_point": 0.1125,
+        "J_width_95": 0.2125,
+        "T_excludes_zero": true,
+        "T_point": 0.2125,
+        "T_width_95": 0.25,
+        "injected_J": 0.0,
+        "injected_T": 0.15,
+        "scenario": "T_small"
+      },
+      {
+        "J_excludes_zero": true,
+        "J_point": 0.15,
+        "J_width_95": 0.2375,
+        "T_excludes_zero": true,
+        "T_point": 0.325,
+        "T_width_95": 0.2875,
+        "injected_J": 0.0,
+        "injected_T": 0.25,
+        "scenario": "T_moderate"
+      },
+      {
+        "J_excludes_zero": true,
+        "J_point": 0.15,
+        "J_width_95": 0.2625,
+        "T_excludes_zero": true,
+        "T_point": 0.45,
+        "T_width_95": 0.3125,
+        "injected_J": 0.0,
+        "injected_T": 0.4,
+        "scenario": "T_large"
+      },
+      {
+        "J_excludes_zero": true,
+        "J_point": 0.3625,
+        "J_width_95": 0.250312,
+        "T_excludes_zero": false,
+        "T_point": 0.1125,
+        "T_width_95": 0.2875,
+        "injected_J": 0.25,
+        "injected_T": 0.0,
+        "scenario": "J_moderate"
+      },
+      {
+        "J_excludes_zero": true,
+        "J_point": 0.2625,
+        "J_width_95": 0.275,
+        "T_excludes_zero": true,
+        "T_point": 0.3375,
+        "T_width_95": 0.325,
+        "injected_J": 0.15,
+        "injected_T": 0.25,
+        "scenario": "T_and_J"
+      },
+      {
+        "J_excludes_zero": false,
+        "J_point": null,
+        "J_width_95": null,
+        "T_excludes_zero": false,
+        "T_point": null,
+        "T_width_95": null,
+        "injected_J": 0.0,
+        "injected_T": 0.25,
+        "scenario": "T_moderate_missing10"
+      }
+    ]
+  },
+  "deterministic_injected_effects": {
+    "all_recovered": true,
+    "effects": {
+      "J_only": {
+        "expected_contrasts": {
+          "J_visibility": 1.0,
+          "T_visibility": 0.0,
+          "TxJ_interaction": 0.0
+        },
+        "injected_effect_recovery": {
+          "J_visibility": {
+            "expected": 1.0,
+            "match": true,
+            "recovered_point": 1.0
+          },
+          "T_visibility": {
+            "expected": 0.0,
+            "match": true,
+            "recovered_point": 0.0
+          },
+          "TxJ_interaction": {
+            "expected": 0.0,
+            "match": true,
+            "recovered_point": 0.0
+          }
+        },
+        "recovery_ok": true,
+        "release_dir": "results/qualification/prefreeze-sim-sw07d-v1/dry/J_only",
+        "row_count": 128,
+        "warnings": [
+          "T_visibility:complete:degenerate_zero_bootstrap: use_finite_sample_language_not_zero_risk_claim",
+          "T_visibility:degenerate_zero_bootstrap: use_finite_sample_language_not_zero_risk_claim",
+          "TxJ_interaction:complete:degenerate_zero_bootstrap: use_finite_sample_language_not_zero_risk_claim",
+          "TxJ_interaction:degenerate_zero_bootstrap: use_finite_sample_language_not_zero_risk_claim"
+        ]
+      },
+      "T_only": {
+        "expected_contrasts": {
+          "J_visibility": 0.0,
+          "T_visibility": 1.0,
+          "TxJ_interaction": 0.0
+        },
+        "injected_effect_recovery": {
+          "J_visibility": {
+            "expected": 0.0,
+            "match": true,
+            "recovered_point": 0.0
+          },
+          "T_visibility": {
+            "expected": 1.0,
+            "match": true,
+            "recovered_point": 1.0
+          },
+          "TxJ_interaction": {
+            "expected": 0.0,
+            "match": true,
+            "recovered_point": 0.0
+          }
+        },
+        "recovery_ok": true,
+        "release_dir": "results/qualification/prefreeze-sim-sw07d-v1/dry/T_only",
+        "row_count": 128,
+        "warnings": [
+          "J_visibility:complete:degenerate_zero_bootstrap: use_finite_sample_language_not_zero_risk_claim",
+          "J_visibility:degenerate_zero_bootstrap: use_finite_sample_language_not_zero_risk_claim",
+          "TxJ_interaction:complete:degenerate_zero_bootstrap: use_finite_sample_language_not_zero_risk_claim",
+          "TxJ_interaction:degenerate_zero_bootstrap: use_finite_sample_language_not_zero_risk_claim"
+        ]
+      },
+      "both": {
+        "expected_contrasts": {
+          "J_visibility": 0.5,
+          "T_visibility": 0.5,
+          "TxJ_interaction": 0.0
+        },
+        "injected_effect_recovery": {
+          "J_visibility": {
+            "expected": 0.5,
+            "match": true,
+            "recovered_point": 0.5
+          },
+          "T_visibility": {
+            "expected": 0.5,
+            "match": true,
+            "recovered_point": 0.5
+          },
+          "TxJ_interaction": {
+            "expected": 0.0,
+            "match": true,
+            "recovered_point": 0.0
+          }
+        },
+        "recovery_ok": true,
+        "release_dir": "results/qualification/prefreeze-sim-sw07d-v1/dry/both",
+        "row_count": 128,
+        "warnings": [
+          "TxJ_interaction:complete:degenerate_zero_bootstrap: use_finite_sample_language_not_zero_risk_claim",
+          "TxJ_interaction:degenerate_zero_bootstrap: use_finite_sample_language_not_zero_risk_claim"
+        ]
+      },
+      "null": {
+        "expected_contrasts": {
+          "J_visibility": 0.0,
+          "T_visibility": 0.0,
+          "TxJ_interaction": 0.0
+        },
+        "injected_effect_recovery": {
+          "J_visibility": {
+            "expected": 0.0,
+            "match": true,
+            "recovered_point": 0.0
+          },
+          "T_visibility": {
+            "expected": 0.0,
+            "match": true,
+            "recovered_point": 0.0
+          },
+          "TxJ_interaction": {
+            "expected": 0.0,
+            "match": true,
+            "recovered_point": 0.0
+          }
+        },
+        "recovery_ok": true,
+        "release_dir": "results/qualification/prefreeze-sim-sw07d-v1/dry/null",
+        "row_count": 128,
+        "warnings": [
+          "J_visibility:complete:degenerate_zero_bootstrap: use_finite_sample_language_not_zero_risk_claim",
+          "J_visibility:degenerate_zero_bootstrap: use_finite_sample_language_not_zero_risk_claim",
+          "T_visibility:complete:degenerate_zero_bootstrap: use_finite_sample_language_not_zero_risk_claim",
+          "T_visibility:degenerate_zero_bootstrap: use_finite_sample_language_not_zero_risk_claim",
+          "TxJ_interaction:complete:degenerate_zero_bootstrap: use_finite_sample_language_not_zero_risk_claim",
+          "TxJ_interaction:degenerate_zero_bootstrap: use_finite_sample_language_not_zero_risk_claim",
+          "zero_observed_acquisitions: do_not_report_degenerate_zero_width_bootstrap_as_zero_risk"
+        ]
+      }
+    },
+    "missingness_T_only": {
+      "all_assigned_bounds": [
+        0.96875,
+        1.0
+      ],
+      "all_assigned_point": null,
+      "bootstrap_complete_point": 1.0,
+      "complete_base_point_bootstrap_match": true,
+      "complete_block_point": 1.0,
+      "description": "One primary-arm V10 outcome forced unknown; assigned bounds widen; complete-base point matches bootstrap inclusion",
+      "warnings": [
+        "J_visibility:complete:degenerate_zero_bootstrap: use_finite_sample_language_not_zero_risk_claim",
+        "TxJ_interaction:complete:degenerate_zero_bootstrap: use_finite_sample_language_not_zero_risk_claim"
+      ]
+    },
+    "wall_seconds": 0.253
+  },
+  "evidence_kind": "synthetic_prefreeze_simulation_not_actor_observation",
+  "main_contrasts": "TBD_until_real_closed_archives \u2014 this package does not leak or invent main effects",
+  "not_claims": [
+    "Not G3",
+    "Not executable main authority",
+    "Not actor observations",
+    "Not semantic conclusions"
+  ],
+  "package": "SW07-D",
+  "precision_limitations": {
+    "cluster_reminder": "20 base clusters are not 320 independent episodes; interval widths of ~0.25\u20130.33 are expected at S0.",
+    "false_positive_excludes_zero_when_injected_null": [
+      {
+        "contrast": "J",
+        "scenario": "T_moderate"
+      },
+      {
+        "contrast": "J",
+        "scenario": "T_large"
+      }
+    ],
+    "missingness_note": "T_moderate_missing10 leaves some cells unidentified; percentile_95 on point estimand may be null \u2014 use assigned-denominator bounds / complete-base sensitivity."
+  },
+  "schema_version": "shortcut-prefreeze-analysis-sim-sw07d-v1",
+  "scope": {
+    "base_scenarios": 20,
+    "frozen_configs": "configs/frozen/s0-tab-v0/ (unsigned provisional)",
+    "primary_actor_episodes": 320,
+    "protocol_candidate": "s0-tab-v0",
+    "semantic_scope": "withdrawn_behavioral_only",
+    "tier": "S0"
+  },
+  "status": "simulation_complete_not_freeze",
+  "stochastic_candidate_scope": {
+    "bases": 20,
+    "protocol_replicates": 10000,
+    "scenarios": {
+      "J_moderate": {
+        "contrasts": {
+          "J_visibility": {
+            "all_assigned_bounds": [
+              0.3625,
+              0.3625
+            ],
+            "bases_used_bootstrap": 20,
+            "bonferroni_975": [
+              0.2125,
+              0.5
+            ],
+            "complete_block_point": 0.3625,
+            "interval_width_95": 0.250312,
+            "percentile_95": [
+              0.23718750000000277,
+              0.48750000000000004
+            ],
+            "percentile_95_excludes_zero": true,
+            "point": 0.3625
+          },
+          "T_visibility": {
+            "all_assigned_bounds": [
+              0.1125,
+              0.1125
+            ],
+            "bases_used_bootstrap": 20,
+            "bonferroni_975": [
+              -0.05,
+              0.2625
+            ],
+            "complete_block_point": 0.1125,
+            "interval_width_95": 0.2875,
+            "percentile_95": [
+              -0.03749999999999999,
+              0.25
+            ],
+            "percentile_95_excludes_zero": false,
+            "point": 0.1125
+          },
+          "TxJ_interaction": {
+            "all_assigned_bounds": [
+              0.275,
+              0.275
+            ],
+            "bases_used_bootstrap": 20,
+            "bonferroni_975": [
+              6.938893903907228e-18,
+              0.525
+            ],
+            "complete_block_point": 0.275,
+            "interval_width_95": 0.425,
+            "percentile_95": [
+              0.05,
+              0.47500000000000003
+            ],
+            "percentile_95_excludes_zero": true,
+            "point": 0.275
+          }
+        },
+        "design": {
+          "baseline": 0.05,
+          "bases": 20,
+          "cell_probabilities": {
+            "V00": 0.05,
+            "V01": 0.3,
+            "V10": 0.05,
+            "V11": 0.3
+          },
+          "cluster_note": "base_scenarios_are_clusters_not_independent_episodes",
+          "j_effect": 0.25,
+          "missing_rate": 0.0,
+          "seed": 20261117,
+          "t_effect": 0.0
+        },
+        "expected_contrasts": {
+          "J_visibility": 0.25,
+          "T_visibility": 0.0,
+          "TxJ_interaction": 0.0
+        },
+        "row_count": 160,
+        "warnings": [],
+        "zero_event_independent_base_bound": {
+          "confidence": 0.95,
+          "events": 39,
+          "independent_units": 20,
+          "method": "not_applicable_nonzero_events",
+          "note": "independent_base_event_bound_not_episode_level; do_not_treat_320_episodes_as_independent",
+          "upper": null
+        }
+      },
+      "T_and_J": {
+        "contrasts": {
+          "J_visibility": {
+            "all_assigned_bounds": [
+              0.2625,
+              0.2625
+            ],
+            "bases_used_bootstrap": 20,
+            "bonferroni_975": [
+              0.1,
+              0.4125
+            ],
+            "complete_block_point": 0.2625,
+            "interval_width_95": 0.275,
+            "percentile_95": [
+              0.125,
+              0.4
+            ],
+            "percentile_95_excludes_zero": true,
+            "point": 0.2625
+          },
+          "T_visibility": {
+            "all_assigned_bounds": [
+              0.3375,
+              0.3375
+            ],
+            "bases_used_bootstrap": 20,
+            "bonferroni_975": [
+              0.15,
+              0.525
+            ],
+            "complete_block_point": 0.3375,
+            "interval_width_95": 0.325,
+            "percentile_95": [
+              0.175,
+              0.5
+            ],
+            "percentile_95_excludes_zero": true,
+            "point": 0.3375
+          },
+          "TxJ_interaction": {
+            "all_assigned_bounds": [
+              0.375,
+              0.375
+            ],
+            "bases_used_bootstrap": 20,
+            "bonferroni_975": [
+              0.175,
+              0.6
+            ],
+            "complete_block_point": 0.375,
+            "interval_width_95": 0.375,
+            "percentile_95": [
+              0.19999999999999998,
+              0.575
+            ],
+            "percentile_95_excludes_zero": true,
+            "point": 0.375
+          }
+        },
+        "design": {
+          "baseline": 0.05,
+          "bases": 20,
+          "cell_probabilities": {
+            "V00": 0.05,
+            "V01": 0.2,
+            "V10": 0.3,
+            "V11": 0.44999999999999996
+          },
+          "cluster_note": "base_scenarios_are_clusters_not_independent_episodes",
+          "j_effect": 0.15,
+          "missing_rate": 0.0,
+          "seed": 20261117,
+          "t_effect": 0.25
+        },
+        "expected_contrasts": {
+          "J_visibility": 0.15,
+          "T_visibility": 0.25,
+          "TxJ_interaction": 0.0
+        },
+        "row_count": 160,
+        "warnings": [],
+        "zero_event_independent_base_bound": {
+          "confidence": 0.95,
+          "events": 45,
+          "independent_units": 20,
+          "method": "not_applicable_nonzero_events",
+          "note": "independent_base_event_bound_not_episode_level; do_not_treat_320_episodes_as_independent",
+          "upper": null
+        }
+      },
+      "T_large": {
+        "contrasts": {
+          "J_visibility": {
+            "all_assigned_bounds": [
+              0.15,
+              0.15
+            ],
+            "bases_used_bootstrap": 20,
+            "bonferroni_975": [
+              0.0,
+              0.2875
+            ],
+            "complete_block_point": 0.15,
+            "interval_width_95": 0.2625,
+            "percentile_95": [
+              0.012500000000000004,
+              0.275
+            ],
+            "percentile_95_excludes_zero": true,
+            "point": 0.15
+          },
+          "T_visibility": {
+            "all_assigned_bounds": [
+              0.45,
+              0.45
+            ],
+            "bases_used_bootstrap": 20,
+            "bonferroni_975": [
+              0.2625,
+              0.625
+            ],
+            "complete_block_point": 0.45,
+            "interval_width_95": 0.3125,
+            "percentile_95": [
+              0.2875,
+              0.6000000000000001
+            ],
+            "percentile_95_excludes_zero": true,
+            "point": 0.45
+          },
+          "TxJ_interaction": {
+            "all_assigned_bounds": [
+              0.35,
+              0.35
+            ],
+            "bases_used_bootstrap": 20,
+            "bonferroni_975": [
+              0.125,
+              0.575
+            ],
+            "complete_block_point": 0.35,
+            "interval_width_95": 0.4,
+            "percentile_95": [
+              0.15,
+              0.55
+            ],
+            "percentile_95_excludes_zero": true,
+            "point": 0.35
+          }
+        },
+        "design": {
+          "baseline": 0.05,
+          "bases": 20,
+          "cell_probabilities": {
+            "V00": 0.05,
+            "V01": 0.05,
+            "V10": 0.45,
+            "V11": 0.45
+          },
+          "cluster_note": "base_scenarios_are_clusters_not_independent_episodes",
+          "j_effect": 0.0,
+          "missing_rate": 0.0,
+          "seed": 20261117,
+          "t_effect": 0.4
+        },
+        "expected_contrasts": {
+          "J_visibility": 0.0,
+          "T_visibility": 0.4,
+          "TxJ_interaction": 0.0
+        },
+        "row_count": 160,
+        "warnings": [],
+        "zero_event_independent_base_bound": {
+          "confidence": 0.95,
+          "events": 46,
+          "independent_units": 20,
+          "method": "not_applicable_nonzero_events",
+          "note": "independent_base_event_bound_not_episode_level; do_not_treat_320_episodes_as_independent",
+          "upper": null
+        }
+      },
+      "T_moderate": {
+        "contrasts": {
+          "J_visibility": {
+            "all_assigned_bounds": [
+              0.15,
+              0.15
+            ],
+            "bases_used_bootstrap": 20,
+            "bonferroni_975": [
+              0.0125,
+              0.2751562500000091
+            ],
+            "complete_block_point": 0.15,
+            "interval_width_95": 0.2375,
+            "percentile_95": [
+              0.025000000000000005,
+              0.2625
+            ],
+            "percentile_95_excludes_zero": true,
+            "point": 0.15
+          },
+          "T_visibility": {
+            "all_assigned_bounds": [
+              0.325,
+              0.325
+            ],
+            "bases_used_bootstrap": 20,
+            "bonferroni_975": [
+              0.15,
+              0.4875
+            ],
+            "complete_block_point": 0.325,
+            "interval_width_95": 0.2875,
+            "percentile_95": [
+              0.175,
+              0.4625
+            ],
+            "percentile_95_excludes_zero": true,
+            "point": 0.325
+          },
+          "TxJ_interaction": {
+            "all_assigned_bounds": [
+              0.35,
+              0.35
+            ],
+            "bases_used_bootstrap": 20,
+            "bonferroni_975": [
+              0.15,
+              0.575
+            ],
+            "complete_block_point": 0.35,
+            "interval_width_95": 0.375,
+            "percentile_95": [
+              0.175,
+              0.55
+            ],
+            "percentile_95_excludes_zero": true,
+            "point": 0.35
+          }
+        },
+        "design": {
+          "baseline": 0.05,
+          "bases": 20,
+          "cell_probabilities": {
+            "V00": 0.05,
+            "V01": 0.05,
+            "V10": 0.3,
+            "V11": 0.3
+          },
+          "cluster_note": "base_scenarios_are_clusters_not_independent_episodes",
+          "j_effect": 0.0,
+          "missing_rate": 0.0,
+          "seed": 20261117,
+          "t_effect": 0.25
+        },
+        "expected_contrasts": {
+          "J_visibility": 0.0,
+          "T_visibility": 0.25,
+          "TxJ_interaction": 0.0
+        },
+        "row_count": 160,
+        "warnings": [],
+        "zero_event_independent_base_bound": {
+          "confidence": 0.95,
+          "events": 36,
+          "independent_units": 20,
+          "method": "not_applicable_nonzero_events",
+          "note": "independent_base_event_bound_not_episode_level; do_not_treat_320_episodes_as_independent",
+          "upper": null
+        }
+      },
+      "T_moderate_missing10": {
+        "contrasts": {
+          "J_visibility": {
+            "all_assigned_bounds": [
+              -0.0875,
+              0.05
+            ],
+            "bases_used_bootstrap": 20,
+            "bonferroni_975": null,
+            "complete_block_point": 0.020833333333333332,
+            "interval_width_95": null,
+            "percentile_95": null,
+            "percentile_95_excludes_zero": false,
+            "point": null
+          },
+          "T_visibility": {
+            "all_assigned_bounds": [
+              0.1625,
+              0.3
+            ],
+            "bases_used_bootstrap": 20,
+            "bonferroni_975": null,
+            "complete_block_point": 0.3333333333333333,
+            "interval_width_95": null,
+            "percentile_95": null,
+            "percentile_95_excludes_zero": false,
+            "point": null
+          },
+          "TxJ_interaction": {
+            "all_assigned_bounds": [
+              6.938893903907228e-18,
+              0.275
+            ],
+            "bases_used_bootstrap": 20,
+            "bonferroni_975": null,
+            "complete_block_point": -0.041666666666666664,
+            "interval_width_95": null,
+            "percentile_95": null,
+            "percentile_95_excludes_zero": false,
+            "point": null
+          }
+        },
+        "design": {
+          "baseline": 0.05,
+          "bases": 20,
+          "cell_probabilities": {
+            "V00": 0.05,
+            "V01": 0.05,
+            "V10": 0.3,
+            "V11": 0.3
+          },
+          "cluster_note": "base_scenarios_are_clusters_not_independent_episodes",
+          "j_effect": 0.0,
+          "missing_rate": 0.1,
+          "seed": 20261117,
+          "t_effect": 0.25
+        },
+        "expected_contrasts": {
+          "J_visibility": 0.0,
+          "T_visibility": 0.25,
+          "TxJ_interaction": 0.0
+        },
+        "row_count": 160,
+        "warnings": [],
+        "zero_event_independent_base_bound": {
+          "confidence": 0.95,
+          "events": 24,
+          "independent_units": 20,
+          "method": "not_applicable_nonzero_events",
+          "note": "independent_base_event_bound_not_episode_level; do_not_treat_320_episodes_as_independent",
+          "upper": null
+        }
+      },
+      "T_small": {
+        "contrasts": {
+          "J_visibility": {
+            "all_assigned_bounds": [
+              0.1125,
+              0.1125
+            ],
+            "bases_used_bootstrap": 20,
+            "bonferroni_975": [
+              -0.0125,
+              0.225
+            ],
+            "complete_block_point": 0.1125,
+            "interval_width_95": 0.2125,
+            "percentile_95": [
+              0.0,
+              0.2125
+            ],
+            "percentile_95_excludes_zero": false,
+            "point": 0.1125
+          },
+          "T_visibility": {
+            "all_assigned_bounds": [
+              0.2125,
+              0.2125
+            ],
+            "bases_used_bootstrap": 20,
+            "bonferroni_975": [
+              0.075,
+              0.35
+            ],
+            "complete_block_point": 0.2125,
+            "interval_width_95": 0.25,
+            "percentile_95": [
+              0.0875,
+              0.3375
+            ],
+            "percentile_95_excludes_zero": true,
+            "point": 0.2125
+          },
+          "TxJ_interaction": {
+            "all_assigned_bounds": [
+              0.275,
+              0.275
+            ],
+            "bases_used_bootstrap": 20,
+            "bonferroni_975": [
+              0.05,
+              0.5
+            ],
+            "complete_block_point": 0.275,
+            "interval_width_95": 0.4,
+            "percentile_95": [
+              0.07500000000000001,
+              0.475
+            ],
+            "percentile_95_excludes_zero": true,
+            "point": 0.275
+          }
+        },
+        "design": {
+          "baseline": 0.05,
+          "bases": 20,
+          "cell_probabilities": {
+            "V00": 0.05,
+            "V01": 0.05,
+            "V10": 0.2,
+            "V11": 0.2
+          },
+          "cluster_note": "base_scenarios_are_clusters_not_independent_episodes",
+          "j_effect": 0.0,
+          "missing_rate": 0.0,
+          "seed": 20261117,
+          "t_effect": 0.15
+        },
+        "expected_contrasts": {
+          "J_visibility": 0.0,
+          "T_visibility": 0.15,
+          "TxJ_interaction": 0.0
+        },
+        "row_count": 160,
+        "warnings": [],
+        "zero_event_independent_base_bound": {
+          "confidence": 0.95,
+          "events": 27,
+          "independent_units": 20,
+          "method": "not_applicable_nonzero_events",
+          "note": "independent_base_event_bound_not_episode_level; do_not_treat_320_episodes_as_independent",
+          "upper": null
+        }
+      },
+      "null_baseline": {
+        "contrasts": {
+          "J_visibility": {
+            "all_assigned_bounds": [
+              -0.0125,
+              -0.0125
+            ],
+            "bases_used_bootstrap": 20,
+            "bonferroni_975": [
+              -0.1,
+              0.075
+            ],
+            "complete_block_point": -0.0125,
+            "interval_width_95": 0.15,
+            "percentile_95": [
+              -0.08750000000000001,
+              0.0625
+            ],
+            "percentile_95_excludes_zero": false,
+            "point": -0.0125
+          },
+          "T_visibility": {
+            "all_assigned_bounds": [
+              -0.0125,
+              -0.0125
+            ],
+            "bases_used_bootstrap": 20,
+            "bonferroni_975": [
+              -0.1,
+              0.075
+            ],
+            "complete_block_point": -0.0125,
+            "interval_width_95": 0.15,
+            "percentile_95": [
+              -0.08750000000000001,
+              0.0625
+            ],
+            "percentile_95_excludes_zero": false,
+            "point": -0.0125
+          },
+          "TxJ_interaction": {
+            "all_assigned_bounds": [
+              0.025,
+              0.025
+            ],
+            "bases_used_bootstrap": 20,
+            "bonferroni_975": [
+              -0.125,
+              0.175
+            ],
+            "complete_block_point": 0.025,
+            "interval_width_95": 0.25,
+            "percentile_95": [
+              -0.1,
+              0.15000000000000002
+            ],
+            "percentile_95_excludes_zero": false,
+            "point": 0.025
+          }
+        },
+        "design": {
+          "baseline": 0.05,
+          "bases": 20,
+          "cell_probabilities": {
+            "V00": 0.05,
+            "V01": 0.05,
+            "V10": 0.05,
+            "V11": 0.05
+          },
+          "cluster_note": "base_scenarios_are_clusters_not_independent_episodes",
+          "j_effect": 0.0,
+          "missing_rate": 0.0,
+          "seed": 20261117,
+          "t_effect": 0.0
+        },
+        "expected_contrasts": {
+          "J_visibility": 0.0,
+          "T_visibility": 0.0,
+          "TxJ_interaction": 0.0
+        },
+        "row_count": 160,
+        "warnings": [],
+        "zero_event_independent_base_bound": {
+          "confidence": 0.95,
+          "events": 9,
+          "independent_units": 20,
+          "method": "not_applicable_nonzero_events",
+          "note": "independent_base_event_bound_not_episode_level; do_not_treat_320_episodes_as_independent",
+          "upper": null
+        }
+      }
+    },
+    "seed": 20261116,
+    "wall_seconds": 4.575
+  },
+  "tracker_task": "ECE-82"
+}
