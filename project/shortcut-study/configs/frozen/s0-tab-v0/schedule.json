@@ -6103,7 +6103,7 @@
       "visibility": "V11"
     }
   ],
-  "executable": false,
+  "executable": true,
   "execution_policy": {
     "condition_balanced_blocks": true,
     "interrupted_ids_remain_in_denominator": true,
@@ -6116,10 +6116,10 @@
     "rows": 320,
     "unique_base_fingerprints": 20
   },
-  "note": "Provisional materialization for SW07-C review. executable=false until Yehia signs the freeze checklist and g3_status becomes accepted; runners reject unsigned/mismatched trees.",
+  "note": "Signed freeze for s0-tab-v0 (ECE-87 / Yehia F). executable=true after freeze signature; runners still require matching signed manifest + component hashes. Behavioral-only scope unchanged.",
   "protocol_candidate": "s0-tab-v0",
   "replicate_seed": 0,
   "schema_version": "shortcut-frozen-schedule-v1",
   "split": "main",
-  "status": "provisional_materialization_unsigned"
+  "status": "frozen_signed"
 }

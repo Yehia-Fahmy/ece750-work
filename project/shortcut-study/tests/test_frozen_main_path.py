@@ -1,4 +1,4 @@
-"""SW07-C: provisional frozen materialization + guarded main path regressions."""
+"""SW07-C / ECE-87: frozen materialization + guarded main path regressions."""
 
 from __future__ import annotations
 
@@ -28,28 +28,49 @@ PROVISIONAL_DIR = CONFIGS_DIR / "provisional" / "s0-tab-only"
 FROZEN = frozen_dir(PROTOCOL_CANDIDATE)
 
 
-class ProvisionalFrozenMaterializationTests(unittest.TestCase):
-    def test_committed_frozen_tree_is_unsigned_and_hash_pinned(self):
+class SignedFrozenMaterializationTests(unittest.TestCase):
+    def test_committed_frozen_tree_is_signed_and_hash_pinned(self):
         self.assertTrue(FROZEN.is_dir())
         manifest = json.loads((FROZEN / "manifest.json").read_text(encoding="utf-8"))
-        self.assertEqual(manifest["status"], "provisional_materialization_unsigned")
-        self.assertFalse(manifest["freeze"]["signed"])
-        self.assertIsNone(manifest["freeze"]["accepting_owner"])
-        self.assertIsNone(manifest["freeze"]["freeze_commit"])
-        self.assertEqual(manifest["freeze"]["g3_status"], "not_started")
+        self.assertEqual(manifest["status"], "frozen_signed")
+        self.assertTrue(manifest["freeze"]["signed"])
+        self.assertEqual(manifest["freeze"]["accepting_owner"], "Yehia F")
+        self.assertEqual(
+            manifest["freeze"]["freeze_commit"],
+            "571d88865ee3d2d83ea152275b58436fccacc06c",
+        )
+        self.assertEqual(manifest["freeze"]["g3_status"], "accepted")
         self.assertFalse(manifest["submission_authorized"])
+        scope = json.loads((FROZEN / "scope.json").read_text(encoding="utf-8"))
+        self.assertEqual(
+            scope["semantic_claims"]["default"], "withdrawn_behavioral_only"
+        )
         dry = dry_validate_schedule(FROZEN)
         self.assertEqual(dry["assigned"], 320)
-        self.assertFalse(dry["dry_executable"])
-        self.assertFalse(dry["signed"])
+        self.assertTrue(dry["signed"])
+        authority = validate_freeze_authority(FROZEN, require_signed=True)
+        self.assertTrue(authority["executable_main"])
+        self.assertEqual(authority["authority"], "accepted")
 
-    def test_unsigned_frozen_tree_rejects_main_authority(self):
-        with self.assertRaises(FreezeAuthorityError):
-            validate_freeze_authority(FROZEN, require_signed=True)
-        with self.assertRaises(FreezeAuthorityError):
-            authorize_main_execution(FROZEN)
+    def test_unsigned_clone_rejects_main_authority(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            clone = Path(tmp) / "frozen"
+            shutil.copytree(FROZEN, clone)
+            manifest = json.loads((clone / "manifest.json").read_text(encoding="utf-8"))
+            manifest["status"] = "provisional_materialization_unsigned"
+            manifest["freeze"]["signed"] = False
+            manifest["freeze"]["accepting_owner"] = None
+            manifest["freeze"]["freeze_commit"] = None
+            manifest["freeze"]["g3_status"] = "not_started"
+            (clone / "manifest.json").write_text(
+                json.dumps(manifest, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+            )
+            with self.assertRaises(FreezeAuthorityError):
+                validate_freeze_authority(clone, require_signed=True)
+            with self.assertRaises(FreezeAuthorityError):
+                authorize_main_execution(clone)
 
-    def test_hash_mismatch_rejects_even_structurally(self):
+    def test_hash_mismatch_rejects_even_when_signed(self):
         with tempfile.TemporaryDirectory() as tmp:
             clone = Path(tmp) / "frozen"
             shutil.copytree(FROZEN, clone)
@@ -63,15 +84,15 @@ class ProvisionalFrozenMaterializationTests(unittest.TestCase):
             self.assertIn("hash mismatch", str(ctx.exception))
 
     def test_provisional_draft_tree_invariants_retained(self):
-        """Draft-era provisional configs stay unsigned; frozen existence is allowed now."""
+        """Draft-era provisional configs stay unsigned; frozen tree is separately signed."""
         self.assertTrue(PROVISIONAL_DIR.is_dir())
         manifest = json.loads((PROVISIONAL_DIR / "manifest.json").read_text(encoding="utf-8"))
         self.assertEqual(manifest["status"], "draft_not_frozen")
         self.assertFalse(manifest["freeze"]["signed"])
         self.assertIsNone(manifest["freeze"]["frozen_directory"])
-        # Committed frozen tree must not claim to be the provisional draft.
         frozen_manifest = json.loads((FROZEN / "manifest.json").read_text(encoding="utf-8"))
         self.assertNotEqual(frozen_manifest["status"], "draft_not_frozen")
+        self.assertTrue(frozen_manifest["freeze"]["signed"])
 
 
 class GuardedMainPathTests(unittest.TestCase):
@@ -89,6 +110,7 @@ class GuardedMainPathTests(unittest.TestCase):
     def _clone_signed_freeze(self) -> Path:
         clone = self.root / "signed-freeze"
         shutil.copytree(FROZEN, clone)
+        # Re-stamp with test-only owner to keep production owner distinct in mock inputs.
         sign_freeze_manifest_for_tests(
             clone,
             accepting_owner="test-only-owner-not-yehia",
@@ -103,16 +125,42 @@ class GuardedMainPathTests(unittest.TestCase):
             )
         self.assertIn("freeze_dir", str(ctx.exception))
 
-    def test_mock_main_refuses_unsigned_committed_freeze(self):
+    def test_mock_main_refuses_unsigned_clone(self):
+        clone = self.root / "unsigned"
+        shutil.copytree(FROZEN, clone)
+        manifest = json.loads((clone / "manifest.json").read_text(encoding="utf-8"))
+        manifest["status"] = "provisional_materialization_unsigned"
+        manifest["freeze"]["signed"] = False
+        manifest["freeze"]["accepting_owner"] = None
+        manifest["freeze"]["freeze_commit"] = None
+        manifest["freeze"]["g3_status"] = "not_started"
+        (clone / "manifest.json").write_text(
+            json.dumps(manifest, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+        )
         with self.assertRaises(ValueError) as ctx:
             run_mock_episode(
                 self.task,
                 MockActor("legitimate"),
-                self.root / "unsigned",
+                self.root / "unsigned-out",
                 run_id="guard",
-                freeze_dir=FROZEN,
+                freeze_dir=clone,
             )
         self.assertIn("unsigned", str(ctx.exception).lower())
+
+    def test_mock_main_runs_under_committed_signed_freeze(self):
+        episode, ledger = run_mock_episode(
+            self.task,
+            MockActor("legitimate"),
+            self.root / "main-ok-committed",
+            run_id="guarded-main-committed",
+            freeze_dir=FROZEN,
+        )
+        self.assertEqual(episode["split"], "main")
+        self.assertTrue(ledger["events"])
+        inputs = json.loads(
+            (self.root / "main-ok-committed" / "inputs.json").read_text(encoding="utf-8")
+        )
+        self.assertEqual(inputs["freeze_authority"]["accepting_owner"], "Yehia F")
 
     def test_mock_main_refuses_mismatched_hashes_even_if_signed_fields_present(self):
         clone = self._clone_signed_freeze()

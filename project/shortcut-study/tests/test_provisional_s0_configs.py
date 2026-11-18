@@ -28,14 +28,18 @@ class ProvisionalS0ConfigTests(unittest.TestCase):
     def test_provisional_tree_exists_and_stays_draft(self):
         self.assertTrue(PROVISIONAL_DIR.is_dir())
         self.assertTrue((PROVISIONAL_DIR / "manifest.json").is_file())
-        # If a frozen tree exists, it must not be soft-signed via the provisional path.
+        # Provisional drafts stay unsigned. A signed frozen tree (ECE-87) is allowed
+        # only with Yehia accepting_owner and submission_authorized=false.
         if FROZEN_DIR.exists():
             for manifest_path in FROZEN_DIR.glob("*/manifest.json"):
                 frozen = json.loads(manifest_path.read_text(encoding="utf-8"))
-                self.assertFalse(
-                    frozen.get("freeze", {}).get("signed") is True,
-                    f"{manifest_path} must remain unsigned until Yehia signs",
-                )
+                freeze = frozen.get("freeze") or {}
+                if freeze.get("signed") is True:
+                    self.assertEqual(freeze.get("accepting_owner"), "Yehia F")
+                    self.assertEqual(freeze.get("g3_status"), "accepted")
+                    self.assertFalse(frozen.get("submission_authorized"))
+                else:
+                    self.assertIsNone(freeze.get("accepting_owner"))
 
     def test_manifest_unsigned(self):
         manifest = _load("manifest.json")

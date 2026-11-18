@@ -1,0 +1,47 @@
+{
+  "package": "ECE-87",
+  "role": "g3_freeze_signature_booking",
+  "status": "signed_pending_independent_review",
+  "input_commit": "571d88865ee3d2d83ea152275b58436fccacc06c",
+  "authorization": {
+    "owner": "Yehia F",
+    "walkthrough": "1-5",
+    "confirmed": "2026-11-17 America/Toronto",
+    "verbatim_summary": "Yehia authorized freeze / accept G3 (walkthrough 1–5 confirmed 2026-11-17 America/Toronto)."
+  },
+  "freeze": {
+    "signed": true,
+    "accepting_owner": "Yehia F",
+    "freeze_commit": "571d88865ee3d2d83ea152275b58436fccacc06c",
+    "freeze_timestamp": "2026-11-17T22:45:00-05:00",
+    "g3_status": "accepted",
+    "frozen_directory": "configs/frozen/s0-tab-v0/",
+    "protocol_version": "s0-tab-v0"
+  },
+  "gates": {
+    "G0": "accepted",
+    "G1": "accepted",
+    "G2": "accepted",
+    "G3": "accepted"
+  },
+  "scope": {
+    "behavioral_only": true,
+    "semantic_claims_default": "withdrawn_behavioral_only",
+    "live_judge_in_freeze_scope": false,
+    "primary_actor_episodes": 320
+  },
+  "submission_authorized": false,
+  "sw08_started": false,
+  "gpu_used": false,
+  "cpu_only": true,
+  "independent_review_required": true,
+  "independent_reviewer_must_not_be": "signature_pr_author",
+  "checklist": "results/qualification/freeze-checklist-s0-tab-post-sw05.md",
+  "handoff": "handoffs/2026-11-18-ece87-g3-freeze-sign.md",
+  "hard_bans_retained": [
+    "no_v6_fresh_320_without_root_greenlight",
+    "no_second_gpu",
+    "no_course_upload_without_submission_authorized",
+    "no_sw08_kickoff_from_signature_pr_alone"
+  ]
+}

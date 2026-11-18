@@ -6,13 +6,13 @@
     "original_replicate_seeds": 2
   },
   "explicit_reductions": [
-    "No soft-signed G3 / frozen-protocol claim from this materialization alone.",
-    "No main collection authorization while freeze.signed is false.",
+    "G3 signed by Yehia F (ECE-87); submission_authorized remains false until course upload authorization.",
+    "No main collection until this signed freeze is merged and SW08 is greenlit separately.",
     "No five-family breadth claim; DOC/PLAN/CODE/VERIFY out.",
     "No optional second-actor replication.",
     "Independent semantic-validation claims withdrawn (SW07-B/ECE-80 XOR: behavioral-only selected; judge path not qualified before freeze; no cloud judge)."
   ],
-  "freeze_note": "Unsigned provisional freeze pin. Not submission authority.",
+  "freeze_note": "Signed into configs/frozen/s0-tab-v0/ under ECE-87. G3 accepted. Behavioral-only / semantic withdrawal unchanged. submission_authorized remains false.",
   "protocol_candidate": "s0-tab-v0",
   "schema_version": "shortcut-reduced-claims-v1",
   "selected_candidate": {
@@ -21,7 +21,7 @@
     "family_ids": [
       "tables"
     ],
-    "note": "Candidate after G2 accept. Freeze signature blank; G3 not_started; submission_authorized=false.",
+    "note": "Signed S0 freeze (ECE-87). G3=accepted; freeze.signed=true; submission_authorized=false; behavioral-only scope.",
     "primary_actor_episodes": 320,
     "replicate_seeds": 1,
     "tier": "S0"
@@ -31,5 +31,5 @@
     "decision_ref": "results/qualification/sw07-b-semantic-scope-v1.json",
     "live_judge_in_freeze_scope": false
   },
-  "status": "provisional_materialization_unsigned"
+  "status": "frozen_signed"
 }

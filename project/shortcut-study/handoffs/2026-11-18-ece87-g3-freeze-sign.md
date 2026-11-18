@@ -1,0 +1,26 @@
+# Package handoff — ECE-87 G3 freeze signature — 2026-11-18
+
+- Owner and role: Yehia-authorized freeze signature booking (`bc-58a3c92f…`); not SW08 GPU operator
+- Status: ready_for_review — **signed** `configs/frozen/s0-tab-v0/`; `gates.G3=accepted`
+- Input commit: `571d888` (main tip; SW07-D / #60)
+- Authorization: Yehia authorized freeze / accept G3; walkthrough 1–5 confirmed **2026-11-17 America/Toronto**
+- Output paths:
+  - `configs/frozen/s0-tab-v0/` (signed manifest + pinned components; schedule `executable=true`)
+  - `results/qualification/freeze-checklist-s0-tab-post-sw05.md` (signature filled)
+  - `state.json` (`gates.G3=accepted`; `frozen_protocol=s0-tab-v0`; `submission_authorized=false`)
+  - `results/qualification/ece87-g3-freeze-sign-v1.json`
+  - `tests/test_frozen_main_path.py`, `tests/test_sw07d_prefreeze_sim_forecast.py`, `tests/test_provisional_s0_configs.py`
+  - this handoff
+- Concrete behavior:
+  - `freeze.signed=true`; `accepting_owner=Yehia F`
+  - `freeze_commit=571d88865ee3d2d83ea152275b58436fccacc06c` (scientific tip frozen)
+  - `freeze_timestamp=2026-11-17T22:45:00-05:00`
+  - `g3_status=accepted`; top-level `gates.G3=accepted`
+  - Behavioral-only / semantic withdrawal **unchanged** (`withdrawn_behavioral_only`)
+  - `submission_authorized=false` (course upload still Yehia-only)
+  - SW08 GPU **not** started; explicit post-merge kickoff required
+- Next safe action:
+  - Independent reviewer **≠** this PR author inspects signed freeze + gate honesty
+  - Merge only after that review
+  - Then kick SW08 on single WSL RTX 3070 Ti (`bc-1121d0a4`) under Nov 27/29 cutoffs
+- Acceptance reviewer, decision, and date (filled on review):

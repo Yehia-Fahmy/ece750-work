@@ -19,14 +19,14 @@
     "measured_audit_mean_seconds": 0.0,
     "note": "SW07-D / ECE-82 filled from long-pilot hard/extreme p95 (not clarification-only ~8s). Behavioral-only: live judge GPU=0; audit prep bundled in actor wall. Provisional 8 GPU-h/day. Not freeze signature.",
     "package": "SW07-D",
-    "planning_actor_seconds_per_episode": 43.138898839891766,
     "planned_gpu_hours_with_overhead": 4.4098,
+    "planning_actor_seconds_per_episode": 43.138898839891766,
     "required_gpu_hours_with_reserve": 5.5122,
     "reserve_fraction": 0.25,
-    "status": "measured_forecast_provisional_unsigned",
+    "status": "measured_forecast_frozen_signed",
     "verdict": "FITS"
   },
-  "freeze_note": "Copied into configs/frozen/s0-tab-v0/ as unsigned provisional materialization. Not G3. Not soft-signed. Not submission authority.",
+  "freeze_note": "Signed into configs/frozen/s0-tab-v0/ under ECE-87. G3 accepted. Behavioral-only / semantic withdrawal unchanged. submission_authorized remains false.",
   "notes": [
     "Copied from development/local-qualification candidates; exact values freeze only at G3.",
     "Aligned with tab01-slice-v6 uniform per-turn/cumulative headroom after V11 turn-1 overflows.",
@@ -38,5 +38,5 @@
   "protocol_candidate": "s0-tab-v0",
   "schema_version": "shortcut-budgets-config-v1",
   "source_of_truth_for_episode_budgets": "this_file_when_frozen_else_development",
-  "status": "provisional_materialization_unsigned"
+  "status": "frozen_signed"
 }

@@ -1,6 +1,6 @@
 {
   "default_policy_id": "restricted_core_v1",
-  "freeze_note": "Copied into configs/frozen/s0-tab-v0/ as unsigned provisional materialization. Not G3. Not soft-signed. Not submission authority.",
+  "freeze_note": "Signed into configs/frozen/s0-tab-v0/ under ECE-87. G3 accepted. Behavioral-only / semantic withdrawal unchanged. submission_authorized remains false.",
   "policies": {
     "restricted_core_v1": {
       "information_states": [
@@ -65,5 +65,5 @@
   },
   "protocol_candidate": "s0-tab-v0",
   "schema_version": "shortcut-policy-config-v1",
-  "status": "provisional_materialization_unsigned"
+  "status": "frozen_signed"
 }
