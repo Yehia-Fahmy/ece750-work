@@ -68,9 +68,9 @@ Use this table for report prose. Prefer hashes/paths over adjectives like “val
 
 - GPU operator: `bc-1121d0a4…` on WSL DESKTOP-VEMMES3 / RTX 3070 Ti.
 - Orchestrator / SW04–SW07 CPU authors **must not** acquire the GPU lease or start a second qualification operator.
-- Fresh v3-001/v4-001 **FAIL** preserved; fresh v5-001 **PASS** packaged (ECE-74); prior FAIL rows not rewritten.
-- ECE-53/59/63/69 **done**; ECE-74 v5-001 honest G2 **PASS** (completion/parse/easy all pass); `submission_authorized=false`; freeze/G3 still unsigned.
-- Next unused default fresh id `qual-fresh-tab-catalog-v6-001` (ns 60000) — **not** greenlit/run.
+- Fresh v3-001/v4-001 **FAIL** preserved; fresh v5-001 **PASS** packaged (#55 / `c3db94e`, ECE-74) and booked in `state.json` (ECE-77: `gates.G2=accepted`, `g2_accepted=true` on v5 evidence only); prior FAIL rows not rewritten.
+- ECE-53/59/63/69/74/76 **done**; `submission_authorized=false`; course submission remains **Yehia-only**; freeze/G3 still **unsigned** (no soft-sign).
+- Next unused default fresh id `qual-fresh-tab-catalog-v6-001` (ns 60000) — **not** greenlit/run; **no v6**; **no second GPU**.
 - Cutoff: Nov 22 18:00 America/Toronto → S4 if freeze/course path still unmet. `submission_authorized=false`.
 
 ## Do not

@@ -4,7 +4,9 @@ Status: **unsigned prep checklist** after SW05 CPU acceptance (`91baf90`).
 Supplements (does not replace) `freeze-checklist-s0-tab-draft.md`.  
 **Do not sign. Do not create `configs/frozen/`.** G3 = `not_started`.
 
-Parallel: SW06 fresh qualification is running on user WSL (ECE-42). This document does not authorize GPU work.
+Held-out G2 actor evidence is on main (`#55` / `c3db94e`; ECE-77 books `gates.G2=accepted`).  
+Freeze **signature** remains blank pending Yehia/root process — **do not soft-sign**.  
+This document does not authorize a second GPU worker or a v6 fresh batch.
 
 ## CPU prerequisites now available (still not a freeze)
 
@@ -16,23 +18,25 @@ Parallel: SW06 fresh qualification is running on user WSL (ECE-42). This documen
 
 ## Still blocked before any real freeze signature
 
-- [x] **Fresh** held-out G2 PASS on content-disjoint batch (SW06) — `qual-fresh-tab-catalog-v5-001` **PASS** (completion 315/320; parse 156/156; easy 20/20); v3/v4 FAIL archives preserved consumed; `g2_accepted=true` on v5 evidence; freeze signature still required
+- [x] **Fresh** held-out G2 PASS on content-disjoint batch (SW06) — `qual-fresh-tab-catalog-v5-001` **PASS** (completion 315/320; parse 156/156; easy 20/20); packaged `#55`/`c3db94e`; ECE-77 books `g2_accepted=true` / `gates.G2=accepted`; v3/v4 FAIL archives preserved consumed
 - [ ] G1 scientific closure recorded with long-pilot + runtime evidence as required by gates
 - [ ] Judge qualification **or** explicit behavioral-only scope + semantic withdrawal before freeze
 - [ ] Pre-freeze analysis simulation at candidate scope (A1–5 tooling ready; simulation not a freeze)
 - [ ] Measured actor+audit forecast with reserve fitting cutoffs
 - [ ] Materialized main schedule + pinned hashes under `configs/frozen/<version>/`
 - [ ] Guarded executable main path implemented and regression-tested (do not merely delete refusal)
-- [ ] Independent freeze reviewer signature on checklist with actual evidence
+- [ ] Independent freeze reviewer signature on checklist with actual evidence (Yehia/root — **not** soft-signed by orchestrator)
 
 Freeze commit / timestamp / accepting owner:
 
-_None — deliberately blank._
+_None — deliberately blank. G2 actor PASS ≠ freeze signature._
 
 Accepted evidence paths for freeze:
 
-_None. Prep-only paths:_
+_G2 actor evidence (complete); freeze signature still pending:_
 
-- `handoffs/2026-11-17-sw07-freeze-prep.md`
-- `results/qualification/sw07-freeze-prep-v1.json`
+- `results/qualification/qual-fresh-tab-catalog-v5-001.json`
+- `handoffs/2026-11-17-sw06-fresh-qual-v5-001.md`
+- prep-only: `handoffs/2026-11-17-sw07-freeze-prep.md`
+- prep-only: `results/qualification/sw07-freeze-prep-v1.json`
 - prior draft: `results/qualification/freeze-checklist-s0-tab-draft.md`

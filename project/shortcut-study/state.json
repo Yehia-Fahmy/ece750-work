@@ -41,7 +41,7 @@
   "gates": {
     "G0": "accepted",
     "G1": "in_progress",
-    "G2": "failed",
+    "G2": "accepted",
     "G3": "not_started",
     "G4": "not_started",
     "G5": "not_started",
@@ -107,7 +107,7 @@
         "handoffs/2026-11-16-tab-catalog-v2-public-task-port.md",
         "results/development/tab-catalog-v2-public-task-port.json"
       ],
-      "note": "TAB01\u201305 catalog on tab-catalog-v2 (TAB02\u201305 public-task port of tab01-slice-v6); TAB01 moderate still tab01-slice-v6. v5 16-cell FAIL preserved (#16); v6 probe+16-cell PASS (#20); G2 held-out FAIL preserved (#23); post-catalog-v2 re-held-out also FAIL (g2-held-out-20261116-catalog-v2). Integrator accepted G0 TAB-only / S0 earlier; WP02 remains in_progress (not five-family). G1/G2/G3 not accepted."
+      "note": "TAB01–05 catalog on tab-catalog-v2 (TAB02–05 public-task port of tab01-slice-v6); TAB01 moderate still tab01-slice-v6. v5 16-cell FAIL preserved (#16); v6 probe+16-cell PASS (#20); G2 held-out FAIL preserved (#23); post-catalog-v2 re-held-out also FAIL (g2-held-out-20261116-catalog-v2). Integrator accepted G0 TAB-only / S0 earlier; WP02 remains in_progress (not five-family). G1/G2/G3 not accepted."
     },
     {
       "id": "WP03",
@@ -310,15 +310,15 @@
     }
   ],
   "open_items": [
-    "SW00 in progress: assignments issued; integrate SW01\u201303 after independent reviews (author\u2260reviewer).",
+    "SW00 in progress: assignments issued; integrate SW01–03 after independent reviews (author≠reviewer).",
     "Launch sibling workers for ECE-36/37/38 (SW01/02/03) with path allowlists in assignment handoffs.",
-    "Repair RD1/RD2/RD3 (SW01), IMPL-1/2/3 (SW02), A1\u2013A5 (SW03) before any new 320-episode qualification.",
+    "Repair RD1/RD2/RD3 (SW01), IMPL-1/2/3 (SW02), A1–A5 (SW03) before any new 320-episode qualification.",
     "ECE-59 done (#48 merged 430c86b): TAB05 extreme 16/16; live qual turns stay 16; probe-only turns 20. ECE-53 (#46) format 24/24 prior.",
-    "ECE-63 done: #51 merged 7d965ba \u2014 qual-fresh-tab-catalog-v4-001 honest FAIL (completion 315/320=98.4% PASS; easy 11/20=55% FAIL). Batch consumed; g2_accepted=false. No soft-accept.",
-    "G2 remains failed: v3-001 FAIL + v4-001 FAIL (easy 55%); do not reuse either batch. Root has greenlit ECE-74 v5-001 separately; g2_accepted stays false until that batch finishes honestly.",
-    "ECE-69 done: #53 merged 096afd9 \u2014 TAB04/TAB05 easy residual wave C 8/8 (dev only). Live turns stay 16. No soft-accept.",
-    "Root greenlit ECE-74: qual-fresh-tab-catalog-v5-001 (ns 50000) after ECE-69/#53. g2_accepted=false until finish. No soft-accept; no second GPU.",
-    "Independently accept fresh qualification and commit freeze by 2026-11-22 18:00 America/Toronto or automatically select S4.",
+    "ECE-63 done: #51 merged 7d965ba — qual-fresh-tab-catalog-v4-001 honest FAIL (completion 315/320=98.4% PASS; easy 11/20=55% FAIL). Batch consumed; g2_accepted=false. No soft-accept.",
+    "ECE-69 done: #53 merged 096afd9 — TAB04/TAB05 easy residual wave C 8/8 (dev only). Live turns stay 16. No soft-accept.",
+    "ECE-74 done: #55 merged c3db94e — qual-fresh-tab-catalog-v5-001 honest G2 PASS (completion 315/320; parse 156/156; easy 20/20). Batch consumed; g2_accepted=true. Prior v3/v4 FAIL archives untouched. No soft-accept of incomplete gates.",
+    "ECE-77 booking: state gates.G2=accepted from held-out v5-001 evidence. Freeze checklist G2 evidence marked complete; freeze signature remains unsigned (Yehia/root process). submission_authorized=false; course submission Yehia-only. No v6 greenlight; no second GPU.",
+    "Commit freeze signature by 2026-11-22 18:00 America/Toronto or automatically select S4. G2 actor PASS ≠ freeze/G3; do not soft-sign.",
     "Local project/runs archives absent on orchestrator host; preserve review evidence; authenticity checks need WSL archives later.",
     "Agents must build final report PDF, deck and notes by Dec 3 18:00; course submission remains researcher-only.",
     "Qualified semantic executor, validation and complete pipeline forecast remain pending; explicitly withdraw semantic conclusions if scope is behavioral-only.",
@@ -331,7 +331,7 @@
     "owner": "bc-ece62cad-b32b-5b8f-b2e7-56b9dbc6be8a",
     "host": "cursor",
     "authorization": "User/coordinator authorized completion swarm execution from SWARM_START; submission_authorized stays false.",
-    "scope": "SW00 baseline + assign SW01\u201303 CPU lanes; no GPU qualification this wave.",
+    "scope": "SW00 baseline + assign SW01–03 CPU lanes; no GPU qualification this wave.",
     "status": "sw00_in_progress_cpu_lanes_assigned",
     "working_branch": "cursor/sw00-completion-baseline-be8a",
     "prior_session": {
@@ -520,7 +520,7 @@
     "scope": "TAB-only (not five-family)",
     "date": "2026-11-16",
     "owner": "integrator",
-    "reason": "WP01 accepted; TAB01\u201305 catalog/spec on main (#11); fresh tab01-v6 capability probe + 16-cell development archive PASS on main via #20. Supersedes prior blocked_not_accepted after v5 FAIL (#16/#17). Does not accept G1/G2/G3.",
+    "reason": "WP01 accepted; TAB01–05 catalog/spec on main (#11); fresh tab01-v6 capability probe + 16-cell development archive PASS on main via #20. Supersedes prior blocked_not_accepted after v5 FAIL (#16/#17). Does not accept G1/G2/G3.",
     "acceptance_handoff": "handoffs/2026-11-16-g0-tab-accepted.md",
     "prior_block_handoff": "handoffs/2026-11-16-g0-tab-blocked.md",
     "prior_block_pr": "https://github.com/Yehia-Fahmy/ece750-work/pull/17",
@@ -545,7 +545,7 @@
     "tier": "S4",
     "date": "2026-11-17",
     "owner": "integrator",
-    "reason": "Held-out G2 failed twice (#23 then #25 after tab-catalog-v2). Completion stayed ~75% and easy no-shortcut success 55% (gate \u226580%). No credible path to freeze S0 320 and collect a main factorial before Dec 4. Arm honest course fallback: methods + validated development/pilot evidence + explicit incomplete outcomes; zero main factorial claim.",
+    "reason": "Held-out G2 failed twice (#23 then #25 after tab-catalog-v2). Completion stayed ~75% and easy no-shortcut success 55% (gate ≥80%). No credible path to freeze S0 320 and collect a main factorial before Dec 4. Arm honest course fallback: methods + validated development/pilot evidence + explicit incomplete outcomes; zero main factorial claim.",
     "handoff": "handoffs/2026-11-17-s4-honest-course-fallback.md",
     "claims_retained": [
       "Original observer-study result (historical; separate namespace)",
@@ -559,7 +559,7 @@
       "Main S0/S1/S2/S3 factorial collection and confirmatory T/J visibility acquisition contrasts",
       "G2 pass / main-qualified actor",
       "G3 freeze / frozen protocol",
-      "WP09\u2013WP11 main analysis findings",
+      "WP09–WP11 main analysis findings",
       "Independent semantic-judge conclusions",
       "3200-episode five-family course core",
       "Any visibility-effect estimate derived from development or failed held-out archives"
@@ -615,7 +615,7 @@
       "base_commit": "7c4aed7",
       "scope": {
         "tier": "S4",
-        "label": "Honest course fallback \u2014 no main factorial claim",
+        "label": "Honest course fallback — no main factorial claim",
         "families": 1,
         "family_ids": [
           "tables"
@@ -653,7 +653,7 @@
   "swarm_handoff": {
     "schema_version": 1,
     "date": "2026-11-17",
-    "status": "sw06_ece69_merged_ece74_fresh_v5_greenlit",
+    "status": "ece74_v5_g2_pass_booked_freeze_unsigned",
     "start_here": "SWARM_START.md",
     "work_packages": "SWARM_WORK_PACKAGES.md",
     "reconciliation": "handoffs/2026-11-17-completion-swarm.md",
@@ -712,7 +712,7 @@
           "preservation-manifest.json (111/111)",
           "commit:98fca40fc722e71b030fe176a2cff9fe36a04048"
         ],
-        "note": "Baseline established on cloud host cursor (no GPU, no project/runs). Assignments issued for SW01\u201303; awaiting sibling workers + independent reviews.",
+        "note": "Baseline established on cloud host cursor (no GPU, no project/runs). Assignments issued for SW01–03; awaiting sibling workers + independent reviews.",
         "output_commit": "98fca40fc722e71b030fe176a2cff9fe36a04048"
       },
       {
@@ -755,7 +755,7 @@
         ],
         "handoff": "handoffs/2026-11-17-sw01-assignment.md",
         "cpu_only": true,
-        "note": "Merged via #29; RD1\u20133 on main.",
+        "note": "Merged via #29; RD1–3 on main.",
         "sw00_tip_commit": "98fca40fc722e71b030fe176a2cff9fe36a04048"
       },
       {
@@ -797,7 +797,7 @@
         ],
         "handoff": "handoffs/2026-11-17-sw02-assignment.md",
         "cpu_only": true,
-        "note": "Merged via #30 (+#32); IMPL-1\u20133 on main.",
+        "note": "Merged via #30 (+#32); IMPL-1–3 on main.",
         "sw00_tip_commit": "98fca40fc722e71b030fe176a2cff9fe36a04048"
       },
       {
@@ -840,7 +840,7 @@
         ],
         "handoff": "handoffs/2026-11-17-sw03-assignment.md",
         "cpu_only": true,
-        "note": "Merged via #31; A1\u20135 on main.",
+        "note": "Merged via #31; A1–5 on main.",
         "sw00_tip_commit": "98fca40fc722e71b030fe176a2cff9fe36a04048"
       },
       {
@@ -861,7 +861,7 @@
           "report/claim-evidence-ledger.md",
           "handoffs/2026-11-17-sw04-claim-ledger.md"
         ],
-        "note": "Ledger: C-G2-FRESH-V3/V4 FAIL; ECE-69 easy residual merged; ECE-74 v5 greenlit. No GPU on SW04."
+        "note": "Ledger: C-G2-FRESH-V5 PASS (#55 / c3db94e); prior V3/V4 FAIL preserved. ECE-77 books gates.G2=accepted; freeze/G3 unsigned; submission_authorized=false. No GPU on SW04."
       },
       {
         "id": "SW05",
@@ -889,7 +889,7 @@
       {
         "id": "SW06",
         "role": "gpu_operator_and_qualification_reviewer",
-        "status": "ece74_fresh_v5_greenlit_awaiting_collect",
+        "status": "ece74_v5_g2_pass_merged",
         "owner": "bc-1121d0a4-6c7d-5e71-adea-be1427c7815d",
         "reviewer": "independent_pending_not_author",
         "depends_on": [
@@ -901,21 +901,21 @@
           "https://github.com/Yehia-Fahmy/ece750-work/pull/41 (merged f016540)",
           "https://github.com/Yehia-Fahmy/ece750-work/pull/44 (merged 6aabed2)",
           "https://github.com/Yehia-Fahmy/ece750-work/pull/45 (merged 1e001b5)",
-          "https://github.com/Yehia-Fahmy/ece750-work/pull/46 (merged 0290663) \u2014 ECE-53 residual format/budget",
-          "https://github.com/Yehia-Fahmy/ece750-work/pull/48 (merged 430c86b) \u2014 ECE-59 TAB05 extreme 16/16",
+          "https://github.com/Yehia-Fahmy/ece750-work/pull/46 (merged 0290663) — ECE-53 residual format/budget",
+          "https://github.com/Yehia-Fahmy/ece750-work/pull/48 (merged 430c86b) — ECE-59 TAB05 extreme 16/16",
           "results/development/sw06-residual-format-budget-probes-v1.json",
           "results/development/sw06-tab05-extreme-residual-clearance-v1.json",
           "ECE-58 APPROVE (bc-c56d270e); lagging + ECE-62 APPROVE on #48 tip 86f0046; root greenlight ECE-63",
-          "https://github.com/Yehia-Fahmy/ece750-work/pull/51 (merged 7d965ba) \u2014 ECE-63 v4-001 FAIL packaging",
+          "https://github.com/Yehia-Fahmy/ece750-work/pull/51 (merged 7d965ba) — ECE-63 v4-001 FAIL packaging",
           "results/qualification/qual-fresh-tab-catalog-v4-001.json",
           "ECE-68/lagging APPROVE on #51; merged 7d965ba",
-          "https://github.com/Yehia-Fahmy/ece750-work/pull/53 (merged 096afd9) \u2014 ECE-69 easy residual",
+          "https://github.com/Yehia-Fahmy/ece750-work/pull/53 (merged 096afd9) — ECE-69 easy residual",
           "results/development/sw06-tab04-tab05-easy-residual-clearance-v1.json",
           "Lagging independent APPROVE on #53; wave C 8/8",
           "Root greenlight ECE-74 for qual-fresh-tab-catalog-v5-001 (after ECE-69 book)"
         ],
-        "note": "ECE-69 done (#53 / 096afd9): TAB04/TAB05 easy wave C 8/8 (dev only). Root greenlit ECE-74 NEW fresh G2 batch qual-fresh-tab-catalog-v5-001 (seed ns 50000; content-disjoint from v3/v4; TAB-only; live turns=16; WSL RTX 3070 Ti). g2_accepted=false until honest finish; v3/v4 remain consumed FAIL; submission_authorized=false. No soft-accept; orchestrator does not take GPU lease / no second GPU worker. Cutoff Nov 22 18:00 America/Toronto \u2192 S4.",
-        "tracker_task": "ECE-74",
+        "note": "ECE-74 done: #55 merged c3db94e — qual-fresh-tab-catalog-v5-001 honest G2 PASS (completion 315/320=98.4375%; parse 156/156=100%; easy 20/20=100%). g2_accepted=true on v5 evidence; batch consumed; v3/v4 FAIL archives untouched. submission_authorized=false; freeze/G3 unsigned (no soft-sign). No v6 greenlight; orchestrator GPU lease false; no second GPU. Cutoff Nov 22 18:00 America/Toronto → S4 if freeze unmet.",
+        "tracker_task": "ECE-77",
         "host": {
           "worker_id": "a09a6978",
           "machine": "DESKTOP-VEMMES3",
@@ -1014,44 +1014,74 @@
             "merge_sha": "096afd93755cbe78139a3d95e94403f97e7130d1",
             "g2_accepted": false,
             "summary": "adapter v7 + multiply/floordiv; wave C 8/8 easy residual; not G2; no v5"
+          },
+          {
+            "number": 54,
+            "url": "https://github.com/Yehia-Fahmy/ece750-work/pull/54",
+            "branch": "cursor/sw06-ece69-easy-merged-be8a",
+            "kind": "bookkeeping_ece69_merge_and_v5_greenlight",
+            "status": "merged",
+            "merge_sha": "5b8a7f2362bd79de872877885abbbaf09144a889",
+            "g2_accepted": false,
+            "summary": "Book #53 + root greenlight v5-001; g2_accepted false until held-out finish"
+          },
+          {
+            "number": 55,
+            "url": "https://github.com/Yehia-Fahmy/ece750-work/pull/55",
+            "branch": "cursor/sw06-fresh-qual-v5-001-815d",
+            "kind": "fresh_qualification_pass_packaging",
+            "status": "merged",
+            "merge_sha": "c3db94e978d9f292364d110a5d8fef9cbd3ecad0",
+            "g2_accepted": true,
+            "fresh_qualification_batch_consumed": true,
+            "fresh_qualification_batch_status": "consumed_pass",
+            "summary": "Package honest G2 PASS for qual-fresh-tab-catalog-v5-001; completion/parse/easy all PASS"
           }
         ],
         "fresh_qualification": {
-          "batch_id": "qual-fresh-tab-catalog-v4-001",
-          "status": "consumed_fail",
-          "verdict": "FAIL",
-          "g2_accepted": false,
+          "batch_id": "qual-fresh-tab-catalog-v5-001",
+          "status": "consumed_pass",
+          "verdict": "PASS",
+          "g2_accepted": true,
           "outcomes_recorded": true,
           "completion": "315/320",
-          "easy_no_shortcut": "11/20",
-          "tracked_evidence": "results/qualification/qual-fresh-tab-catalog-v4-001.json",
-          "next_fresh_batch_id": "qual-fresh-tab-catalog-v5-001",
+          "parseability_complete_completed": "156/156",
+          "easy_no_shortcut": "20/20",
+          "completion_rate": 0.984375,
+          "easy_no_shortcut_rate": 1.0,
+          "tracked_evidence": "results/qualification/qual-fresh-tab-catalog-v5-001.json",
+          "packaging_pr": 55,
+          "packaging_merge_sha": "c3db94e978d9f292364d110a5d8fef9cbd3ecad0",
+          "independent_review": "ECE-76 APPROVE (≠ SW06); merged c3db94e",
+          "seed_namespace": "qualification-fresh-v5",
+          "seed_namespace_base": 50000,
+          "scope": "TAB-only",
+          "max_model_turns": 16,
+          "host": "WSL DESKTOP-VEMMES3 RTX 3070 Ti",
+          "content_disjoint_from": [
+            "qual-fresh-tab-catalog-v3-001",
+            "qual-fresh-tab-catalog-v4-001"
+          ],
+          "do_not_reuse": [
+            "qual-fresh-tab-catalog-v3-001",
+            "qual-fresh-tab-catalog-v4-001",
+            "qual-fresh-tab-catalog-v5-001"
+          ],
+          "model_format_failures": "5 (all TAB05; Invalid tool arguments)",
+          "next_fresh_batch_id": null,
           "next_attempt": {
-            "tracker": "ECE-74",
-            "batch_id": "qual-fresh-tab-catalog-v5-001",
-            "status": "authorized_awaiting_collect",
-            "owner": "bc-1121d0a4-6c7d-5e71-adea-be1427c7815d",
-            "seed_namespace": "qualification-fresh-v5",
-            "seed_namespace_base": 50000,
-            "scope": "TAB-only",
-            "max_model_turns": 16,
-            "host": "WSL DESKTOP-VEMMES3 RTX 3070 Ti",
-            "content_disjoint_from": [
-              "qual-fresh-tab-catalog-v3-001",
-              "qual-fresh-tab-catalog-v4-001"
-            ],
-            "do_not_reuse": [
-              "qual-fresh-tab-catalog-v3-001",
-              "qual-fresh-tab-catalog-v4-001"
-            ],
-            "g2_accepted": false,
-            "outcomes_recorded": false,
-            "base_main": "096afd93755cbe78139a3d95e94403f97e7130d1"
+            "tracker": null,
+            "batch_id": null,
+            "status": "none_authorized",
+            "note": "v5-001 consumed PASS; default unused id v6-001 exists in code but is NOT greenlit/run",
+            "g2_accepted": true,
+            "outcomes_recorded": true,
+            "fresh_320_authorized": false
           },
-          "fresh_320_authorized": true,
-          "fresh_320_greenlight": true,
-          "greenlight_scope": "ECE-74 new fresh G2 attempt only; root-authorized after #53/ECE-69; batch v5-001",
-          "greenlight_blocker": null,
+          "fresh_320_authorized": false,
+          "fresh_320_greenlight": false,
+          "greenlight_scope": null,
+          "greenlight_blocker": "v5-001 consumed PASS; no v6 without root greenlight; freeze/G3 still unsigned",
           "orchestrator_gpu_lease": false,
           "prior_fresh_fails": [
             {
@@ -1061,12 +1091,17 @@
               "completion": "280/320",
               "easy_no_shortcut": "17/20",
               "tracked_evidence": "results/qualification/qual-fresh-tab-catalog-v3-001.json"
+            },
+            {
+              "batch_id": "qual-fresh-tab-catalog-v4-001",
+              "status": "consumed_fail",
+              "verdict": "FAIL",
+              "completion": "315/320",
+              "easy_no_shortcut": "11/20",
+              "tracked_evidence": "results/qualification/qual-fresh-tab-catalog-v4-001.json",
+              "g2_accepted": false
             }
           ],
-          "completion_rate": 0.984375,
-          "parseability_complete_completed": "160/160",
-          "easy_no_shortcut_rate": 0.55,
-          "fail_gate": "easy_no_shortcut < 80% (TAB04 0/4, TAB05 0/4)",
           "ece69_follow_up_completed": {
             "tracker": "ECE-69",
             "status": "merged",
@@ -1078,7 +1113,11 @@
             "fresh_320_authorized": false,
             "v5_greenlight": true,
             "root_greenlight": "ECE-74",
-            "note": "Historical ECE-69 completion. Root subsequently greenlit ECE-74 / qual-fresh-tab-catalog-v5-001; g2_accepted remains false until that held-out finishes."
+            "note": "Historical ECE-69 completion. Root greenlit ECE-74 / v5-001; held-out finished honest PASS (#55 / c3db94e); g2_accepted=true on v5 evidence only."
+          },
+          "booking": {
+            "tracker": "ECE-77",
+            "note": "Orchestrator books gates.G2=accepted from held-out v5-001 after #55; submission_authorized=false; freeze unsigned"
           }
         },
         "residual_repair": {
@@ -1090,7 +1129,7 @@
           "format_probes": "24/24",
           "tab05_extreme_probes": "15/16",
           "credibility_for_fresh_qual_ready": true,
-          "fresh_320_authorized": true,
+          "fresh_320_authorized": false,
           "follow_up": {
             "tracker": "ECE-59",
             "status": "merged",
@@ -1111,14 +1150,16 @@
             "merge_sha": "096afd93755cbe78139a3d95e94403f97e7130d1",
             "wave_c": "8/8",
             "not_g2": true,
-            "root_greenlight": "ECE-74"
+            "root_greenlight": "ECE-74",
+            "fresh_320_authorized": false,
+            "note": ""
           }
         }
       },
       {
         "id": "SW07",
         "role": "integrator_and_freeze_reviewer",
-        "status": "draft_prep_in_progress",
+        "status": "freeze_unsigned_g2_evidence_ready",
         "owner": "bc-ece62cad-b32b-5b8f-b2e7-56b9dbc6be8a",
         "reviewer": null,
         "depends_on": [
@@ -1135,7 +1176,7 @@
           "results/qualification/sw07-freeze-prep-v1.json",
           "results/qualification/freeze-checklist-s0-tab-post-sw05.md"
         ],
-        "note": "CPU freeze-prep stubs only; G3 unsigned; blocked on accepted fresh G2. ECE-69 done; ECE-74 v5 greenlit collecting next. Cutoff Nov 22 18:00 America/Toronto \u2192 S4."
+        "note": "G2 actor evidence complete on main (#55 / c3db94e; ECE-77 books accept). Freeze checklist G2 item checked; freeze signature deliberately blank — Yehia/root process; do not soft-sign. G3=not_started; submission_authorized=false. No v6. Cutoff Nov 22 18:00 America/Toronto → S4."
       },
       {
         "id": "SW08",
