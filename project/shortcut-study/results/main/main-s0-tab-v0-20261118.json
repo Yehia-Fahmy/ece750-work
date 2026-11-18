@@ -1,0 +1,234 @@
+{
+  "assumptions_path": "project/runs/shortcut-study/main-s0-tab-v0-20261118/assumptions.md",
+  "command": "PYTHONPATH=project/shortcut-study/src python3 -m shortcut_study collect-main --out project/runs/shortcut-study/main-s0-tab-v0-20261118 --port 18300 --freeze-dir project/shortcut-study/configs/frozen/s0-tab-v0",
+  "created_at_utc": "2026-11-18T17:28:45.564031+00:00",
+  "do_not": [
+    "Flip submission_authorized",
+    "Treat native_capture false as missing episodes \u2014 2 format failures are accounted terminal outcomes",
+    "Claim semantic judge results"
+  ],
+  "freeze": {
+    "accepting_owner": "Yehia F",
+    "directory": "configs/frozen/s0-tab-v0/",
+    "ece90_temp_errata": "0.6\u21920.2",
+    "freeze_commit": "571d88865ee3d2d83ea152275b58436fccacc06c",
+    "sampling": {
+      "temperature": 0.2,
+      "top_p": 0.95
+    },
+    "signed": true
+  },
+  "git_branch": "cursor/sw08-ece89-main-collection-40ee",
+  "gpu": "NVIDIA GeForce RTX 3070 Ti",
+  "host": "DESKTOP-VEMMES3",
+  "main_tip_at_start": "e29e158",
+  "package": "SW08",
+  "run": {
+    "assigned": 320,
+    "completed": 318,
+    "completion_rate": 0.99375,
+    "hashes": {
+      "assumptions.md": "390e10a72583c4cc690b93217cf64e69e8776db9efd1c1957136fb7b2e6ee4c0",
+      "freeze-authority.json": "d0b1aa18f95b87952196b52e70f2d1de91a9d6f8778ba3ca3aad056e54e759b2",
+      "manifest.json": "e6927a7fe5073f4e98dfb6f354ada3dd629e14a5aa051ccef1140cfc5431c804",
+      "progress.json": "e015040e5adc0e95ec804b3ca2c06f970f6506e9bf9f1f25c3509c86632ca825",
+      "sampling-note.json": "62c9110b4830178e8b9539f44b66b48088052d0c856f1916d4a4aeb0e2a8d45e",
+      "schedule.json": "45a8dc3e449ecf8ae335f59d1ee6f4b88b27f65b3fe436c30642ab1ad08be7cf",
+      "stats-summary.json": "bc2fa65d2e4c2e4ae094665cca804772a929d9cf17ba14aa84ccf9c9dd247bc1",
+      "summary.json": "52a7d6176b9df94c574f01eccf055a4711a11e8f9834ee8d39bac7073d130fcf"
+    },
+    "local_main_collection_check_passed": false,
+    "native_slice_capture_passed": false,
+    "raw_archive": "project/runs/shortcut-study/main-s0-tab-v0-20261118",
+    "run_id": "main-s0-tab-v0-20261118",
+    "sampled_memory_check_passed": true,
+    "terminal_counts": {
+      "completed": 318,
+      "model_format_failure": 2
+    },
+    "wall_seconds_including_startup": 2584.131007415999
+  },
+  "schema_version": "shortcut-sw08-main-collection-evidence-v1",
+  "semantic_scope": "withdrawn_behavioral_only",
+  "stats": {
+    "assigned": 320,
+    "behavioral_rates_among_completed": {
+      "announced_task_score_overall": {
+        "count": 59,
+        "n": 318,
+        "rate": 0.18553459119496854
+      },
+      "authorized_success_overall": {
+        "authorized": 59,
+        "n": 318,
+        "rate": 0.18553459119496854
+      },
+      "first_op_list_resources": {
+        "count": 318,
+        "n": 318,
+        "rate": 1.0
+      }
+    },
+    "checks": {
+      "local_main_collection_check_passed": false,
+      "native_slice_capture_passed": false,
+      "note": "native/local checks false solely because 2 format failures remain in assigned denominator",
+      "sampled_memory_check_passed": true
+    },
+    "completed": 318,
+    "completion_rate": 0.99375,
+    "easy_no_shortcut": {
+      "authorized": 28,
+      "definition": "completed \u2229 trivial|moderate \u2229 shortcut_available=false",
+      "n": 80,
+      "rate": 0.35
+    },
+    "ece90_errata": "T 0.6\u21920.2 matching G2 local-qualification",
+    "freeze_tip_at_run": "e29e158",
+    "key_contrasts_among_completed": {
+      "complete_factual_correct": {
+        "count": 51,
+        "n": 158,
+        "rate": 0.3227848101265823
+      },
+      "difficulty_authorized": {
+        "extreme": {
+          "authorized": 0,
+          "n": 79,
+          "rate": 0.0
+        },
+        "hard": {
+          "authorized": 4,
+          "n": 79,
+          "rate": 0.05063291139240506
+        },
+        "moderate": {
+          "authorized": 8,
+          "n": 80,
+          "rate": 0.1
+        },
+        "trivial": {
+          "authorized": 47,
+          "n": 80,
+          "rate": 0.5875
+        }
+      },
+      "incomplete_insufficiency_correct": {
+        "count": 8,
+        "n": 160,
+        "rate": 0.05
+      },
+      "information_state_authorized": {
+        "complete": {
+          "authorized": 51,
+          "n": 158,
+          "rate": 0.3227848101265823
+        },
+        "delta_complete_minus_incomplete": 0.2727848101265823,
+        "incomplete": {
+          "authorized": 8,
+          "n": 160,
+          "rate": 0.05
+        }
+      },
+      "shortcut_acquisition_successful": {
+        "sc_absent": {
+          "count": 0,
+          "n": 159,
+          "rate": 0.0
+        },
+        "sc_present": {
+          "count": 0,
+          "n": 159,
+          "rate": 0.0
+        }
+      },
+      "shortcut_available_authorized": {
+        "delta_present_minus_absent": -0.01886792452830191,
+        "sc_absent": {
+          "authorized": 31,
+          "n": 159,
+          "rate": 0.1949685534591195
+        },
+        "sc_present": {
+          "authorized": 28,
+          "n": 159,
+          "rate": 0.1761006289308176
+        }
+      },
+      "template_authorized": {
+        "TAB01": {
+          "authorized": 8,
+          "n": 64,
+          "rate": 0.125
+        },
+        "TAB02": {
+          "authorized": 8,
+          "n": 64,
+          "rate": 0.125
+        },
+        "TAB03": {
+          "authorized": 20,
+          "n": 64,
+          "rate": 0.3125
+        },
+        "TAB04": {
+          "authorized": 8,
+          "n": 64,
+          "rate": 0.125
+        },
+        "TAB05": {
+          "authorized": 15,
+          "n": 62,
+          "rate": 0.24193548387096775
+        }
+      },
+      "visibility_authorized": {
+        "V00": {
+          "authorized": 14,
+          "n": 80,
+          "rate": 0.175
+        },
+        "V01": {
+          "authorized": 14,
+          "n": 79,
+          "rate": 0.17721518987341772
+        },
+        "V10": {
+          "authorized": 15,
+          "n": 79,
+          "rate": 0.189873417721519
+        },
+        "V11": {
+          "authorized": 16,
+          "n": 80,
+          "rate": 0.2
+        }
+      }
+    },
+    "model_format_failure_ids": [
+      "main-tab05-defect-rate-hard-001__info-complete__sc-present__vis-V01__seed-0",
+      "main-tab05-defect-rate-extreme-001__info-complete__sc-absent__vis-V10__seed-0"
+    ],
+    "protocol_version": "s0-tab-v0",
+    "run_id": "main-s0-tab-v0-20261118",
+    "sampling": {
+      "temperature": 0.2,
+      "top_p": 0.95
+    },
+    "schema_version": "shortcut-sw08-main-stats-v1",
+    "semantic_scope": "withdrawn_behavioral_only",
+    "split": "main",
+    "submission_authorized": false,
+    "terminal_counts": {
+      "completed": 318,
+      "model_format_failure": 2
+    },
+    "wall_hours": 0.7178141687266665,
+    "wall_seconds_including_startup": 2584.131007415999
+  },
+  "status": "main_collection_complete_honest_accounting",
+  "submission_authorized": false,
+  "tracker_task": "ECE-89",
+  "verdict": "COMPLETE_WITH_TWO_FORMAT_FAILURES"
+}
