@@ -1,0 +1,22 @@
+# Package handoff — SW09 / ECE-39 final report PDF + deck — 2026-11-18
+
+- Owner and role: SW09 report/build author (`bc-be59bae5-2e03-5d2d-88e7-0d80730e6044`)
+- Status: **ready_for_review** — artifacts built; **not** independently accepted; **not** course-submitted
+- Input tip: `231da6d` (SW08 main booked) + tracked stats `results/main/main-s0-tab-v0-20261118-stats.json`
+- Assigned paths (authored):
+  - `report/final-report.md`, `final-report.pdf`, `info-contrast.*`
+  - `report/slides.md`, `slides.pdf`, `speaker-notes.md`
+  - `report/build_report.py`, `build_slides.py`, `verify_report_numbers.py`, `requirements.txt`, `README.md`
+  - `report/claim-evidence-ledger.md` (C-MAIN-S0-* rows)
+  - `delivery/packaging-manifest-sw09.md`, `reproduction-log-sw09.md`, checklist/README updates
+  - this handoff
+- Concrete results:
+  - Report PDF **5** pages; deck PDF **10** slides; verify script **OK**
+  - Evidence used: **318/320** @ **T=0.2**; behavioral-only; complete **32.3%** vs incomplete **5.0%**; `acquisition.successful=0`; 2 format failures retained
+  - Documented assumptions: ECE-90 temp errata; format failures; acquisition=0
+  - **`submission_authorized` left false** (no `state.json` flip)
+- Next safe action:
+  - Independent reviewer ≠ this author inspects commit + hashes + visual pages
+  - Orchestrator may book SW09/WP12/WP13/G6 only after that review
+  - Researcher owns LMS upload when/if authorized
+- Acceptance reviewer, decision, and date (filled on review):

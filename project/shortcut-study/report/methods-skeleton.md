@@ -3,7 +3,9 @@
 
 Yehia Fahmy · ECE 750T, University of Waterloo · draft advanced **2026-11-17** (S4 declared after G2 held-out FAIL twice: [#23](https://github.com/Yehia-Fahmy/ece750-work/pull/23), [#25](https://github.com/Yehia-Fahmy/ece750-work/pull/25); TAB01 development PASS via [#20](https://github.com/Yehia-Fahmy/ece750-work/pull/20); G0 TAB-only accepted via [#22](https://github.com/Yehia-Fahmy/ece750-work/pull/22))
 
-> **Document status (S4).** This WP12 draft is the **honest course fallback**: **no frozen main collection**, **G2 not accepted**, **G3 freeze canceled**, and **no main factorial claim**. The text records (a) the intended methods/design, (b) measured **development/pilot** evidence (TAB01 `tab01-slice-v6` PASS; G1 long-pilot telemetry), (c) measured **held-out FAIL** evidence (two archives), and (d) explicit withdrawals. Do **not** invent acquisition rates, visibility contrasts, intervals, or “expected” findings from development cells or failed held-out runs. Style reference: `project/report/final-report.md` (do not overwrite).
+> **Supersession note (2026-11-18 / SW09).** After later G2 v5 PASS, signed freeze, ECE-90 T=0.2 errata, and SW08 main booking on tip `231da6d`, the **current** integrated report is [`final-report.md`](final-report.md) / [`final-report.pdf`](final-report.pdf). Keep this S4 draft as historical fallback prose; do **not** cite it for main N=0 claims against the shipped S0 archive.
+
+> **Document status (S4, historical).** This WP12 draft was the **honest course fallback** when written: **no frozen main collection**, **G2 not accepted**, **G3 freeze canceled**, and **no main factorial claim**. The text records (a) the intended methods/design, (b) measured **development/pilot** evidence (TAB01 `tab01-slice-v6` PASS; G1 long-pilot telemetry), (c) measured **held-out FAIL** evidence (two archives), and (d) explicit withdrawals. Do **not** invent acquisition rates, visibility contrasts, intervals, or “expected” findings from development cells or failed held-out runs. Style reference: `project/report/final-report.md` (do not overwrite).
 
 ---
 

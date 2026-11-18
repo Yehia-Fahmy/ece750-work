@@ -1,8 +1,8 @@
-# Slide outline — S4 honest course fallback
+# Slide outline — historical S4 outline
 
-**Status:** outline only (2026-11-17).  
-**Deck template / `.pptx` / Beamer shell:** **none found** under `project/shortcut-study/` or `project/report/` — final deck remains **TBD** (Yehia packaging).  
-**Rule:** no fabricated main factorial findings; do not soft-wash G2 FAILs into partial confirmatory claims.
+**Status:** superseded for delivery by [`slides.md`](slides.md) / [`slides.pdf`](slides.pdf) + [`speaker-notes.md`](speaker-notes.md) (SW09, 2026-11-18).  
+**Historical note:** this file was the 2026-11-17 S4 outline when no deck existed. Keep for lineage; do not present it as the final deck.  
+**Rule:** no fabricated findings; S0 behavioral main claims must match tracked stats and keep `submission_authorized=false`.
 
 Suggested length: ~8–10 slides (+ appendix backup). Presentation date **TBD**.
 

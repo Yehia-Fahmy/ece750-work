@@ -1,25 +1,31 @@
-# Shortcut-study report (WP12)
+# Shortcut-study report (WP12 / SW09)
 
-**Active assignment (November 17):** [SWARM_START](../SWARM_START.md) reopens a repaired S0 attempt with a firm S4 fallback. The S4 Markdown below describes evidence collected so far and remains the fallback draft, not a claim the new attempt succeeded. Agents must produce the final report PDF, deck and speaker notes; historical “Yehia packaging” labels are superseded. Only course logistics/actual submission remain researcher-owned.
+**Active package (2026-11-18):** SW09 final artifacts after SW08 main booking on tip `231da6d`. Scope is **behavioral S0** (`main-s0-tab-v0-20261118`, 318/320 @ T=0.2). Semantic conclusions remain withdrawn. `submission_authorized=false`.
 
-**Qualification-reuse caveat:** `g2-held-out-20261116-catalog-v2` reused the same hidden worlds as the first FAIL after prompt tuning — useful regression, **not** a second independent held-out confirmation (RD2). See the claim ledger.
-
-**Parallel GPU:** SW06 fresh qualification is assigned to WSL operator `bc-1121d0a4…` (ECE-42). Report/CPU authors must not take the GPU lease.
-
-**Existing artifacts:** **S4 submission-oriented Markdown draft** (2026-11-17). Methods + development/pilot evidence + two G2 qualification FAILs (#23, #25). CPU repairs SW01–03 + integrator SW05 are on `main` (`91baf90`) — that is **not** G2/G3 acceptance. **No frozen protocol**, **no main factorial claim**, **no invented main findings**. Extension PDF and final deck remain agent completion tasks; slide **outline** present.
+The earlier S4 Markdown draft remains historical fallback prose in [`methods-skeleton.md`](methods-skeleton.md); it is **not** the current claim set. Use [`final-report.md`](final-report.md) / [`final-report.pdf`](final-report.pdf) for submission-oriented reading.
 
 | Artifact | Role |
 | --- | --- |
-| [`claim-evidence-ledger.md`](claim-evidence-ledger.md) | SW04 claim→artifact table, reuse caveat, repair vs gate status |
-| [`methods-skeleton.md`](methods-skeleton.md) | Working S4 course-report draft: questions, intended design, metrics, analysis plan (unused on main), v6 PASS + G2 FAIL evidence, withdrawals, limitations, AI disclosure |
-| [`slides-outline.md`](slides-outline.md) | Presentation outline only — no in-repo deck template |
-| *(next swarm)* extension PDF / final deck / notes | Produce from verified evidence and the Markdown/outline; do not invent numeric main results |
-| [`../delivery/`](../delivery/) | WP13 packaging manifest, reproduction log, submission checklist |
+| [`final-report.md`](final-report.md) | Integrated course report source (S0 behavioral main) |
+| [`final-report.pdf`](final-report.pdf) | Built PDF (provisional 4-page core + references/appendix) |
+| [`info-contrast.png`](info-contrast.png) / [`info-contrast.pdf`](info-contrast.pdf) | Figure 1 from tracked stats |
+| [`slides.md`](slides.md) / [`slides.pdf`](slides.pdf) | Final deck source + PDF |
+| [`speaker-notes.md`](speaker-notes.md) | Speaker notes |
+| [`build_report.py`](build_report.py) / [`build_slides.py`](build_slides.py) | Reproducible builders |
+| [`verify_report_numbers.py`](verify_report_numbers.py) | Clean-checkout number check vs stats JSON |
+| [`requirements.txt`](requirements.txt) | Report/deck Python deps |
+| [`claim-evidence-ledger.md`](claim-evidence-ledger.md) | Claim → artifact table |
+| [`methods-skeleton.md`](methods-skeleton.md) | Historical S4 draft (superseded for main claims) |
+| [`slides-outline.md`](slides-outline.md) | Early outline (superseded by `slides.md`) |
+| [`../delivery/`](../delivery/) | Packaging / reproduction / checklist |
 
-The completed observer-framing study remains at [`project/report/`](../../report/) (`final-report.md` / `final-report.pdf`) and must stay untouched. This directory owns only the **extension** report package.
+Protected observer study remains at [`project/report/`](../../report/) — do not modify.
 
-**Scope of the existing draft:** **S4** = **0** main primary-actor episodes, from the [earlier decision](../handoffs/2026-11-17-s4-honest-course-fallback.md). The current user decision permits a gated S0 attempt; update final scope only from accepted evidence or the automatic fallback. The 3,200-episode five-family target remains withdrawn.
+## Build
 
-**Gate honesty:** **G0 TAB-only accepted historically** (#22); **G2 failed** twice (#23 then #25 after catalog-v2); no later gate is accepted. G3–G5/WP09–WP11 are reopened only as pending work by the new instruction. Markdown draft ≠ WP12 full acceptance (PDF/deck still open). `submission_authorized` remains **false**.
-
-Course report due **2026-12-04** (America/Toronto; 11:59pm under the general written-work policy). Presentation date and official page limit remain unresolved; plan a four-page core plus separated appendices/references until instructed otherwise.
+```bash
+pip install -r project/shortcut-study/report/requirements.txt
+python3 project/shortcut-study/report/build_report.py
+python3 project/shortcut-study/report/build_slides.py
+python3 project/shortcut-study/report/verify_report_numbers.py
+```
