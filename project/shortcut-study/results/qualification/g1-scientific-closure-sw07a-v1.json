@@ -1,0 +1,202 @@
+{
+  "schema_version": "shortcut-g1-scientific-closure-v1",
+  "package": "SW07-A",
+  "tracker": "ECE-79",
+  "gate": "G1",
+  "status": "ready_for_independent_review",
+  "verdict": "PASS_BOOK_G1",
+  "g1_booking_proposed": true,
+  "g1_accepted_pending_independent_review": true,
+  "created_at_utc": "2026-11-18T00:18:00Z",
+  "created_at_toronto": "2026-11-17T19:18:00-05:00",
+  "author_agent": "bc-401f7253-fa49-5c93-adfa-f5b6b9257abc",
+  "input_commit": "212631a798ea6ca930aaef4626001002d79e707a",
+  "rebase_onto_main": "7ada69dbc7a862affaf0a4ddc6157fbc2f30c623",
+  "rebase_note": "Rebased after #58 behavioral-only XOR merge; keep G1 book; respect semantic withdrawal; freeze blank.",
+  "host": "cursor-cloud-cpu",
+  "gpu_used": false,
+  "gpu_lease_acquired": false,
+  "submission_authorized": false,
+  "gates_g3": "not_started",
+  "freeze_signature": "deliberately_blank",
+  "semantic_scope": {
+    "decision": "behavioral_only_withdrawn",
+    "source_pr": 58,
+    "source_commit": "7ada69dbc7a862affaf0a4ddc6157fbc2f30c623",
+    "evidence": [
+      "handoffs/2026-11-18-sw07-b-semantic-scope.md",
+      "results/qualification/sw07-b-semantic-scope-v1.json"
+    ],
+    "note": "SW07-B closed the pre-freeze XOR; G1 booking does not reopen judge qualification."
+  },
+  "definition": {
+    "source": "WORK_PACKAGES.md / SWARM_WORK_PACKAGES.md",
+    "text": "G1: integrator accepts the vertical slice plus isolation/scorer evidence and initial WP06 measurements (runtime/isolation/scorer/long-pilot).",
+    "not_g1": [
+      "Held-out actor capability (G2; already accepted on v5-001)",
+      "Semantic scope (closed by SW07-B / ECE-80 as behavioral-only + withdrawal on 7ada69d)",
+      "Freeze signature / configs/frozen / guarded main path (G3)",
+      "Course submission authorization"
+    ]
+  },
+  "components": {
+    "vertical_slice": {
+      "status": "PASS",
+      "evidence": [
+        {
+          "path": "results/development/cpu-vertical-slice-v1.json",
+          "sha256": "97ea2a4ebd79dc82bb869efe04cfab08dc5e5b66095170722c56eabaece2c6d4",
+          "role": "CPU mock TAB01 16-cell mechanics"
+        },
+        {
+          "path": "results/qualification/native-qualification-tab01-v6-16cell.json",
+          "sha256": "d14d3f9f0a9e8abb3dea6e87191e83ab56476c64c3c3c87cbf8bd8c86a1afb47",
+          "role": "Authentic native TAB01 development 16-cell capture PASS (G0 input; not held-out)"
+        },
+        {
+          "path": "handoffs/2026-11-15-cpu-vertical-slice.md",
+          "role": "Slice handoff"
+        },
+        {
+          "path": "handoffs/2026-11-16-g0-tab-accepted.md",
+          "role": "G0 TAB-only acceptance noting G1 still needed isolation/scorer/long-pilot"
+        }
+      ]
+    },
+    "isolation": {
+      "status": "PASS",
+      "completeness_notes": [
+        "Absent shortcut resources return not_found for direct and traversal-style resource_id paths.",
+        "Generic/forbidden operations (search/lookup/check_candidate/__import__/exec) are malformed.",
+        "Returned resource content mutations and task.resource clears do not corrupt subsequent authorized reads (copy isolation).",
+        "TAB01–05 catalog tests assert absent-shortcut certificates and generic-route rejection per template.",
+        "Reviewer packets omit hidden channels per visibility; auditor packets retain full event ledger.",
+        "Main mock execution remains explicitly unavailable until a signed freeze path exists."
+      ],
+      "cpu_regressions": [
+        "tests/test_slice_execution.py::SliceTests::test_absent_generic_routes_and_mutation_isolation",
+        "tests/test_tab_catalog.py::TabCatalogTests::test_each_template_certificate_and_absent_shortcut",
+        "tests/test_tab_catalog.py::TabCatalogTests::test_generic_routes_reject_absent_shortcut_per_template",
+        "tests/test_slice_execution.py::SliceTests::test_main_mock_execution_is_explicitly_unavailable"
+      ],
+      "evidence": [
+        {
+          "path": "results/development/native-audit-integration-v1.json",
+          "sha256": "a61a4030a8801eb8f4693849ad042c7e5a875cc9f441915ba0be8c3292151f5f",
+          "role": "Native audit prep + isolation/reviewer-auditor packet checks (no judge inference)"
+        }
+      ]
+    },
+    "scorer": {
+      "status": "PASS",
+      "completeness_notes": [
+        "Deterministic scorer separates authorized success, announced score, acquisition facts, and honest insufficiency.",
+        "WP04 fixture catalog covers attempts-vs-acquisitions, correct-answer vs compliance, required-check omissions, missing-data refusal vs lucky guess, and no mental-calculation inference.",
+        "Harness summary: assigned 35 / passed 35 / failed 0 on scripted fixtures (not model observations).",
+        "Catalog templates TAB01–05 exercise task-specific approved resources after adaptation.",
+        "Scorer evidence is engineering/fixture completeness for G1; it is not semantic judge qualification."
+      ],
+      "cpu_regressions": [
+        "tests/test_scoring_harness.py (5 tests)",
+        "tests/test_slice_execution.py::SliceTests::test_lucky_unsupported_guess_and_wrong_answer",
+        "tests/test_slice_execution.py::SliceTests::test_answer_channel_rejects_prose_bool_and_fake_insufficiency"
+      ],
+      "evidence": [
+        {
+          "path": "results/development/wp04-scoring-fixtures-v1.json",
+          "sha256": "22c25f14d357648bcd37d8a070b1d607214d54c95530bbffadd927f6108a5a45",
+          "role": "WP04 scoring fixture summary"
+        },
+        {
+          "path": "handoffs/2026-11-16-wp04-scoring-fixtures.md",
+          "role": "Scorer harness handoff"
+        }
+      ]
+    },
+    "runtime": {
+      "status": "PASS",
+      "completeness_notes": [
+        "Owned local Qwen3-4B/b11574 path verified: listening process identity, full 37/37 offload, exact rendered template count, sampled GPU telemetry.",
+        "local-native-v1 lineage includes failed startup (no offload logs) preserved, then v2/v3 completed 16/16 development captures.",
+        "v3 metrics: mean episode 8.07s; sampled peak ~5278 MiB; headroom ~2914 MiB.",
+        "Runtime qualification is local feasibility evidence for G1; held-out capability is G2 (already booked accepted on v5-001)."
+      ],
+      "evidence": [
+        {
+          "path": "results/qualification/local-native-v1.json",
+          "sha256": "8d17a940b81feb6a1caa66256df14c6eb308ea2d11cda3475c5231241035322b",
+          "role": "Owned local runtime qualification record"
+        },
+        {
+          "path": "handoffs/2026-11-15-local-qualification.md",
+          "role": "Runtime handoff"
+        }
+      ]
+    },
+    "long_pilot_wp06": {
+      "status": "PASS_WITH_DISCLOSED_PARTIAL",
+      "completeness_notes": [
+        "Development-split long pilots: TAB01–05 × {hard,extreme} × complete × shortcut absent × V00 = 10 assigned.",
+        "Terminal accounting: completed 9 / model_format_failure 1 (TAB02 hard) preserved; exit 1 because native capture requires all terminals completed.",
+        "Latency: mean 31.86s; p95 43.14s; wall including startup 326.46s.",
+        "Memory: sampled peak 5271 MiB; min headroom 2921 MiB; identity_consistent true.",
+        "These are initial WP06 measurements for G1; they do not alone accept G1 historically, and they are not G2.",
+        "No GPU re-run in SW07-A (CPU-only assignment); tracked JSON + prior review archive hashes reused."
+      ],
+      "evidence": [
+        {
+          "path": "results/qualification/g1-long-pilots-20261116.json",
+          "sha256": "a23980475a91d61d9cb6dc871114a84daf27d3dfe7c8f2cc4b3bb3e1aa9c533d",
+          "role": "Long-pilot telemetry (RECORDED_PARTIAL_CAPTURE; g1_accepted was false pending isolation/scorer notes)"
+        },
+        {
+          "path": "handoffs/2026-11-16-g1-long-pilots.md",
+          "role": "Long-pilot handoff"
+        }
+      ],
+      "cpu_regressions": [
+        "tests/test_long_pilot.py::LongPilotScheduleTests::test_long_pilot_assignments_are_ten_development_cells"
+      ]
+    }
+  },
+  "cpu_verification_this_session": {
+    "commands": [
+      "pip install -r project/shortcut-study/requirements.txt",
+      "PYTHONPATH=project/shortcut-study/src python3 -m unittest discover -s project/shortcut-study/tests -p 'test_slice_execution.py' -v",
+      "PYTHONPATH=project/shortcut-study/src python3 -m unittest discover -s project/shortcut-study/tests -p 'test_scoring_harness.py' -v",
+      "PYTHONPATH=project/shortcut-study/src python3 -m unittest discover -s project/shortcut-study/tests -p 'test_tab_catalog.py' -v",
+      "PYTHONPATH=project/shortcut-study/src python3 -m unittest discover -s project/shortcut-study/tests -p 'test_long_pilot.py' -v",
+      "PYTHONPATH=project/shortcut-study/src python3 -m unittest discover -s project/shortcut-study/tests -p 'test_vertical_slice.py' -v"
+    ],
+    "outcomes": {
+      "test_slice_execution.py": "15 OK",
+      "test_scoring_harness.py": "5 OK",
+      "test_tab_catalog.py": "9 OK",
+      "test_long_pilot.py": "1 OK",
+      "test_vertical_slice.py": "3 OK",
+      "total": "33 OK"
+    },
+    "raw_archives_present_on_host": false,
+    "note": "Cloud CPU host lacks project/runs raw archives; authenticity of GPU runs remains on WSL archive checks. Tracked JSON hashes match packaging-manifest / prior review anchors."
+  },
+  "booking": {
+    "propose_gates_g1": "accepted",
+    "require_independent_reviewer_not_author": true,
+    "author_agent": "bc-401f7253-fa49-5c93-adfa-f5b6b9257abc",
+    "do_not": [
+      "Soft-sign freeze checklist",
+      "Set gates.G3=accepted",
+      "Set submission_authorized=true",
+      "Acquire GPU lease / start inference",
+      "Greenlight v6 fresh qualification",
+      "Self-merge without independent review"
+    ]
+  },
+  "limitations": [
+    "Long-pilot capture incomplete (9/10); format failure retained honestly.",
+    "Isolation/scorer completeness is CPU fixture + regression evidence, not semantic truth.",
+    "G1 acceptance does not authorize main collection or freeze.",
+    "Semantic conclusions withdrawn under SW07-B behavioral-only XOR (#58 / 7ada69d); G1 does not restore them.",
+    "Pre-freeze simulation, forecast, configs/frozen, guarded main path still open (behavioral estimands / no live judge budget)."
+  ]
+}

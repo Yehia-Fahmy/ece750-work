@@ -40,7 +40,7 @@
   },
   "gates": {
     "G0": "accepted",
-    "G1": "in_progress",
+    "G1": "accepted",
     "G2": "accepted",
     "G3": "not_started",
     "G4": "not_started",
@@ -318,10 +318,12 @@
     "ECE-69 done: #53 merged 096afd9 — TAB04/TAB05 easy residual wave C 8/8 (dev only). Live turns stay 16. No soft-accept.",
     "ECE-74 done: #55 merged c3db94e — qual-fresh-tab-catalog-v5-001 honest G2 PASS (completion 315/320; parse 156/156; easy 20/20). Batch consumed; g2_accepted=true. Prior v3/v4 FAIL archives untouched. No soft-accept of incomplete gates.",
     "ECE-77 booking: state gates.G2=accepted from held-out v5-001 evidence. Freeze checklist G2 evidence marked complete; freeze signature remains unsigned (Yehia/root process). submission_authorized=false; course submission Yehia-only. No v6 greenlight; no second GPU.",
-    "Commit freeze signature by 2026-11-22 18:00 America/Toronto or automatically select S4. G2 actor PASS ≠ freeze/G3; do not soft-sign.",
+    "ECE-79 / SW07-A: G1 scientific closure pack ready; proposes gates.G1=accepted from vertical slice + isolation/scorer + runtime + long-pilot (9/10 disclosed). Rebased onto #58/7ada69d behavioral-only XOR. ECE-83 independent re-review ≠ author required before merge. submission_authorized=false; G3 unsigned; no soft-sign; no GPU.",
+    "ECE-80 / SW07-B done on main 7ada69d: behavioral-only + semantic withdrawal; do not reopen judge path via G1 booking.",
+    "Commit freeze signature by 2026-11-22 18:00 America/Toronto or automatically select S4. G1/G2 evidence + SW07-B withdrawal ≠ freeze/G3; do not soft-sign.",
     "Local project/runs archives absent on orchestrator host; preserve review evidence; authenticity checks need WSL archives later.",
     "Agents must build final report PDF, deck and notes by Dec 3 18:00; course submission remains researcher-only.",
-    "Qualified semantic executor, validation and complete pipeline forecast remain pending; explicitly withdraw semantic conclusions if scope is behavioral-only.",
+    "Semantic conclusions withdrawn (SW07-B); remaining forecast is actor + non-semantic audit-prep only under behavioral-only scope.",
     "Official final page limit and presentation arrangements remain unresolved; continue with documented provisional format.",
     "Course submission remains researcher-only; historical artifacts and local asset-dependent worktrees remain protected."
   ],
@@ -653,7 +655,7 @@
   "swarm_handoff": {
     "schema_version": 1,
     "date": "2026-11-17",
-    "status": "ece74_v5_g2_pass_booked_freeze_unsigned",
+    "status": "sw07a_g1_booking_pending_independent_review",
     "start_here": "SWARM_START.md",
     "work_packages": "SWARM_WORK_PACKAGES.md",
     "reconciliation": "handoffs/2026-11-17-completion-swarm.md",
@@ -1159,24 +1161,44 @@
       {
         "id": "SW07",
         "role": "integrator_and_freeze_reviewer",
-        "status": "freeze_unsigned_g2_evidence_ready",
+        "status": "sw07a_g1_booking_pending_independent_review",
         "owner": "bc-ece62cad-b32b-5b8f-b2e7-56b9dbc6be8a",
-        "reviewer": null,
+        "reviewer": "independent_pending_not_author",
         "depends_on": [
           "SW06"
         ],
-        "input_commit": "91baf90d8111e7f0b6a7ed670ad510dea1b79e19",
+        "input_commit": "7ada69dbc7a862affaf0a4ddc6157fbc2f30c623",
         "assigned_paths": [
           "project/shortcut-study/handoffs/2026-11-17-sw07-freeze-prep.md",
           "project/shortcut-study/results/qualification/sw07-freeze-prep-v1.json",
-          "project/shortcut-study/results/qualification/freeze-checklist-s0-tab-post-sw05.md"
+          "project/shortcut-study/results/qualification/freeze-checklist-s0-tab-post-sw05.md",
+          "project/shortcut-study/results/qualification/g1-scientific-closure-sw07a-v1.json",
+          "project/shortcut-study/handoffs/2026-11-18-sw07a-g1-closure.md"
         ],
         "evidence": [
           "handoffs/2026-11-17-sw07-freeze-prep.md",
           "results/qualification/sw07-freeze-prep-v1.json",
-          "results/qualification/freeze-checklist-s0-tab-post-sw05.md"
+          "results/qualification/freeze-checklist-s0-tab-post-sw05.md",
+          "results/qualification/g1-scientific-closure-sw07a-v1.json",
+          "handoffs/2026-11-18-sw07a-g1-closure.md",
+          "results/qualification/g1-long-pilots-20261116.json",
+          "results/qualification/local-native-v1.json",
+          "results/development/cpu-vertical-slice-v1.json",
+          "results/development/wp04-scoring-fixtures-v1.json"
         ],
-        "note": "G2 actor evidence complete on main (#55 / c3db94e; ECE-77 books accept). Freeze checklist G2 item checked; freeze signature deliberately blank — Yehia/root process; do not soft-sign. G3=not_started; submission_authorized=false. No v6. Cutoff Nov 22 18:00 America/Toronto → S4."
+        "sw07a": {
+          "tracker": "ECE-79",
+          "author_agent": "bc-401f7253-fa49-5c93-adfa-f5b6b9257abc",
+          "verdict": "PASS_BOOK_G1",
+          "gates_g1_proposed": "accepted",
+          "cpu_regressions": "33 OK (slice/scoring/tab_catalog/long_pilot/vertical_slice)",
+          "gpu_used": false,
+          "independent_review_required": true,
+          "freeze_signature": "deliberately_blank",
+          "gates_g3": "not_started",
+          "submission_authorized": false
+        },
+        "note": "SW07-A/ECE-79 books gates.G1=accepted from closure pack (slice+isolation/scorer+runtime+long-pilot 9/10); rebased onto #58/7ada69d behavioral-only XOR. Independent review ≠ author (ECE-83 re-review). G2 accepted on v5-001; semantic conclusions withdrawn. Freeze signature deliberately blank — Yehia/root; do not soft-sign. G3=not_started; submission_authorized=false. No v6; no GPU on SW07-A. Cutoff Nov 22 18:00 America/Toronto → S4."
       },
       {
         "id": "SW08",
