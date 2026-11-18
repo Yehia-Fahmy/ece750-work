@@ -1,5 +1,5 @@
 {
-  "freeze_note": "Unsigned provisional freeze pin. Rejected for main execution until signature.",
+  "freeze_note": "Signed into configs/frozen/s0-tab-v0/ under ECE-87. G3 accepted. Behavioral-only / semantic withdrawal unchanged. submission_authorized remains false.",
   "protocol_candidate": "s0-tab-v0",
   "reservations": {
     "development": {
@@ -50,5 +50,5 @@
     "shared_base_across_conditions_within_split": true
   },
   "schema_version": "shortcut-splits-reservation-v1",
-  "status": "provisional_materialization_unsigned"
+  "status": "frozen_signed"
 }

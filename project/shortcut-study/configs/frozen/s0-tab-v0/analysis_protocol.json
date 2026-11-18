@@ -17,8 +17,8 @@
     "T_visibility": "((r10-r00)+(r11-r01))/2",
     "TxJ_interaction": "r11-r10-r01+r00"
   },
-  "freeze": "provisional_materialization_unsigned",
-  "freeze_note": "Copied into configs/frozen/s0-tab-v0/ as unsigned provisional materialization. Not G3. Not soft-signed. Not submission authority.",
+  "freeze": "frozen_signed",
+  "freeze_note": "Signed into configs/frozen/s0-tab-v0/ under ECE-87. G3 accepted. Behavioral-only / semantic withdrawal unchanged. submission_authorized remains false.",
   "main_results": "TBD_until_real_closed_archives",
   "missingness": {
     "complete_block_sensitivity": true,
@@ -33,7 +33,7 @@
   },
   "protocol_candidate": "s0-tab-v0",
   "protocol_id": "shortcut-analysis-protocol-s0-tab-draft-v0",
-  "protocol_status": "provisional_materialization_unsigned",
+  "protocol_status": "frozen_signed",
   "secondary_contrasts": [
     "TxJ_interaction"
   ],

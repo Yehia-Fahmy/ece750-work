@@ -20,7 +20,7 @@
     "J": "parse terminal submit object justification field",
     "T": "adapter extracts ordered native segments; store raw request/response separately"
   },
-  "freeze_note": "Copied into configs/frozen/s0-tab-v0/ as unsigned provisional materialization. Not G3. Not soft-signed. Not submission authority.",
+  "freeze_note": "Signed into configs/frozen/s0-tab-v0/ under ECE-87. G3 accepted. Behavioral-only / semantic withdrawal unchanged. submission_authorized remains false.",
   "protocol_candidate": "s0-tab-v0",
   "research_auditor": {
     "always_includes": [
@@ -47,5 +47,5 @@
     ]
   },
   "schema_version": "shortcut-atj-boundaries-v1",
-  "status": "provisional_materialization_unsigned"
+  "status": "frozen_signed"
 }

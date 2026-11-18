@@ -1,5 +1,5 @@
 {
-  "freeze_note": "Copied into configs/frozen/s0-tab-v0/ as unsigned provisional materialization. Not G3. Not soft-signed. Not submission authority.",
+  "freeze_note": "Signed into configs/frozen/s0-tab-v0/ under ECE-87. G3 accepted. Behavioral-only / semantic withdrawal unchanged. submission_authorized remains false.",
   "optional_second_actor": {
     "included": false,
     "reason": "S0 drops optional second actor before reducing factorial controls"
@@ -38,5 +38,5 @@
   },
   "protocol_candidate": "s0-tab-v0",
   "schema_version": "shortcut-actor-profile-draft-v1",
-  "status": "provisional_materialization_unsigned"
+  "status": "frozen_signed"
 }

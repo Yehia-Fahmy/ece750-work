@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
   "updated_at": "2026-11-17",
-  "phase": "completion_swarm_sw00_assigned",
+  "phase": "completion_swarm_g3_freeze_signed",
   "context_checkpoint": "ecb82d3",
   "planning_status": "s0_attempt_with_firm_s4_fallback",
   "execution_started": true,
-  "frozen_protocol": null,
+  "frozen_protocol": "s0-tab-v0",
   "active_run": null,
   "constraints": {
     "gpu": "NVIDIA GeForce RTX 3070 Ti",
@@ -18,7 +18,7 @@
   },
   "recommended_scope_not_frozen": {
     "tier": "S0",
-    "label": "S0 TAB-only candidate, pending repairs, fresh qualification and freeze; automatic S4 fallback",
+    "label": "S0 TAB-only frozen (ECE-87); behavioral-only; S4 fallback if collection misses cutoffs",
     "families": 1,
     "family_ids": [
       "tables"
@@ -36,13 +36,13 @@
     "protocol_candidate": "s0-tab-v0",
     "draft_configs": "configs/provisional/s0-tab-only/",
     "original_course_core_episodes_withdrawn_for_dec4": 3200,
-    "note": "Prior provisional files retain S4-era history; not executable freeze authority. Create versioned current candidate/frozen artifacts only after accepted repairs."
+    "note": "ECE-87 signed frozen protocol configs/frozen/s0-tab-v0/ (behavioral-only). This block retains historical candidate metadata; authority is frozen_protocol + signed manifest."
   },
   "gates": {
     "G0": "accepted",
     "G1": "accepted",
     "G2": "accepted",
-    "G3": "not_started",
+    "G3": "accepted",
     "G4": "not_started",
     "G5": "not_started",
     "G6": "in_progress"
@@ -205,7 +205,7 @@
     },
     {
       "id": "WP08",
-      "status": "in_progress",
+      "status": "ready_for_review",
       "owner": "integrator",
       "depends_on": [
         "WP02",
@@ -232,9 +232,12 @@
         "results/qualification/g2-held-out-20261116.json",
         "handoffs/2026-11-16-g2-held-out-catalog-v2.md",
         "results/qualification/g2-held-out-20261116-catalog-v2.json",
-        "handoffs/2026-11-17-s4-honest-course-fallback.md"
+        "handoffs/2026-11-17-s4-honest-course-fallback.md",
+        "configs/frozen/s0-tab-v0/",
+        "handoffs/2026-11-18-ece87-g3-freeze-sign.md",
+        "results/qualification/ece87-g3-freeze-sign-v1.json"
       ],
-      "note": "Fresh v3-001 FAIL recorded; G2 remains failed; G3 not accepted. Residual repair then new fresh batch before cutoff, else S4 fallback."
+      "note": "ECE-87 signed freeze for s0-tab-v0; gates.G3=accepted pending independent merge review. submission_authorized=false; SW08 not started."
     },
     {
       "id": "WP09",
@@ -244,7 +247,7 @@
         "WP08"
       ],
       "evidence": [],
-      "note": "Reopened as conditional planned work by November 17 user instruction; only after accepted fresh qualification and G3 freeze before cutoff. Otherwise deferred under S4. No main results exist."
+      "note": "Conditional on ECE-87 merge + SW08 kickoff/accounting. Not started. No main results yet. submission_authorized=false."
     },
     {
       "id": "WP10",
@@ -254,7 +257,7 @@
         "WP08"
       ],
       "evidence": [],
-      "note": "Reopened as conditional planned work by November 17 user instruction; only after accepted fresh qualification and G3 freeze before cutoff. Otherwise deferred under S4. No main results exist."
+      "note": "Conditional on ECE-87 merge + SW08 kickoff/accounting. Not started. No main results yet. submission_authorized=false."
     },
     {
       "id": "WP11",
@@ -310,6 +313,10 @@
     }
   ],
   "open_items": [
+    "ECE-87: Yehia authorized freeze/accept G3 (walkthrough 1–5 confirmed 2026-11-17 America/Toronto). Signed configs/frozen/s0-tab-v0/; freeze.signed=true; accepting_owner=Yehia F; freeze tip 571d888; gates.G3=accepted. Independent review ≠ signature PR author before merge. submission_authorized=false. SW08 GPU not started by this booking.",
+    "Behavioral-only scope unchanged (SW07-B); semantic conclusions withdrawn; no live judge in freeze scope.",
+    "After independent merge of ECE-87: SW08 main collection may start on single WSL RTX 3070 Ti (bc-1121d0a4) per Nov 27/29 cutoffs — do not kick from signature PR alone.",
+    "ECE-39 / SW09 stays queued until SW08 accounting or dated S4; course submission Yehia-only.",
     "SW00 in progress: assignments issued; integrate SW01–03 after independent reviews (author≠reviewer).",
     "Launch sibling workers for ECE-36/37/38 (SW01/02/03) with path allowlists in assignment handoffs.",
     "Repair RD1/RD2/RD3 (SW01), IMPL-1/2/3 (SW02), A1–A5 (SW03) before any new 320-episode qualification.",
@@ -317,10 +324,7 @@
     "ECE-63 done: #51 merged 7d965ba — qual-fresh-tab-catalog-v4-001 honest FAIL (completion 315/320=98.4% PASS; easy 11/20=55% FAIL). Batch consumed; g2_accepted=false. No soft-accept.",
     "ECE-69 done: #53 merged 096afd9 — TAB04/TAB05 easy residual wave C 8/8 (dev only). Live turns stay 16. No soft-accept.",
     "ECE-74 done: #55 merged c3db94e — qual-fresh-tab-catalog-v5-001 honest G2 PASS (completion 315/320; parse 156/156; easy 20/20). Batch consumed; g2_accepted=true. Prior v3/v4 FAIL archives untouched. No soft-accept of incomplete gates.",
-    "ECE-77 booking: state gates.G2=accepted from held-out v5-001 evidence. Freeze checklist G2 evidence marked complete; freeze signature remains unsigned (Yehia/root process). submission_authorized=false; course submission Yehia-only. No v6 greenlight; no second GPU.",
-    "ECE-79 / SW07-A: G1 scientific closure pack ready; proposes gates.G1=accepted from vertical slice + isolation/scorer + runtime + long-pilot (9/10 disclosed). Rebased onto #58/7ada69d behavioral-only XOR. ECE-83 independent re-review ≠ author required before merge. submission_authorized=false; G3 unsigned; no soft-sign; no GPU.",
     "ECE-80 / SW07-B done on main 7ada69d: behavioral-only + semantic withdrawal; do not reopen judge path via G1 booking.",
-    "Commit freeze signature by 2026-11-22 18:00 America/Toronto or automatically select S4. G1/G2 evidence + SW07-B withdrawal ≠ freeze/G3; do not soft-sign.",
     "Local project/runs archives absent on orchestrator host; preserve review evidence; authenticity checks need WSL archives later.",
     "Agents must build final report PDF, deck and notes by Dec 3 18:00; course submission remains researcher-only.",
     "Semantic conclusions withdrawn (SW07-B); remaining forecast is actor + non-semantic audit-prep only under behavioral-only scope.",
@@ -655,7 +659,7 @@
   "swarm_handoff": {
     "schema_version": 1,
     "date": "2026-11-17",
-    "status": "sw07a_g1_booking_pending_independent_review",
+    "status": "ece87_g3_freeze_signed_pending_independent_review",
     "start_here": "SWARM_START.md",
     "work_packages": "SWARM_WORK_PACKAGES.md",
     "reconciliation": "handoffs/2026-11-17-completion-swarm.md",
@@ -1161,7 +1165,7 @@
       {
         "id": "SW07",
         "role": "integrator_and_freeze_reviewer",
-        "status": "sw07a_g1_booking_pending_independent_review",
+        "status": "ece87_g3_signed_pending_independent_review",
         "owner": "bc-ece62cad-b32b-5b8f-b2e7-56b9dbc6be8a",
         "reviewer": "independent_pending_not_author",
         "depends_on": [
@@ -1173,7 +1177,11 @@
           "project/shortcut-study/results/qualification/sw07-freeze-prep-v1.json",
           "project/shortcut-study/results/qualification/freeze-checklist-s0-tab-post-sw05.md",
           "project/shortcut-study/results/qualification/g1-scientific-closure-sw07a-v1.json",
-          "project/shortcut-study/handoffs/2026-11-18-sw07a-g1-closure.md"
+          "project/shortcut-study/handoffs/2026-11-18-sw07a-g1-closure.md",
+          "project/shortcut-study/configs/frozen/s0-tab-v0/",
+          "project/shortcut-study/state.json",
+          "project/shortcut-study/handoffs/2026-11-18-ece87-g3-freeze-sign.md",
+          "project/shortcut-study/results/qualification/ece87-g3-freeze-sign-v1.json"
         ],
         "evidence": [
           "handoffs/2026-11-17-sw07-freeze-prep.md",
@@ -1184,7 +1192,10 @@
           "results/qualification/g1-long-pilots-20261116.json",
           "results/qualification/local-native-v1.json",
           "results/development/cpu-vertical-slice-v1.json",
-          "results/development/wp04-scoring-fixtures-v1.json"
+          "results/development/wp04-scoring-fixtures-v1.json",
+          "handoffs/2026-11-18-ece87-g3-freeze-sign.md",
+          "results/qualification/ece87-g3-freeze-sign-v1.json",
+          "configs/frozen/s0-tab-v0/manifest.json"
         ],
         "sw07a": {
           "tracker": "ECE-79",
@@ -1198,12 +1209,25 @@
           "gates_g3": "not_started",
           "submission_authorized": false
         },
-        "note": "SW07-A/ECE-79 books gates.G1=accepted from closure pack (slice+isolation/scorer+runtime+long-pilot 9/10); rebased onto #58/7ada69d behavioral-only XOR. Independent review ≠ author (ECE-83 re-review). G2 accepted on v5-001; semantic conclusions withdrawn. Freeze signature deliberately blank — Yehia/root; do not soft-sign. G3=not_started; submission_authorized=false. No v6; no GPU on SW07-A. Cutoff Nov 22 18:00 America/Toronto → S4."
+        "note": "ECE-87 signs freeze: freeze.signed=true; gates.G3=accepted; accepting_owner=Yehia F; freeze tip 571d888 / 2026-11-17T22:45:00-05:00. Behavioral-only unchanged. submission_authorized=false. Independent review ≠ signature PR author before merge. SW08 not started.",
+        "ece87": {
+          "tracker": "ECE-87",
+          "accepting_owner": "Yehia F",
+          "freeze_signed": true,
+          "gates_g3": "accepted",
+          "freeze_commit": "571d88865ee3d2d83ea152275b58436fccacc06c",
+          "freeze_timestamp": "2026-11-17T22:45:00-05:00",
+          "walkthrough_confirmed": "2026-11-17 America/Toronto",
+          "behavioral_only": true,
+          "submission_authorized": false,
+          "sw08_started": false,
+          "independent_review_required": true
+        }
       },
       {
         "id": "SW08",
         "role": "gpu_operator_auditor_analyst",
-        "status": "not_started",
+        "status": "ready_after_ece87_merge_not_started",
         "owner": null,
         "reviewer": null,
         "depends_on": [
@@ -1211,7 +1235,8 @@
         ],
         "input_commit": null,
         "assigned_paths": [],
-        "evidence": []
+        "evidence": [],
+        "note": "Permitted only after ECE-87 independent merge + explicit SW08 kickoff. Single GPU bc-1121d0a4. Not started by signature PR."
       },
       {
         "id": "SW09",

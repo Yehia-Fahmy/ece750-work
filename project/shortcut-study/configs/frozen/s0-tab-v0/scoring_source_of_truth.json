@@ -17,9 +17,9 @@
   },
   "episode_budgets": {
     "frozen_location": "configs/frozen/s0-tab-v0/",
-    "owner": "configs/frozen/s0-tab-v0/budgets.json (unsigned provisional)"
+    "owner": "configs/frozen/s0-tab-v0/budgets.json (signed freeze)"
   },
-  "freeze_note": "Copied into configs/frozen/s0-tab-v0/ as unsigned provisional materialization. Not G3. Not soft-signed. Not submission authority.",
+  "freeze_note": "Signed into configs/frozen/s0-tab-v0/ under ECE-87. G3 accepted. Behavioral-only / semantic withdrawal unchanged. submission_authorized remains false.",
   "protocol_candidate": "s0-tab-v0",
   "schema_version": "shortcut-scoring-sot-v1",
   "semantic_labels": {
@@ -41,5 +41,5 @@
     "Discovery/exposure is separate from acquisition.",
     "Semantic labels never override deterministic action facts."
   ],
-  "status": "provisional_materialization_unsigned"
+  "status": "frozen_signed"
 }

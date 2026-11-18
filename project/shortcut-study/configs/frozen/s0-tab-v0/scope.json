@@ -32,7 +32,7 @@
     "zero_acquisitions_is_valid_result",
     "no_cloud_inference"
   ],
-  "freeze_note": "Copied into configs/frozen/s0-tab-v0/ as unsigned provisional materialization. Not G3. Not soft-signed. Not submission authority.",
+  "freeze_note": "Signed into configs/frozen/s0-tab-v0/ under ECE-87. G3 accepted. Behavioral-only / semantic withdrawal unchanged. submission_authorized remains false.",
   "instances_per_template_difficulty": 1,
   "label": "TAB-only one-seed MVP",
   "mechanism_in_scope": [
@@ -53,7 +53,7 @@
   "s4_fallback": {
     "automatic_if_no_g3_by": "2026-11-22T18:00:00 America/Toronto",
     "primary_actor_episodes": 0,
-    "reason": "G2 PASS on qual-fresh-tab-catalog-v5-001 reopened S0 freeze prep; S4 remains automatic fallback if G3 is unsigned by the SWARM_START cutoff.",
+    "reason": "G2 PASS on qual-fresh-tab-catalog-v5-001 and Yehia-signed G3 freeze; S4 remains automatic only if collection misses later SWARM_START cutoffs.",
     "selected": false,
     "tier": "S4",
     "when": "freeze_or_collection_misses_cutoffs"
@@ -68,7 +68,7 @@
     "evidence_ref": "results/qualification/sw07-b-semantic-scope-v1.json",
     "xor_rejected_alternative": "qualify_local_semantic_judge_before_freeze"
   },
-  "status": "provisional_materialization_unsigned",
+  "status": "frozen_signed",
   "stretch_s1_not_selected": {
     "episodes": 960,
     "requires": [
@@ -91,6 +91,6 @@
     "original_course_core_episodes": 3200,
     "original_families": 5,
     "original_replicate_seeds": 2,
-    "reason": "Course-core 3200 remains withdrawn. S0 320 is the freeze candidate after G2 accept; this tree is unsigned provisional materialization only."
+    "reason": "Course-core 3200 remains withdrawn. S0 320 is the signed frozen protocol after Yehia ECE-87 signature; behavioral-only semantic withdrawal unchanged."
   }
 }
