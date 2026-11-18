@@ -41,6 +41,11 @@ class SignedFrozenMaterializationTests(unittest.TestCase):
         )
         self.assertEqual(manifest["freeze"]["g3_status"], "accepted")
         self.assertFalse(manifest["submission_authorized"])
+        actor = json.loads((FROZEN / "actor_profile.json").read_text(encoding="utf-8"))
+        self.assertEqual(actor["primary_actor"]["sampling"]["temperature"], 0.2)
+        self.assertEqual(actor["primary_actor"]["sampling"]["top_p"], 0.95)
+        self.assertEqual(actor["errata"]["id"], "ECE-90")
+        self.assertEqual(manifest["errata"]["id"], "ECE-90")
         scope = json.loads((FROZEN / "scope.json").read_text(encoding="utf-8"))
         self.assertEqual(
             scope["semantic_claims"]["default"], "withdrawn_behavioral_only"
@@ -51,6 +56,10 @@ class SignedFrozenMaterializationTests(unittest.TestCase):
         authority = validate_freeze_authority(FROZEN, require_signed=True)
         self.assertTrue(authority["executable_main"])
         self.assertEqual(authority["authority"], "accepted")
+        self.assertEqual(
+            authority["component_sha256"]["actor_profile"],
+            manifest["freeze"]["component_sha256"]["actor_profile"],
+        )
 
     def test_unsigned_clone_rejects_main_authority(self):
         with tempfile.TemporaryDirectory() as tmp:

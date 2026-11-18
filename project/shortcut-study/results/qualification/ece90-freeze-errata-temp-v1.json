@@ -1,0 +1,66 @@
+{
+  "authorization": {
+    "owner": "Yehia F",
+    "verbatim_summary": "Yehia authorized freeze errata: set actor_profile sampling temperature from 0.6 \u2192 0.2 in signed configs/frozen/s0-tab-v0/; re-pin component hashes; keep freeze.signed=true / G3 accepted / accepting_owner Yehia F; submission_authorized=false."
+  },
+  "checklist": "results/qualification/freeze-checklist-s0-tab-post-sw05.md",
+  "cpu_only": true,
+  "errata": {
+    "field": "primary_actor.sampling.temperature",
+    "from": 0.6,
+    "id": "ECE-90",
+    "reason": "Align frozen main actor sampling with accepted G2 qualification temperature T=0.2 (local-qualification.json / qual-fresh-tab-catalog-v5-001).",
+    "to": 0.2
+  },
+  "freeze": {
+    "accepting_owner": "Yehia F",
+    "actor_profile_sha256": "7bebf46c1e43ed75e009ea6c04554baa0c73f8fd9cfc201a34ef7f63f35e241d",
+    "component_sha256": {
+      "a_t_j_boundaries": "d8a6940f8a33977502e8ec4a3f264b879d82e83d4a2cb94381d19d062a44f6fe",
+      "actor_profile": "7bebf46c1e43ed75e009ea6c04554baa0c73f8fd9cfc201a34ef7f63f35e241d",
+      "analysis_protocol": "7b57f86a4b18f282d335ffcec4fab659a6661397cb8ec9966b90b34d86425004",
+      "budgets": "3fac334dda05a57b4f72baab6704642108ed8359278f6e0fbc60d2557917961a",
+      "policy": "b1bf3e27274f3e70c16522d2a74d7a34e8476b54fb237cf5db700c34b6e85290",
+      "reduced_claims": "d73efe1938d6490f77862b306e54300868102fd08001ba443123a1ffcd941910",
+      "retry_recovery": "552775182c3c8c6272ca5b1afea10c6a40600adf2ce4dbbe9ec05f0feb53d813",
+      "schedule": "9c52817d6537f46d355cbfe7efd398cc328a3936b627cb5c0691a22a3bcacca3",
+      "scope": "bd7bb1c5bd235b21344749b2dce1827941446fe641c6ae4fb184342324335fa9",
+      "scoring_source_of_truth": "774e76c8627a12e0c1b28a0f50822d1f2864f17707907344178ca19a1f86d2fc",
+      "splits_reservation": "f61223de1b71b4800f6b8489989173cae85452103421efead536a1a40b6d8b05",
+      "visibility": "1f368cc1f86ce62804609695fc79f2c2809dcc4727ec06731d7186f12d5abb63"
+    },
+    "freeze_commit": "571d88865ee3d2d83ea152275b58436fccacc06c",
+    "freeze_timestamp": "2026-11-17T22:45:00-05:00",
+    "frozen_directory": "configs/frozen/s0-tab-v0/",
+    "g3_status": "accepted",
+    "manifest_sha256": "7b7ff3d384e3697c3a30496a108f47656072b06a141490efdc0416e6e50c5078",
+    "protocol_version": "s0-tab-v0",
+    "signed": true
+  },
+  "gates": {
+    "G0": "accepted",
+    "G1": "accepted",
+    "G2": "accepted",
+    "G3": "accepted"
+  },
+  "gpu_used": false,
+  "handoff": "handoffs/2026-11-18-ece90-freeze-errata-temp.md",
+  "hard_bans_retained": [
+    "no_course_upload_without_submission_authorized",
+    "no_sw08_kickoff_from_errata_pr_alone",
+    "independent_review_neq_pr_author_before_merge"
+  ],
+  "independent_review_required": true,
+  "independent_reviewer_must_not_be": "errata_pr_author",
+  "input_commit": "cbe74a8dd5e1cfef6887e1ba5bf8b3437fec02da",
+  "observed": {
+    "actor_temperature": 0.2,
+    "authority": "accepted",
+    "executable_main": true
+  },
+  "package": "ECE-90",
+  "role": "freeze_errata_sampling_temperature",
+  "status": "errata_pending_independent_review",
+  "submission_authorized": false,
+  "sw08_started": false
+}

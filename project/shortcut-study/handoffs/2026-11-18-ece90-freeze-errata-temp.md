@@ -1,0 +1,31 @@
+# Package handoff — ECE-90 freeze errata (sampling T=0.2) — 2026-11-18
+
+- Owner and role: Yehia-authorized freeze errata (`bc-acb79a86…`); not SW08 GPU operator
+- Status: ready_for_review — signed freeze retained; actor sampling temperature corrected
+- Input commit and dependencies: `cbe74a8` (main tip; ECE-87 / #61 signed freeze)
+- Output commit (or explicitly uncommitted paths): this PR branch tip
+- Paths changed; shared-contract version:
+  - `configs/frozen/s0-tab-v0/actor_profile.json` (T 0.6→0.2 + errata metadata)
+  - `configs/frozen/s0-tab-v0/manifest.json` (re-pinned `component_sha256`; errata note)
+  - `configs/frozen/s0-tab-v0/README.md`
+  - `results/qualification/freeze-checklist-s0-tab-post-sw05.md`
+  - `results/qualification/ece90-freeze-errata-temp-v1.json`
+  - `tests/test_frozen_main_path.py` (assert frozen T=0.2)
+  - this handoff
+- Concrete behavior implemented:
+  - `primary_actor.sampling.temperature`: **0.6 → 0.2**
+  - Reason: align with accepted G2 qualification sampling T=0.2
+  - Re-pinned all `freeze.component_sha256` values (actor_profile hash changed)
+  - Kept `freeze.signed=true`, `g3_status=accepted`, `accepting_owner=Yehia F`
+  - Kept `submission_authorized=false` and original `freeze_commit=571d888…`
+  - SW08 GPU **not** started
+- Commands run and actual outcomes: see evidence JSON / PR checks
+- Evidence/manifest paths and hashes: `results/qualification/ece90-freeze-errata-temp-v1.json`
+- Failures, uncertain findings, and scope limitations: none for this errata; provisional `s0-tab-only` actor_profile left untouched (not in signed freeze tree)
+- GPU lease owner/process/job, or no GPU work: no GPU
+- Terminal/incomplete/unattempted job IDs if applicable: n/a
+- Next safe action and required dependency:
+  - Independent reviewer **≠** this PR author inspects errata + hash pins
+  - Merge only after that review
+  - Then resume SW08 kickoff path under existing cutoffs
+- Acceptance reviewer, decision, and date (filled on review):

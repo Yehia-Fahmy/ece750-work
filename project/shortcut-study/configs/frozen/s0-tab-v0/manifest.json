@@ -17,13 +17,21 @@
     "splits_reservation": "splits_reservation.json",
     "visibility": "visibility.json"
   },
-  "created_for": "ECE-87 Yehia-authorized G3 freeze signature for s0-tab-v0",
+  "created_for": "ECE-87 Yehia-authorized G3 freeze signature for s0-tab-v0; ECE-90 Yehia-authorized sampling-temperature errata (0.6→0.2)",
+  "errata": {
+    "authorized_by": "Yehia F",
+    "base_main_tip": "cbe74a8dd5e1cfef6887e1ba5bf8b3437fec02da",
+    "id": "ECE-90",
+    "original_freeze_commit": "571d88865ee3d2d83ea152275b58436fccacc06c",
+    "reason": "Align with accepted G2 qualification sampling temperature T=0.2",
+    "summary": "primary_actor.sampling.temperature 0.6→0.2; component hashes re-pinned"
+  },
   "freeze": {
     "accepting_owner": "Yehia F",
     "authorization": "Yehia authorized freeze/accept G3; walkthrough 1–5 confirmed 2026-11-17 America/Toronto. Behavioral-only scope unchanged. submission_authorized=false. Do not start SW08 from this signature PR alone.",
     "component_sha256": {
       "a_t_j_boundaries": "d8a6940f8a33977502e8ec4a3f264b879d82e83d4a2cb94381d19d062a44f6fe",
-      "actor_profile": "ba34ece54fe9746cf4a55858856f61bcb0039a316b9b627ab943c9d458142299",
+      "actor_profile": "7bebf46c1e43ed75e009ea6c04554baa0c73f8fd9cfc201a34ef7f63f35e241d",
       "analysis_protocol": "7b57f86a4b18f282d335ffcec4fab659a6661397cb8ec9966b90b34d86425004",
       "budgets": "3fac334dda05a57b4f72baab6704642108ed8359278f6e0fbc60d2557917961a",
       "policy": "b1bf3e27274f3e70c16522d2a74d7a34e8476b54fb237cf5db700c34b6e85290",
@@ -39,7 +47,7 @@
     "freeze_timestamp": "2026-11-17T22:45:00-05:00",
     "frozen_directory": "configs/frozen/s0-tab-v0/",
     "g3_status": "accepted",
-    "note": "Signed freeze (ECE-87). Independent review ≠ signature PR author required before merge. SW08 GPU not started by this booking.",
+    "note": "Signed freeze (ECE-87). ERRATA ECE-90: actor_profile sampling temperature 0.6→0.2 to align with G2 qual T=0.2; component hashes re-pinned. freeze.signed / g3 accepted / accepting_owner Yehia F unchanged; submission_authorized=false. Independent review ≠ errata PR author before merge. SW08 GPU not started by this booking.",
     "signed": true
   },
   "gate_prerequisites": {
