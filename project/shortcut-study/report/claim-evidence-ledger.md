@@ -1,7 +1,7 @@
-# Claim / evidence ledger (SW04) — 2026-11-17
+# Claim / evidence ledger (SW04 → SW09) — updated 2026-11-18
 
-Status: **living CPU ledger** for the extension report. Not a freeze. Not main results.
-`submission_authorized` remains **false**. Parallel SW06 GPU work is owned by the WSL operator only.
+Status: **living CPU ledger** for the extension report. SW09 final report uses S0 main stats below.
+`submission_authorized` remains **false**. Do not treat packaging as course submission.
 
 ## Qualification-reuse caveat (required)
 
@@ -54,8 +54,14 @@ Use this table for report prose. Prefer hashes/paths over adjectives like “val
 | C-SW06-DEV-TAB05-EXTREME | TAB05 extreme residual clearance: adapter v6 anti-dupe; probe-only turns 20; live qual turns stay 16 | Development split only; **not** held-out | PR #48 merged `430c86b` / `results/development/sw06-tab05-extreme-residual-clearance-v1.json` | **Not G2**; TAB05 extreme **16/16**; live-qual turns **16**; root greenlit ECE-63 fresh (g2_accepted still false) |
 | C-SW06-DEV-EASY-TAB04-05 | ECE-69 TAB04/TAB05 easy no-shortcut residual: calculate multiply/floordiv + count/rate cues; adapter v7 | Development split only; **not** held-out | `results/development/sw06-tab04-tab05-easy-residual-clearance-v1.json` | **Not G2**; wave C **8/8** authorized_success; live-qual turns still **16**; no fresh 320 |
 | C-BATCH-V3 | Fresh batch API + catalog v3 wired | CPU reservation / allocate API | `results/development/sw01-cpu-reservation-manifest-v1.json`, `#33` | v3-001 **consumed** FAIL; ECE-63 needs a **new** batch id (root-greenlit) |
-| C-MAIN | Main factorial effects / visibility contrasts | Frozen main denominator | — | **No claim** (no freeze, no main collection) |
-| C-SEM | Semantic judge conclusions | Qualified judge + frozen audit scope | SW07-B/ECE-80 XOR on `212631a`: behavioral-only selected; `handoffs/2026-11-18-sw07-b-semantic-scope.md`, `results/qualification/sw07-b-semantic-scope-v1.json` | **Withdrawn** for freeze candidate (judge path not selected); not G3; not submission |
+| C-MAIN | Main factorial effects / visibility contrasts (pre-SW08 placeholder) | Frozen main denominator | — | **Superseded** by C-MAIN-S0-* after SW08 booking on `231da6d` |
+| C-MAIN-S0-COMPLETION | Main completion 318/320 (99.375%); 2 TAB05 format failures retained | 320 assigned IDs | `results/main/main-s0-tab-v0-20261118-stats.json` + booking JSON | Recorded; `submission_authorized=false` |
+| C-MAIN-S0-INFO | Complete vs incomplete authorized success 32.3% (51/158) vs 5.0% (8/160); Δ +27.3 pp | Completed cells | same stats JSON `information_state_authorized` | Behavioral contrast; not acquisition-use |
+| C-MAIN-S0-EASY | Easy no-shortcut authorized 28/80 = 35% | completed ∩ trivial\|moderate ∩ sc-absent | stats `easy_no_shortcut` | Descriptive; not a reopened gate |
+| C-MAIN-S0-VIS-SC | Visibility ~17.5–20%; shortcut present/absent 17.6% vs 19.5% authorized | Completed cells | stats visibility / shortcut_available_authorized | Small; do not over-claim |
+| C-MAIN-S0-ACQ0 | `acquisition.successful` = 0 on completed sc-present and sc-absent | Completed cells | stats `shortcut_acquisition_successful` | **Blocks shortcut-use claim** from acquisition flags |
+| C-MAIN-S0-TEMP | Sampling T=0.2 via ECE-90 freeze errata | Frozen sampling | freeze README + stats `sampling` + ECE-90 handoff | Disclosed assumption |
+| C-SEM | Semantic judge conclusions | Qualified judge + frozen audit scope | SW07-B/ECE-80 XOR on `212631a`: behavioral-only selected; `handoffs/2026-11-18-sw07-b-semantic-scope.md`, `results/qualification/sw07-b-semantic-scope-v1.json` | **Withdrawn** (unchanged under S0 behavioral main) |
 
 ## Original study vs extension
 

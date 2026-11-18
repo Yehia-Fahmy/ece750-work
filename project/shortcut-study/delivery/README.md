@@ -1,15 +1,17 @@
-# Delivery package (WP13 / G6) — S4 honest course fallback
+# Delivery package (WP13 / G6)
 
-**Current completion assignment:** the [swarm start guide](../SWARM_START.md) attempts a qualified S0 with a firm S4 fallback. This directory's existing manifest/log records the earlier S4 packaging baseline; it is not final delivery acceptance. Agents now own PDF/deck/notes/build/reproduction/visual inspection, and must generate a new manifest at the final integrated commit. Follow the updated [submission checklist](submission-checklist.md). Course upload remains researcher-only.
+**Current package (SW09 / 2026-11-18):** S0 behavioral main artifacts after SW08 booking on tip `231da6d`. See [`packaging-manifest-sw09.md`](packaging-manifest-sw09.md) and [`reproduction-log-sw09.md`](reproduction-log-sw09.md).
 
-**Status:** packaging ready for lagging review (2026-11-17).  
-**Scope:** **S4** — `primary_actor_episodes = 0`; no frozen main factorial; no invented main results.  
-**Submission:** `constraints.submission_authorized = false` — Yehia-only; this package does **not** authorize course upload.
+Historical S4 packaging baseline remains in [`packaging-manifest.md`](packaging-manifest.md) / [`reproduction-log.md`](reproduction-log.md) as dated evidence — not the current claim set.
+
+**Submission:** `constraints.submission_authorized = false` — researcher LMS upload only. Independent review ≠ SW09 author is required before accepting WP12/WP13/G6.
 
 | Artifact | Purpose |
 | --- | --- |
-| [`packaging-manifest.md`](packaging-manifest.md) | What ships from Git vs local raw archives vs GPU re-run |
-| [`reproduction-log.md`](reproduction-log.md) | Clean-checkout checks actually run for this package |
-| [`submission-checklist.md`](submission-checklist.md) | Ready vs Yehia-only remaining steps (PDF, slides, upload) |
+| [`packaging-manifest-sw09.md`](packaging-manifest-sw09.md) | SW09 Git vs raw vs non-claims inventory |
+| [`reproduction-log-sw09.md`](reproduction-log-sw09.md) | Build/verify/visual checks run for SW09 |
+| [`submission-checklist.md`](submission-checklist.md) | Agent-owned vs researcher-owned remaining steps |
+| [`packaging-manifest.md`](packaging-manifest.md) | Historical S4 inventory |
+| [`reproduction-log.md`](reproduction-log.md) | Historical S4 reproduction log |
 
-Companion report path: [`../report/`](../report/) · S4 declaration: [`../handoffs/2026-11-17-s4-honest-course-fallback.md`](../handoffs/2026-11-17-s4-honest-course-fallback.md).
+Companion report/deck: [`../report/final-report.pdf`](../report/final-report.pdf), [`../report/slides.pdf`](../report/slides.pdf).
